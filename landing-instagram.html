@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terrivol Music — Estudio · Sello · Distribución</title>
+<meta name="description" content="Producción, masterización y distribución musical profesional desde Bogotá. Más de 15 años en la industria.">
+<link rel="stylesheet" href="style.css">
+<style>
+body{cursor:default}
+.cursor,.cursor-ring{display:none}
+.ig-hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;z-index:2;width:100%;overflow:hidden}
+.ig-logo{width:120px;margin-bottom:2rem;animation:fadeUp .8s ease forwards}
+.ig-title{font-size:clamp(2.2rem,6vw,4rem);font-weight:800;line-height:1;letter-spacing:-0.02em;margin-bottom:1rem;animation:fadeUp .8s .1s ease forwards;opacity:0}
+.ig-sub{font-size:1rem;color:var(--muted);max-width:420px;line-height:1.6;margin-bottom:3rem;animation:fadeUp .8s .2s ease forwards;opacity:0}
+.ig-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:3rem;animation:fadeUp .8s .3s ease forwards;opacity:0}
+.ig-pill{font-family:'Space Mono',monospace;font-size:.7rem;padding:.4rem .9rem;border-radius:100px;border:1px solid var(--border);color:var(--muted);letter-spacing:.05em}
+.ig-pill.hot{border-color:var(--accent);color:var(--accent)}
+.ig-buttons{display:flex;flex-direction:column;gap:1rem;width:100%;max-width:360px;animation:fadeUp .8s .4s ease forwards;opacity:0}
+.ig-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:1rem 1.5rem;border-radius:4px;font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+.ig-btn-main{background:var(--accent);color:white}
+.ig-btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(123,92,250,.4)}
+.ig-btn-wa{background:#25D366;color:white}
+.ig-btn-wa:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.3)}
+.ig-btn-outline{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.15)}
+.ig-btn-outline:hover{border-color:var(--accent2);color:var(--accent2)}
+.ig-services{padding:5rem 1.5rem;text-align:center;position:relative;z-index:1}
+.ig-services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:500px;margin:2rem auto 0}
+.ig-service{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem 1rem;transition:all .3s}
+.ig-service:hover{border-color:var(--accent);transform:translateY(-2px)}
+.ig-service-icon{font-size:1.8rem;margin-bottom:.6rem}
+.ig-service-name{font-size:.9rem;font-weight:700;margin-bottom:.3rem}
+.ig-service-desc{font-size:.78rem;color:var(--muted)}
+.ig-cta-bottom{padding:4rem 1.5rem;text-align:center;position:relative;z-index:1}
+.ig-form{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:2rem;max-width:440px;margin:0 auto;position:relative}
+.ig-form::before{content:'';position:absolute;top:-1px;left:2rem;right:2rem;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3))}
+.form-success{display:none;text-align:center;padding:1.5rem 0}
+.form-success .check{width:50px;height:50px;border:2px solid var(--accent2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.3rem}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div class="nebula nebula-1"></div>
+<div class="nebula nebula-2"></div>
+
+<div class="ig-hero">
+  <img src="logo.png" alt="Terrivol Music" class="ig-logo">
+  <h1 class="ig-title">Hacemos sonar<br><span style="color:var(--accent)">tu música</span> en<br><span style="color:var(--accent2)">todo el mundo.</span></h1>
+  <p class="ig-sub">Sello independiente en Bogotá con +15 años en la industria. Estudio propio, distribución global y todo lo que necesitas para crecer.</p>
+  <div class="ig-pills">
+    <span class="ig-pill hot">🎛️ Producción</span>
+    <span class="ig-pill hot">🔊 Masterización</span>
+    <span class="ig-pill">🌐 Distribución</span>
+    <span class="ig-pill">📊 Music Business</span>
+    <span class="ig-pill">🎬 Audiovisual</span>
+    <span class="ig-pill">📢 Audio Marcas</span>
+  </div>
+  <div class="ig-buttons">
+    <a href="#contacto" class="ig-btn ig-btn-main">🚀 Quiero trabajar con Terrivol</a>
+    <a href="https://wa.me/573102123844?text=Hola%20Terrivol%20Music%2C%20vi%20su%20Instagram%20y%20quiero%20informaci%C3%B3n" target="_blank" class="ig-btn ig-btn-wa">💬 Contactar por WhatsApp</a>
+    <a href="index.html" class="ig-btn ig-btn-outline">Ver sitio completo →</a>
+  </div>
+</div>
+
+<section class="ig-services">
+  <p class="section-label" style="justify-content:center">// NUESTROS SERVICIOS</p>
+  <h2 style="font-size:clamp(1.8rem,5vw,2.8rem)">¿En qué te podemos ayudar?</h2>
+  <div class="ig-services-grid">
+    <div class="ig-service"><div class="ig-service-icon">🎛️</div><div class="ig-service-name">Producción musical</div><div class="ig-service-desc">Beats y arreglos urbano/trap con estudio propio</div></div>
+    <div class="ig-service"><div class="ig-service-icon">🔊</div><div class="ig-service-name">Masterización</div><div class="ig-service-desc">Para Spotify, Apple Music y todos los DSPs</div></div>
+    <div class="ig-service"><div class="ig-service-icon">🌐</div><div class="ig-service-name">Distribución</div><div class="ig-service-desc">+150 plataformas con estrategia de playlists</div></div>
+    <div class="ig-service"><div class="ig-service-icon">📊</div><div class="ig-service-name">Consultoría</div><div class="ig-service-desc">Publishing, regalías y music business</div></div>
+    <div class="ig-service"><div class="ig-service-icon">🎬</div><div class="ig-service-name">Audiovisual</div><div class="ig-service-desc">Videoclips, reels y contenido para redes</div></div>
+    <div class="ig-service"><div class="ig-service-icon">📢</div><div class="ig-service-name">Audio marcas</div><div class="ig-service-desc">Jingles y sonic branding para empresas</div></div>
+  </div>
+</section>
+
+<section class="ig-cta-bottom" id="contacto">
+  <p class="section-label" style="justify-content:center;display:flex">// EMPECEMOS</p>
+  <h2 style="font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:.5rem">Cuéntanos tu proyecto</h2>
+  <p style="color:var(--muted);margin-bottom:2rem;font-size:.95rem">Te respondemos en menos de 24 horas.</p>
+  <div class="ig-form">
+    <div id="formContent">
+      <div class="form-group"><label class="form-label">NOMBRE ARTÍSTICO O EMPRESA</label><input type="text" class="form-input" placeholder="Tu nombre" id="f-nombre"></div>
+      <div class="form-group"><label class="form-label">CORREO ELECTRÓNICO</label><input type="email" class="form-input" placeholder="tu@correo.com" id="f-email"></div>
+      <div class="form-group"><label class="form-label">SERVICIO DE INTERÉS</label>
+        <select class="form-select" id="f-servicio">
+          <option value="">Selecciona...</option>
+          <option>Producción musical</option><option>Masterización</option>
+          <option>Distribución global</option><option>Consultoría music business</option>
+          <option>Producción audiovisual</option><option>Audio para marcas</option>
+          <option>Paquete completo</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">MENSAJE (OPCIONAL)</label><textarea class="form-textarea" placeholder="Cuéntanos brevemente tu proyecto..." id="f-msg"></textarea></div>
+      <button class="form-submit" onclick="submitForm()">ENVIAR →</button>
+    </div>
+    <div class="form-success" id="formSuccess">
+      <div class="check">✓</div><h3>¡Recibido!</h3>
+      <p style="color:var(--muted);font-size:.9rem">Te contactamos pronto.<br>Revisa también tu spam.</p>
+    </div>
+  </div>
+  <p style="margin-top:1.5rem;color:var(--muted);font-size:.8rem">O escríbenos directo: <a href="mailto:terrivolmusiclove@gmail.com" style="color:var(--accent2)">terrivolmusiclove@gmail.com</a></p>
+</section>
+
+<footer style="text-align:center;padding:2rem;border-top:1px solid var(--border)">
+  <img src="logo.png" alt="Terrivol Music" style="height:28px;margin-bottom:.8rem">
+  <p class="footer-copy" style="display:block;text-align:center">© 2025 TERRIVOL MUSIC · BOGOTÁ</p>
+  <div style="display:flex;justify-content:center;gap:1.5rem;margin-top:.8rem">
+    <a href="https://instagram.com/terrivolmusic" target="_blank" style="color:var(--muted);font-size:.82rem">@terrivolmusic</a>
+    <a href="https://wa.me/573102123844" target="_blank" style="color:var(--muted);font-size:.82rem">WhatsApp</a>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body></html>

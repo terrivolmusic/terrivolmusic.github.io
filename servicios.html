@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servicios — Terrivol Music</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{padding:10rem 0 5rem;border-bottom:1px solid var(--border)}
+.services-full{padding:6rem 0}
+.service-block{display:grid;grid-template-columns:1fr 2fr;gap:4rem;padding:4rem 0;border-bottom:1px solid var(--border);align-items:start}
+.service-block:last-child{border-bottom:none}
+.service-block-num{font-family:'Space Mono',monospace;font-size:3rem;font-weight:700;color:var(--border);line-height:1}
+.service-block-title{font-size:1.8rem;font-weight:800;margin-bottom:1rem}
+.service-block-desc{color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
+.service-features{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+.service-features li{font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:8px}
+.service-features li::before{content:'→';color:var(--accent);font-size:.8rem}
+@media(max-width:768px){.service-block{grid-template-columns:1fr;gap:1.5rem}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div><div class="nebula nebula-1"></div>
+<nav id="nav-placeholder"></nav>
+<section class="page-hero">
+  <div class="container">
+    <p class="section-label fade-up">// SERVICIOS</p>
+    <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1;letter-spacing:-0.02em;max-width:700px">Todo lo que necesitas para sonar.</h1>
+    <p class="fade-up delay-2" style="color:var(--muted);font-size:1.1rem;max-width:500px;line-height:1.7;margin-top:1.5rem">Consulta inicial sin costo. Te enviamos un presupuesto personalizado en 24 horas según tu proyecto.</p>
+  </div>
+</section>
+<section class="services-full">
+  <div class="container">
+    <div class="service-block" id="produccion">
+      <div><div class="service-block-num">01</div></div>
+      <div>
+        <h2 class="service-block-title">Producción musical</h2>
+        <p class="service-block-desc">Producción completa de tus canciones desde el beat hasta el mix final. Trabajamos con artistas urbanos, trap y reggaetón en nuestro estudio propio en Bogotá.</p>
+        <ul class="service-features">
+          <li>Composición y beatmaking personalizado</li><li>Arreglos completos para tu estilo</li>
+          <li>Grabación de voces en estudio propio</li><li>Mezcla profesional incluida</li>
+          <li>Revisiones hasta tu aprobación</li>
+        </ul>
+        <a href="https://wa.me/573102123844?text=Quiero%20información%20sobre%20producción%20musical" target="_blank" class="btn-wa">💬 Consultar precio</a>
+      </div>
+    </div>
+    <div class="service-block" id="mastering">
+      <div><div class="service-block-num">02</div></div>
+      <div>
+        <h2 class="service-block-title">Masterización</h2>
+        <p class="service-block-desc">Mastering profesional que hace que tu música suene exactamente igual en todos los dispositivos y plataformas. Optimizado para Spotify, Apple Music, YouTube y más.</p>
+        <ul class="service-features">
+          <li>Mastering para streaming (LUFS correctos)</li><li>Mastering para vinilo y CD</li>
+          <li>Entrega en múltiples formatos (WAV, MP3, FLAC)</li><li>Revisión gratuita si no quedas satisfecho</li>
+        </ul>
+        <a href="https://wa.me/573102123844?text=Quiero%20información%20sobre%20masterización" target="_blank" class="btn-wa">💬 Consultar precio</a>
+      </div>
+    </div>
+    <div class="service-block" id="distribucion">
+      <div><div class="service-block-num">03</div></div>
+      <div>
+        <h2 class="service-block-title">Distribución global</h2>
+        <p class="service-block-desc">Lanzamos tu música en más de 150 plataformas digitales con metadata optimizada, ISRC propio, splits correctos y estrategia de pitching a playlists editoriales.</p>
+        <ul class="service-features">
+          <li>Distribución en +150 DSPs</li><li>ISRC y UPC incluidos</li>
+          <li>Pitching a playlists editoriales de Spotify</li><li>Registro en SAYCO/ACINPRO</li>
+          <li>Splits y regalías configurados correctamente</li><li>Analytics mensual de tu música</li>
+        </ul>
+        <a href="https://wa.me/573102123844?text=Quiero%20información%20sobre%20distribución" target="_blank" class="btn-wa">💬 Consultar precio</a>
+      </div>
+    </div>
+    <div class="service-block" id="consultoria">
+      <div><div class="service-block-num">04</div></div>
+      <div>
+        <h2 class="service-block-title">Consultoría music business</h2>
+        <p class="service-block-desc">El conocimiento que nadie te enseña. Publishing, regalías, contratos, derechos y estrategia de carrera con +15 años de experiencia en la industria independiente.</p>
+        <ul class="service-features">
+          <li>Publishing y registro de obras</li><li>Estructura de regalías y splits</li>
+          <li>Revisión y redacción de contratos</li><li>Estrategia de carrera personalizada</li>
+          <li>SAYCO, ACINPRO y PROs internacionales</li><li>Sync licensing y placements</li>
+        </ul>
+        <a href="https://wa.me/573102123844?text=Quiero%20una%20consultoría%20de%20music%20business" target="_blank" class="btn-wa">💬 Consultar precio</a>
+      </div>
+    </div>
+    <div class="service-block" id="video">
+      <div><div class="service-block-num">05</div></div>
+      <div>
+        <h2 class="service-block-title">Producción audiovisual</h2>
+        <p class="service-block-desc">Videoclips, visualizers y contenido para redes sociales. Desde la producción completa hasta la edición y postproducción de tu material.</p>
+        <ul class="service-features">
+          <li>Dirección y producción de videoclips</li><li>Visualizers para YouTube</li>
+          <li>Reels y contenido vertical para Instagram/TikTok</li><li>Color grading profesional</li>
+        </ul>
+        <a href="https://wa.me/573102123844?text=Quiero%20información%20sobre%20producción%20audiovisual" target="_blank" class="btn-wa">💬 Consultar precio</a>
+      </div>
+    </div>
+    <div class="service-block" id="marcas">
+      <div><div class="service-block-num">06</div></div>
+      <div>
+        <h2 class="service-block-title">Audio para marcas</h2>
+        <p class="service-block-desc">Tu marca necesita un sonido que la gente recuerde. Creamos jingles, sonic branding y música original para campañas publicitarias y contenido corporativo.</p>
+        <ul class="service-features">
+          <li>Jingles publicitarios</li><li>Sonic branding y logo sonoro</li>
+          <li>Música para spots de radio y TV</li><li>Música para contenido corporativo y redes</li>
+        </ul>
+        <a href="https://wa.me/573102123844?text=Quiero%20información%20sobre%20audio%20para%20marcas" target="_blank" class="btn-wa">💬 Consultar precio</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+    <div class="footer-links"><a href="tienda.html">Tienda</a><a href="portafolio.html">Portafolio</a><a href="contacto.html">Contacto</a></div>
+    <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ</div>
+  </div>
+</footer>
+<script src="nav.js"></script><script>document.getElementById('nav-placeholder').innerHTML=buildNav('servicios');</script>
+<script src="main.js"></script>
+</body></html>

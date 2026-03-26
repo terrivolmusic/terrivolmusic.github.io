@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terrivol Music — Sello Independiente · Bogotá</title>
+<meta name="description" content="Sello musical independiente en Bogotá. Producción, masterización, distribución global y consultoría music business desde 2010.">
+<link rel="stylesheet" href="style.css">
+<style>
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 0 6rem;position:relative;z-index:2;width:100%;overflow:hidden}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent2);border:1px solid rgba(0,229,255,0.3);padding:.4rem 1rem;border-radius:100px;margin-bottom:2rem;letter-spacing:.08em}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--accent2);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+h1{font-size:clamp(3rem,8vw,6.5rem);font-weight:800;line-height:.95;letter-spacing:-0.02em;margin-bottom:1.5rem}
+.line-accent{color:var(--accent)}.line-cyan{color:var(--accent2)}
+.hero-sub{font-size:1.1rem;color:var(--muted);line-height:1.7;max-width:520px;margin-bottom:3rem;font-weight:400}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.stats{padding:4rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.stat-num{font-size:2.8rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:.4rem}
+.stat-label{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.06em}
+.services-home{padding:8rem 0}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border);border:1px solid var(--border)}
+.service-card{background:var(--surface);padding:2.5rem 2rem;transition:all .3s;position:relative;overflow:hidden;text-decoration:none;display:block;color:var(--text)}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--card-accent,var(--accent)),transparent);opacity:0;transition:opacity .3s}
+.service-card:hover{background:var(--surface2)}
+.service-card:hover::before{opacity:1}
+.service-icon{font-size:1.5rem;margin-bottom:1.2rem}
+.service-title{font-size:1.05rem;font-weight:700;margin-bottom:.6rem}
+.service-desc{color:var(--muted);font-size:.88rem;line-height:1.6;font-weight:400}
+.service-tag{display:inline-block;margin-top:1rem;font-family:'Space Mono',monospace;font-size:.65rem;color:var(--card-accent,var(--accent));border:1px solid var(--card-accent,var(--accent));padding:.2rem .6rem;border-radius:2px;opacity:.7}
+.portfolio-home{padding:8rem 0}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.portfolio-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform .3s;text-decoration:none;display:block;color:var(--text)}
+.portfolio-card:hover{transform:translateY(-4px)}
+.portfolio-thumb{width:100%;aspect-ratio:16/9;background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.portfolio-thumb-bg{position:absolute;inset:0;opacity:.3;background:linear-gradient(135deg,var(--accent),var(--accent3))}
+.portfolio-info{padding:1.2rem}
+.portfolio-artist{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.3rem;letter-spacing:.06em}
+.portfolio-title{font-size:1rem;font-weight:700;margin-bottom:.4rem}
+.portfolio-sub{font-size:.82rem;color:var(--muted)}
+.process{padding:8rem 0}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4rem;position:relative}
+.process-steps::before{content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3),var(--accent))}
+.step{text-align:center;padding:0 1rem}
+.step-dot{width:56px;height:56px;border:2px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:'Space Mono',monospace;font-size:.8rem;color:var(--accent);background:var(--bg);position:relative;z-index:1;transition:all .3s}
+.step:hover .step-dot{border-color:var(--accent2);color:var(--accent2)}
+.step-title{font-size:.95rem;font-weight:700;margin-bottom:.5rem}
+.step-desc{font-size:.82rem;color:var(--muted);line-height:1.5}
+.lead-section{padding:8rem 0}
+.lead-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.lead-copy p{color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
+.lead-copy ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.lead-copy li{font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:10px}
+.lead-copy li::before{content:'';width:6px;height:6px;background:var(--accent2);border-radius:50%;flex-shrink:0}
+.lead-form{background:var(--surface);border:1px solid var(--border);padding:2.5rem;position:relative}
+.lead-form::before{content:'';position:absolute;top:-1px;left:2rem;right:2rem;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3))}
+.form-title{font-size:1.2rem;font-weight:700;margin-bottom:.4rem}
+.form-sub{font-size:.85rem;color:var(--muted);margin-bottom:2rem}
+.form-success{display:none;text-align:center;padding:2rem 0}
+.form-success .check{width:56px;height:56px;border:2px solid var(--accent2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-size:1.5rem}
+@media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}.services-grid{grid-template-columns:1fr}.portfolio-grid{grid-template-columns:1fr}.lead-inner{grid-template-columns:1fr;gap:3rem}.process-steps{grid-template-columns:repeat(2,1fr);gap:2rem}.process-steps::before{display:none}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div>
+<div class="nebula nebula-1"></div>
+<div class="nebula nebula-2"></div>
+<div class="nebula nebula-3"></div>
+<nav id="nav-placeholder"></nav>
+
+<section class="hero">
+  <div class="container" style="width:100%">
+    <div style="max-width:780px;margin-left:0">
+      <div class="hero-badge fade-up">BOGOTÁ · COLOMBIA · EST. 2010</div>
+      <h1 class="fade-up delay-1">TU MÚSICA.<br><span class="line-accent">NUESTRA</span><br><span class="line-cyan">INFRAESTRUCTURA.</span></h1>
+      <p class="hero-sub fade-up delay-2">Sello independiente con estudio propio, distribución global y tecnología musical de primer nivel. Producimos, masterizamos y lanzamos tu música al mundo desde Bogotá.</p>
+      <div class="hero-actions fade-up delay-3">
+        <a href="contacto.html" class="btn-primary">Quiero trabajar con Terrivol</a>
+        <a href="servicios.html" class="btn-ghost">Ver servicios</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="fade-up" style="text-align:center"><div class="stat-num">+15</div><div class="stat-label">AÑOS EN LA INDUSTRIA</div></div>
+      <div class="fade-up delay-1" style="text-align:center"><div class="stat-num">100%</div><div class="stat-label">INDEPENDIENTE</div></div>
+      <div class="fade-up delay-2" style="text-align:center"><div class="stat-num">+150</div><div class="stat-label">PLATAFORMAS DSP</div></div>
+      <div class="fade-up delay-3" style="text-align:center"><div class="stat-num">LATAM</div><div class="stat-label">ALCANCE REGIONAL</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services-home" id="servicios">
+  <div class="container">
+    <p class="section-label">// SERVICIOS</p>
+    <h2>Todo lo que necesitas<br>para sonar.</h2>
+    <p class="section-sub">Desde la idea hasta el stream. Cubrimos cada etapa con infraestructura profesional.</p>
+    <div class="services-grid">
+      <a href="servicios.html" class="service-card" style="--card-accent:#7b5cfa"><div class="service-icon">🎛️</div><div class="service-title">Producción musical</div><div class="service-desc">Beats, arreglos y producción completa para urbano, trap y reggaetón con estudio propio.</div><span class="service-tag">URBANO · TRAP</span></a>
+      <a href="servicios.html" class="service-card" style="--card-accent:#00e5ff"><div class="service-icon">🔊</div><div class="service-title">Masterización</div><div class="service-desc">Mastering profesional optimizado para todos los DSPs y formatos de reproducción.</div><span class="service-tag">TODOS LOS FORMATOS</span></a>
+      <a href="servicios.html" class="service-card" style="--card-accent:#ff3cac"><div class="service-icon">🌐</div><div class="service-title">Distribución global</div><div class="service-desc">Lanzamos tu música en +150 plataformas con metadata y pitching a playlists.</div><span class="service-tag">+150 PLATAFORMAS</span></a>
+      <a href="servicios.html" class="service-card" style="--card-accent:#7b5cfa"><div class="service-icon">📊</div><div class="service-title">Consultoría music business</div><div class="service-desc">Publishing, regalías, contratos, SAYCO/ACINPRO y estrategia de carrera.</div><span class="service-tag">PUBLISHING · DERECHOS</span></a>
+      <a href="servicios.html" class="service-card" style="--card-accent:#00e5ff"><div class="service-icon">🎬</div><div class="service-title">Producción audiovisual</div><div class="service-desc">Videoclips, visualizers, reels y contenido para redes sociales.</div><span class="service-tag">VIDEO · CONTENIDO</span></a>
+      <a href="servicios.html" class="service-card" style="--card-accent:#ff3cac"><div class="service-icon">📢</div><div class="service-title">Audio para marcas</div><div class="service-desc">Jingles, sonic branding y música para publicidad y contenido corporativo.</div><span class="service-tag">MARCAS · PUBLICIDAD</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio-home">
+  <div class="container">
+    <p class="section-label">// PORTAFOLIO</p>
+    <h2>Música que ya<br>está en el mundo.</h2>
+    <p class="section-sub">Artistas y proyectos producidos, masterizados y lanzados desde Terrivol Music.</p>
+    <div class="portfolio-grid">
+      <a href="artistas/cagta-flex.html" class="portfolio-card">
+        <div class="portfolio-thumb"><div class="portfolio-thumb-bg"></div><span style="position:relative;font-size:2.5rem">🎤</span></div>
+        <div class="portfolio-info"><div class="portfolio-artist">ARTISTA PRINCIPAL</div><div class="portfolio-title">Cagta Flex</div><div class="portfolio-sub">Urbano · Trap · Bogotá, Colombia</div></div>
+      </a>
+      <a href="artistas/beats-bfyt.html" class="portfolio-card">
+        <div class="portfolio-thumb"><div class="portfolio-thumb-bg" style="background:linear-gradient(135deg,#00e5ff,#7b5cfa)"></div><span style="position:relative;font-size:2.5rem">🥁</span></div>
+        <div class="portfolio-info"><div class="portfolio-artist">CANAL BEATS</div><div class="portfolio-title">Beats BFYT</div><div class="portfolio-sub">Beats libres para YouTube · Urbano · Trap</div></div>
+      </a>
+      <a href="portafolio.html" class="portfolio-card">
+        <div class="portfolio-thumb"><div class="portfolio-thumb-bg" style="background:linear-gradient(135deg,#ff3cac,#7b5cfa)"></div><span style="position:relative;font-size:2.5rem">🚀</span></div>
+        <div class="portfolio-info"><div class="portfolio-artist">PRÓXIMAMENTE</div><div class="portfolio-title">Nuevos proyectos 2025</div><div class="portfolio-sub">Nuevos artistas en desarrollo · Stay tuned</div></div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem"><a href="portafolio.html" class="btn-ghost">Ver portafolio completo</a></div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="container">
+    <p class="section-label">// CÓMO TRABAJAMOS</p>
+    <h2>Del concepto al lanzamiento.</h2>
+    <div class="process-steps">
+      <div class="step fade-up"><div class="step-dot">01</div><div class="step-title">Consulta inicial</div><div class="step-desc">Entendemos tu proyecto, objetivos y qué necesitas.</div></div>
+      <div class="step fade-up delay-1"><div class="step-dot">02</div><div class="step-title">Propuesta</div><div class="step-desc">Plan claro con servicios, tiempos y presupuesto.</div></div>
+      <div class="step fade-up delay-2"><div class="step-dot">03</div><div class="step-title">Producción</div><div class="step-desc">Trabajamos con tu aprobación en cada paso.</div></div>
+      <div class="step fade-up delay-3"><div class="step-dot">04</div><div class="step-title">Lanzamiento</div><div class="step-desc">Entregamos y ejecutamos la estrategia al mundo.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="lead-section" id="contacto">
+  <div class="container">
+    <div class="lead-inner">
+      <div class="lead-copy">
+        <p class="section-label">// TRABAJEMOS JUNTOS</p>
+        <h2>¿Listo para sonar diferente?</h2>
+        <p>Cuéntanos tu proyecto y te respondemos en menos de 24 horas. Sin rodeos, sin intermediarios.</p>
+        <ul>
+          <li>Consulta inicial sin costo</li>
+          <li>Propuesta personalizada en 24h</li>
+          <li>+15 años en la industria</li>
+          <li>Bogotá, Colombia — alcance global</li>
+          <li>Contratos claros y transparentes</li>
+        </ul>
+        <br>
+        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%20Music%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios" target="_blank" class="btn-wa">💬 Escríbenos por WhatsApp</a>
+      </div>
+      <div class="lead-form">
+        <div id="formContent">
+          <div class="form-title">Cuéntanos tu proyecto</div>
+          <div class="form-sub">Todos los campos son confidenciales.</div>
+          <div class="form-group"><label class="form-label">NOMBRE ARTÍSTICO O EMPRESA</label><input type="text" class="form-input" placeholder="Tu nombre artístico" id="f-nombre"></div>
+          <div class="form-group"><label class="form-label">CORREO ELECTRÓNICO</label><input type="email" class="form-input" placeholder="tu@correo.com" id="f-email"></div>
+          <div class="form-group"><label class="form-label">SERVICIO DE INTERÉS</label>
+            <select class="form-select" id="f-servicio">
+              <option value="">Selecciona un servicio...</option>
+              <option>Producción musical</option><option>Masterización</option>
+              <option>Distribución global</option><option>Consultoría music business</option>
+              <option>Producción audiovisual</option><option>Audio para marcas</option>
+              <option>Paquete completo</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">INSTAGRAM (OPCIONAL)</label><input type="text" class="form-input" placeholder="@tuartista" id="f-ig"></div>
+          <button class="form-submit" onclick="submitForm()">ENVIAR MI PROYECTO →</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div class="check">✓</div><h3>¡Recibido!</h3>
+          <p>Te contactamos en menos de 24h.<br>Revisa también tu spam.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+    <div class="footer-links">
+      <a href="servicios.html">Servicios</a><a href="portafolio.html">Portafolio</a>
+      <a href="artistas.html">Artistas</a><a href="tienda.html">Tienda</a>
+      <a href="blog.html">Blog</a><a href="nosotros.html">Nosotros</a><a href="contacto.html">Contacto</a>
+    </div>
+    <div>
+      <div style="display:flex;gap:1rem;margin-bottom:.5rem">
+        <a href="https://instagram.com/terrivolmusic" target="_blank" style="color:var(--muted);font-size:.85rem">Instagram</a>
+        <a href="https://www.youtube.com/BeatsFreeYoutube" target="_blank" style="color:var(--muted);font-size:.85rem">YouTube</a>
+        <a href="https://wa.me/573102123844" target="_blank" style="color:var(--muted);font-size:.85rem">WhatsApp</a>
+      </div>
+      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
+    </div>
+  </div>
+</footer>
+<script src="nav.js"></script>
+<script>document.getElementById('nav-placeholder').innerHTML=buildNav('home');</script>
+<script src="main.js"></script>
+</body></html>

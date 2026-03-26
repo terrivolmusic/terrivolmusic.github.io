@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Terrivol Music</title>
+<meta name="description" content="Music business, distribución, publishing y todo lo que necesitas saber para vivir de la música. Por Terrivol Music.">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{padding:10rem 0 5rem;border-bottom:1px solid var(--border)}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.blog-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .3s;text-decoration:none;display:block;color:var(--text)}
+.blog-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.blog-thumb{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative;overflow:hidden}
+.blog-thumb-bg{position:absolute;inset:0;opacity:.25}
+.blog-info{padding:1.5rem}
+.blog-cat{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.08em;margin-bottom:.5rem}
+.blog-title{font-size:1rem;font-weight:700;line-height:1.3;margin-bottom:.5rem}
+.blog-excerpt{font-size:.83rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.blog-read{font-size:.8rem;color:var(--accent2);font-weight:600}
+.blog-featured{grid-column:1/-1;display:grid;grid-template-columns:1.5fr 1fr;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .3s;text-decoration:none;color:var(--text)}
+.blog-featured:hover{border-color:var(--accent);transform:translateY(-2px)}
+.blog-featured-thumb{aspect-ratio:auto;min-height:260px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden}
+.blog-featured-info{padding:2.5rem;display:flex;flex-direction:column;justify-content:center}
+.blog-featured-info .blog-title{font-size:1.4rem;margin-bottom:.8rem}
+.blog-featured-info .blog-excerpt{font-size:.9rem}
+.cta-blog{margin-top:4rem;text-align:center;padding:3rem;background:var(--surface);border:1px solid var(--border)}
+.cta-blog h2{font-size:1.6rem;margin-bottom:.8rem}
+.cta-blog p{color:var(--muted);margin-bottom:1.5rem;font-size:.95rem}
+@media(max-width:768px){.blog-grid{grid-template-columns:1fr}.blog-featured{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div><div class="nebula nebula-1"></div>
+<nav id="nav-placeholder"></nav>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="section-label fade-up">// BLOG</p>
+    <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1;letter-spacing:-0.02em;max-width:700px">El conocimiento que la industria no te da gratis.</h1>
+    <p class="fade-up delay-2" style="color:var(--muted);font-size:1.05rem;max-width:520px;line-height:1.7;margin-top:1.5rem">Music business, publishing, distribución y estrategia para artistas independientes. Por Terrivol Music desde Bogotá.</p>
+  </div>
+</section>
+
+<section style="padding:6rem 0">
+  <div class="container">
+    <div class="blog-grid">
+
+      <a href="contacto.html" class="blog-featured fade-up">
+        <div class="blog-featured-thumb"><div class="blog-thumb-bg" style="background:linear-gradient(135deg,#7b5cfa,#ff3cac)"></div><span style="position:relative">📊</span></div>
+        <div class="blog-featured-info">
+          <div class="blog-cat">MUSIC BUSINESS · DESTACADO</div>
+          <div class="blog-title">Qué es el publishing musical y por qué estás perdiendo dinero si no lo tienes registrado</div>
+          <div class="blog-excerpt">El publishing es una de las fuentes de ingresos más grandes de la industria y la mayoría de artistas independientes en Colombia no lo tienen configurado. Te explicamos cómo funciona, qué es SAYCO y ACINPRO, y cómo registrar tus obras correctamente.</div>
+          <span class="blog-read">Leer artículo →</span>
+        </div>
+      </a>
+
+      <a href="contacto.html" class="blog-card fade-up delay-1">
+        <div class="blog-thumb"><div class="blog-thumb-bg" style="background:linear-gradient(135deg,#00e5ff,#7b5cfa)"></div><span style="position:relative">🌐</span></div>
+        <div class="blog-info">
+          <div class="blog-cat">DISTRIBUCIÓN</div>
+          <div class="blog-title">Cómo distribuir tu música en Colombia en 2025: guía completa</div>
+          <div class="blog-excerpt">DistroKid, TuneCore, Amuse, CD Baby — te comparamos todas las opciones con sus costos reales y lo que te conviene según tu carrera.</div>
+          <span class="blog-read">Leer →</span>
+        </div>
+      </a>
+
+      <a href="contacto.html" class="blog-card fade-up delay-2">
+        <div class="blog-thumb"><div class="blog-thumb-bg" style="background:linear-gradient(135deg,#ff3cac,#fac775)"></div><span style="position:relative">🎧</span></div>
+        <div class="blog-info">
+          <div class="blog-cat">MASTERIZACIÓN</div>
+          <div class="blog-title">Cómo masterizar para Spotify: LUFS, loudness y lo que realmente importa</div>
+          <div class="blog-excerpt">Spotify normaliza el audio a -14 LUFS. Si tu master no está preparado para esto, tu canción puede sonar más débil que la competencia. Te explicamos cómo evitarlo.</div>
+          <span class="blog-read">Leer →</span>
+        </div>
+      </a>
+
+      <a href="contacto.html" class="blog-card fade-up">
+        <div class="blog-thumb"><div class="blog-thumb-bg" style="background:linear-gradient(135deg,#7b5cfa,#00e5ff)"></div><span style="position:relative">📝</span></div>
+        <div class="blog-info">
+          <div class="blog-cat">CONTRATOS</div>
+          <div class="blog-title">Qué debes revisar antes de firmar con un sello discográfico</div>
+          <div class="blog-excerpt">El recoup, los splits de regalías, la duración del contrato y la cesión de masters. Las cláusulas que los artistas aceptan sin leer y que les cuestan años de carrera.</div>
+          <span class="blog-read">Leer →</span>
+        </div>
+      </a>
+
+      <a href="contacto.html" class="blog-card fade-up delay-1">
+        <div class="blog-thumb"><div class="blog-thumb-bg" style="background:linear-gradient(135deg,#fac775,#ff3cac)"></div><span style="position:relative">📱</span></div>
+        <div class="blog-info">
+          <div class="blog-cat">MARKETING</div>
+          <div class="blog-title">Cómo lanzar un sencillo en 2025: checklist de 8 semanas</div>
+          <div class="blog-excerpt">Desde el master hasta el post-release. Las 8 semanas que determinan si tu canción llega a playlists o desaparece en el algoritmo.</div>
+          <span class="blog-read">Leer →</span>
+        </div>
+      </a>
+
+      <a href="contacto.html" class="blog-card fade-up delay-2">
+        <div class="blog-thumb"><div class="blog-thumb-bg" style="background:linear-gradient(135deg,#00e5ff,#ff3cac)"></div><span style="position:relative">💰</span></div>
+        <div class="blog-info">
+          <div class="blog-cat">REGALÍAS</div>
+          <div class="blog-title">De dónde vienen las regalías: streaming, sync, performance y mecánicas</div>
+          <div class="blog-excerpt">Cada vez que alguien escucha tu música se genera dinero. Te explicamos los 4 tipos de regalías y cómo asegurarte de que todas lleguen a tu bolsillo.</div>
+          <span class="blog-read">Leer →</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="cta-blog fade-up">
+      <h2>¿Quieres que escribamos sobre un tema específico?</h2>
+      <p>¿Tienes una duda de music business que no encuentras respondida en ningún lado? Escríbenos y lo convertimos en un artículo.</p>
+      <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20que%20escriban%20sobre..." target="_blank" class="btn-wa">💬 Sugerir un tema</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+    <div class="footer-links"><a href="servicios.html">Servicios</a><a href="tienda.html">Tienda</a><a href="contacto.html">Contacto</a></div>
+    <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ</div>
+  </div>
+</footer>
+<script src="nav.js"></script><script>document.getElementById('nav-placeholder').innerHTML=buildNav('blog');</script>
+<script src="main.js"></script>
+</body></html>

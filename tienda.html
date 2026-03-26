@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tienda — Terrivol Music</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{padding:10rem 0 5rem;border-bottom:1px solid var(--border)}
+.tienda-section{padding:6rem 0}
+.tienda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.product-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .3s;position:relative}
+.product-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.product-card.featured{border-color:var(--accent2)}
+.product-badge{position:absolute;top:1rem;right:1rem;font-family:'Space Mono',monospace;font-size:.65rem;padding:.3rem .7rem;border-radius:2px;background:var(--accent2);color:var(--bg)}
+.product-top{padding:2rem 2rem 1rem;border-bottom:1px solid var(--border)}
+.product-icon{font-size:2rem;margin-bottom:.8rem}
+.product-name{font-size:1.1rem;font-weight:800;margin-bottom:.3rem}
+.product-type{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--accent);letter-spacing:.06em}
+.product-body{padding:1.5rem 2rem}
+.product-features{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+.product-features li{font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.product-features li::before{content:'✓';color:var(--accent2);font-size:.8rem}
+.product-price{font-size:1.4rem;font-weight:800;margin-bottom:1rem}
+.product-price span{font-size:.85rem;font-weight:400;color:var(--muted)}
+.product-cta{display:block;width:100%;text-align:center;padding:.85rem;background:transparent;border:1px solid var(--border);color:var(--text);font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;border-radius:2px;cursor:pointer;transition:all .2s;text-decoration:none}
+.product-cta:hover{background:var(--accent);border-color:var(--accent);color:white}
+.product-card.featured .product-cta{background:var(--accent2);border-color:var(--accent2);color:var(--bg)}
+.product-card.featured .product-cta:hover{opacity:.9}
+@media(max-width:768px){.tienda-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div><div class="nebula nebula-1"></div>
+<nav id="nav-placeholder"></nav>
+<section class="page-hero">
+  <div class="container">
+    <p class="section-label fade-up">// TIENDA</p>
+    <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1;letter-spacing:-0.02em">Elige tu servicio.<br><span style="color:var(--accent)">Nosotros hacemos el resto.</span></h1>
+    <p class="fade-up delay-2" style="color:var(--muted);font-size:1rem;max-width:500px;line-height:1.7;margin-top:1.5rem">Todos los precios son orientativos. Cada proyecto es único — te enviamos un presupuesto exacto en 24 horas.</p>
+  </div>
+</section>
+
+<section class="tienda-section">
+  <div class="container">
+    <p class="section-label">// MASTERIZACIÓN</p>
+    <h2>Mastering profesional</h2>
+    <div class="tienda-grid">
+      <div class="product-card">
+        <div class="product-top"><div class="product-icon">🔊</div><div class="product-name">Master Básico</div><div class="product-type">1 TRACK</div></div>
+        <div class="product-body">
+          <ul class="product-features"><li>1 canción masterizada</li><li>Entrega en WAV y MP3</li><li>Optimizado para streaming</li><li>1 revisión incluida</li></ul>
+          <div class="product-price">Consultar <span>/ por track</span></div>
+          <a href="https://wa.me/573102123844?text=Quiero%20masterizar%201%20track" target="_blank" class="product-cta">Consultar precio →</a>
+        </div>
+      </div>
+      <div class="product-card featured">
+        <span class="product-badge">MÁS POPULAR</span>
+        <div class="product-top"><div class="product-icon">🔊</div><div class="product-name">Pack Master 5</div><div class="product-type">5 TRACKS</div></div>
+        <div class="product-body">
+          <ul class="product-features"><li>5 canciones masterizadas</li><li>Todos los formatos</li><li>Coherencia de álbum</li><li>2 revisiones por track</li><li>Entrega express disponible</li></ul>
+          <div class="product-price">Consultar <span>/ 5 tracks</span></div>
+          <a href="https://wa.me/573102123844?text=Quiero%20el%20pack%20de%205%20masters" target="_blank" class="product-cta">Consultar precio →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-top"><div class="product-icon">🔊</div><div class="product-name">Pack Álbum</div><div class="product-type">10+ TRACKS</div></div>
+        <div class="product-body">
+          <ul class="product-features"><li>Álbum completo</li><li>Coherencia sonora total</li><li>Revisiones ilimitadas</li><li>Stems entregados</li><li>DDP para distribución física</li></ul>
+          <div class="product-price">Consultar <span>/ álbum</span></div>
+          <a href="https://wa.me/573102123844?text=Quiero%20masterizar%20mi%20álbum%20completo" target="_blank" class="product-cta">Consultar precio →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tienda-section" style="padding-top:0">
+  <div class="container">
+    <p class="section-label">// CONSULTORÍA</p>
+    <h2>Music business</h2>
+    <div class="tienda-grid">
+      <div class="product-card">
+        <div class="product-top"><div class="product-icon">📊</div><div class="product-name">Sesión Express</div><div class="product-type">1 HORA</div></div>
+        <div class="product-body">
+          <ul class="product-features"><li>1 hora de consultoría</li><li>Tema específico a elegir</li><li>Grabación de la sesión</li><li>Resumen por escrito</li></ul>
+          <div class="product-price">Consultar <span>/ sesión</span></div>
+          <a href="https://wa.me/573102123844?text=Quiero%20una%20sesión%20de%20consultoría%20de%201%20hora" target="_blank" class="product-cta">Consultar precio →</a>
+        </div>
+      </div>
+      <div class="product-card featured">
+        <span class="product-badge">RECOMENDADO</span>
+        <div class="product-top"><div class="product-icon">📊</div><div class="product-name">Estrategia Completa</div><div class="product-type">3 SESIONES</div></div>
+        <div class="product-body">
+          <ul class="product-features"><li>3 sesiones de 1h</li><li>Plan de carrera personalizado</li><li>Revisión de contratos</li><li>Estrategia de publishing</li><li>Soporte por WhatsApp 30 días</li></ul>
+          <div class="product-price">Consultar <span>/ paquete</span></div>
+          <a href="https://wa.me/573102123844?text=Quiero%20el%20paquete%20de%20estrategia%20completa" target="_blank" class="product-cta">Consultar precio →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-top"><div class="product-icon">📊</div><div class="product-name">Distribución + Estrategia</div><div class="product-type">PAQUETE LANZAMIENTO</div></div>
+        <div class="product-body">
+          <ul class="product-features"><li>Distribución en +150 DSPs</li><li>Pitching a playlists</li><li>Estrategia de contenido</li><li>Análisis post-lanzamiento</li></ul>
+          <div class="product-price">Consultar <span>/ lanzamiento</span></div>
+          <a href="https://wa.me/573102123844?text=Quiero%20el%20paquete%20de%20distribución%20y%20estrategia" target="_blank" class="product-cta">Consultar precio →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:4rem 0;text-align:center;border-top:1px solid var(--border)">
+  <div class="container">
+    <h2 style="font-size:1.8rem;margin-bottom:.8rem">¿No encuentras lo que buscas?</h2>
+    <p style="color:var(--muted);margin-bottom:2rem">Armamos paquetes personalizados según tu proyecto y presupuesto.</p>
+    <a href="https://wa.me/573102123844?text=Quiero%20un%20paquete%20personalizado" target="_blank" class="btn-wa">💬 Pedir presupuesto personalizado</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+    <div class="footer-links"><a href="servicios.html">Servicios</a><a href="portafolio.html">Portafolio</a><a href="contacto.html">Contacto</a></div>
+    <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ</div>
+  </div>
+</footer>
+<script src="nav.js"></script><script>document.getElementById('nav-placeholder').innerHTML=buildNav('tienda');</script>
+<script src="main.js"></script>
+</body></html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — Terrivol Music</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.contact-page{padding:10rem 0 6rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:6rem;align-items:start}
+.contact-info h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1;margin-bottom:1.5rem;letter-spacing:-0.02em}
+.contact-info p{color:var(--muted);line-height:1.7;margin-bottom:2.5rem}
+.contact-methods{display:flex;flex-direction:column;gap:1rem}
+.contact-method{display:flex;align-items:center;gap:1rem;padding:1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);transition:all .2s}
+.contact-method:hover{border-color:var(--accent2);transform:translateX(4px)}
+.contact-method-icon{font-size:1.4rem;flex-shrink:0}
+.contact-method-label{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);margin-bottom:.2rem}
+.contact-method-value{font-size:.95rem;font-weight:600}
+.contact-form{background:var(--surface);border:1px solid var(--border);padding:2.5rem;position:relative}
+.contact-form::before{content:'';position:absolute;top:-1px;left:2rem;right:2rem;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3))}
+.form-success{display:none;text-align:center;padding:3rem 0}
+.form-success .check{width:60px;height:60px;border:2px solid var(--accent2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.6rem}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:3rem}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div><div class="nebula nebula-1"></div><div class="nebula nebula-2"></div>
+<nav id="nav-placeholder"></nav>
+<section class="contact-page">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <p class="section-label">// CONTACTO</p>
+        <h1>Hablemos de tu proyecto.</h1>
+        <p>Cuéntanos en qué podemos ayudarte. Te respondemos con una propuesta personalizada en menos de 24 horas.</p>
+        <div class="contact-methods">
+          <a href="https://wa.me/573102123844?text=Hola%20Terrivol%20Music%2C%20quiero%20información" target="_blank" class="contact-method">
+            <span class="contact-method-icon">💬</span>
+            <div><div class="contact-method-label">WHATSAPP (RESPUESTA RÁPIDA)</div><div class="contact-method-value">+57 310 212 3844</div></div>
+          </a>
+          <a href="mailto:terrivolmusiclove@gmail.com" class="contact-method">
+            <span class="contact-method-icon">✉️</span>
+            <div><div class="contact-method-label">EMAIL</div><div class="contact-method-value">terrivolmusiclove@gmail.com</div></div>
+          </a>
+          <a href="https://instagram.com/terrivolmusic" target="_blank" class="contact-method">
+            <span class="contact-method-icon">📸</span>
+            <div><div class="contact-method-label">INSTAGRAM</div><div class="contact-method-value">@terrivolmusic</div></div>
+          </a>
+          <div class="contact-method" style="cursor:default">
+            <span class="contact-method-icon">📍</span>
+            <div><div class="contact-method-label">UBICACIÓN</div><div class="contact-method-value">Bogotá, Colombia</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form fade-up delay-1">
+        <div id="formContent">
+          <h2 style="font-size:1.3rem;margin-bottom:.4rem">Envíanos tu proyecto</h2>
+          <p style="font-size:.85rem;color:var(--muted);margin-bottom:2rem">Confidencial. Sin compromiso.</p>
+          <div class="form-group"><label class="form-label">NOMBRE ARTÍSTICO O EMPRESA</label><input type="text" class="form-input" placeholder="Tu nombre" id="f-nombre"></div>
+          <div class="form-group"><label class="form-label">CORREO ELECTRÓNICO</label><input type="email" class="form-input" placeholder="tu@correo.com" id="f-email"></div>
+          <div class="form-group"><label class="form-label">INSTAGRAM (OPCIONAL)</label><input type="text" class="form-input" placeholder="@tuartista" id="f-ig"></div>
+          <div class="form-group"><label class="form-label">SERVICIO DE INTERÉS</label>
+            <select class="form-select" id="f-servicio">
+              <option value="">Selecciona un servicio...</option>
+              <option>Producción musical</option><option>Masterización</option>
+              <option>Distribución global</option><option>Consultoría music business</option>
+              <option>Producción audiovisual</option><option>Audio para marcas</option>
+              <option>Paquete completo</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">CUÉNTANOS TU PROYECTO</label><textarea class="form-textarea" placeholder="Describe brevemente tu proyecto, qué necesitas y cuándo..." id="f-msg" style="min-height:120px"></textarea></div>
+          <button class="form-submit" onclick="submitForm()">ENVIAR PROYECTO →</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div class="check">✓</div>
+          <h3 style="font-size:1.3rem;margin-bottom:.6rem">¡Mensaje recibido!</h3>
+          <p style="color:var(--muted)">Te contactamos en menos de 24 horas.<br>También puedes escribirnos por WhatsApp para respuesta inmediata.</p>
+          <br>
+          <a href="https://wa.me/573102123844" target="_blank" class="btn-wa" style="display:inline-flex">💬 Ir a WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+    <div class="footer-links"><a href="servicios.html">Servicios</a><a href="tienda.html">Tienda</a><a href="portafolio.html">Portafolio</a></div>
+    <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ</div>
+  </div>
+</footer>
+<script src="nav.js"></script><script>document.getElementById('nav-placeholder').innerHTML=buildNav('contacto');</script>
+<script src="main.js"></script>
+</body></html>

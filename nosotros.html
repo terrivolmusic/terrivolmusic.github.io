@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosotros — Terrivol Music</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div><div class="nebula nebula-1"></div>
+<nav id="nav-placeholder"></nav>
+<section style="min-height:100vh;display:flex;align-items:center;padding:8rem 0">
+  <div class="container">
+    <p class="section-label fade-up">// NOSOTROS</p>
+    <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1;letter-spacing:-0.02em;margin-bottom:1.5rem">Nosotros</h1>
+    <p class="fade-up delay-2" style="color:var(--muted);font-size:1.1rem;max-width:500px;line-height:1.7;margin-bottom:2rem">Contenido en construccion. Proximamente mas informacion aqui.</p>
+    <a href="index.html" class="btn-ghost fade-up delay-3">← Volver al inicio</a>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+    <div class="footer-links"><a href="servicios.html">Servicios</a><a href="tienda.html">Tienda</a><a href="contacto.html">Contacto</a></div>
+    <div class="footer-copy">© 2025 TERRIVOL MUSIC</div>
+  </div>
+</footer>
+<script src="nav.js"></script><script>document.getElementById("nav-placeholder").innerHTML=buildNav("nosotros");</script>
+<script src="main.js"></script>
+</body></html>
