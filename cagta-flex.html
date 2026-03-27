@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Cagta Flex — Terrivol Music</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.artist-hero{min-height:90vh;display:flex;align-items:flex-end;padding:7rem 0 5rem;position:relative;overflow:hidden}
+.artist-hero-img{position:absolute;inset:0;z-index:0}
+.artist-hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.55}
+.artist-hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(3,3,10,.2) 0%,rgba(3,3,10,.5) 50%,rgba(3,3,10,1) 100%)}
+.artist-hero-content{position:relative;z-index:2}
+.artist-name{font-size:clamp(4rem,10vw,8rem);font-weight:800;line-height:.88;letter-spacing:-.03em;margin-bottom:1.2rem}
+.info-section{padding:6rem 0;display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start}
+.info-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:2rem}
+.info-stat{background:var(--bg);padding:1.5rem 1rem;text-align:center}
+.info-stat-num{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.info-stat-label{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.06em}
+.releases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:3rem}
+.release-card{background:var(--surface);border:1px solid var(--border);padding:1.5rem;transition:all .3s;text-decoration:none;display:block;color:var(--text)}
+.release-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.release-type{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--accent);margin-bottom:.4rem}
+.release-title{font-size:.95rem;font-weight:700}
+@media(max-width:768px){.info-section{grid-template-columns:1fr;gap:3rem}.releases-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
+<canvas class="stars-canvas" id="starsCanvas"></canvas>
+<nav id="nav-placeholder"></nav>
+
+<section class="artist-hero">
+  <div class="artist-hero-img"><img src="../img/cagta-flex.jpg" alt="Cagta Flex"><div></div></div>
+  <div class="container">
+    <div class="artist-hero-content">
+      <p class="section-label fade-up">// LEAD ARTIST · TERRIVOL MUSIC</p>
+      <div class="artist-name fade-up delay-1">CAGTA<br><span style="color:var(--accent)">FLEX</span></div>
+      <div class="fade-up delay-2" style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem">
+        <span style="font-family:'Space Mono',monospace;font-size:.68rem;padding:.3rem .8rem;border:1px solid var(--border);color:var(--muted);border-radius:100px">URBAN</span>
+        <span style="font-family:'Space Mono',monospace;font-size:.68rem;padding:.3rem .8rem;border:1px solid var(--border);color:var(--muted);border-radius:100px">TRAP</span>
+        <span style="font-family:'Space Mono',monospace;font-size:.68rem;padding:.3rem .8rem;border:1px solid var(--border);color:var(--muted);border-radius:100px">REGGAETÓN</span>
+        <span style="font-family:'Space Mono',monospace;font-size:.68rem;padding:.3rem .8rem;border:1px solid var(--border);color:var(--muted);border-radius:100px">BOGOTÁ · COLOMBIA</span>
+      </div>
+      <div class="fade-up delay-3" style="display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="https://www.youtube.com/@CagtaFlex" target="_blank" class="btn-primary">Listen on YouTube</a>
+        <a href="../contacto.html" class="btn-ghost">Bookings & Collabs</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:6rem 0">
+  <div class="container">
+    <div class="info-section" style="padding:0">
+      <div class="fade-up">
+        <p class="section-label">// BIOGRAPHY</p>
+        <h2 style="font-size:clamp(1.8rem,4vw,2.8rem)">Built from the ground. Heard worldwide.</h2>
+        <div class="info-stats">
+          <div class="info-stat"><div class="info-stat-num">+15</div><div class="info-stat-label">YEARS ACTIVE</div></div>
+          <div class="info-stat"><div class="info-stat-num">BOG</div><div class="info-stat-label">ORIGIN</div></div>
+          <div class="info-stat"><div class="info-stat-num">TM</div><div class="info-stat-label">LABEL</div></div>
+        </div>
+      </div>
+      <div class="fade-up delay-1">
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:1rem;font-size:.96rem">Urban and trap artist born in Bogotá, Colombia. Founder of Terrivol Music, Cagta Flex has built his career from the foundations of the Colombian independent scene with a sonic identity that fuses contemporary trap with the energy of Latin urban music.</p>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:2rem;font-size:.96rem">With over 15 years in the music industry, he has released multiple albums and singles that reflect his constant evolution as an artist and producer. Every release is a statement — crafted with full control over production, visuals and strategy.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="https://www.youtube.com/@CagtaFlex" target="_blank" class="btn-primary">YouTube</a>
+          <a href="https://instagram.com/terrivolmusic" target="_blank" class="btn-ghost">Instagram</a>
+          <a href="https://wa.me/573102123844?text=Hello%2C%20I%27d%20like%20to%20collaborate%20with%20Cagta%20Flex" target="_blank" class="btn-wa">💬 Collabs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:4rem 0;border-top:1px solid var(--border)">
+  <div class="container">
+    <p class="section-label fade-up">// DISCOGRAPHY</p>
+    <h2 class="fade-up delay-1">Releases</h2>
+    <div class="releases-grid">
+      <a href="https://www.youtube.com/@CagtaFlex" target="_blank" class="release-card fade-up delay-1">
+        <div class="release-type">FULL CATALOG</div>
+        <div class="release-title">Cagta Flex on YouTube →</div>
+      </a>
+      <a href="https://www.youtube.com/@CagtaFlex" target="_blank" class="release-card fade-up delay-2">
+        <div class="release-type">LATEST SINGLES</div>
+        <div class="release-title">Latest Releases →</div>
+      </a>
+      <a href="../contacto.html" class="release-card fade-up delay-3">
+        <div class="release-type">COMING SOON · 2025</div>
+        <div class="release-title">New Project — Stay Tuned</div>
+      </a>
+      <a href="../contacto.html" class="release-card fade-up delay-4">
+        <div class="release-type">COLLABORATIONS</div>
+        <div class="release-title">Work with Cagta Flex →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:6rem 0;border-top:1px solid var(--border)">
+  <div class="container">
+    <p class="section-label fade-up">// VIDEO</p>
+    <h2 class="fade-up delay-1">Watch.</h2>
+    <div style="margin-top:2rem;display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;align-items:center" class="fade-up delay-2">
+      <div style="aspect-ratio:16/9;background:var(--surface);border:1px solid var(--border);overflow:hidden;border-radius:2px">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed?listType=user_uploads&list=CagtaFlex" allowfullscreen style="border:none"></iframe>
+      </div>
+      <div>
+        <p style="color:var(--muted);line-height:1.75;margin-bottom:1.5rem;font-size:.95rem">Follow Cagta Flex on YouTube for all music videos, visualizers and exclusive content. New releases dropping regularly.</p>
+        <a href="https://www.youtube.com/@CagtaFlex" target="_blank" class="btn-primary" style="display:block;text-align:center;margin-bottom:1rem">Full Channel →</a>
+        <a href="../contacto.html" class="btn-ghost" style="display:block;text-align:center">Booking & Press</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="../index.html" class="footer-logo"><img src="../logo.png" alt="Terrivol Music"></a>
+    <div class="footer-links"><a href="../servicios.html">Services</a><a href="../artistas.html">Artists</a><a href="../contacto.html">Contact</a></div>
+    <div class="footer-copy">© 2025 TERRIVOL MUSIC</div>
+  </div>
+</footer>
+<script src="../main.js"></script>
+<script>document.getElementById('nav-placeholder').innerHTML=buildNavSub('artistas')</script>
+</body></html>
