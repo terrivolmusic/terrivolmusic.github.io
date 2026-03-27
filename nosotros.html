@@ -1,29 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nosotros — Terrivol Music</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>About — Terrivol Music</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
-<div class="stars" id="stars"></div><div class="nebula nebula-1"></div>
+<canvas class="stars-canvas" id="starsCanvas"></canvas>
 <nav id="nav-placeholder"></nav>
-<section style="min-height:100vh;display:flex;align-items:center;padding:8rem 0">
+<section style="min-height:100vh;padding:9rem 0 6rem;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;z-index:0"><img src="img/studio-galactic.jpg" alt="" style="width:100%;height:100%;object-fit:cover;opacity:.25"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(3,3,10,.5),rgba(3,3,10,1))"></div></div>
   <div class="container">
-    <p class="section-label fade-up">// NOSOTROS</p>
-    <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1;letter-spacing:-0.02em;margin-bottom:1.5rem">Nosotros</h1>
-    <p class="fade-up delay-2" style="color:var(--muted);font-size:1.1rem;max-width:500px;line-height:1.7;margin-bottom:2rem">Contenido en construccion. Proximamente mas informacion aqui.</p>
-    <a href="index.html" class="btn-ghost fade-up delay-3">← Volver al inicio</a>
+    <p class="section-label fade-up">// ABOUT TERRIVOL MUSIC</p>
+    <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1;letter-spacing:-.02em;max-width:700px;margin-bottom:3rem">More than a label.<br><span style="color:var(--accent)">An infrastructure</span><br>for sound.</h1>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start" class="fade-up delay-2">
+      <div>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:1.2rem;font-size:.96rem">Terrivol Music was born in Bogotá, Colombia in 2010 with a clear mission: build the infrastructure that independent artists need to compete on a global level without giving up control of their music or their career.</p>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:1.2rem;font-size:.96rem">Over 15 years we have evolved through different phases of the industry — from traditional production to digital distribution, from local releases to international placements. Each phase made us sharper.</p>
+        <p style="color:var(--muted);line-height:1.8;font-size:.96rem">Today Terrivol Music operates as a full-service label and music company: we produce, master, distribute, consult and develop artists with the same level of professionalism that major labels offer, but with the agility and artist-first mentality that only an independent can deliver.</p>
+      </div>
+      <div>
+        <div style="background:var(--surface);border:1px solid var(--border);padding:2rem;margin-bottom:1.5rem">
+          <div style="font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent);margin-bottom:.8rem;letter-spacing:.08em">// FOUNDER</div>
+          <div style="font-size:1.2rem;font-weight:700;margin-bottom:.5rem">Sebastián Andrade</div>
+          <div style="font-size:.85rem;color:var(--muted);line-height:1.6">Producer, entrepreneur and music business expert. Founder of Terrivol Music and Cagta Flex. 15+ years navigating the independent music industry in Colombia and Latin America.</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);padding:2rem">
+          <div style="font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent);margin-bottom:.8rem;letter-spacing:.08em">// MISSION</div>
+          <div style="font-size:.85rem;color:var(--muted);line-height:1.6">Democratize access to professional music infrastructure. Build artists that last. Create a label where the music comes first, always.</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:3rem" class="fade-up delay-3">
+      <a href="contacto.html" class="btn-primary">Work with us</a>
+    </div>
   </div>
 </section>
 <footer>
   <div class="footer-inner">
     <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
-    <div class="footer-links"><a href="servicios.html">Servicios</a><a href="tienda.html">Tienda</a><a href="contacto.html">Contacto</a></div>
-    <div class="footer-copy">© 2025 TERRIVOL MUSIC</div>
+    <div class="footer-links"><a href="servicios.html">Services</a><a href="artistas.html">Artists</a><a href="contacto.html">Contact</a></div>
+    <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ</div>
   </div>
 </footer>
-<script src="nav.js"></script><script>document.getElementById("nav-placeholder").innerHTML=buildNav("nosotros");</script>
 <script src="main.js"></script>
+<script>document.getElementById('nav-placeholder').innerHTML=buildNav('nosotros')</script>
 </body></html>
