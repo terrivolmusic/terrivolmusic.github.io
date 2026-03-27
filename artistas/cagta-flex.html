@@ -18,6 +18,7 @@
 .bio-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start}
 .bio-photo{aspect-ratio:3/4;background:var(--surface);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative;overflow:hidden}
 .bio-photo-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(123,92,250,.2),rgba(255,60,172,.15))}
+.bio-photo img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
 .bio-text h2{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:1.2rem}
 .bio-text p{color:var(--muted);line-height:1.7;margin-bottom:1rem;font-size:.95rem}
 .bio-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:4px}
@@ -60,7 +61,6 @@
       <div class="artist-tags fade-up delay-2">
         <span class="artist-tag">URBANO</span>
         <span class="artist-tag">TRAP</span>
-        <span class="artist-tag">REGGAETÓN</span>
         <span class="artist-tag">BOGOTÁ, COLOMBIA</span>
         <span class="artist-tag">TERRIVOL MUSIC</span>
       </div>
@@ -77,7 +77,8 @@
     <div class="bio-grid">
       <div class="bio-photo fade-up">
         <div class="bio-photo-bg"></div>
-        <span style="position:relative;font-size:5rem">🎤</span>
+        <!-- CAMBIO: Reemplaza src con la ruta de tu foto -->
+        <img src="../images/cagta-flex.jpg" alt="Cagta Flex - Artista Urbano">
       </div>
       <div class="bio-text fade-up delay-1">
         <p class="section-label">// SOBRE EL ARTISTA</p>
