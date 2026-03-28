@@ -4,15 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terrivol Music | Sello & Servicios Musicales - Bogotá</title>
-<meta name="description" content="Terrivol Music: Sello discográfico y servicios de producción musical en Bogotá. +400 lanzamientos, artistas como Cagta Flex y Beats BFYT. Producción, distribución y marketing musical.">
-<meta property="og:title" content="Terrivol Music | Sello & Servicios Musicales">
-<meta property="og:description" content="+400 lanzamientos. Producción, distribución y marketing musical desde Bogotá para el mundo.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://terrivolmusic.github.io">
-<meta property="og:image" content="https://terrivolmusic.github.io/img/og-image.jpg">
+<meta name="description" content="Terrivol Music: Sello discográfico y servicios de producción musical en Bogotá. +400 lanzamientos, artistas como Cagta Flex y Beats BFYT.">
 <link rel="stylesheet" href="style.css">
 <style>
-/* HERO SECTION */
 .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:6rem 0;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(123,92,250,.1),rgba(255,60,172,.05));z-index:0}
 .hero-content{position:relative;z-index:1;max-width:800px}
@@ -24,52 +18,35 @@
 .stat-number{font-size:2rem;font-weight:800;color:var(--accent2)}
 .stat-label{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--muted);text-transform:uppercase}
 .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
-/* SERVICES SECTION */
 .services{padding:8rem 0}
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:3rem}
-.service-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+.service-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2rem;transition:all .3s;position:relative;overflow:hidden;text-decoration:none;color:var(--text);display:block}
 .service-card:hover{transform:translateY(-4px);border-color:var(--accent)}
-.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));opacity:0;transition:opacity .3s}
-.service-card:hover::before{opacity:1}
 .service-icon{width:48px;height:48px;margin-bottom:1.5rem;color:var(--accent)}
 .service-title{font-size:1.3rem;font-weight:700;margin-bottom:.8rem}
 .service-desc{color:var(--muted);line-height:1.6;margin-bottom:1.5rem;font-size:.95rem}
-.service-price{font-family:'Space Mono',monospace;font-size:.85rem;color:var(--accent2);margin-bottom:1rem}
 .service-link{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--text);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:gap .3s}
 .service-link:hover{gap:.6rem}
-/* ARTISTS SECTION */
 .artists{padding:8rem 0;background:var(--surface2)}
-.artists-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:3rem}
-.artist-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform .3s;text-decoration:none;color:var(--text);display:block}
+.artists-header{text-align:center;margin-bottom:3rem}
+.artists-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2rem;max-width:1000px;margin:0 auto}
+.artist-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform .3s;text-decoration:none;color:var(--text);display:block;position:relative}
 .artist-card:hover{transform:translateY(-8px)}
-.artist-cover{aspect-ratio:1;position:relative;overflow:hidden}
-.artist-cover img{width:100%;height:100%;object-fit:cover}
-.artist-cover-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;background:linear-gradient(135deg,rgba(123,92,250,.2),rgba(255,60,172,.15))}
+.artist-image{aspect-ratio:4/3;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(123,92,250,.3),rgba(255,60,172,.2))}
+.artist-image svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;color:var(--accent);opacity:.6}
 .artist-info{padding:1.5rem}
-.artist-name{font-size:1.4rem;font-weight:700;margin-bottom:.3rem}
+.artist-name{font-size:1.5rem;font-weight:700;margin-bottom:.5rem}
 .artist-role{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--accent);margin-bottom:1rem;text-transform:uppercase}
-.artist-links{display:flex;gap:.8rem}
-.artist-link{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:50%;color:var(--text);transition:all .3s}
-.artist-link:hover{border-color:var(--accent);color:var(--accent)}
-/* CTA SECTION */
+.artist-bio{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:1.5rem}
+.artist-socials{display:flex;gap:.8rem}
+.artist-social{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:50%;color:var(--text);transition:all .3s}
+.artist-social:hover{border-color:var(--accent);color:var(--accent)}
 .cta-section{padding:8rem 0;text-align:center}
 .cta-box{max-width:700px;margin:0 auto;padding:4rem;background:var(--surface);border:1px solid var(--border);border-radius:4px;position:relative}
 .cta-box::before{content:'';position:absolute;top:-1px;left:3rem;right:3rem;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3))}
 .cta-title{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:1rem}
 .cta-desc{color:var(--muted);line-height:1.7;margin-bottom:2.5rem;font-size:1.05rem}
-/* FOOTER */
-footer{padding:4rem 0 2rem;border-top:1px solid var(--border)}
-.footer-inner{display:flex;flex-direction:column;align-items:center;gap:2rem;text-align:center}
-.footer-logo img{height:40px}
-.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center}
-.footer-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .3s}
-.footer-links a:hover{color:var(--accent)}
-.footer-copy{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--muted)}
-.footer-socials{display:flex;gap:1rem;justify-content:center}
-.footer-social{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:50%;color:var(--text);transition:all .3s}
-.footer-social:hover{border-color:var(--accent);color:var(--accent)}
-/* RESPONSIVE */
-@media(max-width:768px){.hero-stats{grid-template-columns:1fr;gap:1rem}.stat-number{font-size:1.8rem}.hero-cta{flex-direction:column;width:100%}.hero-cta .btn-primary,.hero-cta .btn-ghost{width:100%;text-align:center}.services-grid{grid-template-columns:1fr}.artists-grid{grid-template-columns:1fr}.footer-links{flex-direction:column;gap:1rem}}
+@media(max-width:768px){.hero-stats{grid-template-columns:1fr;gap:1rem}.stat-number{font-size:1.8rem}.hero-cta{flex-direction:column;width:100%}.hero-cta .btn-primary,.hero-cta .btn-ghost{width:100%;text-align:center}.services-grid{grid-template-columns:1fr}.artists-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -112,59 +89,47 @@ footer{padding:4rem 0 2rem;border-top:1px solid var(--border)}
     <p class="section-label">// LO QUE HACEMOS</p>
     <h2>Servicios Musicales Profesionales</h2>
     <div class="services-grid">
-      <!-- Producción -->
-      <div class="service-card fade-up">
+      <a href="servicios.html#produccion" class="service-card fade-up">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         <h3 class="service-title">Producción Musical</h3>
         <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio. Desde beats hasta álbumes completos.</p>
-        <div class="service-price">Desde $150.000 COP</div>
-        <a href="contacto.html?servicio=produccion" class="service-link">Cotizar ahora →</a>
-      </div>
+        <span class="service-link">Cotizar ahora →</span>
+      </a>
       
-      <!-- Distribución -->
-      <div class="service-card fade-up delay-1">
+      <a href="servicios.html#distribucion" class="service-card fade-up delay-1">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
         <h3 class="service-title">Distribución Digital</h3>
-        <p class="service-desc">Lleva tu música a Spotify, Apple Music, YouTube y +150 plataformas. Gestión de derechos y royalties.</p>
-        <div class="service-price">Desde $50.000 COP/release</div>
-        <a href="contacto.html?servicio=distribucion" class="service-link">Cotizar ahora →</a>
-      </div>
+        <p class="service-desc">Lleva tu música a Spotify, Apple Music, YouTube y +150 plataformas. Gestión de derechos.</p>
+        <span class="service-link">Cotizar ahora →</span>
+      </a>
       
-      <!-- Marketing -->
-      <div class="service-card fade-up delay-2">
+      <a href="servicios.html#marketing" class="service-card fade-up delay-2">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
         <h3 class="service-title">Marketing & Estrategia</h3>
         <p class="service-desc">Campañas en redes, pitching a playlists, gestión de comunidad y estrategias de lanzamiento.</p>
-        <div class="service-price">Consultar</div>
-        <a href="contacto.html?servicio=marketing" class="service-link">Cotizar ahora →</a>
-      </div>
+        <span class="service-link">Cotizar ahora →</span>
+      </a>
       
-      <!-- Beats -->
-      <div class="service-card fade-up">
+      <a href="tienda.html" class="service-card fade-up">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         <h3 class="service-title">Beats & Licencias</h3>
-        <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles para artistas. Calidad profesional, precios accesibles.</p>
-        <div class="service-price">Desde $30.000 COP</div>
-        <a href="tienda.html" class="service-link">Explorar beats →</a>
-      </div>
+        <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles para artistas. Calidad profesional.</p>
+        <span class="service-link">Explorar beats →</span>
+      </a>
       
-      <!-- Audiovisual -->
-      <div class="service-card fade-up delay-1">
+      <a href="servicios.html#audiovisual" class="service-card fade-up delay-1">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg>
         <h3 class="service-title">Contenido Audiovisual</h3>
-        <p class="service-desc">Videoclips, visualizers, contenido para redes y dirección creativa. Tu música, visualizada.</p>
-        <div class="service-price">Consultar</div>
-        <a href="contacto.html?servicio=audiovisual" class="service-link">Cotizar ahora →</a>
-      </div>
+        <p class="service-desc">Videoclips, visualizers, contenido para redes y dirección creativa.</p>
+        <span class="service-link">Cotizar ahora →</span>
+      </a>
       
-      <!-- Consultoría -->
-      <div class="service-card fade-up delay-2">
+      <a href="servicios.html#consultoria" class="service-card fade-up delay-2">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
         <h3 class="service-title">Consultoría & Management</h3>
-        <p class="service-desc">Asesoría estratégica para artistas y sellos. Desarrollo de carrera, branding y planificación.</p>
-        <div class="service-price">Consultar</div>
-        <a href="contacto.html?servicio=consultoria" class="service-link">Cotizar ahora →</a>
-      </div>
+        <p class="service-desc">Asesoría estratégica para artistas y sellos. Desarrollo de carrera y branding.</p>
+        <span class="service-link">Cotizar ahora →</span>
+      </a>
     </div>
   </div>
 </section>
@@ -172,26 +137,28 @@ footer{padding:4rem 0 2rem;border-top:1px solid var(--border)}
 <!-- ARTISTAS -->
 <section class="artists">
   <div class="container">
-    <p class="section-label">// NUESTROS ARTISTAS</p>
-    <h2>Talento Terrivol</h2>
+    <div class="artists-header">
+      <p class="section-label">// NUESTROS ARTISTAS</p>
+      <h2>Talento Terrivol</h2>
+    </div>
     <div class="artists-grid">
       <!-- Cagta Flex -->
       <a href="artistas/cagta-flex.html" class="artist-card fade-up">
-        <div class="artist-cover">
-          <div class="artist-cover-placeholder">🎤</div>
+        <div class="artist-image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
         </div>
         <div class="artist-info">
           <h3 class="artist-name">Cagta Flex</h3>
           <p class="artist-role">Artista Principal · Trap/Urbano</p>
-          <p style="color:var(--muted);font-size:.9rem;margin-bottom:1rem">Fundador de Terrivol Music. +15 años en la escena independiente colombiana.</p>
-          <div class="artist-links">
-            <a href="https://open.spotify.com/intl-es/artist/7HrWMVAud2UeybVThK36KX" target="_blank" class="artist-link" title="Spotify">
+          <p class="artist-bio">Fundador de Terrivol Music. +15 años en la escena independiente colombiana.</p>
+          <div class="artist-socials">
+            <a href="https://open.spotify.com/intl-es/artist/7HrWMVAud2UeybVThK36KX" target="_blank" class="artist-social" title="Spotify">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 5.4 12S18.6 24 24 18.6 18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.2-1-1.3.3-2.5.8-3.5 1.5-.3.2-.7.1-.9-.2-.2-.3-.1-.7.2-.9 1.2-.8 2.6-1.3 4-1.6 3.9-.9 7.3-.5 10.1 1.2.3.1.4.5.2.8zm1.4-3.1c-.2.4-.7.5-1.1.3-2.9-1.8-7.3-2.3-10.7-1.2-.4.1-.9-.1-1-.5-.1-.4.1-.9.5-1 3.8-1.2 8.7-.6 12 1.4.4.2.5.6.3 1zm.1-3.3c-3.4-2-8.9-2.2-12.2-1.2-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.8-1.2 9.9-.9 13.7 1.4.5.3.6.8.3 1.3-.2.4-.7.5-1.2.3z"/></svg>
             </a>
-            <a href="https://www.youtube.com/@CagtaFlex" target="_blank" class="artist-link" title="YouTube">
+            <a href="https://www.youtube.com/@CagtaFlex" target="_blank" class="artist-social" title="YouTube">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.5.6c-1 .3-1.7 1.1-2 2.1C0 8 0 12 0 12s0 4 .5 5.8c.3 1 1 1.8 2 2.1 1.8.6 9.5.6 9.5.6s7.7 0 9.5-.6c1-.3 1.7-1.1 2-2.1.5-1.8.5-5.8.5-5.8s0-4-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z"/></svg>
             </a>
-            <a href="https://instagram.com/cagtaflex" target="_blank" class="artist-link" title="Instagram">
+            <a href="https://instagram.com/cagtaflex" target="_blank" class="artist-social" title="Instagram">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.3 2.2.5.6.2 1 .5 1.4 1 .4.4.7.9 1 1.4.2.4.4 1 .5 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.8-.5 2.2-.2.6-.5 1-1 1.4-.4.4-.9.7-1.4 1-.4.2-1 .4-2.2.5-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.3-2.2-.5-.6-.2-1-.5-1.4-1-.4-.4-.7-.9-1-1.4-.2-.4-.4-1-.5-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.3-1.8.5-2.2.2-.6.5-1 1-1.4.4-.4.9-.7 1.4-1 .4-.2 1-.4 2.2-.5 1.2-.1 1.6-.1 4.8-.1zm0-2.2c-3.3 0-3.7 0-5 .1-1.3.1-2.2.3-3 .6-.8.3-1.5.8-2.1 1.4-.6.6-1 1.3-1.4 2.1-.3.8-.5 1.7-.6 3-.1 1.3-.1 1.7-.1 5s0 3.7.1 5c.1 1.3.3 2.2.6 3 .3.8.8 1.5 1.4 2.1.6.6 1.3 1 2.1 1.4.8.3 1.7.5 3 .6 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.8 2.1-1.4.6-.6 1-1.3 1.4-2.1.3-.8.5-1.7.6-3 .1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.2-.6-3-.3-.8-.8-1.5-1.4-2.1-.6-.6-1.3-1-2.1-1.4-.8-.3-1.7-.5-3-.6-1.3-.1-1.7-.1-5-.1z"/><circle cx="12" cy="12" r="3.5"/><circle cx="18.5" cy="5.5" r="1.2"/></svg>
             </a>
           </div>
@@ -200,21 +167,21 @@ footer{padding:4rem 0 2rem;border-top:1px solid var(--border)}
       
       <!-- Beats BFYT -->
       <a href="artistas/beats-bfyt.html" class="artist-card fade-up delay-1">
-        <div class="artist-cover">
-          <div class="artist-cover-placeholder">🎹</div>
+        <div class="artist-image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="6" y1="7" x2="6" y2="13"/><line x1="10" y1="7" x2="10" y2="13"/><line x1="14" y1="7" x2="14" y2="13"/><line x1="18" y1="7" x2="18" y2="13"/></svg>
         </div>
         <div class="artist-info">
           <h3 class="artist-name">Beats BFYT</h3>
           <p class="artist-role">Productor · Beats & Instrumentales</p>
-          <p style="color:var(--muted);font-size:.9rem;margin-bottom:1rem">Beats exclusivos para artistas. Trap, urbano, reggaetón y más. Licencias flexibles.</p>
-          <div class="artist-links">
-            <a href="#" class="artist-link" title="Spotify">
+          <p class="artist-bio">Beats exclusivos para artistas. Trap, urbano, reggaetón y más. Licencias flexibles.</p>
+          <div class="artist-socials">
+            <a href="#" class="artist-social" title="Spotify">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 5.4 12S18.6 24 24 18.6 18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.2-1-1.3.3-2.5.8-3.5 1.5-.3.2-.7.1-.9-.2-.2-.3-.1-.7.2-.9 1.2-.8 2.6-1.3 4-1.6 3.9-.9 7.3-.5 10.1 1.2.3.1.4.5.2.8zm1.4-3.1c-.2.4-.7.5-1.1.3-2.9-1.8-7.3-2.3-10.7-1.2-.4.1-.9-.1-1-.5-.1-.4.1-.9.5-1 3.8-1.2 8.7-.6 12 1.4.4.2.5.6.3 1zm.1-3.3c-3.4-2-8.9-2.2-12.2-1.2-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.8-1.2 9.9-.9 13.7 1.4.5.3.6.8.3 1.3-.2.4-.7.5-1.2.3z"/></svg>
             </a>
-            <a href="#" class="artist-link" title="YouTube">
+            <a href="#" class="artist-social" title="YouTube">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.5.6c-1 .3-1.7 1.1-2 2.1C0 8 0 12 0 12s0 4 .5 5.8c.3 1 1 1.8 2 2.1 1.8.6 9.5.6 9.5.6s7.7 0 9.5-.6c1-.3 1.7-1.1 2-2.1.5-1.8.5-5.8.5-5.8s0-4-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z"/></svg>
             </a>
-            <a href="tienda.html" class="artist-link" title="Tienda">
+            <a href="tienda.html" class="artist-social" title="Tienda">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
             </a>
           </div>
@@ -242,7 +209,6 @@ footer{padding:4rem 0 2rem;border-top:1px solid var(--border)}
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -255,17 +221,6 @@ footer{padding:4rem 0 2rem;border-top:1px solid var(--border)}
         <a href="artistas.html">Artistas</a>
         <a href="tienda.html">Tienda</a>
         <a href="contacto.html">Contacto</a>
-      </div>
-      <div class="footer-socials">
-        <a href="https://instagram.com/terrivolmusic" target="_blank" class="footer-social" title="Instagram">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.3 2.2.5.6.2 1 .5 1.4 1 .4.4.7.9 1 1.4.2.4.4 1 .5 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.8-.5 2.2-.2.6-.5 1-1 1.4-.4.4-.9.7-1.4 1-.4.2-1 .4-2.2.5-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.3-2.2-.5-.6-.2-1-.5-1.4-1-.4-.4-.7-.9-1-1.4-.2-.4-.4-1-.5-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.3-1.8.5-2.2.2-.6.5-1 1-1.4.4-.4.9-.7 1.4-1 .4-.2 1-.4 2.2-.5 1.2-.1 1.6-.1 4.8-.1zm0-2.2c-3.3 0-3.7 0-5 .1-1.3.1-2.2.3-3 .6-.8.3-1.5.8-2.1 1.4-.6.6-1 1.3-1.4 2.1-.3.8-.5 1.7-.6 3-.1 1.3-.1 1.7-.1 5s0 3.7.1 5c.1 1.3.3 2.2.6 3 .3.8.8 1.5 1.4 2.1.6.6 1.3 1 2.1 1.4.8.3 1.7.5 3 .6 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.8 2.1-1.4.6-.6 1-1.3 1.4-2.1.3-.8.5-1.7.6-3 .1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.2-.6-3-.3-.8-.8-1.5-1.4-2.1-.6-.6-1.3-1-2.1-1.4-.8-.3-1.7-.5-3-.6-1.3-.1-1.7-.1-5-.1z"/><circle cx="12" cy="12" r="3.5"/><circle cx="18.5" cy="5.5" r="1.2"/></svg>
-        </a>
-        <a href="https://www.youtube.com/@CagtaFlex" target="_blank" class="footer-social" title="YouTube">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.5.6c-1 .3-1.7 1.1-2 2.1C0 8 0 12 0 12s0 4 .5 5.8c.3 1 1 1.8 2 2.1 1.8.6 9.5.6 9.5.6s7.7 0 9.5-.6c1-.3 1.7-1.1 2-2.1.5-1.8.5-5.8.5-5.8s0-4-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z"/></svg>
-        </a>
-        <a href="https://open.spotify.com/intl-es/artist/7HrWMVAud2UeybVThK36KX" target="_blank" class="footer-social" title="Spotify">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 5.4 12S18.6 24 24 18.6 18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.2-1-1.3.3-2.5.8-3.5 1.5-.3.2-.7.1-.9-.2-.2-.3-.1-.7.2-.9 1.2-.8 2.6-1.3 4-1.6 3.9-.9 7.3-.5 10.1 1.2.3.1.4.5.2.8zm1.4-3.1c-.2.4-.7.5-1.1.3-2.9-1.8-7.3-2.3-10.7-1.2-.4.1-.9-.1-1-.5-.1-.4.1-.9.5-1 3.8-1.2 8.7-.6 12 1.4.4.2.5.6.3 1zm.1-3.3c-3.4-2-8.9-2.2-12.2-1.2-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.8-1.2 9.9-.9 13.7 1.4.5.3.6.8.3 1.3-.2.4-.7.5-1.2.3z"/></svg>
-        </a>
       </div>
       <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
     </div>
