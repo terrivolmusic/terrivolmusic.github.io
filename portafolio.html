@@ -13,6 +13,10 @@
 .page-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,3,10,.85) 0%,rgba(3,3,10,.75) 50%,rgba(123,92,250,.1) 100%)}
 .page-hero-content{position:relative;z-index:1}
 
+/* TEXTO "mundo" EN MORADO */
+.mundo-text{color:var(--accent) !important;position:relative;display:inline-block}
+.mundo-text::after{content:'';position:absolute;bottom:-5px;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:.4;border-radius:3px;z-index:-1}
+
 /* FILTROS */
 .filter-bar{display:flex;gap:.6rem;flex-wrap:wrap;margin:3rem 0 2rem;justify-content:center}
 .filter-btn{font-family:'Space Mono',monospace;font-size:.68rem;padding:.5rem 1.2rem;border-radius:100px;border:1px solid var(--border);color:var(--muted);background:rgba(255,255,255,0.03);cursor:pointer;transition:all .3s;letter-spacing:.04em}
@@ -28,8 +32,8 @@
 .portfolio-card:hover::after{opacity:1}
 .portfolio-card.hide{display:none}
 .portfolio-card.large{grid-column:span 2}
-.p-thumb{width:100%;aspect-ratio:16/9;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative;overflow:hidden}
-.p-thumb-bg{position:absolute;inset:0;opacity:.3}
+.p-thumb{width:100%;aspect-ratio:16/9;background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.p-thumb img{width:100%;height:100%;object-fit:cover}
 .p-info{padding:1.5rem}
 .p-type{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.08em;margin-bottom:.5rem;text-transform:uppercase}
 .p-title{font-size:1.1rem;font-weight:700;margin-bottom:.4rem;transition:color .3s}
@@ -68,7 +72,7 @@
   <div class="page-hero-overlay"></div>
   <div class="container page-hero-content">
     <p class="section-label fade-up">// PORTAFOLIO</p>
-    <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1;letter-spacing:-0.02em;max-width:700px">Música que ya está en el <span style="color:var(--accent);position:relative;display:inline-block">mundo<style>.hero-title span::after{content:'';position:absolute;bottom:8px;left:0;right:0;height:8px;background:linear-gradient(90deg,var(--accent2),var(--accent3));opacity:.3;border-radius:4px;z-index:-1}</style></span></h1>-spacing:-0.02em;max-width:700px">Música que ya está en el mundo.</h1>
+    <h1 class="fade-up delay-1">Música que ya está en el <span class="mundo-text">mundo</span>.</h1>
     <p class="fade-up delay-2" style="color:var(--muted);font-size:1.05rem;max-width:520px;line-height:1.7;margin-top:1.5rem">Artistas, releases y proyectos producidos, masterizados y lanzados desde Terrivol Music en Bogotá.</p>
   </div>
 </section>
@@ -91,8 +95,7 @@
       <!-- Cagta Flex - ARTISTA/URBANO/TRAP -->
       <a href="artistas/cagta-flex.html" class="portfolio-card large fade-up" data-category="artista urbano trap">
         <div class="p-thumb" style="aspect-ratio:21/9">
-          <div class="p-thumb-bg" style="background:linear-gradient(135deg,#7b5cfa,#ff3cac)"></div>
-          <span style="position:relative;font-size:3.5rem">🎤</span>
+          <img src="img/portfolio-cagta.jpg" alt="Cagta Flex">
         </div>
         <div class="p-info">
           <div class="p-type">Artista Principal · Terrivol Music</div>
@@ -110,8 +113,7 @@
       <!-- Beats BFYT - BEATS -->
       <a href="artistas/beats-bfyt.html" class="portfolio-card fade-up delay-1" data-category="beats">
         <div class="p-thumb">
-          <div class="p-thumb-bg" style="background:linear-gradient(135deg,#00e5ff,#7b5cfa)"></div>
-          <span style="position:relative">🥁</span>
+          <img src="img/portfolio-beats.jpg" alt="Beats BFYT">
         </div>
         <div class="p-info">
           <div class="p-type">Canal Beats · YouTube</div>
@@ -128,8 +130,7 @@
       <!-- Masterización - SERVICIO -->
       <a href="contacto.html?servicio=masterizacion" class="portfolio-card fade-up delay-2" data-category="servicio">
         <div class="p-thumb">
-          <div class="p-thumb-bg" style="background:linear-gradient(135deg,#fac775,#ff3cac)"></div>
-          <span style="position:relative">🔊</span>
+          <img src="img/portfolio-mastering.jpg" alt="Masterización">
         </div>
         <div class="p-info">
           <div class="p-type">Servicio · Masterización</div>
@@ -145,8 +146,7 @@
       <!-- Audio empresas - SERVICIO -->
       <a href="contacto.html?servicio=marcas" class="portfolio-card fade-up" data-category="servicio">
         <div class="p-thumb">
-          <div class="p-thumb-bg" style="background:linear-gradient(135deg,#ff3cac,#7b5cfa)"></div>
-          <span style="position-relative">📢</span>
+          <img src="img/portfolio-empresas.jpg" alt="Audio para empresas">
         </div>
         <div class="p-info">
           <div class="p-type">Servicio · Marcas</div>
@@ -162,8 +162,7 @@
       <!-- Videoclips - SERVICIO -->
       <a href="contacto.html?servicio=audiovisual" class="portfolio-card fade-up delay-1" data-category="servicio">
         <div class="p-thumb">
-          <div class="p-thumb-bg" style="background:linear-gradient(135deg,#7b5cfa,#00e5ff)"></div>
-          <span style="position:relative">🎬</span>
+          <img src="img/portfolio-video.jpg" alt="Videoclips">
         </div>
         <div class="p-info">
           <div class="p-type">Producción Audiovisual</div>
@@ -239,9 +238,7 @@ document.querySelectorAll('.portfolio-card').forEach(card=>{
 // FILTROS FUNCIONALES
 document.querySelectorAll('.filter-btn').forEach(btn=>{
   btn.addEventListener('click',function(){
-    // Remover active de todos
     document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-    // Agregar active al clickeado
     this.classList.add('active');
     
     const filter=this.getAttribute('data-filter');
