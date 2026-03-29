@@ -115,16 +115,13 @@ h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.05;margin-bott
 .delay-3{transition-delay:.34s}
 .delay-4{transition-delay:.46s}
 
-/* MOBILE */
+/* MOBILE MENU */
 @media(max-width:768px){
-  .nav-links{display:none;position:fixed;top:62px;left:0;right:0;background:rgba(3,3,10,.97);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border)}
+  .nav-links{display:none;position:fixed;top:62px;left:0;right:0;background:rgba(3,3,10,.98);flex-direction:column;padding:2rem;gap:1rem;border-bottom:1px solid var(--border);margin:0}
   .nav-links.open{display:flex}
   .nav-mobile-btn{display:block}
   .nav-cta{display:none}
-  .hero-stats{grid-template-columns:1fr;gap:1rem}
-  .stat-number{font-size:1.8rem}
-  .hero-cta{flex-direction:column;width:100%}
-  .hero-cta .btn-primary,.hero-cta .btn-ghost{width:100%;text-align:center}
+  .hero-stats{grid-template-columns:1fr}
   .services-grid{grid-template-columns:1fr}
   .artists-grid{grid-template-columns:1fr}
 }
