@@ -5,202 +5,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Servicios | Terrivol Music</title>
 <link rel="stylesheet" href="style.css">
-<style>
-/* FUENTE FORZADA - NUCLEAR */
-*{font-family:'Syne',sans-serif !important}
-.service-category{font-family:'Space Mono',monospace !important}
-
-/* HERO */
-.services-hero{padding:8rem 0 4rem;text-align:center}
-.services-hero h1{font-size:clamp(2rem,6vw,3.5rem) !important;margin-bottom:1rem !important;line-height:1.1 !important}
-.services-hero p{color:var(--muted) !important;max-width:600px !important;margin:0 auto 2rem !important;font-size:1.05rem !important}
-
-/* GRID */
-.services-grid{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(320px,1fr)) !important;gap:2rem !important;margin:4rem 0 !important}
-
-/* CARD */
-.service-card{background:var(--surface) !important;border:1px solid var(--border) !important;border-radius:4px !important;padding:2.5rem !important;transition:all .3s !important;position:relative !important;overflow:hidden !important}
-.service-card:hover{transform:translateY(-8px) !important;border-color:var(--accent) !important}
-.service-card::before{content:'' !important;position:absolute !important;top:0 !important;left:0 !important;right:0 !important;height:3px !important;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3)) !important;opacity:0 !important;transition:opacity .3s !important}
-.service-card:hover::before{opacity:1 !important}
-
-/* ICONOS */
-.service-icon{width:56px !important;height:56px !important;margin-bottom:1.5rem !important;color:var(--accent) !important}
-.service-category{font-size:.7rem !important;color:var(--accent) !important;text-transform:uppercase !important;margin-bottom:.5rem !important;letter-spacing:.1em !important}
-
-/* TEXTO */
-.service-title{font-size:1.5rem !important;font-weight:700 !important;margin-bottom:1rem !important;line-height:1.2 !important}
-.service-desc{color:var(--muted) !important;line-height:1.7 !important;margin-bottom:2rem !important;font-size:.95rem !important}
-
-/* LISTA */
-.service-features{list-style:none !important;margin-bottom:2rem !important}
-.service-features li{padding:.5rem 0 !important;color:var(--text) !important;font-size:.95rem !important;display:flex !important;align-items:flex-start !important;gap:.7rem !important}
-.service-features li::before{content:'✓' !important;color:var(--accent2) !important;font-weight:800 !important;font-size:1.1rem !important;flex-shrink:0 !important;margin-top:2px !important}
-
-/* BOTÓN */
-.service-cta{display:block !important;width:100% !important;padding:.9rem 1.5rem !important;background:transparent !important;border:1px solid var(--accent) !important;border-radius:2px !important;color:var(--text) !important;text-decoration:none !important;text-align:center !important;font-weight:600 !important;transition:all .3s !important}
-.service-cta:hover{background:var(--accent) !important;transform:translateY(-2px) !important}
-
-/* PROCESO */
-.process-section{padding:6rem 0 !important;background:var(--surface2) !important}
-.process-steps{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(250px,1fr)) !important;gap:2rem !important;margin-top:3rem !important}
-.process-step{text-align:center !important;padding:2rem !important}
-.process-number{width:60px !important;height:60px !important;margin:0 auto 1.5rem !important;background:var(--accent) !important;border-radius:50% !important;display:flex !important;align-items:center !important;justify-content:center !important;font-size:1.5rem !important;font-weight:800 !important}
-.process-title{font-size:1.2rem !important;font-weight:700 !important;margin-bottom:.8rem !important}
-.process-desc{color:var(--muted) !important;font-size:.95rem !important;line-height:1.6 !important}
-
-/* CTA */
-.cta-section{padding:6rem 0 !important;text-align:center !important}
-.cta-box{max-width:600px !important;margin:0 auto !important;padding:3rem !important;background:var(--surface) !important;border:1px solid var(--border) !important;border-radius:4px !important}
-.cta-box h2{font-size:2rem !important;margin-bottom:1rem !important}
-.cta-box p{color:var(--muted) !important;margin-bottom:2rem !important}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .services-grid{grid-template-columns:1fr !important}
-  .process-steps{grid-template-columns:1fr !important}
-}
-</style>
 </head>
-<body style="font-family:'Syne',sans-serif !important">
+<body>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
 <nav id="nav-placeholder"></nav>
 
-<section class="services-hero">
+<!-- HERO (igual que index.html) -->
+<section class="hero" style="min-height:80vh;padding:8rem 0 4rem">
+  <div class="hero-bg"></div>
   <div class="container">
-    <p class="section-label fade-up">// SERVICIOS</p>
-    <h1 class="fade-up delay-1">Todo lo que necesitas para tu <span style="color:var(--accent)">música</span></h1>
-    <p class="fade-up delay-2">Desde la creación hasta la distribución. Servicios profesionales para artistas independientes.</p>
+    <div class="hero-content" style="text-align:center;max-width:900px">
+      <p class="section-label fade-up">// SERVICIOS</p>
+      <h1 class="hero-title fade-up delay-1">Todo lo que necesitas para tu <span style="color:var(--accent)">música</span></h1>
+      <p class="hero-subtitle fade-up delay-2" style="margin:0 auto">Desde la creación hasta la distribución. Servicios profesionales para artistas independientes.</p>
+    </div>
   </div>
 </section>
 
+<!-- SERVICIOS (usa las clases de style.css) -->
 <section class="services">
   <div class="container">
     <div class="services-grid">
       <div class="service-card fade-up">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-        <div class="service-category">Estudio</div>
         <h3 class="service-title">Producción Musical</h3>
-        <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio. Desde beats hasta álbumes completos con ingenieros expertos.</p>
-        <ul class="service-features">
-          <li>Grabación profesional</li>
-          <li>Mezcla y masterización</li>
-          <li>Producción de beats</li>
-          <li>Edición vocal</li>
-        </ul>
-        <a href="contacto.html?servicio=produccion" class="service-cta">Cotizar →</a>
+        <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio.</p>
+        <a href="contacto.html" class="service-link">Cotizar →</a>
       </div>
-
       <div class="service-card fade-up delay-1">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
-        <div class="service-category">Digital</div>
         <h3 class="service-title">Distribución Digital</h3>
-        <p class="service-desc">Lleva tu música a Spotify, Apple Music, YouTube y +150 plataformas. Gestión completa de derechos y royalties.</p>
-        <ul class="service-features">
-          <li>+150 plataformas</li>
-          <li>Recaudo de royalties</li>
-          <li>Códigos ISRC</li>
-          <li>Reportes mensuales</li>
-        </ul>
-        <a href="contacto.html?servicio=distribucion" class="service-cta">Cotizar →</a>
+        <p class="service-desc">Lleva tu música a Spotify, Apple Music, YouTube y +150 plataformas.</p>
+        <a href="contacto.html" class="service-link">Cotizar →</a>
       </div>
-
       <div class="service-card fade-up delay-2">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-        <div class="service-category">Estrategia</div>
-        <h3 class="service-title">Marketing Musical</h3>
-        <p class="service-desc">Campañas en redes, pitching a playlists, gestión de comunidad y estrategias de lanzamiento personalizadas.</p>
-        <ul class="service-features">
-          <li>Pitching a playlists</li>
-          <li>Campañas en redes</li>
-          <li>Gestión de comunidad</li>
-          <li>Estrategia de lanzamiento</li>
-        </ul>
-        <a href="contacto.html?servicio=marketing" class="service-cta">Cotizar →</a>
-      </div>
-
-      <div class="service-card fade-up">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        <div class="service-category">Licencias</div>
         <h3 class="service-title">Beats & Licencias</h3>
-        <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles para artistas. Calidad profesional, precios accesibles.</p>
-        <ul class="service-features">
-          <li>Beats exclusivos</li>
-          <li>Licencias flexibles</li>
-          <li>Stems incluidos</li>
-          <li>Derechos claros</li>
-        </ul>
-        <a href="tienda.html" class="service-cta">Explorar →</a>
-      </div>
-
-      <div class="service-card fade-up delay-1">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg>
-        <div class="service-category">Visual</div>
-        <h3 class="service-title">Contenido Audiovisual</h3>
-        <p class="service-desc">Videoclips, visualizers, contenido para redes y dirección creativa. Tu música, visualizada profesionalmente.</p>
-        <ul class="service-features">
-          <li>Videoclips profesionales</li>
-          <li>Visualizers</li>
-          <li>Contenido para redes</li>
-          <li>Dirección creativa</li>
-        </ul>
-        <a href="contacto.html?servicio=audiovisual" class="service-cta">Cotizar →</a>
-      </div>
-
-      <div class="service-card fade-up delay-2">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-        <div class="service-category">Asesoría</div>
-        <h3 class="service-title">Consultoría & Management</h3>
-        <p class="service-desc">Asesoría estratégica para artistas y sellos. Desarrollo de carrera, branding y planificación a largo plazo.</p>
-        <ul class="service-features">
-          <li>Desarrollo de carrera</li>
-          <li>Branding artístico</li>
-          <li>Planificación estratégica</li>
-          <li>Asesoría legal básica</li>
-        </ul>
-        <a href="contacto.html?servicio=consultoria" class="service-cta">Cotizar →</a>
+        <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles.</p>
+        <a href="tienda.html" class="service-link">Explorar →</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="process-section">
-  <div class="container">
-    <p class="section-label" style="text-align:center">// PROCESO</p>
-    <h2 style="text-align:center;margin-bottom:3rem">¿Cómo trabajamos?</h2>
-    <div class="process-steps">
-      <div class="process-step fade-up">
-        <div class="process-number">1</div>
-        <h3 class="process-title">Consulta</h3>
-        <p class="process-desc">Cuéntanos sobre tu proyecto y necesidades. Evaluamos juntos las mejores opciones.</p>
-      </div>
-      <div class="process-step fade-up delay-1">
-        <div class="process-number">2</div>
-        <h3 class="process-title">Propuesta</h3>
-        <p class="process-desc">Te enviamos una cotización personalizada con alcance, tiempos e inversión.</p>
-      </div>
-      <div class="process-step fade-up delay-2">
-        <div class="process-number">3</div>
-        <h3 class="process-title">Producción</h3>
-        <p class="process-desc">Ejecutamos el proyecto con seguimiento constante y revisiones incluidas.</p>
-      </div>
-      <div class="process-step fade-up delay-3">
-        <div class="process-number">4</div>
-        <h3 class="process-title">Entrega</h3>
-        <p class="process-desc">Recibes tu proyecto finalizado listo para distribuir y promocionar.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- CTA (igual que index.html) -->
 <section class="cta-section">
   <div class="container">
     <div class="cta-box fade-up">
       <p class="section-label" style="justify-content:center;display:flex">// EMPECEMOS</p>
-      <h2>¿Listo para trabajar juntos?</h2>
-      <p>Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas.</p>
+      <h2 class="cta-title">¿Listo para trabajar juntos?</h2>
+      <p class="cta-desc">Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas.</p>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
         <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20servicio" target="_blank" class="btn-wa">💬 WhatsApp</a>
         <a href="contacto.html" class="btn-primary">Enviar Propuesta</a>
