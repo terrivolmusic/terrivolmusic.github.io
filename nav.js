@@ -1,10 +1,8 @@
 function buildNav(activePage) {
   return `
     <div class="nav-container">
-      <a href="index.html" class="nav-logo">
-        <img src="logo.png" alt="Terrivol Music">
-      </a>
-      <button class="nav-mobile-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+      <a href="index.html" class="nav-logo"><img src="logo.png" alt="Terrivol Music"></a>
+      <button class="nav-mobile-btn">☰</button>
       <div class="nav-links">
         <a href="index.html" class="${activePage==='home'?'active':''}">Inicio</a>
         <a href="servicios.html" class="${activePage==='servicios'?'active':''}">Servicios</a>
@@ -15,6 +13,6 @@ function buildNav(activePage) {
         <a href="nosotros.html" class="${activePage==='nosotros'?'active':''}">Nosotros</a>
         <a href="contacto.html" class="nav-cta">TRABAJEMOS</a>
       </div>
-    </div>
-  `;
+    </div>`;
 }
+document.addEventListener('click',e=>{if(e.target.closest('.nav-mobile-btn'))document.querySelector('.nav-links').classList.toggle('open')});
