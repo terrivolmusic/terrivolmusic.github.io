@@ -5,6 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Servicios | Terrivol Music</title>
 <link rel="stylesheet" href="style.css">
+<style>
+/* SOLO AGREGAMOS LO QUE FALTA - SIN CONFLICTOS */
+.services-hero{min-height:80vh;display:flex;align-items:center;position:relative;padding:8rem 0 4rem;overflow:hidden}
+.services-hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 20%,rgba(123,92,250,.25),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,229,255,.15),transparent 60%)}
+.services-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,3,10,.9) 0%,rgba(3,3,10,.7) 50%,rgba(123,92,250,.15) 100%)}
+.services-hero-content{position:relative;z-index:1;text-align:center;max-width:900px;margin:0 auto}
+
+/* CARDS MEJORADAS CON ANIMACIONES PRO */
+.services{padding:6rem 0;position:relative}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;margin:4rem 0}
+.service-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2.5rem;transition:all .4s cubic-bezier(0.4, 0, 0.2, 1);position:relative;overflow:hidden;backdrop-filter:blur(10px)}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));opacity:0;transition:opacity .4s}
+.service-card::after{content:'';position:absolute;inset:0;background:radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),rgba(123,92,250,.15),transparent 40%);opacity:0;transition:opacity .4s;pointer-events:none}
+.service-card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 20px 60px rgba(123,92,250,.3),0 0 0 1px rgba(123,92,250,.5)}
+.service-card:hover::before{opacity:1}
+.service-card:hover::after{opacity:1}
+.service-icon{width:56px;height:56px;margin-bottom:1.5rem;color:var(--accent);transition:transform .3s}
+.service-card:hover .service-icon{transform:scale(1.1) rotate(5deg)}
+.service-title{font-size:1.5rem;font-weight:700;margin-bottom:1rem;line-height:1.2}
+.service-desc{color:var(--muted);line-height:1.7;margin-bottom:2rem;font-size:.95rem}
+.service-link{font-family:'Space Mono',monospace;font-size:.85rem;color:var(--text);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:all .3s;padding:.5rem 0}
+.service-link:hover{color:var(--accent2);gap:1rem}
+
+/* RESPONSIVE */
+@media(max-width:768px){.services-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
@@ -12,24 +38,25 @@
 <div class="stars" id="stars"></div>
 <nav id="nav-placeholder"></nav>
 
-<!-- HERO -->
-<section class="hero" style="min-height:80vh;padding:8rem 0 4rem">
-  <div class="hero-bg"></div>
+<!-- HERO CON FONDO DEGRADADO -->
+<section class="services-hero">
+  <div class="services-hero-bg"></div>
+  <div class="services-hero-overlay"></div>
   <div class="container">
-    <div class="hero-content" style="text-align:center;max-width:900px">
-      <p class="section-label fade-up">// SERVICIOS</p>
-      <h1 class="hero-title fade-up delay-1">Todo lo que necesitas para tu <span style="color:var(--accent)">música</span></h1>
-      <p class="hero-subtitle fade-up delay-2" style="margin:0 auto">Desde la creación hasta la distribución. Servicios profesionales para artistas independientes.</p>
+    <div class="services-hero-content">
+      <p class="section-label fade-up" style="display:inline-flex">// SERVICIOS</p>
+      <h1 class="hero-title fade-up delay-1" style="font-size:clamp(2.5rem,6vw,4rem);margin:1.5rem 0">Todo lo que necesitas para tu <span style="color:var(--accent);position:relative;display:inline-block">música<style>.hero-title span::after{content:'';position:absolute;bottom:8px;left:0;right:0;height:8px;background:linear-gradient(90deg,var(--accent2),var(--accent3));opacity:.3;border-radius:4px;z-index:-1}</style></span></h1>
+      <p class="hero-subtitle fade-up delay-2" style="max-width:650px;margin:0 auto 2rem">Desde la creación hasta la distribución. Servicios profesionales para artistas independientes.</p>
     </div>
   </div>
 </section>
 
-<!-- SERVICIOS COMPLETOS -->
+<!-- SERVICIOS CON ANIMACIONES PRO -->
 <section class="services">
   <div class="container">
     <div class="services-grid">
       <!-- Producción Musical -->
-      <div class="service-card fade-up">
+      <div class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         <h3 class="service-title">Producción Musical</h3>
         <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio. Desde beats hasta álbumes completos con ingenieros expertos.</p>
@@ -37,7 +64,7 @@
       </div>
 
       <!-- Distribución Digital -->
-      <div class="service-card fade-up delay-1">
+      <div class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
         <h3 class="service-title">Distribución Digital</h3>
         <p class="service-desc">Lleva tu música a Spotify, Apple Music, YouTube y +150 plataformas. Gestión completa de derechos y royalties.</p>
@@ -45,7 +72,7 @@
       </div>
 
       <!-- Marketing Musical -->
-      <div class="service-card fade-up delay-2">
+      <div class="service-card fade-up delay-2" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
         <h3 class="service-title">Marketing Musical</h3>
         <p class="service-desc">Campañas en redes, pitching a playlists, gestión de comunidad y estrategias de lanzamiento personalizadas.</p>
@@ -53,7 +80,7 @@
       </div>
 
       <!-- Beats & Licencias -->
-      <div class="service-card fade-up">
+      <div class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         <h3 class="service-title">Beats & Licencias</h3>
         <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles para artistas. Calidad profesional, precios accesibles.</p>
@@ -61,7 +88,7 @@
       </div>
 
       <!-- Contenido Audiovisual -->
-      <div class="service-card fade-up delay-1">
+      <div class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg>
         <h3 class="service-title">Contenido Audiovisual</h3>
         <p class="service-desc">Videoclips, visualizers, contenido para redes y dirección creativa. Tu música, visualizada profesionalmente.</p>
@@ -69,7 +96,7 @@
       </div>
 
       <!-- Consultoría -->
-      <div class="service-card fade-up delay-2">
+      <div class="service-card fade-up delay-2" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
         <h3 class="service-title">Consultoría & Management</h3>
         <p class="service-desc">Asesoría estratégica para artistas y sellos. Desarrollo de carrera, branding y planificación a largo plazo.</p>
@@ -114,7 +141,21 @@
 <script>document.getElementById('nav-placeholder').innerHTML=buildNav('servicios');</script>
 <script src="main.js"></script>
 <script>
+// Animaciones fade-up
 const observer=new IntersectionObserver((e)=>{e.forEach(t=>{t.isIntersecting&&t.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll(".fade-up").forEach(e=>observer.observe(e))
+
+// Efecto spotlight en cards
+function handleMouseMove(e, card) {
+  const rect = card.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  card.style.setProperty('--mouse-x', x + 'px');
+  card.style.setProperty('--mouse-y', y + 'px');
+}
+function handleMouseLeave(card) {
+  card.style.setProperty('--mouse-x', '0px');
+  card.style.setProperty('--mouse-y', '0px');
+}
 </script>
 </body>
 </html>
