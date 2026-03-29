@@ -1,125 +1,197 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portafolio — Terrivol Music</title>
 <meta name="description" content="Artistas, releases y proyectos producidos por Terrivol Music. Sello independiente desde Bogotá.">
 <link rel="stylesheet" href="style.css">
 <style>
-.page-hero{padding:10rem 0 5rem;border-bottom:1px solid var(--border)}
-.filter-bar{display:flex;gap:.6rem;flex-wrap:wrap;margin:3rem 0 2rem}
-.filter-btn{font-family:'Space Mono',monospace;font-size:.68rem;padding:.4rem .9rem;border-radius:100px;border:1px solid var(--border);color:var(--muted);background:transparent;cursor:pointer;transition:all .2s;letter-spacing:.04em}
-.filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(123,92,250,.08)}
-.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.portfolio-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .3s;text-decoration:none;display:block;color:var(--text)}
-.portfolio-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+/* HERO CON FONDO DEGRADADO */
+.page-hero{padding:10rem 0 5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.page-hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 20%,rgba(123,92,250,.25),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,229,255,.15),transparent 60%)}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,3,10,.85) 0%,rgba(3,3,10,.75) 50%,rgba(123,92,250,.1) 100%)}
+.page-hero-content{position:relative;z-index:1}
+
+/* FILTROS */
+.filter-bar{display:flex;gap:.6rem;flex-wrap:wrap;margin:3rem 0 2rem;justify-content:center}
+.filter-btn{font-family:'Space Mono',monospace;font-size:.68rem;padding:.5rem 1.2rem;border-radius:100px;border:1px solid var(--border);color:var(--muted);background:rgba(255,255,255,0.03);cursor:pointer;transition:all .3s;letter-spacing:.04em}
+.filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(123,92,250,.15);transform:translateY(-2px)}
+
+/* GRID MEJORADO */
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin:3rem 0}
+.portfolio-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .4s cubic-bezier(0.4, 0, 0.2, 1);text-decoration:none;color:var(--text);display:block;position:relative;backdrop-filter:blur(10px)}
+.portfolio-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));opacity:0;transition:opacity .4s}
+.portfolio-card::after{content:'';position:absolute;inset:0;background:radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),rgba(123,92,250,.15),transparent 40%);opacity:0;transition:opacity .4s;pointer-events:none}
+.portfolio-card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 20px 60px rgba(123,92,250,.25),0 0 0 1px rgba(123,92,250,.4)}
+.portfolio-card:hover::before{opacity:1}
+.portfolio-card:hover::after{opacity:1}
+.portfolio-card.hide{display:none}
 .portfolio-card.large{grid-column:span 2}
 .p-thumb{width:100%;aspect-ratio:16/9;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative;overflow:hidden}
 .p-thumb-bg{position:absolute;inset:0;opacity:.3}
-.p-info{padding:1.3rem}
-.p-type{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.08em;margin-bottom:.4rem}
-.p-title{font-size:1rem;font-weight:700;margin-bottom:.3rem}
-.p-sub{font-size:.82rem;color:var(--muted);margin-bottom:.8rem}
-.p-tags{display:flex;gap:.4rem;flex-wrap:wrap}
-.p-tag{font-family:'Space Mono',monospace;font-size:.6rem;padding:.2rem .5rem;border-radius:2px;border:1px solid var(--border);color:var(--muted)}
-.coming-card{background:var(--surface);border:1px dashed rgba(123,92,250,.3);border-radius:4px;padding:2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:200px}
-.coming-icon{font-size:2rem;margin-bottom:1rem;opacity:.4}
-.coming-text{font-size:.85rem;color:var(--muted)}
-@media(max-width:768px){.portfolio-grid{grid-template-columns:1fr}.portfolio-card.large{grid-column:span 1}}
+.p-info{padding:1.5rem}
+.p-type{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.08em;margin-bottom:.5rem;text-transform:uppercase}
+.p-title{font-size:1.1rem;font-weight:700;margin-bottom:.4rem;transition:color .3s}
+.portfolio-card:hover .p-title{color:var(--accent2)}
+.p-sub{font-size:.85rem;color:var(--muted);margin-bottom:1rem;line-height:1.6}
+.p-tags{display:flex;gap:.5rem;flex-wrap:wrap}
+.p-tag{font-family:'Space Mono',monospace;font-size:.6rem;padding:.25rem .6rem;border-radius:3px;border:1px solid var(--border);color:var(--muted);transition:all .3s}
+.p-tag:hover{border-color:var(--accent);color:var(--accent)}
+
+/* COMING SOON */
+.coming-card{background:var(--surface);border:1px dashed rgba(123,92,250,.4);border-radius:4px;padding:3rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:280px;transition:all .3s}
+.coming-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 10px 40px rgba(123,92,250,.15)}
+.coming-icon{font-size:2.5rem;margin-bottom:1rem;opacity:.5}
+
+/* CTA SECTION */
+.cta-portfolio{padding:5rem 0;border-top:1px solid var(--border);text-align:center;background:var(--surface2)}
+.cta-portfolio h2{font-size:2rem;margin-bottom:1rem}
+.cta-portfolio p{color:var(--muted);margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* RESPONSIVE */
+@media(max-width:968px){.portfolio-grid{grid-template-columns:repeat(2,1fr)}.portfolio-card.large{grid-column:span 2}}
+@media(max-width:640px){.portfolio-grid{grid-template-columns:1fr}.portfolio-card.large{grid-column:span 1}.filter-bar{justify-content:flex-start}}
 </style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
-<div class="stars" id="stars"></div><div class="nebula nebula-1"></div><div class="nebula nebula-3"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div>
+<div class="nebula nebula-1"></div>
+<div class="nebula nebula-3"></div>
 <nav id="nav-placeholder"></nav>
 
+<!-- HERO CON FONDO -->
 <section class="page-hero">
-  <div class="container">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
     <p class="section-label fade-up">// PORTAFOLIO</p>
     <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1;letter-spacing:-0.02em;max-width:700px">Música que ya está en el mundo.</h1>
     <p class="fade-up delay-2" style="color:var(--muted);font-size:1.05rem;max-width:520px;line-height:1.7;margin-top:1.5rem">Artistas, releases y proyectos producidos, masterizados y lanzados desde Terrivol Music en Bogotá.</p>
   </div>
 </section>
 
-<section style="padding:5rem 0">
+<!-- PORTFOLIO CON FILTROS -->
+<section style="padding:5rem 0;position:relative">
   <div class="container">
-
+    
+    <!-- FILTROS FUNCIONALES -->
     <div class="filter-bar">
-      <button class="filter-btn active">Todos</button>
-      <button class="filter-btn">Artistas</button>
-      <button class="filter-btn">Beats</button>
-      <button class="filter-btn">Urbano</button>
-      <button class="filter-btn">Trap</button>
-      <button class="filter-btn">Próximamente</button>
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="artista">Artistas</button>
+      <button class="filter-btn" data-filter="beats">Beats</button>
+      <button class="filter-btn" data-filter="urbano">Urbano</button>
+      <button class="filter-btn" data-filter="trap">Trap</button>
+      <button class="filter-btn" data-filter="servicio">Servicios</button>
     </div>
 
     <div class="portfolio-grid">
-
-      <a href="artistas/cagta-flex.html" class="portfolio-card large fade-up">
-        <div class="p-thumb" style="aspect-ratio:21/9"><div class="p-thumb-bg" style="background:linear-gradient(135deg,#7b5cfa,#ff3cac)"></div><span style="position:relative;font-size:3.5rem">🎤</span></div>
+      <!-- Cagta Flex - ARTISTA/URBANO/TRAP -->
+      <a href="artistas/cagta-flex.html" class="portfolio-card large fade-up" data-category="artista urbano trap">
+        <div class="p-thumb" style="aspect-ratio:21/9">
+          <div class="p-thumb-bg" style="background:linear-gradient(135deg,#7b5cfa,#ff3cac)"></div>
+          <span style="position:relative;font-size:3.5rem">🎤</span>
+        </div>
         <div class="p-info">
-          <div class="p-type">ARTISTA PRINCIPAL · TERRIVOL MUSIC</div>
+          <div class="p-type">Artista Principal · Terrivol Music</div>
           <div class="p-title">Cagta Flex</div>
           <div class="p-sub">Artista urbano y trap de Bogotá. Fundador de Terrivol Music. Múltiples álbumes y sencillos en todas las plataformas.</div>
-          <div class="p-tags"><span class="p-tag">URBANO</span><span class="p-tag">TRAP</span><span class="p-tag">BOGOTÁ</span><span class="p-tag">+15 AÑOS</span></div>
+          <div class="p-tags">
+            <span class="p-tag">Urbano</span>
+            <span class="p-tag">Trap</span>
+            <span class="p-tag">Bogotá</span>
+            <span class="p-tag">+15 años</span>
+          </div>
         </div>
       </a>
 
-      <a href="artistas/beats-bfyt.html" class="portfolio-card fade-up delay-1">
-        <div class="p-thumb"><div class="p-thumb-bg" style="background:linear-gradient(135deg,#00e5ff,#7b5cfa)"></div><span style="position:relative">🥁</span></div>
+      <!-- Beats BFYT - BEATS -->
+      <a href="artistas/beats-bfyt.html" class="portfolio-card fade-up delay-1" data-category="beats">
+        <div class="p-thumb">
+          <div class="p-thumb-bg" style="background:linear-gradient(135deg,#00e5ff,#7b5cfa)"></div>
+          <span style="position:relative">🥁</span>
+        </div>
         <div class="p-info">
-          <div class="p-type">CANAL BEATS · YOUTUBE</div>
+          <div class="p-type">Canal Beats · YouTube</div>
           <div class="p-title">Beats BFYT</div>
           <div class="p-sub">Beats libres para YouTube. Urbano, trap y reggaetón producidos en Terrivol.</div>
-          <div class="p-tags"><span class="p-tag">BEATS</span><span class="p-tag">YOUTUBE</span><span class="p-tag">LICENCIAS</span></div>
+          <div class="p-tags">
+            <span class="p-tag">Beats</span>
+            <span class="p-tag">YouTube</span>
+            <span class="p-tag">Licencias</span>
+          </div>
         </div>
       </a>
 
-      <a href="servicios.html" class="portfolio-card fade-up delay-2">
-        <div class="p-thumb"><div class="p-thumb-bg" style="background:linear-gradient(135deg,#fac775,#ff3cac)"></div><span style="position:relative">🔊</span></div>
+      <!-- Masterización - SERVICIO -->
+      <a href="contacto.html?servicio=masterizacion" class="portfolio-card fade-up delay-2" data-category="servicio">
+        <div class="p-thumb">
+          <div class="p-thumb-bg" style="background:linear-gradient(135deg,#fac775,#ff3cac)"></div>
+          <span style="position:relative">🔊</span>
+        </div>
         <div class="p-info">
-          <div class="p-type">SERVICIO · MASTERIZACIÓN</div>
+          <div class="p-type">Servicio · Masterización</div>
           <div class="p-title">Masters producidos</div>
           <div class="p-sub">Múltiples proyectos masterizados para artistas independientes de Colombia y LATAM.</div>
-          <div class="p-tags"><span class="p-tag">MASTERING</span><span class="p-tag">STREAMING</span></div>
+          <div class="p-tags">
+            <span class="p-tag">Mastering</span>
+            <span class="p-tag">Streaming</span>
+          </div>
         </div>
       </a>
 
-      <a href="servicios.html" class="portfolio-card fade-up">
-        <div class="p-thumb"><div class="p-thumb-bg" style="background:linear-gradient(135deg,#ff3cac,#7b5cfa)"></div><span style="position:relative">📢</span></div>
+      <!-- Audio empresas - SERVICIO -->
+      <a href="contacto.html?servicio=marcas" class="portfolio-card fade-up" data-category="servicio">
+        <div class="p-thumb">
+          <div class="p-thumb-bg" style="background:linear-gradient(135deg,#ff3cac,#7b5cfa)"></div>
+          <span style="position-relative">📢</span>
+        </div>
         <div class="p-info">
-          <div class="p-type">SERVICIO · MARCAS</div>
+          <div class="p-type">Servicio · Marcas</div>
           <div class="p-title">Audio para empresas</div>
           <div class="p-sub">Jingles y sonic branding para marcas y empresas colombianas.</div>
-          <div class="p-tags"><span class="p-tag">JINGLE</span><span class="p-tag">BRANDING</span></div>
+          <div class="p-tags">
+            <span class="p-tag">Jingle</span>
+            <span class="p-tag">Branding</span>
+          </div>
         </div>
       </a>
 
-      <a href="contacto.html" class="portfolio-card fade-up delay-1">
-        <div class="p-thumb"><div class="p-thumb-bg" style="background:linear-gradient(135deg,#7b5cfa,#00e5ff)"></div><span style="position:relative">🎬</span></div>
+      <!-- Videoclips - SERVICIO -->
+      <a href="contacto.html?servicio=audiovisual" class="portfolio-card fade-up delay-1" data-category="servicio">
+        <div class="p-thumb">
+          <div class="p-thumb-bg" style="background:linear-gradient(135deg,#7b5cfa,#00e5ff)"></div>
+          <span style="position:relative">🎬</span>
+        </div>
         <div class="p-info">
-          <div class="p-type">PRODUCCIÓN AUDIOVISUAL</div>
+          <div class="p-type">Producción Audiovisual</div>
           <div class="p-title">Videoclips y contenido</div>
           <div class="p-sub">Producción de videoclips, visualizers y contenido para redes sociales.</div>
-          <div class="p-tags"><span class="p-tag">VIDEO</span><span class="p-tag">REDES</span></div>
+          <div class="p-tags">
+            <span class="p-tag">Video</span>
+            <span class="p-tag">Redes</span>
+          </div>
         </div>
       </a>
 
+      <!-- Próximamente -->
       <div class="coming-card fade-up delay-2">
         <div class="coming-icon">🚀</div>
-        <div class="p-type" style="margin-bottom:.5rem">PRÓXIMAMENTE 2025</div>
-        <div class="coming-text">Nuevos artistas y proyectos en desarrollo. <a href="contacto.html" style="color:var(--accent2)">¿Quieres ser parte?</a></div>
+        <div class="p-type" style="margin-bottom:.8rem">Próximamente 2025</div>
+        <div style="font-size:.9rem;color:var(--muted);line-height:1.6">Nuevos artistas y proyectos en desarrollo.<br><a href="contacto.html" style="color:var(--accent2);text-decoration:none;border-bottom:1px solid var(--accent2)">¿Quieres ser parte? →</a></div>
       </div>
-
     </div>
   </div>
 </section>
 
-<section style="padding:4rem 0;border-top:1px solid var(--border);text-align:center">
+<!-- CTA -->
+<section class="cta-portfolio">
   <div class="container">
-    <h2 style="font-size:1.8rem;margin-bottom:.8rem">¿Quieres que trabajemos juntos?</h2>
-    <p style="color:var(--muted);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto">Cuéntanos tu proyecto. Producción, masterización, distribución o estrategia — armamos un plan a tu medida.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+    <h2 class="fade-up">¿Quieres que trabajemos juntos?</h2>
+    <p class="fade-up delay-1">Cuéntanos tu proyecto. Producción, masterización, distribución o estrategia — armamos un plan a tu medida.</p>
+    <div class="fade-up delay-2" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
       <a href="contacto.html" class="btn-primary">Iniciar proyecto</a>
       <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20vi%20el%20portafolio%20y%20quiero%20trabajar%20con%20ustedes" target="_blank" class="btn-wa">💬 WhatsApp</a>
     </div>
@@ -127,12 +199,71 @@
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
-    <div class="footer-links"><a href="servicios.html">Servicios</a><a href="tienda.html">Tienda</a><a href="artistas.html">Artistas</a><a href="contacto.html">Contacto</a></div>
-    <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ</div>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+      <div class="footer-links">
+        <a href="servicios.html">Servicios</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="artistas.html">Artistas</a>
+        <a href="tienda.html">Tienda</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
+    </div>
   </div>
 </footer>
-<script src="nav.js"></script><script>document.getElementById('nav-placeholder').innerHTML=buildNav('portafolio');</script>
+
+<script src="nav.js"></script>
+<script>document.getElementById('nav-placeholder').innerHTML=buildNav('portafolio');</script>
 <script src="main.js"></script>
-</body></html>
+<script>
+// Animaciones fade-up
+const observer=new IntersectionObserver((e)=>{e.forEach(t=>{t.isIntersecting&&t.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll(".fade-up").forEach(e=>observer.observe(e))
+
+// Efecto spotlight en cards
+document.querySelectorAll('.portfolio-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const rect=card.getBoundingClientRect();
+    const x=e.clientX-rect.left;
+    const y=e.clientY-rect.top;
+    card.style.setProperty('--mouse-x',x+'px');
+    card.style.setProperty('--mouse-y',y+'px');
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.setProperty('--mouse-x','0px');
+    card.style.setProperty('--mouse-y','0px');
+  });
+});
+
+// FILTROS FUNCIONALES
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    // Remover active de todos
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    // Agregar active al clickeado
+    this.classList.add('active');
+    
+    const filter=this.getAttribute('data-filter');
+    const cards=document.querySelectorAll('.portfolio-card');
+    
+    cards.forEach(card=>{
+      if(filter==='all'){
+        card.classList.remove('hide');
+        setTimeout(()=>card.style.opacity='1',10);
+      }else{
+        const categories=card.getAttribute('data-category');
+        if(categories&&categories.includes(filter)){
+          card.classList.remove('hide');
+          setTimeout(()=>card.style.opacity='1',10);
+        }else{
+          card.classList.add('hide');
+          setTimeout(()=>card.style.opacity='0',10);
+        }
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
