@@ -4,24 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artistas | Terrivol Music</title>
-<link rel="stylesheet" href="style.css">
-<style>
-.artists-hero{min-height:60vh;display:flex;align-items:center;padding:6rem 0 4rem;text-align:center}
-.artists-hero h1{font-size:clamp(2.5rem,8vw,4.5rem);margin-bottom:1rem}
-.artists-hero p{color:var(--muted);max-width:600px;margin:0 auto}
-.artists-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:3rem;margin:4rem 0;padding:4rem 0}
-.artist-card-large{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform .3s}
-.artist-card-large:hover{transform:translateY(-8px)}
-.artist-cover-large{aspect-ratio:16/9;position:relative;overflow:hidden}
-.artist-cover-large img{width:100%;height:100%;object-fit:cover}
-.artist-info-large{padding:2rem}
-.artist-label{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;margin-bottom:.5rem}
-.artist-name-large{font-size:2rem;font-weight:800;margin-bottom:1rem}
-.artist-desc{color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
-.artist-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.artist-meta-item{padding:.3rem .8rem;background:rgba(123,92,250,.15);border:1px solid var(--accent);border-radius:100px;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent)}
-@media(max-width:768px){.artists-grid{grid-template-columns:1fr}}
-</style>
+<link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
@@ -29,47 +12,47 @@
 <div class="stars" id="stars"></div>
 <nav id="nav-placeholder"></nav>
 
-<section class="artists-hero">
+<section class="artists-hero" style="min-height:60vh;display:flex;align-items:center;padding:6rem 0 4rem;text-align:center">
   <div class="container">
     <p class="section-label fade-up">// ROSTER</p>
-    <h1 class="fade-up delay-1">El sonido de Terrivol Music.</h1>
-    <p class="fade-up delay-2">Artistas y proyectos desarrollados, producidos y distribuidos por Terrivol Music.</p>
+    <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,8vw,4.5rem);margin-bottom:1rem">El sonido de Terrivol Music.</h1>
+    <p class="fade-up delay-2" style="color:var(--muted);max-width:600px;margin:0 auto">Artistas y proyectos desarrollados, producidos y distribuidos por Terrivol Music.</p>
   </div>
 </section>
 
-<section class="artists-list">
+<section class="artists-list" style="padding:4rem 0">
   <div class="container">
-    <div class="artists-grid">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem">
       <!-- Cagta Flex -->
-      <div class="artist-card-large fade-up">
-        <div class="artist-cover-large">
-          <img src="img/cagta-flex-1.jpg" alt="Cagta Flex">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden">
+        <div style="aspect-ratio:16/9;background:linear-gradient(135deg,rgba(123,92,250,.3),rgba(255,60,172,.2));display:flex;align-items:center;justify-content:center">
+          <span style="font-size:3rem">🎤</span>
         </div>
-        <div class="artist-info-large">
-          <div class="artist-label">Artista Principal</div>
-          <h2 class="artist-name-large">Cagta Flex</h2>
-          <p class="artist-desc">Artista urbano y trap de Bogotá. Fundador de Terrivol Music. +15 años en la escena independiente colombiana.</p>
-          <div class="artist-meta">
-            <span class="artist-meta-item">Urbano</span>
-            <span class="artist-meta-item">Trap</span>
-            <span class="artist-meta-item">Bogotá</span>
+        <div style="padding:1.5rem">
+          <div style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;margin-bottom:.5rem">Artista Principal</div>
+          <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:.5rem">Cagta Flex</h2>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:1rem">Artista urbano y trap de Bogotá. Fundador de Terrivol Music.</p>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <span style="padding:.3rem .7rem;background:rgba(123,92,250,.15);border:1px solid var(--accent);border-radius:100px;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent)">Urbano</span>
+            <span style="padding:.3rem .7rem;background:rgba(123,92,250,.15);border:1px solid var(--accent);border-radius:100px;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent)">Trap</span>
+            <span style="padding:.3rem .7rem;background:rgba(123,92,250,.15);border:1px solid var(--accent);border-radius:100px;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent)">Bogotá</span>
           </div>
         </div>
       </div>
 
       <!-- Beats BFYT -->
-      <div class="artist-card-large fade-up delay-1">
-        <div class="artist-cover-large">
-          <img src="img/beats-bfyt.jpg" alt="Beats BFYT">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden">
+        <div style="aspect-ratio:16/9;background:linear-gradient(135deg,rgba(123,92,250,.3),rgba(255,60,172,.2));display:flex;align-items:center;justify-content:center">
+          <span style="font-size:3rem">🎹</span>
         </div>
-        <div class="artist-info-large">
-          <div class="artist-label">Canal de Beats</div>
-          <h2 class="artist-name-large">Beats BFYT</h2>
-          <p class="artist-desc">Beats libres para YouTube. Urbano, trap y reggaetón producidos en Terrivol. Licencias flexibles.</p>
-          <div class="artist-meta">
-            <span class="artist-meta-item">Beats</span>
-            <span class="artist-meta-item">YouTube</span>
-            <span class="artist-meta-item">Licencias</span>
+        <div style="padding:1.5rem">
+          <div style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;margin-bottom:.5rem">Canal de Beats</div>
+          <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:.5rem">Beats BFYT</h2>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:1rem">Beats libres para YouTube. Urbano, trap y reggaetón.</p>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <span style="padding:.3rem .7rem;background:rgba(123,92,250,.15);border:1px solid var(--accent);border-radius:100px;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent)">Beats</span>
+            <span style="padding:.3rem .7rem;background:rgba(123,92,250,.15);border:1px solid var(--accent);border-radius:100px;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent)">YouTube</span>
+            <span style="padding:.3rem .7rem;background:rgba(123,92,250,.15);border:1px solid var(--accent);border-radius:100px;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent)">Licencias</span>
           </div>
         </div>
       </div>
@@ -77,24 +60,21 @@
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
-      <div class="footer-links">
-        <a href="servicios.html">Servicios</a>
-        <a href="portafolio.html">Portafolio</a>
-        <a href="artistas.html">Artistas</a>
-        <a href="tienda.html">Tienda</a>
-        <a href="contacto.html">Contacto</a>
-      </div>
-      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
+<footer style="border-top:1px solid var(--border);padding:3rem 2rem;margin-top:4rem">
+  <div class="container" style="max-width:1100px;margin:0 auto;text-align:center">
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem">
+      <a href="../index.html" style="color:var(--muted);text-decoration:none">Servicios</a>
+      <a href="../portafolio.html" style="color:var(--muted);text-decoration:none">Portafolio</a>
+      <a href="artistas.html" style="color:var(--muted);text-decoration:none">Artistas</a>
+      <a href="../tienda.html" style="color:var(--muted);text-decoration:none">Tienda</a>
+      <a href="../contacto.html" style="color:var(--muted);text-decoration:none">Contacto</a>
     </div>
+    <div style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--muted)">© 2025 TERRIVOL MUSIC · BOGOTÁ</div>
   </div>
 </footer>
 
-<script src="nav.js"></script>
+<script src="../nav.js"></script>
 <script>document.getElementById('nav-placeholder').innerHTML=buildNav('artistas');</script>
-<script src="main.js"></script>
+<script src="../main.js"></script>
 </body>
 </html>
