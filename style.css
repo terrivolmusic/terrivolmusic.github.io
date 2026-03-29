@@ -125,3 +125,11 @@ h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.05;margin-bott
   .services-grid{grid-template-columns:1fr}
   .artists-grid{grid-template-columns:1fr}
 }
+/* FORZAR FUENTE SYNE EN TODA LA WEB */
+body, h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select, li, label {
+  font-family:'Syne',sans-serif !important;
+}
+
+.service-title, .service-desc, .process-title, .process-desc, .cta-box * {
+  font-family:'Syne',sans-serif !important;
+}
