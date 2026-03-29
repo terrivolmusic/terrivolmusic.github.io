@@ -1,4 +1,3 @@
-// Nav HTML - inject via: document.getElementById('nav-placeholder').innerHTML = buildNav('home')
 function buildNav(activePage) {
   const navItems = [
     { name: 'Inicio', href: 'index.html', id: 'home' },
@@ -19,25 +18,36 @@ function buildNav(activePage) {
       <a href="index.html" class="nav-logo">
         <img src="logo.png" alt="Terrivol Music">
       </a>
+      <button class="nav-mobile-btn" aria-label="Menú">
+        <span>☰</span>
+      </button>
       <div class="nav-links">
         ${links}
+        <a href="contacto.html" class="nav-cta">TRABAJEMOS</a>
       </div>
-      <a href="contacto.html" class="nav-cta">TRABAJEMOS</a>
-      <button class="nav-toggle" aria-label="Menú">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   `;
 }
 
-// Mobile menu toggle
+// Mobile menu toggle - CORREGIDO
 document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.querySelector('.nav-toggle');
-  const nav = document.querySelector('.nav-container');
+  const toggle = document.querySelector('.nav-mobile-btn');
+  const navLinks = document.querySelector('.nav-links');
   
-  if (toggle) {
+  if (toggle && navLinks) {
     toggle.addEventListener('click', () => {
-      nav.classList.toggle('nav-open');
+      navLinks.classList.toggle('open');
+      toggle.querySelector('span').textContent = navLinks.classList.contains('open') ? '✕' : '☰';
     });
   }
+  
+  // Cerrar menú al hacer click en un link (móvil)
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        document.querySelector('.nav-links')?.classList.remove('open');
+        document.querySelector('.nav-mobile-btn span').textContent = '☰';
+      }
+    });
+  });
 });
