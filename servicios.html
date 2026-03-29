@@ -6,38 +6,63 @@
 <title>Servicios | Terrivol Music</title>
 <link rel="stylesheet" href="style.css">
 <style>
-  *{font-family:'Syne',sans-serif !important}.service-category{font-family:'Space Mono',monospace !important}
+/* FUENTE FORZADA - NUCLEAR */
+*{font-family:'Syne',sans-serif !important}
+.service-category{font-family:'Space Mono',monospace !important}
+
+/* HERO */
 .services-hero{padding:8rem 0 4rem;text-align:center}
-.services-hero h1{font-family:'Syne',sans-serif !important;font-size:clamp(2rem,6vw,3.5rem);margin-bottom:1rem;line-height:1.1}
-.services-hero p{font-family:'Syne',sans-serif !important;color:var(--muted);max-width:600px;margin:0 auto 2rem;font-size:1.05rem}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;margin:4rem 0}
-.service-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2.5rem;transition:all .3s;position:relative;overflow:hidden}
-.service-card:hover{transform:translateY(-8px);border-color:var(--accent)}
-.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));opacity:0;transition:opacity .3s}
-.service-card:hover::before{opacity:1}
-.service-icon{width:56px;height:56px;margin-bottom:1.5rem;color:var(--accent)}
-.service-category{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;margin-bottom:.5rem;letter-spacing:.1em}
-.service-title{font-family:'Syne',sans-serif !important;font-size:1.5rem;font-weight:700;margin-bottom:1rem;line-height:1.2}
-.service-desc{font-family:'Syne',sans-serif !important;color:var(--muted);line-height:1.7;margin-bottom:2rem;font-size:.95rem}
-.service-features{list-style:none;margin-bottom:2rem}
-.service-features li{font-family:'Syne',sans-serif !important;padding:.5rem 0;color:var(--text);font-size:.95rem;display:flex;align-items:flex-start;gap:.7rem}
-.service-features li::before{content:'✓';color:var(--accent2);font-weight:800;font-size:1.1rem;flex-shrink:0;margin-top:2px}
-.service-cta{font-family:'Syne',sans-serif !important;display:block;width:100%;padding:.9rem 1.5rem;background:transparent;border:1px solid var(--accent);border-radius:2px;color:var(--text);text-decoration:none;text-align:center;font-weight:600;transition:all .3s}
-.service-cta:hover{background:var(--accent);transform:translateY(-2px)}
-.process-section{padding:6rem 0;background:var(--surface2)}
-.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-top:3rem}
-.process-step{text-align:center;padding:2rem}
-.process-number{width:60px;height:60px;margin:0 auto 1.5rem;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800}
-.process-title{font-family:'Syne',sans-serif !important;font-size:1.2rem;font-weight:700;margin-bottom:.8rem}
-.process-desc{font-family:'Syne',sans-serif !important;color:var(--muted);font-size:.95rem;line-height:1.6}
-.cta-section{padding:6rem 0;text-align:center}
-.cta-box{max-width:600px;margin:0 auto;padding:3rem;background:var(--surface);border:1px solid var(--border);border-radius:4px}
-.cta-box h2{font-family:'Syne',sans-serif !important;font-size:2rem;margin-bottom:1rem}
-.cta-box p{font-family:'Syne',sans-serif !important;color:var(--muted);margin-bottom:2rem}
-@media(max-width:768px){.services-grid{grid-template-columns:1fr}.process-steps{grid-template-columns:1fr}}
+.services-hero h1{font-size:clamp(2rem,6vw,3.5rem) !important;margin-bottom:1rem !important;line-height:1.1 !important}
+.services-hero p{color:var(--muted) !important;max-width:600px !important;margin:0 auto 2rem !important;font-size:1.05rem !important}
+
+/* GRID */
+.services-grid{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(320px,1fr)) !important;gap:2rem !important;margin:4rem 0 !important}
+
+/* CARD */
+.service-card{background:var(--surface) !important;border:1px solid var(--border) !important;border-radius:4px !important;padding:2.5rem !important;transition:all .3s !important;position:relative !important;overflow:hidden !important}
+.service-card:hover{transform:translateY(-8px) !important;border-color:var(--accent) !important}
+.service-card::before{content:'' !important;position:absolute !important;top:0 !important;left:0 !important;right:0 !important;height:3px !important;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3)) !important;opacity:0 !important;transition:opacity .3s !important}
+.service-card:hover::before{opacity:1 !important}
+
+/* ICONOS */
+.service-icon{width:56px !important;height:56px !important;margin-bottom:1.5rem !important;color:var(--accent) !important}
+.service-category{font-size:.7rem !important;color:var(--accent) !important;text-transform:uppercase !important;margin-bottom:.5rem !important;letter-spacing:.1em !important}
+
+/* TEXTO */
+.service-title{font-size:1.5rem !important;font-weight:700 !important;margin-bottom:1rem !important;line-height:1.2 !important}
+.service-desc{color:var(--muted) !important;line-height:1.7 !important;margin-bottom:2rem !important;font-size:.95rem !important}
+
+/* LISTA */
+.service-features{list-style:none !important;margin-bottom:2rem !important}
+.service-features li{padding:.5rem 0 !important;color:var(--text) !important;font-size:.95rem !important;display:flex !important;align-items:flex-start !important;gap:.7rem !important}
+.service-features li::before{content:'✓' !important;color:var(--accent2) !important;font-weight:800 !important;font-size:1.1rem !important;flex-shrink:0 !important;margin-top:2px !important}
+
+/* BOTÓN */
+.service-cta{display:block !important;width:100% !important;padding:.9rem 1.5rem !important;background:transparent !important;border:1px solid var(--accent) !important;border-radius:2px !important;color:var(--text) !important;text-decoration:none !important;text-align:center !important;font-weight:600 !important;transition:all .3s !important}
+.service-cta:hover{background:var(--accent) !important;transform:translateY(-2px) !important}
+
+/* PROCESO */
+.process-section{padding:6rem 0 !important;background:var(--surface2) !important}
+.process-steps{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(250px,1fr)) !important;gap:2rem !important;margin-top:3rem !important}
+.process-step{text-align:center !important;padding:2rem !important}
+.process-number{width:60px !important;height:60px !important;margin:0 auto 1.5rem !important;background:var(--accent) !important;border-radius:50% !important;display:flex !important;align-items:center !important;justify-content:center !important;font-size:1.5rem !important;font-weight:800 !important}
+.process-title{font-size:1.2rem !important;font-weight:700 !important;margin-bottom:.8rem !important}
+.process-desc{color:var(--muted) !important;font-size:.95rem !important;line-height:1.6 !important}
+
+/* CTA */
+.cta-section{padding:6rem 0 !important;text-align:center !important}
+.cta-box{max-width:600px !important;margin:0 auto !important;padding:3rem !important;background:var(--surface) !important;border:1px solid var(--border) !important;border-radius:4px !important}
+.cta-box h2{font-size:2rem !important;margin-bottom:1rem !important}
+.cta-box p{color:var(--muted) !important;margin-bottom:2rem !important}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .services-grid{grid-template-columns:1fr !important}
+  .process-steps{grid-template-columns:1fr !important}
+}
 </style>
 </head>
-<body>
+<body style="font-family:'Syne',sans-serif !important">
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
