@@ -133,3 +133,12 @@ body, h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select, 
 .service-title, .service-desc, .process-title, .process-desc, .cta-box * {
   font-family:'Syne',sans-serif !important;
 }
+/* INDEX - MÓVIL */
+@media(max-width:768px){
+  .hero-title{font-size:clamp(2rem,10vw,3rem)}
+  .hero-subtitle{font-size:.9rem}
+  .hero-stats{grid-template-columns:1fr;gap:1rem;padding:1.5rem}
+  .stat-number{font-size:1.8rem}
+  .hero-cta{flex-direction:column;width:100%}
+  .hero-cta .btn-primary,.hero-cta .btn-ghost{width:100%;text-align:center}
+}
