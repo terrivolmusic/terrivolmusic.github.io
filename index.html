@@ -7,25 +7,22 @@
 <meta name="description" content="Terrivol Music: Sello discográfico independiente. Producción, distribución y marketing musical para artistas que quieren competir globalmente. +400 lanzamientos.">
 <link rel="stylesheet" href="style.css">
 <style>
-/* HERO MEJORADO */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:8rem 0 6rem;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.15}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,3,10,.9) 0%,rgba(3,3,10,.7) 50%,rgba(123,92,250,.15) 100%)}
-.hero-content{position:relative;z-index:1;max-width:900px}
-.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.2rem;background:rgba(123,92,250,.2);border:1px solid var(--accent);border-radius:100px;font-family:'Space Mono',monospace;font-size:.75rem;color:var(--accent);margin-bottom:2rem;letter-spacing:.05em}
-.hero-title{font-size:clamp(2.8rem,8vw,5rem);font-weight:800;line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.5rem}
-.hero-title span{color:var(--accent);position:relative;display:inline-block}
-.hero-title span::after{content:'';position:absolute;bottom:8px;left:0;right:0;height:8px;background:linear-gradient(90deg,var(--accent2),var(--accent3));opacity:.3;border-radius:4px;z-index:-1}
-.hero-subtitle{font-size:clamp(1.1rem,2vw,1.25rem);color:var(--muted);line-height:1.8;margin-bottom:3rem;max-width:650px}
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:3.5rem;padding:2rem;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:4px}
-.stat-number{font-size:2.2rem;font-weight:800;color:var(--accent2);line-height:1}
-.stat-label{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.5rem}
-.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
-.hero-trust{display:flex;align-items:center;gap:1.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
-.trust-badge{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--muted)}
-.trust-badge svg{color:var(--accent2)}
-@media(max-width:768px){.hero-stats{grid-template-columns:1fr;gap:1rem;padding:1.5rem}.stat-number{font-size:2rem}.hero-cta{flex-direction:column;width:100%}.hero-cta .btn-primary,.hero-cta .btn-ghost{width:100%;text-align:center}.hero-trust{flex-direction:column;align-items:flex-start;gap:1rem;margin-top:2rem}}
+/* INDEX - CORRECCIONES MÓVIL */
+@media(max-width:768px){
+  .hero-title{font-size:clamp(2.2rem,12vw,3.5rem) !important;line-height:1.05 !important;letter-spacing:-0.02em !important}
+  .hero-subtitle{font-size:.9rem !important;line-height:1.6 !important}
+  .hero-stats{grid-template-columns:1fr !important;gap:1rem !important;padding:1.5rem !important}
+  .stat-number{font-size:1.8rem !important}
+  .stat-label{font-size:.65rem !important}
+  .hero-cta{flex-direction:column !important;width:100% !important}
+  .hero-cta .btn-primary,.hero-cta .btn-ghost{width:100% !important;text-align:center !important;padding:.8rem 1.5rem !important}
+  .hero-trust{flex-direction:column !important;align-items:flex-start !important;gap:.8rem !important;margin-top:2rem !important;padding-top:1.5rem !important}
+  .trust-badge{font-size:.8rem !important}
+  .hero-badge{padding:.4rem .9rem !important;font-size:.65rem !important}
+  .services-grid{grid-template-columns:1fr !important}
+  .artists-grid{grid-template-columns:1fr !important}
+  .nav-cta{display:inline-block !important;margin-top:1rem !important;width:100% !important;text-align:center !important}
+}
 </style>
 </head>
 <body>
@@ -34,45 +31,32 @@
 <div class="stars" id="stars"></div>
 <nav id="nav-placeholder"></nav>
 
-<!-- HERO MEJORADO -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-bg">
-    <!-- OPCIÓN 1: Imagen de fondo (descomenta y sube tu imagen a img/hero-bg.jpg) -->
-    <!-- <img src="img/hero-bg.jpg" alt=""> -->
-    
-    <!-- OPCIÓN 2: Gradiente animado (activo por defecto) -->
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(123,92,250,.25),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,229,255,.15),transparent 60%)"></div>
-  </div>
-  <div class="hero-overlay"></div>
-  
+  <div class="hero-bg"></div>
   <div class="container">
     <div class="hero-content">
       <div class="hero-badge fade-up">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         SELLO INDEPENDIENTE · BOGOTÁ, COLOMBIA
       </div>
-      
       <h1 class="hero-title fade-up delay-1">
         Tu música merece<br>
         <span>infraestructura profesional</span>
       </h1>
-      
       <p class="hero-subtitle fade-up delay-2">
         Terrivol Music es el aliado estratégico para artistas independientes que buscan competir a nivel global. 
         Producción, distribución y marketing con la calidad de un sello grande, la agilidad de un independiente.
       </p>
-      
       <div class="hero-stats fade-up delay-3">
         <div><div class="stat-number">+400</div><div class="stat-label">Lanzamientos</div></div>
         <div><div class="stat-number">+15</div><div class="stat-label">Años de experiencia</div></div>
         <div><div class="stat-number">100%</div><div class="stat-label">Independiente</div></div>
       </div>
-      
       <div class="hero-cta fade-up delay-4">
         <a href="servicios.html" class="btn-primary">Explorar servicios</a>
         <a href="contacto.html" class="btn-ghost">Cotizar proyecto</a>
       </div>
-      
       <div class="hero-trust fade-up delay-5">
         <div class="trust-badge">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
