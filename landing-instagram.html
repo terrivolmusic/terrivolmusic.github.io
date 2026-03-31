@@ -7,7 +7,6 @@
 <meta name="description" content="Sello independiente desde Bogotá. Producción, mastering y distribución global para artistas.">
 <link rel="stylesheet" href="style.css">
 <style>
-/* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#03030a;color:#f0eeff;font-family:'Syne',sans-serif;line-height:1.6;overflow-x:hidden}
 
@@ -15,23 +14,16 @@ body{background:#03030a;color:#f0eeff;font-family:'Syne',sans-serif;line-height:
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem 1.5rem;position:relative;background:radial-gradient(ellipse at 50% 30%,rgba(123,92,250,.2),transparent 70%),linear-gradient(180deg,#03030a 0%,#0a0a1a 100%)}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,rgba(0,229,255,.1),transparent 50%),radial-gradient(circle at 80% 20%,rgba(255,60,172,.08),transparent 50%);pointer-events:none}
 
-/* LOGO */
 .logo{width:80px;height:auto;margin-bottom:1.5rem;animation:fadeIn .8s ease}
-
-/* TÍTULO */
 .title{font-size:clamp(1.8rem,6vw,3rem);font-weight:800;line-height:1.1;margin-bottom:1rem;letter-spacing:-0.02em}
 .title span{color:var(--accent)}
 .title span.cyan{color:var(--accent2)}
-
-/* SUBTÍTULO */
 .subtitle{font-size:.95rem;color:var(--muted);max-width:400px;margin:0 auto 2rem;line-height:1.6}
 
-/* PILLS */
 .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;margin-bottom:2.5rem}
 .pill{font-family:'Space Mono',monospace;font-size:.6rem;padding:.3rem .7rem;border:1px solid rgba(123,92,250,.3);border-radius:100px;color:var(--muted);background:rgba(123,92,250,.05)}
 .pill.hot{border-color:var(--accent);color:var(--accent)}
 
-/* BOTONES PRINCIPALES */
 .buttons{display:flex;flex-direction:column;gap:.8rem;width:100%;max-width:320px;margin-bottom:2rem}
 .btn{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:1rem 1.5rem;border-radius:2px;font-weight:700;font-size:.9rem;text-decoration:none;transition:all .25s;cursor:pointer}
 .btn-whatsapp{background:#25D366;color:#000;width:100%}
@@ -39,7 +31,6 @@ body{background:#03030a;color:#f0eeff;font-family:'Syne',sans-serif;line-height:
 .btn-secondary{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.15);width:100%}
 .btn-secondary:hover{border-color:var(--accent2);color:var(--accent2)}
 
-/* SERVICIOS RÁPIDOS */
 .services{padding:3rem 1.5rem;text-align:center;background:rgba(255,255,255,.02)}
 .services-title{font-size:1.4rem;font-weight:700;margin-bottom:1.5rem}
 .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;max-width:400px;margin:0 auto}
@@ -48,7 +39,6 @@ body{background:#03030a;color:#f0eeff;font-family:'Syne',sans-serif;line-height:
 .service-name{font-size:.8rem;font-weight:600;margin-bottom:.2rem}
 .service-desc{font-size:.7rem;color:var(--muted)}
 
-/* FOOTER */
 .footer{padding:2rem 1.5rem;text-align:center;border-top:1px solid rgba(123,92,250,.1)}
 .footer-logo{height:24px;margin-bottom:.8rem}
 .footer-copy{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);margin-bottom:1rem}
@@ -56,14 +46,12 @@ body{background:#03030a;color:#f0eeff;font-family:'Syne',sans-serif;line-height:
 .footer-links a{color:var(--muted);font-size:.75rem;text-decoration:none}
 .footer-links a:hover{color:var(--accent2)}
 
-/* ANIMACIONES */
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .fade-in{animation:fadeIn .6s ease forwards}
 .fade-in.delay-1{animation-delay:.1s}
 .fade-in.delay-2{animation-delay:.2s}
 .fade-in.delay-3{animation-delay:.3s}
 
-/* MÓVIL */
 @media(max-width:480px){
   .hero{padding:1.5rem}
   .title{font-size:clamp(1.6rem,7vw,2.5rem)}
@@ -77,7 +65,6 @@ body{background:#03030a;color:#f0eeff;font-family:'Syne',sans-serif;line-height:
 </head>
 <body>
 
-<!-- HERO -->
 <section class="hero">
   <img src="logo.png" alt="Terrivol Music" class="logo fade-in">
   
@@ -107,7 +94,6 @@ body{background:#03030a;color:#f0eeff;font-family:'Syne',sans-serif;line-height:
   </div>
 </section>
 
-<!-- SERVICIOS RÁPIDOS -->
 <section class="services">
   <h2 class="services-title">Lo que hacemos</h2>
   <div class="services-grid">
@@ -134,7 +120,6 @@ body{background:#03030a;color:#f0eeff;font-family:'Syne',sans-serif;line-height:
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <img src="logo.png" alt="Terrivol Music" class="footer-logo">
   <p class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</p>
@@ -146,7 +131,6 @@ body{background:#03030a;color:#f0eeff;font-family:'Syne',sans-serif;line-height:
 </footer>
 
 <script>
-// Animación simple al cargar
 document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.fade-in').forEach((el,i)=>{
     setTimeout(()=>{el.style.opacity='1';el.style.transform='translateY(0)'},i*100)
