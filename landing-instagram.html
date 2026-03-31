@@ -1,118 +1,157 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Terrivol Music — Studio · Label · Distribution</title>
-<meta name="description" content="Independent record label. Music production, mastering and global distribution from Bogotá, Colombia.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terrivol Music | Producción & Distribución Musical</title>
+<meta name="description" content="Sello independiente desde Bogotá. Producción, mastering y distribución global para artistas.">
 <link rel="stylesheet" href="style.css">
 <style>
-body{cursor:default}.cursor,.cursor-ring{display:none}
-.ig-hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;z-index:2;overflow:hidden}
-.ig-hero-bg{position:absolute;inset:0;z-index:0}
-.ig-hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.3}
-.ig-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(3,3,10,.7),rgba(3,3,10,.85))}
-.ig-logo{width:100px;margin-bottom:1.8rem;position:relative;z-index:1;animation:fadeIn 1s ease forwards}
-.ig-title{font-size:clamp(2rem,6vw,3.8rem);font-weight:800;line-height:.95;letter-spacing:-.02em;margin-bottom:1rem;position:relative;z-index:1}
-.ig-sub{font-size:.96rem;color:var(--muted);max-width:380px;line-height:1.65;margin-bottom:2.5rem;position:relative;z-index:1}
-.ig-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-bottom:2.5rem;position:relative;z-index:1}
-.ig-pill{font-family:'Space Mono',monospace;font-size:.65rem;padding:.35rem .8rem;border-radius:100px;border:1px solid var(--border);color:var(--muted);letter-spacing:.04em}
-.ig-pill.hot{border-color:var(--accent);color:var(--accent)}
-.ig-buttons{display:flex;flex-direction:column;gap:.8rem;width:100%;max-width:340px;position:relative;z-index:1}
-.ig-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:.9rem 1.4rem;border-radius:2px;font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;text-decoration:none;transition:all .2s}
-.ig-btn-main{background:var(--accent);color:white}
-.ig-btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(123,92,250,.45)}
-.ig-btn-wa{background:#25D366;color:white}
-.ig-btn-wa:hover{transform:translateY(-2px)}
-.ig-btn-beats{background:transparent;color:var(--accent2);border:1px solid rgba(0,229,255,.3)}
-.ig-btn-beats:hover{background:rgba(0,229,255,.08)}
-.ig-btn-ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.12)}
-.ig-btn-ghost:hover{border-color:var(--accent2);color:var(--accent2)}
-.ig-services{padding:5rem 1.5rem;text-align:center;position:relative;z-index:1}
-.svc-mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;max-width:460px;margin:1.8rem auto 0}
-.svc-mini{background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:1.2rem;text-align:left;transition:all .3s}
-.svc-mini:hover{border-color:var(--accent);transform:translateY(-2px)}
-.svc-mini-icon{font-size:1.4rem;margin-bottom:.4rem}
-.svc-mini-name{font-size:.88rem;font-weight:700;margin-bottom:.25rem}
-.svc-mini-desc{font-size:.75rem;color:var(--muted);line-height:1.4}
-.ig-form-section{padding:4rem 1.5rem;position:relative;z-index:1}
-.ig-form{background:rgba(255,255,255,.03);border:1px solid var(--border);padding:2rem;max-width:420px;margin:0 auto;position:relative;backdrop-filter:blur(10px)}
-.ig-form::before{content:'';position:absolute;top:-1px;left:2rem;right:2rem;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3))}
-.form-success{display:none;text-align:center;padding:1.5rem 0}
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#03030a;color:#f0eeff;font-family:'Syne',sans-serif;line-height:1.6;overflow-x:hidden}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem 1.5rem;position:relative;background:radial-gradient(ellipse at 50% 30%,rgba(123,92,250,.2),transparent 70%),linear-gradient(180deg,#03030a 0%,#0a0a1a 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,rgba(0,229,255,.1),transparent 50%),radial-gradient(circle at 80% 20%,rgba(255,60,172,.08),transparent 50%);pointer-events:none}
+
+/* LOGO */
+.logo{width:80px;height:auto;margin-bottom:1.5rem;animation:fadeIn .8s ease}
+
+/* TÍTULO */
+.title{font-size:clamp(1.8rem,6vw,3rem);font-weight:800;line-height:1.1;margin-bottom:1rem;letter-spacing:-0.02em}
+.title span{color:var(--accent)}
+.title span.cyan{color:var(--accent2)}
+
+/* SUBTÍTULO */
+.subtitle{font-size:.95rem;color:var(--muted);max-width:400px;margin:0 auto 2rem;line-height:1.6}
+
+/* PILLS */
+.pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;margin-bottom:2.5rem}
+.pill{font-family:'Space Mono',monospace;font-size:.6rem;padding:.3rem .7rem;border:1px solid rgba(123,92,250,.3);border-radius:100px;color:var(--muted);background:rgba(123,92,250,.05)}
+.pill.hot{border-color:var(--accent);color:var(--accent)}
+
+/* BOTONES PRINCIPALES */
+.buttons{display:flex;flex-direction:column;gap:.8rem;width:100%;max-width:320px;margin-bottom:2rem}
+.btn{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:1rem 1.5rem;border-radius:2px;font-weight:700;font-size:.9rem;text-decoration:none;transition:all .25s;cursor:pointer}
+.btn-whatsapp{background:#25D366;color:#000;width:100%}
+.btn-whatsapp:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(37,211,102,.4)}
+.btn-secondary{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.15);width:100%}
+.btn-secondary:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* SERVICIOS RÁPIDOS */
+.services{padding:3rem 1.5rem;text-align:center;background:rgba(255,255,255,.02)}
+.services-title{font-size:1.4rem;font-weight:700;margin-bottom:1.5rem}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;max-width:400px;margin:0 auto}
+.service{background:rgba(255,255,255,.03);border:1px solid rgba(123,92,250,.2);border-radius:2px;padding:1rem;text-align:left}
+.service-icon{font-size:1.2rem;margin-bottom:.3rem}
+.service-name{font-size:.8rem;font-weight:600;margin-bottom:.2rem}
+.service-desc{font-size:.7rem;color:var(--muted)}
+
+/* FOOTER */
+.footer{padding:2rem 1.5rem;text-align:center;border-top:1px solid rgba(123,92,250,.1)}
+.footer-logo{height:24px;margin-bottom:.8rem}
+.footer-copy{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);margin-bottom:1rem}
+.footer-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.footer-links a{color:var(--muted);font-size:.75rem;text-decoration:none}
+.footer-links a:hover{color:var(--accent2)}
+
+/* ANIMACIONES */
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeIn .6s ease forwards}
+.fade-in.delay-1{animation-delay:.1s}
+.fade-in.delay-2{animation-delay:.2s}
+.fade-in.delay-3{animation-delay:.3s}
+
+/* MÓVIL */
+@media(max-width:480px){
+  .hero{padding:1.5rem}
+  .title{font-size:clamp(1.6rem,7vw,2.5rem)}
+  .subtitle{font-size:.9rem}
+  .pill{font-size:.55rem;padding:.25rem .6rem}
+  .btn{padding:.9rem 1.2rem;font-size:.85rem}
+  .services-grid{grid-template-columns:1fr;gap:.6rem}
+  .service{padding:.8rem}
+}
 </style>
 </head>
 <body>
-<canvas class="stars-canvas" id="starsCanvas"></canvas>
 
-<div class="ig-hero">
-  <div class="ig-hero-bg"><img src="img/galaxy-purple.jpg" alt=""><div></div></div>
-  <img src="logo.png" alt="Terrivol Music" class="ig-logo">
-  <h1 class="ig-title">Your music.<br><span style="color:var(--accent)">Our</span> <span style="color:var(--accent2)">infrastructure.</span></h1>
-  <p class="ig-sub">Independent record label from Bogotá. Production, mastering, global distribution and everything you need to grow.</p>
-  <div class="ig-pills">
-    <span class="ig-pill hot">🎛️ Production</span>
-    <span class="ig-pill hot">🔊 Mastering</span>
-    <span class="ig-pill">🌐 Distribution</span>
-    <span class="ig-pill">📊 Music Business</span>
-    <span class="ig-pill">🎬 Audiovisual</span>
-    <span class="ig-pill">📢 Brand Audio</span>
+<!-- HERO -->
+<section class="hero">
+  <img src="logo.png" alt="Terrivol Music" class="logo fade-in">
+  
+  <h1 class="title fade-in delay-1">
+    Tu música.<br>
+    <span>Nuestra</span> <span class="cyan">infraestructura.</span>
+  </h1>
+  
+  <p class="subtitle fade-in delay-2">
+    Sello independiente desde Bogotá. Producción, mastering y distribución global para artistas que quieren crecer.
+  </p>
+  
+  <div class="pills fade-in delay-2">
+    <span class="pill hot">🎛️ Producción</span>
+    <span class="pill hot">🔊 Mastering</span>
+    <span class="pill">🌐 Distribución</span>
+    <span class="pill">📊 Management</span>
   </div>
-  <div class="ig-buttons">
-    <a href="#contacto" class="ig-btn ig-btn-main">🚀 Work with Terrivol</a>
-    <a href="https://wa.me/573102123844?text=Hello%20Terrivol%20Music%2C%20I%20found%20you%20on%20Instagram" target="_blank" class="ig-btn ig-btn-wa">💬 WhatsApp</a>
-    <a href="https://beats-bfyt-shop.fourthwall.com" target="_blank" class="ig-btn ig-btn-beats">🥁 Beat Store — Beats BFYT</a>
-    <a href="https://terrivolmusic.github.io" class="ig-btn ig-btn-ghost">Full website →</a>
-  </div>
-</div>
-
-<section class="ig-services">
-  <p class="section-label" style="display:flex;justify-content:center">// SERVICES</p>
-  <h2 style="font-size:clamp(1.6rem,5vw,2.5rem)">What we do.</h2>
-  <div class="svc-mini-grid">
-    <div class="svc-mini"><div class="svc-mini-icon">🎛️</div><div class="svc-mini-name">Production</div><div class="svc-mini-desc">Beats & arrangements for urban/trap</div></div>
-    <div class="svc-mini"><div class="svc-mini-icon">🔊</div><div class="svc-mini-name">Mastering</div><div class="svc-mini-desc">For Spotify, Apple Music & all DSPs</div></div>
-    <div class="svc-mini"><div class="svc-mini-icon">🌐</div><div class="svc-mini-name">Distribution</div><div class="svc-mini-desc">150+ platforms + playlist pitching</div></div>
-    <div class="svc-mini"><div class="svc-mini-icon">📊</div><div class="svc-mini-name">Consulting</div><div class="svc-mini-desc">Publishing, royalties & music business</div></div>
-    <div class="svc-mini"><div class="svc-mini-icon">🎬</div><div class="svc-mini-name">Video</div><div class="svc-mini-desc">Music videos, reels & social content</div></div>
-    <div class="svc-mini"><div class="svc-mini-icon">📢</div><div class="svc-mini-name">Brand Audio</div><div class="svc-mini-desc">Jingles & sonic branding for companies</div></div>
+  
+  <div class="buttons fade-in delay-3">
+    <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20vi%20tu%20Instagram%20y%20quiero%20cotizar%20un%20servicio" target="_blank" class="btn btn-whatsapp">
+      💬 Hablar por WhatsApp
+    </a>
+    <a href="https://terrivolmusic.github.io" class="btn btn-secondary">
+      Ver sitio completo →
+    </a>
   </div>
 </section>
 
-<section class="ig-form-section" id="contacto">
-  <p class="section-label" style="display:flex;justify-content:center">// LET'S START</p>
-  <h2 style="font-size:clamp(1.6rem,5vw,2.5rem);text-align:center;margin-bottom:.5rem">Tell us your project.</h2>
-  <p style="color:var(--muted);text-align:center;margin-bottom:2rem;font-size:.9rem">We respond in less than 24 hours.</p>
-  <div class="ig-form">
-    <div id="formContent">
-      <div class="form-group"><label class="form-label">NAME OR ARTIST</label><input type="text" class="form-input" placeholder="Your name" id="f-nombre"></div>
-      <div class="form-group"><label class="form-label">EMAIL</label><input type="email" class="form-input" placeholder="you@email.com" id="f-email"></div>
-      <div class="form-group"><label class="form-label">SERVICE</label>
-        <select class="form-select" id="f-servicio">
-          <option value="">Select...</option>
-          <option>Music Production</option><option>Mastering</option>
-          <option>Distribution</option><option>Music Business</option>
-          <option>Audiovisual</option><option>Brand Audio</option><option>Full Package</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">MESSAGE (OPTIONAL)</label><textarea class="form-textarea" placeholder="Tell us briefly about your project..." style="min-height:80px"></textarea></div>
-      <button class="form-submit" onclick="submitForm()">SEND →</button>
+<!-- SERVICIOS RÁPIDOS -->
+<section class="services">
+  <h2 class="services-title">Lo que hacemos</h2>
+  <div class="services-grid">
+    <div class="service">
+      <div class="service-icon">🎛️</div>
+      <div class="service-name">Producción</div>
+      <div class="service-desc">Beats y arreglos para trap/urbano</div>
     </div>
-    <div class="form-success" id="formSuccess">
-      <div style="width:50px;height:50px;border:2px solid var(--accent2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.3rem">✓</div>
-      <h3 style="margin-bottom:.4rem">Received!</h3>
-      <p style="color:var(--muted);font-size:.88rem">We'll contact you soon.</p>
+    <div class="service">
+      <div class="service-icon">🔊</div>
+      <div class="service-name">Mastering</div>
+      <div class="service-desc">Para Spotify, Apple Music y más</div>
+    </div>
+    <div class="service">
+      <div class="service-icon">🌐</div>
+      <div class="service-name">Distribución</div>
+      <div class="service-desc">150+ plataformas + playlists</div>
+    </div>
+    <div class="service">
+      <div class="service-icon">📊</div>
+      <div class="service-name">Consultoría</div>
+      <div class="service-desc">Publishing, royalties y negocio musical</div>
     </div>
   </div>
-  <p style="text-align:center;margin-top:1.2rem;color:var(--muted);font-size:.78rem">Or email us: <a href="mailto:terrivolmusiclove@gmail.com" style="color:var(--accent2)">terrivolmusiclove@gmail.com</a></p>
 </section>
 
-<footer style="text-align:center;padding:2rem;border-top:1px solid var(--border)">
-  <img src="logo.png" alt="Terrivol Music" style="height:26px;margin-bottom:.7rem">
-  <div class="footer-copy" style="display:block;text-align:center">© 2025 TERRIVOL MUSIC · BOGOTÁ</div>
-  <div style="display:flex;justify-content:center;gap:1.5rem;margin-top:.7rem">
-    <a href="https://instagram.com/terrivolmusic" target="_blank" style="color:var(--muted);font-size:.8rem">@terrivolmusic</a>
-    <a href="https://wa.me/573102123844" target="_blank" style="color:var(--muted);font-size:.8rem">WhatsApp</a>
-    <a href="https://beats-bfyt-shop.fourthwall.com" target="_blank" style="color:var(--muted);font-size:.8rem">Beat Store</a>
+<!-- FOOTER -->
+<footer class="footer">
+  <img src="logo.png" alt="Terrivol Music" class="footer-logo">
+  <p class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</p>
+  <div class="footer-links">
+    <a href="https://instagram.com/terrivolmusic" target="_blank">@terrivolmusic</a>
+    <a href="https://wa.me/573102123844" target="_blank">WhatsApp</a>
+    <a href="https://beats-bfyt-shop.fourthwall.com" target="_blank">Beat Store</a>
   </div>
 </footer>
-<script src="main.js"></script>
-</body></html>
+
+<script>
+// Animación simple al cargar
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.fade-in').forEach((el,i)=>{
+    setTimeout(()=>{el.style.opacity='1';el.style.transform='translateY(0)'},i*100)
+  })
+})
+</script>
+</body>
+</html>
