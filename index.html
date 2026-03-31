@@ -83,73 +83,93 @@
 .cta-title{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:1rem}
 .cta-desc{color:var(--muted);line-height:1.7;margin-bottom:2.5rem}
 
-/* ===== MÓVIL CORREGIDO ===== */
+/* ===== MÓVIL PROFESIONAL ===== */
 @media(max-width:968px){
   .portfolio-grid{grid-template-columns:1fr !important}
   .portfolio-card.large{grid-column:span 1 !important}
   .artists-grid{grid-template-columns:1fr !important}
 }
+
 @media(max-width:768px){
-  /* Hero */
-  .hero{padding:5rem 0 2rem !important}
-  .hero-content{max-width:100% !important;padding:0 1.5rem !important}
-  .hero-title{font-size:clamp(1.8rem,9vw,2.5rem) !important;line-height:1.1 !important;margin-bottom:1rem !important}
-  .hero-subtitle{font-size:.85rem !important;line-height:1.5 !important;margin-bottom:1.5rem !important}
-  .hero-badge{padding:.35rem .8rem !important;font-size:.6rem !important;margin-bottom:1rem !important}
-  .hero-stats{grid-template-columns:1fr !important;gap:.8rem !important;padding:1rem !important;margin-bottom:1.5rem !important}
-  .stat-number{font-size:1.6rem !important}
-  .stat-label{font-size:.55rem !important}
+  /* Hero - Reducir todo */
+  .hero{padding:7rem 1rem 3rem !important}
+  .hero-content{max-width:100% !important;padding:0 !important}
+  .hero-badge{padding:.3rem .7rem !important;font-size:.55rem !important;margin-bottom:1rem !important;width:100%;justify-content:center;box-sizing:border-box}
+  .hero-title{font-size:clamp(1.6rem,8vw,2.2rem) !important;line-height:1.1 !important;margin-bottom:.8rem !important;word-wrap:break-word}
+  .hero-subtitle{font-size:.85rem !important;line-height:1.5 !important;margin-bottom:1.2rem !important}
+  .hero-stats{grid-template-columns:1fr !important;gap:.8rem !important;padding:1rem !important;margin-bottom:1.2rem !important}
+  .stat-number{font-size:1.5rem !important}
+  .stat-label{font-size:.5rem !important}
   .hero-cta{flex-direction:column !important;width:100% !important;gap:.6rem !important}
-  .hero-cta .btn-primary,.hero-cta .btn-ghost{width:100% !important;text-align:center !important;padding:.8rem 1.2rem !important;font-size:.85rem !important}
-  .hero-trust{flex-direction:column !important;align-items:flex-start !important;gap:.6rem !important;margin-top:1.5rem !important;padding-top:1rem !important}
-  .trust-badge{font-size:.75rem !important}
+  .hero-cta .btn-primary,.hero-cta .btn-ghost{width:100% !important;text-align:center !important;padding:.75rem 1rem !important;font-size:.85rem !important}
+  .hero-trust{flex-direction:column !important;align-items:flex-start !important;gap:.5rem !important;margin-top:1rem !important;padding-top:.8rem !important}
+  .trust-badge{font-size:.7rem !important}
   
-  /* Secciones */
-  .services,.portfolio-featured,.artists,.testimonials,.cta-section{padding:4rem 0 !important}
+  /* Secciones - Menos padding */
+  .services,.portfolio-featured,.artists,.testimonials,.cta-section{padding:3rem 0 !important}
+  
+  /* Títulos de sección */
+  .section-label{font-size:.6rem !important;margin-bottom:.8rem !important}
+  h2{font-size:clamp(1.5rem,6vw,2rem) !important;line-height:1.2 !important}
   
   /* Servicios */
-  .services-grid{grid-template-columns:1fr !important;gap:1.5rem !important}
-  .service-card{padding:1.5rem !important}
-  .service-title{font-size:1.1rem !important}
-  .service-desc{font-size:.85rem !important}
-  .service-icon{width:40px !important;height:40px !important}
+  .services-grid{grid-template-columns:1fr !important;gap:1.2rem !important;margin:2rem 0 !important}
+  .service-card{padding:1.2rem !important}
+  .service-title{font-size:1.05rem !important;margin-bottom:.6rem !important}
+  .service-desc{font-size:.8rem !important;margin-bottom:1rem !important}
+  .service-icon{width:36px !important;height:36px !important;margin-bottom:1rem !important}
   
   /* Portafolio */
-  .portfolio-grid{grid-template-columns:1fr !important;gap:1.5rem !important;margin:2rem 0 !important}
-  .portfolio-card{margin:0 1rem !important}
+  .portfolio-featured{padding:3rem 0 !important}
+  .portfolio-grid{grid-template-columns:1fr !important;gap:1.2rem !important;margin:1.5rem 0 !important}
+  .portfolio-card{margin:0 .5rem !important}
   .p-thumb{aspect-ratio:16/9 !important}
-  .p-info{padding:1.2rem !important}
-  .p-title{font-size:1rem !important}
-  .p-sub{font-size:.8rem !important}
-  .p-type{font-size:.6rem !important}
-  .p-tag{font-size:.55rem !important;padding:.2rem .4rem !important}
+  .p-info{padding:1rem !important}
+  .p-title{font-size:.95rem !important;margin-bottom:.3rem !important}
+  .p-sub{font-size:.75rem !important;margin-bottom:.8rem !important}
+  .p-type{font-size:.55rem !important;margin-bottom:.4rem !important}
+  .p-tag{font-size:.5rem !important;padding:.15rem .35rem !important}
   
   /* Artistas */
-  .artists-grid{grid-template-columns:1fr !important;gap:1.5rem !important}
-  .artist-card{margin:0 1rem !important}
+  .artists{padding:3rem 0 !important}
+  .artists-header{margin-bottom:2rem !important}
+  .artists-grid{grid-template-columns:1fr !important;gap:1.2rem !important}
+  .artist-card{margin:0 .5rem !important}
   .artist-image{aspect-ratio:4/3 !important}
-  .artist-info{padding:1.2rem !important}
-  .artist-name{font-size:1.2rem !important}
-  .artist-role{font-size:.65rem !important}
-  .artist-bio{font-size:.8rem !important}
-  .artist-social{width:32px !important;height:32px !important}
+  .artist-info{padding:1rem !important}
+  .artist-name{font-size:1.15rem !important;margin-bottom:.4rem !important}
+  .artist-role{font-size:.6rem !important;margin-bottom:.8rem !important}
+  .artist-bio{font-size:.75rem !important;margin-bottom:1rem !important}
+  .artist-social{width:30px !important;height:30px !important}
   
   /* Testimonios */
-  .testimonials-grid{grid-template-columns:1fr !important;gap:1.5rem !important}
-  .testimonial-card{padding:1.5rem !important}
-  .testimonial-card::before{font-size:3rem !important;top:.8rem !important;left:1.2rem !important}
-  .testimonial-text{font-size:.85rem !important;line-height:1.6 !important;margin-left:0 !important}
-  .testimonial-author{font-size:.85rem !important}
-  .testimonial-role{font-size:.75rem !important;margin-left:0 !important}
+  .testimonials{padding:3rem 0 !important}
+  .testimonials-grid{grid-template-columns:1fr !important;gap:1.2rem !important;margin:1.5rem 0 !important}
+  .testimonial-card{padding:1.2rem !important}
+  .testimonial-card::before{font-size:2.5rem !important;top:.6rem !important;left:1rem !important}
+  .testimonial-text{font-size:.8rem !important;line-height:1.5 !important;margin-bottom:1rem !important;margin-left:0 !important}
+  .testimonial-author{font-size:.8rem !important}
+  .testimonial-role{font-size:.7rem !important;margin-left:0 !important}
   
   /* CTA */
-  .cta-box{padding:2.5rem 1.5rem !important;margin:0 1rem !important}
-  .cta-title{font-size:1.5rem !important;margin-bottom:.8rem !important}
-  .cta-desc{font-size:.85rem !important;margin-bottom:1.5rem !important}
+  .cta-box{padding:2rem 1.2rem !important;margin:0 .5rem !important}
+  .cta-title{font-size:1.3rem !important;margin-bottom:.6rem !important}
+  .cta-desc{font-size:.8rem !important;margin-bottom:1.2rem !important}
   
   /* Footer */
-  .footer-inner{flex-direction:column !important;text-align:center !important;gap:1rem !important}
-  .footer-links{justify-content:center !important;flex-wrap:wrap !important}
+  .footer-inner{flex-direction:column !important;text-align:center !important;gap:1rem !important;padding:1rem !important}
+  .footer-links{justify-content:center !important;flex-wrap:wrap !important;gap:.8rem !important}
+  .footer-links a{font-size:.75rem !important}
+  .footer-copy{font-size:.65rem !important}
+}
+
+@media(max-width:480px){
+  .hero{padding:6rem .8rem 2.5rem !important}
+  .hero-badge{font-size:.5rem !important;padding:.25rem .6rem !important}
+  .hero-title{font-size:clamp(1.5rem,7vw,2rem) !important}
+  .hero-subtitle{font-size:.8rem !important}
+  .stat-number{font-size:1.4rem !important}
+  .stat-label{font-size:.45rem !important}
 }
 </style>
 </head>
