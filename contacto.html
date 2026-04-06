@@ -53,7 +53,7 @@
             <div><div class="contact-method-label">WHATSAPP (RESPUESTA RÁPIDA)</div><div class="contact-method-value">+57 310 212 3844</div></div>
           </a>
           <a href="mailto:terrivolmusiclove@gmail.com" class="contact-method">
-            <span class="contact-method-icon">✉️</span>
+            <span class="contact-method-icon">️</span>
             <div><div class="contact-method-label">EMAIL</div><div class="contact-method-value">terrivolmusiclove@gmail.com</div></div>
           </a>
           <a href="https://instagram.com/terrivolmusic" target="_blank" class="contact-method">
@@ -68,49 +68,55 @@
       </div>
       
       <div class="contact-form fade-up delay-1">
-        <div id="formContent">
-          <h2 style="font-family:'Syne',sans-serif;font-size:1.3rem;margin-bottom:.4rem">Envíanos tu proyecto</h2>
-          <p style="font-family:'Syne',sans-serif;font-size:.85rem;color:var(--muted);margin-bottom:2rem">Confidencial. Sin compromiso.</p>
+        <!-- FORMSPREE INTEGRADO -->
+        <form action="https://formspree.io/f/mqegnekp" method="POST" id="contactForm">
+          <div id="formContent">
+            <h2 style="font-family:'Syne',sans-serif;font-size:1.3rem;margin-bottom:.4rem">Envíanos tu proyecto</h2>
+            <p style="font-family:'Syne',sans-serif;font-size:.85rem;color:var(--muted);margin-bottom:2rem">Confidencial. Sin compromiso.</p>
+            
+            <div class="form-group">
+              <label class="form-label">NOMBRE ARTÍSTICO O EMPRESA</label>
+              <input type="text" name="nombre" class="form-input" placeholder="Tu nombre" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">CORREO ELECTRÓNICO</label>
+              <input type="email" name="email" class="form-input" placeholder="tu@correo.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">INSTAGRAM (OPCIONAL)</label>
+              <input type="text" name="instagram" class="form-input" placeholder="@tuartista">
+            </div>
+            <div class="form-group">
+              <label class="form-label">SERVICIO DE INTERÉS</label>
+              <select name="servicio" class="form-select" required>
+                <option value="">Selecciona un servicio...</option>
+                <option value="Produccion Musical">Producción Musical</option>
+                <option value="Masterizacion">Masterización</option>
+                <option value="Distribucion Global">Distribución Global</option>
+                <option value="Marketing Musical">Marketing Musical</option>
+                <option value="Consultoria">Consultoría Music Business</option>
+                <option value="Audiovisual">Producción Audiovisual</option>
+                <option value="Audio Pro Ads"> AUDIO PRO PARA ADS / MARCAS</option> <!-- NUEVO -->
+                <option value="Clases Produccion"> CLASES DE PRODUCCIÓN</option> <!-- NUEVO -->
+                <option value="Paquete Completo">Paquete Completo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">CUÉNTANOS TU PROYECTO</label>
+              <textarea name="mensaje" class="form-textarea" placeholder="Describe brevemente tu proyecto, qué necesitas y cuándo..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">ENVIAR PROYECTO →</button>
+          </div>
           
-          <div class="form-group">
-            <label class="form-label">NOMBRE ARTÍSTICO O EMPRESA</label>
-            <input type="text" class="form-input" placeholder="Tu nombre" id="f-nombre">
+          <!-- MENSAJE DE ÉXITO -->
+          <div class="form-success" id="formSuccess">
+            <div class="check">✓</div>
+            <h3 style="font-family:'Syne',sans-serif;font-size:1.3rem;margin-bottom:.6rem">¡Mensaje recibido!</h3>
+            <p style="font-family:'Syne',sans-serif;color:var(--muted)">Te contactamos en menos de 24 horas.<br>También puedes escribirnos por WhatsApp para respuesta inmediata.</p>
+            <br>
+            <a href="https://wa.me/573102123844" target="_blank" class="btn-wa" style="display:inline-flex"> Ir a WhatsApp</a>
           </div>
-          <div class="form-group">
-            <label class="form-label">CORREO ELECTRÓNICO</label>
-            <input type="email" class="form-input" placeholder="tu@correo.com" id="f-email">
-          </div>
-          <div class="form-group">
-            <label class="form-label">INSTAGRAM (OPCIONAL)</label>
-            <input type="text" class="form-input" placeholder="@tuartista" id="f-ig">
-          </div>
-          <div class="form-group">
-            <label class="form-label">SERVICIO DE INTERÉS</label>
-            <select class="form-select" id="f-servicio">
-              <option value="">Selecciona un servicio...</option>
-              <option>Producción musical</option>
-              <option>Masterización</option>
-              <option>Distribución global</option>
-              <option>Consultoría music business</option>
-              <option>Producción audiovisual</option>
-              <option>Audio para marcas</option>
-              <option>Paquete completo</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">CUÉNTANOS TU PROYECTO</label>
-            <textarea class="form-textarea" placeholder="Describe brevemente tu proyecto, qué necesitas y cuándo..." id="f-msg"></textarea>
-          </div>
-          <button class="form-submit" onclick="submitForm()">ENVIAR PROYECTO →</button>
-        </div>
-        
-        <div class="form-success" id="formSuccess">
-          <div class="check">✓</div>
-          <h3 style="font-family:'Syne',sans-serif;font-size:1.3rem;margin-bottom:.6rem">¡Mensaje recibido!</h3>
-          <p style="font-family:'Syne',sans-serif;color:var(--muted)">Te contactamos en menos de 24 horas.<br>También puedes escribirnos por WhatsApp para respuesta inmediata.</p>
-          <br>
-          <a href="https://wa.me/573102123844" target="_blank" class="btn-wa" style="display:inline-flex">💬 Ir a WhatsApp</a>
-        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -134,13 +140,36 @@
 <script>document.getElementById('nav-placeholder').innerHTML=buildNav('contacto');</script>
 <script src="main.js"></script>
 <script>
-function submitForm(){
-  const nombre=document.getElementById('f-nombre').value;
-  const email=document.getElementById('f-email').value;
-  if(!nombre||!email){alert('Por favor completa nombre y email');return;}
-  document.getElementById('formContent').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
+// Script para enviar sin recargar la página
+var form = document.getElementById("contactForm");
+async function handleSubmit(event) {
+  event.preventDefault();
+  var status = document.getElementById("formSuccess");
+  var content = document.getElementById("formContent");
+  var data = new FormData(event.target);
+  
+  fetch(event.target.action, {
+    method: form.method,
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    if (response.ok) {
+      content.style.display = "none";
+      status.style.display = "block";
+    } else {
+      response.json().then(data => {
+        if (Object.hasOwn(data, 'errors')) {
+          alert(data["errors"].map(error => error["message"]).join(", "))
+        } else {
+          alert("Oops! Hubo un problema al enviar el formulario")
+        }
+      })
+    }
+  }).catch(error => {
+    alert("Oops! Hubo un problema al enviar el formulario")
+  });
 }
+form.addEventListener("submit", handleSubmit)
 </script>
 </body>
 </html>
