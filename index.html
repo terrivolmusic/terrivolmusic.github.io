@@ -30,6 +30,23 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;line-h
 .btn-wa{background:#25D366;color:#000;padding:.9rem 2rem;border-radius:2px;text-decoration:none;font-weight:700;transition:all .3s;display:inline-block}
 .btn-wa:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(37,211,102,.4)}
 
+/* ===== NAV BAR CON MENÚ MÓVIL ===== */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(3,3,10,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:1rem 0}
+.navbar .container{display:flex;justify-content:space-between;align-items:center}
+.nav-logo img{height:40px}
+.nav-list{display:flex;gap:2rem;list-style:none}
+.nav-list a{color:var(--text);text-decoration:none;font-size:.9rem;font-weight:600;transition:color .3s}
+.nav-list a:hover,.nav-list a.active{color:var(--accent)}
+.nav-cta{background:var(--accent);color:white;padding:.5rem 1.2rem;border-radius:2px;text-decoration:none;font-size:.85rem;font-weight:700}
+.mobile-menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(3,3,10,.98);backdrop-filter:blur(10px);z-index:999;max-height:0;overflow:hidden;transition:max-height .3s ease}
+.mobile-menu.open{max-height:500px;overflow-y:auto}
+.mobile-menu ul{list-style:none;margin:0;padding:1rem}
+.mobile-menu li{border-bottom:1px solid rgba(123,92,250,.1)}
+.mobile-menu a{display:block;padding:1rem 1.5rem;color:var(--text);text-decoration:none;transition:all .2s}
+.mobile-menu a:hover{background:rgba(123,92,250,.1);color:var(--accent)}
+.mobile-cta{background:linear-gradient(135deg,var(--accent),var(--accent2));color:white !important;text-align:center;font-weight:700;border-radius:4px;margin:1rem 1.5rem}
+
 /* ===== HERO PRO ===== */
 .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:8rem 0 6rem;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 20%,rgba(123,92,250,.25),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,229,255,.15),transparent 60%)}
@@ -118,23 +135,6 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;line-h
 .cta-box{max-width:700px;margin:0 auto;padding:4rem;background:var(--surface);border:1px solid var(--border);border-radius:4px}
 .cta-title{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:1rem}
 .cta-desc{color:var(--muted);line-height:1.7;margin-bottom:2.5rem}
-
-/* ===== MENÚ MÓVIL & NAV ===== */
-.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(3,3,10,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:1rem 0}
-.navbar .container{display:flex;justify-content:space-between;align-items:center}
-.nav-logo img{height:40px}
-.nav-list{display:flex;gap:2rem;list-style:none}
-.nav-list a{color:var(--text);text-decoration:none;font-size:.9rem;font-weight:600;transition:color .3s}
-.nav-list a:hover,.nav-list a.active{color:var(--accent)}
-.nav-cta{background:var(--accent);color:white;padding:.5rem 1.2rem;border-radius:2px;text-decoration:none;font-size:.85rem;font-weight:700}
-.mobile-menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
-.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(3,3,10,.98);backdrop-filter:blur(10px);z-index:999;max-height:0;overflow:hidden;transition:max-height .3s ease}
-.mobile-menu.open{max-height:500px;overflow-y:auto}
-.mobile-menu ul{list-style:none;margin:0;padding:1rem}
-.mobile-menu li{border-bottom:1px solid rgba(123,92,250,.1)}
-.mobile-menu a{display:block;padding:1rem 1.5rem;color:var(--text);text-decoration:none;transition:all .2s}
-.mobile-menu a:hover{background:rgba(123,92,250,.1);color:var(--accent)}
-.mobile-cta{background:linear-gradient(135deg,var(--accent),var(--accent2));color:white !important;text-align:center;font-weight:700;border-radius:4px;margin:1rem 1.5rem}
 
 /* ===== RESPONSIVE PRO ===== */
 @media(max-width:968px){
@@ -334,7 +334,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;line-h
     <h2>Más que un sello, tu aliado estratégico</h2>
     <div class="features-grid">
       <div class="feature-card fade-up">
-        <div class="feature-icon">🚀</div>
+        <div class="feature-icon"></div>
         <h3>Infraestructura Profesional</h3>
         <p>Calidad de major label con la agilidad de un independiente.</p>
       </div>
@@ -357,7 +357,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;line-h
   </div>
 </section>
 
-<!-- PORTAFOLIO DESTACADO (CON IMÁGENES CORREGIDAS) -->
+<!-- PORTAFOLIO DESTACADO (CON IMÁGENES CORREGIDAS - NOMBRES EXACTOS) -->
 <section class="portfolio-featured">
   <div class="container">
     <p class="section-label" style="text-align:center">// PORTAFOLIO</p>
@@ -391,10 +391,10 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;line-h
         </div>
       </a>
 
-      <!-- Masterización (IMAGEN CORREGIDA) -->
+      <!-- Masterización (NOMBRE EXACTO DEL ARCHIVO EN TU CARPETA) -->
       <a href="servicios.html#mastering" class="portfolio-card fade-up delay-2">
         <div class="p-thumb">
-          <img src="img/portfolio-mastering.png" alt="Masterización">
+          <img src="img/portfolio-mastering (2).png" alt="Masterización">
         </div>
         <div class="p-info">
           <div class="p-type">Servicio</div>
@@ -404,7 +404,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;line-h
         </div>
       </a>
 
-      <!-- Videoclips (IMAGEN CORREGIDA) -->
+      <!-- Videoclips (NOMBRE EXACTO DEL ARCHIVO EN TU CARPETA) -->
       <a href="servicios.html#audiovisual" class="portfolio-card fade-up">
         <div class="p-thumb">
           <img src="img/portfolio-videoclips.png" alt="Videoclips">
