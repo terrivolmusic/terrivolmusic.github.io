@@ -3,33 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terrivol Music | Sello Discográfico & Servicios Musicales</title>
+<title>Terrivol Music | Sello Discográfico & Servicios Musicales - Bogotá</title>
+<meta name="description" content="Terrivol Music: Sello discográfico independiente. +400 lanzamientos en producción, distribución y marketing musical.">
 <link rel="stylesheet" href="style.css">
+<style>
+/* ===== HERO PRO CON EFECTOS ===== */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:8rem 0 6rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 20%,rgba(123,92,250,.25),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,229,255,.15),transparent 60%)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,3,10,.9) 0%,rgba(3,3,10,.7) 50%,rgba(123,92,250,.1) 100%)}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.2rem;background:rgba(123,92,250,.2);border:1px solid var(--accent);border-radius:100px;font-family:'Space Mono',monospace;font-size:.75rem;color:var(--accent);margin-bottom:2rem;letter-spacing:.05em;transition:all .3s}
+.hero-badge:hover{background:rgba(123,92,250,.3);transform:translateY(-2px)}
+.hero-title{font-size:clamp(2.5rem,7vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.5rem}
+.hero-title span{color:var(--accent);position:relative;display:inline-block}
+.hero-title span::after{content:'';position:absolute;bottom:8px;left:0;right:0;height:8px;background:linear-gradient(90deg,var(--accent2),var(--accent3));opacity:.3;border-radius:4px;z-index:-1;transition:opacity .3s}
+.hero-title:hover span::after{opacity:.5}
+.hero-subtitle{font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);line-height:1.7;margin-bottom:2.5rem;max-width:650px}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem;padding:1.8rem;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:4px;backdrop-filter:blur(10px);transition:all .3s}
+.hero-stats:hover{border-color:var(--accent);box-shadow:0 0 30px rgba(123,92,250,.2)}
+.stat-number{font-size:2rem;font-weight:800;color:var(--accent2);line-height:1;transition:transform .3s}
+.hero-stats:hover .stat-number{transform:scale(1.1)}
+.stat-label{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.5rem}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-trust{display:flex;align-items:center;gap:1.5rem;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.trust-badge{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--muted);transition:color .3s}
+.trust-badge:hover{color:var(--accent2)}
+.trust-badge svg{color:var(--accent2);width:16px;height:16px}
+
+/* ===== SERVICIOS PRO CON SPOTLIGHT ===== */
+.featured-services{padding:6rem 0;background:var(--surface2)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;margin:3rem 0}
+.service-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2.5rem;transition:all .4s cubic-bezier(0.4, 0, 0.2, 1);position:relative;overflow:hidden;backdrop-filter:blur(10px);text-decoration:none;color:var(--text);display:block}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));opacity:0;transition:opacity .4s}
+.service-card::after{content:'';position:absolute;inset:0;background:radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),rgba(123,92,250,.15),transparent 40%);opacity:0;transition:opacity .4s;pointer-events:none}
+.service-card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 20px 60px rgba(123,92,250,.3),0 0 0 1px rgba(123,92,250,.5)}
+.service-card:hover::before{opacity:1}
+.service-card:hover::after{opacity:1}
+.service-card.hot{border-color:var(--accent);box-shadow:0 0 30px rgba(123,92,250,.3)}
+.service-icon{width:56px;height:56px;margin-bottom:1.5rem;color:var(--accent);transition:transform .3s}
+.service-card:hover .service-icon{transform:scale(1.1) rotate(5deg)}
+.service-title{font-size:1.5rem;font-weight:700;margin-bottom:.8rem;line-height:1.2}
+.service-desc{color:var(--muted);line-height:1.6;margin-bottom:1.5rem;font-size:.95rem}
+.service-link{font-family:'Space Mono',monospace;font-size:.85rem;color:var(--text);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:all .3s;padding:.5rem 0}
+.service-link:hover{color:var(--accent2);gap:1rem}
+
+/* ===== PORTAFOLIO PRO ===== */
+.portfolio-featured{padding:6rem 0;background:var(--surface2)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin:3rem 0}
+.portfolio-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .3s;text-decoration:none;color:var(--text);display:block;position:relative}
+.portfolio-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 0%,rgba(123,92,250,.1) 100%);opacity:0;transition:opacity .3s;pointer-events:none}
+.portfolio-card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 20px 60px rgba(123,92,250,.2)}
+.portfolio-card:hover::after{opacity:1}
+.portfolio-card.large{grid-column:span 2}
+.p-thumb{width:100%;aspect-ratio:16/9;background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.p-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.portfolio-card:hover .p-thumb img{transform:scale(1.1)}
+.p-info{padding:1.5rem;position:relative;z-index:1}
+.p-type{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.08em;margin-bottom:.5rem;text-transform:uppercase}
+.p-title{font-size:1.1rem;font-weight:700;margin-bottom:.4rem;transition:color .3s}
+.portfolio-card:hover .p-title{color:var(--accent2)}
+.p-sub{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.p-tags{display:flex;gap:.5rem;flex-wrap:wrap}
+.p-tag{font-family:'Space Mono',monospace;font-size:.6rem;padding:.25rem .6rem;border-radius:3px;border:1px solid var(--border);color:var(--muted);transition:all .3s}
+.p-tag:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ===== TESTIMONIOS PRO ===== */
+.testimonials{padding:6rem 0;background:var(--surface2)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin:3rem 0;max-width:1000px;margin-left:auto;margin-right:auto}
+.testimonial-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2rem;position:relative;transition:all .3s}
+.testimonial-card::before{content:'"';font-size:4rem;color:var(--accent);opacity:.3;position:absolute;top:1rem;left:1.5rem;line-height:1;transition:all .3s}
+.testimonial-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 10px 40px rgba(123,92,250,.2)}
+.testimonial-card:hover::before{opacity:.5;transform:scale(1.1)}
+.testimonial-text{color:var(--text);font-size:.95rem;line-height:1.7;margin-bottom:1.5rem;margin-left:1rem}
+.testimonial-author{font-weight:700;color:var(--accent);font-size:.9rem}
+.testimonial-role{color:var(--muted);font-size:.8rem;margin-left:1rem}
+
+/* ===== CTA PRO ===== */
+.cta-section{padding:6rem 0;text-align:center}
+.cta-box{max-width:700px;margin:0 auto;padding:4rem;background:var(--surface);border:1px solid var(--border);border-radius:4px;position:relative;overflow:hidden;transition:all .3s}
+.cta-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));opacity:0;transition:opacity .3s}
+.cta-box:hover{border-color:var(--accent);box-shadow:0 20px 60px rgba(123,92,250,.3)}
+.cta-box:hover::before{opacity:1}
+.cta-title{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:1rem}
+.cta-desc{color:var(--muted);line-height:1.7;margin-bottom:2.5rem}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:968px){
+  .portfolio-grid{grid-template-columns:1fr}
+  .portfolio-card.large{grid-column:span 1}
+}
+@media(max-width:768px){
+  .hero{padding:6rem 0 3rem !important}
+  .hero-content{max-width:100% !important;padding:0 1.5rem}
+  .hero-title{font-size:clamp(2rem,10vw,3rem) !important;line-height:1.1 !important;margin-bottom:1rem !important}
+  .hero-subtitle{font-size:.9rem !important;line-height:1.6 !important;margin-bottom:2rem !important}
+  .hero-stats{grid-template-columns:1fr !important;gap:1rem !important;padding:1.2rem !important;margin-bottom:2rem !important}
+  .stat-number{font-size:1.8rem !important}
+  .hero-cta{flex-direction:column !important;width:100% !important;gap:.8rem !important}
+  .services-grid{grid-template-columns:1fr !important}
+  .portfolio-grid{grid-template-columns:1fr !important}
+}
+</style>
 </head>
 <body>
-
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-container">
-    <a href="index.html" class="nav-logo">
-      <img src="logo.png" alt="Terrivol Music">
-    </a>
-    <div class="nav-links" id="navLinks">
-      <a href="index.html" class="active">Inicio</a>
-      <a href="servicios.html">Servicios</a>
-      <a href="portafolio.html">Portafolio</a>
-      <a href="artistas.html">Artistas</a>
-      <a href="tienda.html">Tienda</a>
-      <a href="contacto.html">Contacto</a>
-      <a href="contacto.html" class="nav-cta">TRABAJEMOS</a>
-    </div>
-    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
-  </div>
-</nav>
+<nav id="nav-placeholder"></nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -42,7 +122,7 @@
         SELLO INDEPENDIENTE · BOGOTÁ, COLOMBIA
       </div>
       <h1 class="hero-title fade-up delay-1">Tu música merece<br><span>infraestructura profesional</span></h1>
-      <p class="hero-subtitle fade-up delay-2">Terrivol Music es el aliado estratégico para artistas independientes que buscan competir a nivel global.</p>
+      <p class="hero-subtitle fade-up delay-2">Terrivol Music es el aliado estratégico para artistas independientes que buscan competir a nivel global. Producción, distribución y marketing con la calidad de un sello grande, la agilidad de un independiente.</p>
       <div class="hero-stats fade-up delay-3">
         <div><div class="stat-number">+400</div><div class="stat-label">Lanzamientos</div></div>
         <div><div class="stat-number">+15</div><div class="stat-label">Años experiencia</div></div>
@@ -52,41 +132,40 @@
         <a href="servicios.html" class="btn-primary">Explorar servicios</a>
         <a href="contacto.html" class="btn-ghost">Cotizar proyecto</a>
       </div>
+      <div class="hero-trust fade-up delay-5">
+        <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>+150 plataformas</div>
+        <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>Derechos protegidos</div>
+        <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>Respuesta en 24h</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICIOS -->
-<section class="services">
+<!-- SERVICIOS PRO CON SPOTLIGHT -->
+<section class="featured-services">
   <div class="container">
-    <p class="section-label">// LO QUE HACEMOS</p>
-    <h2>Servicios Musicales Profesionales</h2>
+    <p class="section-label">// SERVICIOS DESTACADOS</p>
+    <h2>Soluciones completas para tu carrera musical</h2>
     <div class="services-grid">
-      <a href="servicios.html#produccion" class="service-card fade-up">
+      <a href="servicios.html#produccion" class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         <h3 class="service-title">Producción Musical</h3>
-        <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio.</p>
+        <p class="service-desc">Desde beats hasta álbumes completos con ingenieros expertos.</p>
         <span class="service-link">Cotizar ahora →</span>
       </a>
-      <a href="servicios.html#distribucion" class="service-card fade-up delay-1">
+      <a href="servicios.html#distribucion" class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
-        <h3 class="service-title">Distribución Digital</h3>
+        <h3 class="service-title">Distribución Global</h3>
         <p class="service-desc">Lleva tu música a Spotify, Apple Music y +150 plataformas.</p>
         <span class="service-link">Cotizar ahora →</span>
       </a>
-      <a href="tienda.html" class="service-card fade-up delay-2">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        <h3 class="service-title">Beats & Licencias</h3>
-        <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles.</p>
-        <span class="service-link">Explorar beats →</span>
-      </a>
-      <a href="servicios.html#clases" class="service-card fade-up">
+      <a href="servicios.html#clases" class="service-card hot fade-up delay-2" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
         <h3 class="service-title">Clases de Producción Pro</h3>
-        <p class="service-desc">Mentorías 1-a-1 con expertos del sello.</p>
+        <p class="service-desc">Mentorías 1-a-1 con expertos del sello. Aprende lo que funciona.</p>
         <span class="service-link">Agendar clase →</span>
       </a>
-      <a href="servicios.html#audio-pro" class="service-card fade-up delay-1">
+      <a href="servicios.html#audio-pro" class="service-card hot fade-up delay-3" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
         <h3 class="service-title">Audio Pro para Empresas</h3>
         <p class="service-desc">Mejora el audio de tus anuncios y contenido corporativo.</p>
@@ -96,11 +175,12 @@
   </div>
 </section>
 
-<!-- PORTAFOLIO -->
+<!-- PORTAFOLIO PRO -->
 <section class="portfolio-featured">
   <div class="container">
     <p class="section-label" style="text-align:center">// PORTAFOLIO</p>
     <h2 style="text-align:center;margin-bottom:1rem">Proyectos Destacados</h2>
+    <p style="text-align:center;color:var(--muted);max-width:600px;margin:0 auto 3rem">Música que ya está sonando en el mundo</p>
     <div class="portfolio-grid">
       <a href="artistas/cagta-flex.html" class="portfolio-card large fade-up">
         <div class="p-thumb"><img src="img/portfolio-cagta.png" alt="Cagta Flex"></div>
@@ -108,6 +188,7 @@
           <div class="p-type">Artista Principal</div>
           <div class="p-title">Cagta Flex</div>
           <div class="p-sub">Fundador de Terrivol Music. +15 años en la escena independiente.</div>
+          <div class="p-tags"><span class="p-tag">Hip Hop</span><span class="p-tag">Trap</span><span class="p-tag">Bogotá</span></div>
         </div>
       </a>
       <a href="https://beats-bfyt-shop.fourthwall.com" target="_blank" class="portfolio-card fade-up delay-1">
@@ -116,6 +197,7 @@
           <div class="p-type">Productor Musical</div>
           <div class="p-title">Beats BFYT</div>
           <div class="p-sub">Beats exclusivos de trap oscuro y elegante.</div>
+          <div class="p-tags"><span class="p-tag">Beats</span><span class="p-tag">Trap</span></div>
         </div>
       </a>
       <a href="servicios.html#mastering" class="portfolio-card fade-up delay-2">
@@ -124,6 +206,7 @@
           <div class="p-type">Servicio</div>
           <div class="p-title">Masterización</div>
           <div class="p-sub">Proyectos masterizados para artistas de Colombia y LATAM.</div>
+          <div class="p-tags"><span class="p-tag">Mastering</span><span class="p-tag">Streaming</span></div>
         </div>
       </a>
       <a href="servicios.html#audiovisual" class="portfolio-card fade-up">
@@ -132,13 +215,40 @@
           <div class="p-type">Producción</div>
           <div class="p-title">Videoclips</div>
           <div class="p-sub">Contenido audiovisual profesional para artistas.</div>
+          <div class="p-tags"><span class="p-tag">Video</span><span class="p-tag">Redes</span></div>
         </div>
       </a>
+    </div>
+    <div style="text-align:center;margin-top:2rem"><a href="portafolio.html" class="btn-ghost">Ver portafolio completo →</a></div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS PRO -->
+<section class="testimonials">
+  <div class="container">
+    <p class="section-label" style="text-align:center">// TESTIMONIOS</p>
+    <h2 style="text-align:center;margin-bottom:1rem">Lo que dicen nuestros artistas</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <p class="testimonial-text">Terrivol Music transformó completamente mi sonido. La calidad de producción y el acompañamiento estratégico me llevaron a otro nivel.</p>
+        <div class="testimonial-author">Artista Independiente</div>
+        <div class="testimonial-role">Bogotá, Colombia</div>
+      </div>
+      <div class="testimonial-card fade-up delay-1">
+        <p class="testimonial-text">Profesionales, comprometidos y con una visión clara de la música urbana. Mi música ahora suena en todas las plataformas con calidad internacional.</p>
+        <div class="testimonial-author">Productor Musical</div>
+        <div class="testimonial-role">LATAM</div>
+      </div>
+      <div class="testimonial-card fade-up delay-2">
+        <p class="testimonial-text">El equipo de Terrivol entiende perfectamente el trap y el hip hop. Su enfoque en el detalle y la calidad es impresionante.</p>
+        <div class="testimonial-author">MC / Cantante</div>
+        <div class="testimonial-role">Colombia</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CTA PRO -->
 <section class="cta-section">
   <div class="container">
     <div class="cta-box fade-up">
@@ -153,7 +263,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -163,20 +272,23 @@
   </div>
 </footer>
 
+<script src="nav.js"></script>
+<script>document.getElementById('nav-placeholder').innerHTML=buildNav('home');</script>
+<script src="main.js"></script>
 <script>
-// Menú móvil
-function toggleMenu() {
-  const nav = document.getElementById('navLinks');
-  if(nav) nav.classList.toggle('open');
-}
+const observer=new IntersectionObserver((e)=>{e.forEach(t=>{t.isIntersecting&&t.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll(".fade-up").forEach(e=>observer.observe(e))
 
-// Animaciones
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+function handleMouseMove(e, card) {
+  const rect = card.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  card.style.setProperty('--mouse-x', x + 'px');
+  card.style.setProperty('--mouse-y', y + 'px');
+}
+function handleMouseLeave(card) {
+  card.style.setProperty('--mouse-x', '0px');
+  card.style.setProperty('--mouse-y', '0px');
+}
 </script>
 </body>
 </html>
