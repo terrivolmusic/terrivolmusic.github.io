@@ -4,50 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terrivol Music | Sello Discográfico & Servicios Musicales</title>
-<meta name="description" content="Sello independiente. Producción, distribución y marketing musical.">
-<!-- RECUPERAMOS TU ESTILO ORIGINAL -->
 <link rel="stylesheet" href="style.css">
-
-<style>
-/* ===== SOLO PARA ARREGLAR EL MENÚ MÓVIL (NO TOCA NADA MÁS) ===== */
-.mobile-toggle { display: none; } /* Oculto en PC */
-
-@media(max-width: 768px) {
-  /* Forzar botón hamburguesa en móvil */
-  .mobile-toggle { 
-    display: block !important; 
-    background: none; border: none; color: var(--text, #fff); 
-    font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 0; 
-  }
-  
-  /* Ocultar menú de escritorio en móvil */
-  .nav-list, .nav-cta-desktop { display: none !important; }
-  
-  /* Estilos del menú desplegable móvil */
-  .mobile-nav { 
-    display: none; position: fixed; top: 70px; left: 0; right: 0; 
-    background: var(--bg, #03030a); border-bottom: 1px solid var(--border, rgba(255,255,255,0.1)); 
-    z-index: 999; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; 
-  }
-  .mobile-nav.active { max-height: 500px; overflow-y: auto; }
-  .mobile-nav ul { list-style: none; margin: 0; padding: 1rem; }
-  .mobile-nav li { border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .mobile-nav a { display: block; padding: 1rem 1.5rem; color: var(--text, #fff); text-decoration: none; font-size: 1rem; }
-  .mobile-nav a:hover { background: rgba(123,92,250,0.1); color: var(--accent, #7b5cfa); }
-  .mobile-nav-cta { background: linear-gradient(135deg, var(--accent, #7b5cfa), var(--accent2, #00e5ff)); color: white !important; text-align: center; font-weight: 700; margin-top: 0.5rem; border-radius: 4px; }
-}
-</style>
 </head>
 <body>
 
-<!-- NAV BAR (ESTRUCTURA ORIGINAL + BOTÓN MÓVIL) -->
+<!-- NAV BAR SIMPLE -->
 <nav class="navbar">
   <div class="container">
-    <a href="index.html" class="nav-logo">
-      <img src="logo.png" alt="Terrivol Music">
-    </a>
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Terrivol Music"></a>
     
-    <!-- Menú Desktop (Usa clases de style.css) -->
+    <!-- Menú Desktop -->
     <ul class="nav-list">
       <li><a href="index.html" class="active">Inicio</a></li>
       <li><a href="servicios.html">Servicios</a></li>
@@ -57,17 +23,14 @@
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
     
-    <div class="nav-right" style="display:flex; align-items:center; gap:1rem;">
-      <!-- Botón CTA Desktop -->
-      <a href="contacto.html" class="nav-cta nav-cta-desktop">TRABAJEMOS</a>
-      
-      <!-- Botón Hamburguesa (Solo visible en móvil) -->
-      <button class="mobile-toggle" onclick="toggleMenu()">☰</button>
+    <div class="nav-right">
+      <a href="contacto.html" class="nav-cta">TRABAJEMOS</a>
+      <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
     </div>
   </div>
   
-  <!-- Menú Móvil Desplegable -->
-  <div class="mobile-nav" id="mobileNav">
+  <!-- Menú Móvil -->
+  <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="index.html" onclick="toggleMenu()">Inicio</a></li>
       <li><a href="servicios.html" onclick="toggleMenu()">Servicios</a></li>
@@ -75,12 +38,12 @@
       <li><a href="artistas.html" onclick="toggleMenu()">Artistas</a></li>
       <li><a href="tienda.html" onclick="toggleMenu()">Tienda</a></li>
       <li><a href="contacto.html" onclick="toggleMenu()">Contacto</a></li>
-      <li><a href="contacto.html" class="mobile-nav-cta" onclick="toggleMenu()">💼 TRABAJEMOS</a></li>
+      <li><a href="contacto.html" class="mobile-cta" onclick="toggleMenu()">💼 TRABAJEMOS</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- HERO (Usa clases de style.css) -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
@@ -91,7 +54,7 @@
         SELLO INDEPENDIENTE · BOGOTÁ, COLOMBIA
       </div>
       <h1 class="hero-title fade-up delay-1">Tu música merece<br><span>infraestructura profesional</span></h1>
-      <p class="hero-subtitle fade-up delay-2">Terrivol Music es el aliado estratégico para artistas independientes que buscan competir a nivel global. Producción, distribución y marketing con la calidad de un sello grande, la agilidad de un independiente.</p>
+      <p class="hero-subtitle fade-up delay-2">Terrivol Music es el aliado estratégico para artistas independientes que buscan competir a nivel global.</p>
       <div class="hero-stats fade-up delay-3">
         <div><div class="stat-number">+400</div><div class="stat-label">Lanzamientos</div></div>
         <div><div class="stat-number">+15</div><div class="stat-label">Años experiencia</div></div>
@@ -102,15 +65,15 @@
         <a href="contacto.html" class="btn-ghost">Cotizar proyecto</a>
       </div>
       <div class="hero-trust fade-up delay-5">
-        <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>+150 plataformas</div>
-        <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>Derechos protegidos</div>
-        <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>Respuesta en 24h</div>
+        <div class="trust-badge">+150 plataformas</div>
+        <div class="trust-badge">Derechos protegidos</div>
+        <div class="trust-badge">Respuesta en 24h</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICIOS DESTACADOS -->
+<!-- SERVICIOS -->
 <section class="featured-services">
   <div class="container">
     <p class="section-label">// SERVICIOS DESTACADOS</p>
@@ -131,7 +94,7 @@
       <a href="servicios.html#clases" class="service-card featured hot fade-up delay-2">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
         <h3 class="service-title">Clases de Producción Pro</h3>
-        <p class="service-desc">Mentorías 1-a-1 con expertos del sello. Aprende lo que funciona.</p>
+        <p class="service-desc">Mentorías 1-a-1 con expertos del sello.</p>
         <span class="service-link">Agendar clase →</span>
       </a>
       <a href="servicios.html#audio-pro" class="service-card featured hot fade-up delay-3">
@@ -144,43 +107,11 @@
   </div>
 </section>
 
-<!-- POR QUÉ TERRIVOL -->
-<section class="why-terrivol">
-  <div class="container">
-    <p class="section-label">// POR QUÉ NOSOTROS</p>
-    <h2>Más que un sello, tu aliado estratégico</h2>
-    <div class="features-grid">
-      <div class="feature-card fade-up">
-        <div class="feature-icon">🚀</div>
-        <h3>Infraestructura Profesional</h3>
-        <p>Calidad de major label con la agilidad de un independiente.</p>
-      </div>
-      <div class="feature-card fade-up delay-1">
-        <div class="feature-icon">📊</div>
-        <h3>+400 Lanzamientos</h3>
-        <p>Experiencia real que se traduce en resultados medibles.</p>
-      </div>
-      <div class="feature-card fade-up delay-2">
-        <div class="feature-icon">🌍</div>
-        <h3>Alcance Global</h3>
-        <p>Distribución en +150 plataformas worldwide.</p>
-      </div>
-      <div class="feature-card fade-up delay-3">
-        <div class="feature-icon">⚡</div>
-        <h3>Respuesta en 24h</h3>
-        <p>Compromiso real con nuestros artistas y clientes.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PORTAFOLIO DESTACADO (IMÁGENES CORREGIDAS) -->
+<!-- PORTAFOLIO -->
 <section class="portfolio-featured">
   <div class="container">
     <p class="section-label" style="text-align:center">// PORTAFOLIO</p>
     <h2 style="text-align:center;margin-bottom:1rem">Proyectos Destacados</h2>
-    <p style="text-align:center;color:var(--muted);max-width:600px;margin:0 auto 3rem">Música que ya está sonando en el mundo</p>
-    
     <div class="portfolio-grid">
       <a href="artistas/cagta-flex.html" class="portfolio-card large fade-up">
         <div class="p-thumb"><img src="img/portfolio-cagta.png" alt="Cagta Flex"></div>
@@ -229,9 +160,21 @@
     <p class="section-label" style="text-align:center">// TESTIMONIOS</p>
     <h2 style="text-align:center;margin-bottom:1rem">Lo que dicen nuestros artistas</h2>
     <div class="testimonials-grid">
-      <div class="testimonial-card fade-up"><p class="testimonial-text">Terrivol Music transformó completamente mi sonido. La calidad de producción y el acompañamiento estratégico me llevaron a otro nivel.</p><div class="testimonial-author">Artista Independiente</div><div class="testimonial-role">Bogotá, Colombia</div></div>
-      <div class="testimonial-card fade-up delay-1"><p class="testimonial-text">Profesionales, comprometidos y con una visión clara de la música urbana. Mi música ahora suena en todas las plataformas con calidad internacional.</p><div class="testimonial-author">Productor Musical</div><div class="testimonial-role">LATAM</div></div>
-      <div class="testimonial-card fade-up delay-2"><p class="testimonial-text">El equipo de Terrivol entiende perfectamente el trap y el hip hop. Su enfoque en el detalle y la calidad es impresionante.</p><div class="testimonial-author">MC / Cantante</div><div class="testimonial-role">Colombia</div></div>
+      <div class="testimonial-card fade-up">
+        <p class="testimonial-text">Terrivol Music transformó completamente mi sonido. La calidad de producción y el acompañamiento estratégico me llevaron a otro nivel.</p>
+        <div class="testimonial-author">Artista Independiente</div>
+        <div class="testimonial-role">Bogotá, Colombia</div>
+      </div>
+      <div class="testimonial-card fade-up delay-1">
+        <p class="testimonial-text">Profesionales, comprometidos y con una visión clara de la música urbana. Mi música ahora suena en todas las plataformas con calidad internacional.</p>
+        <div class="testimonial-author">Productor Musical</div>
+        <div class="testimonial-role">LATAM</div>
+      </div>
+      <div class="testimonial-card fade-up delay-2">
+        <p class="testimonial-text">El equipo de Terrivol entiende perfectamente el trap y el hip hop. Su enfoque en el detalle y la calidad es impresionante.</p>
+        <div class="testimonial-author">MC / Cantante</div>
+        <div class="testimonial-role">Colombia</div>
+      </div>
     </div>
   </div>
 </section>
@@ -242,7 +185,7 @@
     <div class="cta-box fade-up">
       <p class="section-label" style="justify-content:center;display:flex">// EMPECEMOS</p>
       <h2 class="cta-title">¿Listo para llevar tu música al siguiente nivel?</h2>
-      <p class="cta-desc">En Terrivol Music combinamos experiencia, calidad y pasión por la música. Cuéntanos tu proyecto y armamos un plan a tu medida.</p>
+      <p class="cta-desc">En Terrivol Music combinamos experiencia, calidad y pasión por la música.</p>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
         <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="btn-wa">💬 WhatsApp</a>
         <a href="contacto.html" class="btn-primary">Enviar Propuesta</a>
@@ -268,21 +211,10 @@
 </footer>
 
 <script>
-// Función simple para el menú móvil
 function toggleMenu() {
-  const nav = document.getElementById('mobileNav');
-  if (nav) nav.classList.toggle('active');
+  const menu = document.getElementById('mobileMenu');
+  if(menu) menu.classList.toggle('active');
 }
-
-// Animaciones básicas
-document.addEventListener('DOMContentLoaded', () => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-});
 </script>
 </body>
 </html>
