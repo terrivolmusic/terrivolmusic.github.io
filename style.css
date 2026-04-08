@@ -159,3 +159,71 @@ body, h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select, 
 .service-title, .service-desc, .cta-box * {
   font-family:'Syne',sans-serif !important;
 }
+/* ===== MENÚ MÓVIL MEJORADO ===== */
+@media(max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(3, 3, 10, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    z-index: 99;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+  
+  .nav-links.open {
+    display: flex;
+  }
+  
+  .nav-links a {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  
+  .nav-links a:hover {
+    background: rgba(123, 92, 250, 0.1);
+    color: var(--accent2);
+  }
+  
+  .nav-cta-mobile {
+    background: var(--accent);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 1rem;
+    border: 1px solid var(--accent);
+    transition: all 0.3s;
+  }
+  
+  .nav-cta-mobile:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+  
+  .nav-mobile-btn {
+    display: block !important;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 100;
+  }
+  
+  .nav-cta {
+    display: none !important;
+  }
+}
