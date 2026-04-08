@@ -11,7 +11,25 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
-<nav id="nav-placeholder"></nav>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Terrivol Music">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="artistas.html">Artistas</a>
+      <a href="tienda.html">Tienda</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="contacto.html" class="nav-cta">TRABAJEMOS</a>
+    </div>
+    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -38,7 +56,7 @@
   </div>
 </section>
 
-<!-- SERVICIOS (con nuevos servicios agregados) -->
+<!-- SERVICIOS -->
 <section class="services">
   <div class="container">
     <p class="section-label">// LO QUE HACEMOS</p>
@@ -78,7 +96,7 @@
   </div>
 </section>
 
-<!-- PORTAFOLIO (ahora funcionará con el CSS nuevo) -->
+<!-- PORTAFOLIO -->
 <section class="portfolio-featured">
   <div class="container">
     <p class="section-label" style="text-align:center">// PORTAFOLIO</p>
@@ -120,6 +138,22 @@
   </div>
 </section>
 
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box fade-up">
+      <p class="section-label" style="justify-content:center;display:flex">// EMPECEMOS</p>
+      <h2 class="cta-title">¿Listo para llevar tu música al siguiente nivel?</h2>
+      <p class="cta-desc">En Terrivol Music combinamos experiencia, calidad y pasión por la música.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="btn-wa">💬 WhatsApp</a>
+        <a href="contacto.html" class="btn-primary">Enviar Propuesta</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -129,12 +163,20 @@
   </div>
 </footer>
 
-<script src="nav.js"></script>
-<script>document.getElementById('nav-placeholder').innerHTML=buildNav('home');</script>
-<script src="main.js"></script>
 <script>
-const observer=new IntersectionObserver((e)=>{e.forEach(t=>{t.isIntersecting&&t.target.classList.add("visible")})},{threshold:.1});
-document.querySelectorAll(".fade-up").forEach(e=>observer.observe(e));
+// Menú móvil
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  if(nav) nav.classList.toggle('open');
+}
+
+// Animaciones
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
