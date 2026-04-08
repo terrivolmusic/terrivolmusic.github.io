@@ -63,6 +63,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;background
 .service-link{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--text);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem}
 .service-link:hover{gap:.6rem}
 
+/* PORTAFOLIO */
+.portfolio-featured{padding:6rem 0;background:var(--surface2)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin:3rem 0}
+.portfolio-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .3s;text-decoration:none;color:var(--text);display:block}
+.portfolio-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.portfolio-card.large{grid-column:span 2}
+.p-thumb{width:100%;aspect-ratio:16/9;background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.p-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.p-info{padding:1.5rem}
+.p-type{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.08em;margin-bottom:.5rem;text-transform:uppercase}
+.p-title{font-size:1.1rem;font-weight:700;margin-bottom:.4rem;color:var(--text)}
+.p-sub{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:1rem}
+.p-tags{display:flex;gap:.5rem;flex-wrap:wrap}
+.p-tag{font-family:'Space Mono',monospace;font-size:.6rem;padding:.25rem .6rem;border-radius:3px;border:1px solid var(--border);color:var(--muted)}
+
 /* ARTISTS */
 .artists{padding:6rem 0;background:var(--surface2)}
 .artists-header{text-align:center;margin-bottom:3rem}
@@ -115,53 +130,32 @@ h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.05;margin-bott
 .delay-3{transition-delay:.34s}
 .delay-4{transition-delay:.46s}
 
-/* MOBILE MENU */
+/* MOBILE */
 @media(max-width:768px){
-  .nav-links{display:none;position:fixed;top:62px;left:0;right:0;background:rgba(3,3,10,.98);flex-direction:column;padding:2rem;gap:1rem;border-bottom:1px solid var(--border);margin:0}
+  .nav-links{display:none;position:fixed;top:62px;left:0;right:0;background:rgba(3,3,10,.98);flex-direction:column;padding:2rem;gap:1rem;border-bottom:1px solid var(--border);margin:0;z-index:99}
   .nav-links.open{display:flex}
   .nav-mobile-btn{display:block}
   .nav-cta{display:none}
   .hero-stats{grid-template-columns:1fr}
   .services-grid{grid-template-columns:1fr}
+  .portfolio-grid{grid-template-columns:1fr}
+  .portfolio-card.large{grid-column:span 1}
   .artists-grid{grid-template-columns:1fr}
-}
-/* FORZAR FUENTE SYNE EN TODA LA WEB */
-body, h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select, li, label {
-  font-family:'Syne',sans-serif !important;
-}
-
-.service-title, .service-desc, .process-title, .process-desc, .cta-box * {
-  font-family:'Syne',sans-serif !important;
-}
-/* INDEX - MÓVIL */
-@media(max-width:768px){
   .hero-title{font-size:clamp(2rem,10vw,3rem)}
   .hero-subtitle{font-size:.9rem}
-  .hero-stats{grid-template-columns:1fr;gap:1rem;padding:1.5rem}
+  .hero-stats{gap:1rem;padding:1.5rem}
   .stat-number{font-size:1.8rem}
   .hero-cta{flex-direction:column;width:100%}
   .hero-cta .btn-primary,.hero-cta .btn-ghost{width:100%;text-align:center}
-}
-/* ===== PORTAFOLIO (AGREGAR AL FINAL DE style.css) ===== */
-.portfolio-featured{padding:6rem 0;background:var(--surface2)}
-.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin:3rem 0}
-.portfolio-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .3s;text-decoration:none;color:var(--text);display:block}
-.portfolio-card:hover{transform:translateY(-4px);border-color:var(--accent)}
-.portfolio-card.large{grid-column:span 2}
-.p-thumb{width:100%;aspect-ratio:16/9;background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.p-thumb img{width:100%;height:100%;object-fit:cover}
-.p-info{padding:1.5rem}
-.p-type{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.08em;margin-bottom:.5rem;text-transform:uppercase}
-.p-title{font-size:1.1rem;font-weight:700;margin-bottom:.4rem}
-.p-sub{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:1rem}
-.p-tags{display:flex;gap:.5rem;flex-wrap:wrap}
-.p-tag{font-family:'Space Mono',monospace;font-size:.6rem;padding:.25rem .6rem;border-radius:3px;border:1px solid var(--border);color:var(--muted)}
-
-/* Responsive portafolio */
-@media(max-width:768px){
-  .portfolio-grid{grid-template-columns:1fr}
-  .portfolio-card.large{grid-column:span 1}
   .p-info{padding:1.2rem}
   .p-title{font-size:1rem}
   .p-sub{font-size:.85rem}
+}
+
+/* FORCE FONT */
+body, h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select, li, label {
+  font-family:'Syne',sans-serif !important;
+}
+.service-title, .service-desc, .cta-box * {
+  font-family:'Syne',sans-serif !important;
 }
