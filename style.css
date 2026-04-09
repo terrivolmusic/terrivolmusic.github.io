@@ -28,7 +28,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overfl
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;background:rgba(3,3,10,0.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
 .nav-container{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;width:100%}
 .nav-logo{flex-shrink:0}
-.nav-logo img{height:36px;display:block}
+.nav-logo img{height:36px;width:auto;display:block}
 .nav-links{display:flex;align-items:center;gap:1.5rem;margin-left:auto}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.8rem;font-weight:500;transition:color .2s;padding:.3rem .5rem}
 .nav-links a:hover,.nav-links a.active{color:var(--text)}
@@ -130,7 +130,7 @@ h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.05;margin-bott
 .delay-3{transition-delay:.34s}
 .delay-4{transition-delay:.46s}
 
-/* MOBILE MENU */
+/* MOBILE MENU - ÚNICO, SIN DUPLICADOS */
 @media(max-width:768px){
   .nav-links{
     display:none;
