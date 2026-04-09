@@ -1,173 +1,64 @@
-<style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { 
-        font-family: Arial, sans-serif; 
-        line-height: 1.6; 
-        color: #333; 
-        cursor: none; /* DESACTIVA cursor normal */
-    }
-    
-    /* CURSOR PERSONALIZADO ANIMADO 🔥 */
-    .cursor {
-        position: fixed;
-        width: 20px;
-        height: 20px;
-        background: radial-gradient(circle, #ff6b35, #e55a2b);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        mix-blend-mode: difference;
-        transition: transform 0.1s ease, opacity 0.3s ease;
-        box-shadow: 0 0 20px rgba(255,107,53,0.5);
-    }
-    
-    .cursor-follower {
-        position: fixed;
-        width: 50px;
-        height: 50px;
-        border: 2px solid #ff6b35;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9998;
-        transition: all 0.3s ease;
-        opacity: 0.5;
-    }
-    
-    .cursor.hover {
-        transform: scale(2) rotate(180deg);
-        background: radial-gradient(circle, #fff, #ff6b35);
-        box-shadow: 0 0 30px #ff6b35;
-    }
-    
-    .cursor-follower.hover {
-        transform: scale(1.5);
-        opacity: 0.8;
-    }
-    
-    /* Elementos que activan hover del cursor */
-    a, button, .btn, .card, .menu-toggle:hover .cursor,
-    a:hover, button:hover, .btn:hover, .card:hover {
-        cursor: none;
-    }
-    
-    /* HEADER Y NAVEGACIÓN FIJA */
-    header { 
-        position: fixed; 
-        top: 0; 
-        width: 100%; 
-        background: rgba(0,0,0,0.95); 
-        z-index: 1000; 
-        padding: 1rem 0;
-        backdrop-filter: blur(10px);
-    }
-    
-    /* ... resto del CSS igual que antes ... */
-    nav { display: flex; justify-content: center; }
-    nav ul { list-style: none; display: flex; gap: 2rem; }
-    nav a { 
-        color: white; 
-        text-decoration: none; 
-        font-weight: bold; 
-        padding: 0.5rem 1rem; 
-        border-radius: 5px; 
-        transition: all 0.3s;
-        position: relative;
-        overflow: hidden;
-    }
-    nav a::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: left 0.5s;
-    }
-    nav a:hover::before { left: 100%; }
-    nav a:hover { background: #ff6b35; }
-    
-    /* ... sigue igual el resto del CSS anterior ... */
-    .menu-toggle { 
-        display: none; 
-        flex-direction: column; 
-        cursor: none; 
-        padding: 10px;
-    }
-    /* [COPIA TODO EL RESTO DEL CSS anterior desde aquí] */
-    
-    /* SECCIONES */
-    section { 
-        min-height: 100vh; 
-        padding: 100px 2rem 2rem; 
-        scroll-margin-top: 80px;
-    }
-    #inicio { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; }
-    #musica, #videos, #contacto { background: #f8f9fa; }
-    
-    h1 { font-size: 3rem; margin-bottom: 1rem; }
-    h2 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; }
-    
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    .card { 
-        background: white; 
-        padding: 2rem; 
-        border-radius: 10px; 
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-        text-align: center;
-        transition: transform 0.3s;
-        cursor: none;
-    }
-    .card:hover { transform: translateY(-10px); }
-    
-    .btn { 
-        display: inline-block; 
-        background: #ff6b35; 
-        color: white; 
-        padding: 1rem 2rem; 
-        text-decoration: none; 
-        border-radius: 50px; 
-        margin-top: 1rem;
-        transition: all 0.3s;
-        cursor: none;
-        position: relative;
-        overflow: hidden;
-    }
-    .btn::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: rgba(255,255,255,0.3);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: width 0.6s, height 0.6s;
-    }
-    .btn:active::before {
-        width: 300px;
-        height: 300px;
-    }
-    .btn:hover { background: #e55a2b; transform: scale(1.05); }
-    
-    @media (max-width: 768px) {
-        .menu-toggle { display: flex; }
-        nav ul { 
-            position: fixed; 
-            top: 70px; 
-            left: -100%; 
-            width: 100%; 
-            height: calc(100vh - 70px); 
-            background: rgba(0,0,0,0.98); 
-            flex-direction: column; 
-            justify-content: flex-start; 
-            align-items: center; 
-            padding-top: 2rem;
-            transition: 0.3s;
-        }
-        nav ul.active { left: 0; }
-        h1 { font-size: 2rem; }
-        .cursor { display: none; } /* Ocultar cursor en móvil */
-    }
-</style>
+/* ===== CURSOR MEJORADO ===== */
+.cursor{width:8px;height:8px;background:var(--accent2);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99999}
+.cursor-ring{width:32px;height:32px;border:1px solid rgba(0,229,255,0.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99998;transition:all .12s}
+.cursor-ring.hover{transform:scale(2);border-color:var(--accent)}
+
+/* ===== NAV MOBILE MEJORADO ===== */
+@media(max-width:768px){
+  .nav-links{
+    display:none;
+    position:fixed;
+    top:70px;
+    left:0;
+    right:0;
+    background:rgba(3,3,10,0.98);
+    backdrop-filter:blur(20px);
+    flex-direction:column;
+    padding:2rem 1.5rem;
+    gap:1rem;
+    border-bottom:1px solid var(--border);
+    z-index:99;
+    max-height:calc(100vh - 70px);
+    overflow-y:auto
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{
+    padding:1rem;
+    text-align:center;
+    font-size:1rem;
+    border-radius:4px;
+    transition:all 0.3s;
+    color:var(--muted)
+  }
+  .nav-links a:hover,
+  .nav-links a.active{
+    background:rgba(123,92,250,0.1);
+    color:var(--accent2)
+  }
+  .nav-cta-mobile{
+    background:var(--accent);
+    color:white !important;
+    padding:1rem 2rem;
+    border-radius:4px;
+    text-align:center;
+    font-weight:700;
+    margin-top:1rem;
+    border:1px solid var(--accent);
+    transition:all 0.3s
+  }
+  .nav-cta-mobile:hover{
+    background:transparent;
+    color:var(--accent) !important
+  }
+  .nav-mobile-btn{
+    display:block !important;
+    background:none;
+    border:none;
+    color:var(--text);
+    font-size:1.8rem;
+    cursor:pointer;
+    padding:0.5rem;
+    z-index:100
+  }
+  .nav-cta{display:none !important}
+}
