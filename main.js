@@ -1,4 +1,3 @@
-// main.js - Versión limpia sin conflictos
 document.addEventListener('DOMContentLoaded', function() {
   
   // Cursor personalizado
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
       cursorRing.style.top = (e.clientY - 16) + 'px';
     });
 
-    // Efecto hover en enlaces y cards
     const hoverElements = document.querySelectorAll('a, button, .service-card, .portfolio-card');
     hoverElements.forEach(function(el) {
       el.addEventListener('mouseenter', function() {
