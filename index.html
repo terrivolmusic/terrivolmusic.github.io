@@ -3,17 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terrivol Music | Sello Discográfico & Servicios Musicales</title>
+<title>Terrivol Music | Sello Discográfico</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- NAV DIRECTO EN HTML (Sin JS) -->
+<nav class="navbar">
+  <div class="nav-container container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Terrivol Music">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="artistas.html">Artistas</a>
+      <a href="tienda.html">Tienda</a>
+      <a href="contacto.html" class="nav-cta-mobile">💼 TRABAJEMOS</a>
+    </div>
+    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
 
-<nav id="nav-placeholder"></nav>
-
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
@@ -38,6 +55,7 @@
   </div>
 </section>
 
+<!-- SERVICIOS -->
 <section class="services">
   <div class="container">
     <p class="section-label">// LO QUE HACEMOS</p>
@@ -71,102 +89,44 @@
   </div>
 </section>
 
-<section class="portfolio-featured">
-  <div class="container">
-    <p class="section-label" style="text-align:center">// PORTAFOLIO</p>
-    <h2 style="text-align:center;margin-bottom:1rem">Proyectos Destacados</h2>
-    <div class="portfolio-grid">
-      <a href="artistas/cagta-flex.html" class="portfolio-card large fade-up">
-        <div class="p-thumb"><img src="img/portfolio-cagta.png" alt="Cagta Flex"></div>
-        <div class="p-info">
-          <div class="p-type">Artista Principal</div>
-          <div class="p-title">Cagta Flex</div>
-          <div class="p-sub">Fundador de Terrivol Music. +15 años en la escena independiente.</div>
-        </div>
-      </a>
-      <a href="https://beats-bfyt-shop.fourthwall.com" target="_blank" class="portfolio-card fade-up delay-1">
-        <div class="p-thumb"><img src="img/portfolio-beats.png" alt="Beats BFYT"></div>
-        <div class="p-info">
-          <div class="p-type">Productor Musical</div>
-          <div class="p-title">Beats BFYT</div>
-          <div class="p-sub">Beats exclusivos de trap oscuro y elegante.</div>
-        </div>
-      </a>
-      <a href="servicios.html#mastering" class="portfolio-card fade-up delay-2">
-        <div class="p-thumb"><img src="img/portfolio-mastering (2).png" alt="Masterización"></div>
-        <div class="p-info">
-          <div class="p-type">Servicio</div>
-          <div class="p-title">Masterización</div>
-          <div class="p-sub">Proyectos masterizados para artistas de Colombia y LATAM.</div>
-        </div>
-      </a>
-      <a href="servicios.html#audiovisual" class="portfolio-card fade-up">
-        <div class="p-thumb"><img src="img/portfolio-videoclips.png" alt="Videoclips"></div>
-        <div class="p-info">
-          <div class="p-type">Producción</div>
-          <div class="p-title">Videoclips</div>
-          <div class="p-sub">Contenido audiovisual profesional para artistas.</div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="testimonials">
-  <div class="container">
-    <p class="section-label" style="text-align:center">// TESTIMONIOS</p>
-    <h2 style="text-align:center;margin-bottom:1rem">Lo que dicen nuestros artistas</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card fade-up">
-        <p class="testimonial-text">Terrivol Music transformó completamente mi sonido.</p>
-        <div class="testimonial-author">Artista Independiente</div>
-        <div class="testimonial-role">Bogotá, Colombia</div>
-      </div>
-      <div class="testimonial-card fade-up delay-1">
-        <p class="testimonial-text">Profesionales, comprometidos y con una visión clara.</p>
-        <div class="testimonial-author">Productor Musical</div>
-        <div class="testimonial-role">LATAM</div>
-      </div>
-      <div class="testimonial-card fade-up delay-2">
-        <p class="testimonial-text">El equipo de Terrivol entiende perfectamente el trap.</p>
-        <div class="testimonial-author">MC / Cantante</div>
-        <div class="testimonial-role">Colombia</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-box fade-up">
-      <p class="section-label" style="justify-content:center;display:flex">// EMPECEMOS</p>
-      <h2 class="cta-title">¿Listo para llevar tu música al siguiente nivel?</h2>
-      <p class="cta-desc">En Terrivol Music combinamos experiencia, calidad y pasión.</p>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="btn-wa">💬 WhatsApp</a>
-        <a href="contacto.html" class="btn-primary">Enviar Propuesta</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="container">
-    <div class="footer-inner">
-      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
-      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
-    </div>
+    <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
   </div>
 </footer>
 
-<script src="nav.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof buildNav === 'function') {
-    buildNav('home');
+// Menú móvil simple
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  nav.classList.toggle('open');
+}
+
+// Cursor simple
+document.addEventListener('mousemove', function(e) {
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  if (cursor) {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  }
+  if (ring) {
+    ring.style.left = (e.clientX - 16) + 'px';
+    ring.style.top = (e.clientY - 16) + 'px';
   }
 });
+
+// Animaciones simples
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
-<script src="main.js"></script>
+
 </body>
 </html>
