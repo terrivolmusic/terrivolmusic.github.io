@@ -111,3 +111,34 @@ h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.05;margin-bott
   .hero-cta{flex-direction:column;width:100%}
   .hero-cta .btn-primary,.hero-cta .btn-ghost{width:100%;text-align:center}
 }
+/* ===== FIX PARA IMÁGENES GRANDES ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.p-thumb img,
+.artist-image img,
+.nav-logo img,
+.footer-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== FIX PARA Z-INDEX DEL CURSOR ===== */
+.cursor, .cursor-ring {
+  pointer-events: none;
+}
+
+/* ===== RESET AL NAVEGAR ===== */
+body {
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
