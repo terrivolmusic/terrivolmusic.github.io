@@ -1,11 +1,8 @@
 /**
-/**
  * Terrivol Music Navigation System
- * Centralized navigation builder and mobile menu control
  */
 
-function buildNav(activePage, isSubDir = false) {
-  const prefix = isSubDir ? '../' : '';
+function buildNav(activePage) {
   const links = [
     { id: 'home', label: 'Inicio', href: 'index.html' },
     { id: 'servicios', label: 'Servicios', href: 'servicios.html' },
@@ -18,20 +15,18 @@ function buildNav(activePage, isSubDir = false) {
 
   const navHtml = `
     <div class="nav-container container">
-      <a href="${prefix}index.html" class="nav-logo">
-        <img src="${prefix}logo.png" alt="Terrivol Music" style="height:36px;display:block">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Terrivol Music">
       </a>
       
       <div class="nav-links" id="navLinks">
         ${links.map(link => `
-          <a href="${prefix}${link.href}" class="${activePage === link.id ? 'active' : ''}">${link.label}</a>
+          <a href="${link.href}" class="${activePage === link.id ? 'active' : ''}">${link.label}</a>
         `).join('')}
-        <a href="${prefix}contacto.html" class="nav-cta-mobile">💼 TRABAJEMOS</a>
+        <a href="contacto.html" class="nav-cta-mobile">💼 TRABAJEMOS</a>
       </div>
       
-      <button class="nav-mobile-btn" id="mobileBtn" aria-label="Menu">
-        <span class="icon">☰</span>
-      </button>
+      <button class="nav-mobile-btn" id="mobileBtn" aria-label="Menu">☰</button>
     </div>
   `;
 
@@ -39,32 +34,36 @@ function buildNav(activePage, isSubDir = false) {
   if (placeholder) {
     placeholder.innerHTML = navHtml;
     initMobileMenu();
+  } else {
+    console.error('No se encontró nav-placeholder');
   }
 }
 
 function initMobileMenu() {
   const btn = document.getElementById('mobileBtn');
   const links = document.getElementById('navLinks');
-  const icon = btn?.querySelector('.icon');
-
+  
   if (btn && links) {
-    btn.onclick = (e) => {
+    btn.onclick = function(e) {
       e.stopPropagation();
       links.classList.toggle('open');
-      if(icon) icon.innerText = links.classList.contains('open') ? '✕' : '☰';
+      const icon = btn.querySelector('.icon') || btn;
+      icon.textContent = links.classList.contains('open') ? '✕' : '☰';
     };
 
-    document.onclick = (e) => {
+    document.onclick = function(e) {
       if (!links.contains(e.target) && !btn.contains(e.target)) {
         links.classList.remove('open');
-        if(icon) icon.innerText = '☰';
+        const icon = btn.querySelector('.icon') || btn;
+        icon.textContent = '☰';
       }
     };
 
-    links.querySelectorAll('a').forEach(link => {
-      link.onclick = () => {
+    links.querySelectorAll('a').forEach(function(link) {
+      link.onclick = function() {
         links.classList.remove('open');
-        if(icon) icon.innerText = '☰';
+        const icon = btn.querySelector('.icon') || btn;
+        icon.textContent = '☰';
       };
     });
   }
