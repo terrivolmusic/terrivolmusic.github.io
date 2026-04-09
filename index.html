@@ -1,238 +1,208 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terrivol Music | Sello Discográfico & Servicios Musicales - Bogotá</title>
-  <meta name="description" content="Terrivol Music: Sello discográfico independiente. +400 lanzamientos en producción, distribución y marketing musical.">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Hero Styles */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      padding-top: var(--nav-height);
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 30% 20%, rgba(123, 92, 250, 0.25), transparent 60%),
-                  radial-gradient(ellipse at 80% 80%, rgba(0, 229, 255, 0.15), transparent 60%);
-      z-index: -1;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(3, 3, 10, 0.9) 0%, rgba(3, 3, 10, 0.7) 50%, rgba(123, 92, 250, 0.1) 100%);
-      z-index: -1;
-    }
-    .hero-content { max-width: 900px; position: relative; z-index: 1; }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1.2rem;
-      background: rgba(123, 92, 250, 0.2);
-      border: 1px solid var(--accent);
-      border-radius: 100px;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--accent);
-      margin-bottom: 2rem;
-    }
-    .hero-title {
-      font-size: clamp(2.5rem, 7vw, 4.5rem);
-      margin-bottom: 1.5rem;
-    }
-    .hero-title span { color: var(--accent); }
-    .hero-subtitle {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: var(--muted);
-      margin-bottom: 2.5rem;
-      max-width: 650px;
-    }
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-      padding: 1.5rem;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      backdrop-filter: blur(10px);
-    }
-    .stat-number { font-size: 2rem; font-weight: 800; color: var(--accent2); }
-    .stat-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--muted); text-transform: uppercase; }
-    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    /* Services Grid */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    .service-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 2.5rem;
-      border-radius: 4px;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-    }
-    .service-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent);
-      box-shadow: 0 10px 30px rgba(123, 92, 250, 0.2);
-    }
-    .service-icon { width: 48px; height: 48px; color: var(--accent); margin-bottom: 1.5rem; }
-    .service-title { font-size: 1.4rem; margin-bottom: 1rem; }
-    .service-desc { color: var(--muted); font-size: 0.95rem; }
-
-    /* Portfolio */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    .portfolio-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.3s ease;
-    }
-    .portfolio-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-    .p-thumb { aspect-ratio: 16/9; overflow: hidden; }
-    .p-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .portfolio-card:hover .p-thumb img { transform: scale(1.05); }
-    .p-info { padding: 1.5rem; }
-
-    /* Mobile Tweaks */
-    @media (max-width: 768px) {
-      .hero-stats { grid-template-columns: 1fr; gap: 1rem; }
-      .hero-cta .btn-primary, .hero-cta .btn-ghost { width: 100%; text-align: center; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terrivol Music | Sello Discográfico & Servicios Musicales</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav id="nav-placeholder"></nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-badge fade-up">
-          SELLO INDEPENDIENTE · BOGOTÁ, COLOMBIA
-        </div>
-        <h1 class="hero-title fade-up delay-1">Tu música merece<br><span>infraestructura profesional</span></h1>
-        <p class="hero-subtitle fade-up delay-2">Terrivol Music es el aliado estratégico para artistas independientes que buscan competir a nivel global. Producción, distribución y marketing con la calidad de un sello grande.</p>
-        <div class="hero-stats fade-up delay-3">
-          <div><div class="stat-number">+400</div><div class="stat-label">Lanzamientos</div></div>
-          <div><div class="stat-number">+15</div><div class="stat-label">Años experiencia</div></div>
-          <div><div class="stat-number">100%</div><div class="stat-label">Independiente</div></div>
-        </div>
-        <div class="hero-cta fade-up delay-4">
-          <a href="servicios.html" class="btn-primary">Explorar servicios</a>
-          <a href="contacto.html" class="btn-ghost">Cotizar proyecto</a>
-        </div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Terrivol Music">
+    </a>
+    
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="artistas.html">Artistas</a>
+      <a href="tienda.html">Tienda</a>
+      <a href="contacto.html" class="nav-cta-mobile">💼 TRABAJEMOS</a>
+    </div>
+    
+    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge fade-up">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        SELLO INDEPENDIENTE · BOGOTÁ, COLOMBIA
+      </div>
+      <h1 class="hero-title fade-up delay-1">Tu música merece<br><span>infraestructura profesional</span></h1>
+      <p class="hero-subtitle fade-up delay-2">Terrivol Music es el aliado estratégico para artistas independientes que buscan competir a nivel global.</p>
+      <div class="hero-stats fade-up delay-3">
+        <div><div class="stat-number">+400</div><div class="stat-label">Lanzamientos</div></div>
+        <div><div class="stat-number">+15</div><div class="stat-label">Años experiencia</div></div>
+        <div><div class="stat-number">100%</div><div class="stat-label">Independiente</div></div>
+      </div>
+      <div class="hero-cta fade-up delay-4">
+        <a href="servicios.html" class="btn-primary">Explorar servicios</a>
+        <a href="contacto.html" class="btn-ghost">Cotizar proyecto</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SERVICES -->
-  <section class="featured-services" id="servicios">
-    <div class="container">
-      <span class="section-label">// SERVICIOS DESTACADOS</span>
-      <h2>Soluciones completas para tu carrera musical</h2>
-      <div class="services-grid">
-        <a href="servicios.html#produccion" class="service-card fade-up">
-          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-          <h3 class="service-title">Producción Musical</h3>
-          <p class="service-desc">Desde beats hasta álbumes completos con ingenieros expertos.</p>
-        </a>
-        <a href="servicios.html#distribucion" class="service-card fade-up delay-1">
-          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
-          <h3 class="service-title">Distribución Global</h3>
-          <p class="service-desc">Lleva tu música a Spotify, Apple Music y +150 plataformas.</p>
-        </a>
-        <a href="servicios.html#clases" class="service-card fade-up delay-2">
-          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          <h3 class="service-title">Mentorías Pro</h3>
-          <p class="service-desc">Aprende producción y negocio musical con expertos del sello.</p>
-        </a>
-      </div>
+<!-- SERVICIOS -->
+<section class="services">
+  <div class="container">
+    <p class="section-label">// LO QUE HACEMOS</p>
+    <h2>Servicios Musicales Profesionales</h2>
+    <div class="services-grid">
+      <a href="servicios.html#produccion" class="service-card fade-up">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <h3 class="service-title">Producción Musical</h3>
+        <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio.</p>
+        <span class="service-link">Cotizar ahora →</span>
+      </a>
+      <a href="servicios.html#distribucion" class="service-card fade-up delay-1">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+        <h3 class="service-title">Distribución Digital</h3>
+        <p class="service-desc">Lleva tu música a Spotify, Apple Music y +150 plataformas.</p>
+        <span class="service-link">Cotizar ahora →</span>
+      </a>
+      <a href="tienda.html" class="service-card fade-up delay-2">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <h3 class="service-title">Beats & Licencias</h3>
+        <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles.</p>
+        <span class="service-link">Explorar beats →</span>
+      </a>
+      <a href="servicios.html#clases" class="service-card fade-up">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <h3 class="service-title">Clases de Producción Pro</h3>
+        <p class="service-desc">Mentorías 1-a-1 con expertos del sello.</p>
+        <span class="service-link">Agendar clase →</span>
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PORTFOLIO -->
-  <section class="portfolio-featured" id="portafolio">
-    <div class="container">
-      <span class="section-label" style="text-align:center">// PORTAFOLIO</span>
-      <h2 style="text-align:center">Proyectos Destacados</h2>
-      <div class="portfolio-grid">
-        <div class="portfolio-card fade-up">
-          <div class="p-thumb"><img src="img/portfolio-cagta.png" alt="Cagta Flex"></div>
-          <div class="p-info">
-            <h3 class="p-title">Cagta Flex</h3>
-            <p class="p-sub">Fundador de Terrivol Music. +15 años en la escena.</p>
-          </div>
+<!-- PORTAFOLIO -->
+<section class="portfolio-featured">
+  <div class="container">
+    <p class="section-label" style="text-align:center">// PORTAFOLIO</p>
+    <h2 style="text-align:center;margin-bottom:1rem">Proyectos Destacados</h2>
+    <div class="portfolio-grid">
+      <a href="artistas/cagta-flex.html" class="portfolio-card large fade-up">
+        <div class="p-thumb"><img src="img/portfolio-cagta.png" alt="Cagta Flex"></div>
+        <div class="p-info">
+          <div class="p-type">Artista Principal</div>
+          <div class="p-title">Cagta Flex</div>
+          <div class="p-sub">Fundador de Terrivol Music. +15 años en la escena independiente.</div>
         </div>
-        <div class="portfolio-card fade-up delay-1">
-          <div class="p-thumb"><img src="img/portfolio-beats.png" alt="Beats BFYT"></div>
-          <div class="p-info">
-            <h3 class="p-title">Beats BFYT</h3>
-            <p class="p-sub">Producción exclusiva de trap y hip hop.</p>
-          </div>
+      </a>
+      <a href="https://beats-bfyt-shop.fourthwall.com" target="_blank" class="portfolio-card fade-up delay-1">
+        <div class="p-thumb"><img src="img/portfolio-beats.png" alt="Beats BFYT"></div>
+        <div class="p-info">
+          <div class="p-type">Productor Musical</div>
+          <div class="p-title">Beats BFYT</div>
+          <div class="p-sub">Beats exclusivos de trap oscuro y elegante.</div>
         </div>
-      </div>
-      <div style="text-align:center; margin-top: 3rem;">
-        <a href="portafolio.html" class="btn-ghost">Ver portafolio completo</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-box fade-up" style="background: var(--surface); padding: 4rem; border-radius: 8px; text-align: center; border: 1px solid var(--border);">
-        <h2 class="cta-title">¿Listo para subir de nivel?</h2>
-        <p class="cta-desc" style="margin-bottom: 2rem;">Lleva tu música a estándares internacionales con Terrivol Music.</p>
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-          <a href="https://wa.me/573102123844" target="_blank" class="btn-wa">💬 WhatsApp</a>
-          <a href="contacto.html" class="btn-primary">Cotizar proyecto</a>
+      </a>
+      <a href="servicios.html#mastering" class="portfolio-card fade-up delay-2">
+        <div class="p-thumb"><img src="img/portfolio-mastering (2).png" alt="Masterización"></div>
+        <div class="p-info">
+          <div class="p-type">Servicio</div>
+          <div class="p-title">Masterización</div>
+          <div class="p-sub">Proyectos masterizados para artistas de Colombia y LATAM.</div>
         </div>
+      </a>
+      <a href="servicios.html#audiovisual" class="portfolio-card fade-up">
+        <div class="p-thumb"><img src="img/portfolio-videoclips.png" alt="Videoclips"></div>
+        <div class="p-info">
+          <div class="p-type">Producción</div>
+          <div class="p-title">Videoclips</div>
+          <div class="p-sub">Contenido audiovisual profesional para artistas.</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonials">
+  <div class="container">
+    <p class="section-label" style="text-align:center">// TESTIMONIOS</p>
+    <h2 style="text-align:center;margin-bottom:1rem">Lo que dicen nuestros artistas</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <p class="testimonial-text">Terrivol Music transformó completamente mi sonido. La calidad de producción y el acompañamiento estratégico me llevaron a otro nivel.</p>
+        <div class="testimonial-author">Artista Independiente</div>
+        <div class="testimonial-role">Bogotá, Colombia</div>
+      </div>
+      <div class="testimonial-card fade-up delay-1">
+        <p class="testimonial-text">Profesionales, comprometidos y con una visión clara de la música urbana. Mi música ahora suena en todas las plataformas con calidad internacional.</p>
+        <div class="testimonial-author">Productor Musical</div>
+        <div class="testimonial-role">LATAM</div>
+      </div>
+      <div class="testimonial-card fade-up delay-2">
+        <p class="testimonial-text">El equipo de Terrivol entiende perfectamente el trap y el hip hop. Su enfoque en el detalle y la calidad es impresionante.</p>
+        <div class="testimonial-author">MC / Cantante</div>
+        <div class="testimonial-role">Colombia</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 2rem;">
-      <img src="logo.png" alt="Terrivol Music" style="height: 24px;">
-      <p class="mono" style="font-size: 0.7rem; color: var(--muted);">© 2025 TERRIVOL MUSIC · BOGOTÁ</p>
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box fade-up">
+      <p class="section-label" style="justify-content:center;display:flex">// EMPECEMOS</p>
+      <h2 class="cta-title">¿Listo para llevar tu música al siguiente nivel?</h2>
+      <p class="cta-desc">En Terrivol Music combinamos experiencia, calidad y pasión por la música.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="btn-wa">💬 WhatsApp</a>
+        <a href="contacto.html" class="btn-primary">Enviar Propuesta</a>
+      </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="nav.js"></script>
-  <script>
-    // Initialize Nav
-    buildNav('home');
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
+    </div>
+  </div>
+</footer>
 
-    // Intersection Observer for fade-up
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-  </script>
+<script>
+// Menú móvil
+function toggleMenu() {
+  const navLinks = document.getElementById('navLinks');
+  navLinks.classList.toggle('open');
+  
+  const btn = document.querySelector('.nav-mobile-btn');
+  if (navLinks.classList.contains('open')) {
+    btn.innerHTML = '✕';
+  } else {
+    btn.innerHTML = '☰';
+  }
+}
+
+// Animaciones
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
