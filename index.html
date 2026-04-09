@@ -1,200 +1,216 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terrivol Music | Sello Discográfico & Servicios Musicales</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrivol Music</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        
+        /* HEADER Y NAVEGACIÓN FIJA */
+        header { 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            background: rgba(0,0,0,0.9); 
+            z-index: 1000; 
+            padding: 1rem 0;
+        }
+        
+        nav { display: flex; justify-content: center; }
+        nav ul { list-style: none; display: flex; gap: 2rem; }
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            font-weight: bold; 
+            padding: 0.5rem 1rem; 
+            border-radius: 5px; 
+            transition: all 0.3s;
+        }
+        nav a:hover { background: #ff6b35; }
+        
+        /* MOBILE MENU */
+        .menu-toggle { 
+            display: none; 
+            flex-direction: column; 
+            cursor: pointer; 
+            padding: 10px;
+        }
+        .menu-toggle span { 
+            width: 25px; 
+            height: 3px; 
+            background: white; 
+            margin: 3px 0; 
+            transition: 0.3s;
+        }
+        
+        /* SECCIONES */
+        section { 
+            min-height: 100vh; 
+            padding: 100px 2rem 2rem; 
+            scroll-margin-top: 80px;
+        }
+        #inicio { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; }
+        #musica, #videos, #contacto { background: #f8f9fa; }
+        
+        h1 { font-size: 3rem; margin-bottom: 1rem; }
+        h2 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; }
+        
+        /* GRID PARA CONTENIDO */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card { 
+            background: white; 
+            padding: 2rem; 
+            border-radius: 10px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-10px); }
+        
+        /* BOTONES */
+        .btn { 
+            display: inline-block; 
+            background: #ff6b35; 
+            color: white; 
+            padding: 1rem 2rem; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .btn:hover { background: #e55a2b; transform: scale(1.05); }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+            nav ul { 
+                position: fixed; 
+                top: 70px; 
+                left: -100%; 
+                width: 100%; 
+                height: calc(100vh - 70px); 
+                background: rgba(0,0,0,0.95); 
+                flex-direction: column; 
+                justify-content: flex-start; 
+                align-items: center; 
+                padding-top: 2rem;
+                transition: 0.3s;
+            }
+            nav ul.active { left: 0; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
+    <!-- HEADER CON NAVEGACIÓN FIJA -->
+    <header>
+        <nav>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="#inicio" onclick="closeMenu()">INICIO</a></li>
+                <li><a href="#musica" onclick="closeMenu()">MÚSICA</a></li>
+                <li><a href="#videos" onclick="closeMenu()">VIDEOS</a></li>
+                <li><a href="#contacto" onclick="closeMenu()">CONTACTO</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="stars" id="stars"></div>
+    <!-- SECCIONES CON IDs PARA NAVEGACIÓN -->
+    <section id="inicio">
+        <h1>TERRIVOL MUSIC</h1>
+        <p>La mejor experiencia musical en un solo lugar</p>
+        <a href="#musica" class="btn">Explora Nuestra Música</a>
+    </section>
 
-<!-- NAV: Se llena con nav.js -->
-<nav id="nav-placeholder"></nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge fade-up">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        SELLO INDEPENDIENTE · BOGOTÁ, COLOMBIA
-      </div>
-      <h1 class="hero-title fade-up delay-1">Tu música merece<br><span>infraestructura profesional</span></h1>
-      <p class="hero-subtitle fade-up delay-2">Terrivol Music es el aliado estratégico para artistas independientes que buscan competir a nivel global.</p>
-      <div class="hero-stats fade-up delay-3">
-        <div><div class="stat-number">+400</div><div class="stat-label">Lanzamientos</div></div>
-        <div><div class="stat-number">+15</div><div class="stat-label">Años experiencia</div></div>
-        <div><div class="stat-number">100%</div><div class="stat-label">Independiente</div></div>
-      </div>
-      <div class="hero-cta fade-up delay-4">
-        <a href="servicios.html" class="btn-primary">Explorar servicios</a>
-        <a href="contacto.html" class="btn-ghost">Cotizar proyecto</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICIOS -->
-<section class="services">
-  <div class="container">
-    <p class="section-label">// LO QUE HACEMOS</p>
-    <h2>Servicios Musicales Profesionales</h2>
-    <div class="services-grid">
-      <a href="servicios.html#produccion" class="service-card fade-up">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-        <h3 class="service-title">Producción Musical</h3>
-        <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio.</p>
-        <span class="service-link">Cotizar ahora →</span>
-      </a>
-      <a href="servicios.html#distribucion" class="service-card fade-up delay-1">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
-        <h3 class="service-title">Distribución Digital</h3>
-        <p class="service-desc">Lleva tu música a Spotify, Apple Music y +150 plataformas.</p>
-        <span class="service-link">Cotizar ahora →</span>
-      </a>
-      <a href="tienda.html" class="service-card fade-up delay-2">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        <h3 class="service-title">Beats & Licencias</h3>
-        <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles.</p>
-        <span class="service-link">Explorar beats →</span>
-      </a>
-      <a href="servicios.html#clases" class="service-card fade-up">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        <h3 class="service-title">Clases de Producción Pro</h3>
-        <p class="service-desc">Mentorías 1-a-1 con expertos del sello.</p>
-        <span class="service-link">Agendar clase →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- PORTAFOLIO -->
-<section class="portfolio-featured">
-  <div class="container">
-    <p class="section-label" style="text-align:center">// PORTAFOLIO</p>
-    <h2 style="text-align:center;margin-bottom:1rem">Proyectos Destacados</h2>
-    <div class="portfolio-grid">
-      <a href="artistas/cagta-flex.html" class="portfolio-card large fade-up">
-        <div class="p-thumb"><img src="img/portfolio-cagta.png" alt="Cagta Flex"></div>
-        <div class="p-info">
-          <div class="p-type">Artista Principal</div>
-          <div class="p-title">Cagta Flex</div>
-          <div class="p-sub">Fundador de Terrivol Music. +15 años en la escena independiente.</div>
+    <section id="musica">
+        <h2>🎵 Nuestra Música</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Hit 2024</h3>
+                <p>Escucha nuestro último éxito</p>
+                <audio controls style="width:100%;">
+                    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+                </audio>
+            </div>
+            <div class="card">
+                <h3>Álbum Completo</h3>
+                <p>15 canciones imperdibles</p>
+                <a href="#" class="btn">Escuchar en Spotify</a>
+            </div>
+            <div class="card">
+                <h3>Lo Nuevo</h3>
+                <p>Próximamente...</p>
+                <a href="#" class="btn">Pre-save</a>
+            </div>
         </div>
-      </a>
-      <a href="https://beats-bfyt-shop.fourthwall.com" target="_blank" class="portfolio-card fade-up delay-1">
-        <div class="p-thumb"><img src="img/portfolio-beats.png" alt="Beats BFYT"></div>
-        <div class="p-info">
-          <div class="p-type">Productor Musical</div>
-          <div class="p-title">Beats BFYT</div>
-          <div class="p-sub">Beats exclusivos de trap oscuro y elegante.</div>
+    </section>
+
+    <section id="videos">
+        <h2>🎥 Videos</h2>
+        <div class="grid">
+            <div class="card">
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="card">
+                <h3>Más Videos</h3>
+                <p>Visita nuestro canal</p>
+                <a href="https://youtube.com" class="btn" target="_blank">YouTube</a>
+            </div>
         </div>
-      </a>
-      <a href="servicios.html#mastering" class="portfolio-card fade-up delay-2">
-        <div class="p-thumb"><img src="img/portfolio-mastering (2).png" alt="Masterización"></div>
-        <div class="p-info">
-          <div class="p-type">Servicio</div>
-          <div class="p-title">Masterización</div>
-          <div class="p-sub">Proyectos masterizados para artistas de Colombia y LATAM.</div>
+    </section>
+
+    <section id="contacto">
+        <h2>📞 Contáctanos</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Email</h3>
+                <p>terrivolmusic@gmail.com</p>
+            </div>
+            <div class="card">
+                <h3>Instagram</h3>
+                <p>@terrivolmusic</p>
+                <a href="https://instagram.com" class="btn" target="_blank">Seguir</a>
+            </div>
+            <div class="card">
+                <h3>WhatsApp</h3>
+                <p>+1 234 567 890</p>
+                <a href="https://wa.me/1234567890" class="btn" target="_blank">Escribir</a>
+            </div>
         </div>
-      </a>
-      <a href="servicios.html#audiovisual" class="portfolio-card fade-up">
-        <div class="p-thumb"><img src="img/portfolio-videoclips.png" alt="Videoclips"></div>
-        <div class="p-info">
-          <div class="p-type">Producción</div>
-          <div class="p-title">Videoclips</div>
-          <div class="p-sub">Contenido audiovisual profesional para artistas.</div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- TESTIMONIOS -->
-<section class="testimonials">
-  <div class="container">
-    <p class="section-label" style="text-align:center">// TESTIMONIOS</p>
-    <h2 style="text-align:center;margin-bottom:1rem">Lo que dicen nuestros artistas</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card fade-up">
-        <p class="testimonial-text">Terrivol Music transformó completamente mi sonido. La calidad de producción y el acompañamiento estratégico me llevaron a otro nivel.</p>
-        <div class="testimonial-author">Artista Independiente</div>
-        <div class="testimonial-role">Bogotá, Colombia</div>
-      </div>
-      <div class="testimonial-card fade-up delay-1">
-        <p class="testimonial-text">Profesionales, comprometidos y con una visión clara de la música urbana. Mi música ahora suena en todas las plataformas con calidad internacional.</p>
-        <div class="testimonial-author">Productor Musical</div>
-        <div class="testimonial-role">LATAM</div>
-      </div>
-      <div class="testimonial-card fade-up delay-2">
-        <p class="testimonial-text">El equipo de Terrivol entiende perfectamente el trap y el hip hop. Su enfoque en el detalle y la calidad es impresionante.</p>
-        <div class="testimonial-author">MC / Cantante</div>
-        <div class="testimonial-role">Colombia</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-box fade-up">
-      <p class="section-label" style="justify-content:center;display:flex">// EMPECEMOS</p>
-      <h2 class="cta-title">¿Listo para llevar tu música al siguiente nivel?</h2>
-      <p class="cta-desc">En Terrivol Music combinamos experiencia, calidad y pasión por la música.</p>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="btn-wa">💬 WhatsApp</a>
-        <a href="contacto.html" class="btn-primary">Enviar Propuesta</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
-      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
-    </div>
-  </div>
-</footer>
-
-<!-- SCRIPTS: nav.js PRIMERO, luego inicialización -->
-<script src="nav.js"></script>
-<script>
-// Esperar a que el DOM esté listo antes de ejecutar
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof buildNav === 'function') {
-    buildNav('home');
-  }
-});
-</script>
-
-<!-- main.js para cursor y animaciones -->
-<script src="main.js"></script>
-
-<!-- Animaciones fade-up -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-  
-  document.querySelectorAll('.fade-up').forEach(function(el) {
-    observer.observe(el);
-  });
-});
-</script>
-
+    <script>
+        // NAVEGACIÓN SUAVE Y MOBILE MENU
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        }
+        
+        function closeMenu() {
+            document.getElementById('nav-menu').classList.remove('active');
+        }
+        
+        // Smooth scroll para todos los enlaces
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                closeMenu();
+            });
+        });
+        
+        // Cerrar menú al hacer scroll en mobile
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth <= 768) closeMenu();
+        });
+    </script>
 </body>
 </html>
