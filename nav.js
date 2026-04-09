@@ -1,4 +1,5 @@
 /**
+/**
  * Terrivol Music Navigation System
  * Centralized navigation builder and mobile menu control
  */
@@ -18,14 +19,14 @@ function buildNav(activePage, isSubDir = false) {
   const navHtml = `
     <div class="nav-container container">
       <a href="${prefix}index.html" class="nav-logo">
-        <img src="${prefix}logo.png" alt="Terrivol Music">
+        <img src="${prefix}logo.png" alt="Terrivol Music" style="height:36px;display:block">
       </a>
       
       <div class="nav-links" id="navLinks">
         ${links.map(link => `
           <a href="${prefix}${link.href}" class="${activePage === link.id ? 'active' : ''}">${link.label}</a>
         `).join('')}
-        <a href="${prefix}contacto.html" class="btn-primary mono" style="padding: 0.5rem 1rem; font-size: 0.75rem;">CONTACTO</a>
+        <a href="${prefix}contacto.html" class="nav-cta-mobile">💼 TRABAJEMOS</a>
       </div>
       
       <button class="nav-mobile-btn" id="mobileBtn" aria-label="Menu">
@@ -44,28 +45,26 @@ function buildNav(activePage, isSubDir = false) {
 function initMobileMenu() {
   const btn = document.getElementById('mobileBtn');
   const links = document.getElementById('navLinks');
-  const icon = btn.querySelector('.icon');
+  const icon = btn?.querySelector('.icon');
 
   if (btn && links) {
     btn.onclick = (e) => {
       e.stopPropagation();
       links.classList.toggle('open');
-      icon.innerText = links.classList.contains('open') ? '✕' : '☰';
+      if(icon) icon.innerText = links.classList.contains('open') ? '✕' : '☰';
     };
 
-    // Close menu when clicking outside
     document.onclick = (e) => {
       if (!links.contains(e.target) && !btn.contains(e.target)) {
         links.classList.remove('open');
-        icon.innerText = '☰';
+        if(icon) icon.innerText = '☰';
       }
     };
 
-    // Close menu when clicking a link
     links.querySelectorAll('a').forEach(link => {
       link.onclick = () => {
         links.classList.remove('open');
-        icon.innerText = '☰';
+        if(icon) icon.innerText = '☰';
       };
     });
   }
