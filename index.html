@@ -12,8 +12,25 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
 
-<nav id="nav-placeholder"></nav>
+<!-- MENÚ INTEGRADO EN HTML (NO DEPENDE DE JS) -->
+<nav class="navbar">
+  <div class="nav-container container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Terrivol Music">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="artistas.html">Artistas</a>
+      <a href="tienda.html">Tienda</a>
+      <a href="contacto.html" class="nav-cta-mobile">💼 TRABAJEMOS</a>
+    </div>
+    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
@@ -43,6 +60,7 @@
   </div>
 </section>
 
+<!-- SERVICIOS -->
 <section class="services">
   <div class="container">
     <p class="section-label">// LO QUE HACEMOS</p>
@@ -76,6 +94,7 @@
   </div>
 </section>
 
+<!-- PORTAFOLIO -->
 <section class="portfolio-featured">
   <div class="container">
     <p class="section-label" style="text-align:center">// PORTAFOLIO</p>
@@ -117,6 +136,7 @@
   </div>
 </section>
 
+<!-- TESTIMONIOS -->
 <section class="testimonials">
   <div class="container">
     <p class="section-label" style="text-align:center">// TESTIMONIOS</p>
@@ -141,6 +161,7 @@
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta-section">
   <div class="container">
     <div class="cta-box fade-up">
@@ -164,14 +185,42 @@
   </div>
 </footer>
 
-<script src="nav.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof buildNav === 'function') {
-    buildNav('home');
+// Menú móvil simple y robusto
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  const btn = document.querySelector('.nav-mobile-btn');
+  if (nav && btn) {
+    nav.classList.toggle('open');
+    btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
+  }
+}
+
+// Cursor simple
+document.addEventListener('mousemove', function(e) {
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  if (cursor) {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  }
+  if (ring) {
+    ring.style.left = (e.clientX - 16) + 'px';
+    ring.style.top = (e.clientY - 16) + 'px';
   }
 });
+
+// Animaciones simples
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
-<script src="main.js"></script>
+
 </body>
 </html>
