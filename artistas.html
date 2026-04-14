@@ -7,30 +7,50 @@
 <link rel="stylesheet" href="style.css">
 <style>
 /* ===== HERO ARTISTAS ===== */
-.artists-hero{min-height:60vh;display:flex;align-items:center;padding:6rem 0 4rem;text-align:center;position:relative;overflow:hidden}
+.artists-hero{min-height:60vh;display:flex;align-items:center;padding:8rem 0 5rem;text-align:center;position:relative;overflow:hidden}
 .artists-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(123,92,250,.2),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,229,255,.1),transparent 60%);z-index:0}
 .artists-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,3,10,.85) 0%,rgba(3,3,10,.75) 50%,rgba(123,92,250,.1) 100%);z-index:0}
 .artists-hero .container{position:relative;z-index:1}
 
+/* ===== TÍTULOS MEJORADOS ===== */
+.section-label{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem;display:block}
+
+/* ===== GRID ARTISTAS ===== */
+.artists-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2.5rem;margin:4rem 0}
+
 /* ===== CARD ARTISTA PRO ===== */
-.artist-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .3s;text-decoration:none;color:var(--text);display:block}
-.artist-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 20px 60px rgba(123,92,250,.2)}
-.artist-thumb{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,rgba(123,92,250,.3),rgba(255,60,172,.2));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.artist-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.artist-thumb .placeholder{font-size:3rem;opacity:.8}
-.artist-info{padding:1.5rem}
-.artist-role{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;margin-bottom:.5rem;letter-spacing:.04em}
-.artist-name{font-size:1.5rem;font-weight:700;margin-bottom:.5rem;transition:color .3s}
+.artist-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .4s cubic-bezier(0.4,0,0.2,1);text-decoration:none;color:var(--text);display:block;position:relative}
+.artist-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));opacity:0;transition:opacity .4s}
+.artist-card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 20px 60px rgba(123,92,250,.3)}
+.artist-card:hover::before{opacity:1}
+.artist-thumb{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--surface2)}
+.artist-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.artist-card:hover .artist-thumb img{transform:scale(1.05)}
+.artist-info{padding:2rem}
+.artist-role{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;margin-bottom:.8rem;letter-spacing:.08em;display:block}
+.artist-name{font-size:2rem;font-weight:800;margin-bottom:1rem;line-height:1.1;transition:color .3s;letter-spacing:-0.02em}
 .artist-card:hover .artist-name{color:var(--accent2)}
-.artist-bio{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:1rem}
-.artist-tags{display:flex;gap:.5rem;flex-wrap:wrap}
-.artist-tag{padding:.3rem .7rem;background:rgba(123,92,250,.15);border:1px solid var(--accent);border-radius:100px;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);transition:all .3s}
-.artist-tag:hover{background:var(--accent);color:white}
+.artist-bio{color:var(--muted);font-size:1rem;line-height:1.7;margin-bottom:1.5rem}
+.artist-tags{display:flex;gap:.6rem;flex-wrap:wrap}
+.artist-tag{padding:.4rem 1rem;background:rgba(123,92,250,.15);border:1px solid var(--border);border-radius:100px;font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);transition:all .3s}
+.artist-tag:hover{border-color:var(--accent);color:var(--accent);background:rgba(123,92,250,.25)}
+
+/* ===== CTA SECTION ===== */
+.cta-artists{padding:6rem 0;border-top:1px solid var(--border);text-align:center;background:var(--surface2)}
+.cta-artists h2{font-size:clamp(2rem,5vw,3rem);margin-bottom:1rem;font-weight:800}
+.cta-artists p{color:var(--muted);max-width:600px;margin:0 auto 2.5rem auto;font-size:1.05rem;line-height:1.7}
 
 /* ===== RESPONSIVE ===== */
+@media(max-width:968px){
+  .artists-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+}
 @media(max-width:768px){
-  .artists-hero{padding:4rem 0 2rem}
-  .artists-hero h1{font-size:clamp(2rem,6vw,3rem)}
+  .artists-hero{padding:5rem 0 3rem}
+  .artists-hero h1{font-size:clamp(2.5rem,8vw,3.5rem)}
+  .artists-grid{grid-template-columns:1fr;gap:1.5rem}
+  .artist-info{padding:1.5rem}
+  .artist-name{font-size:1.8rem}
+  .artist-bio{font-size:.95rem}
 }
 </style>
 </head>
@@ -62,15 +82,15 @@
 <section class="artists-hero">
   <div class="container">
     <p class="section-label fade-up">// ROSTER</p>
-    <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,8vw,4.5rem);margin-bottom:1rem">El sonido de Terrivol Music.</h1>
-    <p class="fade-up delay-2" style="color:var(--muted);max-width:600px;margin:0 auto">Artistas y proyectos desarrollados, producidos y distribuidos por Terrivol Music.</p>
+    <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,8vw,4.5rem);margin-bottom:1rem;font-weight:800;line-height:1.1">El sonido de Terrivol Music.</h1>
+    <p class="fade-up delay-2" style="color:var(--muted);max-width:600px;margin:0 auto;font-size:1.1rem;line-height:1.7">Artistas y proyectos desarrollados, producidos y distribuidos por Terrivol Music.</p>
   </div>
 </section>
 
-<!-- LISTA DE ARTISTAS -->
-<section class="artists-list" style="padding:4rem 0">
+<!-- ARTISTAS GRID -->
+<section style="padding:5rem 0">
   <div class="container">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem">
+    <div class="artists-grid">
       
       <!-- Cagta Flex -->
       <a href="cagta-flex.html" class="artist-card fade-up">
@@ -78,9 +98,9 @@
           <img src="img/portfolio-cagta.png" alt="Cagta Flex">
         </div>
         <div class="artist-info">
-          <div class="artist-role">Artista Principal</div>
+          <span class="artist-role">Artista Principal</span>
           <h2 class="artist-name">Cagta Flex</h2>
-          <p class="artist-bio">Artista urbano y trap de Bogotá. Fundador de Terrivol Music.</p>
+          <p class="artist-bio">Artista urbano y trap de Bogotá. Fundador de Terrivol Music con +15 años en la escena independiente.</p>
           <div class="artist-tags">
             <span class="artist-tag">Urbano</span>
             <span class="artist-tag">Trap</span>
@@ -95,9 +115,9 @@
           <img src="img/portfolio-beats.png" alt="Beats BFYT">
         </div>
         <div class="artist-info">
-          <div class="artist-role">Canal de Beats</div>
+          <span class="artist-role">Canal de Beats</span>
           <h2 class="artist-name">Beats BFYT</h2>
-          <p class="artist-bio">Beats libres para YouTube. Urbano, trap y reggaetón.</p>
+          <p class="artist-bio">Beats libres para YouTube. Urbano, trap y reggaetón producidos con calidad profesional.</p>
           <div class="artist-tags">
             <span class="artist-tag">Beats</span>
             <span class="artist-tag">YouTube</span>
@@ -111,13 +131,13 @@
 </section>
 
 <!-- CTA -->
-<section style="padding:4rem 0;border-top:1px solid var(--border);text-align:center;background:var(--surface2)">
+<section class="cta-artists">
   <div class="container">
-    <h2 class="fade-up" style="font-size:clamp(1.5rem,4vw,2rem);margin-bottom:1rem">¿Eres artista y quieres trabajar con nosotros?</h2>
-    <p class="fade-up delay-1" style="color:var(--muted);max-width:500px;margin:0 auto 2rem auto">Cuéntanos sobre tu proyecto. Producción, distribución, estrategia o management — armamos un plan a tu medida.</p>
+    <h2 class="fade-up">¿Eres artista y quieres trabajar con nosotros?</h2>
+    <p class="fade-up delay-1">Cuéntanos sobre tu proyecto. Producción, distribución, estrategia o management — armamos un plan a tu medida.</p>
     <div class="fade-up delay-2" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-      <a href="contacto.html" class="btn-primary">Iniciar proyecto</a>
-      <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20soy%20artista%20y%20quiero%20trabajar%20con%20ustedes" target="_blank" class="btn-wa">💬 WhatsApp</a>
+      <a href="contacto.html" class="btn-primary" style="padding:1rem 2.5rem;font-size:1rem">Iniciar proyecto</a>
+      <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20soy%20artista%20y%20quiero%20trabajar%20con%20ustedes" target="_blank" class="btn-wa" style="padding:1rem 2.5rem;font-size:1rem">💬 WhatsApp</a>
     </div>
   </div>
 </section>
@@ -139,7 +159,6 @@
 </footer>
 
 <script>
-// ===== MENÚ MÓVIL =====
 function toggleMenu() {
   const nav = document.getElementById('navLinks');
   const btn = document.querySelector('.nav-mobile-btn');
@@ -148,28 +167,14 @@ function toggleMenu() {
     btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
   }
 }
-
-// ===== CURSOR =====
 document.addEventListener('mousemove', function(e) {
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
-  if (cursor) {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  }
-  if (ring) {
-    ring.style.left = (e.clientX - 16) + 'px';
-    ring.style.top = (e.clientY - 16) + 'px';
-  }
+  if (cursor) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; }
+  if (ring) { ring.style.left = (e.clientX - 16) + 'px'; ring.style.top = (e.clientY - 16) + 'px'; }
 });
-
-// ===== ANIMACIONES FADE-UP =====
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
