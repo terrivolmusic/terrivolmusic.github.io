@@ -1,54 +1,100 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cagta Flex — Terrivol Music</title>
 <link rel="stylesheet" href="style.css">
 <style>
+/* ===== HERO ARTISTA ===== */
 .artist-hero{min-height:90vh;display:flex;align-items:flex-end;padding:7rem 0 5rem;position:relative;overflow:hidden}
 .artist-hero-img{position:absolute;inset:0;z-index:0}
 .artist-hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.55}
 .artist-hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(3,3,10,.2) 0%,rgba(3,3,10,.5) 50%,rgba(3,3,10,1) 100%)}
 .artist-hero-content{position:relative;z-index:2}
 .artist-name{font-size:clamp(4rem,10vw,8rem);font-weight:800;line-height:.88;letter-spacing:-.03em;margin-bottom:1.2rem}
+
+/* ===== BIO SECTION ===== */
 .info-section{padding:6rem 0;display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start}
 .info-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:2rem}
 .info-stat{background:var(--bg);padding:1.5rem 1rem;text-align:center}
 .info-stat-num{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .info-stat-label{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.06em}
+
+/* ===== DISCOGRAPHY ===== */
 .releases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:3rem}
 .release-card{background:var(--surface);border:1px solid var(--border);padding:1.5rem;transition:all .3s;text-decoration:none;display:block;color:var(--text)}
 .release-card:hover{border-color:var(--accent);transform:translateY(-2px)}
 .release-type{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--accent);margin-bottom:.4rem}
 .release-title{font-size:.95rem;font-weight:700}
-@media(max-width:768px){.info-section{grid-template-columns:1fr;gap:3rem}.releases-grid{grid-template-columns:1fr}}
+
+/* ===== VIDEO SECTION ===== */
+.video-embed{aspect-ratio:16/9;background:var(--surface);border:1px solid var(--border);overflow:hidden;border-radius:2px}
+.video-embed iframe{width:100%;height:100%;border:none}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:968px){
+  .info-section{grid-template-columns:1fr;gap:3rem}
+  .releases-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .artist-hero{padding:5rem 0 3rem;align-items:center;text-align:center}
+  .artist-name{font-size:clamp(3rem,8vw,5rem)}
+  .artist-hero-content .fade-up{display:flex;flex-direction:column;align-items:center}
+  .info-section{padding:4rem 0}
+  .video-embed{grid-column:span 2}
+}
 </style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
-<canvas class="stars-canvas" id="starsCanvas"></canvas>
-<nav id="nav-placeholder"></nav>
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div>
+
+<!-- MENÚ ESTÁTICO (Rutas corregidas) -->
+<nav class="navbar">
+  <div class="nav-container container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Terrivol Music">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="artistas.html">Artistas</a>
+      <a href="tienda.html">Tienda</a>
+      <a href="contacto.html" class="nav-cta-mobile">💼 TRABAJEMOS</a>
+    </div>
+    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- HERO ARTISTA -->
 <section class="artist-hero">
-  <div class="artist-hero-img"><img src="../img/cagta-flex.jpg" alt="Cagta Flex"><div></div></div>
+  <div class="artist-hero-img">
+    <!-- RUTA CORREGIDA: sin ../ -->
+    <img src="img/portfolio-cagta.png" alt="Cagta Flex">
+  </div>
   <div class="container">
     <div class="artist-hero-content">
       <p class="section-label fade-up">// LEAD ARTIST · TERRIVOL MUSIC</p>
       <div class="artist-name fade-up delay-1">CAGTA<br><span style="color:var(--accent)">FLEX</span></div>
-      <div class="fade-up delay-2" style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem">
+      <div class="fade-up delay-2" style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem;justify-content:center">
         <span style="font-family:'Space Mono',monospace;font-size:.68rem;padding:.3rem .8rem;border:1px solid var(--border);color:var(--muted);border-radius:100px">URBAN</span>
         <span style="font-family:'Space Mono',monospace;font-size:.68rem;padding:.3rem .8rem;border:1px solid var(--border);color:var(--muted);border-radius:100px">TRAP</span>
         <span style="font-family:'Space Mono',monospace;font-size:.68rem;padding:.3rem .8rem;border:1px solid var(--border);color:var(--muted);border-radius:100px">REGGAETÓN</span>
         <span style="font-family:'Space Mono',monospace;font-size:.68rem;padding:.3rem .8rem;border:1px solid var(--border);color:var(--muted);border-radius:100px">BOGOTÁ · COLOMBIA</span>
       </div>
-      <div class="fade-up delay-3" style="display:flex;gap:1rem;flex-wrap:wrap">
+      <div class="fade-up delay-3" style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
         <a href="https://www.youtube.com/@CagtaFlex" target="_blank" class="btn-primary">Listen on YouTube</a>
-        <a href="../contacto.html" class="btn-ghost">Bookings & Collabs</a>
+        <a href="contacto.html" class="btn-ghost">Bookings & Collabs</a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- BIO -->
 <section style="padding:6rem 0">
   <div class="container">
     <div class="info-section" style="padding:0">
@@ -74,6 +120,7 @@
   </div>
 </section>
 
+<!-- DISCOGRAPHY -->
 <section style="padding:4rem 0;border-top:1px solid var(--border)">
   <div class="container">
     <p class="section-label fade-up">// DISCOGRAPHY</p>
@@ -87,11 +134,11 @@
         <div class="release-type">LATEST SINGLES</div>
         <div class="release-title">Latest Releases →</div>
       </a>
-      <a href="../contacto.html" class="release-card fade-up delay-3">
+      <a href="contacto.html" class="release-card fade-up delay-3">
         <div class="release-type">COMING SOON · 2025</div>
         <div class="release-title">New Project — Stay Tuned</div>
       </a>
-      <a href="../contacto.html" class="release-card fade-up delay-4">
+      <a href="contacto.html" class="release-card fade-up delay-4">
         <div class="release-type">COLLABORATIONS</div>
         <div class="release-title">Work with Cagta Flex →</div>
       </a>
@@ -99,30 +146,74 @@
   </div>
 </section>
 
+<!-- VIDEO -->
 <section style="padding:6rem 0;border-top:1px solid var(--border)">
   <div class="container">
     <p class="section-label fade-up">// VIDEO</p>
     <h2 class="fade-up delay-1">Watch.</h2>
     <div style="margin-top:2rem;display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;align-items:center" class="fade-up delay-2">
-      <div style="aspect-ratio:16/9;background:var(--surface);border:1px solid var(--border);overflow:hidden;border-radius:2px">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed?listType=user_uploads&list=CagtaFlex" allowfullscreen style="border:none"></iframe>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=CagtaFlex" allowfullscreen title="Cagta Flex YouTube"></iframe>
       </div>
       <div>
         <p style="color:var(--muted);line-height:1.75;margin-bottom:1.5rem;font-size:.95rem">Follow Cagta Flex on YouTube for all music videos, visualizers and exclusive content. New releases dropping regularly.</p>
         <a href="https://www.youtube.com/@CagtaFlex" target="_blank" class="btn-primary" style="display:block;text-align:center;margin-bottom:1rem">Full Channel →</a>
-        <a href="../contacto.html" class="btn-ghost" style="display:block;text-align:center">Booking & Press</a>
+        <a href="contacto.html" class="btn-ghost" style="display:block;text-align:center">Booking & Press</a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <a href="../index.html" class="footer-logo"><img src="../logo.png" alt="Terrivol Music"></a>
-    <div class="footer-links"><a href="../servicios.html">Services</a><a href="../artistas.html">Artists</a><a href="../contacto.html">Contact</a></div>
-    <div class="footer-copy">© 2025 TERRIVOL MUSIC</div>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+      <div class="footer-links">
+        <a href="servicios.html">Servicios</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="artistas.html">Artistas</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
+    </div>
   </div>
 </footer>
-<script src="main.js"></script>
-<script>document.getElementById('nav-placeholder').innerHTML=buildNavSub('artistas')</script>
-</body></html>
+
+<script>
+// ===== MENÚ MÓVIL =====
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  const btn = document.querySelector('.nav-mobile-btn');
+  if (nav && btn) {
+    nav.classList.toggle('open');
+    btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
+  }
+}
+
+// ===== CURSOR =====
+document.addEventListener('mousemove', function(e) {
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  if (cursor) {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  }
+  if (ring) {
+    ring.style.left = (e.clientX - 16) + 'px';
+    ring.style.top = (e.clientY - 16) + 'px';
+  }
+});
+
+// ===== ANIMACIONES FADE-UP =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
