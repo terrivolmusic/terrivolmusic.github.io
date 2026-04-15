@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clases de Producción Pro | Terrivol Music</title>
+<meta name="description" content="Mentorías personalizadas 1-a-1 en producción musical, mezcla y estrategia. Aprende con expertos del sello Terrivol Music.">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ===== HERO CLASES ===== */
+.classes-hero{min-height:70vh;display:flex;align-items:center;padding:8rem 0 5rem;position:relative;overflow:hidden}
+.classes-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(123,92,250,.25),transparent 60%);z-index:0}
+.classes-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,3,10,.9) 0%,rgba(3,3,10,.8) 50%,rgba(123,92,250,.15) 100%);z-index:0}
+.classes-hero .container{position:relative;z-index:1}
+.class-icon-large{width:80px;height:80px;margin-bottom:2rem;color:var(--accent)}
+
+/* ===== FEATURES GRID ===== */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin:4rem 0}
+.feature-card{padding:2rem;background:var(--surface);border:1px solid var(--border);border-radius:4px;transition:all .3s}
+.feature-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.feature-icon{width:48px;height:48px;margin-bottom:1rem;color:var(--accent2)}
+.feature-title{font-size:1.3rem;font-weight:700;margin-bottom:.8rem}
+.feature-desc{color:var(--muted);line-height:1.7;font-size:.95rem}
+
+/* ===== PRICING ===== */
+.pricing-section{padding:6rem 0;border-top:1px solid var(--border);background:var(--surface2)}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;margin:3rem 0}
+.pricing-card{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:2.5rem;transition:all .3s;position:relative}
+.pricing-card.featured{border-color:var(--accent);box-shadow:0 0 40px rgba(123,92,250,.2)}
+.pricing-card.featured::before{content:'MÁS POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:white;padding:.3rem 1rem;font-family:'Space Mono',monospace;font-size:.6rem;border-radius:100px}
+.pricing-name{font-size:1.5rem;font-weight:800;margin-bottom:.5rem}
+.pricing-price{font-size:2.5rem;font-weight:800;color:var(--accent2);margin-bottom:1.5rem}
+.pricing-price span{font-size:1rem;color:var(--muted);font-weight:400}
+.pricing-features{list-style:none;margin-bottom:2rem}
+.pricing-features li{padding:.5rem 0;color:var(--text);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem}
+.pricing-features li::before{content:'✓';color:var(--accent2);font-weight:700}
+
+/* ===== TESTIMONIAL ===== */
+.testimonial-box{max-width:800px;margin:4rem auto;text-align:center;padding:3rem;background:var(--surface);border:1px solid var(--border);border-radius:4px}
+.testimonial-text{font-size:1.2rem;line-height:1.8;color:var(--text);margin-bottom:1.5rem;font-style:italic}
+.testimonial-author{color:var(--accent);font-weight:700}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .classes-hero{padding:6rem 0 3rem;text-align:center}
+  .classes-hero h1{font-size:clamp(2.5rem,6vw,3.5rem)}
+  .features-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div>
+
+<!-- MENÚ ESTÁTICO -->
+<nav class="navbar">
+  <div class="nav-container container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Terrivol Music">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="artistas.html">Artistas</a>
+      <a href="tienda.html">Tienda</a>
+      <a href="contacto.html" class="nav-cta-mobile">💼 TRABAJEMOS</a>
+    </div>
+    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="classes-hero">
+  <div class="container">
+    <div style="max-width:800px;margin:0 auto;text-align:center">
+      <svg class="class-icon-large fade-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+        <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+      </svg>
+      <p class="section-label fade-up">// MENTORÍAS 1-A-1</p>
+      <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,6vw,4rem);margin-bottom:1rem;line-height:1.1">Clases de Producción<br><span style="color:var(--accent)">Profesional</span></h1>
+      <p class="fade-up delay-2" style="color:var(--muted);font-size:1.1rem;line-height:1.7">Aprende producción musical, mezcla y estrategia con expertos del sello. Mentorías personalizadas nivel intermedio/avanzado.</p>
+      <div class="fade-up delay-3" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem">
+        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20agendar%20una%20clase%20de%20producción" target="_blank" class="btn-primary">Agendar clase</a>
+        <a href="#planes" class="btn-ghost">Ver planes</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ APRENDERÁS -->
+<section style="padding:6rem 0">
+  <div class="container">
+    <p class="section-label fade-up" style="text-align:center">// QUÉ APRENDERÁS</p>
+    <h2 class="fade-up delay-1" style="text-align:center;margin-bottom:3rem;font-size:clamp(2rem,5vw,3rem)">Domina la producción musical</h2>
+    
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        </svg>
+        <h3 class="feature-title">Producción & Beatmaking</h3>
+        <p class="feature-desc">Crea beats profesionales desde cero. Técnicas de composición, arreglos, sound design y producción en FL Studio, Ableton o tu DAW preferido.</p>
+      </div>
+      
+      <div class="feature-card fade-up delay-1">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+        <h3 class="feature-title">Mezcla & Mastering</h3>
+        <p class="feature-desc">Ecualización, compresión, efectos y mastering profesional. Logra un sonido competitivo para Spotify y plataformas.</p>
+      </div>
+      
+      <div class="feature-card fade-up delay-2">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/>
+        </svg>
+        <h3 class="feature-title">Estrategia Musical</h3>
+        <p class="feature-desc">Lanzamientos, distribución, marketing y branding para artistas. Cómo crecer en la industria independiente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section id="planes" class="pricing-section">
+  <div class="container">
+    <p class="section-label fade-up" style="text-align:center">// INVERSIÓN</p>
+    <h2 class="fade-up delay-1" style="text-align:center;margin-bottom:1rem;font-size:clamp(2rem,5vw,3rem)">Elige tu plan</h2>
+    <p class="fade-up delay-2" style="text-align:center;color:var(--muted);max-width:600px;margin:0 auto 3rem auto">Clases 100% personalizadas según tu nivel y objetivos. Modalidad online o presencial en Bogotá.</p>
+    
+    <div class="pricing-grid">
+      <!-- Plan Básico -->
+      <div class="pricing-card fade-up">
+        <h3 class="pricing-name">Clase Individual</h3>
+        <div class="pricing-price">$150.000 <span>COP / sesión</span></div>
+        <ul class="pricing-features">
+          <li>1 hora de mentoría</li>
+          <li>Temática a elección</li>
+          <li>Grabación de la sesión</li>
+          <li>Material de apoyo</li>
+          <li>Soporte post-clase</li>
+        </ul>
+        <a href="https://wa.me/573102123844?text=Quiero%20agendar%20una%20clase%20individual" target="_blank" class="btn-ghost" style="display:block;text-align:center">Agendar →</a>
+      </div>
+      
+      <!-- Plan Pro (Destacado) -->
+      <div class="pricing-card featured fade-up delay-1">
+        <h3 class="pricing-name">Pack 5 Clases</h3>
+        <div class="pricing-price">$650.000 <span>COP</span></div>
+        <ul class="pricing-features">
+          <li>5 horas de mentoría</li>
+          <li>Plan personalizado</li>
+          <li>Grabación de sesiones</li>
+          <li>Material exclusivo</li>
+          <li>Revisión de proyectos</li>
+          <li>Soporte WhatsApp</li>
+          <li>10% de descuento</li>
+        </ul>
+        <a href="https://wa.me/573102123844?text=Quiero%20el%20pack%20de%205%20clases" target="_blank" class="btn-primary" style="display:block;text-align:center">Agendar pack →</a>
+      </div>
+      
+      <!-- Plan Mentoría -->
+      <div class="pricing-card fade-up delay-2">
+        <h3 class="pricing-name">Mentoría Mensual</h3>
+        <div class="pricing-price">$500.000 <span>COP / mes</span></div>
+        <ul class="pricing-features">
+          <li>4 clases al mes</li>
+          <li>Seguimiento continuo</li>
+          <li>Proyectos ilimitados</li>
+          <li>Asesoría estratégica</li>
+          <li>Acceso a recursos</li>
+          <li>Soporte prioritario</li>
+        </ul>
+        <a href="https://wa.me/573102123844?text=Quiero%20la%20mentoría%20mensual" target="_blank" class="btn-ghost" style="display:block;text-align:center">Aplicar →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section style="padding:6rem 0">
+  <div class="container">
+    <div class="testimonial-box fade-up">
+      <p class="testimonial-text">"Las clases con Terrivol Music cambiaron completamente mi forma de producir. En 3 meses pasé de hacer beats básicos a crear producciones que suenan profesionales. La mentoría es 100% práctica y te enseñan lo que realmente funciona en la industria."</p>
+      <div class="testimonial-author">— Productor Independiente, Bogotá</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section style="padding:6rem 0;border-top:1px solid var(--border);text-align:center;background:var(--surface2)">
+  <div class="container">
+    <h2 class="fade-up" style="font-size:clamp(2rem,5vw,3rem);margin-bottom:1rem">¿Listo para llevar tu producción al siguiente nivel?</h2>
+    <p class="fade-up delay-1" style="color:var(--muted);max-width:600px;margin:0 auto 2rem auto">Agenda tu primera clase hoy mismo. Cupos limitados.</p>
+    <div class="fade-up delay-2" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20agendar%20una%20clase%20de%20producción" target="_blank" class="btn-wa">💬 Escribir por WhatsApp</a>
+      <a href="contacto.html" class="btn-primary">Enviar mensaje</a>
+    </div>
+    <p class="fade-up delay-3" style="margin-top:2rem;font-family:'Space Mono',monospace;font-size:.75rem;color:var(--muted)">📍 Online o presencial en Bogotá · ⚡ Respuesta en menos de 24h</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+      <div class="footer-links">
+        <a href="servicios.html">Servicios</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="artistas.html">Artistas</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  const btn = document.querySelector('.nav-mobile-btn');
+  if (nav && btn) {
+    nav.classList.toggle('open');
+    btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
+  }
+}
+document.addEventListener('mousemove', function(e) {
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  if (cursor) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; }
+  if (ring) { ring.style.left = (e.clientX - 16) + 'px'; ring.style.top = (e.clientY - 16) + 'px'; }
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
