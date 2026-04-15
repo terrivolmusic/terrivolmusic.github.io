@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Beats BFYT — Terrivol Music</title>
 <link rel="stylesheet" href="style.css">
 <style>
+/* ===== HERO BEATS ===== */
 .beats-hero{min-height:80vh;display:flex;align-items:flex-end;padding:7rem 0 5rem;position:relative;overflow:hidden}
 .beats-hero-bg{position:absolute;inset:0;z-index:0}
 .beats-hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.4}
 .beats-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(3,3,10,.3),rgba(3,3,10,1))}
+
+/* ===== BEATS GRID ===== */
 .beats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:3rem}
 .beat-card{background:var(--bg);padding:1.8rem;transition:all .3s;cursor:pointer}
 .beat-card:hover{background:var(--surface);border-color:var(--accent2)}
@@ -17,22 +21,56 @@
 .beat-genre{font-size:.8rem;color:var(--muted);margin-bottom:1rem}
 .beat-link{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--accent);text-decoration:none;transition:color .2s}
 .beat-link:hover{color:var(--accent2)}
+
+/* ===== CTA GRID ===== */
 .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
 .cta-card{padding:2.5rem;border:1px solid var(--border);background:var(--surface);transition:all .3s;text-decoration:none;display:block;color:var(--text)}
 .cta-card:hover{border-color:var(--accent2);transform:translateY(-3px)}
 .cta-card-label{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent2);margin-bottom:.8rem;letter-spacing:.08em}
 .cta-card-title{font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
 .cta-card-desc{font-size:.85rem;color:var(--muted);line-height:1.6}
-@media(max-width:768px){.beats-grid{grid-template-columns:1fr}.cta-grid{grid-template-columns:1fr}}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:968px){
+  .beats-grid{grid-template-columns:1fr}
+  .cta-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .beats-hero{padding:5rem 0 3rem;align-items:center;text-align:center}
+  .beats-hero h1{font-size:clamp(3rem,8vw,5rem)}
+  .beats-hero .fade-up{display:flex;flex-direction:column;align-items:center}
+}
 </style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
-<canvas class="stars-canvas" id="starsCanvas"></canvas>
-<nav id="nav-placeholder"></nav>
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div>
+
+<!-- MENÚ ESTÁTICO -->
+<nav class="navbar">
+  <div class="nav-container container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Terrivol Music">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="artistas.html" class="active">Artistas</a>
+      <a href="tienda.html">Tienda</a>
+      <a href="contacto.html" class="nav-cta-mobile">💼 TRABAJEMOS</a>
+    </div>
+    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
 <section class="beats-hero">
-  <div class="beats-hero-bg"><img src="../img/beats-bfyt-logo.jpg" alt="Beats BFYT"><div></div></div>
+  <div class="beats-hero-bg">
+    <img src="img/portfolio-beats.png" alt="Beats BFYT">
+  </div>
   <div class="container">
     <div style="position:relative;z-index:2;max-width:700px">
       <p class="section-label fade-up">// BEATS CHANNEL · TERRIVOL MUSIC</p>
@@ -46,14 +84,30 @@
   </div>
 </section>
 
+<!-- CATALOG -->
 <section style="padding:6rem 0">
   <div class="container">
     <p class="section-label fade-up">// CATALOG</p>
     <h2 class="fade-up delay-1">Find your beat.</h2>
     <div class="beats-grid">
-      <div class="beat-card fade-up"><div class="beat-bpm">URBAN · ~90 BPM</div><div class="beat-title">Urban Beats</div><div class="beat-genre">Reggaeton · Latin Urban</div><a href="https://www.youtube.com/BeatsFreeYoutube" target="_blank" class="beat-link">▶ Play on YouTube →</a></div>
-      <div class="beat-card fade-up delay-1"><div class="beat-bpm">TRAP · ~140 BPM</div><div class="beat-title">Trap Beats</div><div class="beat-genre">Trap · Hip-Hop · Dark</div><a href="https://www.youtube.com/BeatsFreeYoutube" target="_blank" class="beat-link">▶ Play on YouTube →</a></div>
-      <div class="beat-card fade-up delay-2"><div class="beat-bpm">MIXED · VARIOUS BPM</div><div class="beat-title">Mixed Catalog</div><div class="beat-genre">Multiple genres & moods</div><a href="https://www.youtube.com/BeatsFreeYoutube" target="_blank" class="beat-link">▶ Play on YouTube →</a></div>
+      <div class="beat-card fade-up">
+        <div class="beat-bpm">URBAN · ~90 BPM</div>
+        <div class="beat-title">Urban Beats</div>
+        <div class="beat-genre">Reggaeton · Latin Urban</div>
+        <a href="https://www.youtube.com/BeatsFreeYoutube" target="_blank" class="beat-link">▶ Play on YouTube →</a>
+      </div>
+      <div class="beat-card fade-up delay-1">
+        <div class="beat-bpm">TRAP · ~140 BPM</div>
+        <div class="beat-title">Trap Beats</div>
+        <div class="beat-genre">Trap · Hip-Hop · Dark</div>
+        <a href="https://www.youtube.com/BeatsFreeYoutube" target="_blank" class="beat-link">▶ Play on YouTube →</a>
+      </div>
+      <div class="beat-card fade-up delay-2">
+        <div class="beat-bpm">MIXED · VARIOUS BPM</div>
+        <div class="beat-title">Mixed Catalog</div>
+        <div class="beat-genre">Multiple genres & moods</div>
+        <a href="https://www.youtube.com/BeatsFreeYoutube" target="_blank" class="beat-link">▶ Play on YouTube →</a>
+      </div>
     </div>
     <div style="text-align:center;margin-top:3rem" class="fade-up">
       <a href="https://www.youtube.com/BeatsFreeYoutube" target="_blank" class="btn-primary">Full Beat Catalog →</a>
@@ -61,6 +115,7 @@
   </div>
 </section>
 
+<!-- GET YOUR BEAT -->
 <section style="padding:5rem 0;border-top:1px solid var(--border)">
   <div class="container">
     <p class="section-label fade-up">// GET YOUR BEAT</p>
@@ -82,6 +137,7 @@
   </div>
 </section>
 
+<!-- CUSTOM BEATS -->
 <section style="padding:5rem 0;border-top:1px solid var(--border);text-align:center">
   <div class="container">
     <h2 style="font-size:1.8rem;margin-bottom:.8rem" class="fade-up">Need a custom beat?</h2>
@@ -91,12 +147,54 @@
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <a href="../index.html" class="footer-logo"><img src="../logo.png" alt="Terrivol Music"></a>
-    <div class="footer-links"><a href="../servicios.html">Services</a><a href="https://beats-bfyt-shop.fourthwall.com" target="_blank">Beat Store</a><a href="../contacto.html">Contact</a></div>
-    <div class="footer-copy">© 2025 TERRIVOL MUSIC</div>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+      <div class="footer-links">
+        <a href="servicios.html">Servicios</a>
+        <a href="https://beats-bfyt-shop.fourthwall.com" target="_blank">Beat Store</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
+    </div>
   </div>
 </footer>
-<script src="main.js"></script>
-<script>document.getElementById('nav-placeholder').innerHTML=buildNavSub('artistas')</script>
-</body></html>
+
+<script>
+// ===== MENÚ MÓVIL =====
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  const btn = document.querySelector('.nav-mobile-btn');
+  if (nav && btn) {
+    nav.classList.toggle('open');
+    btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
+  }
+}
+
+// ===== CURSOR =====
+document.addEventListener('mousemove', function(e) {
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  if (cursor) {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  }
+  if (ring) {
+    ring.style.left = (e.clientX - 16) + 'px';
+    ring.style.top = (e.clientY - 16) + 'px';
+  }
+});
+
+// ===== ANIMACIONES FADE-UP =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
