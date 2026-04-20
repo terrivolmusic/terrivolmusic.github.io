@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar - EL MEJOR | Cagta Flex</title>
+    <meta name="description" content="Elige tu método de pago para descargar EL MEJOR en máxima calidad">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--burgundy:#6B0000;--gold:#D4AF37;--black:#0a0a0a;--white:#fff}
+        body{font-family:'Syne',sans-serif;background:var(--black);color:var(--white);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;position:relative}
+        .particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+        .particle{position:absolute;width:4px;height:4px;background:var(--gold);border-radius:50%;opacity:0;animation:float 10s infinite;box-shadow:0 0 10px var(--gold)}
+        @keyframes float{0%{opacity:0;transform:translateY(100vh) scale(0)}10%{opacity:1}90%{opacity:1}100%{opacity:0;transform:translateY(-100vh) scale(1.5)}}
+        .container{max-width:900px;width:100%;position:relative;z-index:1}
+        .header{text-align:center;margin-bottom:3rem}
+        .title{font-size:clamp(2rem,6vw,3rem);font-weight:800;background:linear-gradient(135deg,var(--white),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.5rem}
+        .subtitle{font-size:1.1rem;color:rgba(255,255,255,0.7);margin-bottom:2rem}
+        .payment-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-bottom:2rem}
+        .payment-card{background:rgba(255,255,255,0.03);border:2px solid rgba(212,175,55,0.3);border-radius:16px;padding:2.5rem 2rem;text-align:left;transition:all 0.3s ease;position:relative;overflow:hidden}
+        .payment-card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 20px 40px rgba(212,175,55,0.2)}
+        .card-icon{font-size:3rem;margin-bottom:1rem;text-align:center}
+        .card-title{font-size:1.5rem;font-weight:700;color:var(--gold);margin-bottom:1rem;text-align:center}
+        .card-price{font-size:2rem;font-weight:800;color:var(--white);margin-bottom:1.5rem;text-align:center}
+        .card-features{list-style:none;margin-bottom:2rem}
+        .card-features li{padding:0.5rem 0;color:rgba(255,255,255,0.8);display:flex;align-items:center;gap:0.5rem}
+        .card-features li::before{content:'✓';color:var(--gold);font-weight:700}
+        .buy-btn{display:inline-block;width:100%;padding:1rem 2rem;background:linear-gradient(135deg,var(--burgundy),var(--gold));color:var(--white);text-decoration:none;font-weight:700;font-size:1.1rem;border-radius:8px;border:2px solid var(--gold);transition:all 0.3s ease;text-transform:uppercase;letter-spacing:1px;text-align:center}
+        .buy-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(212,175,55,0.4)}
+        .buy-btn.nequi{background:linear-gradient(135deg,#9C27B0,#E91E63);border-color:#9C27B0}
+        .badge{display:inline-block;padding:0.3rem 0.8rem;background:rgba(212,175,55,0.2);border:1px solid var(--gold);border-radius:20px;font-size:0.75rem;font-weight:700;color:var(--gold);margin-bottom:1rem;text-transform:uppercase;letter-spacing:1px}
+        .badge.nequi{background:rgba(156,39,176,0.2);border-color:#9C27B0;color:#E91E63}
+        .back-link{text-align:center;margin-top:2rem}
+        .back-link a{color:var(--gold);text-decoration:none;font-size:0.9rem;opacity:0.7}
+        .back-link a:hover{opacity:1}
+        @media(max-width:640px){.payment-options{grid-template-columns:1fr}.payment-card{padding:2rem 1.5rem}}
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">EL MEJOR</h1>
+            <p class="subtitle">Elige tu método de pago</p>
+        </div>
+        <div class="payment-options">
+            <!-- FOURTHWALL -->
+            <div class="payment-card">
+                <div class="card-icon">🌍</div>
+                <span class="badge">Internacional</span>
+                <h2 class="card-title">TIENDA ONLINE</h2>
+                <div class="card-price">$2.99 USD</div>
+                <ul class="card-features">
+                    <li>Tarjeta o PayPal</li>
+                    <li>Entrega automática</li>
+                    <li>WAV + MP3 320kbps</li>
+                    <li>Metadata completa</li>
+                </ul>
+                <a href="https://cagta-flex-shop.fourthwall.com/products/el-mejor" target="_blank" class="buy-btn">Comprar Ahora</a>
+            </div>
+            <!-- NEQUI -->
+            <div class="payment-card">
+                <div class="card-icon">🇨🇴</div>
+                <span class="badge nequi">Solo Colombia</span>
+                <h2 class="card-title">NEQUI</h2>
+                <div class="card-price">$10,000 COP</div>
+                <ul class="card-features">
+                    <li>Sin comisiones</li>
+                    <li>Pago inmediato</li>
+                    <li>WAV + MP3 320kbps</li>
+                    <li>WhatsApp directo</li>
+                </ul>
+                <a href="https://wa.me/573102123844?text=Hola!%20Quiero%20comprar%20EL%20MEJOR%20por%20Nequi%20(%2410,000%20COP).%20Mi%20número%20es:" target="_blank" class="buy-btn nequi">Comprar por Nequi</a>
+            </div>
+        </div>
+        <div class="back-link"><a href="index.html">← Volver</a></div>
+    </div>
+    <script>
+        function createParticles(){const c=document.getElementById('particles');for(let i=0;i<50;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.animationDelay=Math.random()*10+'s';p.style.animationDuration=(Math.random()*10+10)+'s';c.appendChild(p)}}createParticles();
+    </script>
+</body>
+</html>
