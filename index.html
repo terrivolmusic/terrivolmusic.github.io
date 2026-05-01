@@ -1,226 +1,668 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CO">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terrivol Music | Sello Discográfico & Servicios Musicales</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrivol Music | Distribución y Producción Musical Profesional - Bogotá, Colombia</title>
+    <meta name="description" content="Sello discográfico independiente en Bogotá. Distribución digital a +150 plataformas, producción musical, masterización y beats. +15 años de experiencia.">
+    <meta name="keywords" content="distribución musical, producción musical, masterización, beats, sello discográfico, Bogotá, Colombia, música independiente, trap, reggaeton">
+    <meta name="author" content="Terrivol Music">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://terrivolmusic.github.io/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://terrivolmusic.github.io/">
+    <meta property="og:title" content="Terrivol Music | Tu música merece infraestructura profesional">
+    <meta property="og:description" content="Sello discográfico independiente. Distribución, producción y masterización profesional. +15 años de experiencia.">
+    <meta property="og:image" content="https://terrivolmusic.github.io/img/og-image.jpg">
+    <meta property="og:locale" content="es_CO">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://terrivolmusic.github.io/">
+    <meta property="twitter:title" content="Terrivol Music | Producción y Distribución Musical">
+    <meta property="twitter:description" content="Sello discográfico independiente. Distribución, producción y masterización profesional.">
+    <meta property="twitter:image" content="https://terrivolmusic.github.io/img/og-image.jpg">
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicGroup",
+        "name": "Terrivol Music",
+        "description": "Sello discográfico independiente especializado en distribución y producción musical",
+        "url": "https://terrivolmusic.github.io",
+        "logo": "https://terrivolmusic.github.io/img/logo.png",
+        "founder": {
+            "@type": "Person",
+            "name": "Cagta Flex"
+        },
+        "foundingDate": "2009",
+        "location": {
+            "@type": "Place",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Bogotá",
+                "addressCountry": "CO"
+            }
+        },
+        "sameAs": [
+            "https://www.instagram.com/terrivolmusic",
+            "https://www.youtube.com/@CagtaFlex",
+            "https://open.spotify.com/artist/cagtaflex"
+        ]
+    }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --burgundy: #6B0000;
+            --gold: #D4AF37;
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray: #1a1a1a;
+            --light-gray: #2a2a2a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--white), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+        
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--gold);
+            transition: 0.3s;
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--black) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gold);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--burgundy), var(--gold));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--gold);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 5rem 5%;
+            background: var(--gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        
+        .service-card p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Features */
+        .features {
+            padding: 3rem 5%;
+            background: var(--black);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--black) 100%);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--gray);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--gold);
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: flex;
+            }
+            
+            .hero {
+                margin-top: 60px;
+                padding: 3rem 5%;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .services, .features, .cta {
+                padding: 3rem 5%;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-content > * {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
 </head>
 <body>
-
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="stars" id="stars"></div>
-
-<!-- MENÚ INTEGRADO EN HTML (NO DEPENDE DE JS) -->
-<nav class="navbar">
-  <div class="nav-container container">
-    <a href="index.html" class="nav-logo">
-      <img src="logo.png" alt="Terrivol Music">
-    </a>
-    <div class="nav-links" id="navLinks">
-      <a href="index.html" class="active">Inicio</a>
-      <a href="servicios.html">Servicios</a>
-      <a href="portafolio.html">Portafolio</a>
-      <a href="artistas.html">Artistas</a>
-      <a href="tienda.html">Tienda</a>
-      <a href="contacto.html" class="nav-cta-mobile">💼 TRABAJEMOS</a>
-    </div>
-    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge fade-up">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        SELLO INDEPENDIENTE · BOGOTÁ, COLOMBIA
-      </div>
-      <h1 class="hero-title fade-up delay-1">Tu música merece<br><span>infraestructura profesional</span></h1>
-      <p class="hero-subtitle fade-up delay-2">Terrivol Music es el aliado estratégico para artistas independientes que buscan competir a nivel global.</p>
-      <div class="hero-stats fade-up delay-3">
-        <div><div class="stat-number">+400</div><div class="stat-label">Lanzamientos</div></div>
-        <div><div class="stat-number">+15</div><div class="stat-label">Años experiencia</div></div>
-        <div><div class="stat-number">100%</div><div class="stat-label">Independiente</div></div>
-      </div>
-      <div class="hero-cta fade-up delay-4">
-        <a href="servicios.html" class="btn-primary">Explorar servicios</a>
-        <a href="contacto.html" class="btn-ghost">Cotizar proyecto</a>
-      </div>
-      <div class="hero-trust fade-up delay-5">
-        <div class="trust-badge">+150 plataformas</div>
-        <div class="trust-badge">Derechos protegidos</div>
-        <div class="trust-badge">Respuesta en 24h</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICIOS -->
-<section class="services">
-  <div class="container">
-    <p class="section-label">// LO QUE HACEMOS</p>
-    <h2>Servicios Musicales Profesionales</h2>
-    <div class="services-grid">
-      <a href="servicios.html#produccion" class="service-card fade-up">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-        <h3 class="service-title">Producción Musical</h3>
-        <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio.</p>
-        <span class="service-link">Cotizar ahora →</span>
-      </a>
-      <a href="servicios.html#distribucion" class="service-card fade-up delay-1">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
-        <h3 class="service-title">Distribución Digital</h3>
-        <p class="service-desc">Lleva tu música a Spotify, Apple Music y +150 plataformas.</p>
-        <span class="service-link">Cotizar ahora →</span>
-      </a>
-      <a href="tienda.html" class="service-card fade-up delay-2">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        <h3 class="service-title">Beats & Licencias</h3>
-        <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles.</p>
-        <span class="service-link">Explorar beats →</span>
-      </a>
-      <a href="servicios.html#clases" class="service-card fade-up">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        <h3 class="service-title">Clases de Producción Pro</h3>
-        <p class="service-desc">Mentorías 1-a-1 con expertos del sello.</p>
-        <span class="service-link">Agendar clase →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- PORTAFOLIO -->
-<section class="portfolio-featured">
-  <div class="container">
-    <p class="section-label" style="text-align:center">// PORTAFOLIO</p>
-    <h2 style="text-align:center;margin-bottom:1rem">Proyectos Destacados</h2>
-    <div class="portfolio-grid">
-      <a href="artistas/cagta-flex.html" class="portfolio-card large fade-up">
-        <div class="p-thumb"><img src="img/portfolio-cagta.png" alt="Cagta Flex"></div>
-        <div class="p-info">
-          <div class="p-type">Artista Principal</div>
-          <div class="p-title">Cagta Flex</div>
-          <div class="p-sub">Fundador de Terrivol Music. +15 años en la escena independiente.</div>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">TERRIVOL MUSIC</a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-      </a>
-      <a href="https://beats-bfyt-shop.fourthwall.com" target="_blank" class="portfolio-card fade-up delay-1">
-        <div class="p-thumb"><img src="img/portfolio-beats.png" alt="Beats BFYT"></div>
-        <div class="p-info">
-          <div class="p-type">Productor Musical</div>
-          <div class="p-title">Beats BFYT</div>
-          <div class="p-sub">Beats exclusivos de trap oscuro y elegante.</div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Tu música merece infraestructura profesional</h1>
+            <p>Sello independiente en Bogotá. Distribución, producción y masterización de clase mundial.</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">+400</span>
+                    <div class="stat-label">Lanzamientos</div>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">+15</span>
+                    <div class="stat-label">Años experiencia</div>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <div class="stat-label">Independiente</div>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">+150</span>
+                    <div class="stat-label">Plataformas</div>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="servicios.html" class="btn">Explorar servicios</a>
+                <a href="https://wa.me/573102123844" class="btn btn-outline" target="_blank">Cotizar proyecto</a>
+            </div>
         </div>
-      </a>
-      <a href="servicios.html#mastering" class="portfolio-card fade-up delay-2">
-        <div class="p-thumb"><img src="img/portfolio-mastering (2).png" alt="Masterización"></div>
-        <div class="p-info">
-          <div class="p-type">Servicio</div>
-          <div class="p-title">Masterización</div>
-          <div class="p-sub">Proyectos masterizados para artistas de Colombia y LATAM.</div>
+    </section>
+    
+    <!-- Features -->
+    <section class="features">
+        <div class="feature">
+            <div class="feature-icon">🎵</div>
+            <h4>+150 Plataformas</h4>
+            <p>Distribución global</p>
         </div>
-      </a>
-      <a href="servicios.html#audiovisual" class="portfolio-card fade-up">
-        <div class="p-thumb"><img src="img/portfolio-videoclips.png" alt="Videoclips"></div>
-        <div class="p-info">
-          <div class="p-type">Producción</div>
-          <div class="p-title">Videoclips</div>
-          <div class="p-sub">Contenido audiovisual profesional para artistas.</div>
+        <div class="feature">
+            <div class="feature-icon">🛡️</div>
+            <h4>Derechos Protegidos</h4>
+            <p>Tu música segura</p>
         </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIOS -->
-<section class="testimonials">
-  <div class="container">
-    <p class="section-label" style="text-align:center">// TESTIMONIOS</p>
-    <h2 style="text-align:center;margin-bottom:1rem">Lo que dicen nuestros artistas</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card fade-up">
-        <p class="testimonial-text">Terrivol Music transformó completamente mi sonido.</p>
-        <div class="testimonial-author">Artista Independiente</div>
-        <div class="testimonial-role">Bogotá, Colombia</div>
-      </div>
-      <div class="testimonial-card fade-up delay-1">
-        <p class="testimonial-text">Profesionales, comprometidos y con una visión clara.</p>
-        <div class="testimonial-author">Productor Musical</div>
-        <div class="testimonial-role">LATAM</div>
-      </div>
-      <div class="testimonial-card fade-up delay-2">
-        <p class="testimonial-text">El equipo de Terrivol entiende perfectamente el trap.</p>
-        <div class="testimonial-author">MC / Cantante</div>
-        <div class="testimonial-role">Colombia</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-box fade-up">
-      <p class="section-label" style="justify-content:center;display:flex">// EMPECEMOS</p>
-      <h2 class="cta-title">¿Listo para llevar tu música al siguiente nivel?</h2>
-      <p class="cta-desc">En Terrivol Music combinamos experiencia, calidad y pasión.</p>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="btn-wa">💬 WhatsApp</a>
-        <a href="contacto.html" class="btn-primary">Enviar Propuesta</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
-      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
-    </div>
-  </div>
-</footer>
-
-<script>
-// Menú móvil simple y robusto
-function toggleMenu() {
-  const nav = document.getElementById('navLinks');
-  const btn = document.querySelector('.nav-mobile-btn');
-  if (nav && btn) {
-    nav.classList.toggle('open');
-    btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
-  }
-}
-
-// Cursor simple
-document.addEventListener('mousemove', function(e) {
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  if (cursor) {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  }
-  if (ring) {
-    ring.style.left = (e.clientX - 16) + 'px';
-    ring.style.top = (e.clientY - 16) + 'px';
-  }
-});
-
-// Animaciones simples
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
-
+        <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h4>Respuesta 24h</h4>
+            <p>Soporte rápido</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🎧</div>
+            <h4>Calidad Studio</h4>
+            <p>Producción pro</p>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services">
+        <div class="section-title">
+            <h2>Servicios Musicales Profesionales</h2>
+            <p>Todo lo que necesitas para llevar tu carrera musical al siguiente nivel</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>🎙️ Producción Musical</h3>
+                <p>Grabación, mezcla y masterización con calidad de estudio profesional. Equipos de última generación.</p>
+                <a href="servicios.html#produccion" class="service-link">Ver más →</a>
+            </div>
+            
+            <div class="service-card">
+                <h3>📀 Distribución Digital</h3>
+                <p>Lleva tu música a Spotify, Apple Music, YouTube Music y +150 plataformas worldwide.</p>
+                <a href="servicios.html#distribucion" class="service-link">Ver más →</a>
+            </div>
+            
+            <div class="service-card">
+                <h3>🎹 Beats & Licencias</h3>
+                <p>Catálogo exclusivo de beats de trap oscuro y elegante. Licencias flexibles para todos los niveles.</p>
+                <a href="servicios.html#beats" class="service-link">Explorar beats →</a>
+            </div>
+            
+            <div class="service-card">
+                <h3>🎓 Clases de Producción</h3>
+                <p>Mentorías 1-a-1 con expertos del sello. Aprende producción, mezcla y masterización.</p>
+                <a href="servicios.html#clases" class="service-link">Agendar clase →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta" id="contacto">
+        <h2>¿Listo para llevar tu música al siguiente nivel?</h2>
+        <p>En Terrivol Music combinamos experiencia, calidad y pasión por la música.</p>
+        <div class="cta-buttons" style="justify-content: center;">
+            <a href="https://wa.me/573102123844" class="btn" target="_blank">💬 WhatsApp</a>
+            <a href="mailto:terrivolmusiclove@gmail.com" class="btn btn-outline">Enviar Propuesta</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://instagram.com/terrivolmusic" target="_blank" title="Instagram">📷</a>
+                <a href="https://youtube.com/@CagtaFlex" target="_blank" title="YouTube">▶️</a>
+                <a href="https://open.spotify.com/artist/cagtaflex" target="_blank" title="Spotify">🎵</a>
+                <a href="https://tiktok.com/@cagtaflex" target="_blank" title="TikTok">🎵</a>
+            </div>
+            <p>&copy; 2024 Terrivol Music. Todos los derechos reservados.</p>
+            <p style="margin-top: 0.5rem;">Bogotá, Colombia | terrivolmusiclove@gmail.com</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'rgba(10, 10, 10, 0.98)';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.padding = '2rem';
+            navLinks.style.gap = '1rem';
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
