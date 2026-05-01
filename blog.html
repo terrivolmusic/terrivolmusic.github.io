@@ -1,181 +1,334 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CO">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog | Terrivol Music</title>
-<meta name="description" content="Artículos, guías y consejos sobre la industria musical. Producción, distribución, marketing y más.">
-<link rel="stylesheet" href="style.css">
-<style>
-.blog-hero{padding:8rem 0 4rem;text-align:center}
-.blog-hero h1{font-size:clamp(2rem,6vw,3.5rem);margin-bottom:1rem}
-.blog-hero p{color:var(--muted);max-width:600px;margin:0 auto}
-.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;margin:4rem 0}
-.blog-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .3s;text-decoration:none;color:var(--text);display:block}
-.blog-card:hover{transform:translateY(-8px);border-color:var(--accent)}
-.blog-cover{aspect-ratio:16/9;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(123,92,250,.2),rgba(255,60,172,.15))}
-.blog-icon{width:80px;height:80px;color:var(--accent);opacity:.8}
-.blog-category{padding:1.5rem 1.5rem 0}
-.blog-cat-label{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:.1em}
-.blog-title{font-size:1.2rem;font-weight:700;margin:.5rem 0 1rem;line-height:1.4}
-.blog-excerpt{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:1.5rem}
-.blog-footer{padding:0 1.5rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
-.blog-read{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--accent2);text-decoration:none;display:flex;align-items:center;gap:.3rem;transition:gap .3s}
-.blog-read:hover{gap:.6rem}
-.blog-date{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--muted)}
-.featured-post{grid-column:1/-1;display:grid;grid-template-columns:1.5fr 1fr;gap:3rem;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:2rem}
-.featured-cover{aspect-ratio:16/9;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(123,92,250,.3),rgba(255,60,172,.2))}
-.featured-icon{width:120px;height:120px;color:var(--accent)}
-.featured-content{padding:3rem}
-.featured-category{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem}
-.featured-title{font-size:2rem;font-weight:800;margin-bottom:1rem;line-height:1.2}
-.featured-excerpt{color:var(--muted);line-height:1.7;margin-bottom:2rem}
-@media(max-width:768px){.blog-grid{grid-template-columns:1fr}.featured-post{grid-template-columns:1fr}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Musical | Consejos, Tutoriales y Noticias - Terrivol Music</title>
+    <meta name="description" content="Blog de música: tutoriales de producción, consejos para artistas independientes, tendencias del trap y reggaeton, marketing musical.">
+    <meta name="keywords" content="blog música, tutoriales producción, consejos artistas, trap, reggaeton, marketing musical, SEO música">
+    <link rel="canonical" href="https://terrivolmusic.github.io/blog.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://terrivolmusic.github.io/blog.html">
+    <meta property="og:title" content="Blog Musical - Terrivol Music">
+    <meta property="og:description" content="Tutoriales, consejos y noticias sobre producción musical y carrera artística">
+    <meta property="og:image" content="https://terrivolmusic.github.io/img/og-image.jpg">
+    
+    <!-- Schema.org for Blog -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Terrivol Music Blog",
+        "description": "Blog de producción musical y consejos para artistas independientes",
+        "url": "https://terrivolmusic.github.io/blog.html",
+        "publisher": {
+            "@type": "MusicGroup",
+            "name": "Terrivol Music"
+        }
+    }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --burgundy: #6B0000;
+            --gold: #D4AF37;
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray: #1a1a1a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Syne', sans-serif;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--white), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--black) 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        
+        .blog-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 5%;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .blog-card {
+            background: var(--gray);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--burgundy), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-meta {
+            font-size: 0.85rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        
+        .blog-card p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        .read-more {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .categories {
+            background: var(--gray);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+        
+        .categories h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .category-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .category-tag {
+            background: rgba(212, 175, 55, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--gold);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-tag:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        footer {
+            background: var(--gray);
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                margin-top: 60px;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="stars" id="stars"></div>
-<div class="nebula nebula-1"></div>
-<div class="nebula nebula-3"></div>
-<nav id="nav-placeholder"></nav>
-
-<section class="blog-hero">
-  <div class="container">
-    <p class="section-label">// BLOG</p>
-    <h1>Recursos para artistas</h1>
-    <p>Guías, consejos y todo lo que necesitas saber sobre la industria musical.</p>
-  </div>
-</section>
-
-<section class="blog">
-  <div class="container">
-    <!-- Featured Post -->
-    <a href="#" class="featured-post fade-up">
-      <div class="featured-cover">
-        <svg class="featured-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
-      </div>
-      <div class="featured-content">
-        <div class="featured-category">Distribución</div>
-        <h2 class="featured-title">Cómo distribuir tu música en Colombia en 2025: guía completa</h2>
-        <p class="featured-excerpt">DistroKid, TuneCore, Amuse, CD Baby — te comparamos todas las opciones con sus costos reales y lo que te conviene según tu carrera.</p>
-        <span class="blog-read">Leer artículo →</span>
-      </div>
-    </a>
-
-    <div class="blog-grid">
-      <!-- Masterización -->
-      <a href="#" class="blog-card fade-up">
-        <div class="blog-cover">
-          <svg class="blog-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3v3z"/><path d="M3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3v3z"/></svg>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">TERRIVOL MUSIC</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="#blog">Blog</a></li>
+            </ul>
         </div>
-        <div class="blog-category">
-          <div class="blog-cat-label">Masterización</div>
+    </nav>
+    
+    <section class="hero">
+        <h1>Blog Musical</h1>
+        <p>Tutoriales, consejos y noticias para artistas independientes</p>
+    </section>
+    
+    <div class="blog-container">
+        <div class="categories">
+            <h3>Categorías</h3>
+            <div class="category-list">
+                <span class="category-tag">🎙️ Producción</span>
+                <span class="category-tag">📈 Marketing</span>
+                <span class="category-tag">🎵 Distribución</span>
+                <span class="category-tag">🎹 Beats</span>
+                <span class="category-tag">💡 Consejos</span>
+                <span class="category-tag">🔥 Tendencias</span>
+            </div>
         </div>
-        <div class="blog-title">Cómo masterizar para Spotify: LUFS, loudness y lo que realmente importa</div>
-        <div class="blog-excerpt">Spotify normaliza el audio a -14 LUFS. Si tu master no está preparado para esto, tu canción puede sonar más débil que la competencia.</div>
-        <div class="blog-footer">
-          <span class="blog-read">Leer →</span>
-          <span class="blog-date">5 min</span>
+        
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-image">🎙️</div>
+                <div class="blog-content">
+                    <div class="blog-meta">📅 15 Ene 2024 | ⏱️ 5 min lectura</div>
+                    <h3>Cómo Mezclar Vocales de Trap como un Profesional</h3>
+                    <p>Aprende las técnicas de ecualización, compresión y efectos para lograr vocales claras y potentes en tus producciones de trap.</p>
+                    <a href="#" class="read-more">Leer más →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-image">📈</div>
+                <div class="blog-content">
+                    <div class="blog-meta">📅 10 Ene 2024 | ⏱️ 7 min lectura</div>
+                    <h3>Estrategias de Marketing para Artistas Independientes 2024</h3>
+                    <p>Las mejores tácticas para promocionar tu música en redes sociales, Spotify y conseguir más streams sin gastar una fortuna.</p>
+                    <a href="#" class="read-more">Leer más →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-image">🎹</div>
+                <div class="blog-content">
+                    <div class="blog-meta">📅 5 Ene 2024 | ⏱️ 6 min lectura</div>
+                    <h3>Cómo Crear un Beat de Trap Oscuro desde Cero</h3>
+                    <p>Guía paso a paso para producir beats de trap con ese sonido oscuro y atmosférico que está dominando las listas.</p>
+                    <a href="#" class="read-more">Leer más →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-image">📀</div>
+                <div class="blog-content">
+                    <div class="blog-meta">📅 28 Dic 2023 | ⏱️ 4 min lectura</div>
+                    <h3>Distribución Digital: Todo lo que Necesitas Saber</h3>
+                    <p>Todo sobre cómo distribuir tu música en Spotify, Apple Music y otras plataformas. Regalías, derechos y más.</p>
+                    <a href="#" class="read-more">Leer más →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-image">🎧</div>
+                <div class="blog-content">
+                    <div class="blog-meta">📅 20 Dic 2023 | ⏱️ 8 min lectura</div>
+                    <h3>Masterización para Spotify: Guía Completa</h3>
+                    <p>Cómo masterizar tu música para que suene perfecto en Spotify, Apple Music y todas las plataformas de streaming.</p>
+                    <a href="#" class="read-more">Leer más →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-image">💡</div>
+                <div class="blog-content">
+                    <div class="blog-meta">📅 15 Dic 2023 | ⏱️ 5 min lectura</div>
+                    <h3>Cómo Construir una Marca Personal como Artista</h3>
+                    <p>Estrategias para desarrollar tu identidad artística, conectar con fans y destacar en la industria musical.</p>
+                    <a href="#" class="read-more">Leer más →</a>
+                </div>
+            </article>
         </div>
-      </a>
-
-      <!-- Contratos -->
-      <a href="#" class="blog-card fade-up delay-1">
-        <div class="blog-cover">
-          <svg class="blog-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
-        </div>
-        <div class="blog-category">
-          <div class="blog-cat-label">Legal</div>
-        </div>
-        <div class="blog-title">Qué debes revisar antes de firmar con un sello discográfico</div>
-        <div class="blog-excerpt">El recoup, los splits de regalías, la duración del contrato y la cesión de masters. Las cláusulas que los artistas aceptan sin leer.</div>
-        <div class="blog-footer">
-          <span class="blog-read">Leer →</span>
-          <span class="blog-date">8 min</span>
-        </div>
-      </a>
-
-      <!-- Marketing -->
-      <a href="#" class="blog-card fade-up delay-2">
-        <div class="blog-cover">
-          <svg class="blog-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
-        <div class="blog-category">
-          <div class="blog-cat-label">Marketing</div>
-        </div>
-        <div class="blog-title">Cómo lanzar un sencillo en 2025: checklist de 8 semanas</div>
-        <div class="blog-excerpt">Desde el master hasta el post-release. Las 8 semanas que determinan si tu canción llega a playlists o desaparece en el algoritmo.</div>
-        <div class="blog-footer">
-          <span class="blog-read">Leer →</span>
-          <span class="blog-date">10 min</span>
-        </div>
-      </a>
-
-      <!-- Regalías -->
-      <a href="#" class="blog-card fade-up">
-        <div class="blog-cover">
-          <svg class="blog-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        </div>
-        <div class="blog-category">
-          <div class="blog-cat-label">Regalías</div>
-        </div>
-        <div class="blog-title">De dónde vienen las regalías: streaming, sync, performance y mecánicas</div>
-        <div class="blog-excerpt">Cada vez que alguien escucha tu música se genera dinero. Te explicamos los 4 tipos de regalías y cómo asegurarte de que todas lleguen a ti.</div>
-        <div class="blog-footer">
-          <span class="blog-read">Leer →</span>
-          <span class="blog-date">7 min</span>
-        </div>
-      </a>
-
-      <!-- Derechos -->
-      <a href="#" class="blog-card fade-up delay-1">
-        <div class="blog-cover">
-          <svg class="blog-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-        </div>
-        <div class="blog-category">
-          <div class="blog-cat-label">Derechos</div>
-        </div>
-        <div class="blog-title">SAYCO y ACINPRO: cómo registrar tus obras correctamente</div>
-        <div class="blog-excerpt">Guía paso a paso para proteger tu música y empezar a cobrar regalías por reproducción pública en Colombia.</div>
-        <div class="blog-footer">
-          <span class="blog-read">Leer →</span>
-          <span class="blog-date">6 min</span>
-        </div>
-      </a>
     </div>
-  </div>
-</section>
-
-<section class="cta-section" style="padding:6rem 0;text-align:center">
-  <div class="container">
-    <div class="cta-box fade-up" style="max-width:600px;margin:0 auto;padding:3rem;background:var(--surface);border:1px solid var(--border);border-radius:4px">
-      <h2 style="font-size:1.8rem;margin-bottom:1rem">¿Quieres más contenido como este?</h2>
-      <p style="color:var(--muted);margin-bottom:2rem">Suscríbete a nuestro newsletter y recibe consejos semanales para tu carrera musical.</p>
-      <a href="contacto.html" class="btn-primary">Suscribirme</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
-      <div class="footer-links">
-        <a href="servicios.html">Servicios</a>
-        <a href="portafolio.html">Portafolio</a>
-        <a href="artistas.html">Artistas</a>
-        <a href="tienda.html">Tienda</a>
-        <a href="contacto.html">Contacto</a>
-      </div>
-      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
-    </div>
-  </div>
-</footer>
-
-<script src="nav.js"></script>
-<script>document.getElementById('nav-placeholder').innerHTML=buildNav('blog');</script>
-<script src="main.js"></script>
+    
+    <footer>
+        <p>&copy; 2024 Terrivol Music. Todos los derechos reservados.</p>
+        <p>Bogotá, Colombia | terrivolmusiclove@gmail.com</p>
+    </footer>
 </body>
 </html>
