@@ -1,190 +1,477 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CO">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Servicios | Terrivol Music</title>
-<link rel="stylesheet" href="style.css">
-<style>
-/* ===== HERO SERVICIOS ===== */
-.services-hero{min-height:80vh;display:flex;align-items:center;position:relative;padding:8rem 0 4rem;overflow:hidden}
-.services-hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 20%,rgba(123,92,250,.25),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,229,255,.15),transparent 60%)}
-.services-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,3,10,.9) 0%,rgba(3,3,10,.7) 50%,rgba(123,92,250,.15) 100%)}
-.services-hero-content{position:relative;z-index:1;text-align:center;max-width:900px;margin:0 auto}
-
-/* ===== CARDS PRO CON SPOTLIGHT ===== */
-.services{padding:6rem 0;position:relative}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;margin:4rem 0}
-.service-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2.5rem;transition:all .4s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;backdrop-filter:blur(10px);text-decoration:none;color:var(--text);display:block}
-.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));opacity:0;transition:opacity .4s}
-.service-card::after{content:'';position:absolute;inset:0;background:radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),rgba(123,92,250,.15),transparent 40%);opacity:0;transition:opacity .4s;pointer-events:none}
-.service-card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 20px 60px rgba(123,92,250,.3),0 0 0 1px rgba(123,92,250,.5)}
-.service-card:hover::before{opacity:1}
-.service-card:hover::after{opacity:1}
-.service-icon{width:56px;height:56px;margin-bottom:1.5rem;color:var(--accent);transition:transform .3s}
-.service-card:hover .service-icon{transform:scale(1.1) rotate(5deg)}
-.service-title{font-size:1.5rem;font-weight:700;margin-bottom:1rem;line-height:1.2}
-.service-desc{color:var(--muted);line-height:1.7;margin-bottom:2rem;font-size:.95rem}
-.service-link{font-family:'Space Mono',monospace;font-size:.85rem;color:var(--text);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:all .3s;padding:.5rem 0}
-.service-link:hover{color:var(--accent2);gap:1rem}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:968px){
-  .services-hero{padding:6rem 0 2rem}
-  .services-hero-content h1{font-size:clamp(2rem,5vw,3.5rem)}
-  .services-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-}
-@media(max-width:768px){
-  .services-hero{padding:4rem 0 2rem}
-  .services{padding:3rem 0}
-  .services-grid{grid-template-columns:1fr;gap:1.5rem}
-  .service-card{padding:2rem}
-  .service-title{font-size:1.3rem}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Musicales | Producción, Distribución y Beats - Terrivol Music</title>
+    <meta name="description" content="Producción musical, distribución digital a +150 plataformas, beats exclusivos y clases de producción. Calidad profesional en Bogotá, Colombia.">
+    <meta name="keywords" content="producción musical, distribución musical, beats trap, masterización, mezcla, clases de producción, Bogotá, Colombia">
+    <link rel="canonical" href="https://terrivolmusic.github.io/servicios.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://terrivolmusic.github.io/servicios.html">
+    <meta property="og:title" content="Servicios Musicales Profesionales - Terrivol Music">
+    <meta property="og:description" content="Producción, distribución y beats de calidad profesional. +15 años de experiencia.">
+    <meta property="og:image" content="https://terrivolmusic.github.io/img/og-image.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --burgundy: #6B0000;
+            --gold: #D4AF37;
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray: #1a1a1a;
+            --light-gray: #2a2a2a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Syne', sans-serif;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--white), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--black) 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .service-section {
+            padding: 5rem 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .service-section:nth-child(even) {
+            background: var(--gray);
+        }
+        
+        .service-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .service-header h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .service-header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        .service-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .service-item {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .service-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+        
+        .service-item h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .service-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .service-item li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .service-item li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        .pricing {
+            background: linear-gradient(135deg, rgba(107, 0, 0, 0.3), rgba(212, 175, 55, 0.1));
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: center;
+            border: 2px solid var(--gold);
+        }
+        
+        .pricing h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        
+        .pricing .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 1rem 0;
+        }
+        
+        .cta-section {
+            padding: 4rem 5%;
+            text-align: center;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--black) 100%);
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--burgundy), var(--gold));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        footer {
+            background: var(--gray);
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                margin-top: 60px;
+                padding: 3rem 5%;
+            }
+            
+            .service-section {
+                padding: 3rem 5%;
+            }
+            
+            .service-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="stars" id="stars"></div>
-
-<!-- NAV -->
-<nav id="nav-placeholder"></nav>
-
-<!-- HERO -->
-<section class="services-hero">
-  <div class="services-hero-bg"></div>
-  <div class="services-hero-overlay"></div>
-  <div class="container">
-    <div class="services-hero-content">
-      <p class="section-label fade-up" style="display:inline-flex">// SERVICIOS</p>
-      <h1 class="hero-title fade-up delay-1" style="font-size:clamp(2.5rem,6vw,4rem);margin:1.5rem 0">Todo lo que necesitas para tu <span style="color:var(--accent)">música</span></h1>
-      <p class="hero-subtitle fade-up delay-2" style="max-width:650px;margin:0 auto 2rem">Desde la creación hasta la distribución. Servicios profesionales para artistas independientes.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICIOS -->
-<section class="services">
-  <div class="container">
-    <div class="services-grid">
-      <div class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-        <h3 class="service-title">Producción Musical</h3>
-        <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio. Desde beats hasta álbumes completos con ingenieros expertos.</p>
-        <a href="contacto.html?servicio=produccion" class="service-link">Cotizar →</a>
-      </div>
-
-      <div class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
-        <h3 class="service-title">Distribución Digital</h3>
-        <p class="service-desc">Lleva tu música a Spotify, Apple Music, YouTube y +150 plataformas. Gestión completa de derechos y royalties.</p>
-        <a href="contacto.html?servicio=distribucion" class="service-link">Cotizar →</a>
-      </div>
-
-      <div class="service-card fade-up delay-2" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-        <h3 class="service-title">Marketing Musical</h3>
-        <p class="service-desc">Campañas en redes, pitching a playlists, gestión de comunidad y estrategias de lanzamiento personalizadas.</p>
-        <a href="contacto.html?servicio=marketing" class="service-link">Cotizar →</a>
-      </div>
-
-      <div class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        <h3 class="service-title">Beats & Licencias</h3>
-        <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles para artistas. Calidad profesional, precios accesibles.</p>
-        <a href="tienda.html" class="service-link">Explorar →</a>
-      </div>
-
-      <div class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg>
-        <h3 class="service-title">Contenido Audiovisual</h3>
-        <p class="service-desc">Videoclips, visualizers, contenido para redes y dirección creativa. Tu música, visualizada profesionalmente.</p>
-        <a href="contacto.html?servicio=audiovisual" class="service-link">Cotizar →</a>
-      </div>
-
-      <div class="service-card fade-up delay-2" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-        <h3 class="service-title">Consultoría & Management</h3>
-        <p class="service-desc">Asesoría estratégica para artistas y sellos. Desarrollo de carrera, branding y planificación a largo plazo.</p>
-        <a href="contacto.html?servicio=consultoria" class="service-link">Cotizar →</a>
-      </div>
-
-      <div class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        <h3 class="service-title">Clases de Producción Pro</h3>
-        <p class="service-desc">Mentorías personalizadas 1-a-1. Aprende producción, mezcla y estrategia musical con expertos del sello. Nivel intermedio/avanzado.</p>
-        <a href="contacto.html?servicio=clases" class="service-link">Agendar clase →</a>
-      </div>
-
-      <div class="service-card fade-up delay-3" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-        <h3 class="service-title">Audio Pro para Empresas</h3>
-        <p class="service-desc">Mejora y optimización de audio para anuncios, contenido corporativo y marcas. Limpieza profesional, ecualización estratégica y mastering para máxima conversión.</p>
-        <a href="contacto.html?servicio=audio-pro" class="service-link">Cotizar →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-box fade-up">
-      <p class="section-label" style="justify-content:center;display:flex">// EMPECEMOS</p>
-      <h2 class="cta-title">¿Listo para trabajar juntos?</h2>
-      <p class="cta-desc">Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas.</p>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20servicio" target="_blank" class="btn-wa">💬 WhatsApp</a>
-        <a href="contacto.html" class="btn-primary">Enviar Propuesta</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
-      <div class="footer-links">
-        <a href="servicios.html">Servicios</a>
-        <a href="portafolio.html">Portafolio</a>
-        <a href="artistas.html">Artistas</a>
-        <a href="tienda.html">Tienda</a>
-        <a href="contacto.html">Contacto</a>
-      </div>
-      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
-    </div>
-  </div>
-</footer>
-
-<script src="nav.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof buildNav === 'function') {
-    buildNav('servicios');
-  } else {
-    document.getElementById('nav-placeholder').innerHTML = '<div class="nav-container container"><a href="index.html" class="nav-logo"><img src="logo.png" alt="Terrivol Music"></a><div class="nav-links"><a href="index.html">Inicio</a><a href="servicios.html" class="active">Servicios</a><a href="portafolio.html">Portafolio</a><a href="contacto.html">Contacto</a></div></div>';
-  }
-});
-</script>
-<script src="main.js"></script>
-<script>
-const observer = new IntersectionObserver((e) => { e.forEach(t => { t.isIntersecting && t.target.classList.add("visible") }) }, { threshold: .1 });
-document.querySelectorAll(".fade-up").forEach(e => observer.observe(e));
-
-function handleMouseMove(e, card) {
-  const rect = card.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  card.style.setProperty('--mouse-x', x + 'px');
-  card.style.setProperty('--mouse-y', y + 'px');
-}
-function handleMouseLeave(card) {
-  card.style.setProperty('--mouse-x', '0px');
-  card.style.setProperty('--mouse-y', '0px');
-}
-</script>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">TERRIVOL MUSIC</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#produccion">Producción</a></li>
+                <li><a href="#distribucion">Distribución</a></li>
+                <li><a href="#beats">Beats</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>Servicios Musicales Profesionales</h1>
+        <p>Más de 15 años de experiencia en la industria musical independiente</p>
+    </section>
+    
+    <!-- Producción Musical -->
+    <section class="service-section" id="produccion">
+        <div class="service-header">
+            <h2>🎙️ Producción Musical</h2>
+            <p>Grabación, mezcla y masterización con calidad de estudio profesional</p>
+        </div>
+        
+        <div class="service-content">
+            <div class="service-item">
+                <h3>Grabación</h3>
+                <ul>
+                    <li>Estudio profesional equipado</li>
+                    <li>Ingenieros de sonido expertos</li>
+                    <li>Micros de alta gama</li>
+                    <li>Edición y comping vocal</li>
+                    <li>Sesiones presenciales/online</li>
+                </ul>
+            </div>
+            
+            <div class="service-item">
+                <h3>Mezcla</h3>
+                <ul>
+                    <li>Balance y ecualización</li>
+                    <li>Compresión profesional</li>
+                    <li>Efectos y procesamiento</li>
+                    <li>Automatizaciones</li>
+                    <li>Revisiones incluidas</li>
+                </ul>
+            </div>
+            
+            <div class="service-item">
+                <h3>Masterización</h3>
+                <ul>
+                    <li>Optimización para streaming</li>
+                    <li>EQ y compresión final</li>
+                    <li>Loudness estándar</li>
+                    <li>Formatos WAV/MP3</li>
+                    <li>Metadata ID3 incluida</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="pricing">
+            <h3>Paquetes desde</h3>
+            <div class="price">$150 USD</div>
+            <p>Por canción (grabación + mezcla + masterización)</p>
+        </div>
+    </section>
+    
+    <!-- Distribución -->
+    <section class="service-section" id="distribucion">
+        <div class="service-header">
+            <h2>📀 Distribución Digital</h2>
+            <p>Lleva tu música a todas las plataformas digitales del mundo</p>
+        </div>
+        
+        <div class="service-content">
+            <div class="service-item">
+                <h3>+150 Plataformas</h3>
+                <ul>
+                    <li>Spotify</li>
+                    <li>Apple Music</li>
+                    <li>YouTube Music</li>
+                    <li>Amazon Music</li>
+                    <li>Deezer, Tidal, Napster...</li>
+                </ul>
+            </div>
+            
+            <div class="service-item">
+                <h3>Características</h3>
+                <ul>
+                    <li>100% de regalías para ti</li>
+                    <li>Reportes detallados</li>
+                    <li>Recaudo automático</li>
+                    <li>Soporte personalizado</li>
+                    <li>Subida ilimitada</li>
+                </ul>
+            </div>
+            
+            <div class="service-item">
+                <h3>Protección</h3>
+                <ul>
+                    <li>Registro de derechos</li>
+                    <li>Content ID (YouTube)</li>
+                    <li>Protección de copyright</li>
+                    <li>Monetización automática</li>
+                    <li>Asesoría legal básica</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="pricing">
+            <h3>Distribución Anual</h3>
+            <div class="price">$20 USD</div>
+            <p>Por single / $50 USD por álbum (hasta 10 tracks)</p>
+        </div>
+    </section>
+    
+    <!-- Beats -->
+    <section class="service-section" id="beats">
+        <div class="service-header">
+            <h2>🎹 Beats & Licencias</h2>
+            <p>Beats exclusivos de trap oscuro y elegante</p>
+        </div>
+        
+        <div class="service-content">
+            <div class="service-item">
+                <h3>Tipo de Licencias</h3>
+                <ul>
+                    <li>MP3 Lease - $30</li>
+                    <li>WAV Lease - $50</li>
+                    <li>Trackout - $100</li>
+                    <li>Exclusiva - $300+</li>
+                    <li>Personalizada - Cotizar</li>
+                </ul>
+            </div>
+            
+            <div class="service-item">
+                <h3>Incluye</h3>
+                <ul>
+                    <li>Calidad studio WAV</li>
+                    <li>BPM y key information</li>
+                    <li>Derechos de uso comercial</li>
+                    <li>Crédito de producción</li>
+                    <li>Soporte post-venta</li>
+                </ul>
+            </div>
+            
+            <div class="service-item">
+                <h3>Estilos</h3>
+                <ul>
+                    <li>Trap oscuro</li>
+                    <li>Trap melódico</li>
+                    <li>Reggaeton</li>
+                    <li>R&B contemporáneo</li>
+                    <li>Pop urbano</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Clases -->
+    <section class="service-section" id="clases">
+        <div class="service-header">
+            <h2>🎓 Clases de Producción</h2>
+            <p>Aprende de productores con experiencia real en la industria</p>
+        </div>
+        
+        <div class="service-content">
+            <div class="service-item">
+                <h3>Temario</h3>
+                <ul>
+                    <li>Producción en FL Studio/Ableton</li>
+                    <li>Teoría musical básica</li>
+                    <li>Diseño de sonido</li>
+                    <li>Mezcla y masterización</li>
+                    <li>Marketing musical</li>
+                </ul>
+            </div>
+            
+            <div class="service-item">
+                <h3>Modalidad</h3>
+                <ul>
+                    <li>1-a-1 personalizado</li>
+                    <li>Presencial (Bogotá)</li>
+                    <li>Online (Zoom/Skype)</li>
+                    <li>Grabación de clases</li>
+                    <li>Material de apoyo</li>
+                </ul>
+            </div>
+            
+            <div class="service-item">
+                <h3>Duración</h3>
+                <ul>
+                    <li>Sesión individual: $40</li>
+                    <li>Paquete 5 clases: $180</li>
+                    <li>Paquete 10 clases: $350</li>
+                    <li>Mentoría continua</li>
+                    <li>Seguimiento post-clase</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <h2>¿Listo para empezar tu proyecto?</h2>
+        <p style="margin: 1rem 0; opacity: 0.9;">Escríbenos y cotiza tu proyecto musical hoy mismo</p>
+        <div>
+            <a href="https://wa.me/573102123844" class="btn" target="_blank">💬 WhatsApp</a>
+            <a href="mailto:terrivolmusiclove@gmail.com" class="btn">📧 Email</a>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Terrivol Music. Todos los derechos reservados.</p>
+        <p>Bogotá, Colombia | terrivolmusiclove@gmail.com</p>
+    </footer>
 </body>
 </html>
