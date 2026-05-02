@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terrivol Music | Sello Discográfico & Servicios Musicales Profesionales</title>
-<meta name="description" content="Sello discográfico independiente en Bogotá. Distribución digital, producción musical, masterización y beats. +15 años de experiencia.">
+<title>Terrivol Music | Sello Discográfico & Servicios Musicales</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,16 +12,14 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
 
-<!-- MENÚ SIMPLIFICADO Y OPTIMIZADO -->
+<!-- MENÚ SIMPLIFICADO -->
 <nav class="navbar">
   <div class="nav-container container">
-    <a href="index.html" class="nav-logo">
-      <img src="logo.png" alt="Terrivol Music">
-    </a>
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Terrivol Music"></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html" class="active">Inicio</a>
       <a href="servicios.html">Servicios</a>
-      <a href="#contacto">Contacto</a>
+      <a href="contacto.html">Contacto</a>
       <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="nav-cta-mobile">💼 TRABAJEMOS</a>
     </div>
     <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
@@ -48,7 +45,7 @@
       </div>
       <div class="hero-cta fade-up delay-4">
         <a href="servicios.html" class="btn-primary">Explorar servicios</a>
-        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="btn-ghost">Cotizar proyecto</a>
+        <a href="contacto.html" class="btn-ghost">Cotizar proyecto</a>
       </div>
       <div class="hero-trust fade-up delay-5">
         <div class="trust-badge">+150 plataformas</div>
@@ -93,7 +90,7 @@
   </div>
 </section>
 
-<!-- CTA / CONTACTO -->
+<!-- CTA -->
 <section class="cta-section" id="contacto">
   <div class="container">
     <div class="cta-box fade-up">
@@ -102,7 +99,7 @@
       <p class="cta-desc">En Terrivol Music combinamos experiencia, calidad y pasión por la música.</p>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
         <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="btn-wa">💬 WhatsApp</a>
-        <a href="mailto:terrivolmusiclove@gmail.com" class="btn-primary">Enviar Propuesta</a>
+        <a href="contacto.html" class="btn-primary">Enviar Propuesta</a>
       </div>
     </div>
   </div>
@@ -119,40 +116,9 @@
 </footer>
 
 <script>
-// Menú móvil simple y robusto
-function toggleMenu() {
-  const nav = document.getElementById('navLinks');
-  const btn = document.querySelector('.nav-mobile-btn');
-  if (nav && btn) {
-    nav.classList.toggle('open');
-    btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
-  }
-}
-
-// Cursor simple
-document.addEventListener('mousemove', function(e) {
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  if (cursor) {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  }
-  if (ring) {
-    ring.style.left = (e.clientX - 16) + 'px';
-    ring.style.top = (e.clientY - 16) + 'px';
-  }
-});
-
-// Animaciones simples
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+function toggleMenu(){const nav=document.getElementById('navLinks');const btn=document.querySelector('.nav-mobile-btn');if(nav&&btn){nav.classList.toggle('open');btn.textContent=nav.classList.contains('open')?'✕':'☰'}}
+document.addEventListener('mousemove',function(e){const cursor=document.getElementById('cursor');const ring=document.getElementById('cursorRing');if(cursor){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'}if(ring){ring.style.left=(e.clientX-16)+'px';ring.style.top=(e.clientY-16)+'px'}});
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')})},{threshold:0.1});document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
 </script>
 
 </body>
