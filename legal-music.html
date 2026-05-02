@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal Music | Terrivol Music - Asesoría en Registro y Derechos Musicales</title>
+<meta name="description" content="Asesoría profesional en registro de obras, publishing, derechos de autor y legalidad musical. Protege tu música y maximiza tus regalías.">
+<link rel="stylesheet" href="style.css">
+<style>
+.legal-hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:10rem 0 4rem;overflow:hidden}
+.legal-hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 20%,rgba(123,92,250,.3),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,229,255,.2),transparent 60%)}
+.legal-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,3,10,.95) 0%,rgba(3,3,10,.85) 50%,rgba(123,92,250,.2) 100%)}
+.legal-hero-content{position:relative;z-index:1;max-width:900px;margin:0 auto;text-align:center}
+.legal-features{padding:6rem 0;background:var(--surface2)}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin:4rem 0}
+.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:2rem;text-align:center;transition:all .3s}
+.feature-card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 10px 40px rgba(123,92,250,.3)}
+.feature-icon{width:64px;height:64px;margin:0 auto 1.5rem;color:var(--accent)}
+.feature-title{font-size:1.3rem;font-weight:700;margin-bottom:1rem;color:var(--text)}
+.feature-desc{color:var(--muted);line-height:1.7;font-size:.95rem}
+.legal-process{padding:6rem 0}
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin:4rem 0}
+.process-step{position:relative;padding:2rem;text-align:center}
+.process-step::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:60px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:50%;display:flex;align-items:center;justify-content:center}
+.process-number{position:relative;z-index:1;font-size:1.5rem;font-weight:800;color:var(--black)}
+.process-title{font-size:1.2rem;font-weight:700;margin:1rem 0 .5rem;color:var(--text)}
+.process-desc{color:var(--muted);line-height:1.6}
+.legal-cta{padding:6rem 0;background:linear-gradient(135deg,rgba(123,92,250,.2),rgba(0,229,255,.1))}
+.pricing-box{background:var(--surface);border:2px solid var(--accent);border-radius:12px;padding:3rem;max-width:600px;margin:0 auto;text-align:center}
+.pricing-badge{display:inline-block;padding:.5rem 1rem;background:var(--accent);color:var(--white);border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:1.5rem}
+.pricing-price{font-size:3rem;font-weight:800;color:var(--accent2);margin:1rem 0}
+.pricing-desc{color:var(--muted);margin-bottom:2rem;line-height:1.7}
+.testimonial-legal{padding:4rem 0;background:var(--surface2)}
+.testimonial-legal-card{max-width:700px;margin:0 auto;text-align:center;padding:2rem}
+.testimonial-legal-text{font-size:1.2rem;color:var(--text);line-height:1.8;margin-bottom:1.5rem;font-style:italic}
+.testimonial-legal-author{color:var(--accent);font-weight:700}
+@media(max-width:768px){.legal-hero{padding:6rem 0 3rem}.legal-features,.legal-process,.legal-cta{padding:4rem 0}.feature-grid,.process-steps{grid-template-columns:1fr;gap:1.5rem}.pricing-box{padding:2rem 1.5rem}.pricing-price{font-size:2.5rem}}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="stars" id="stars"></div>
+
+<!-- NAV -->
+<nav class="navbar">
+  <div class="nav-container container">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Terrivol Music"></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20asesoría%20legal%20musical" target="_blank" class="nav-cta-mobile">💼 ASESORÍA</a>
+    </div>
+    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="legal-hero">
+  <div class="legal-hero-bg"></div>
+  <div class="legal-hero-overlay"></div>
+  <div class="container">
+    <div class="legal-hero-content">
+      <div class="hero-badge fade-up">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        PROTEGE TU MÚSICA
+      </div>
+      <h1 class="hero-title fade-up delay-1" style="font-size:clamp(2rem,6vw,3.5rem);margin:1.5rem 0">
+        Asesoría Legal<br><span style="color:var(--accent)">Musical Profesional</span>
+      </h1>
+      <p class="hero-subtitle fade-up delay-2" style="max-width:700px;margin:0 auto 2rem">
+        Registro de obras, publishing, derechos de autor y legalidad musical. 
+        Asegura tus regalías y protege tu carrera desde el día uno.
+      </p>
+      <div class="hero-cta fade-up delay-3" style="justify-content:center;display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20agendar%20una%20asesoría%20legal" target="_blank" class="btn-wa">💬 Agendar Asesoría</a>
+        <a href="#proceso" class="btn-ghost">Cómo funciona</a>
+      </div>
+      <div class="hero-trust fade-up delay-4" style="justify-content:center;margin-top:2.5rem;border:none">
+        <div class="trust-badge">⚖️ 100% Legal</div>
+        <div class="trust-badge">🌍 Cobertura mundial</div>
+        <div class="trust-badge">💰 Maximiza regalías</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="legal-features">
+  <div class="container">
+    <p class="section-label" style="text-align:center">// SERVICIOS INCLUIDOS</p>
+    <h2 style="text-align:center;margin-bottom:1rem">Todo lo que necesitas para proteger tu música</h2>
+    <div class="feature-grid">
+      <div class="feature-card fade-up">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <h3 class="feature-title">Registro de Obras</h3>
+        <p class="feature-desc">Registro nacional e internacional de tus canciones. Protección legal completa ante DNDA y sociedades de autores worldwide.</p>
+      </div>
+      <div class="feature-card fade-up delay-1">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <h3 class="feature-title">Publishing & Regalías</h3>
+        <p class="feature-desc">Gestión de publishing, afiliación a Sayco, Acinpro y sociedades internacionales. Recauda TODO lo que te corresponde.</p>
+      </div>
+      <div class="feature-card fade-up delay-2">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <h3 class="feature-title">Contratos Musicales</h3>
+        <p class="feature-desc">Revisión y redacción de contratos: distribución, licencias, colaboraciones, management. Evita problemas legales futuros.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <h3 class="feature-title">Derechos Conexos</h3>
+        <p class="feature-desc">Protección de derechos de intérpretes y productores fonográficos. Content ID, ISRC, y monetización en plataformas.</p>
+      </div>
+      <div class="feature-card fade-up delay-1">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        <h3 class="feature-title">Monetización Global</h3>
+        <p class="feature-desc">Estrategias para maximizar ingresos por streaming, sincronización, licencias y usos comerciales de tu música.</p>
+      </div>
+      <div class="feature-card fade-up delay-2">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <h3 class="feature-title">Asesoría 1-a-1</h3>
+        <p class="feature-desc">Consultoría personalizada para artistas y sellos. Resolvemos TODAS tus dudas sobre legalidad musical.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="legal-process" id="proceso">
+  <div class="container">
+    <p class="section-label" style="text-align:center">// CÓMO FUNCIONA</p>
+    <h2 style="text-align:center;margin-bottom:1rem">Proceso simple y rápido</h2>
+    <div class="process-steps">
+      <div class="process-step fade-up">
+        <div class="process-number">1</div>
+        <h3 class="process-title">Agenda tu cita</h3>
+        <p class="process-desc">Escríbenos por WhatsApp o email. Elegimos el mejor horario para ti.</p>
+      </div>
+      <div class="process-step fade-up delay-1">
+        <div class="process-number">2</div>
+        <h3 class="process-title">Evaluación inicial</h3>
+        <p class="process-desc">Analizamos tu caso: qué tienes registrado, qué necesitas proteger y cómo maximizar regalías.</p>
+      </div>
+      <div class="process-step fade-up delay-2">
+        <div class="process-number">3</div>
+        <h3 class="process-title">Plan de acción</h3>
+        <p class="process-desc">Te damos un plan claro: registros necesarios, sociedades donde afiliarte y pasos a seguir.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="process-number">4</div>
+        <h3 class="process-title">Ejecución y seguimiento</h3>
+        <p class="process-desc">Te acompañamos en todo el proceso. Respondemos dudas y hacemos seguimiento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="legal-cta">
+  <div class="container">
+    <div class="pricing-box fade-up">
+      <div class="pricing-badge">INVERSIÓN</div>
+      <h3 style="font-size:1.8rem;margin-bottom:1rem">Asesoría Legal Completa</h3>
+      <div class="pricing-price">$80 USD</div>
+      <p class="pricing-desc">
+        Sesión de 90 minutos + documento con recomendaciones personalizadas + 
+        seguimiento por 30 días. Incluye: revisión de contratos, estrategia de registro 
+        y plan de monetización.
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20agendar%20asesoría%20legal%20(%2480%20USD)" target="_blank" class="btn-wa">💬 Agendar por WhatsApp</a>
+        <a href="mailto:terrivolmusiclove@gmail.com?subject=Asesoría%20Legal%20Musical" class="btn-primary">Enviar Email</a>
+      </div>
+      <p style="margin-top:1.5rem;font-size:.85rem;color:var(--muted)">
+        ⚡ Respuesta en menos de 24 horas · 💳 Múltiples formas de pago
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-legal">
+  <div class="container">
+    <div class="testimonial-legal-card fade-up">
+      <p class="testimonial-legal-text">
+        "Gracias a Terrivol Music pude registrar todas mis obras correctamente y afiliarme a las 
+        sociedades adecuadas. Ahora estoy recibiendo regalías que ni sabía que me correspondían. 
+        La mejor inversión para mi carrera."
+      </p>
+      <div class="testimonial-legal-author">— Artista Independiente, Bogotá</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box fade-up">
+      <p class="section-label" style="justify-content:center;display:flex">// NO ESPERES MÁS</p>
+      <h2 class="cta-title">Protege tu música HOY</h2>
+      <p class="cta-desc">No arriesgues tu carrera. Asesoría profesional para que te enfoques en crear.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20proteger%20mi%20música" target="_blank" class="btn-wa">💬 WhatsApp Directo</a>
+        <a href="contacto.html" class="btn-primary">Ver otros servicios</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
+      <div style="margin-top:1rem;opacity:0.7;font-size:0.9rem">terrivolmusiclove@gmail.com</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){const nav=document.getElementById('navLinks');const btn=document.querySelector('.nav-mobile-btn');if(nav&&btn){nav.classList.toggle('open');btn.textContent=nav.classList.contains('open')?'✕':'☰'}}
+document.addEventListener('mousemove',function(e){const cursor=document.getElementById('cursor');const ring=document.getElementById('cursorRing');if(cursor){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'}if(ring){ring.style.left=(e.clientX-16)+'px';ring.style.top=(e.clientY-16)+'px'}});
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')})},{threshold:0.1});document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
