@@ -6,13 +6,10 @@
 <title>Servicios | Terrivol Music</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* ===== HERO SERVICIOS ===== */
 .services-hero{min-height:80vh;display:flex;align-items:center;position:relative;padding:8rem 0 4rem;overflow:hidden}
 .services-hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 20%,rgba(123,92,250,.25),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,229,255,.15),transparent 60%)}
 .services-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,3,10,.9) 0%,rgba(3,3,10,.7) 50%,rgba(123,92,250,.15) 100%)}
 .services-hero-content{position:relative;z-index:1;text-align:center;max-width:900px;margin:0 auto}
-
-/* ===== CARDS PRO CON SPOTLIGHT ===== */
 .services{padding:6rem 0;position:relative}
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;margin:4rem 0}
 .service-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2.5rem;transition:all .4s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;backdrop-filter:blur(10px);text-decoration:none;color:var(--text);display:block}
@@ -27,18 +24,8 @@
 .service-desc{color:var(--muted);line-height:1.7;margin-bottom:2rem;font-size:.95rem}
 .service-link{font-family:'Space Mono',monospace;font-size:.85rem;color:var(--text);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:all .3s;padding:.5rem 0}
 .service-link:hover{color:var(--accent2);gap:1rem}
-
-@media(max-width:968px){
-  .services-hero{padding:6rem 0 2rem}
-  .services-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-}
-@media(max-width:768px){
-  .services-hero{padding:4rem 0 2rem}
-  .services{padding:3rem 0}
-  .services-grid{grid-template-columns:1fr;gap:1.5rem}
-  .service-card{padding:2rem}
-  .service-title{font-size:1.3rem}
-}
+@media(max-width:968px){.services-hero{padding:6rem 0 2rem}.services-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}}
+@media(max-width:768px){.services-hero{padding:4rem 0 2rem}.services{padding:3rem 0}.services-grid{grid-template-columns:1fr;gap:1.5rem}.service-card{padding:2rem}.service-title{font-size:1.3rem}}
 </style>
 </head>
 <body>
@@ -50,13 +37,11 @@
 <!-- NAV SIMPLIFICADO -->
 <nav class="navbar">
   <div class="nav-container container">
-    <a href="index.html" class="nav-logo">
-      <img src="logo.png" alt="Terrivol Music">
-    </a>
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Terrivol Music"></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Inicio</a>
       <a href="servicios.html" class="active">Servicios</a>
-      <a href="#contacto">Contacto</a>
+      <a href="contacto.html">Contacto</a>
       <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20servicio" target="_blank" class="nav-cta-mobile">💼 TRABAJEMOS</a>
     </div>
     <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
@@ -76,37 +61,75 @@
   </div>
 </section>
 
-<!-- SERVICIOS -->
+<!-- TODOS LOS SERVICIOS (8) -->
 <section class="services">
   <div class="container">
     <div class="services-grid">
+      
+      <!-- 1. Producción Musical -->
       <div class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         <h3 class="service-title">Producción Musical</h3>
         <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio. Desde beats hasta álbumes completos con ingenieros expertos.</p>
-        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20producción%20musical" target="_blank" class="service-link">Cotizar →</a>
+        <a href="contacto.html?servicio=produccion" class="service-link">Cotizar →</a>
       </div>
 
+      <!-- 2. Distribución Digital -->
       <div class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
         <h3 class="service-title">Distribución Digital</h3>
         <p class="service-desc">Lleva tu música a Spotify, Apple Music, YouTube y +150 plataformas. Gestión completa de derechos y royalties.</p>
-        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20distribución%20digital" target="_blank" class="service-link">Cotizar →</a>
+        <a href="contacto.html?servicio=distribucion" class="service-link">Cotizar →</a>
       </div>
 
+      <!-- 3. Marketing Musical -->
       <div class="service-card fade-up delay-2" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        <h3 class="service-title">Marketing Musical</h3>
+        <p class="service-desc">Campañas en redes, pitching a playlists, gestión de comunidad y estrategias de lanzamiento personalizadas.</p>
+        <a href="contacto.html?servicio=marketing" class="service-link">Cotizar →</a>
+      </div>
+
+      <!-- 4. Beats & Licencias -->
+      <div class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         <h3 class="service-title">Beats & Licencias</h3>
         <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles para artistas. Calidad profesional, precios accesibles.</p>
         <a href="tienda.html" class="service-link">Explorar →</a>
       </div>
 
+      <!-- 5. Contenido Audiovisual -->
+      <div class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg>
+        <h3 class="service-title">Contenido Audiovisual</h3>
+        <p class="service-desc">Videoclips, visualizers, contenido para redes y dirección creativa. Tu música, visualizada profesionalmente.</p>
+        <a href="contacto.html?servicio=audiovisual" class="service-link">Cotizar →</a>
+      </div>
+
+      <!-- 6. Consultoría & Management -->
+      <div class="service-card fade-up delay-2" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <h3 class="service-title">Consultoría & Management</h3>
+        <p class="service-desc">Asesoría estratégica para artistas y sellos. Desarrollo de carrera, branding y planificación a largo plazo.</p>
+        <a href="contacto.html?servicio=consultoria" class="service-link">Cotizar →</a>
+      </div>
+
+      <!-- 7. Clases de Producción Pro -->
       <div class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
         <h3 class="service-title">Clases de Producción Pro</h3>
-        <p class="service-desc">Mentorías personalizadas 1-a-1. Aprende producción, mezcla y estrategia musical con expertos del sello.</p>
-        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20agendar%20una%20clase" target="_blank" class="service-link">Agendar clase →</a>
+        <p class="service-desc">Mentorías personalizadas 1-a-1. Aprende producción, mezcla y estrategia musical con expertos del sello. Nivel intermedio/avanzado.</p>
+        <a href="contacto.html?servicio=clases" class="service-link">Agendar clase →</a>
       </div>
+
+      <!-- 8. Audio Pro para Empresas -->
+      <div class="service-card fade-up delay-3" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        <h3 class="service-title">Audio Pro para Empresas</h3>
+        <p class="service-desc">Mejora y optimización de audio para anuncios, contenido corporativo y marcas. Limpieza profesional, ecualización estratégica y mastering para máxima conversión.</p>
+        <a href="contacto.html?servicio=audio-pro" class="service-link">Cotizar →</a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -120,7 +143,7 @@
       <p class="cta-desc">Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas.</p>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
         <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20servicio" target="_blank" class="btn-wa">💬 WhatsApp</a>
-        <a href="mailto:terrivolmusiclove@gmail.com" class="btn-primary">Enviar Email</a>
+        <a href="contacto.html" class="btn-primary">Enviar Propuesta</a>
       </div>
     </div>
   </div>
@@ -151,14 +174,8 @@ function toggleMenu() {
 document.addEventListener('mousemove', function(e) {
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
-  if (cursor) {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  }
-  if (ring) {
-    ring.style.left = (e.clientX - 16) + 'px';
-    ring.style.top = (e.clientY - 16) + 'px';
-  }
+  if (cursor) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; }
+  if (ring) { ring.style.left = (e.clientX - 16) + 'px'; ring.style.top = (e.clientY - 16) + 'px'; }
 });
 
 // Efecto spotlight en cards
@@ -169,7 +186,6 @@ function handleMouseMove(e, card) {
   card.style.setProperty('--mouse-x', x + 'px');
   card.style.setProperty('--mouse-y', y + 'px');
 }
-
 function handleMouseLeave(card) {
   card.style.setProperty('--mouse-x', '0px');
   card.style.setProperty('--mouse-y', '0px');
@@ -177,13 +193,8 @@ function handleMouseLeave(card) {
 
 // Animaciones
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
-
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 
