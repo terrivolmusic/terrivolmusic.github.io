@@ -12,7 +12,7 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
 
-<!-- MENÚ SIMPLIFICADO -->
+<!-- MENÚ -->
 <nav class="navbar">
   <div class="nav-container container">
     <a href="index.html" class="nav-logo"><img src="logo.png" alt="Terrivol Music"></a>
@@ -36,13 +36,8 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         SELLO INDEPENDIENTE · BOGOTÁ
       </div>
-      <h1 class="hero-title fade-up delay-1">
-        Tu música merece<br>
-        <span>infraestructura<br>profesional</span>
-      </h1>
-      <p class="hero-subtitle fade-up delay-2">
-        Aliado estratégico para artistas independientes que buscan competir a nivel global.
-      </p>
+      <h1 class="hero-title fade-up delay-1">Tu música merece<br><span>infraestructura<br>profesional</span></h1>
+      <p class="hero-subtitle fade-up delay-2">Aliado estratégico para artistas independientes que buscan competir a nivel global.</p>
       <div class="hero-stats fade-up delay-3">
         <div><div class="stat-number">+400</div><div class="stat-label">Lanzamientos</div></div>
         <div><div class="stat-number">+15</div><div class="stat-label">Años experiencia</div></div>
@@ -120,238 +115,110 @@
   </div>
 </footer>
 
-<!-- ===== CHATBOT GALÁCTICO PRO (DENTRO DEL BODY) ===== -->
+<!-- CHATBOT GALÁCTICO -->
 <div id="tm-chat-widget">
-  <button id="tm-chat-toggle" aria-label="Iniciar comunicación">🛸</button>
+  <button id="tm-chat-toggle">🛸</button>
   <div id="tm-chat-box">
     <div id="tm-chat-header">
       <div>
-        <div style="font-weight:700;letter-spacing:0.5px">🎵 Terrivol Music</div>
-        <div style="font-size:0.7rem;opacity:0.7;margin-top:2px">Centro de Comando Orbital</div>
+        <div style="font-weight:700">🎵 Terrivol Music</div>
+        <div style="font-size:0.7rem;opacity:0.7">Centro de Comando</div>
       </div>
-      <button id="tm-chat-close" aria-label="Cerrar">×</button>
+      <button id="tm-chat-close" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer">×</button>
     </div>
     <div id="tm-chat-messages"></div>
-    <div id="tm-chat-input-area">
-      <input type="text" id="tm-chat-input" placeholder="Transmite tu mensaje..." autocomplete="off">
-      <button id="tm-chat-send">📡</button>
+    <div style="display:flex;padding:0.8rem;gap:0.6rem;border-top:1px solid rgba(123,92,250,0.2)">
+      <input type="text" id="tm-chat-input" placeholder="Transmite..." style="flex:1;background:rgba(123,92,250,0.1);border:1px solid rgba(123,92,250,0.3);border-radius:8px;padding:0.6rem;color:#fff">
+      <button id="tm-chat-send" style="background:#7b5cfa;border:none;color:#fff;width:40px;border-radius:8px;cursor:pointer">📡</button>
     </div>
   </div>
 </div>
 
 <style>
-/* ===== CHATBOT GALACTIC STYLES ===== */
-#tm-chat-widget{position:fixed;bottom:24px;right:24px;z-index:99999;font-family:'Syne',sans-serif}
-#tm-chat-toggle{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#7b5cfa,#00e5ff);border:none;color:#fff;font-size:1.8rem;cursor:pointer;box-shadow:0 10px 40px rgba(123,92,250,0.5);transition:all 0.3s;animation:tmPulse 2s ease-in-out infinite}
-@keyframes tmPulse{0%,100%{box-shadow:0 10px 40px rgba(123,92,250,0.5)}50%{box-shadow:0 10px 60px rgba(0,229,255,0.7)}}
-#tm-chat-toggle:hover{transform:scale(1.1) rotate(10deg)}
-#tm-chat-box{position:absolute;bottom:75px;right:0;width:400px;max-height:550px;background:rgba(10,10,25,0.98);border:1px solid rgba(123,92,250,0.3);border-radius:20px;overflow:hidden;display:none;flex-direction:column;backdrop-filter:blur(20px);box-shadow:0 25px 80px rgba(0,0,0,0.7)}
-#tm-chat-box.open{display:flex;animation:tmWarp 0.4s ease}
-@keyframes tmWarp{from{opacity:0;transform:translateY(20px) scale(0.95)}to{opacity:1;transform:translateY(0) scale(1)}}
-#tm-chat-header{background:linear-gradient(135deg,rgba(123,92,250,0.2),rgba(0,229,255,0.1));padding:1.2rem;border-bottom:1px solid rgba(123,92,250,0.3);display:flex;justify-content:space-between;align-items:center}
-#tm-chat-close{background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer;line-height:1;padding:0.2rem;opacity:0.7;transition:opacity 0.2s}
-#tm-chat-close:hover{opacity:1}
-#tm-chat-messages{flex:1;overflow-y:auto;padding:1.2rem;display:flex;flex-direction:column;gap:1rem;max-height:350px}
-.tm-msg{max-width:90%;padding:1rem;border-radius:16px;font-size:0.95rem;line-height:1.6;animation:tmFade 0.3s ease;word-wrap:break-word}
-.tm-msg.bot{background:rgba(123,92,250,0.15);border:1px solid rgba(123,92,250,0.3);align-self:flex-start;border-bottom-left-radius:4px}
-.tm-msg.user{background:linear-gradient(135deg,#7b5cfa,#00e5ff);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
-.tm-msg a{color:#00e5ff;text-decoration:underline;font-weight:600}
-.tm-typing{display:flex;gap:6px;padding:0.8rem 1rem;background:rgba(123,92,250,0.1);border-radius:14px;align-self:flex-start;width:fit-content}
-.tm-dot{width:7px;height:7px;background:#7b5cfa;border-radius:50%;animation:tmBounce 1.4s infinite ease-in-out}
-.tm-dot:nth-child(1){animation-delay:0s}.tm-dot:nth-child(2){animation-delay:0.2s}.tm-dot:nth-child(3){animation-delay:0.4s}
-@keyframes tmBounce{0%,80%,100%{transform:scale(0.6)}40%{transform:scale(1)}}
-@keyframes tmFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-#tm-chat-input-area{display:flex;padding:1rem;gap:0.8rem;border-top:1px solid rgba(123,92,250,0.2);background:rgba(5,5,15,0.9)}
-#tm-chat-input{flex:1;background:rgba(123,92,250,0.1);border:1px solid rgba(123,92,250,0.3);border-radius:12px;padding:0.8rem 1.2rem;color:#fff;font-family:'Syne',sans-serif;font-size:0.95rem}
-#tm-chat-input:focus{outline:none;border-color:#00e5ff;box-shadow:0 0 0 3px rgba(0,229,255,0.15)}
-#tm-chat-input::placeholder{color:rgba(255,255,255,0.5)}
-#tm-chat-send{background:linear-gradient(135deg,#7b5cfa,#00e5ff);border:none;color:#fff;width:46px;height:46px;border-radius:12px;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
-#tm-chat-send:hover{transform:scale(1.1)}
-.tm-quick-btn{background:rgba(123,92,250,0.15);border:1px solid rgba(123,92,250,0.3);color:#fff;padding:0.6rem 1.1rem;border-radius:24px;font-size:0.85rem;cursor:pointer;transition:all 0.25s;margin:0.3rem 0.3rem 0.3rem 0}
-.tm-quick-btn:hover{background:rgba(123,92,250,0.3);border-color:#00e5ff;transform:translateY(-2px)}
-.tm-cta-wa{background:#25D366;color:#fff;border:none;padding:0.8rem 1.2rem;border-radius:12px;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;font-size:0.9rem;transition:all 0.25s}
-.tm-cta-wa:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(37,211,102,0.4)}
-.tm-cta-email{background:rgba(123,92,250,0.2);border:1px solid #7b5cfa;color:#fff;padding:0.8rem 1.2rem;border-radius:12px;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;font-size:0.9rem;transition:all 0.25s}
-.tm-cta-email:hover{background:rgba(123,92,250,0.35);transform:translateY(-3px)}
-@media(max-width:768px){#tm-chat-widget{bottom:16px;right:16px}#tm-chat-toggle{width:56px;height:56px;font-size:1.5rem}#tm-chat-box{width:calc(100vw - 32px);max-width:420px;height:calc(100vh - 140px);max-height:650px;bottom:62px}#tm-chat-messages{max-height:calc(100vh - 300px)}.tm-msg{max-width:95%;font-size:0.9rem}}
+#tm-chat-widget{position:fixed;bottom:24px;right:24px;z-index:99999}
+#tm-chat-toggle{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#7b5cfa,#00e5ff);border:none;color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 25px rgba(123,92,250,0.4);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 8px 25px rgba(123,92,250,0.4)}50%{box-shadow:0 8px 35px rgba(0,229,255,0.6)}}
+#tm-chat-box{position:absolute;bottom:70px;right:0;width:380px;max-height:500px;background:rgba(10,10,25,0.98);border:1px solid rgba(123,92,250,0.3);border-radius:16px;display:none;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+#tm-chat-box.open{display:flex}
+#tm-chat-header{background:linear-gradient(135deg,rgba(123,92,250,0.2),rgba(0,229,255,0.1));padding:1rem;border-bottom:1px solid rgba(123,92,250,0.3);display:flex;justify-content:space-between;align-items:center}
+#tm-chat-messages{flex:1;overflow-y:auto;padding:1rem;max-height:320px}
+.tm-msg{max-width:85%;padding:0.8rem;margin:0.5rem 0;border-radius:12px;font-size:0.9rem;line-height:1.5;animation:fadeIn 0.3s}
+.tm-msg.bot{background:rgba(123,92,250,0.15);border:1px solid rgba(123,92,250,0.3);align-self:flex-start}
+.tm-msg.user{background:linear-gradient(135deg,#7b5cfa,#00e5ff);color:#fff;align-self:flex-end}
+.tm-msg a{color:#00e5ff;text-decoration:underline}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.tm-btn{background:rgba(123,92,250,0.2);border:1px solid rgba(123,92,250,0.4);color:#fff;padding:0.5rem 1rem;border-radius:20px;font-size:0.8rem;cursor:pointer;margin:0.3rem}
+.tm-btn:hover{background:rgba(123,92,250,0.4)}
+.tm-wa{background:#25D366;color:#fff;border:none;padding:0.7rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.5rem;width:100%}
+.tm-email{background:rgba(123,92,250,0.3);border:1px solid #7b5cfa;color:#fff;padding:0.7rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.5rem;width:100%}
+@media(max-width:768px){#tm-chat-box{width:calc(100vw - 32px);max-width:400px}}
 </style>
 
 <script>
-// ===== CHATBOT GALACTIC PRO - FUNCIONAL =====
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('🚀 Chatbot Terrivol iniciando...');
+// Scripts originales
+function toggleMenu(){const nav=document.getElementById('navLinks');const btn=document.querySelector('.nav-mobile-btn');if(nav&&btn){nav.classList.toggle('open');btn.textContent=nav.classList.contains('open')?'✕':''}}
+document.addEventListener('mousemove',function(e){const cursor=document.getElementById('cursor');const ring=document.getElementById('cursorRing');if(cursor){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'}if(ring){ring.style.left=(e.clientX-16)+'px';ring.style.top=(e.clientY-16)+'px'}});
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')})},{threshold:0.1});document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+// Chatbot
+(function(){
+  const chatBox=document.getElementById('tm-chat-box');
+  const messages=document.getElementById('tm-chat-messages');
+  const input=document.getElementById('tm-chat-input');
+  let step='init',lead={nombre:'',email:'',tel:'',servicio:''},captured=false;
   
-  const chatBox = document.getElementById('tm-chat-box');
-  const messages = document.getElementById('tm-chat-messages');
-  const input = document.getElementById('tm-chat-input');
-  const toggle = document.getElementById('tm-chat-toggle');
-  const close = document.getElementById('tm-chat-close');
-  const send = document.getElementById('tm-chat-send');
-  
-  let step = 'init';
-  let lead = { nombre: '', email: '', tel: '', servicio: '' };
-  let captured = false;
-  
-  // Abrir chat
-  toggle.onclick = function() {
-    console.log('🛸 Chat abierto');
+  document.getElementById('tm-chat-toggle').onclick=function(){
     chatBox.classList.add('open');
-    if (step === 'init') {
-      setTimeout(() => botMsg('🚀 <b>¡Bienvenido al Centro de Comando Terrivol!</b><br><br>Tu música está a punto de despegar hacia órbitas profesionales. Para coordinar tu misión, ¿cuál es tu nombre de artista?'), 600);
-    }
+    if(step==='init')setTimeout(()=>botMsg('🚀 ¡Bienvenido al Centro de Comando Terrivol!<br><br>Para coordinar tu misión, ¿cuál es tu nombre?'),600);
   };
+  document.getElementById('tm-chat-close').onclick=function(){chatBox.classList.remove('open')};
   
-  // Cerrar chat
-  close.onclick = function() {
-    chatBox.classList.remove('open');
+  function handleInput(text){
+    if(!text.trim())return;
+    userMsg(text);input.value='';
+    if(!captured){
+      if(step==='init'||step==='name'){step='name';lead.nombre=text.trim();setTimeout(()=>botMsg(`¡Excelial ${lead.nombre}! 🎵 ¿Tu email?`),600);step='email'}
+      else if(step==='email'){if(!text.includes('@')){botMsg('Email inválido');return}lead.email=text.trim();setTimeout(()=>botMsg('📡 ¿Tu WhatsApp?'),600);step='tel'}
+      else if(step==='tel'){lead.tel=text.trim();captured=true;saveLead();setTimeout(()=>{botMsg('✅ ¡Datos sincronizados! ¿Qué servicio necesitas?');showBtns()},600);step='service'}
+      else if(step==='service'){lead.servicio=text;step='done';botMsg(kb[text.toLowerCase()]||kb.default);setTimeout(()=>{botMsg('🎯 ¿Cómo continuar?');showCTA()},800)}
+    }else{botMsg(kb[text.toLowerCase()]||kb.default)}
+  }
+  
+  document.getElementById('tm-chat-send').onclick=function(){handleInput(input.value)};
+  input.onkeypress=function(e){if(e.key==='Enter')handleInput(input.value)};
+  
+  function userMsg(t){const d=document.createElement('div');d.className='tm-msg user';d.textContent=t;messages.appendChild(d);messages.scrollTop=messages.scrollHeight}
+  function botMsg(h){const d=document.createElement('div');d.className='tm-msg bot';d.innerHTML=h;messages.appendChild(d);messages.scrollTop=messages.scrollHeight}
+  
+  function showBtns(){
+    const btns=[{t:'🎙️ Producción',v:'produccion'},{t:'📀 Distribución',v:'distribucion'},{t:'🎹 Beats',v:'beats'},{t:'⚖️ Legal',v:'legal'},{t:'🎓 Clases',v:'clases'}];
+    btns.forEach(b=>{const btn=document.createElement('button');btn.className='tm-btn';btn.textContent=b.t;btn.onclick=function(){handleInput(b.v)};messages.appendChild(btn)});
+  }
+  
+  function showCTA(){
+    const wa=document.createElement('button');wa.className='tm-wa';wa.textContent='💬 WhatsApp';wa.onclick=openWA;messages.appendChild(wa);
+    const em=document.createElement('button');em.className='tm-email';em.textContent='📧 Email';em.onclick=openEmail;messages.appendChild(em);
+    messages.scrollTop=messages.scrollHeight;
+  }
+  
+  function saveLead(){
+    console.log('🎯 Lead:',lead);
+    const fd=new FormData();fd.append('nombre',lead.nombre);fd.append('email',lead.email);fd.append('telefono',lead.tel);fd.append('servicio',lead.servicio);
+    fetch('https://formspree.io/f/mqegnekp',{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(e=>console.warn(e));
+  }
+  
+  function openWA(){const msg=`Hola! Soy ${lead.nombre}%0AEmail: ${lead.email}%0ATel: ${lead.tel}%0AInterés: ${lead.servicio}`;window.open(`https://wa.me/573102123844?text=${msg}`,'_blank')}
+  function openEmail(){window.open(`mailto:terrivolmusiclove@gmail.com?subject=Lead: ${lead.nombre}&body=Nombre: ${lead.nombre}%0AEmail: ${lead.email}%0ATel: ${lead.tel}%0AServicio: ${lead.servicio}`,'_blank')}
+  
+  const kb={
+    'produccion':'🎙️ <b>Producción:</b> Desde $150 USD. Grabación, mezcla y masterización.',
+    'distribucion':'📀 <b>Distribución:</b> Desde $20/año. Spotify, Apple Music y +150 plataformas.',
+    'beats':'🎹 <b>Beats:</b> Desde $30. Ver: <a href="tienda.html">tienda.html</a>',
+    'legal':'⚖️ <b>Legal:</b> $80 USD. Registro y contratos. Ver: <a href="legal-music.html">legal-music.html</a>',
+    'clases':'🎓 <b>Clases:</b> Desde $40/sesión.',
+    'default':'¿Necesitas info sobre producción, distribución, beats, legal o clases?'
   };
-  
-  // Manejar input
-  function handleInput(text) {
-    if (!text.trim()) return;
-    
-    console.log('📨 Usuario:', text);
-    userMsg(text);
-    input.value = '';
-    
-    if (!captured) {
-      if (step === 'init' || step === 'name') {
-        step = 'name';
-        lead.nombre = text.trim();
-        setTimeout(() => botMsg(`👋 Excelente, ${lead.nombre}.<br><br>Para establecer el canal de comunicación, ¿cuál es tu correo electrónico?`), 600);
-        step = 'email';
-      } else if (step === 'email') {
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text)) {
-          botMsg('⚠️ Necesito una coordenada válida. Ingresa un email correcto (ej: tu@correo.com)');
-          return;
-        }
-        lead.email = text.trim();
-        setTimeout(() => botMsg('📡 ¿Cuál es tu frecuencia de WhatsApp? (incluye código de país, ej: +57...)'), 600);
-        step = 'tel';
-      } else if (step === 'tel') {
-        lead.tel = text.trim();
-        step = 'service';
-        captured = true;
-        saveLead();
-        setTimeout(() => {
-          botMsg('✅ <b>¡Datos sincronizados con la base orbital!</b><br><br>¿En qué sector de nuestra estación espacial necesitas asistencia?');
-          showButtons();
-        }, 600);
-      } else if (step === 'service') {
-        lead.servicio = text;
-        step = 'done';
-        botMsg(kb[text.toLowerCase()] || kb.default);
-        setTimeout(() => {
-          botMsg('🎯 <b>¿Cómo prefieres continuar tu misión?</b>');
-          showCTA();
-        }, 800);
-      }
-    } else {
-      botMsg(kb[text.toLowerCase()] || kb.default);
-    }
-  }
-  
-  send.onclick = function() { handleInput(input.value); };
-  input.onkeypress = function(e) { if (e.key === 'Enter') handleInput(input.value); };
-  
-  function userMsg(text) {
-    const div = document.createElement('div');
-    div.className = 'tm-msg user';
-    div.textContent = text;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-  }
-  
-  function botMsg(html) {
-    const div = document.createElement('div');
-    div.className = 'tm-msg bot';
-    div.innerHTML = html;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-  }
-  
-  function showButtons() {
-    const btns = [
-      {text:'🎙️ Producción', val:'produccion'},
-      {text:'📀 Distribución', val:'distribucion'},
-      {text:'🎹 Beats', val:'beats'},
-      {text:'⚖️ Legal', val:'legal'},
-      {text:'🎓 Clases', val:'clases'}
-    ];
-    btns.forEach((b, i) => {
-      setTimeout(() => {
-        const btn = document.createElement('button');
-        btn.className = 'tm-quick-btn';
-        btn.textContent = b.text;
-        btn.onclick = function() { handleInput(b.val); };
-        messages.appendChild(btn);
-        messages.scrollTop = messages.scrollHeight;
-      }, i * 100);
-    });
-  }
-  
-  function showCTA() {
-    const ctaGroup = document.createElement('div');
-    ctaGroup.style.cssText = 'display:flex;flex-direction:column;gap:0.6rem;margin-top:0.8rem';
-    
-    const wa = document.createElement('button');
-    wa.className = 'tm-cta-wa';
-    wa.innerHTML = '💬 Hablar con asesor (WhatsApp)';
-    wa.onclick = openWA;
-    
-    const email = document.createElement('button');
-    email.className = 'tm-cta-email';
-    email.innerHTML = '📧 Que me contacten por email';
-    email.onclick = openEmail;
-    
-    ctaGroup.appendChild(wa);
-    ctaGroup.appendChild(email);
-    messages.appendChild(ctaGroup);
-    messages.scrollTop = messages.scrollHeight;
-  }
-  
-  function saveLead() {
-    console.log('🎯 Enviando lead a Formspree:', lead);
-    const fd = new FormData();
-    fd.append('nombre', lead.nombre);
-    fd.append('email', lead.email);
-    fd.append('telefono', lead.tel);
-    fd.append('servicio', lead.servicio);
-    fd.append('fecha', new Date().toLocaleString());
-    fd.append('fuente', 'Chatbot Terrivol Music');
-    
-    fetch('https://formspree.io/f/mqegnekp', {
-      method: 'POST',
-      body: fd,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(r => console.log('✅ Lead enviado'))
-    .catch(e => console.warn('⚠️ Error:', e));
-  }
-  
-  function openWA() {
-    const msg = `Hola Terrivol! 🚀%0A%0ASoy ${lead.nombre}%0A📧 ${lead.email}%0A📱 ${lead.tel}%0A🎯 Interés: ${lead.servicio}%0A%0AListo para despegar!`;
-    window.open(`https://wa.me/573102123844?text=${msg}`, '_blank');
-  }
-  
-  function openEmail() {
-    const subject = `Lead Chatbot: ${lead.nombre} - ${lead.servicio}`;
-    const body = `Hola Terrivol Music,%0A%0AMi nombre es ${lead.nombre}.%0A%0AEstoy interesado en: ${lead.servicio}%0A%0AMis datos:%0AEmail: ${lead.email}%0ATeléfono: ${lead.tel}%0A%0AQuisiera más información sobre sus servicios.%0A%0AGracias!`;
-    window.open(`mailto:terrivolmusiclove@gmail.com?subject=${subject}&body=${body}`, '_blank');
-    botMsg('✅ <b>Email listo para enviar!</b><br>Revisa tu cliente de correo y presiona "Enviar". Te contactaremos en menos de 24 horas.');
-  }
-  
-  const kb = {
-    'produccion': '🎙️ <b>Producción Musical Orbital</b><br><br>Grabación, mezcla y masterización con calidad de estudio estelar. Desde $150 USD.<br><br>Incluye: ingenieros expertos, equipo de última generación y revisiones ilimitadas.',
-    'distribucion': '📀 <b>Distribución Intergaláctica</b><br><br>Llevamos tu música a Spotify, Apple, YouTube, Deezer y +150 plataformas. Desde $20/año por single.<br><br>100% de regalías para ti. Cobertura universal.',
-    'beats': '🎹 <b>Beats de Otra Dimensión</b><br><br>Catálogo de trap oscuro, melódico y reggaeton. MP3 desde $30, WAV $50, Trackout $100, Exclusiva $300+.<br><br>Ver catálogo: <a href="tienda.html" target="_blank">tienda.html</a>',
-    'legal': '⚖️ <b>Asesoría Legal Espacial ($80 USD)</b><br><br>Registro de obras, publishing, contratos, derechos de autor y estrategia de regalías.<br><br>Protege tu música en todo el universo. Agenda: <a href="legal-music.html" target="_blank">legal-music.html</a>',
-    'clases': '🎓 <b>Academia de Producción Pro</b><br><br>Mentorías 1-a-1 de producción, mezcla y estrategia musical. Desde $40/sesión.<br><br>Presencial (Bogotá) o transmisión online.',
-    'default': '📡 Recibido. Para darte coordenadas exactas, ¿podrías especificar si buscas producción, distribución, beats, asesoría legal o clases? También puedes contactarnos directo 👇'
-  };
-  
-  console.log('✅ Chatbot Terrivol listo para despegue 🛸');
-});
+})();
 </script>
 
 </body>
