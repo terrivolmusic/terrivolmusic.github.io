@@ -127,4 +127,108 @@ const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(e
 </script>
 
 </body>
+  <!-- CHATBOT TERRIVOL MUSIC -->
+<div id="tm-chat-widget">
+  <button id="tm-chat-toggle" aria-label="Abrir chat">💬</button>
+  <div id="tm-chat-box">
+    <div id="tm-chat-header">
+      <div>
+        <span style="font-weight:700">🎵 Terrivol Music</span>
+        <div style="font-size:.75rem;opacity:.8;margin-top:2px">Asistente virtual</div>
+      </div>
+      <button id="tm-chat-close">×</button>
+    </div>
+    <div id="tm-chat-messages">
+      <div class="tm-msg bot">
+        ¡Hola! Soy el asistente de Terrivol Music. ¿En qué puedo ayudarte hoy?
+      </div>
+    </div>
+    <div id="tm-chat-quick-replies">
+      <button onclick="tmSend('servicios')">🎙️ Servicios</button>
+      <button onclick="tmSend('precios')">💰 Precios</button>
+      <button onclick="tmSend('whatsapp')">💬 WhatsApp</button>
+      <button onclick="tmSend('legal')">⚖️ Asesoría Legal</button>
+    </div>
+    <div id="tm-chat-input-area">
+      <input type="text" id="tm-chat-input" placeholder="Escribe tu pregunta..." autocomplete="off">
+      <button id="tm-chat-send">➤</button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* ===== CHATBOT STYLES ===== */
+#tm-chat-widget{position:fixed;bottom:20px;right:20px;z-index:9999;font-family:'Syne',sans-serif}
+#tm-chat-toggle{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 25px rgba(123,92,250,.4);transition:transform .2s}
+#tm-chat-toggle:hover{transform:scale(1.1)}
+#tm-chat-box{position:absolute;bottom:70px;right:0;width:350px;max-height:500px;background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:none;flex-direction:column;backdrop-filter:blur(20px);box-shadow:0 15px 50px rgba(0,0,0,.5)}
+#tm-chat-box.open{display:flex}
+#tm-chat-header{background:linear-gradient(135deg,rgba(123,92,250,.2),rgba(0,229,255,.1));padding:1rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+#tm-chat-close{background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+#tm-chat-messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.8rem;max-height:300px}
+.tm-msg{max-width:85%;padding:.8rem 1rem;border-radius:12px;font-size:.9rem;line-height:1.5;animation:tmFade .3s ease}
+.tm-msg.bot{background:var(--surface2);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:4px}
+.tm-msg.user{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+@keyframes tmFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+#tm-chat-quick-replies{display:flex;flex-wrap:wrap;gap:.5rem;padding:0 1rem 1rem;border-bottom:1px solid var(--border)}
+#tm-chat-quick-replies button{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:.4rem .8rem;border-radius:20px;font-size:.8rem;cursor:pointer;transition:all .2s}
+#tm-chat-quick-replies button:hover{border-color:var(--accent);background:rgba(123,92,250,.15)}
+#tm-chat-input-area{display:flex;padding:.8rem;gap:.5rem;border-top:1px solid var(--border)}
+#tm-chat-input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.6rem .8rem;color:var(--text);font-family:inherit}
+#tm-chat-input:focus{outline:none;border-color:var(--accent)}
+#tm-chat-send{background:var(--accent);border:none;color:#fff;width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:1.1rem}
+@media(max-width:480px){#tm-chat-box{width:calc(100vw - 40px);right:-10px;bottom:60px}}
+</style>
+
+<script>
+// ===== CHATBOT LOGIC =====
+const tmChatBox = document.getElementById('tm-chat-box');
+const tmMessages = document.getElementById('tm-chat-messages');
+const tmInput = document.getElementById('tm-chat-input');
+
+document.getElementById('tm-chat-toggle').onclick = () => tmChatBox.classList.toggle('open');
+document.getElementById('tm-chat-close').onclick = () => tmChatBox.classList.remove('open');
+
+// Base de conocimiento (puedes agregar más)
+const tmKB = {
+  'servicios': 'Ofrecemos: 🎙️ Producción Musical, 📀 Distribución Digital, 🎹 Beats & Licencias, 🎓 Clases, ⚖️ Asesoría Legal y más. ¿Cuál te interesa?',
+  'precios': 'Nuestros precios varían según el servicio. Producción desde $150, Distribución desde $20/año, Asesoría Legal $80. ¿Quieres cotizar algo específico?',
+  'whatsapp': '¡Claro! Escríbenos directo: https://wa.me/573102123844 Te respondemos en <24h 🚀',
+  'legal': 'Nuestra Asesoría Legal ($80 USD) incluye: registro de obras, publishing, contratos y estrategia de regalías. Agenda aquí: terrivolmusic.github.io/legal-music.html',
+  'horario': 'Atendemos Lun-Vie 9am-6pm (Colombia). WhatsApp responde 24/7 ⚡',
+  'plataformas': 'Distribuimos a +150 plataformas: Spotify, Apple Music, YouTube, Deezer, Amazon, TikTok y más 🌍',
+  'default': 'No entendí tu pregunta. ¿Puedes reformularla? O escríbenos directo a WhatsApp para atención personalizada 💬'
+};
+
+function tmSend(text) {
+  tmAddMsg(text, 'user');
+  setTimeout(() => {
+    const lower = text.toLowerCase();
+    let reply = tmKB.default;
+    for (let key in tmKB) {
+      if (lower.includes(key)) { reply = tmKB[key]; break; }
+    }
+    tmAddMsg(reply, 'bot');
+  }, 600);
+}
+
+function tmAddMsg(text, type) {
+  const div = document.createElement('div');
+  div.className = `tm-msg ${type}`;
+  div.textContent = text;
+  tmMessages.appendChild(div);
+  tmMessages.scrollTop = tmMessages.scrollHeight;
+}
+
+tmInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter' && tmInput.value.trim()) {
+    tmSend(tmInput.value.trim());
+    tmInput.value = '';
+  }
+});
+document.getElementById('tm-chat-send').onclick = () => {
+  if (tmInput.value.trim()) tmSend(tmInput.value.trim());
+  tmInput.value = '';
+};
+</script>
 </html>
