@@ -21,10 +21,21 @@
         .header{text-align:center;margin-bottom:2rem}
         .title{font-size:clamp(2.5rem,8vw,4rem);font-weight:800;background:linear-gradient(135deg,var(--white),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.5rem;letter-spacing:2px}
         .artist{font-size:clamp(1.2rem,3vw,1.8rem);color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:4px}
-        .cover-container{position:relative;width:100%;max-width:400px;margin:0 auto 3rem}
+        .cover-container{position:relative;width:100%;max-width:400px;margin:0 auto 2rem}
         .cover-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;height:90%;background:radial-gradient(circle,rgba(212,175,55,0.4) 0%,transparent 70%);animation:pulse 3s ease-in-out infinite;border-radius:8px}
         @keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.5}50%{transform:translate(-50%,-50%) scale(1.1);opacity:0.8}}
         .cover{width:100%;height:auto;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.8);position:relative;z-index:1}
+        
+        /* ===== YOUTUBE VIDEO SECTION ===== */
+        .video-section{margin:2rem auto;max-width:640px;padding:0 1rem}
+        .video-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,0,0,0.9);color:#fff;padding:0.5rem 1.2rem;border-radius:30px;font-size:0.85rem;font-weight:700;margin-bottom:1rem;animation:pulseBadge 2s infinite}
+        @keyframes pulseBadge{0%,100%{box-shadow:0 4px 20px rgba(255,0,0,0.4)}50%{box-shadow:0 4px 30px rgba(255,0,0,0.7)}}
+        .video-badge svg{width:16px;height:16px;animation:spin 3s linear infinite}
+        @keyframes spin{100%{transform:rotate(360deg)}}
+        .video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;box-shadow:0 20px 60px rgba(255,0,0,0.3);background:#000;border:2px solid rgba(212,175,55,0.3)}
+        .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+        .video-hint{text-align:center;color:rgba(255,255,255,0.6);font-size:0.85rem;margin-top:1rem}
+        
         .streaming-section{margin-bottom:3rem}
         .section-title{text-align:center;font-size:1.2rem;color:var(--gold);margin-bottom:1.5rem;text-transform:uppercase;letter-spacing:2px}
         .streaming-buttons{display:flex;flex-direction:column;gap:1rem;max-width:400px;margin:0 auto}
@@ -48,58 +59,38 @@
         .social-link:hover{opacity:1;color:var(--gold);transform:translateY(-3px)}
         .footer{text-align:center;color:rgba(255,255,255,0.5);font-size:0.85rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,0.2)}
         .footer a{color:var(--gold);text-decoration:none}
-        @media(max-width:640px){.streaming-btn{padding:1.2rem 1.5rem;min-height:56px}.subscription-section{padding:1.5rem}}
+        @media(max-width:640px){.streaming-btn{padding:1.2rem 1.5rem;min-height:56px}.subscription-section{padding:1.5rem}.video-container{border-radius:8px}}
         .success-message{display:none;background:rgba(29,185,84,0.2);border:1px solid #1DB954;border-radius:8px;padding:1.5rem;text-align:center;margin-top:1rem}
         .success-message.show{display:block;animation:slideIn 0.5s ease}
         @keyframes slideIn{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
-        
-        /* ===== YOUTUBE AUTOPLAY INDICATOR ===== */
-        .yt-playing-badge{
-            position:fixed;
-            bottom:20px;
-            left:50%;
-            transform:translateX(-50%);
-            background:rgba(255,0,0,0.9);
-            color:#fff;
-            padding:0.5rem 1.2rem;
-            border-radius:30px;
-            font-size:0.85rem;
-            font-weight:700;
-            display:flex;
-            align-items:center;
-            gap:0.5rem;
-            z-index:100;
-            animation:pulseBadge 2s infinite;
-            box-shadow:0 4px 20px rgba(255,0,0,0.4);
-        }
-        @keyframes pulseBadge{0%,100%{box-shadow:0 4px 20px rgba(255,0,0,0.4)}50%{box-shadow:0 4px 30px rgba(255,0,0,0.7)}}
-        .yt-playing-badge svg{width:16px;height:16px;animation:spin 3s linear infinite}
-        @keyframes spin{100%{transform:rotate(360deg)}}
-        
-        /* Hidden YouTube Player */
-        #yt-player{position:fixed;bottom:-9999px;right:-9999px;opacity:0;pointer-events:none}
     </style>
 </head>
 <body>
-    <!-- YouTube Player (Hidden, Auto-play) -->
-    <div id="yt-player"></div>
-    
-    <!-- Playing Badge -->
-    <div class="yt-playing-badge" id="ytBadge" style="display:none">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        Reproduciendo en YouTube
-    </div>
-    
     <div class="particles" id="particles"></div>
     <div class="container">
         <div class="header">
             <h1 class="title">EL MEJOR</h1>
             <p class="artist">CAGTA FLEX</p>
         </div>
+        
+        <!-- COVER -->
         <div class="cover-container">
             <div class="cover-glow"></div>
             <img src="img/el-mejor-cover.jpg" alt="EL MEJOR - Cagta Flex" class="cover">
         </div>
+        
+        <!-- VIDEO DE YOUTUBE -->
+        <section class="video-section">
+            <div class="video-badge" id="videoBadge" style="display:none">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                Reproduciendo ahora
+            </div>
+            <div class="video-container">
+                <div id="youtube-player"></div>
+            </div>
+            <p class="video-hint">🎵 El video se reproduce automáticamente (muteado). Haz clic para activar el sonido.</p>
+        </section>
+        
         <div class="streaming-section">
             <h2 class="section-title">DISPONIBLE EN</h2>
             <div class="streaming-buttons">
@@ -180,25 +171,30 @@
         const SCRIPT_URL='https://script.google.com/macros/s/AKfycbyTHIxQpu77MnN1MTNGfp3qdb6SzxTNE9jHCDVucUHdtNRrA5TZKCutq7fvuZWJ_Ws2Qg/exec';
         document.getElementById('subscribeForm').addEventListener('submit',function(e){e.preventDefault();const email=document.getElementById('emailInput').value;const name=document.getElementById('nameInput').value;const submitBtn=this.querySelector('.subscribe-btn');const successMsg=document.getElementById('successMessage');submitBtn.disabled=true;submitBtn.textContent='Enviando...';fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,nombre:name||'No especificado'})}).then(()=>{successMsg.classList.add('show');this.reset();setTimeout(()=>{submitBtn.disabled=false;submitBtn.textContent='Suscribirme';successMsg.classList.remove('show')},5000)}).catch(error=>{console.error('Error:',error);alert('Hubo un error. Por favor intenta de nuevo o envíame un WhatsApp directo.');submitBtn.disabled=false;submitBtn.textContent='Suscribirme'});});
         
-        // ===== YOUTUBE AUTOPLAY PRO =====
-        // Cargar API de YouTube
-        var tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';var firstScriptTag=document.getElementsByTagName('script')[0];firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);
-        
-        var player;var ytBadge=document.getElementById('ytBadge');
+        // ===== YOUTUBE PLAYER VISIBLE =====
+        var tag=document.createElement('script');
+        tag.src='https://www.youtube.com/iframe_api';
+        var firstScriptTag=document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);
+
+        var player;
+        var videoBadge=document.getElementById('videoBadge');
+
         function onYouTubeIframeAPIReady(){
-            player=new YT.Player('yt-player',{
-                height:'1',width:'1',
+            player=new YT.Player('youtube-player',{
+                height:'100%',
+                width:'100%',
                 videoId:'Hq-13-J7ugo',
                 playerVars:{
                     'autoplay':1,
                     'mute':1,
-                    'controls':0,
-                    'disablekb':1,
-                    'fs':0,
-                    'loop':1,
-                    'playlist':'Hq-13-J7ugo',
+                    'controls':1,
+                    'disablekb':0,
+                    'fs':1,
+                    'loop':0,
                     'modestbranding':1,
-                    'rel':0
+                    'rel':0,
+                    'playsinline':1
                 },
                 events:{
                     'onReady':onPlayerReady,
@@ -206,22 +202,24 @@
                 }
             });
         }
+
         function onPlayerReady(event){
             event.target.playVideo();
-            // Mostrar badge después de 2 segundos
-            setTimeout(()=>{ytBadge.style.display='flex'},2000);
+            setTimeout(()=>{videoBadge.style.display='inline-flex'},2000);
         }
+
         function onPlayerStateChange(event){
-            // Si el video termina, reiniciar (aunque loop:1 debería manejarlo)
-            if(event.data===YT.PlayerState.ENDED){player.playVideo();}
+            if(event.data===YT.PlayerState.PLAYING && player.isMuted()){
+                // El usuario puede activar sonido haciendo clic
+            }
         }
-        
-        // Permitir que el usuario active sonido al hacer clic en cualquier botón de YouTube
-        document.querySelectorAll('.youtube, .youtube-music').forEach(btn=>{
-            btn.addEventListener('click',function(){
-                if(player && player.unMute){player.unMute();}
-            });
-        });
+
+        // Permitir que el usuario active sonido al hacer clic en cualquier parte
+        document.addEventListener('click',function(){
+            if(player && player.unMute && player.isMuted()){
+                player.unMute();
+            }
+        },{once:true});
     </script>
 </body>
 </html>
