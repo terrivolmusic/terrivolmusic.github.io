@@ -275,12 +275,12 @@ const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(e
   }
 
   function openEmail(){
-    const subj=`Consulta Chatbot: ${lead.nombre} - ${lead.servicio}`;
-    const body=`Hola equipo Terrivol,%0A%0AMi nombre es ${lead.nombre}.%0A📧 Email: ${lead.email}%0A📱 Tel: ${lead.tel}%0A🎯 Servicio de interés: ${lead.servicio}%0A%0AQuisiera más información para iniciar.%0A%0AGracias!`;
-    window.open(`mailto:terrivolmusiclove@gmail.com?subject=${subj}&body=${body}`, '_blank');
-    botMsg('✅ Cliente de correo abierto. Presiona "Enviar" y te contactaremos en <24h.');
+    // Redirige a la página de contacto oficial
+    window.open('contacto.html', '_blank');
+    // Mensaje en el chat
+    botMsg('✅ <b>¡Redirigiendo a Contacto!</b><br>Tus datos ya están sincronizados. Por favor completa el formulario o escríbenos por WhatsApp para finalizar.');
   }
-
+  
   const kb={
     'produccion':'🎙️ <b>Producción Musical:</b> Desde $150 USD. Incluye grabación, mezcla y masterización con ingenieros expertos.',
     'distribucion':'📀 <b>Distribución Digital:</b> Desde $20/año. Spotify, Apple Music, YouTube, Deezer y +150 plataformas. 100% regalías para ti.',
