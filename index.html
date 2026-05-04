@@ -247,13 +247,13 @@ const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(e
     existing.forEach(el=>el.remove());
 
     const txt=document.createElement('div'); txt.className='tm-msg bot tm-cta-text';
-    txt.innerHTML='🎯 <b>¿Listo para despegar?</b><br>Habla directo con un asesor o deja tu solicitud por email.';
+    txt.innerHTML='🎯 <b>¿Listo para despegar?</b><br>Habla directo con un asesor o completa el formulario de contacto.';
     messages.appendChild(txt);
 
     const wa=document.createElement('button'); wa.className='tm-wa'; wa.innerHTML='💬 WhatsApp Directo';
     wa.onclick=openWA; messages.appendChild(wa);
 
-    const em=document.createElement('button'); em.className='tm-email'; em.innerHTML='📧 Enviar por Email';
+    const em=document.createElement('button'); em.className='tm-email'; em.innerHTML='📧 Ir a Formulario de Contacto';
     em.onclick=openEmail; messages.appendChild(em);
 
     messages.scrollTop=messages.scrollHeight;
@@ -275,10 +275,12 @@ const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(e
   }
 
   function openEmail(){
-    // Redirige a la página de contacto oficial
-    window.open('contacto.html', '_blank');
+    // Redirige a contacto.html con scroll automático al formulario
+    window.location.href = 'contacto.html#formulario-contacto';
     // Mensaje en el chat
-    botMsg('✅ <b>¡Redirigiendo a Contacto!</b><br>Tus datos ya están sincronizados. Por favor completa el formulario o escríbenos por WhatsApp para finalizar.');
+    botMsg('✅ <b>¡Redirigiendo al formulario!</b><br>Tus datos ya están registrados. Completa el formulario y te contactaremos en menos de 24 horas.');
+    // Cerrar chat después de 1 segundo
+    setTimeout(()=>{ chatBox.classList.remove('open'); }, 1000);
   }
   
   const kb={
