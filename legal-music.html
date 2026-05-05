@@ -36,6 +36,35 @@
 .testimonial-legal-author{color:var(--accent);font-weight:700}
 
 /* ===== NUEVAS SECCIONES ===== */
+.promo-section{padding:6rem 0;background:linear-gradient(135deg,rgba(123,92,250,.15),rgba(0,229,255,.1));border-top:2px solid var(--accent);border-bottom:2px solid var(--accent);position:relative;overflow:hidden}
+.promo-section::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(123,92,250,.05) 20px,rgba(123,92,250,.05) 40px);animation:slideBg 20s linear infinite}
+@keyframes slideBg{0%{transform:translate(0,0)}100%{transform:translate(50px,50px)}}
+.promo-badge{display:inline-block;background:linear-gradient(135deg,#ff3c4c,#ff6b6b);color:#fff;padding:.8rem 2rem;border-radius:50px;font-weight:800;font-size:1.1rem;margin-bottom:2rem;animation:pulsePromo 2s infinite;box-shadow:0 10px 30px rgba(255,60,76,.4)}
+@keyframes pulsePromo{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.promo-container{max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.promo-title{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:1.5rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.promo-subtitle{font-size:1.2rem;color:var(--muted);margin-bottom:3rem}
+.promo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin:3rem 0}
+.promo-card{background:rgba(255,255,255,.05);border:2px solid var(--accent);border-radius:16px;padding:2.5rem;position:relative;transition:all .3s}
+.promo-card.featured{background:linear-gradient(135deg,rgba(123,92,250,.2),rgba(0,229,255,.1));border-width:3px;transform:scale(1.05);box-shadow:0 20px 60px rgba(123,92,250,.3)}
+.promo-card.featured::before{content:'🔥 MÁS POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:.3rem 1rem;border-radius:20px;font-size:.75rem;font-weight:700}
+.promo-card h3{font-size:1.3rem;margin-bottom:1rem;color:var(--text)}
+.promo-price{font-size:2.5rem;font-weight:800;color:var(--accent2);margin:1rem 0}
+.promo-price span{font-size:1rem;color:var(--muted);display:block;margin-top:.5rem}
+.promo-features{list-style:none;padding:0;margin:1.5rem 0;text-align:left}
+.promo-features li{padding:.6rem 0;border-bottom:1px solid rgba(123,92,250,.2);display:flex;align-items:center;gap:.8rem}
+.promo-features li::before{content:'✓';color:var(--accent2);font-weight:800;font-size:1.2rem}
+.promo-comparison{background:rgba(255,0,0,.05);border:2px solid rgba(255,0,0,.3);border-radius:12px;padding:2rem;margin:3rem 0}
+.comparison-title{font-size:1.5rem;color:#ff3c4c;margin-bottom:1.5rem;text-align:center}
+.comparison-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin:2rem 0}
+.comparison-item{padding:1rem;background:rgba(255,255,255,.03);border-radius:8px;text-align:center}
+.comparison-item.bad{border:1px solid rgba(255,0,0,.3)}
+.comparison-item.good{border:1px solid rgba(0,255,0,.3);background:rgba(0,255,0,.05)}
+.comparison-label{font-size:.9rem;color:var(--muted);margin-bottom:.5rem}
+.comparison-value{font-size:1.3rem;font-weight:700}
+.bad .comparison-value{color:#ff3c4c}
+.good .comparison-value{color:#00ff00}
+
 .loss-section{padding:6rem 0;background:linear-gradient(135deg,rgba(255,0,0,.05),rgba(255,60,172,.08));border-top:1px solid rgba(255,0,0,.2);border-bottom:1px solid rgba(255,0,0,.2)}
 .loss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin:3rem 0}
 .loss-card{background:rgba(255,0,0,.05);border:2px solid rgba(255,0,0,.3);border-radius:12px;padding:2rem;text-align:center;position:relative;overflow:hidden}
@@ -52,7 +81,7 @@
 .urgency-banner h3{font-size:1.5rem;margin-bottom:.5rem}
 .urgency-banner p{font-size:1.1rem;opacity:.95}
 
-@media(max-width:768px){.legal-hero{padding:6rem 0 3rem}.legal-features,.legal-process,.legal-cta,.loss-section,.about-section{padding:4rem 0}.feature-grid,.process-steps,.loss-grid,.about-grid{grid-template-columns:1fr;gap:1.5rem}.pricing-box{padding:2rem 1.5rem}.pricing-price{font-size:2.5rem}.loss-amount{font-size:2rem}}
+@media(max-width:768px){.legal-hero{padding:6rem 0 3rem}.legal-features,.legal-process,.legal-cta,.loss-section,.about-section,.promo-section{padding:4rem 0}.feature-grid,.process-steps,.loss-grid,.about-grid,.promo-grid,.comparison-grid{grid-template-columns:1fr;gap:1.5rem}.pricing-box{padding:2rem 1.5rem}.pricing-price{font-size:2.5rem}.loss-amount{font-size:2rem}.promo-card.featured{transform:scale(1)}}
 </style>
 </head>
 <body>
@@ -74,6 +103,70 @@
     <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
   </div>
 </nav>
+
+<!-- PROMO ESPECIAL -->
+<section class="promo-section">
+  <div class="promo-container">
+    <div class="promo-badge fade-up">🔥 PROMOCIÓN POR TIEMPO LIMITADO</div>
+    <h2 class="promo-title fade-up delay-1">Asesoría Legal PRO vs PDFs Genéricos</h2>
+    <p class="promo-subtitle fade-up delay-2">Mientras otros te venden información, nosotros te damos experiencia real</p>
+    
+    <div class="promo-grid">
+      <div class="promo-card fade-up delay-2">
+        <h3>❌ Lo que venden otros</h3>
+        <div class="promo-price">$150-300 USD<span>Por un PDF/ebook</span></div>
+        <ul class="promo-features">
+          <li>Información genérica de internet</li>
+          <li>Sin personalización</li>
+          <li>Sin respuestas a tus dudas</li>
+          <li>Sin seguimiento</li>
+          <li>Sin experiencia real</li>
+          <li>Lo lees y listo</li>
+        </ul>
+      </div>
+      
+      <div class="promo-card featured fade-up delay-3">
+        <h3>✅ Lo que ofrecemos nosotros</h3>
+        <div class="promo-price">$80 USD<span>Asesoría 1-a-1 COMPLETA</span></div>
+        <ul class="promo-features">
+          <li>Asesoría personalizada en vivo</li>
+          <li>90 minutos de consulta PRO</li>
+          <li>Documento personalizado</li>
+          <li>Seguimiento 30 días</li>
+          <li>+15 años de experiencia</li>
+          <li>Respuestas a TODAS tus dudas</li>
+        </ul>
+        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20la%20promoción%20de%20asesoría%20legal%20(%2480%20USD)" target="_blank" class="btn-wa" style="margin-top:1.5rem;display:inline-block;width:100%">👉 APROVECHAR AHORA</a>
+      </div>
+    </div>
+    
+    <div class="promo-comparison fade-up">
+      <h3 class="comparison-title">💰 Comparación Real del Mercado</h3>
+      <div class="comparison-grid">
+        <div class="comparison-item bad">
+          <div class="comparison-label">Abogado especializado</div>
+          <div class="comparison-value">$200-500/hora</div>
+        </div>
+        <div class="comparison-item bad">
+          <div class="comparison-label">Consultora musical</div>
+          <div class="comparison-value">$300-800</div>
+        </div>
+        <div class="comparison-item good">
+          <div class="comparison-label">Terrivol Music PRO</div>
+          <div class="comparison-value">$80 TOTAL</div>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--muted);margin-top:1.5rem">
+        💡 <strong>Ahorras hasta $420 USD</strong> vs una consultora tradicional
+      </p>
+    </div>
+    
+    <div class="urgency-banner fade-up">
+      <h3>⏡ Cupos limitados esta semana</h3>
+      <p>Solo atendemos 5 artistas por semana para dar atención 100% personalizada</p>
+    </div>
+  </div>
+</section>
 
 <!-- HERO -->
 <section class="legal-hero">
