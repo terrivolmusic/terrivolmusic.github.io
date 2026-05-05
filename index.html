@@ -1,298 +1,451 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terrivol Music | Sello Discográfico & Servicios Musicales</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrivol Music | AI CRM Open Source</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { primary: '#6366f1', secondary: '#ec4899', accent: '#8b5cf6' }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%); color: #f8fafc; font-family: 'Inter', sans-serif; min-height: 100vh; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .glass-card { background: rgba(51, 65, 85, 0.5); backdrop-filter: blur(8px); border: 1px solid rgba(99, 102, 241, 0.2); transition: all 0.3s ease; }
+        .glass-card:hover { transform: translateY(-4px); border-color: rgba(99, 102, 241, 0.5); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3); }
+        .gradient-text { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .bg-animated { background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #1e293b); background-size: 400% 400%; animation: gradient 15s ease infinite; }
+        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .btn-primary { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; font-weight: 600; padding: 12px 24px; border-radius: 12px; border: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6); }
+        .btn-secondary { background: rgba(236, 72, 153, 0.2); color: #ec4899; border: 2px solid #ec4899; font-weight: 600; padding: 10px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s; }
+        .btn-secondary:hover { background: rgba(236, 72, 153, 0.4); transform: translateY(-2px); }
+        .btn-backup { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #34d399; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .btn-backup:hover { background: rgba(16, 185, 129, 0.4); }
+        input, select, textarea { background: rgba(15, 23, 42, 0.6); border: 2px solid rgba(99, 102, 241, 0.3); color: white; padding: 12px 16px; border-radius: 10px; width: 100%; transition: all 0.3s; }
+        input:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); }
+        .hashtag { background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%); padding: 8px 20px; border-radius: 20px; font-size: 13px; cursor: pointer; transition: all 0.3s; display: inline-block; margin: 4px; border: 1px solid rgba(99, 102, 241, 0.4); }
+        .hashtag:hover { transform: scale(1.1); background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); }
+        .status-badge { padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .status-nuevo { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+        .status-contactado { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .status-reunion { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+        .status-venta { background: rgba(139, 92, 246, 0.2); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.4); }
+        table { width: 100%; border-collapse: separate; border-spacing: 0; }
+        th { background: rgba(15, 23, 42, 0.8); padding: 16px; text-align: left; font-weight: 600; color: #94a3b8; text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em; }
+        td { padding: 16px; border-bottom: 1px solid rgba(51, 65, 85, 0.5); transition: all 0.2s; }
+        tr:hover td { background: rgba(99, 102, 241, 0.1); }
+        .upload-zone { border: 3px dashed rgba(99, 102, 241, 0.5); border-radius: 16px; padding: 60px 40px; text-align: center; transition: all 0.3s; cursor: pointer; background: rgba(99, 102, 241, 0.05); }
+        .upload-zone:hover { border-color: #6366f1; background: rgba(99, 102, 241, 0.15); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); border-radius: 4px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out; }
+        .nav-btn { transition: all 0.3s; border-radius: 12px; padding: 12px 16px; margin: 4px 0; }
+        .nav-btn:hover { background: rgba(99, 102, 241, 0.2); transform: translateX(8px); }
+        .nav-btn.active { background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%); border-left: 4px solid #6366f1; }
+        .toast { position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5); z-index: 1000; animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    </style>
 </head>
-<body>
+<body class="bg-animated flex h-screen overflow-hidden">
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="stars" id="stars"></div>
+    <!-- SIDEBAR -->
+    <aside class="glass w-72 p-6 flex flex-col shadow-2xl">
+        <div class="mb-8">
+            <h1 class="text-3xl font-black mb-2 gradient-text">🎵 Terrivol</h1>
+            <p class="text-xs text-slate-400">AI Open Source CRM</p>
+        </div>
+        <nav class="space-y-1 flex-1">
+            <button onclick="showTab('dashboard')" id="btn-dashboard" class="nav-btn active w-full text-left px-4 py-3 flex items-center gap-3 font-medium">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard
+            </button>
+            <button onclick="showTab('ai-vision')" id="btn-ai-vision" class="nav-btn w-full text-left px-4 py-3 flex items-center gap-3 font-medium">
+                <i data-lucide="eye" class="w-5 h-5"></i> AI Vision
+                <span class="ml-auto text-xs bg-gradient-to-r from-green-500 to-emerald-500 px-2 py-1 rounded-full">FREE</span>
+            </button>
+            <button onclick="showTab('hashtags')" id="btn-hashtags" class="nav-btn w-full text-left px-4 py-3 flex items-center gap-3 font-medium">
+                <i data-lucide="hash" class="w-5 h-5"></i> Hashtags
+            </button>
+            <button onclick="showTab('crm')" id="btn-crm" class="nav-btn w-full text-left px-4 py-3 flex items-center gap-3 font-medium">
+                <i data-lucide="users" class="w-5 h-5"></i> CRM Leads
+            </button>
+        </nav>
+        <div class="glass-card p-4 rounded-xl mt-4">
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span class="text-xs font-medium text-slate-300">Sistema Activo</span>
+            </div>
+            <p class="text-xs text-slate-400">v3.5 Open Source</p>
+        </div>
+    </aside>
 
-<!-- MENÚ -->
-<nav class="navbar">
-  <div class="nav-container container">
-    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Terrivol Music"></a>
-    <div class="nav-links" id="navLinks">
-      <a href="index.html" class="active">Inicio</a>
-      <a href="servicios.html">Servicios</a>
-      <a href="contacto.html">Contacto</a>
-      <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="nav-cta-mobile">💼 TRABAJEMOS</a>
-    </div>
-    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
-  </div>
-</nav>
+    <!-- MAIN -->
+    <main class="flex-1 overflow-auto p-8">
+        
+        <!-- DASHBOARD -->
+        <div id="dashboard" class="tab-content animate-fade-in">
+            <h2 class="text-4xl font-black mb-6">📊 Dashboard</h2>
+            <div class="grid grid-cols-4 gap-6 mb-8">
+                <div class="glass-card p-6 rounded-2xl"><div class="text-slate-400 text-sm mb-2">Leads Totales</div><div class="text-5xl font-black text-blue-400" id="kpi-total">0</div></div>
+                <div class="glass-card p-6 rounded-2xl"><div class="text-slate-400 text-sm mb-2">DMs Enviados</div><div class="text-5xl font-black text-green-400" id="kpi-enviados">0</div></div>
+                <div class="glass-card p-6 rounded-2xl"><div class="text-slate-400 text-sm mb-2">Respuestas</div><div class="text-5xl font-black text-yellow-400" id="kpi-respuestas">0</div></div>
+                <div class="glass-card p-6 rounded-2xl"><div class="text-slate-400 text-sm mb-2">Ventas</div><div class="text-5xl font-black text-purple-400" id="kpi-ventas">0</div></div>
+            </div>
+            <div class="glass-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold mb-4">🎯 Meta Semanal</h3>
+                <div class="w-full bg-slate-800 rounded-full h-4 mb-2"><div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-4 rounded-full" style="width: 0%" id="progress-bar"></div></div>
+                <p class="text-sm text-slate-400">Objetivo: 50 leads | <span id="faltan">50</span> restantes</p>
+            </div>
+        </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge fade-up">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        SELLO INDEPENDIENTE · BOGOTÁ
-      </div>
-      <h1 class="hero-title fade-up delay-1">Tu música merece<br><span>infraestructura<br>profesional</span></h1>
-      <p class="hero-subtitle fade-up delay-2">Aliado estratégico para artistas independientes que buscan competir a nivel global.</p>
-      <div class="hero-stats fade-up delay-3">
-        <div><div class="stat-number">+400</div><div class="stat-label">Lanzamientos</div></div>
-        <div><div class="stat-number">+15</div><div class="stat-label">Años experiencia</div></div>
-        <div><div class="stat-number">100%</div><div class="stat-label">Independiente</div></div>
-      </div>
-      <div class="hero-cta fade-up delay-4">
-        <a href="servicios.html" class="btn-primary">Explorar servicios</a>
-        <a href="contacto.html" class="btn-ghost">Cotizar proyecto</a>
-      </div>
-      <div class="hero-trust fade-up delay-5">
-        <div class="trust-badge">+150 plataformas</div>
-        <div class="trust-badge">Derechos protegidos</div>
-        <div class="trust-badge">Respuesta en 24h</div>
-      </div>
-    </div>
-  </div>
-</section>
+        <!-- AI VISION -->
+        <div id="ai-vision" class="tab-content hidden animate-fade-in">
+            <div class="mb-8">
+                <h2 class="text-4xl font-black mb-2 gradient-text">👁️ AI Vision (Open Source)</h2>
+                <p class="text-slate-400">Pega el pantallazo (Ctrl+V). Usa modelos LLaVA/Qwen gratis vía HuggingFace.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-6">
+                <!-- UPLOAD -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold mb-4">📋 Sube el Pantallazo</h3>
+                    <div class="upload-zone" id="uploadZone">
+                        <i data-lucide="clipboard" class="w-16 h-16 mx-auto mb-4 text-indigo-400"></i>
+                        <p class="text-lg font-semibold mb-2">Presiona Ctrl+V para pegar</p>
+                        <p class="text-sm text-slate-400">o arrastra la imagen aquí</p>
+                        <input type="file" id="fileInput" accept="image/*" class="hidden">
+                    </div>
+                    <div id="imagePreview" class="mt-4 hidden">
+                        <img id="previewImg" class="w-full rounded-xl border-2 border-indigo-500/50">
+                        <button onclick="analyzeImage()" class="btn-primary w-full mt-4 flex items-center justify-center gap-2" id="analyzeBtn">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i> Analizar con AI
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- RESULT -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold mb-4">✨ Copy Generado</h3>
+                    <div id="copyResult" class="hidden">
+                        <div class="bg-slate-800/50 p-4 rounded-xl mb-4 border border-slate-700">
+                            <pre id="generatedCopy" class="text-sm text-slate-300 whitespace-pre-wrap font-mono"></pre>
+                        </div>
+                        <button onclick="copiarCopyGenerado()" class="btn-primary w-full mb-3">Copiar Copy</button>
+                        <button onclick="guardarEnCRM()" class="btn-secondary w-full">Guardar en CRM</button>
+                    </div>
+                    <div id="copyPlaceholder" class="text-center py-12 text-slate-400">
+                        <i data-lucide="message-circle" class="w-16 h-16 mx-auto mb-4 opacity-50"></i>
+                        <p>Pega una imagen para generar el copy</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CONFIG API -->
+            <div class="glass-card p-6 rounded-2xl mt-6">
+                <h3 class="text-lg font-bold mb-4">⚙️ Configuración AI (Gratis)</h3>
+                <div class="flex gap-4 items-end">
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium mb-2 text-slate-300">HuggingFace Token (Gratis)</label>
+                        <input type="password" id="apiKey" placeholder="hf_...">
+                        <p class="text-xs text-slate-400 mt-1">Obtén tu token gratis en <a href="https://huggingface.co/settings/tokens" target="_blank" class="text-indigo-400 hover:underline">huggingface.co</a></p>
+                    </div>
+                    <button onclick="saveApiKey()" class="btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
 
-<!-- SERVICIOS -->
-<section class="services">
-  <div class="container">
-    <p class="section-label">// LO QUE HACEMOS</p>
-    <h2>Servicios Musicales Profesionales</h2>
-    <div class="services-grid">
-      <a href="servicios.html#produccion" class="service-card fade-up">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-        <h3 class="service-title">Producción Musical</h3>
-        <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio.</p>
-        <span class="service-link">Cotizar ahora →</span>
-      </a>
-      <a href="servicios.html#distribucion" class="service-card fade-up delay-1">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
-        <h3 class="service-title">Distribución Digital</h3>
-        <p class="service-desc">Lleva tu música a Spotify, Apple Music y +150 plataformas.</p>
-        <span class="service-link">Cotizar ahora →</span>
-      </a>
-      <a href="tienda.html" class="service-card fade-up delay-2">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        <h3 class="service-title">Beats & Licencias</h3>
-        <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles.</p>
-        <span class="service-link">Explorar beats →</span>
-      </a>
-      <a href="servicios.html#clases" class="service-card fade-up">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        <h3 class="service-title">Clases de Producción Pro</h3>
-        <p class="service-desc">Mentorías 1-a-1 con expertos del sello.</p>
-        <span class="service-link">Agendar clase →</span>
-      </a>
-    </div>
-  </div>
-</section>
+        <!-- HASHTAGS -->
+        <div id="hashtags" class="tab-content hidden animate-fade-in">
+            <h2 class="text-4xl font-black mb-6">🎯 Hashtags</h2>
+            <div id="hashtags-container" class="grid grid-cols-3 gap-6"></div>
+        </div>
 
-<!-- CTA -->
-<section class="cta-section" id="contacto">
-  <div class="container">
-    <div class="cta-box fade-up">
-      <p class="section-label" style="justify-content:center;display:flex">// EMPECEMOS</p>
-      <h2 class="cta-title">¿Listo para llevar tu música al siguiente nivel?</h2>
-      <p class="cta-desc">En Terrivol Music combinamos experiencia, calidad y pasión por la música.</p>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="btn-wa">💬 WhatsApp</a>
-        <a href="contacto.html" class="btn-primary">Enviar Propuesta</a>
-      </div>
-    </div>
-  </div>
-</section>
+        <!-- CRM -->
+        <div id="crm" class="tab-content hidden animate-fade-in">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-4xl font-black">📈 CRM Leads</h2>
+                <div class="flex gap-2">
+                    <button onclick="exportBackup()" class="btn-backup flex items-center gap-2">
+                        <i data-lucide="download" class="w-4 h-4"></i> Exportar Backup
+                    </button>
+                    <button onclick="importBackup()" class="btn-backup flex items-center gap-2">
+                        <i data-lucide="upload" class="w-4 h-4"></i> Importar Backup
+                    </button>
+                </div>
+            </div>
+            
+            <div class="glass-card p-6 rounded-2xl mb-6">
+                <form id="lead-form" class="grid grid-cols-3 gap-4">
+                    <input type="text" id="lead-ig" placeholder="@instagram" required>
+                    <input type="text" id="lead-nombre" placeholder="Nombre" required>
+                    <input type="number" id="lead-followers" placeholder="Followers">
+                    <select id="lead-pais">
+                        <option value="">🌎 País...</option>
+                        <option value="🇲🇽 México">🇲🇽 México</option>
+                        <option value="🇨🇴 Colombia">🇨🇴 Colombia</option>
+                        <option value="🇪 España">🇪 España</option>
+                        <option value="🇦🇷 Argentina">🇦 Argentina</option>
+                        <option value="🇨🇱 Chile">🇨🇱 Chile</option>
+                        <option value="🇺🇸 USA">🇺🇸 USA</option>
+                    </select>
+                    <select id="lead-genero">
+                        <option value="">🎵 Género...</option>
+                        <option value="Urbano/Trap">Urbano/Trap</option>
+                        <option value="Pop">Pop</option>
+                        <option value="Regional">Regional</option>
+                        <option value="Rock">Rock</option>
+                        <option value="Productor">Productor</option>
+                    </select>
+                    <input type="text" id="lead-notas" placeholder="Notas">
+                    <button type="submit" class="btn-primary col-span-3">Guardar Lead</button>
+                </form>
+            </div>
 
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
-      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
-      <div style="margin-top:1rem;opacity:0.7;font-size:0.9rem">terrivolmusiclove@gmail.com</div>
-    </div>
-  </div>
-</footer>
+            <div class="glass-card rounded-2xl overflow-hidden">
+                <table>
+                    <thead><tr><th>Lead</th><th>País</th><th>Followers</th><th>Estado</th><th>Acciones</th></tr></thead>
+                    <tbody id="leads-table"></tbody>
+                </table>
+            </div>
+        </div>
 
-<!-- CHATBOT GALÁCTICO -->
-<div id="tm-chat-widget">
-  <button id="tm-chat-toggle">🛸</button>
-  <div id="tm-chat-box">
-    <div id="tm-chat-header">
-      <div>
-        <div style="font-weight:700">🎵 Terrivol Music</div>
-        <div style="font-size:0.7rem;opacity:0.7">Centro de Comando</div>
-      </div>
-      <button id="tm-chat-close" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer">×</button>
-    </div>
-    <div id="tm-chat-messages"></div>
-    <div style="display:flex;padding:0.8rem;gap:0.6rem;border-top:1px solid rgba(123,92,250,0.2)">
-      <input type="text" id="tm-chat-input" placeholder="Transmite..." style="flex:1;background:rgba(123,92,250,0.1);border:1px solid rgba(123,92,250,0.3);border-radius:8px;padding:0.6rem;color:#fff">
-      <button id="tm-chat-send" style="background:#7b5cfa;border:none;color:#fff;width:40px;border-radius:8px;cursor:pointer">📡</button>
-    </div>
-  </div>
-</div>
+    </main>
 
-<style>
-#tm-chat-widget{position:fixed;bottom:24px;right:24px;z-index:99999}
-#tm-chat-toggle{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#7b5cfa,#00e5ff);border:none;color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 25px rgba(123,92,250,0.4);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 8px 25px rgba(123,92,250,0.4)}50%{box-shadow:0 8px 35px rgba(0,229,255,0.6)}}
-#tm-chat-box{position:absolute;bottom:70px;right:0;width:380px;max-height:500px;background:rgba(10,10,25,0.98);border:1px solid rgba(123,92,250,0.3);border-radius:16px;display:none;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
-#tm-chat-box.open{display:flex}
-#tm-chat-header{background:linear-gradient(135deg,rgba(123,92,250,0.2),rgba(0,229,255,0.1));padding:1rem;border-bottom:1px solid rgba(123,92,250,0.3);display:flex;justify-content:space-between;align-items:center}
-#tm-chat-messages{flex:1;overflow-y:auto;padding:1rem;max-height:320px}
-.tm-msg{max-width:85%;padding:0.8rem;margin:0.5rem 0;border-radius:12px;font-size:0.9rem;line-height:1.5;animation:fadeIn 0.3s}
-.tm-msg.bot{background:rgba(123,92,250,0.15);border:1px solid rgba(123,92,250,0.3);align-self:flex-start}
-.tm-msg.user{background:linear-gradient(135deg,#7b5cfa,#00e5ff);color:#fff;align-self:flex-end}
-.tm-msg a{color:#00e5ff;text-decoration:underline}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.tm-btn{background:rgba(123,92,250,0.2);border:1px solid rgba(123,92,250,0.4);color:#fff;padding:0.5rem 1rem;border-radius:20px;font-size:0.8rem;cursor:pointer;margin:0.3rem}
-.tm-btn:hover{background:rgba(123,92,250,0.4)}
-.tm-wa{background:#25D366;color:#fff;border:none;padding:0.8rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.6rem;width:100%;font-size:0.95rem}
-.tm-wa:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(37,211,102,0.4)}
-.tm-email{background:rgba(123,92,250,0.3);border:1px solid #7b5cfa;color:#fff;padding:0.8rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.5rem;width:100%;font-size:0.95rem}
-.tm-email:hover{background:rgba(123,92,250,0.5)}
-@media(max-width:768px){#tm-chat-box{width:calc(100vw - 32px);max-width:400px}}
-</style>
+    <script>
+        // DATA
+        const hashtagsData = {
+            "Urbano": ["#traplatino", "#rapindependiente", "#urbanoemergente", "#trapcolombia", "#rapmexico", "#trapargentina", "#trapvenezuela", "#hiphoplatino"],
+            "Regional": ["#regionalmexicano", "#corridostumbados", "#musicamexicana", "#sierreño", "#bandamexicana", "#mariachimoderno", "#nortena"],
+            "Pop": ["#cantautorindependiente", "#poplatino", "#musicaindependiente", "#artistapop", "#alternativolatino", "#indiepoplatino", "#cantautora"],
+            "Productores": ["#beatmakerlatino", "#productormusical", "#typebeat", "#flstudiolatino", "#producermx", "#beatmakercolombia", "#producerlife"],
+            "España": ["#musicaespaña", "#rapespaña", "#trapspanish", "#madridmusic", "#barcelonamusic", "#spainmusic", "#musicaindependienteespaña"],
+            "Colombia": ["#musicacolombia", "#rapcolombia", "#trapcolombia", "#bogotamusic", "#medellinmusic", "#calimusic", "#colombiaurbana"]
+        };
 
-<script>
-// Scripts originales de tu web
-function toggleMenu(){const nav=document.getElementById('navLinks');const btn=document.querySelector('.nav-mobile-btn');if(nav&&btn){nav.classList.toggle('open');btn.textContent=nav.classList.contains('open')?'✕':''}}
-document.addEventListener('mousemove',function(e){const cursor=document.getElementById('cursor');const ring=document.getElementById('cursorRing');if(cursor){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'}if(ring){ring.style.left=(e.clientX-16)+'px';ring.style.top=(e.clientY-16)+'px'}});
-const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')})},{threshold:0.1});document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+        let leads = JSON.parse(localStorage.getItem('terrivol_leads')) || [];
+        let apiKey = localStorage.getItem('terrivol_hf_token') || '';
+        let currentImageBase64 = '';
+        let extractedData = {};
 
-// ===== CHATBOT CORREGIDO =====
-(function(){
-  const chatBox=document.getElementById('tm-chat-box');
-  const messages=document.getElementById('tm-chat-messages');
-  const input=document.getElementById('tm-chat-input');
-  let step='init', lead={nombre:'',email:'',tel:'',servicio:''}, captured=false;
+        // NAV
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
 
-  document.getElementById('tm-chat-toggle').onclick=function(){
-    chatBox.classList.add('open');
-    if(step==='init') setTimeout(()=>botMsg('🚀 ¡Bienvenido al Centro de Comando Terrivol!<br><br>Para coordinar tu misión, ¿cuál es tu nombre?'), 600);
-  };
-  document.getElementById('tm-chat-close').onclick=function(){ chatBox.classList.remove('open'); };
+        // UPLOAD
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        uploadZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => { if (e.target.files[0]) processImage(e.target.files[0]); });
+        uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.style.borderColor = '#6366f1'; });
+        uploadZone.addEventListener('dragleave', () => { uploadZone.style.borderColor = 'rgba(99, 102, 241, 0.5)'; });
+        uploadZone.addEventListener('drop', (e) => { e.preventDefault(); uploadZone.style.borderColor = 'rgba(99, 102, 241, 0.5)'; if (e.dataTransfer.files[0]) processImage(e.dataTransfer.files[0]); });
+        document.addEventListener('paste', (e) => {
+            const items = e.clipboardData.items;
+            for (let i = 0; i < items.length; i++) { if (items[i].type.startsWith('image/')) { processImage(items[i].getAsFile()); break; } }
+        });
 
-  function handleInput(text){
-    if(!text.trim()) return;
-    userMsg(text); input.value='';
-    
-    // Flujo de captura de leads
-    if(!captured){
-      if(step==='init'||step==='name'){
-        step='name'; lead.nombre=text.trim();
-        setTimeout(()=>botMsg(`¡Excelente, ${lead.nombre}! 🎵 ¿Tu correo electrónico?`), 600);
-        step='email';
-      } else if(step==='email'){
-        if(!text.includes('@')){ botMsg('⚠️ Coordenada inválida. Ingresa un email correcto.'); return; }
-        lead.email=text.trim();
-        setTimeout(()=>botMsg('📡 ¿Tu número de WhatsApp? (ej: +57 300 123 4567)'), 600);
-        step='tel';
-      } else if(step==='tel'){
-        lead.tel=text.trim();
-        captured=true;
-        saveLead();
-        setTimeout(()=>{
-          botMsg('✅ ¡Datos sincronizados con la base orbital!<br><br>¿Qué servicio necesitas hoy?');
-          showBtns();
-        }, 600);
-        step='service';
-      } else if(step==='service'){
-        lead.servicio=text;
-        step='done';
-        botMsg(kb[text.toLowerCase()] || kb.default);
-        // SIEMPRE forzar contacto después de responder
-        setTimeout(()=>forceCTA(), 800);
-      }
-    } else {
-      // Ya capturado, responde y fuerza CTA
-      botMsg(kb[text.toLowerCase()] || kb.default);
-      setTimeout(()=>forceCTA(), 800);
-    }
-  }
+        function processImage(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                currentImageBase64 = e.target.result;
+                document.getElementById('previewImg').src = currentImageBase64;
+                document.getElementById('imagePreview').classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
 
-  document.getElementById('tm-chat-send').onclick=function(){ handleInput(input.value); };
-  input.onkeypress=function(e){ if(e.key==='Enter') handleInput(input.value); };
+        // AI ANALYSIS (Hugging Face Free)
+        async function analyzeImage() {
+            if (!currentImageBase64) return showToast('Sube una imagen primero', 'error');
+            if (!apiKey) return showToast('Ingresa tu Token de HuggingFace (es gratis)', 'error');
+            
+            const btn = document.getElementById('analyzeBtn');
+            btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Analizando...';
+            lucide.createIcons();
+            
+            try {
+                // Convert Base64 to Blob for API
+                const base64Response = await fetch(currentImageBase64);
+                const blob = await base64Response.blob();
+                
+                const response = await fetch("https://api-inference.huggingface.co/models/llava-hf/llava-1.5-7b-hf", {
+                    headers: { Authorization: `Bearer ${apiKey}` },
+                    method: "POST",
+                    body: blob
+                });
+                
+                const result = await response.json();
+                
+                // Process LLaVA response (it returns text description)
+                const description = result[0]?.generated_text || "No se pudo analizar";
+                
+                // Extract data from description using simple logic (since LLaVA returns text)
+                const usernameMatch = description.match(/@([a-zA-Z0-9_.]+)/);
+                const followersMatch = description.match(/(\d{1,3}(?:[.,]\d{3})*)\s*(seguidores|followers|k)/i);
+                
+                extractedData = {
+                    username: usernameMatch ? '@' + usernameMatch[1] : '@usuario',
+                    followers: followersMatch ? followersMatch[1] : '0',
+                    bio: description.substring(0, 100),
+                    copy: generateCopyFromDescription(description, extractedData.username)
+                };
+                
+                document.getElementById('generatedCopy').textContent = extractedData.copy;
+                document.getElementById('copyResult').classList.remove('hidden');
+                document.getElementById('copyPlaceholder').classList.add('hidden');
+                showToast('Análisis completado!');
+                
+            } catch (error) {
+                showToast('Error: ' + error.message, 'error');
+            }
+            
+            btn.innerHTML = '<i data-lucide="sparkles" class="w-5 h-5"></i> Analizar con AI';
+            lucide.createIcons();
+        }
 
-  function userMsg(t){
-    const d=document.createElement('div'); d.className='tm-msg user'; d.textContent=t;
-    messages.appendChild(d); messages.scrollTop=messages.scrollHeight;
-  }
-  function botMsg(h){
-    const d=document.createElement('div'); d.className='tm-msg bot'; d.innerHTML=h;
-    messages.appendChild(d); messages.scrollTop=messages.scrollHeight;
-  }
+        function generateCopyFromDescription(desc, username) {
+            return `Hola ${username} 👋\n\nVi tu perfil y me encantó tu vibe. Soy Sebastián de Terrivol Music.\n\nAyudamos a artistas como tú a blindar derechos y maximizar regalías. ¿Te regalo una auditoría express de 10 min? Sin costo.`;
+        }
 
-  function showBtns(){
-    const opts=[
-      {t:'🎙️ Producción', v:'produccion'}, {t:'📀 Distribución', v:'distribucion'},
-      {t:'🎹 Beats', v:'beats'}, {t:'⚖️ Legal', v:'legal'}, {t:'🎓 Clases', v:'clases'}
-    ];
-    const wrap=document.createElement('div'); wrap.style.cssText='display:flex;flex-wrap:wrap;margin:0.5rem 0';
-    opts.forEach((b,i)=>{
-      setTimeout(()=>{
-        const btn=document.createElement('button'); btn.className='tm-btn'; btn.textContent=b.t;
-        btn.onclick=()=>handleInput(b.v);
-        wrap.appendChild(btn);
-      }, i*100);
-    });
-    messages.appendChild(wrap); messages.scrollTop=messages.scrollHeight;
-  }
+        function copiarCopyGenerado() {
+            navigator.clipboard.writeText(document.getElementById('generatedCopy').textContent);
+            showToast('Copy copiado!');
+        }
 
-  function forceCTA(){
-    // Limpiar botones anteriores para no duplicar
-    const existing=document.querySelectorAll('.tm-wa, .tm-email, .tm-cta-text');
-    existing.forEach(el=>el.remove());
+        function guardarEnCRM() {
+            leads.push({
+                ig: extractedData.username, nombre: extractedData.username, followers: extractedData.followers,
+                pais: '-', genero: 'Detectado', notas: extractedData.bio, estado: 'nuevo', fecha: new Date().toISOString()
+            });
+            localStorage.setItem('terrivol_leads', JSON.stringify(leads));
+            renderLeads(); updateDashboard();
+            showToast('Lead guardado en CRM!');
+        }
 
-    const txt=document.createElement('div'); txt.className='tm-msg bot tm-cta-text';
-    txt.innerHTML='🎯 <b>¿Listo para despegar?</b><br>Habla directo con un asesor o completa el formulario de contacto.';
-    messages.appendChild(txt);
+        function saveApiKey() {
+            apiKey = document.getElementById('apiKey').value;
+            localStorage.setItem('terrivol_hf_token', apiKey);
+            showToast('Token guardado!');
+        }
+        if (apiKey) document.getElementById('apiKey').value = apiKey;
 
-    const wa=document.createElement('button'); wa.className='tm-wa'; wa.innerHTML='💬 WhatsApp Directo';
-    wa.onclick=openWA; messages.appendChild(wa);
+        // BACKUP SYSTEM
+        function exportBackup() {
+            const data = { leads: leads, apiKey: apiKey, date: new Date().toISOString() };
+            const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `terrivol_backup_${Date.now()}.json`;
+            a.click();
+            showToast('Backup descargado!');
+        }
 
-    const em=document.createElement('button'); em.className='tm-email'; em.innerHTML='📧 Ir a Formulario de Contacto';
-    em.onclick=openEmail; messages.appendChild(em);
+        function importBackup() {
+            const input = document.createElement('input');
+            input.type = 'file'; input.accept = '.json';
+            input.onchange = (e) => {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    try {
+                        const data = JSON.parse(ev.target.result);
+                        if (data.leads) { leads = data.leads; localStorage.setItem('terrivol_leads', JSON.stringify(leads)); }
+                        if (data.apiKey) { apiKey = data.apiKey; localStorage.setItem('terrivol_hf_token', apiKey); document.getElementById('apiKey').value = apiKey; }
+                        renderLeads(); updateDashboard();
+                        showToast('Backup restaurado!');
+                    } catch (err) { showToast('Error al leer archivo', 'error'); }
+                };
+                reader.readAsText(e.target.files[0]);
+            };
+            input.click();
+        }
 
-    messages.scrollTop=messages.scrollHeight;
-  }
+        // RENDER
+        function renderHashtags() {
+            const c = document.getElementById('hashtags-container');
+            Object.entries(hashtagsData).forEach(([cat, tags]) => {
+                c.innerHTML += `<div class="glass-card p-6 rounded-2xl"><h3 class="font-bold mb-4 text-indigo-400">${cat}</h3><div class="flex flex-wrap">${tags.map(t => `<span class="hashtag" onclick="copiar('${t}')">${t}</span>`).join('')}</div></div>`;
+            });
+        }
 
-  function saveLead(){
-    console.log('🎯 Lead capturado:', lead);
-    const fd=new FormData();
-    fd.append('nombre', lead.nombre); fd.append('email', lead.email);
-    fd.append('telefono', lead.tel); fd.append('servicio', lead.servicio);
-    fetch('https://formspree.io/f/mqegnekp', {method:'POST', body:fd, headers:{'Accept':'application/json'}})
-      .then(()=>console.log('✅ Lead enviado a Formspree'))
-      .catch(e=>console.warn('⚠️ Error Formspree:', e));
-  }
+        function renderLeads() {
+            const t = document.getElementById('leads-table');
+            t.innerHTML = leads.map((l, i) => `
+                <tr>
+                    <td><strong>${l.ig}</strong><br><small class="text-slate-400">${l.nombre}</small></td>
+                    <td>${l.pais || '-'}</td>
+                    <td>${l.followers || '-'}</td>
+                    <td><span class="status-badge status-${l.estado || 'nuevo'}">${l.estado || '📥 Nuevo'}</span></td>
+                    <td>
+                        <select onchange="cambiarEstado(${i}, this.value)" class="text-sm p-1 rounded bg-slate-800 border border-slate-600">
+                            <option value="">Cambiar...</option>
+                            <option value="nuevo" ${l.estado==='nuevo'?'selected':''}>📥 Nuevo</option>
+                            <option value="contactado" ${l.estado==='contactado'?'selected':''}>✅ Contactado</option>
+                            <option value="reunion" ${l.estado==='reunion'?'selected':''}>📅 Reunión</option>
+                            <option value="venta" ${l.estado==='venta'?'selected':''}>💰 Venta</option>
+                        </select>
+                        <button onclick="eliminarLead(${i})" class="ml-2 text-red-400 hover:text-red-300"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+            lucide.createIcons();
+        }
 
-  function openWA(){
-    const msg=`Hola Terrivol! 🚀%0A%0ASoy ${lead.nombre}%0A📧 ${lead.email}%0A📱 ${lead.tel}%0A🎯 Interés: ${lead.servicio}%0A%0AQuiero coordinar mi proyecto.`;
-    window.open(`https://wa.me/573102123844?text=${msg}`, '_blank');
-  }
+        function cambiarEstado(i, v) { if(v) { leads[i].estado = v; localStorage.setItem('terrivol_leads', JSON.stringify(leads)); renderLeads(); updateDashboard(); } }
+        function eliminarLead(i) { if(confirm('¿Eliminar?')) { leads.splice(i, 1); localStorage.setItem('terrivol_leads', JSON.stringify(leads)); renderLeads(); updateDashboard(); } }
+        function copiar(t) { navigator.clipboard.writeText(t); showToast('Copiado!'); }
+        
+        document.getElementById('lead-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            leads.push({
+                ig: document.getElementById('lead-ig').value, nombre: document.getElementById('lead-nombre').value,
+                followers: document.getElementById('lead-followers').value, pais: document.getElementById('lead-pais').value,
+                genero: document.getElementById('lead-genero').value, notas: document.getElementById('lead-notas').value,
+                estado: 'nuevo', fecha: new Date().toISOString()
+            });
+            localStorage.setItem('terrivol_leads', JSON.stringify(leads));
+            this.reset(); renderLeads(); updateDashboard();
+            showToast('Lead guardado!');
+        });
 
-  function openEmail(){
-    // Redirige a contacto.html con scroll automático al formulario
-    window.location.href = 'contacto.html#formulario-contacto';
-    // Mensaje en el chat
-    botMsg('✅ <b>¡Redirigiendo al formulario!</b><br>Tus datos ya están registrados. Completa el formulario y te contactaremos en menos de 24 horas.');
-    // Cerrar chat después de 1 segundo
-    setTimeout(()=>{ chatBox.classList.remove('open'); }, 1000);
-  }
-  
-  const kb={
-    'produccion':'🎙️ <b>Producción Musical:</b> Desde $150 USD. Incluye grabación, mezcla y masterización con ingenieros expertos.',
-    'distribucion':'📀 <b>Distribución Digital:</b> Desde $20/año. Spotify, Apple Music, YouTube, Deezer y +150 plataformas. 100% regalías para ti.',
-    'beats':'🎹 <b>Beats & Licencias:</b> Desde $30 (MP3). Catálogo trap, reggaeton y melódico. Ver tienda: <a href="tienda.html">tienda.html</a>',
-    'legal':'⚖️ <b>Asesoría Legal:</b> $80 USD. Registro de obras, publishing, contratos y estrategia de regalías. Ver: <a href="legal-music.html">legal-music.html</a>',
-    'clases':'🎓 <b>Clases Pro:</b> Desde $40/sesión. Mentorías 1-a-1 de producción y estrategia musical.',
-    'default':'📡 Recibido. Para darte coordenadas exactas, especifica: producción, distribución, beats, legal o clases. O contacta directo 👇'
-  };
-})();
-</script>
+        function updateDashboard() {
+            document.getElementById('kpi-total').textContent = leads.length;
+            document.getElementById('kpi-enviados').textContent = leads.filter(l => l.estado === 'contactado').length;
+            document.getElementById('kpi-respuestas').textContent = leads.filter(l => l.estado === 'reunion').length;
+            document.getElementById('kpi-ventas').textContent = leads.filter(l => l.estado === 'venta').length;
+            const p = Math.min((leads.length / 50) * 100, 100);
+            document.getElementById('progress-bar').style.width = p + '%';
+            document.getElementById('faltan').textContent = Math.max(50 - leads.length, 0);
+        }
 
+        function showToast(msg, type='success') {
+            const t = document.createElement('div');
+            t.className = `toast ${type==='error'?'bg-red-500':''}`;
+            t.textContent = msg;
+            document.body.appendChild(t);
+            setTimeout(() => t.remove(), 3000);
+        }
+
+        // INIT
+        lucide.createIcons();
+        renderHashtags();
+        renderLeads();
+        updateDashboard();
+    </script>
 </body>
 </html>
