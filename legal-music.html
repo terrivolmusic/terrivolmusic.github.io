@@ -34,7 +34,25 @@
 .testimonial-legal-card{max-width:700px;margin:0 auto;text-align:center;padding:2rem}
 .testimonial-legal-text{font-size:1.2rem;color:var(--text);line-height:1.8;margin-bottom:1.5rem;font-style:italic}
 .testimonial-legal-author{color:var(--accent);font-weight:700}
-@media(max-width:768px){.legal-hero{padding:6rem 0 3rem}.legal-features,.legal-process,.legal-cta{padding:4rem 0}.feature-grid,.process-steps{grid-template-columns:1fr;gap:1.5rem}.pricing-box{padding:2rem 1.5rem}.pricing-price{font-size:2.5rem}}
+
+/* ===== NUEVAS SECCIONES ===== */
+.loss-section{padding:6rem 0;background:linear-gradient(135deg,rgba(255,0,0,.05),rgba(255,60,172,.08));border-top:1px solid rgba(255,0,0,.2);border-bottom:1px solid rgba(255,0,0,.2)}
+.loss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin:3rem 0}
+.loss-card{background:rgba(255,0,0,.05);border:2px solid rgba(255,0,0,.3);border-radius:12px;padding:2rem;text-align:center;position:relative;overflow:hidden}
+.loss-card::before{content:'⚠️';position:absolute;top:1rem;right:1rem;font-size:2rem;opacity:.5}
+.loss-amount{font-size:2.5rem;font-weight:800;color:#ff3c4c;margin:1rem 0}
+.loss-label{font-size:.9rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.about-section{padding:6rem 0;background:var(--surface2)}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin:3rem 0}
+.about-stat{text-align:center;padding:2rem;background:var(--surface);border-radius:12px;border:1px solid var(--border)}
+.about-number{font-size:3rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem}
+.about-label{color:var(--muted);font-size:.9rem}
+.urgency-banner{background:linear-gradient(135deg,#ff3c4c,#ff6b6b);color:#fff;padding:1.5rem;text-align:center;border-radius:12px;margin:3rem 0;animation:pulseUrgency 2s infinite}
+@keyframes pulseUrgency{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+.urgency-banner h3{font-size:1.5rem;margin-bottom:.5rem}
+.urgency-banner p{font-size:1.1rem;opacity:.95}
+
+@media(max-width:768px){.legal-hero{padding:6rem 0 3rem}.legal-features,.legal-process,.legal-cta,.loss-section,.about-section{padding:4rem 0}.feature-grid,.process-steps,.loss-grid,.about-grid{grid-template-columns:1fr;gap:1.5rem}.pricing-box{padding:2rem 1.5rem}.pricing-price{font-size:2.5rem}.loss-amount{font-size:2rem}}
 </style>
 </head>
 <body>
@@ -83,6 +101,93 @@
         <div class="trust-badge">🌍 Cobertura mundial</div>
         <div class="trust-badge">💰 Maximiza regalías</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER DE URGENCIA -->
+<section class="container" style="padding:2rem 1.5rem">
+  <div class="urgency-banner fade-up">
+    <h3>⚠️ ¿Sabías que el 80% de artistas independientes pierden dinero?</h3>
+    <p>Sin registro ni protección legal, estás regalando tus regalías. No dejes que tu música trabaje gratis.</p>
+  </div>
+</section>
+
+<!-- LO QUE PIERDES -->
+<section class="loss-section">
+  <div class="container">
+    <p class="section-label" style="text-align:center">// LA REALIDAD DUELE</p>
+    <h2 style="text-align:center;margin-bottom:1rem">¿Cuánto dinero estás perdiendo?</h2>
+    <p style="text-align:center;color:var(--muted);max-width:600px;margin:0 auto 3rem">
+      Sin protección legal, cada reproducción, cada uso comercial, cada sincronización... es dinero que se te escapa.
+    </p>
+    <div class="loss-grid">
+      <div class="loss-card fade-up">
+        <div class="loss-label">Por Spotify NO registrado</div>
+        <div class="loss-amount">$500-2000/año</div>
+        <p style="color:var(--muted);font-size:.9rem">Regalías de publishing que nunca llegan a tu bolsillo</p>
+      </div>
+      <div class="loss-card fade-up delay-1">
+        <div class="loss-label">Por YouTube sin Content ID</div>
+        <div class="loss-amount">$1000-5000/año</div>
+        <p style="color:var(--muted);font-size:.9rem">Otros usan tu música y tú no ves un centavo</p>
+      </div>
+      <div class="loss-card fade-up delay-2">
+        <div class="loss-label">Por sincronizaciones</div>
+        <div class="loss-amount">$500-10000+</div>
+        <p style="color:var(--muted);font-size:.9rem">Películas, series, anuncios que usan tu música sin pagarte</p>
+      </div>
+      <div class="loss-card fade-up">
+        <div class="loss-label">Por radio internacional</div>
+        <div class="loss-amount">$200-3000/año</div>
+        <p style="color:var(--muted);font-size:.9rem">Derechos de autor que nunca recaudas</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem">
+      <p style="font-size:1.2rem;color:#ff3c4c;font-weight:700;margin-bottom:1rem">
+        💸 Total estimado perdido: $2000-20000 USD por año
+      </p>
+      <p style="color:var(--muted)">Y eso es SOLO si tu música tiene éxito moderado. Imagina si explota...</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section class="about-section">
+  <div class="container">
+    <p class="section-label" style="text-align:center">// QUIÉNES SOMOS</p>
+    <h2 style="text-align:center;margin-bottom:1rem">Experiencia que respalda tu carrera</h2>
+    <p style="text-align:center;color:var(--muted);max-width:600px;margin:0 auto 3rem">
+      Terrivol Music no es solo un sello. Somos tu aliado estratégico con años protegiendo artistas.
+    </p>
+    <div class="about-grid">
+      <div class="about-stat fade-up">
+        <div class="about-number">+15</div>
+        <div class="about-label">Años de experiencia</div>
+      </div>
+      <div class="about-stat fade-up delay-1">
+        <div class="about-number">+400</div>
+        <div class="about-label">Artistas asesorados</div>
+      </div>
+      <div class="about-stat fade-up delay-2">
+        <div class="about-number">+1000</div>
+        <div class="about-label">Obras registradas</div>
+      </div>
+      <div class="about-stat fade-up">
+        <div class="about-number">100%</div>
+        <div class="about-label">Independientes</div>
+      </div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-top:3rem">
+      <h3 style="text-align:center;margin-bottom:1rem;color:var(--accent)">¿Por qué confiar en nosotros?</h3>
+      <ul style="list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem">
+        <li style="padding:.8rem;display:flex;align-items:center;gap:.8rem">✅ Conocemos la industria musical LATAM y global</li>
+        <li style="padding:.8rem;display:flex;align-items:center;gap:.8rem">✅ Hemos protegido carreras desde 2009</li>
+        <li style="padding:.8rem;display:flex;align-items:center;gap:.8rem">✅ Alianzas con sociedades de autores internacionales</li>
+        <li style="padding:.8rem;display:flex;align-items:center;gap:.8rem">✅ Asesoría personalizada, no automatizada</li>
+        <li style="padding:.8rem;display:flex;align-items:center;gap:.8rem">✅ Seguimiento post-asesoría incluido</li>
+        <li style="padding:.8rem;display:flex;align-items:center;gap:.8rem">✅ Precios accesibles para artistas independientes</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -175,6 +280,9 @@
       </div>
       <p style="margin-top:1.5rem;font-size:.85rem;color:var(--muted)">
         ⚡ Respuesta en menos de 24 horas · 💳 Múltiples formas de pago
+      </p>
+      <p style="margin-top:1rem;font-size:.8rem;color:#ff3c4c;font-weight:700">
+        💡 Menos de lo que pierdes en 1 MES sin protección
       </p>
     </div>
   </div>
