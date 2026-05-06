@@ -3,640 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terrivol Music | AI Vision CRM Pro</title>
+    <title>Terrivol Music | AI Batch CRM Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-out',
-                        'slide-up': 'slideUp 0.4s ease-out'
-                    },
-                    keyframes: {
-                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-                        slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } }
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            background: #0f172a; 
-            background-image: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
             color: #f8fafc; 
-            font-family: 'Inter', sans-serif; 
+            font-family: 'Inter', system-ui, sans-serif; 
             min-height: 100vh;
-            overflow: hidden;
         }
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        .glass-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-card:hover {
-            transform: translateY(-4px);
-            background: rgba(30, 41, 59, 0.7);
-            border-color: rgba(99, 102, 241, 0.4);
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            color: white;
-            font-weight: 600;
-            padding: 12px 24px;
-            border-radius: 12px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .glass-card { background: rgba(51, 65, 85, 0.5); border: 1px solid rgba(99, 102, 241, 0.2); transition: 0.3s; }
+        .glass-card:hover { transform: translateY(-2px); border-color: rgba(99, 102, 241, 0.5); }
+        .gradient-text { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-primary { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; font-weight: 600; padding: 12px 24px; border-radius: 12px; border: none; cursor: pointer; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6); }
-        .btn-primary:active { transform: scale(0.98); }
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: #e2e8f0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-weight: 600;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: #6366f1; }
-        .upload-zone {
-            border: 2px dashed rgba(99, 102, 241, 0.4);
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
-            background: rgba(99, 102, 241, 0.05);
-            position: relative;
-        }
-        .upload-zone:hover, .upload-zone.dragover {
-            border-color: #6366f1;
-            background: rgba(99, 102, 241, 0.15);
-        }
-        .upload-zone.pasting {
-            border-color: #ec4899;
-            background: rgba(236, 72, 153, 0.15);
-            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-        }
-        @keyframes pulse-ring {
-            0% { transform: scale(0.98); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(0.98); }
-        }
-        input, select, textarea {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            color: white;
-            padding: 12px 16px;
-            border-radius: 10px;
-            width: 100%;
-            transition: all 0.3s;
-            font-family: 'Inter', sans-serif;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-        }
-        input::placeholder, textarea::placeholder { color: #64748b; }
-        table { width: 100%; border-collapse: separate; border-spacing: 0; }
-        th { 
-            background: rgba(15, 23, 42, 0.8); 
-            padding: 16px; 
-            text-align: left; 
-            font-weight: 600;
-            color: #94a3b8;
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-        }
-        th:first-child { border-top-left-radius: 12px; }
-        th:last-child { border-top-right-radius: 12px; }
-        td { padding: 16px; border-bottom: 1px solid rgba(148, 163, 184, 0.1); transition: all 0.2s; }
-        tr:hover td { background: rgba(99, 102, 241, 0.05); }
-        .status-badge {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: inline-block;
-        }
-        .status-nuevo { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-        .status-contactado { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-        .status-reunion { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-        .status-venta { background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
-        .nav-btn {
-            transition: all 0.3s;
-            border-radius: 12px;
-            padding: 12px 16px;
-            margin: 4px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #94a3b8;
-            font-weight: 500;
-            cursor: pointer;
-        }
-        .nav-btn:hover { background: rgba(255, 255, 255, 0.05); color: #e2e8f0; }
-        .nav-btn.active {
-            background: linear-gradient(90deg, rgba(99, 102, 241, 0.15) 0%, transparent 100%);
-            color: #818cf8;
-            border-left: 3px solid #6366f1;
-        }
-        .hashtag {
-            background: rgba(99, 102, 241, 0.15);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-block;
-            margin: 4px;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            color: #c7d2fe;
-        }
-        .hashtag:hover {
-            transform: scale(1.05);
-            background: rgba(99, 102, 241, 0.3);
-            border-color: #6366f1;
-            color: white;
-        }
-        .toast-container {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .toast {
-            padding: 16px 24px;
-            border-radius: 12px;
-            color: white;
-            font-weight: 500;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            animation: slideInRight 0.4s ease-out;
-            max-width: 400px;
-        }
-        .toast.success { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
-        .toast.error { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
-        .toast.info { background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); }
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        .btn-success { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; font-weight: 600; padding: 10px 20px; border-radius: 10px; border: none; cursor: pointer; }
+        .upload-zone { border: 3px dashed rgba(99, 102, 241, 0.5); border-radius: 16px; padding: 60px 40px; text-align: center; cursor: pointer; background: rgba(99, 102, 241, 0.05); transition: 0.3s; }
+        .upload-zone:hover { border-color: #6366f1; background: rgba(99, 102, 241, 0.15); }
+        input { background: rgba(15, 23, 42, 0.8); border: 2px solid rgba(99, 102, 241, 0.3); color: white; padding: 12px; border-radius: 10px; width: 100%; }
+        input:focus { outline: none; border-color: #6366f1; }
+        .profile-card { background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 12px; padding: 16px; margin-bottom: 12px; transition: 0.3s; }
+        .profile-card:hover { border-color: rgba(99, 102, 241, 0.5); }
+        .profile-card.processing { border-color: #f59e0b; animation: pulse 1.5s infinite; }
+        .profile-card.completed { border-color: #10b981; background: rgba(16, 185, 129, 0.1); }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        .copy-box { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 8px; padding: 12px; margin-top: 8px; font-family: monospace; font-size: 13px; white-space: pre-wrap; max-height: 200px; overflow-y: auto; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+        .badge-pending { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .badge-processing { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .badge-completed { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .badge-error { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
-        .hidden { display: none !important; }
     </style>
 </head>
-<body class="flex h-screen">
+<body class="p-6">
 
-    <aside class="glass-panel w-72 p-6 flex flex-col justify-between border-r border-white/5">
-        <div>
-            <div class="mb-10">
-                <h1 class="text-3xl font-black tracking-tighter gradient-text mb-1">🎵 Terrivol</h1>
-                <p class="text-xs text-slate-400 font-medium tracking-wide">AI VISION CRM PRO - GEMINI</p>
-            </div>
-            <nav class="space-y-2">
-                <button onclick="showTab('dashboard')" id="btn-dashboard" class="nav-btn active w-full text-left">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard
-                </button>
-                <button onclick="showTab('ai-vision')" id="btn-ai-vision" class="nav-btn w-full text-left">
-                    <i data-lucide="eye" class="w-5 h-5"></i> AI Vision
-                    <span class="ml-auto text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30 font-bold">FREE</span>
-                </button>
-                <button onclick="showTab('hashtags')" id="btn-hashtags" class="nav-btn w-full text-left">
-                    <i data-lucide="hash" class="w-5 h-5"></i> Hashtags
-                </button>
-                <button onclick="showTab('crm')" id="btn-crm" class="nav-btn w-full text-left">
-                    <i data-lucide="users" class="w-5 h-5"></i> CRM Leads
-                </button>
-            </nav>
+    <div class="max-w-7xl mx-auto">
+        <!-- HEADER -->
+        <div class="mb-8">
+            <h1 class="text-5xl font-black mb-2 gradient-text">🎵 Terrivol Music</h1>
+            <p class="text-slate-400">AI Batch Processing - Generación Masiva de Copys</p>
         </div>
-        <div class="glass-card p-4 rounded-xl">
-            <div class="flex items-center gap-3 mb-2">
-                <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                <span class="text-xs font-semibold text-slate-300">Sistema Activo</span>
-            </div>
-            <p class="text-[10px] text-slate-500">v5.2 • Google Gemini AI</p>
-        </div>
-    </aside>
 
-    <main class="flex-1 overflow-y-auto relative">
-        <div class="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-indigo-500/10 to-transparent pointer-events-none"></div>
-        <div class="p-8 relative z-10 max-w-7xl mx-auto">
+        <!-- API CONFIG -->
+        <div class="glass-card p-6 rounded-2xl mb-6">
+            <div class="flex gap-4 items-end">
+                <div class="flex-1">
+                    <label class="block text-sm font-medium mb-2">Google Gemini API Key</label>
+                    <input type="password" id="apiKey" placeholder="AIza...">
+                </div>
+                <button onclick="saveApiKey()" class="btn-primary">Guardar Key</button>
+            </div>
+            <p class="text-xs text-slate-400 mt-2">Obtén tu key en: <a href="https://makersuite.google.com/app/apikey" target="_blank" class="text-indigo-400">Google AI Studio</a></p>
+        </div>
+
+        <!-- UPLOAD ZONE -->
+        <div class="glass-card p-6 rounded-2xl mb-6">
+            <h2 class="text-2xl font-bold mb-4">📸 Sube los Pantallazos (Hasta 30)</h2>
+            <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+                <i data-lucide="upload-cloud" class="w-16 h-16 mx-auto mb-4 text-indigo-400"></i>
+                <p class="text-xl font-semibold mb-2">Arrastra las imágenes aquí</p>
+                <p class="text-slate-400">o haz click para seleccionar archivos</p>
+                <p class="text-sm text-slate-500 mt-2">Formatos: JPG, PNG, WEBP • Máximo 30 imágenes</p>
+                <input type="file" id="fileInput" accept="image/*" multiple class="hidden">
+            </div>
             
-            <div id="dashboard" class="tab-content animate-fade-in">
-                <div class="flex justify-between items-end mb-8">
-                    <div>
-                        <h2 class="text-4xl font-black mb-2">Dashboard</h2>
-                        <p class="text-slate-400">Resumen de rendimiento diario</p>
-                    </div>
-                    <button onclick="showTab('ai-vision')" class="btn-primary flex items-center gap-2">
-                        <i data-lucide="plus-circle" class="w-5 h-5"></i> Nuevo Lead
-                    </button>
-                </div>
-                <div class="grid grid-cols-4 gap-6 mb-8">
-                    <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-blue-500/20 transition-all"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="text-slate-400 text-sm font-medium">Leads Totales</div>
-                                <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
-                                    <i data-lucide="users" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                            <div class="text-5xl font-black text-white" id="kpi-total">0</div>
-                        </div>
-                    </div>
-                    <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-emerald-500/20 transition-all"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="text-slate-400 text-sm font-medium">DMs Enviados</div>
-                                <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
-                                    <i data-lucide="send" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                            <div class="text-5xl font-black text-white" id="kpi-enviados">0</div>
-                        </div>
-                    </div>
-                    <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-amber-500/20 transition-all"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="text-slate-400 text-sm font-medium">Respuestas</div>
-                                <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400">
-                                    <i data-lucide="message-circle" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                            <div class="text-5xl font-black text-white" id="kpi-respuestas">0</div>
-                        </div>
-                    </div>
-                    <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-purple-500/20 transition-all"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="text-slate-400 text-sm font-medium">Ventas</div>
-                                <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
-                                    <i data-lucide="trophy" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                            <div class="text-5xl font-black text-white" id="kpi-ventas">0</div>
-                        </div>
-                    </div>
-                </div>
+            <div id="batchControls" class="hidden mt-6 flex gap-4">
+                <button onclick="processAll()" class="btn-success flex-1 py-4 text-lg">
+                    <i data-lucide="zap" class="w-5 h-5 inline mr-2"></i>
+                    Procesar Todos los Perfiles (<span id="pendingCount">0</span>)
+                </button>
+                <button onclick="exportAllCopies()" class="btn-primary flex-1 py-4 text-lg">
+                    <i data-lucide="download" class="w-5 h-5 inline mr-2"></i>
+                    Exportar Todos los Copys
+                </button>
+                <button onclick="clearAll()" class="px-6 py-4 bg-red-500/20 text-red-400 rounded-xl border border-red-500/30 hover:bg-red-500/30">
+                    <i data-lucide="trash-2" class="w-5 h-5"></i>
+                </button>
             </div>
-
-            <div id="ai-vision" class="tab-content hidden animate-fade-in">
-                <div class="mb-8">
-                    <h2 class="text-4xl font-black mb-2 gradient-text">Google Gemini AI Vision</h2>
-                    <p class="text-slate-400">Analiza estética, colores y energía para generar el copy perfecto</p>
-                </div>
-                
-                <div class="grid grid-cols-12 gap-6">
-                    <div class="col-span-7 space-y-6">
-                        <div class="glass-card p-6 rounded-2xl">
-                            <div class="flex justify-between items-center mb-4">
-                                <h3 class="text-lg font-bold flex items-center gap-2">
-                                    <i data-lucide="image" class="w-5 h-5 text-indigo-400"></i>
-                                    Fuente de Imagen
-                                </h3>
-                                <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded">Ctrl+V para pegar</span>
-                            </div>
-                            <div class="upload-zone" id="uploadZone">
-                                <div class="mb-4">
-                                    <i data-lucide="clipboard-paste" class="w-12 h-12 mx-auto text-indigo-400 mb-2"></i>
-                                    <p class="text-lg font-semibold">Pega el Pantallazo Aquí</p>
-                                    <p class="text-sm text-slate-400 mt-1">o arrastra la imagen desde tu carpeta</p>
-                                </div>
-                                <input type="file" id="fileInput" accept="image/*" class="hidden">
-                            </div>
-                            <div id="imagePreview" class="mt-4 hidden animate-slide-up">
-                                <div class="relative group">
-                                    <img id="previewImg" class="w-full h-64 object-cover rounded-xl border border-slate-700">
-                                    <button onclick="removeImage()" class="absolute top-2 right-2 w-8 h-8 bg-red-500/90 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-600 transition">
-                                        <i data-lucide="x" class="w-4 h-4"></i>
-                                    </button>
-                                    <div class="absolute bottom-2 left-2 bg-black/70 backdrop-blur px-3 py-1 rounded-lg text-xs text-white">
-                                        Imagen cargada
-                                    </div>
-                                </div>
-                                <div class="mt-4 flex gap-3">
-                                    <button onclick="analyzeImage()" class="btn-primary flex-1 flex items-center justify-center gap-2" id="analyzeBtn">
-                                        <i data-lucide="sparkles" class="w-5 h-5"></i>
-                                        Analizar con Gemini AI
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="glass-card p-6 rounded-2xl">
-                            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Instrucciones</h3>
-                            <ol class="space-y-3 text-sm text-slate-300">
-                                <li class="flex items-start gap-3">
-                                    <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>
-                                    <span>Ve al perfil de Instagram del artista</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
-                                    <span>Toma pantallazo (Win+Shift+S / Cmd+Shift+4)</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold flex-shrink-0">3</span>
-                                    <span>Vuelve aquí y presiona <strong class="text-white">Ctrl+V</strong></span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold flex-shrink-0">4</span>
-                                    <span>Gemini AI analizará colores, vibe y datos automáticamente</span>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                    
-                    <div class="col-span-5 space-y-6">
-                        <div class="glass-card p-6 rounded-2xl h-full flex flex-col">
-                            <div class="flex justify-between items-center mb-4">
-                                <h3 class="text-lg font-bold flex items-center gap-2">
-                                    <i data-lucide="message-square" class="w-5 h-5 text-pink-400"></i>
-                                    Copy Generado
-                                </h3>
-                                <div id="ai-status" class="text-xs text-slate-500">Esperando imagen...</div>
-                            </div>
-                            
-                            <div id="analysis-insights" class="hidden mb-4 p-3 bg-slate-800/50 rounded-lg border border-slate-700 text-xs space-y-2">
-                                <div class="flex justify-between"><span class="text-slate-400">Vibe:</span> <span id="insight-vibe" class="text-white font-medium">-</span></div>
-                                <div class="flex justify-between"><span class="text-slate-400">Estética:</span> <span id="insight-aesthetic" class="text-white font-medium">-</span></div>
-                                <div class="flex justify-between"><span class="text-slate-400">Usuario:</span> <span id="insight-user" class="text-indigo-400 font-medium">-</span></div>
-                            </div>
-                            
-                            <div id="copyResult" class="hidden flex-1 flex flex-col">
-                                <div class="flex-1 bg-slate-900/50 p-4 rounded-xl border border-slate-700 mb-4 relative group">
-                                    <pre id="generatedCopy" class="text-sm text-slate-200 whitespace-pre-wrap font-mono leading-relaxed"></pre>
-                                    <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition">
-                                        <button onclick="copiarCopyGenerado()" class="p-1.5 bg-slate-700 rounded hover:bg-indigo-500 transition" title="Copiar">
-                                            <i data-lucide="copy" class="w-4 h-4"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="space-y-3 mt-auto">
-                                    <button onclick="copiarCopyGenerado()" class="btn-primary w-full flex items-center justify-center gap-2">
-                                        <i data-lucide="copy" class="w-5 h-5"></i>
-                                        Copiar Copy
-                                    </button>
-                                    <button onclick="guardarEnCRM()" class="btn-secondary w-full flex items-center justify-center gap-2">
-                                        <i data-lucide="save" class="w-5 h-5"></i>
-                                        Guardar en CRM
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div id="copyPlaceholder" class="flex-1 flex flex-col items-center justify-center text-slate-500 py-12">
-                                <i data-lucide="bot" class="w-16 h-16 mb-4 opacity-20"></i>
-                                <p class="text-center">Pega una imagen para generar<br>un copy personalizado con Gemini AI</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="glass-card p-6 rounded-2xl mt-6">
-                    <div class="flex items-center gap-2 mb-4">
-                        <i data-lucide="key" class="w-5 h-5 text-yellow-400"></i>
-                        <h3 class="text-lg font-bold">Configuración de API - Google Gemini</h3>
-                    </div>
-                    <div class="flex gap-4 items-end">
-                        <div class="flex-1">
-                            <label class="block text-sm font-medium mb-2 text-slate-300">Gemini API Key</label>
-                            <input type="password" id="apiKey" placeholder="AIza...">
-                            <p class="text-xs text-slate-400 mt-2">
-                                Obtén tu key GRATIS en <a href="https://makersuite.google.com/app/apikey" target="_blank" class="text-indigo-400 hover:underline font-semibold">Google AI Studio</a>
-                            </p>
-                        </div>
-                        <button onclick="saveApiKey()" class="btn-primary h-[46px]">Guardar Key</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="hashtags" class="tab-content hidden animate-fade-in">
-                <div class="mb-8">
-                    <h2 class="text-4xl font-black mb-2">Banco de Hashtags</h2>
-                    <p class="text-slate-400">Copia y pega directamente en tus publicaciones</p>
-                </div>
-                <div id="hashtags-container" class="grid grid-cols-3 gap-6"></div>
-            </div>
-
-            <div id="crm" class="tab-content hidden animate-fade-in">
-                <div class="flex justify-between items-center mb-8">
-                    <div>
-                        <h2 class="text-4xl font-black mb-2">CRM de Leads</h2>
-                        <p class="text-slate-400">Gestiona y da seguimiento a tus prospectos</p>
-                    </div>
-                </div>
-                <div class="glass-card p-6 rounded-2xl mb-6">
-                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-                        <i data-lucide="user-plus" class="w-5 h-5 text-emerald-400"></i>
-                        Agregar Lead Manual
-                    </h3>
-                    <form id="lead-form" class="grid grid-cols-3 gap-4">
-                        <div class="col-span-3">
-                            <label class="block text-xs font-medium mb-1.5 text-slate-400 uppercase">Instagram</label>
-                            <input type="text" id="lead-ig" placeholder="@usuario" required>
-                        </div>
-                        <div class="col-span-3">
-                            <label class="block text-xs font-medium mb-1.5 text-slate-400 uppercase">Nombre Real</label>
-                            <input type="text" id="lead-nombre" placeholder="Nombre completo">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium mb-1.5 text-slate-400 uppercase">Followers</label>
-                            <input type="number" id="lead-followers" placeholder="1000">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium mb-1.5 text-slate-400 uppercase">País</label>
-                            <select id="lead-pais">
-                                <option value="">Selecciona...</option>
-                                <option value="🇲🇽 México">🇲🇽 México</option>
-                                <option value="🇨🇴 Colombia">🇴 Colombia</option>
-                                <option value="🇦🇷 Argentina">🇦 Argentina</option>
-                                <option value="🇪 España">🇪 España</option>
-                                <option value="🇨🇱 Chile">🇨🇱 Chile</option>
-                                <option value="🇺🇸 USA">🇺 USA</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium mb-1.5 text-slate-400 uppercase">Género Musical</label>
-                            <select id="lead-genero">
-                                <option value="">Selecciona...</option>
-                                <option value="Urbano/Trap">Urbano/Trap</option>
-                                <option value="Pop">Pop</option>
-                                <option value="Regional">Regional Mexicano</option>
-                                <option value="Rock">Rock</option>
-                                <option value="Productor">Productor</option>
-                            </select>
-                        </div>
-                        <div class="col-span-3">
-                            <label class="block text-xs font-medium mb-1.5 text-slate-400 uppercase">Notas / Vibe</label>
-                            <textarea id="lead-notas" placeholder="Detalles del perfil, energía detectada, etc." rows="2"></textarea>
-                        </div>
-                        <div class="col-span-3 flex justify-end">
-                            <button type="submit" class="btn-primary flex items-center gap-2">
-                                <i data-lucide="save" class="w-5 h-5"></i>
-                                Guardar Lead
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Lead</th>
-                                <th>País</th>
-                                <th>Followers</th>
-                                <th>Género</th>
-                                <th>Estado</th>
-                                <th class="text-right">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="leads-table"></tbody>
-                    </table>
-                </div>
-            </div>
-
         </div>
-    </main>
 
-    <div class="toast-container" id="toast-container"></div>
+        <!-- PROGRESS -->
+        <div id="progressSection" class="hidden glass-card p-6 rounded-2xl mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Progreso de Procesamiento</h3>
+                <span class="text-2xl font-bold gradient-text"><span id="processedCount">0</span>/<span id="totalCount">0</span></span>
+            </div>
+            <div class="w-full bg-slate-800 rounded-full h-4 mb-2">
+                <div id="progressBar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+            <p class="text-sm text-slate-400" id="progressText">Iniciando...</p>
+        </div>
+
+        <!-- PROFILES LIST -->
+        <div id="profilesList" class="space-y-4">
+            <!-- Los perfiles se agregarán aquí dinámicamente -->
+        </div>
+    </div>
 
     <script>
-        const hashtagsData = {
-            "Urbano/Trap": ["#traplatino", "#rapindependiente", "#urbanoemergente", "#trapcolombia", "#rapmexico", "#trapargentina", "#hiphoplatino", "#unsignedartist"],
-            "Regional Mexicano": ["#regionalmexicano", "#corridostumbados", "#musicamexicana", "#sierreño", "#bandamexicana", "#mariachimoderno", "#nortena", "#corridos"],
-            "Pop/Cantautor": ["#cantautorindependiente", "#poplatino", "#musicaindependiente", "#artistapop", "#alternativolatino", "#indiepoplatino", "#singersongwriter"],
-            "Productores": ["#beatmakerlatino", "#productormusical", "#typebeat", "#flstudiolatino", "#producermx", "#beatmakercolombia", "#musicproducer"],
-            "México": ["#musicamexico", "#artistasmexicanos", "#cdmxmusic", "#guadalajaramusic", "#monterreymusic", "#talentomexicano"],
-            "Colombia": ["#musicacolombia", "#rapcolombia", "#trapcolombia", "#bogotamusic", "#medellinmusic", "#talentocolombiano"],
-            "España": ["#musicaespaña", "#rapespaña", "#trapspanish", "#madridmusic", "#barcelonamusic", "#talentoespañol"],
-            "Industria": ["#distrokid", "#tunecore", "#artistasonspotify", "#musicbusiness", "#publishingmusical", "#regaliasmusicales"]
-        };
-
-        let leads = JSON.parse(localStorage.getItem('terrivol_leads')) || [];
+        let profiles = [];
         let apiKey = localStorage.getItem('terrivol_gemini_key') || '';
-        let currentImageBase64 = '';
-        let extractedData = {};
+        let isProcessing = false;
 
-        function showTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('btn-' + tabId).classList.add('active');
-        }
-
+        // Upload handlers
         const uploadZone = document.getElementById('uploadZone');
         const fileInput = document.getElementById('fileInput');
 
-        uploadZone.addEventListener('click', () => fileInput.click());
-        fileInput.addEventListener('change', (e) => { if (e.target.files[0]) processImage(e.target.files[0]); });
-        uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('dragover'); });
-        uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+        uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.style.borderColor = '#6366f1'; });
+        uploadZone.addEventListener('dragleave', () => { uploadZone.style.borderColor = 'rgba(99, 102, 241, 0.5)'; });
         uploadZone.addEventListener('drop', (e) => {
             e.preventDefault();
-            uploadZone.classList.remove('dragover');
-            if (e.dataTransfer.files[0]) processImage(e.dataTransfer.files[0]);
+            uploadZone.style.borderColor = 'rgba(99, 102, 241, 0.5)';
+            handleFiles(e.dataTransfer.files);
         });
+        fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
 
-        document.addEventListener('paste', (e) => {
-            const items = e.clipboardData.items;
-            for (let i = 0; i < items.length; i++) {
-                if (items[i].type.startsWith('image/')) {
-                    processImage(items[i].getAsFile());
-                    uploadZone.classList.add('pasting');
-                    setTimeout(() => uploadZone.classList.remove('pasting'), 1000);
-                    break;
-                }
+        function handleFiles(files) {
+            const imageFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+            
+            if (profiles.length + imageFiles.length > 30) {
+                alert('Máximo 30 imágenes permitidas');
+                return;
             }
-        });
 
-        function processImage(file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                currentImageBase64 = e.target.result;
-                document.getElementById('previewImg').src = currentImageBase64;
-                document.getElementById('imagePreview').classList.remove('hidden');
-                showToast('✅ Imagen cargada correctamente', 'info');
-            };
-            reader.readAsDataURL(file);
+            imageFiles.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profiles.push({
+                        id: Date.now() + index,
+                        file: file,
+                        image: e.target.result,
+                        status: 'pending',
+                        copy: null,
+                        data: null
+                    });
+                    renderProfiles();
+                };
+                reader.readAsDataURL(file);
+            });
         }
 
-        function removeImage() {
-            currentImageBase64 = '';
-            document.getElementById('imagePreview').classList.add('hidden');
-            document.getElementById('copyResult').classList.add('hidden');
-            document.getElementById('analysis-insights').classList.add('hidden');
-            document.getElementById('copyPlaceholder').classList.remove('hidden');
-            fileInput.value = '';
-        }
+        function renderProfiles() {
+            const container = document.getElementById('profilesList');
+            const batchControls = document.getElementById('batchControls');
+            
+            if (profiles.length === 0) {
+                container.innerHTML = '';
+                batchControls.classList.add('hidden');
+                return;
+            }
 
-        async function analyzeImage() {
-            if (!currentImageBase64) return showToast('❌ Sube una imagen primero', 'error');
-            if (!apiKey) return showToast('❌ Ingresa tu API Key de Google Gemini', 'error');
+            batchControls.classList.remove('hidden');
+            document.getElementById('pendingCount').textContent = profiles.filter(p => p.status === 'pending').length;
+
+            container.innerHTML = profiles.map((profile, index) => `
+                <div class="profile-card ${profile.status}" id="profile-${profile.id}">
+                    <div class="flex gap-4">
+                        <img src="${profile.image}" class="w-32 h-32 object-cover rounded-lg border border-slate-700">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h3 class="font-bold text-lg">Perfil #${index + 1}</h3>
+                                    <p class="text-sm text-slate-400">${profile.file.name}</p>
+                                </div>
+                                <span class="badge badge-${profile.status}">
+                                    ${profile.status === 'pending' ? '⏳ Pendiente' : 
+                                      profile.status === 'processing' ? '⚡ Procesando' : 
+                                      profile.status === 'completed' ? '✅ Completado' : '❌ Error'}
+                                </span>
+                            </div>
+                            
+                            ${profile.data ? `
+                                <div class="grid grid-cols-3 gap-2 mb-3 text-sm">
+                                    <div><span class="text-slate-400">Usuario:</span> <strong>${profile.data.username || '-'}</strong></div>
+                                    <div><span class="text-slate-400">Followers:</span> <strong>${profile.data.followers || '-'}</strong></div>
+                                    <div><span class="text-slate-400">Tipo:</span> <strong>${profile.data.tipo || '-'}</strong></div>
+                                </div>
+                            ` : ''}
+                            
+                            ${profile.copy ? `
+                                <div class="copy-box">${profile.copy}</div>
+                                <div class="flex gap-2 mt-3">
+                                    <button onclick="copySingle(${profile.id})" class="px-4 py-2 bg-indigo-500/20 text-indigo-400 rounded-lg hover:bg-indigo-500/30 text-sm">
+                                        📋 Copiar
+                                    </button>
+                                    <button onclick="saveToCRM(${profile.id})" class="px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-lg hover:bg-emerald-500/30 text-sm">
+                                        💾 Guardar en CRM
+                                    </button>
+                                </div>
+                            ` : ''}
+                            
+                            ${profile.status === 'error' ? `<p class="text-red-400 text-sm mt-2">${profile.error || 'Error al procesar'}</p>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
             
-            const btn = document.getElementById('analyzeBtn');
-            const statusEl = document.getElementById('ai-status');
-            const originalHTML = btn.innerHTML;
-            
-            btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Analizando...';
-            btn.disabled = true;
-            statusEl.textContent = 'Conectando con Gemini AI...';
-            statusEl.className = 'text-xs text-indigo-400 animate-pulse';
             lucide.createIcons();
+        }
+
+        async function processAll() {
+            if (isProcessing) return;
+            isProcessing = true;
             
+            const pendingProfiles = profiles.filter(p => p.status === 'pending');
+            if (pendingProfiles.length === 0) {
+                alert('No hay perfiles pendientes');
+                isProcessing = false;
+                return;
+            }
+
+            document.getElementById('progressSection').classList.remove('hidden');
+            document.getElementById('totalCount').textContent = pendingProfiles.length;
+
+            let processed = 0;
+            for (const profile of pendingProfiles) {
+                await processProfile(profile);
+                processed++;
+                updateProgress(processed, pendingProfiles.length);
+                await new Promise(r => setTimeout(r, 1000)); // Esperar 1s entre cada uno
+            }
+
+            isProcessing = false;
+            renderProfiles();
+        }
+
+        async function processProfile(profile) {
+            profile.status = 'processing';
+            renderProfiles();
+
             try {
                 let mimeType = 'image/jpeg';
-                if (currentImageBase64.includes('data:image/png')) mimeType = 'image/png';
-                else if (currentImageBase64.includes('image/webp')) mimeType = 'image/webp';
-                
-                const base64Data = currentImageBase64.split(',')[1];
+                if (profile.image.includes('image/png')) mimeType = 'image/png';
+                const base64Data = profile.image.split(',')[1];
 
-                // MODELO ACTUALIZADO: gemini-1.5-flash
                 const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
                 
                 const response = await fetch(url, {
@@ -646,61 +252,37 @@
                         contents: [{
                             parts: [
                                 {
-                                    text: `Eres un experto en branding musical y psicología del color. Analiza este perfil de Instagram de un artista musical.
-
-EXTRAE:
-1. @usuario exacto (con @)
+                                    text: `Analiza este perfil de Instagram de un artista musical. Extrae:
+1. @usuario exacto
 2. Número de seguidores
-3. Biografía completa
+3. Biografía
 4. Tipo de artista (cantante, productor, banda)
 5. Género musical
+6. Vibe/energía visual (colores, estética)
 
-ANÁLISIS VISUAL:
-- Paleta de colores dominante
-- Energía/Vibe percibida
-- Estética identificable
-- Nivel de profesionalismo (1-10)
-
-GENERA UN COPY PROFESIONAL para Terrivol Music ENT:
-- Saludo personalizado con @usuario
-- Mención específica de la energía/vibe detectada en colores y estética
-- Conexión con servicios de Terrivol (publishing, derechos, splits)
-- Oferta de auditoría gratuita de 10 min
-- Tono: profesional pero cercano, máximo 120 palabras
-- Incluye emojis relevantes
+Genera un copy profesional para Terrivol Music ENT ofreciendo auditoría gratuita de publishing y derechos. 
+Máximo 100 palabras. Tono cercano pero profesional. Incluye emojis.
 
 Responde en JSON:
 {
   "username": "@usuario",
   "followers": "12345",
-  "bio": "texto de bio",
-  "tipo": "cantante/productor/banda",
-  "genero": "urbano/pop/regional",
-  "vibe": "descripción de la energía",
-  "aesthetic": "descripción de la estética",
-  "copy": "El copy generado aquí"
+  "bio": "texto",
+  "tipo": "cantante",
+  "genero": "urbano",
+  "vibe": "descripción",
+  "copy": "copy generado"
 }`
                                 },
-                                {
-                                    inline_data: {
-                                        mime_type: mimeType,
-                                        data: base64Data
-                                    }
-                                }
+                                { inline_data: { mime_type: mimeType, data: base64Data } }
                             ]
                         }],
-                        generationConfig: {
-                            temperature: 0.7,
-                            maxOutputTokens: 1000
-                        }
+                        generationConfig: { temperature: 0.7, maxOutputTokens: 800 }
                     })
                 });
-                
-                if (!response.ok) {
-                    const error = await response.json();
-                    throw new Error(error.error?.message || 'Error en Gemini API');
-                }
-                
+
+                if (!response.ok) throw new Error('Error en API');
+
                 const result = await response.json();
                 const text = result.candidates[0].content.parts[0].text;
                 
@@ -708,10 +290,8 @@ Responde en JSON:
                 try {
                     const jsonMatch = text.match(/\{[\s\S]*\}/);
                     data = jsonMatch ? JSON.parse(jsonMatch[0]) : null;
-                } catch (e) {
-                    data = null;
-                }
-                
+                } catch (e) { data = null; }
+
                 if (!data) {
                     data = {
                         username: text.match(/@([a-zA-Z0-9_.]+)/)?.[0] || '@artista',
@@ -720,77 +300,91 @@ Responde en JSON:
                         tipo: 'artista',
                         genero: 'no especificado',
                         vibe: 'vibra artística',
-                        aesthetic: 'estética única',
                         copy: text.replace(/```json|```/g, '').trim()
                     };
                 }
-                
-                extractedData = data;
-                
-                document.getElementById('insight-vibe').textContent = data.vibe || '-';
-                document.getElementById('insight-aesthetic').textContent = data.aesthetic || '-';
-                document.getElementById('insight-user').textContent = data.username || '-';
-                document.getElementById('analysis-insights').classList.remove('hidden');
-                
-                document.getElementById('generatedCopy').textContent = data.copy;
-                document.getElementById('copyResult').classList.remove('hidden');
-                document.getElementById('copyPlaceholder').classList.add('hidden');
-                
-                statusEl.textContent = '✅ Análisis completado';
-                statusEl.className = 'text-xs text-emerald-400';
-                showToast('✅ ¡Gemini AI analizó el perfil exitosamente!', 'success');
-                
+
+                profile.data = data;
+                profile.copy = data.copy;
+                profile.status = 'completed';
+
             } catch (error) {
-                console.error('Gemini Error:', error);
-                statusEl.textContent = '❌ Error en el análisis';
-                statusEl.className = 'text-xs text-red-400';
-                
-                let msg = error.message;
-                if (msg.includes('API key not valid')) {
-                    msg = 'API Key inválida. Verifica tu clave.';
-                } else if (msg.includes('not found')) {
-                    msg = 'Modelo no encontrado. Asegúrate de HABilitar "Generative Language API" en Google Cloud Console.';
-                }
-                
-                showToast('❌ Error: ' + msg, 'error');
+                profile.status = 'error';
+                profile.error = error.message;
             }
-            
-            btn.innerHTML = originalHTML;
-            btn.disabled = false;
-            lucide.createIcons();
+
+            renderProfiles();
         }
 
-        function copiarCopyGenerado() {
-            const copy = document.getElementById('generatedCopy').textContent;
-            if (!copy) return;
-            navigator.clipboard.writeText(copy);
-            showToast('✅ Copy copiado al portapapeles', 'success');
+        function updateProgress(current, total) {
+            const percent = (current / total) * 100;
+            document.getElementById('progressBar').style.width = percent + '%';
+            document.getElementById('processedCount').textContent = current;
+            document.getElementById('progressText').textContent = `Procesando perfil ${current} de ${total}...`;
         }
 
-        function guardarEnCRM() {
-            if (!extractedData.username) {
-                showToast('❌ No hay datos para guardar', 'error');
+        function copySingle(id) {
+            const profile = profiles.find(p => p.id === id);
+            if (profile && profile.copy) {
+                navigator.clipboard.writeText(profile.copy);
+                alert('✅ Copy copiado');
+            }
+        }
+
+        function exportAllCopies() {
+            const completedProfiles = profiles.filter(p => p.status === 'completed');
+            if (completedProfiles.length === 0) {
+                alert('No hay copys para exportar');
                 return;
             }
+
+            let text = 'TERRIVOL MUSIC - COPYS GENERADOS\n';
+            text += '==============================\n\n';
             
-            const lead = {
-                ig: extractedData.username,
-                nombre: extractedData.username.replace('@', ''),
-                followers: extractedData.followers || '-',
+            completedProfiles.forEach((profile, index) => {
+                text += `PERFIL #${index + 1}\n`;
+                text += `Usuario: ${profile.data.username}\n`;
+                text += `Followers: ${profile.data.followers}\n`;
+                text += `Tipo: ${profile.data.tipo}\n`;
+                text += `Género: ${profile.data.genero}\n`;
+                text += `\nCOPY:\n${profile.copy}\n`;
+                text += '\n' + '='.repeat(50) + '\n\n';
+            });
+
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `terrivol_copys_${new Date().toISOString().split('T')[0]}.txt`;
+            a.click();
+        }
+
+        function saveToCRM(id) {
+            const profile = profiles.find(p => p.id === id);
+            if (!profile || !profile.data) return;
+
+            let leads = JSON.parse(localStorage.getItem('terrivol_leads') || '[]');
+            leads.push({
+                ig: profile.data.username,
+                nombre: profile.data.username.replace('@', ''),
+                followers: profile.data.followers,
                 pais: '-',
-                genero: extractedData.genero || 'No detectado',
-                notas: `Vibe: ${extractedData.vibe || '-'} | Bio: ${extractedData.bio || '-'}`,
+                genero: profile.data.genero,
+                notas: `Vibe: ${profile.data.vibe} | Bio: ${profile.data.bio}`,
+                copy: profile.copy,
                 estado: 'nuevo',
                 fecha: new Date().toISOString()
-            };
-            
-            leads.push(lead);
+            });
             localStorage.setItem('terrivol_leads', JSON.stringify(leads));
-            renderLeads();
-            updateDashboard();
-            
-            showToast('✅ Lead guardado en CRM automáticamente', 'success');
-            removeImage();
+            alert('✅ Guardado en CRM');
+        }
+
+        function clearAll() {
+            if (confirm('¿Eliminar todos los perfiles?')) {
+                profiles = [];
+                renderProfiles();
+                document.getElementById('progressSection').classList.add('hidden');
+            }
         }
 
         function saveApiKey() {
@@ -798,137 +392,14 @@ Responde en JSON:
             if (key && key.startsWith('AIza')) {
                 apiKey = key;
                 localStorage.setItem('terrivol_gemini_key', key);
-                showToast('✅ API Key de Gemini guardada correctamente', 'success');
+                alert('✅ API Key guardada');
             } else {
-                showToast('❌ Key inválida (debe empezar con AIza)', 'error');
+                alert('❌ Key inválida');
             }
         }
 
         if (apiKey) document.getElementById('apiKey').value = apiKey;
-
-        function renderHashtags() {
-            const container = document.getElementById('hashtags-container');
-            if (!container) return;
-            container.innerHTML = '';
-            Object.entries(hashtagsData).forEach(([categoria, tags]) => {
-                const div = document.createElement('div');
-                div.className = 'glass-card p-6 rounded-2xl';
-                div.innerHTML = `<h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i data-lucide="tag" class="w-4 h-4 text-indigo-400"></i> ${categoria}</h3><div class="flex flex-wrap">${tags.map(tag => `<span class="hashtag" onclick="copiarHashtag('${tag}')">${tag}</span>`).join('')}</div>`;
-                container.appendChild(div);
-            });
-            lucide.createIcons();
-        }
-
-        function renderLeads() {
-            const tbody = document.getElementById('leads-table');
-            if (!tbody) return;
-            if (leads.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-12 text-slate-500">No hay leads aún. ¡Empieza a prospectar!</td></tr>`;
-                return;
-            }
-            tbody.innerHTML = leads.map((lead, idx) => `
-                <tr class="hover:bg-indigo-500/5">
-                    <td><div class="font-semibold text-white">${lead.ig}</div><div class="text-xs text-slate-400">${lead.nombre}</div></td>
-                    <td>${lead.pais || '-'}</td>
-                    <td><span class="text-xs font-medium ${parseInt(lead.followers) > 10000 ? 'text-emerald-400' : 'text-slate-400'}">${lead.followers ? parseInt(lead.followers).toLocaleString() : '-'}</span></td>
-                    <td><span class="text-xs px-2 py-1 rounded-full bg-slate-800 border border-slate-700">${lead.genero || '-'}</span></td>
-                    <td><span class="status-badge status-${lead.estado || 'nuevo'}">${getEstadoLabel(lead.estado || 'nuevo')}</span></td>
-                    <td class="text-right">
-                        <div class="flex items-center justify-end gap-2">
-                            <select onchange="cambiarEstado(${idx}, this.value)" class="text-xs p-1.5 rounded-lg bg-slate-800 border border-slate-700 w-28">
-                                <option value="">Estado...</option>
-                                <option value="nuevo" ${lead.estado === 'nuevo' ? 'selected' : ''}>📥 Nuevo</option>
-                                <option value="contactado" ${lead.estado === 'contactado' ? 'selected' : ''}>✅ Contactado</option>
-                                <option value="reunion" ${lead.estado === 'reunion' ? 'selected' : ''}>📅 Reunión</option>
-                                <option value="venta" ${lead.estado === 'venta' ? 'selected' : ''}>💰 Venta</option>
-                            </select>
-                            <button onclick="eliminarLead(${idx})" class="p-2 text-slate-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
-            lucide.createIcons();
-        }
-
-        function getEstadoLabel(estado) {
-            const labels = { 'nuevo': '📥 Nuevo', 'contactado': '✅ Contactado', 'reunion': '📅 Reunión', 'venta': '💰 Venta' };
-            return labels[estado] || estado;
-        }
-
-        function copiarHashtag(tag) {
-            navigator.clipboard.writeText(tag);
-            showToast(`✅ ${tag} copiado!`, 'success');
-        }
-
-        document.getElementById('lead-form')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const nuevoLead = {
-                ig: document.getElementById('lead-ig').value,
-                nombre: document.getElementById('lead-nombre').value,
-                followers: document.getElementById('lead-followers').value,
-                pais: document.getElementById('lead-pais').value,
-                genero: document.getElementById('lead-genero').value,
-                notas: document.getElementById('lead-notas').value,
-                estado: 'nuevo',
-                fecha: new Date().toISOString()
-            };
-            leads.push(nuevoLead);
-            localStorage.setItem('terrivol_leads', JSON.stringify(leads));
-            this.reset();
-            renderLeads();
-            updateDashboard();
-            showToast('✅ Lead guardado correctamente!', 'success');
-        });
-
-        function cambiarEstado(idx, nuevoEstado) {
-            if (!nuevoEstado) return;
-            leads[idx].estado = nuevoEstado;
-            localStorage.setItem('terrivol_leads', JSON.stringify(leads));
-            renderLeads();
-            updateDashboard();
-            showToast(`Estado actualizado a: ${getEstadoLabel(nuevoEstado)}`, 'info');
-        }
-
-        function eliminarLead(idx) {
-            if (confirm('¿Estás seguro de eliminar este lead?')) {
-                leads.splice(idx, 1);
-                localStorage.setItem('terrivol_leads', JSON.stringify(leads));
-                renderLeads();
-                updateDashboard();
-                showToast('Lead eliminado', 'info');
-            }
-        }
-
-        function updateDashboard() {
-            document.getElementById('kpi-total').textContent = leads.length;
-            document.getElementById('kpi-enviados').textContent = leads.filter(l => l.estado === 'contactado').length;
-            document.getElementById('kpi-respuestas').textContent = leads.filter(l => l.estado === 'reunion').length;
-            document.getElementById('kpi-ventas').textContent = leads.filter(l => l.estado === 'venta').length;
-        }
-
-        function showToast(message, type = 'success') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            const icons = { success: 'check-circle', error: 'alert-circle', info: 'info' };
-            toast.innerHTML = `<i data-lucide="${icons[type]}" class="w-5 h-5"></i><span>${message}</span>`;
-            container.appendChild(toast);
-            lucide.createIcons();
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateX(100%)';
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            renderHashtags();
-            renderLeads();
-            updateDashboard();
-        });
+        lucide.createIcons();
     </script>
 </body>
 </html>
