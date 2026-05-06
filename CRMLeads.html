@@ -258,7 +258,7 @@
                 <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
                 <span class="text-xs font-semibold text-slate-300">Sistema Activo</span>
             </div>
-            <p class="text-[10px] text-slate-500">v5.0 • Google Gemini AI</p>
+            <p class="text-[10px] text-slate-500">v5.1 • Google Gemini AI</p>
         </div>
     </aside>
 
@@ -497,9 +497,9 @@
                                 <option value="🇲🇽 México">🇲🇽 México</option>
                                 <option value="🇨🇴 Colombia">🇨🇴 Colombia</option>
                                 <option value="🇦🇷 Argentina">🇦 Argentina</option>
-                                <option value="🇪🇸 España">🇪🇸 España</option>
+                                <option value="🇪🇸 España">🇪 España</option>
                                 <option value="🇨🇱 Chile">🇨🇱 Chile</option>
-                                <option value="🇺🇸 USA">🇺🇸 USA</option>
+                                <option value="🇺🇸 USA">🇺 USA</option>
                             </select>
                         </div>
                         <div>
@@ -631,7 +631,15 @@
             lucide.createIcons();
             
             try {
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+                // Detectar MIME type dinámicamente (PNG vs JPG)
+                let mimeType = 'image/jpeg';
+                if (currentImageBase64.includes('data:image/png')) mimeType = 'image/png';
+                else if (currentImageBase64.includes('data:image/webp')) mimeType = 'image/webp';
+                
+                const base64Data = currentImageBase64.split(',')[1];
+
+                // Usar gemini-pro-vision (Modelo estable y gratuito para imágenes)
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent?key=${apiKey}`;
                 
                 const response = await fetch(url, {
                     method: 'POST',
@@ -677,8 +685,8 @@ Responde en JSON:
                                 },
                                 {
                                     inline_data: {
-                                        mime_type: "image/jpeg",
-                                        data: currentImageBase64.split(',')[1]
+                                        mime_type: mimeType,
+                                        data: base64Data
                                     }
                                 }
                             ]
