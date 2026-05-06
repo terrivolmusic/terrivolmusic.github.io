@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrivol Music - AI CRM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: linear-gradient(135deg, #0f172a, #1e1b4b); color: white; font-family: system-ui, sans-serif; min-height: 100vh; padding: 20px; }
+        .card { background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+        .gradient { background: linear-gradient(135deg, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 12px 24px; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4); }
+        .upload { border: 3px dashed rgba(99, 102, 241, 0.5); border-radius: 16px; padding: 60px 40px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .upload:hover { border-color: #6366f1; background: rgba(99, 102, 241, 0.1); }
+        input { background: rgba(15, 23, 42, 0.8); border: 2px solid rgba(99, 102, 241, 0.3); color: white; padding: 12px; border-radius: 10px; width: 100%; }
+        input:focus { outline: none; border-color: #6366f1; }
+        .profile { background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+        .copy { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 8px; padding: 12px; margin-top: 12px; font-size: 13px; white-space: pre-wrap; max-height: 200px; overflow-y: auto; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 600; display: inline-block; }
+        .pending { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .completed { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .processing { background: rgba(59, 130, 246, 0.2); color: #60a5fa; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+    </style>
+</head>
+<body>
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-5xl font-black mb-2 gradient">🎵 Terrivol Music</h1>
+        <p class="text-slate-400 mb-8">AI CRM - Procesamiento Masivo de Perfiles</p>
+
+        <!-- API Key -->
+        <div class="card">
+            <div class="flex gap-4 items-end">
+                <div class="flex-1">
+                    <label class="block text-sm mb-2">Google Gemini API Key</label>
+                    <input type="password" id="apiKey" placeholder="AIza...">
+                </div>
+                <button onclick="saveKey()" class="btn">Guardar</button>
+            </div>
+            <p class="text-xs text-slate-400 mt-2">Obtén tu key en: <a href="https://makersuite.google.com/app/apikey" target="_blank" style="color:#6366f1">Google AI Studio</a></p>
+        </div>
+
+        <!-- Upload -->
+        <div class="card">
+            <h2 class="text-2xl font-bold mb-4">📸 Sube los Pantallazos (Hasta 30)</h2>
+            <div class="upload" onclick="document.getElementById('files').click()">
+                <p class="text-xl font-semibold mb-2">Click o Arrastra imágenes aquí</p>
+                <p class="text-sm text-slate-400">JPG, PNG, WEBP</p>
+                <input type="file" id="files" accept="image/*" multiple style="display:none" onchange="handleFiles(this.files)">
+            </div>
+            <div id="controls" class="hidden mt-6 flex gap-4">
+                <button onclick="processAll()" class="btn flex-1 py-4 text-lg">⚡ Procesar Todos (<span id="count">0</span>)</button>
+                <button onclick="exportAll()" class="btn flex-1 py-4 text-lg">📥 Exportar Copys</button>
+                <button onclick="clearAll()" class="px-6 py-4 bg-red-500/20 text-red-400 rounded-xl border border-red-500/30">🗑️</button>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div id="progress" class="card hidden">
+            <div class="flex justify-between mb-2">
+                <h3 class="font-bold">Progreso</h3>
+                <span class="gradient"><span id="done">0</span>/<span id="total">0</span></span>
+            </div>
+            <div class="w-full bg-slate-800 rounded-full h-4"><div id="bar" class="bg-gradient-to-r from-indigo-500 to-pink-500 h-4 rounded-full transition-all" style="width:0%"></div></div>
+        </div>
+
+        <!-- Profiles -->
+        <div id="list"></div>
+    </div>
+
+    <script>
+        let profiles = [];
+        let apiKey = localStorage.getItem('terrivol_key') || '';
+        if(apiKey) document.getElementById('apiKey').value = apiKey;
+
+        function saveKey() {
+            const key = document.getElementById('apiKey').value.trim();
+            if(key.startsWith('AIza')) {
+                localStorage.setItem('terrivol_key', key);
+                apiKey = key;
+                alert('✅ Guardada');
+            } else alert('❌ Key inválida');
+        }
+
+        function handleFiles(files) {
+            const images = Array.from(files).filter(f => f.type.startsWith('image/'));
+            if(profiles.length + images.length > 30) { alert('Máximo 30'); return; }
+            
+            images.forEach((file, i) => {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    profiles.push({ id: Date.now()+i, file, image: e.target.result, status: 'pending', data: null, copy: null });
+                    render();
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function render() {
+            document.getElementById('count').textContent = profiles.filter(p => p.status === 'pending').length;
+            document.getElementById('controls').classList.toggle('hidden', profiles.length === 0);
+            
+            document.getElementById('list').innerHTML = profiles.map((p, i) => `
+                <div class="profile ${p.status}" id="p-${p.id}">
+                    <div class="flex gap-4">
+                        <img src="${p.image}" class="w-32 h-32 object-cover rounded-lg border border-slate-700">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-bold">Perfil #${i+1}</h3>
+                                <span class="badge ${p.status}">${p.status === 'pending' ? '⏳' : p.status === 'processing' ? '⚡' : p.status === 'completed' ? '✅' : '❌'} ${p.status}</span>
+                            </div>
+                            ${p.data ? `<div class="text-sm text-slate-400 mb-2">@${p.data.username} • ${p.data.followers} followers • ${p.data.tipo}</div>` : ''}
+                            ${p.copy ? `<div class="copy">${p.copy}</div><div class="flex gap-2 mt-3"><button onclick="copy(${p.id})" class="px-4 py-2 bg-indigo-500/20 text-indigo-400 rounded-lg">📋 Copiar</button><button onclick="saveCRM(${p.id})" class="px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-lg">💾 CRM</button></div>` : ''}
+                            ${p.status === 'error' ? `<div class="text-red-400 text-sm mt-2">${p.error}</div>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function processAll() {
+            const pending = profiles.filter(p => p.status === 'pending');
+            if(!pending.length) return alert('No hay pendientes');
+            if(!apiKey) return alert('Ingresa tu API Key');
+            
+            document.getElementById('progress').classList.remove('hidden');
+            document.getElementById('total').textContent = pending.length;
+            
+            for(let i = 0; i < pending.length; i++) {
+                await process(pending[i]);
+                document.getElementById('done').textContent = i + 1;
+                document.getElementById('bar').style.width = ((i + 1) / pending.length * 100) + '%';
+                await new Promise(r => setTimeout(r, 1000));
+            }
+        }
+
+        async function process(p) {
+            p.status = 'processing';
+            render();
+            
+            try {
+                const mime = p.image.includes('png') ? 'image/png' : 'image/jpeg';
+                const b64 = p.image.split(',')[1];
+                
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [
+                            { text: 'Analiza este Instagram. Extrae: @usuario, followers, bio, tipo (cantante/productor), género, vibe visual. Genera copy profesional para Terrivol Music ofreciendo auditoría de publishing gratis. Máx 100 palabras. Responde JSON: {"username":"@x","followers":"n","bio":"x","tipo":"x","genero":"x","vibe":"x","copy":"x"}' },
+                            { inline_ { mime_type: mime,  b64 } }
+                        ]}],
+                        generationConfig: { temperature: 0.7, maxOutputTokens: 800 }
+                    })
+                });
+                
+                if(!res.ok) throw new Error('Error API');
+                const data = await res.json();
+                const text = data.candidates[0].content.parts[0].text;
+                const json = JSON.parse(text.match(/\{[\s\S]*\}/)[0]);
+                
+                p.data = json;
+                p.copy = json.copy;
+                p.status = 'completed';
+            } catch(e) {
+                p.status = 'error';
+                p.error = e.message;
+            }
+            render();
+        }
+
+        function copy(id) {
+            const p = profiles.find(x => x.id === id);
+            if(p?.copy) { navigator.clipboard.writeText(p.copy); alert('✅ Copiado'); }
+        }
+
+        function saveCRM(id) {
+            const p = profiles.find(x => x.id === id);
+            if(!p?.data) return;
+            let leads = JSON.parse(localStorage.getItem('terrivol_leads') || '[]');
+            leads.push({ ...p.data, copy: p.copy, fecha: new Date().toISOString() });
+            localStorage.setItem('terrivol_leads', JSON.stringify(leads));
+            alert('✅ Guardado en CRM');
+        }
+
+        function exportAll() {
+            const done = profiles.filter(p => p.status === 'completed');
+            if(!done.length) return alert('No hay copys');
+            let txt = 'TERRIVOL MUSIC - COPYS\n\n';
+            done.forEach((p,i) => { txt += `#${i+1} ${p.data.username}\n${p.copy}\n\n${'='.repeat(50)}\n\n`; });
+            const blob = new Blob([txt], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `terrivol_${new Date().toISOString().split('T')[0]}.txt`;
+            a.click();
+        }
+
+        function clearAll() { if(confirm('¿Borrar todo?')) { profiles = []; render(); document.getElementById('progress').classList.add('hidden'); } }
+    </script>
+</body>
+</html>
