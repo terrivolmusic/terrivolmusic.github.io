@@ -3,701 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terrivol Music | AI CRM Pro</title>
+    <title>Terrivol Music CRM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: { 
-                        terrivol: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            900: '#0c4a6e',
-                            950: '#082f49'
-                        }
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-out',
-                        'slide-up': 'slideUp 0.4s ease-out',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-                    },
-                    keyframes: {
-                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-                        slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } }
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        /* BASE STYLES */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: #0f172a; 
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
-            color: #f8fafc; 
-            font-family: 'Inter', sans-serif; 
-            min-height: 100vh;
-            overflow: hidden;
-        }
-
-        /* GLASSMORPHISM */
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .glass-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .glass-card:hover {
-            transform: translateY(-4px);
-            background: rgba(30, 41, 59, 0.7);
-            border-color: rgba(99, 102, 241, 0.4);
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
-        }
-
-        /* GRADIENTS & TEXT */
-        .gradient-text {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* COMPONENTS */
-        .btn-primary {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            color: white;
-            font-weight: 600;
-            padding: 12px 24px;
-            border-radius: 12px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
-        }
-        
-        .btn-primary:active { transform: scale(0.98); }
-        
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: #e2e8f0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-weight: 600;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #6366f1;
-        }
-
-        /* UPLOAD ZONE */
-        .upload-zone {
-            border: 2px dashed rgba(99, 102, 241, 0.4);
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
-            background: rgba(99, 102, 241, 0.05);
-            position: relative;
-        }
-        
-        .upload-zone:hover, .upload-zone.dragover {
-            border-color: #6366f1;
-            background: rgba(99, 102, 241, 0.15);
-        }
-        
-        .upload-zone.pasting {
-            border-color: #ec4899;
-            background: rgba(236, 72, 153, 0.15);
-            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-        }
-        
-        @keyframes pulse-ring {
-            0% { transform: scale(0.98); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(0.98); }
-        }
-
-        /* FORMS */
-        input, select, textarea {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            color: white;
-            padding: 12px 16px;
-            border-radius: 10px;
-            width: 100%;
-            transition: all 0.3s;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-        }
-        
-        input::placeholder, textarea::placeholder { color: #64748b; }
-
-        /* TABLE & STATUS */
-        table { width: 100%; border-collapse: separate; border-spacing: 0; }
-        th { 
-            background: rgba(15, 23, 42, 0.8); 
-            padding: 16px; 
-            text-align: left; 
-            font-weight: 600;
-            color: #94a3b8;
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-        }
-        th:first-child { border-top-left-radius: 12px; }
-        th:last-child { border-top-right-radius: 12px; }
-        
-        td { 
-            padding: 16px; 
-            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-            transition: all 0.2s;
-        }
-        tr:hover td { background: rgba(99, 102, 241, 0.05); }
-        
-        .status-badge {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: inline-block;
-        }
-        .status-nuevo { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-        .status-contactado { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-        .status-reunion { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-        .status-venta { background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
-
-        /* NAV */
-        .nav-btn {
-            transition: all 0.3s;
-            border-radius: 12px;
-            padding: 12px 16px;
-            margin: 4px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #94a3b8;
-            font-weight: 500;
-        }
-        
-        .nav-btn:hover { background: rgba(255, 255, 255, 0.05); color: #e2e8f0; }
-        
-        .nav-btn.active {
-            background: linear-gradient(90deg, rgba(99, 102, 241, 0.15) 0%, transparent 100%);
-            color: #818cf8;
-            border-left: 3px solid #6366f1;
-        }
-
-        /* HASHTAGS */
-        .hashtag {
-            background: rgba(99, 102, 241, 0.15);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-block;
-            margin: 4px;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            color: #c7d2fe;
-        }
-        
-        .hashtag:hover {
-            transform: scale(1.05);
-            background: rgba(99, 102, 241, 0.3);
-            border-color: #6366f1;
-            color: white;
-        }
-
-        /* TOAST NOTIFICATIONS */
-        .toast-container {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .toast {
-            padding: 16px 24px;
-            border-radius: 12px;
-            color: white;
-            font-weight: 500;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            animation: slideInRight 0.4s ease-out;
-            max-width: 400px;
-        }
-        
-        .toast.success { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
-        .toast.error { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
-        .toast.info { background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); }
-        
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
-
-        /* UTILS */
-        .hidden { display: none !important; }
-        .flex { display: flex; }
-        .hidden-flex { display: none; }
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%); color: #f8fafc; font-family: system-ui, sans-serif; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .glass-card { background: rgba(51, 65, 85, 0.5); border: 1px solid rgba(99, 102, 241, 0.2); transition: 0.3s; }
+        .glass-card:hover { transform: translateY(-4px); border-color: rgba(99, 102, 241, 0.5); }
+        .gradient-text { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-primary { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; font-weight: 600; padding: 12px 24px; border-radius: 12px; border: none; cursor: pointer; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6); }
+        input, select, textarea { background: rgba(15, 23, 42, 0.6); border: 2px solid rgba(99, 102, 241, 0.3); color: white; padding: 12px; border-radius: 10px; width: 100%; }
+        input:focus { outline: none; border-color: #6366f1; }
+        .upload-zone { border: 2px dashed rgba(99, 102, 241, 0.5); border-radius: 16px; padding: 40px; text-align: center; cursor: pointer; background: rgba(99, 102, 241, 0.05); }
+        .upload-zone:hover { border-color: #6366f1; background: rgba(99, 102, 241, 0.15); }
+        .nav-btn { transition: 0.3s; border-radius: 12px; padding: 12px 16px; margin: 4px 0; }
+        .nav-btn:hover { background: rgba(99, 102, 241, 0.2); }
+        .nav-btn.active { background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%); border-left: 4px solid #6366f1; }
+        .status-badge { padding: 6px 16px; border-radius: 20px; font-size: 12px; }
+        .status-nuevo { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .status-contactado { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        table { width: 100%; }
+        th { background: rgba(15, 23, 42, 0.8); padding: 16px; text-align: left; color: #94a3b8; }
+        td { padding: 16px; border-bottom: 1px solid rgba(51, 65, 85, 0.5); }
+        .toast { position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 16px 24px; border-radius: 12px; z-index: 1000; animation: slideIn 0.3s; }
+        @keyframes slideIn { from { transform: translateX(400px); } to { transform: translateX(0); } }
     </style>
 </head>
 <body class="flex h-screen">
 
-    <!-- SIDEBAR -->
-    <aside class="glass-panel w-72 p-6 flex flex-col justify-between border-r border-white/5">
-        <div>
-            <div class="mb-10">
-                <h1 class="text-3xl font-black tracking-tighter gradient-text mb-1">🎵 Terrivol</h1>
-                <p class="text-xs text-slate-400 font-medium tracking-wide">AI VISION CRM PRO</p>
-            </div>
-            
-            <nav class="space-y-2">
-                <button onclick="showTab('dashboard')" id="btn-dashboard" class="nav-btn active w-full text-left">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard
-                </button>
-                <button onclick="showTab('ai-vision')" id="btn-ai-vision" class="nav-btn w-full text-left">
-                    <i data-lucide="eye" class="w-5 h-5"></i> AI Vision
-                    <span class="ml-auto text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30 font-bold">FREE</span>
-                </button>
-                <button onclick="showTab('hashtags')" id="btn-hashtags" class="nav-btn w-full text-left">
-                    <i data-lucide="hash" class="w-5 h-5"></i> Hashtags
-                </button>
-                <button onclick="showTab('templates')" id="btn-templates" class="nav-btn w-full text-left">
-                    <i data-lucide="message-square" class="w-5 h-5"></i> Templates
-                </button>
-                <button onclick="showTab('crm')" id="btn-crm" class="nav-btn w-full text-left">
-                    <i data-lucide="users" class="w-5 h-5"></i> CRM Leads
-                </button>
-            </nav>
-        </div>
-        
-        <div class="glass-card p-4 rounded-xl">
-            <div class="flex items-center gap-3 mb-2">
-                <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                <span class="text-xs font-semibold text-slate-300">Sistema Activo</span>
-            </div>
-            <p class="text-[10px] text-slate-500">v4.0 • OpenRouter • Llama 3.2</p>
-        </div>
+    <aside class="glass w-72 p-6">
+        <h1 class="text-3xl font-black mb-2 gradient-text">🎵 Terrivol</h1>
+        <p class="text-xs text-slate-400 mb-8">AI CRM Pro</p>
+        <nav>
+            <button onclick="showTab('dashboard')" id="btn-dashboard" class="nav-btn active w-full text-left px-4 py-3 flex items-center gap-3"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+            <button onclick="showTab('ai-vision')" id="btn-ai-vision" class="nav-btn w-full text-left px-4 py-3 flex items-center gap-3"><i data-lucide="eye"></i> AI Vision</button>
+            <button onclick="showTab('crm')" id="btn-crm" class="nav-btn w-full text-left px-4 py-3 flex items-center gap-3"><i data-lucide="users"></i> CRM Leads</button>
+        </nav>
     </aside>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 overflow-y-auto relative">
-        <!-- Background decoration -->
-        <div class="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-indigo-500/10 to-transparent pointer-events-none"></div>
+    <main class="flex-1 overflow-auto p-8">
         
-        <div class="p-8 relative z-10 max-w-7xl mx-auto">
-            
-            <!-- DASHBOARD -->
-            <div id="dashboard" class="tab-content animate-fade-in">
-                <div class="flex justify-between items-end mb-8">
-                    <div>
-                        <h2 class="text-4xl font-black mb-2">Dashboard</h2>
-                        <p class="text-slate-400">Resumen de rendimiento diario</p>
+        <div id="dashboard" class="tab-content">
+            <h2 class="text-4xl font-black mb-6">📊 Dashboard</h2>
+            <div class="grid grid-cols-4 gap-6">
+                <div class="glass-card p-6 rounded-2xl"><div class="text-slate-400 text-sm mb-2">Leads Totales</div><div class="text-5xl font-black text-blue-400" id="kpi-total">0</div></div>
+                <div class="glass-card p-6 rounded-2xl"><div class="text-slate-400 text-sm mb-2">DMs Enviados</div><div class="text-5xl font-black text-green-400" id="kpi-enviados">0</div></div>
+                <div class="glass-card p-6 rounded-2xl"><div class="text-slate-400 text-sm mb-2">Respuestas</div><div class="text-5xl font-black text-yellow-400" id="kpi-respuestas">0</div></div>
+                <div class="glass-card p-6 rounded-2xl"><div class="text-slate-400 text-sm mb-2">Ventas</div><div class="text-5xl font-black text-purple-400" id="kpi-ventas">0</div></div>
+            </div>
+        </div>
+
+        <div id="ai-vision" class="tab-content hidden">
+            <h2 class="text-4xl font-black mb-6">👁️ AI Vision - Análisis de Perfil</h2>
+            <div class="grid grid-cols-2 gap-6">
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold mb-4">📋 Pega el Pantallazo (Ctrl+V)</h3>
+                    <div class="upload-zone" id="uploadZone">
+                        <i data-lucide="image" class="w-16 h-16 mx-auto mb-4 text-indigo-400"></i>
+                        <p>Presiona Ctrl+V o arrastra imagen</p>
+                        <input type="file" id="fileInput" accept="image/*" class="hidden">
                     </div>
-                    <button onclick="showTab('ai-vision')" class="btn-primary flex items-center gap-2">
-                        <i data-lucide="plus-circle" class="w-5 h-5"></i> Nuevo Lead
-                    </button>
-                </div>
-                
-                <div class="grid grid-cols-4 gap-6 mb-8">
-                    <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-blue-500/20 transition-all"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="text-slate-400 text-sm font-medium">Leads Totales</div>
-                                <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
-                                    <i data-lucide="users" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                            <div class="text-5xl font-black text-white" id="kpi-total">0</div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-emerald-500/20 transition-all"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="text-slate-400 text-sm font-medium">DMs Enviados</div>
-                                <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
-                                    <i data-lucide="send" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                            <div class="text-5xl font-black text-white" id="kpi-enviados">0</div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-amber-500/20 transition-all"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="text-slate-400 text-sm font-medium">Respuestas</div>
-                                <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400">
-                                    <i data-lucide="message-circle" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                            <div class="text-5xl font-black text-white" id="kpi-respuestas">0</div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-purple-500/20 transition-all"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="text-slate-400 text-sm font-medium">Ventas</div>
-                                <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
-                                    <i data-lucide="trophy" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                            <div class="text-5xl font-black text-white" id="kpi-ventas">0</div>
-                        </div>
+                    <div id="imagePreview" class="mt-4 hidden">
+                        <img id="previewImg" class="w-full rounded-xl border-2 border-indigo-500/50">
+                        <button onclick="analyzeImage()" class="btn-primary w-full mt-4" id="analyzeBtn">
+                            Analizar con AI
+                        </button>
                     </div>
                 </div>
                 
                 <div class="glass-card p-6 rounded-2xl">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-xl font-bold flex items-center gap-2">
-                            <i data-lucide="target" class="w-5 h-5 text-indigo-400"></i> Meta Semanal
-                        </h3>
-                        <span class="text-sm text-slate-400">Objetivo: 50 leads</span>
+                    <h3 class="text-lg font-bold mb-4">✨ Copy Generado</h3>
+                    <div id="copyResult" class="hidden">
+                        <textarea id="generatedCopy" class="w-full h-96 p-4 bg-slate-800/50 rounded-xl border border-slate-700 mb-4" readonly></textarea>
+                        <button onclick="copiarCopy()" class="btn-primary w-full mb-3">📋 Copiar Copy</button>
+                        <button onclick="guardarCRM()" class="btn-primary w-full">💾 Guardar en CRM</button>
                     </div>
-                    <div class="flex items-center gap-4 mb-2">
-                        <div class="flex-1 bg-slate-800 rounded-full h-3 overflow-hidden">
-                            <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full rounded-full transition-all duration-700" style="width: 0%" id="progress-bar"></div>
-                        </div>
-                        <span class="text-2xl font-bold gradient-text" id="progress-text">0%</span>
-                    </div>
-                    <p class="text-sm text-slate-500"><span id="faltan">50</span> leads restantes para completar la meta</p>
-                </div>
-            </div>
-
-            <!-- AI VISION -->
-            <div id="ai-vision" class="tab-content hidden animate-fade-in">
-                <div class="mb-8">
-                    <h2 class="text-4xl font-black mb-2 gradient-text">AI Vision Generator</h2>
-                    <p class="text-slate-400">Analiza estética, colores y energía para generar el copy perfecto</p>
-                </div>
-                
-                <div class="grid grid-cols-12 gap-6">
-                    <!-- LEFT: UPLOAD -->
-                    <div class="col-span-7 space-y-6">
-                        <div class="glass-card p-6 rounded-2xl">
-                            <div class="flex justify-between items-center mb-4">
-                                <h3 class="text-lg font-bold flex items-center gap-2">
-                                    <i data-lucide="image" class="w-5 h-5 text-indigo-400"></i>
-                                    Fuente de Imagen
-                                </h3>
-                                <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded">Ctrl+V para pegar</span>
-                            </div>
-                            
-                            <div class="upload-zone" id="uploadZone">
-                                <div class="mb-4">
-                                    <i data-lucide="clipboard-paste" class="w-12 h-12 mx-auto text-indigo-400 mb-2"></i>
-                                    <p class="text-lg font-semibold">Pega el Pantallazo Aquí</p>
-                                    <p class="text-sm text-slate-400 mt-1">o arrastra la imagen desde tu carpeta</p>
-                                </div>
-                                <input type="file" id="fileInput" accept="image/*" class="hidden">
-                            </div>
-                            
-                            <div id="imagePreview" class="mt-4 hidden animate-slide-up">
-                                <div class="relative group">
-                                    <img id="previewImg" class="w-full h-64 object-cover rounded-xl border border-slate-700">
-                                    <button onclick="removeImage()" class="absolute top-2 right-2 w-8 h-8 bg-red-500/90 backdrop-blur rounded-full flex items-center justify-center hover:bg-red-600 transition">
-                                        <i data-lucide="x" class="w-4 h-4"></i>
-                                    </button>
-                                    <div class="absolute bottom-2 left-2 bg-black/70 backdrop-blur px-3 py-1 rounded-lg text-xs text-white">
-                                        Imagen cargada
-                                    </div>
-                                </div>
-                                
-                                <div class="mt-4 flex gap-3">
-                                    <button onclick="analyzeImage()" class="btn-primary flex-1 flex items-center justify-center gap-2" id="analyzeBtn">
-                                        <i data-lucide="sparkles" class="w-5 h-5"></i>
-                                        Analizar con IA
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="glass-card p-6 rounded-2xl">
-                            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Instrucciones</h3>
-                            <ol class="space-y-3 text-sm text-slate-300">
-                                <li class="flex items-start gap-3">
-                                    <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>
-                                    <span>Ve al perfil de Instagram del artista</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
-                                    <span>Toma pantallazo (Win+Shift+S / Cmd+Shift+4)</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold flex-shrink-0">3</span>
-                                    <span>Vuelve aquí y presiona <strong class="text-white">Ctrl+V</strong></span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold flex-shrink-0">4</span>
-                                    <span>La IA analizará colores, vibe y datos, y generará el copy</span>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                    
-                    <!-- RIGHT: RESULT -->
-                    <div class="col-span-5 space-y-6">
-                        <div class="glass-card p-6 rounded-2xl h-full flex flex-col">
-                            <div class="flex justify-between items-center mb-4">
-                                <h3 class="text-lg font-bold flex items-center gap-2">
-                                    <i data-lucide="message-square" class="w-5 h-5 text-pink-400"></i>
-                                    Copy Generado
-                                </h3>
-                                <div id="ai-status" class="text-xs text-slate-500">Esperando imagen...</div>
-                            </div>
-                            
-                            <div id="analysis-insights" class="hidden mb-4 p-3 bg-slate-800/50 rounded-lg border border-slate-700 text-xs space-y-2">
-                                <div class="flex justify-between"><span class="text-slate-400">Vibe:</span> <span id="insight-vibe" class="text-white font-medium">-</span></div>
-                                <div class="flex justify-between"><span class="text-slate-400">Estética:</span> <span id="insight-aesthetic" class="text-white font-medium">-</span></div>
-                                <div class="flex justify-between"><span class="text-slate-400">Usuario:</span> <span id="insight-user" class="text-indigo-400 font-medium">-</span></div>
-                            </div>
-                            
-                            <div id="copyResult" class="hidden flex-1 flex flex-col">
-                                <div class="flex-1 bg-slate-900/50 p-4 rounded-xl border border-slate-700 mb-4 relative group">
-                                    <pre id="generatedCopy" class="text-sm text-slate-200 whitespace-pre-wrap font-mono leading-relaxed"></pre>
-                                    <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition">
-                                        <button onclick="copiarCopyGenerado()" class="p-1.5 bg-slate-700 rounded hover:bg-indigo-500 transition" title="Copiar">
-                                            <i data-lucide="copy" class="w-4 h-4"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                
-                                <div class="space-y-3 mt-auto">
-                                    <button onclick="copiarCopyGenerado()" class="btn-primary w-full flex items-center justify-center gap-2">
-                                        <i data-lucide="copy" class="w-5 h-5"></i>
-                                        Copiar Copy
-                                    </button>
-                                    <button onclick="guardarEnCRM()" class="btn-secondary w-full flex items-center justify-center gap-2">
-                                        <i data-lucide="save" class="w-5 h-5"></i>
-                                        Guardar en CRM
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div id="copyPlaceholder" class="flex-1 flex flex-col items-center justify-center text-slate-500 py-12">
-                                <i data-lucide="bot" class="w-16 h-16 mb-4 opacity-20"></i>
-                                <p class="text-center">Pega una imagen para generar<br>un copy personalizado</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- CONFIG API -->
-                <div class="glass-card p-6 rounded-2xl mt-6">
-                    <div class="flex items-center gap-2 mb-4">
-                        <i data-lucide="key" class="w-5 h-5 text-yellow-400"></i>
-                        <h3 class="text-lg font-bold">Configuración de API</h3>
-                    </div>
-                    <div class="flex gap-4 items-end">
-                        <div class="flex-1">
-                            <label class="block text-sm font-medium mb-2 text-slate-300">OpenRouter API Key</label>
-                            <input type="password" id="apiKey" placeholder="sk-or-v1-...">
-                            <p class="text-xs text-slate-400 mt-2">
-                                Obtén tu key GRATIS en <a href="https://openrouter.ai/keys" target="_blank" class="text-indigo-400 hover:underline font-semibold">openrouter.ai</a>
-                            </p>
-                        </div>
-                        <button onclick="saveApiKey()" class="btn-primary h-[46px]">Guardar Key</button>
+                    <div id="copyPlaceholder" class="text-center py-12 text-slate-400">
+                        <p>Sube imagen para generar copy</p>
                     </div>
                 </div>
             </div>
-
-            <!-- HASHTAGS -->
-            <div id="hashtags" class="tab-content hidden animate-fade-in">
-                <div class="mb-8">
-                    <h2 class="text-4xl font-black mb-2">Banco de Hashtags</h2>
-                    <p class="text-slate-400">Copia y pega directamente en tus publicaciones</p>
+            
+            <div class="glass-card p-6 rounded-2xl mt-6">
+                <h3 class="text-lg font-bold mb-4">⚙️ API Key (OpenRouter)</h3>
+                <div class="flex gap-4">
+                    <input type="password" id="apiKey" placeholder="sk-or-v1-...">
+                    <button onclick="saveApiKey()" class="btn-primary">Guardar</button>
                 </div>
-                <div id="hashtags-container" class="grid grid-cols-3 gap-6"></div>
+                <p class="text-xs text-slate-400 mt-2">Obtén tu key GRATIS en: <a href="https://openrouter.ai/keys" target="_blank" class="text-indigo-400">openrouter.ai</a></p>
             </div>
-
-            <!-- TEMPLATES -->
-            <div id="templates" class="tab-content hidden animate-fade-in">
-                <div class="mb-8">
-                    <h2 class="text-4xl font-black mb-2">Plantillas de Mensajes</h2>
-                    <p class="text-slate-400">Copys predefinidos para diferentes situaciones</p>
-                </div>
-                <div id="templates-container" class="space-y-4"></div>
-            </div>
-
-            <!-- CRM -->
-            <div id="crm" class="tab-content hidden animate-fade-in">
-                <div class="flex justify-between items-center mb-8">
-                    <div>
-                        <h2 class="text-4xl font-black mb-2">CRM de Leads</h2>
-                        <p class="text-slate-400">Gestiona y da seguimiento a tus prospectos</p>
-                    </div>
-                    <div class="flex gap-3">
-                        <button onclick="exportBackup()" class="btn-secondary flex items-center gap-2">
-                            <i data-lucide="download" class="w-4 h-4"></i> Exportar
-                        </button>
-                        <button onclick="importBackup()" class="btn-secondary flex items-center gap-2">
-                            <i data-lucide="upload" class="w-4 h-4"></i> Importar
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="glass-card p-6 rounded-2xl mb-6">
-                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-                        <i data-lucide="user-plus" class="w-5 h-5 text-emerald-400"></i>
-                        Agregar Lead Manual
-                    </h3>
-                    <form id="lead-form" class="grid grid-cols-3 gap-4">
-                        <div class="col-span-3">
-                            <label class="block text-xs font-medium mb-1.5 text-slate-400 uppercase">Instagram</label>
-                            <input type="text" id="lead-ig" placeholder="@usuario" required>
-                        </div>
-                        <div class="col-span-3">
-                            <label class="block text-xs font-medium mb-1.5 text-slate-400 uppercase">Nombre Real</label>
-                            <input type="text" id="lead-nombre" placeholder="Nombre completo">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium mb-1.5 text-slate-400 uppercase">Followers</label>
-                            <input type="number" id="lead-followers" placeholder="1000">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium mb-1.5 text-slate-400 uppercase">País</label>
-                            <select id="lead-pais">
-                                <option value="">Selecciona...</option>
-                                <option value="🇲🇽 México">🇲🇽 México</option>
-                                <option value="🇨🇴 Colombia">🇨🇴 Colombia</option>
-                                <option value="🇦🇷 Argentina">🇦 Argentina</option>
-                                <option value="🇪🇸 España">🇪🇸 España</option>
-                                <option value="🇨🇱 Chile">🇨🇱 Chile</option>
-                                <option value="🇺🇸 USA">🇺🇸 USA</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium mb-1.5 text-slate-400 uppercase">Género Musical</label>
-                            <select id="lead-genero">
-                                <option value="">Selecciona...</option>
-                                <option value="Urbano/Trap">Urbano/Trap</option>
-                                <option value="Pop">Pop</option>
-                                <option value="Regional">Regional Mexicano</option>
-                                <option value="Rock">Rock</option>
-                                <option value="Productor">Productor</option>
-                            </select>
-                        </div>
-                        <div class="col-span-3">
-                            <label class="block text-xs font-medium mb-1.5 text-slate-400 uppercase">Notas / Vibe</label>
-                            <textarea id="lead-notas" placeholder="Detalles del perfil, energía detectada, etc." rows="2"></textarea>
-                        </div>
-                        <div class="col-span-3 flex justify-end">
-                            <button type="submit" class="btn-primary flex items-center gap-2">
-                                <i data-lucide="save" class="w-5 h-5"></i>
-                                Guardar Lead
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Lead</th>
-                                <th>País</th>
-                                <th>Followers</th>
-                                <th>Género</th>
-                                <th>Estado</th>
-                                <th class="text-right">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="leads-table"></tbody>
-                    </table>
-                </div>
-            </div>
-
         </div>
+
+        <div id="crm" class="tab-content hidden">
+            <h2 class="text-4xl font-black mb-6">📈 CRM Leads</h2>
+            <div class="glass-card p-6 rounded-2xl mb-6">
+                <form id="lead-form" class="grid grid-cols-3 gap-4">
+                    <input type="text" id="lead-ig" placeholder="@instagram" required>
+                    <input type="text" id="lead-nombre" placeholder="Nombre" required>
+                    <input type="number" id="lead-followers" placeholder="Followers">
+                    <select id="lead-pais">
+                        <option value="">País...</option>
+                        <option value="🇲🇽 México">🇲🇽 México</option>
+                        <option value="🇨🇴 Colombia">🇨🇴 Colombia</option>
+                        <option value="🇪🇸 España">🇪🇸 España</option>
+                    </select>
+                    <select id="lead-genero">
+                        <option value="">Género...</option>
+                        <option value="Urbano">Urbano/Trap</option>
+                        <option value="Pop">Pop</option>
+                        <option value="Regional">Regional</option>
+                        <option value="Productor">Productor</option>
+                    </select>
+                    <input type="text" id="lead-notas" placeholder="Notas" class="col-span-3">
+                    <button type="submit" class="btn-primary col-span-3">Guardar Lead</button>
+                </form>
+            </div>
+            <div class="glass-card rounded-2xl overflow-hidden">
+                <table>
+                    <thead><tr><th>Lead</th><th>País</th><th>Followers</th><th>Estado</th><th>Acciones</th></tr></thead>
+                    <tbody id="leads-table"></tbody>
+                </table>
+            </div>
+        </div>
+
     </main>
 
-    <div class="toast-container" id="toast-container"></div>
-
     <script>
-        // ================= DATA =================
-        const hashtagsData = {
-            "Urbano/Trap": ["#traplatino", "#rapindependiente", "#urbanoemergente", "#trapcolombia", "#rapmexico", "#trapargentina", "#hiphoplatino", "#unsignedartist"],
-            "Regional Mexicano": ["#regionalmexicano", "#corridostumbados", "#musicamexicana", "#sierreño", "#bandamexicana", "#mariachimoderno", "#nortena", "#corridos"],
-            "Pop/Cantautor": ["#cantautorindependiente", "#poplatino", "#musicaindependiente", "#artistapop", "#alternativolatino", "#indiepoplatino", "#singersongwriter"],
-            "Productores": ["#beatmakerlatino", "#productormusical", "#typebeat", "#flstudiolatino", "#producermx", "#beatmakercolombia", "#musicproducer"],
-            "México": ["#musicamexico", "#artistasmexicanos", "#cdmxmusic", "#guadalajaramusic", "#monterreymusic", "#talentomexicano"],
-            "Colombia": ["#musicacolombia", "#rapcolombia", "#trapcolombia", "#bogotamusic", "#medellinmusic", "#talentocolombiano"],
-            "España": ["#musicaespaña", "#rapespaña", "#trapspanish", "#madridmusic", "#barcelonamusic", "#talentoespañol"],
-            "Industria": ["#distrokid", "#tunecore", "#artistasonspotify", "#musicbusiness", "#publishingmusical", "#regaliasmusicales"]
-        };
-
-        const templatesData = [
-            { tipo: "🎤 Cantante/Compositor", copy: "Hola [Nombre] 👋\n\nVi tu perfil y me gustó [detalle específico]. Soy Sebastián de Terrivol Music. Ayudamos a artistas independientes a blindar sus derechos y optimizar regalías (Publishing, BMI/Sony).\n\nSi te hace sentido, te regalo una auditoría express de 10 min para ver si tu catálogo está protegido al 100%. Sin costo, solo claridad. ¿Te cuadra? 🎵" },
-            { tipo: "🎹 Productor", copy: "Hola [Nombre] 🎹\n\nVi tu trabajo y el nivel está brutal. Como productor, sabes que los splits y el publishing son clave.\n\nTe regalo una auditoría de 10 min para asegurar que cobras por tus beats y no dejas dinero en la mesa. ¿Te cuadra? 🔥" },
-            { tipo: "🎸 Banda/Grupo", copy: "Hola [Nombre] 👋\n\nVi su perfil y la trayectoria que manejan es impresionante. Soy Sebastián de Terrivol Music.\n\nTrabajamos con bandas para profesionalizar splits, publishing grupal y derechos de master. ¿Les haría sentido una auditoría gratuita de 10 min? Sin compromiso. 🎸" }
-        ];
-
-        // ================= STATE =================
         let leads = JSON.parse(localStorage.getItem('terrivol_leads')) || [];
         let apiKey = localStorage.getItem('terrivol_apikey') || '';
         let currentImageBase64 = '';
         let extractedData = {};
 
-        // ================= NAVIGATION =================
         function showTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
             document.getElementById(tabId).classList.remove('hidden');
@@ -705,29 +144,19 @@
             document.getElementById('btn-' + tabId).classList.add('active');
         }
 
-        // ================= UPLOAD HANDLERS =================
         const uploadZone = document.getElementById('uploadZone');
         const fileInput = document.getElementById('fileInput');
-
+        
         uploadZone.addEventListener('click', () => fileInput.click());
         fileInput.addEventListener('change', (e) => { if (e.target.files[0]) processImage(e.target.files[0]); });
-        
-        uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('dragover'); });
-        uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
-        uploadZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadZone.classList.remove('dragover');
-            if (e.dataTransfer.files[0]) processImage(e.dataTransfer.files[0]);
-        });
-
+        uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.style.borderColor = '#6366f1'; });
+        uploadZone.addEventListener('dragleave', () => { uploadZone.style.borderColor = 'rgba(99, 102, 241, 0.5)'; });
+        uploadZone.addEventListener('drop', (e) => { e.preventDefault(); if (e.dataTransfer.files[0]) processImage(e.dataTransfer.files[0]); });
         document.addEventListener('paste', (e) => {
             const items = e.clipboardData.items;
             for (let i = 0; i < items.length; i++) {
                 if (items[i].type.startsWith('image/')) {
                     processImage(items[i].getAsFile());
-                    // Visual feedback
-                    uploadZone.classList.add('pasting');
-                    setTimeout(() => uploadZone.classList.remove('pasting'), 1000);
                     break;
                 }
             }
@@ -739,461 +168,146 @@
                 currentImageBase64 = e.target.result;
                 document.getElementById('previewImg').src = currentImageBase64;
                 document.getElementById('imagePreview').classList.remove('hidden');
-                showToast('✅ Imagen cargada correctamente', 'info');
             };
             reader.readAsDataURL(file);
         }
 
-        function removeImage() {
-            currentImageBase64 = '';
-            document.getElementById('imagePreview').classList.add('hidden');
-            document.getElementById('copyResult').classList.add('hidden');
-            document.getElementById('analysis-insights').classList.add('hidden');
-            document.getElementById('copyPlaceholder').classList.remove('hidden');
-            fileInput.value = '';
-        }
-
-        // ================= AI ANALYSIS =================
         async function analyzeImage() {
-            if (!currentImageBase64) return showToast('❌ Sube una imagen primero', 'error');
-            if (!apiKey) return showToast('❌ Ingresa tu API Key de OpenRouter', 'error');
+            if (!currentImageBase64) return alert('Sube una imagen');
+            if (!apiKey) return alert('Ingresa tu API Key de OpenRouter');
             
             const btn = document.getElementById('analyzeBtn');
-            const statusEl = document.getElementById('ai-status');
-            const originalHTML = btn.innerHTML;
-            
-            btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Analizando...';
+            btn.innerHTML = 'Analizando...';
             btn.disabled = true;
-            statusEl.textContent = 'Procesando imagen con Llama 3.2...';
-            statusEl.className = 'text-xs text-indigo-400 animate-pulse';
-            lucide.createIcons();
             
             try {
-                // Prompt de ingeniería avanzado para análisis visual + copy
-                const prompt = `Eres un experto en branding musical y psicología del color. Analiza este perfil de Instagram de un artista musical.
-
-EXTRAE ESTA INFO:
-1. @usuario exacto
-2. Número de seguidores (aproximado)
-3. Biografía completa
-4. Tipo de artista (cantante, productor, banda, etc.)
-5. Género musical visible
-
-ANÁLISIS VISUAL Y ENERGÉTICO (crítico):
-- Paleta de colores dominante (ej: "tonos oscuros con acentos neón", "pastel cálido", "blanco y negro minimalista")
-- Energía/Vibe percibida (ej: "underground oscuro", "pop luminoso", "trap agresivo", "melancólico íntimo")
-- Nivel de profesionalismo visual (1-10)
-- Estética identificable (ej: "aesthetic Y2K", "streetwear", "lujo discreto", "lo-fi casero")
-
-GENERA UN COPY PROFESIONAL para Terrivol Music ENT usando esta estructura:
-- Saludo personalizado con @usuario
-- Mención específica de la energía/vibe detectada en colores y estética
-- Conexión con servicios de Terrivol (publishing, derechos, splits)
-- Oferta de auditoría gratuita de 10 min
-- Tono: profesional pero cercano, máximo 120 palabras
-- Incluye emojis relevantes a la vibra detectada
-
-Responde en formato JSON exacto:
-{
-  "username": "@usuario",
-  "followers": "12345",
-  "bio": "texto de bio",
-  "tipo": "cantante/productor/banda",
-  "genero": "urbano/pop/regional/etc",
-  "vibe": "descripción de la energía",
-  "aesthetic": "descripción de la estética",
-  "copy": "El copy generado aquí"
-}`;
-
+                // Usar Google Gemma 2 (GRATIS y funciona)
                 const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
                     method: 'POST',
                     headers: { 
                         'Authorization': `Bearer ${apiKey}`,
                         'Content-Type': 'application/json',
-                        'HTTP-Referer': window.location.href,
-                        'X-Title': 'Terrivol Music CRM'
+                        'HTTP-Referer': window.location.href
                     },
                     body: JSON.stringify({
-                        model: 'meta-llama/llama-3.2-11b-vision-instruct:free',
-                        messages: [
-                            {
-                                role: 'user',
-                                content: [
-                                    { type: 'image_url', image_url: { url: currentImageBase64 } },
-                                    { type: 'text', text: prompt }
-                                ]
-                            }
-                        ],
-                        max_tokens: 800,
-                        temperature: 0.7
+                        model: 'google/gemma-2-2b-it:free',
+                        messages: [{
+                            role: 'user',
+                            content: "Analiza esta imagen de un perfil de Instagram. Extrae: 1) El @usuario, 2) Número de seguidores si se ve, 3) La biografía, 4) Si es cantante/productor/banda. Luego genera un copy profesional para Terrivol Music ofreciendo auditoría gratuita de 10 min sobre publishing y derechos musicales. Responde en formato: USUARIO: @xxx\nFOLLOWERS: xxx\nBIO: xxx\nTIPO: xxx\nCOPY: [el copy aquí]"
+                        }],
+                        max_tokens: 500
                     })
                 });
                 
-                if (!response.ok) {
-                    const error = await response.json();
-                    throw new Error(error.error?.message || 'Error en API');
-                }
+                if (!response.ok) throw new Error('Error: ' + response.statusText);
                 
                 const result = await response.json();
-                const content = result.choices[0].message.content;
+                const text = result.choices[0].message.content;
                 
-                // Parsear JSON de la respuesta
-                let data;
-                try {
-                    // Buscar bloque JSON en la respuesta
-                    const jsonMatch = content.match(/\{[\s\S]*\}/);
-                    if (jsonMatch) {
-                        data = JSON.parse(jsonMatch[0]);
-                    } else {
-                        throw new Error('No se encontró JSON válido');
-                    }
-                } catch (e) {
-                    // Fallback si no es JSON válido
-                    data = {
-                        username: content.match(/@([a-zA-Z0-9_.]+)/)?.[0] || '@artista',
-                        followers: content.match(/(\d{1,3}(?:[.,]\d{3})*)/)?.[1] || '0',
-                        bio: content.substring(0, 100),
-                        tipo: 'artista',
-                        genero: 'no especificado',
-                        vibe: 'vibra artística',
-                        aesthetic: 'estética única',
-                        copy: content.replace(/```json|```/g, '').trim()
-                    };
-                }
+                // Extraer datos
+                const usernameMatch = text.match(/USUARIO:\s*(@[a-zA-Z0-9_.]+)/i);
+                const followersMatch = text.match(/FOLLOWERS:\s*(\d+)/i);
+                const bioMatch = text.match(/BIO:\s*(.+?)(?:\nTIPO:|$)/i);
+                const tipoMatch = text.match(/TIPO:\s*(.+)/i);
+                const copyMatch = text.match(/COPY:\s*(.+)/is);
                 
-                extractedData = data;
+                extractedData = {
+                    username: usernameMatch ? usernameMatch[1] : '@artista',
+                    followers: followersMatch ? followersMatch[1] : '0',
+                    bio: bioMatch ? bioMatch[1] : '',
+                    tipo: tipoMatch ? tipoMatch[1] : 'artista',
+                    copy: copyMatch ? copyMatch[1].trim() : text
+                };
                 
-                // Mostrar insights
-                document.getElementById('insight-vibe').textContent = data.vibe || '-';
-                document.getElementById('insight-aesthetic').textContent = data.aesthetic || '-';
-                document.getElementById('insight-user').textContent = data.username || '-';
-                document.getElementById('analysis-insights').classList.remove('hidden');
-                
-                // Mostrar copy
-                document.getElementById('generatedCopy').textContent = data.copy;
+                document.getElementById('generatedCopy').value = extractedData.copy;
                 document.getElementById('copyResult').classList.remove('hidden');
                 document.getElementById('copyPlaceholder').classList.add('hidden');
-                
-                statusEl.textContent = 'Análisis completado';
-                statusEl.className = 'text-xs text-emerald-400';
-                showToast('✅ ¡Análisis completado con éxito!', 'success');
+                alert('✅ Análisis completado!');
                 
             } catch (error) {
-                console.error('Error:', error);
-                statusEl.textContent = 'Error en el análisis';
-                statusEl.className = 'text-xs text-red-400';
-                
-                if (error.message.includes('401')) {
-                    showToast('❌ API Key inválida', 'error');
-                } else if (error.message.includes('429')) {
-                    showToast('⏱️ Límite de peticiones. Espera un momento', 'error');
-                } else {
-                    showToast(`❌ Error: ${error.message.substring(0, 50)}`, 'error');
-                }
+                alert('❌ Error: ' + error.message);
             }
             
-            btn.innerHTML = originalHTML;
+            btn.innerHTML = 'Analizar con AI';
             btn.disabled = false;
-            lucide.createIcons();
         }
 
-        function copiarCopyGenerado() {
-            const copy = document.getElementById('generatedCopy').textContent;
+        function copiarCopy() {
+            const copy = document.getElementById('generatedCopy').value;
             if (!copy) return;
             navigator.clipboard.writeText(copy);
-            showToast('✅ Copy copiado al portapapeles', 'success');
+            alert('✅ Copy copiado!');
         }
 
-        function guardarEnCRM() {
-            if (!extractedData.username) {
-                showToast('❌ No hay datos para guardar', 'error');
-                return;
-            }
-            
-            const lead = {
+        function guardarCRM() {
+            leads.push({
                 ig: extractedData.username,
-                nombre: extractedData.username.replace('@', ''),
-                followers: extractedData.followers || '-',
+                nombre: extractedData.username,
+                followers: extractedData.followers,
                 pais: '-',
-                genero: extractedData.genero || 'No detectado',
-                notas: `Vibe: ${extractedData.vibe || '-'} | Bio: ${extractedData.bio || '-'}`,
-                estado: 'nuevo',
-                fecha: new Date().toISOString()
-            };
-            
-            leads.push(lead);
+                genero: extractedData.tipo,
+                notas: extractedData.bio,
+                estado: 'nuevo'
+            });
             localStorage.setItem('terrivol_leads', JSON.stringify(leads));
             renderLeads();
             updateDashboard();
-            
-            showToast('✅ Lead guardado en CRM automáticamente', 'success');
-            
-            // Limpiar
-            removeImage();
+            alert('✅ Guardado en CRM!');
         }
 
         function saveApiKey() {
-            const key = document.getElementById('apiKey').value.trim();
-            if (key && key.startsWith('sk-')) {
-                apiKey = key;
-                localStorage.setItem('terrivol_apikey', key);
-                showToast('✅ API Key guardada correctamente', 'success');
-            } else {
-                showToast('❌ Key inválida (debe empezar con sk-)', 'error');
-            }
+            apiKey = document.getElementById('apiKey').value;
+            localStorage.setItem('terrivol_apikey', apiKey);
+            alert('✅ API Key guardada!');
         }
-
         if (apiKey) document.getElementById('apiKey').value = apiKey;
 
-        // ================= BACKUP SYSTEM =================
-        function exportBackup() {
-            const data = {
-                leads: leads,
-                apiKey: apiKey,
-                exportDate: new Date().toISOString(),
-                version: '4.0'
-            };
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `terrivol_backup_${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-            showToast('✅ Backup descargado! Guárdalo en un lugar seguro', 'success');
-        }
-
-        function importBackup() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        if (data.leads) {
-                            leads = data.leads;
-                            localStorage.setItem('terrivol_leads', JSON.stringify(leads));
-                        }
-                        if (data.apiKey) {
-                            apiKey = data.apiKey;
-                            localStorage.setItem('terrivol_apikey', apiKey);
-                            document.getElementById('apiKey').value = apiKey;
-                        }
-                        renderLeads();
-                        updateDashboard();
-                        showToast('✅ Backup restaurado correctamente!', 'success');
-                    } catch (err) {
-                        showToast('❌ Error al leer el archivo', 'error');
-                    }
-                };
-                reader.readAsText(file);
-            };
-            input.click();
-        }
-
-        // ================= RENDER FUNCTIONS =================
-        function renderHashtags() {
-            const container = document.getElementById('hashtags-container');
-            if (!container) return;
-            
-            container.innerHTML = '';
-            Object.entries(hashtagsData).forEach(([categoria, tags]) => {
-                const div = document.createElement('div');
-                div.className = 'glass-card p-6 rounded-2xl';
-                div.innerHTML = `
-                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-                        <i data-lucide="tag" class="w-4 h-4 text-indigo-400"></i>
-                        ${categoria}
-                    </h3>
-                    <div class="flex flex-wrap">
-                        ${tags.map(tag => `<span class="hashtag" onclick="copiarHashtag('${tag}')">${tag}</span>`).join('')}
-                    </div>
-                `;
-                container.appendChild(div);
-            });
-            lucide.createIcons();
-        }
-
-        function renderTemplates() {
-            const container = document.getElementById('templates-container');
-            if (!container) return;
-            
-            container.innerHTML = '';
-            templatesData.forEach((tpl, idx) => {
-                const div = document.createElement('div');
-                div.className = 'glass-card p-6 rounded-2xl';
-                div.innerHTML = `
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="font-bold text-lg">${tpl.tipo}</h3>
-                        <button onclick="copiarTemplate(${idx})" class="btn-secondary text-sm flex items-center gap-2 px-3 py-1">
-                            <i data-lucide="copy" class="w-3 h-3"></i> Copiar
-                        </button>
-                    </div>
-                    <pre class="text-sm text-slate-300 whitespace-pre-wrap bg-slate-900/50 p-4 rounded-xl border border-slate-700/50">${tpl.copy}</pre>
-                `;
-                container.appendChild(div);
-            });
-            lucide.createIcons();
-        }
-
         function renderLeads() {
-            const tbody = document.getElementById('leads-table');
-            if (!tbody) return;
-            
-            if (leads.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-12 text-slate-500">No hay leads aún. ¡Empieza a prospectar!</td></tr>`;
-                return;
-            }
-            
-            tbody.innerHTML = leads.map((lead, idx) => `
-                <tr class="hover:bg-indigo-500/5">
+            const t = document.getElementById('leads-table');
+            t.innerHTML = leads.map((l, i) => `
+                <tr>
+                    <td><strong>${l.ig}</strong><br><small>${l.nombre}</small></td>
+                    <td>${l.pais || '-'}</td>
+                    <td>${l.followers || '-'}</td>
+                    <td><span class="status-badge status-${l.estado || 'nuevo'}">${l.estado || '📥 Nuevo'}</span></td>
                     <td>
-                        <div class="font-semibold text-white">${lead.ig}</div>
-                        <div class="text-xs text-slate-400">${lead.nombre}</div>
-                    </td>
-                    <td>${lead.pais || '-'}</td>
-                    <td>
-                        <span class="text-xs font-medium ${parseInt(lead.followers) > 10000 ? 'text-emerald-400' : 'text-slate-400'}">
-                            ${lead.followers ? parseInt(lead.followers).toLocaleString() : '-'}
-                        </span>
-                    </td>
-                    <td><span class="text-xs px-2 py-1 rounded-full bg-slate-800 border border-slate-700">${lead.genero || '-'}</span></td>
-                    <td><span class="status-badge status-${lead.estado || 'nuevo'}">${getEstadoLabel(lead.estado || 'nuevo')}</span></td>
-                    <td class="text-right">
-                        <div class="flex items-center justify-end gap-2">
-                            <select onchange="cambiarEstado(${idx}, this.value)" class="text-xs p-1.5 rounded-lg bg-slate-800 border border-slate-700 w-28">
-                                <option value="">Estado...</option>
-                                <option value="nuevo" ${lead.estado === 'nuevo' ? 'selected' : ''}>📥 Nuevo</option>
-                                <option value="contactado" ${lead.estado === 'contactado' ? 'selected' : ''}>✅ Contactado</option>
-                                <option value="reunion" ${lead.estado === 'reunion' ? 'selected' : ''}>📅 Reunión</option>
-                                <option value="venta" ${lead.estado === 'venta' ? 'selected' : ''}>💰 Venta</option>
-                            </select>
-                            <button onclick="eliminarLead(${idx})" class="p-2 text-slate-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i>
-                            </button>
-                        </div>
+                        <select onchange="leads[${i}].estado=this.value; localStorage.setItem('terrivol_leads',JSON.stringify(leads)); renderLeads();" class="text-sm p-1 rounded bg-slate-800 border border-slate-600">
+                            <option value="">Cambiar...</option>
+                            <option value="nuevo" ${l.estado==='nuevo'?'selected':''}>📥 Nuevo</option>
+                            <option value="contactado" ${l.estado==='contactado'?'selected':''}>✅ Contactado</option>
+                        </select>
+                        <button onclick="leads.splice(${i},1); localStorage.setItem('terrivol_leads',JSON.stringify(leads)); renderLeads();" class="ml-2 text-red-400">🗑️</button>
                     </td>
                 </tr>
             `).join('');
-            lucide.createIcons();
         }
 
-        function getEstadoLabel(estado) {
-            const labels = {
-                'nuevo': '📥 Nuevo',
-                'contactado': '✅ Contactado',
-                'reunion': '📅 Reunión',
-                'venta': '💰 Venta'
-            };
-            return labels[estado] || estado;
+        function updateDashboard() {
+            document.getElementById('kpi-total').textContent = leads.length;
+            document.getElementById('kpi-enviados').textContent = leads.filter(l => l.estado === 'contactado').length;
         }
 
-        function copiarHashtag(tag) {
-            navigator.clipboard.writeText(tag);
-            showToast(`✅ ${tag} copiado!`, 'success');
-        }
-
-        function copiarTemplate(idx) {
-            navigator.clipboard.writeText(templatesData[idx].copy);
-            showToast('✅ Template copiado!', 'success');
-        }
-
-        // ================= FORM HANDLER =================
-        document.getElementById('lead-form')?.addEventListener('submit', function(e) {
+        document.getElementById('lead-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const nuevoLead = {
+            leads.push({
                 ig: document.getElementById('lead-ig').value,
                 nombre: document.getElementById('lead-nombre').value,
                 followers: document.getElementById('lead-followers').value,
                 pais: document.getElementById('lead-pais').value,
                 genero: document.getElementById('lead-genero').value,
                 notas: document.getElementById('lead-notas').value,
-                estado: 'nuevo',
-                fecha: new Date().toISOString()
-            };
-            
-            leads.push(nuevoLead);
+                estado: 'nuevo'
+            });
             localStorage.setItem('terrivol_leads', JSON.stringify(leads));
-            
             this.reset();
             renderLeads();
             updateDashboard();
-            
-            showToast('✅ Lead guardado correctamente!', 'success');
+            alert('✅ Lead guardado!');
         });
 
-        function cambiarEstado(idx, nuevoEstado) {
-            if (!nuevoEstado) return;
-            leads[idx].estado = nuevoEstado;
-            localStorage.setItem('terrivol_leads', JSON.stringify(leads));
-            renderLeads();
-            updateDashboard();
-            showToast(`Estado actualizado a: ${getEstadoLabel(nuevoEstado)}`, 'info');
-        }
-
-        function eliminarLead(idx) {
-            if (confirm('¿Estás seguro de eliminar este lead?')) {
-                leads.splice(idx, 1);
-                localStorage.setItem('terrivol_leads', JSON.stringify(leads));
-                renderLeads();
-                updateDashboard();
-                showToast('Lead eliminado', 'info');
-            }
-        }
-
-        function updateDashboard() {
-            document.getElementById('kpi-total').textContent = leads.length;
-            document.getElementById('kpi-enviados').textContent = leads.filter(l => l.estado === 'contactado').length;
-            document.getElementById('kpi-respuestas').textContent = leads.filter(l => l.estado === 'reunion').length;
-            document.getElementById('kpi-ventas').textContent = leads.filter(l => l.estado === 'venta').length;
-            
-            const progress = Math.min((leads.length / 50) * 100, 100);
-            document.getElementById('progress-bar').style.width = progress + '%';
-            document.getElementById('progress-text').textContent = Math.round(progress) + '%';
-            document.getElementById('faltan').textContent = Math.max(50 - leads.length, 0);
-        }
-
-        // ================= TOAST SYSTEM =================
-        function showToast(message, type = 'success') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            
-            const icons = {
-                success: 'check-circle',
-                error: 'alert-circle',
-                info: 'info'
-            };
-            
-            toast.innerHTML = `
-                <i data-lucide="${icons[type]}" class="w-5 h-5"></i>
-                <span>${message}</span>
-            `;
-            
-            container.appendChild(toast);
-            lucide.createIcons();
-            
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateX(100%)';
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        // ================= INIT =================
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            renderHashtags();
-            renderTemplates();
-            renderLeads();
-            updateDashboard();
-        });
+        lucide.createIcons();
+        renderLeads();
+        updateDashboard();
     </script>
 </body>
 </html>
