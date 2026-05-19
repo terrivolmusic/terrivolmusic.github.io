@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEMORY - Cagta Flex | Álbum + Merch Oficial</title>
+    <meta name="description" content="MEMORY - El nuevo álbum de Cagta Flex. Disponible en digital, CD físico y merch exclusivo.">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--burgundy:#8B0000;--blood-red:#DC143C;--black:#0a0a0a;--white:#fff;--gold:#D4AF37;--dark-red:#660000}
+        body{font-family:'Syne',sans-serif;background:var(--black);color:var(--white);min-height:100vh;overflow-x:hidden}
+        
+        /* BACKGROUND */
+        .bg-fixed{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;background:linear-gradient(135deg,#050505 0%,#1a0000 100%)}
+        .particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+        .particle{position:absolute;width:2px;height:2px;background:var(--blood-red);border-radius:50%;opacity:0.5;animation:float 15s linear infinite}
+        @keyframes float{0%{transform:translateY(100vh);opacity:0}50%{opacity:0.8}100%{transform:translateY(-10vh);opacity:0}}
+
+        .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+        
+        /* HERO */
+        .hero{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem 0}
+        .hero-badge{background:var(--blood-red);color:#fff;padding:0.5rem 1.5rem;border-radius:50px;font-size:0.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;display:inline-block;border:1px solid var(--gold)}
+        .hero-title{font-size:clamp(3rem,10vw,6rem);font-weight:800;color:var(--white);line-height:0.9;margin-bottom:1rem;letter-spacing:-2px;text-shadow:0 0 40px rgba(220,20,60,0.4)}
+        .hero-title span{color:var(--blood-red)}
+        .hero-sub{font-size:1.2rem;color:rgba(255,255,255,0.7);margin-bottom:2.5rem}
+        .hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+        .btn-main{background:var(--gold);color:#000;padding:1rem 2.5rem;border-radius:5px;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;display:inline-block;transition:0.3s;border:2px solid var(--gold)}
+        .btn-main:hover{background:transparent;color:var(--gold)}
+        .btn-outline{border:2px solid var(--blood-red);color:var(--white);padding:1rem 2.5rem;border-radius:5px;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;display:inline-block;transition:0.3s}
+        .btn-outline:hover{background:var(--blood-red)}
+
+        /* SECTIONS */
+        .section{padding:6rem 0}
+        .section-title{font-size:2.5rem;font-weight:800;margin-bottom:3rem;text-align:center;color:var(--white);text-transform:uppercase}
+        .section-title span{color:var(--blood-red)}
+
+        /* PRODUCT GRID */
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+        .card{background:rgba(255,255,255,0.03);border:1px solid rgba(220,20,60,0.3);border-radius:10px;overflow:hidden;transition:0.3s;position:relative}
+        .card:hover{transform:translateY(-10px);border-color:var(--gold);box-shadow:0 10px 30px rgba(220,20,60,0.2)}
+        .card-img{width:100%;height:350px;object-fit:cover;background:#111}
+        .card-img img{width:100%;height:100%;object-fit:cover}
+        .card-body{padding:2rem;text-align:center}
+        .card-title{font-size:1.5rem;font-weight:700;margin-bottom:0.5rem}
+        .card-price{font-size:1.8rem;color:var(--gold);font-weight:800;margin-bottom:1rem}
+        .card-price small{font-size:0.9rem;color:rgba(255,255,255,0.5);font-weight:400}
+        .card-desc{color:rgba(255,255,255,0.6);margin-bottom:1.5rem;font-size:0.9rem;line-height:1.5}
+        .card-btn{width:100%;padding:1rem;background:var(--blood-red);color:#fff;border:none;font-weight:700;cursor:pointer;text-transform:uppercase;transition:0.3s;text-decoration:none;display:inline-block}
+        .card-btn:hover{background:var(--gold);color:#000}
+        .tag{position:absolute;top:1rem;right:1rem;background:var(--gold);color:#000;padding:0.3rem 1rem;font-weight:700;font-size:0.8rem;border-radius:2px;z-index:10}
+
+        /* TESTIMONIAL */
+        .testimonial{background:linear-gradient(135deg,rgba(139,0,0,0.2),rgba(0,0,0,0));border-left:4px solid var(--blood-red);padding:3rem;margin:4rem 0;text-align:center}
+        .quote{font-size:1.5rem;font-style:italic;line-height:1.6;margin-bottom:1.5rem;color:rgba(255,255,255,0.9)}
+        .author{font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:2px}
+
+        /* STREAMING */
+        .streaming-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}
+        .streaming-btn{text-align:center;padding:1.5rem;border-radius:8px;text-decoration:none;font-weight:700;transition:0.3s}
+        .streaming-btn:hover{transform:translateY(-5px)}
+        .spotify{background:#1DB954;color:#fff}
+        .apple{background:#FA243C;color:#fff}
+        .youtube{background:#FF0000;color:#fff}
+        .deezer{background:#A020F0;color:#fff}
+
+        /* FOOTER */
+        .footer{padding:4rem 0;border-top:1px solid rgba(220,20,60,0.3);text-align:center;margin-top:4rem}
+        .socials{display:flex;justify-content:center;gap:2rem;margin-bottom:2rem}
+        .socials a{color:var(--white);text-decoration:none;font-size:1.5rem;transition:0.3s}
+        .socials a:hover{color:var(--blood-red);transform:scale(1.1)}
+
+        /* RESPONSIVE */
+        @media(max-width:768px){
+            .hero-cta{flex-direction:column;align-items:center}
+            .btn-outline{margin:0}
+            .grid{grid-template-columns:1fr}
+            .section{padding:4rem 0}
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-fixed"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">Nuevo Álbum + Merch Exclusivo</div>
+            <h1 class="hero-title">MEM<span>O</span>RY</h1>
+            <p class="hero-sub">Las cicatrices del pasado son las armas del futuro. Cagta Flex.</p>
+            <div class="hero-cta">
+                <a href="#comprar" class="btn-main">Comprar Ahora</a>
+                <a href="#escuchar" class="btn-outline">Escuchar Álbum</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STREAMING LINKS -->
+    <section id="escuchar" class="section" style="background:rgba(255,255,255,0.02)">
+        <div class="container">
+            <h2 class="section-title">Escúchalo <span>En Todas Partes</span></h2>
+            <div class="streaming-grid">
+                <a href="https://open.spotify.com/intl-es/album/4eXayKWvvkhKF2uQ3QBm9Q" target="_blank" class="streaming-btn spotify">SPOTIFY</a>
+                <a href="https://music.apple.com/co/album/memory/6770545141" target="_blank" class="streaming-btn apple">APPLE MUSIC</a>
+                <a href="https://www.youtube.com/watch?v=2k-9629POx0&list=OLAK5uy_n-yWB-6dZYqL83tgAfYpMtc--" target="_blank" class="streaming-btn youtube">YOUTUBE</a>
+                <a href="https://www.deezer.com/mx/album/985545711" target="_blank" class="streaming-btn deezer">DEEZER</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL SIMPLE -->
+    <div class="container">
+        <div class="testimonial">
+            <p class="quote">"MEMORY no es solo un álbum, es una experiencia sonora que te transporta a través de batallas internas y victorias personales. Cada track es un capítulo de una historia que resuena con cualquiera que haya luchado por sus sueños."</p>
+            <p class="author">— La Familia Cagta</p>
+        </div>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <section id="comprar" class="section">
+        <div class="container">
+            <h2 class="section-title">Tienda <span>Oficial</span></h2>
+            <div class="grid">
+                
+                <!-- 1. ALBUM DIGITAL -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="img/portada-album.jpg" alt="Álbum Digital MEMORY">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Álbum Digital</h3>
+                        <div class="card-price">$15.000 <small>COP</small></div>
+                        <p class="card-desc">Descarga inmediata MP3/FLAC. Ideal para Colombia. Pago por Nequi.</p>
+                        <a href="https://wa.me/573102123844?text=Hola!%20Quiero%20comprar%20el%20%C3%81lbum%20Digital%20de%20MEMORY%20por%20Nequi" class="card-btn">Pagar con Nequi</a>
+                    </div>
+                </div>
+
+                <!-- 2. HOODIE -->
+                <div class="card">
+                    <div class="tag">INTERNACIONAL</div>
+                    <div class="card-img">
+                        <img src="img/hoodie-frontal.jpg" alt="Hoodie MEMORY">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Hoodie MEMORY</h3>
+                        <div class="card-price">$60.00 <small>USD</small></div>
+                        <p class="card-desc">Envío mundial. Algodón premium negro. Edición limitada.</p>
+                        <a href="https://cagta-flex-shop.fourthwall.com/products/memory-collection-hoodie-cagta-flex-official" target="_blank" class="card-btn">Comprar Hoodie</a>
+                    </div>
+                </div>
+
+                <!-- 3. TAZA -->
+                <div class="card">
+                    <div class="tag">NUEVO</div>
+                    <div class="card-img">
+                        <img src="img/taza-memory.jpg" alt="Taza MEMORY">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Taza MEMORY</h3>
+                        <div class="card-price">$25.00 <small>USD</small></div>
+                        <p class="card-desc">Cerámica negra mate. Disponible nacional e internacional.</p>
+                        <a href="https://wa.me/573102123844?text=Hola!%20Quiero%20comprar%20la%20Taza%20MEMORY" class="card-btn">Comprar Taza</a>
+                    </div>
+                </div>
+
+                <!-- 4. CD FÍSICO -->
+                <div class="card">
+                    <div class="tag">LIMITADO</div>
+                    <div class="card-img">
+                        <img src="img/cd-memory.jpg" alt="CD Físico MEMORY">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">CD Físico</h3>
+                        <div class="card-price">$60.000 <small>COP</small></div>
+                        <p class="card-desc">Solo Colombia. CD + Booklet + Sticker. Edición numerada.</p>
+                        <a href="https://wa.me/573102123844?text=Hola!%20Quiero%20comprar%20el%20CD%20F%C3%ADsico%20de%20MEMORY" class="card-btn">Reservar CD</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="socials">
+                <a href="https://instagram.com/cagtaflex" target="_blank">Instagram</a>
+                <a href="https://tiktok.com/@cagtaflex" target="_blank">TikTok</a>
+                <a href="https://youtube.com/@cagtaflex" target="_blank">YouTube</a>
+            </div>
+            <p style="color:rgba(255,255,255,0.5)">© 2024 Terrivol Music. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Partículas animadas
+        const p = document.getElementById('particles');
+        for(let i=0; i<50; i++){
+            const span = document.createElement('span');
+            span.className = 'particle';
+            span.style.left = Math.random()*100 + '%';
+            span.style.animationDuration = (Math.random()*10+5) + 's';
+            span.style.animationDelay = (Math.random()*5) + 's';
+            p.appendChild(span);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+            anchor.addEventListener('click',function(e){
+                e.preventDefault();
+                const target=document.querySelector(this.getAttribute('href'));
+                if(target){
+                    target.scrollIntoView({behavior:'smooth',block:'start'});
+                }
+            });
+        });
+    </script>
+</body>
+</html>
