@@ -3,76 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprar MEMORY - Selecciona tu Ubicación</title>
+    <title>MEMORY - Cagta Flex | Álbum Oficial + Merch</title>
+    <meta name="description" content="MEMORY - El nuevo álbum de Cagta Flex. Escúchalo ya en todas las plataformas.">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        :root{--burgundy:#8B0000;--blood-red:#DC143C;--black:#0a0a0a;--white:#fff;--gold:#D4AF37;--colombia:#003893;--global:#0066CC}
-        body{font-family:'Syne',sans-serif;background:var(--black);color:var(--white);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem}
-        .bg{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#050505,#1a0000);z-index:-1}
-        .container{max-width:1000px;text-align:center}
-        .back-btn{display:inline-block;margin-bottom:3rem;color:var(--gold);text-decoration:none;font-weight:700;font-size:1.1rem}
-        .back-btn:hover{color:var(--white)}
-        h1{font-size:3rem;font-weight:800;margin-bottom:1rem}
-        .subtitle{color:rgba(255,255,255,0.7);margin-bottom:4rem;font-size:1.2rem}
-        .selection-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:3rem}
-        .location-card{background:rgba(255,255,255,0.05);border:3px solid var(--burgundy);border-radius:20px;padding:3rem;transition:0.3s;cursor:pointer;text-decoration:none;color:var(--white);display:block}
-        .location-card:hover{transform:translateY(-10px);border-color:var(--gold);box-shadow:0 20px 60px rgba(220,20,60,0.3)}
-        .location-card.co:hover{border-color:var(--colombia)}
-        .location-card.global:hover{border-color:var(--global)}
-        .flag{font-size:5rem;margin-bottom:1.5rem;display:block}
-        .location-title{font-size:2rem;font-weight:800;margin-bottom:1rem}
-        .location-desc{color:rgba(255,255,255,0.7);margin-bottom:2rem;line-height:1.6}
-        .features{list-style:none;text-align:left;margin:2rem 0}
-        .features li{padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;gap:0.8rem}
-        .features li::before{content:'✓';color:var(--gold);font-weight:800;font-size:1.2rem}
-        .btn-select{display:inline-block;width:100%;padding:1.2rem;background:var(--blood-red);color:#fff;border-radius:8px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-top:1rem;transition:0.3s}
-        .location-card.co .btn-select{background:var(--colombia)}
-        .location-card.global .btn-select{background:var(--global)}
-        .location-card:hover .btn-select{transform:scale(1.05)}
-        @media(max-width:768px){.selection-grid{grid-template-columns:1fr}}
+        :root{--burgundy:#8B0000;--blood-red:#DC143C;--black:#0a0a0a;--white:#fff;--gold:#D4AF37}
+        body{font-family:'Syne',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+        
+        .bg{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#050505 0%,#1a0000 100%);z-index:-2}
+        .particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+        .particle{position:absolute;width:2px;height:2px;background:var(--blood-red);border-radius:50%;opacity:0.5;animation:float 15s linear infinite}
+        @keyframes float{0%{transform:translateY(100vh);opacity:0}50%{opacity:0.8}100%{transform:translateY(-10vh);opacity:0}}
+
+        .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+        
+        .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem 0;position:relative}
+        .hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at center,rgba(220,20,60,0.15) 0%,transparent 70%);pointer-events:none}
+        .hero-badge{background:var(--blood-red);color:#fff;padding:0.5rem 2rem;border-radius:50px;font-size:0.85rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:2rem;display:inline-block;border:2px solid var(--gold);animation:fadeInDown 1s ease}
+        @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+        .hero-title{font-size:clamp(4rem,12vw,8rem);font-weight:800;color:var(--white);line-height:0.9;margin-bottom:1rem;letter-spacing:-3px;text-shadow:0 0 60px rgba(220,20,60,0.5)}
+        .hero-title span{color:var(--blood-red)}
+        .hero-sub{font-size:1.3rem;color:rgba(255,255,255,0.8);margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto}
+        .hero-cta{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+        .btn-primary{background:var(--gold);color:#000;padding:1.2rem 3rem;border-radius:5px;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:2px;display:inline-block;transition:0.3s;border:2px solid var(--gold);font-size:1.1rem}
+        .btn-primary:hover{background:transparent;color:var(--gold);transform:translateY(-3px)}
+        .btn-outline{border:2px solid var(--blood-red);color:var(--white);padding:1.2rem 3rem;border-radius:5px;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:2px;display:inline-block;transition:0.3s;font-size:1.1rem}
+        .btn-outline:hover{background:var(--blood-red);transform:translateY(-3px)}
+
+        .section{padding:6rem 0}
+        .section-title{font-size:2.5rem;font-weight:800;margin-bottom:3rem;text-align:center;color:var(--white);text-transform:uppercase;letter-spacing:2px}
+        .section-title span{color:var(--blood-red)}
+
+        .videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2.5rem;margin-top:3rem}
+        .video-wrapper{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(220,20,60,0.3);border:3px solid var(--burgundy);transition:0.3s}
+        .video-wrapper:hover{transform:translateY(-10px);border-color:var(--blood-red)}
+        .video-container{position:relative;padding-bottom:56.25%;height:0}
+        .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+        .video-info{padding:1.5rem;background:rgba(255,255,255,0.03)}
+        .video-title{font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
+
+        .streaming{background:rgba(255,255,255,0.02)}
+        .streaming-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;margin-top:2rem}
+        .streaming-btn{text-align:center;padding:1.5rem;border-radius:8px;text-decoration:none;font-weight:700;transition:0.3s;display:flex;align-items:center;justify-content:center;gap:0.8rem}
+        .streaming-btn:hover{transform:translateY(-5px)}
+        .spotify{background:#1DB954;color:#fff}
+        .apple{background:#FA243C;color:#fff}
+        .youtube{background:#FF0000;color:#fff}
+        .deezer{background:#A020F0;color:#fff}
+        .tiktok{background:#000;color:#fff;border:2px solid #fff}
+
+        .testimonial{background:linear-gradient(135deg,rgba(139,0,0,0.2),transparent);border-left:4px solid var(--blood-red);padding:3rem;margin:4rem 0;text-align:center}
+        .quote{font-size:1.5rem;font-style:italic;line-height:1.6;margin-bottom:1.5rem;color:rgba(255,255,255,0.9)}
+        .author{font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:2px}
+
+        .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2.5rem;margin-top:3rem}
+        .product-card{background:rgba(255,255,255,0.03);border:2px solid var(--burgundy);border-radius:12px;overflow:hidden;transition:0.3s;position:relative}
+        .product-card:hover{transform:translateY(-10px);border-color:var(--gold)}
+        .product-badge{position:absolute;top:1rem;right:1rem;background:var(--gold);color:#000;padding:0.3rem 1rem;font-weight:700;font-size:0.75rem;border-radius:3px;z-index:10}
+        .product-img{width:100%;height:350px;background:#111;overflow:hidden}
+        .product-img img{width:100%;height:100%;object-fit:cover}
+        .product-body{padding:2rem;text-align:center}
+        .product-title{font-size:1.5rem;font-weight:700;margin-bottom:0.5rem}
+        .product-price{font-size:1.8rem;color:var(--gold);font-weight:800;margin:1rem 0}
+        .product-location{display:inline-block;padding:0.4rem 1.2rem;background:rgba(30,144,255,0.2);border:1px solid #1E90FF;border-radius:20px;font-size:0.8rem;margin-bottom:1rem}
+        .product-location.intl{background:rgba(212,175,55,0.2);border-color:var(--gold)}
+        .product-desc{color:rgba(255,255,255,0.7);margin-bottom:1.5rem;line-height:1.6}
+        .btn-buy{display:block;width:100%;padding:1rem;background:var(--blood-red);color:#fff;border:none;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;transition:0.3s;text-transform:uppercase}
+        .btn-buy:hover{background:var(--gold);color:#000}
+
+        .footer{padding:4rem 0;border-top:2px solid var(--burgundy);text-align:center;margin-top:4rem;background:rgba(0,0,0,0.5)}
+        .socials{display:flex;justify-content:center;gap:2rem;margin-bottom:2rem;flex-wrap:wrap}
+        .socials a{color:var(--white);text-decoration:none;font-size:1.5rem;transition:0.3s}
+        .socials a:hover{color:var(--blood-red);transform:scale(1.1)}
+
+        @media(max-width:768px){
+            .hero-title{font-size:clamp(3rem,12vw,5rem)}
+            .videos-grid{grid-template-columns:1fr}
+            .section{padding:4rem 0}
+            .products-grid{grid-template-columns:1fr}
+        }
     </style>
 </head>
 <body>
+
     <div class="bg"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-badge">Álbum + Merch Oficial</div>
+        <h1 class="hero-title">MEM<span>O</span>RY</h1>
+        <p class="hero-sub">Las cicatrices del pasado son las armas del futuro. Cagta Flex.</p>
+        <div class="hero-cta">
+            <a href="#videos" class="btn-primary">▶️ Escuchar Ahora</a>
+            <a href="comprar.html" class="btn-outline">🛒 Comprar</a>
+        </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos" class="section">
+        <div class="container">
+            <h2 class="section-title">Videos <span>Oficiales</span></h2>
+            <div class="videos-grid">
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/fASVXZADvow" title="DA SOSA Official Audio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">DA SOSA (Official Audio)</h3>
+                    </div>
+                </div>
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/3cK_F0dkh3w" title="CON MI YO Official Audio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">CON MI YO (Official Audio)</h3>
+                    </div>
+                </div>
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/BodeGyegtOA" title="Bendición ft Gpromode" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Bendición ft. Gpromode</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STREAMING -->
+    <section class="section streaming">
+        <div class="container">
+            <h2 class="section-title">Disponible En <span>Todas Partes</span></h2>
+            <div class="streaming-grid">
+                <a href="https://open.spotify.com/intl-es/album/4eXayKWvvkhKF2uQ3QBm9Q" target="_blank" class="streaming-btn spotify">Spotify</a>
+                <a href="https://music.apple.com/co/album/memory/6770545141" target="_blank" class="streaming-btn apple">Apple Music</a>
+                <a href="https://www.youtube.com/watch?v=2k-9629POx0&list=OLAK5uy_n-yWB-6dZYqL83tgAfYpMtc--Ykt_x10Qs" target="_blank" class="streaming-btn youtube">YouTube</a>
+                <a href="https://www.deezer.com/mx/album/985545711" target="_blank" class="streaming-btn deezer">Deezer</a>
+                <a href="https://www.tiktok.com/@cagtaflex" target="_blank" class="streaming-btn tiktok">TikTok</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
     <div class="container">
-        <a href="memory.html" class="back-btn">← Volver al inicio</a>
-        <h1>Selecciona tu <span style="color:var(--blood-red)">Ubicación</span></h1>
-        <p class="subtitle">Elige la mejor opción de compra según donde te encuentres</p>
-
-        <div class="selection-grid">
-            
-            <!-- COLOMBIA -->
-            <a href="tienda-colombia.html" class="location-card co">
-                <span class="flag">🇨🇴</span>
-                <h2 class="location-title">Colombia</h2>
-                <p class="location-desc">Compra directa con envío nacional. Pago por Nequi o transferencia.</p>
-                <ul class="features">
-                    <li>Pago por Nequi / Transferencia</li>
-                    <li>Envío a todo el país (3-5 días)</li>
-                    <li>Entrega personal en Bogotá</li>
-                    <li>Precios en pesos colombianos</li>
-                    <li>Soporte directo por WhatsApp</li>
-                </ul>
-                <span class="btn-select">Ver Productos Colombia</span>
-            </a>
-
-            <!-- INTERNACIONAL -->
-            <a href="tienda-global.html" class="location-card global">
-                <span class="flag">🌍</span>
-                <h2 class="location-title">Internacional</h2>
-                <p class="location-desc">Envío mundial vía Fourthwall. Todos los métodos de pago disponibles.</p>
-                <ul class="features">
-                    <li>PayPal, Tarjetas, Apple Pay</li>
-                    <li>Envío internacional (5-11 días)</li>
-                    <li>Producción bajo demanda</li>
-                    <li>Precios en USD</li>
-                    <li>Soporte global</li>
-                </ul>
-                <span class="btn-select">Ver Tienda Global</span>
-            </a>
-
+        <div class="testimonial">
+            <p class="quote">"MEMORY no es solo un álbum, es una experiencia sonora que te transporta a través de batallas internas y victorias personales."</p>
+            <p class="author">— La Familia Cagta</p>
         </div>
     </div>
+
+    <!-- PRODUCTS -->
+    <section id="productos" class="section">
+        <div class="container">
+            <h2 class="section-title">Productos <span>Disponibles</span></h2>
+            <div class="products-grid">
+                
+                <!-- ÁLBUM DIGITAL -->
+                <div class="product-card">
+                    <span class="product-badge">🇨🇴 Colombia</span>
+                    <div class="product-img">
+                        <img src="img/portada-album.jpg" alt="Álbum Digital MEMORY">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Álbum Digital</h3>
+                        <div class="product-location">Nequi - $15.000 COP</div>
+                        <p class="product-desc">Descarga inmediata MP3/FLAC</p>
+                        <a href="comprar.html" class="btn-buy">Comprar</a>
+                    </div>
+                </div>
+
+                <!-- HOODIE -->
+                <div class="product-card">
+                    <span class="product-badge">🌍 Internacional</span>
+                    <div class="product-img">
+                        <img src="img/hoodie-frontal.jpeg" alt="Hoodie MEMORY">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Hoodie MEMORY</h3>
+                        <div class="product-location intl">Fourthwall - $60 USD</div>
+                        <p class="product-desc">Envío mundial disponible</p>
+                        <a href="comprar.html" class="btn-buy">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- CD FÍSICO -->
+                <div class="product-card">
+                    <span class="product-badge">🇨🇴 Colombia</span>
+                    <div class="product-img">
+                        <img src="img/cd-memory.jpg" alt="CD Físico MEMORY">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">CD Físico</h3>
+                        <div class="product-location">Directo - $60.000 COP</div>
+                        <p class="product-desc">Edición limitada numerada</p>
+                        <a href="comprar.html" class="btn-buy">Reservar</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="socials">
+                <a href="https://instagram.com/cagtaflex" target="_blank">Instagram</a>
+                <a href="https://tiktok.com/@cagtaflex" target="_blank">TikTok</a>
+                <a href="https://youtube.com/@cagtaflex" target="_blank">YouTube</a>
+            </div>
+            <p style="color:rgba(255,255,255,0.5)">© 2024 Terrivol Music. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const p = document.getElementById('particles');
+        for(let i=0; i<50; i++){
+            const span = document.createElement('span');
+            span.className = 'particle';
+            span.style.left = Math.random()*100 + '%';
+            span.style.animationDuration = (Math.random()*10+5) + 's';
+            span.style.animationDelay = (Math.random()*5) + 's';
+            p.appendChild(span);
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+            anchor.addEventListener('click',function(e){
+                e.preventDefault();
+                const target=document.querySelector(this.getAttribute('href'));
+                if(target){
+                    target.scrollIntoView({behavior:'smooth',block:'start'});
+                }
+            });
+        });
+    </script>
 </body>
 </html>
