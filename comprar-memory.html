@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar MEMORY - Selecciona tu Ubicación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--burgundy:#8B0000;--blood-red:#DC143C;--black:#0a0a0a;--white:#fff;--gold:#D4AF37;--colombia:#003893;--global:#0066CC}
+        body{font-family:'Syne',sans-serif;background:var(--black);color:var(--white);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem}
+        .bg{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#050505,#1a0000);z-index:-1}
+        .container{max-width:1000px;text-align:center;position:relative;z-index:1}
+        .back-btn{display:inline-block;margin-bottom:3rem;color:var(--gold);text-decoration:none;font-weight:700;font-size:1.1rem;transition:0.3s}
+        .back-btn:hover{color:var(--white)}
+        h1{font-size:3rem;font-weight:800;margin-bottom:1rem}
+        .subtitle{color:rgba(255,255,255,0.7);margin-bottom:4rem;font-size:1.2rem}
+        .selection-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:3rem}
+        .location-card{background:rgba(255,255,255,0.05);border:3px solid var(--burgundy);border-radius:20px;padding:3rem;transition:0.3s;cursor:pointer;text-decoration:none;color:var(--white);display:block}
+        .location-card:hover{transform:translateY(-10px);border-color:var(--gold);box-shadow:0 20px 60px rgba(220,20,60,0.3)}
+        .location-card.co:hover{border-color:var(--colombia)}
+        .location-card.global:hover{border-color:var(--global)}
+        .flag{font-size:5rem;margin-bottom:1.5rem;display:block}
+        .location-title{font-size:2rem;font-weight:800;margin-bottom:1rem}
+        .location-desc{color:rgba(255,255,255,0.7);margin-bottom:2rem;line-height:1.6}
+        .features{list-style:none;text-align:left;margin:2rem 0}
+        .features li{padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;gap:0.8rem}
+        .features li::before{content:'✓';color:var(--gold);font-weight:800;font-size:1.2rem}
+        .btn-select{display:inline-block;width:100%;padding:1.2rem;background:var(--blood-red);color:#fff;border-radius:8px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-top:1rem;transition:0.3s}
+        .location-card.co .btn-select{background:var(--colombia)}
+        .location-card.global .btn-select{background:var(--global)}
+        .location-card:hover .btn-select{transform:scale(1.05)}
+        @media(max-width:768px){.selection-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <div class="bg"></div>
+    <div class="container">
+        <a href="memory.html" class="back-btn">← Volver a MEMORY</a>
+        <h1>Selecciona tu <span style="color:var(--blood-red)">Ubicación</span></h1>
+        <p class="subtitle">Elige la mejor opción de compra según donde te encuentres</p>
+        <div class="selection-grid">
+            <a href="tienda-colombia-memory.html" class="location-card co">
+                <span class="flag">🇨🇴</span>
+                <h2 class="location-title">Colombia</h2>
+                <p class="location-desc">Compra directa con envío nacional. Pago por Nequi o transferencia.</p>
+                <ul class="features">
+                    <li>Pago por Nequi / Transferencia</li>
+                    <li>Envío a todo el país (3-5 días)</li>
+                    <li>Entrega personal en Bogotá</li>
+                    <li>Precios en pesos colombianos</li>
+                    <li>Soporte directo por WhatsApp</li>
+                </ul>
+                <span class="btn-select">Ver Productos Colombia</span>
+            </a>
+            <a href="tienda-global-memory.html" class="location-card global">
+                <span class="flag">🌍</span>
+                <h2 class="location-title">Internacional</h2>
+                <p class="location-desc">Envío mundial vía Fourthwall. Todos los métodos de pago disponibles.</p>
+                <ul class="features">
+                    <li>PayPal, Tarjetas, Apple Pay</li>
+                    <li>Envío internacional (5-11 días)</li>
+                    <li>Producción bajo demanda</li>
+                    <li>Precios en USD</li>
+                    <li>Soporte global</li>
+                </ul>
+                <span class="btn-select">Ver Tienda Global</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
