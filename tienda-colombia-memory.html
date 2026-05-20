@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Colombia - MEMORY | Cagta Flex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--burgundy:#8B0000;--blood-red:#DC143C;--black:#0a0a0a;--white:#fff;--gold:#D4AF37;--colombia:#003893}
+        body{font-family:'Syne',sans-serif;background:var(--black);color:var(--white);min-height:100vh}
+        .bg{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#050505,#1a0000);z-index:-1}
+        .container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+        .back-btn{display:inline-block;margin-bottom:2rem;color:var(--gold);text-decoration:none;font-weight:700}
+        .back-btn:hover{color:var(--white)}
+        .page-header{text-align:center;margin-bottom:3rem}
+        .page-title{font-size:3rem;font-weight:800;margin-bottom:1rem}
+        .page-title span{color:var(--colombia)}
+        .badge{display:inline-block;background:var(--colombia);color:#fff;padding:0.5rem 1.5rem;border-radius:50px;font-size:0.9rem;font-weight:700;margin-bottom:1rem}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2.5rem}
+        .card{background:rgba(255,255,255,0.03);border:2px solid var(--burgundy);border-radius:12px;overflow:hidden;transition:0.3s}
+        .card:hover{transform:translateY(-10px);border-color:var(--colombia);box-shadow:0 15px 40px rgba(0,56,147,0.3)}
+        .card-img{width:100%;height:350px;background:#111;display:flex;align-items:center;justify-content:center;font-size:4rem}
+        .card-img img{width:100%;height:100%;object-fit:cover}
+        .card-body{padding:2rem}
+        .card-title{font-size:1.5rem;font-weight:700;margin-bottom:0.5rem}
+        .price{font-size:2rem;color:var(--gold);font-weight:800;margin:1rem 0}
+        .desc{color:rgba(255,255,255,0.7);margin-bottom:1.5rem;line-height:1.6}
+        .features{list-style:none;margin-bottom:1.5rem}
+        .features li{padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;gap:0.5rem}
+        .features li::before{content:'✓';color:var(--gold);font-weight:800}
+        .btn{display:block;width:100%;padding:1rem;background:var(--colombia);color:#fff;border:none;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;transition:0.3s;text-transform:uppercase}
+        .btn:hover{background:var(--blood-red)}
+        .payment-info{background:rgba(0,56,147,0.1);border:1px solid var(--colombia);border-radius:8px;padding:1.5rem;margin-top:3rem;text-align:center}
+        .payment-info h3{color:var(--gold);margin-bottom:1rem}
+        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:1000;align-items:center;justify-content:center;padding:2rem}
+        .modal.active{display:flex}
+        .modal-content{background:#1a0000;border:2px solid var(--colombia);border-radius:12px;padding:2.5rem;max-width:500px;width:100%;position:relative}
+        .modal-close{position:absolute;top:1rem;right:1rem;font-size:2rem;cursor:pointer;color:var(--white)}
+        .nequi-number{font-size:2.5rem;font-weight:800;color:var(--colombia);text-align:center;margin:1.5rem 0}
+        @media(max-width:768px){.grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <div class="bg"></div>
+    <div class="container">
+        <a href="comprar-memory.html" class="back-btn">← Volver</a>
+        <div class="page-header">
+            <div class="badge">🇨🇴 Colombia</div>
+            <h1 class="page-title">Tienda <span>Local</span></h1>
+            <p style="color:rgba(255,255,255,0.7);font-size:1.1rem">Pago por Nequi • Envío nacional • Entrega personal Bogotá</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="card-img"><img src="img/portada-album.jpg" alt="Álbum Digital"></div>
+                <div class="card-body">
+                    <h3 class="card-title">Álbum Digital MEMORY</h3>
+                    <div class="price">$15.000 COP</div>
+                    <p class="desc">Descarga inmediata del álbum completo en alta calidad.</p>
+                    <ul class="features">
+                        <li>9 tracks en MP3 320kbps</li>
+                        <li>Descarga inmediata</li>
+                        <li>Pago por Nequi</li>
+                        <li>Entrega por WhatsApp</li>
+                    </ul>
+                    <button class="btn" onclick="openModal('digital')">Comprar Digital</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img"><img src="img/cd-memory.jpg" alt="CD Físico"></div>
+                <div class="card-body">
+                    <h3 class="card-title">CD Físico MEMORY</h3>
+                    <div class="price">$60.000 COP</div>
+                    <p class="desc">Edición física limitada con arte impreso y booklet exclusivo.</p>
+                    <ul class="features">
+                        <li>CD físico con arte impreso</li>
+                        <li>Booklet con letras</li>
+                        <li>Sticker de regalo</li>
+                        <li>Envío incluido</li>
+                        <li>Edición numerada (50 unid.)</li>
+                    </ul>
+                    <button class="btn" onclick="openModal('cd')">Reservar CD</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img"><img src="img/taza-memory.jpg" alt="Taza"></div>
+                <div class="card-body">
+                    <h3 class="card-title">Taza MEMORY</h3>
+                    <div class="price">$45.000 COP</div>
+                    <p class="desc">Taza de cerámica negra mate con diseño exclusivo MEMORY.</p>
+                    <ul class="features">
+                        <li>11oz / 325ml</li>
+                        <li>Cerámica premium</li>
+                        <li>Apta microondas</li>
+                        <li>Envío nacional</li>
+                    </ul>
+                    <button class="btn" onclick="openModal('taza')">Comprar Taza</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img"><img src="img/hoodie-frontal.jpeg" alt="Hoodie"></div>
+                <div class="card-body">
+                    <h3 class="card-title">Hoodie MEMORY</h3>
+                    <div class="price">$180.000 COP</div>
+                    <p class="desc">Hoodie negro premium con diseño MEMORY en pecho y espalda.</p>
+                    <ul class="features">
+                        <li>100% Algodón pesado</li>
+                        <li>Estampado alta calidad</li>
+                        <li>Tallas: S, M, L, XL, XXL</li>
+                        <li>Envío incluido</li>
+                    </ul>
+                    <button class="btn" onclick="openModal('hoodie')">Comprar Hoodie</button>
+                </div>
+            </div>
+        </div>
+        <div class="payment-info">
+            <h3>💳 Información de Pago</h3>
+            <p style="margin-bottom:1rem;color:rgba(255,255,255,0.8)"><strong>Nequi:</strong> 310 212 3844 (Terrivol Music)</p>
+            <p style="color:rgba(255,255,255,0.7)">Envío gratis en compras mayores a $100.000 COP • Tiempo: 3-5 días hábiles</p>
+        </div>
+    </div>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 style="color:var(--gold);margin-bottom:1rem;text-align:center" id="modal-title"></h2>
+            <div style="text-align:center;margin:2rem 0">
+                <p style="margin-bottom:1.5rem;color:rgba(255,255,255,0.8)">Realiza tu pago por Nequi al número:</p>
+                <div class="nequi-number">310 212 3844</div>
+                <p style="color:rgba(255,255,255,0.6);margin-bottom:2rem">A nombre de: Terrivol Music</p>
+                <a href="https://wa.me/573102123844?text=Hola!%20Ya%20hice%20el%20pago%20por%20Nequi" target="_blank" class="btn" style="display:inline-block;width:auto;padding:1rem 2rem">Enviar Comprobante</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openModal(producto){
+            const titles = {'digital':'Álbum Digital - $15.000 COP','cd':'CD Físico - $60.000 COP','taza':'Taza MEMORY - $45.000 COP','hoodie':'Hoodie MEMORY - $180.000 COP'};
+            document.getElementById('modal-title').textContent = titles[producto];
+            document.getElementById('modal').classList.add('active');
+        }
+        function closeModal(){ document.getElementById('modal').classList.remove('active'); }
+        window.onclick = function(event) { if (event.target.classList.contains('modal')) { closeModal(); } }
+    </script>
+</body>
+</html>
