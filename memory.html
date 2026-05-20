@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEMORY - Cagta Flex | Álbum + Merch Oficial</title>
-    <meta name="description" content="MEMORY - El nuevo álbum de Cagta Flex. Disponible en digital, CD físico y merch exclusivo.">
+    <title>MEMORY - Cagta Flex | Álbum Oficial + Merch</title>
+    <meta name="description" content="MEMORY - El nuevo álbum de Cagta Flex. Escúchalo ya en todas las plataformas.">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        :root{--burgundy:#8B0000;--blood-red:#DC143C;--black:#0a0a0a;--white:#fff;--gold:#D4AF37;--dark-red:#660000}
-        body{font-family:'Syne',sans-serif;background:var(--black);color:var(--white);min-height:100vh;overflow-x:hidden}
+        :root{--burgundy:#8B0000;--blood-red:#DC143C;--black:#0a0a0a;--white:#fff;--gold:#D4AF37}
+        body{font-family:'Syne',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
         
-        /* BACKGROUND */
-        .bg-fixed{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;background:linear-gradient(135deg,#050505 0%,#1a0000 100%)}
+        /* BACKGROUND ANIMADO */
+        .bg{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#050505 0%,#1a0000 100%);z-index:-2}
         .particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}
         .particle{position:absolute;width:2px;height:2px;background:var(--blood-red);border-radius:50%;opacity:0.5;animation:float 15s linear infinite}
         @keyframes float{0%{transform:translateY(100vh);opacity:0}50%{opacity:0.8}100%{transform:translateY(-10vh);opacity:0}}
@@ -20,163 +20,208 @@
         .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
         
         /* HERO */
-        .hero{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem 0}
-        .hero-badge{background:var(--blood-red);color:#fff;padding:0.5rem 1.5rem;border-radius:50px;font-size:0.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;display:inline-block;border:1px solid var(--gold)}
-        .hero-title{font-size:clamp(3rem,10vw,6rem);font-weight:800;color:var(--white);line-height:0.9;margin-bottom:1rem;letter-spacing:-2px;text-shadow:0 0 40px rgba(220,20,60,0.4)}
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem 0;position:relative}
+        .hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at center,rgba(220,20,60,0.15) 0%,transparent 70%);pointer-events:none}
+        .hero-badge{background:var(--blood-red);color:#fff;padding:0.5rem 2rem;border-radius:50px;font-size:0.85rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:2rem;display:inline-block;border:2px solid var(--gold);animation:fadeInDown 1s ease}
+        @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+        .hero-title{font-size:clamp(4rem,12vw,8rem);font-weight:800;color:var(--white);line-height:0.9;margin-bottom:1rem;letter-spacing:-3px;text-shadow:0 0 60px rgba(220,20,60,0.5)}
         .hero-title span{color:var(--blood-red)}
-        .hero-sub{font-size:1.2rem;color:rgba(255,255,255,0.7);margin-bottom:2.5rem}
-        .hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-        .btn-main{background:var(--gold);color:#000;padding:1rem 2.5rem;border-radius:5px;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;display:inline-block;transition:0.3s;border:2px solid var(--gold)}
-        .btn-main:hover{background:transparent;color:var(--gold)}
-        .btn-outline{border:2px solid var(--blood-red);color:var(--white);padding:1rem 2.5rem;border-radius:5px;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;display:inline-block;transition:0.3s}
-        .btn-outline:hover{background:var(--blood-red)}
+        .hero-sub{font-size:1.3rem;color:rgba(255,255,255,0.8);margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto}
+        .hero-cta{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+        .btn-primary{background:var(--gold);color:#000;padding:1.2rem 3rem;border-radius:5px;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:2px;display:inline-block;transition:0.3s;border:2px solid var(--gold);font-size:1.1rem}
+        .btn-primary:hover{background:transparent;color:var(--gold);transform:translateY(-3px)}
+        .btn-outline{border:2px solid var(--blood-red);color:var(--white);padding:1.2rem 3rem;border-radius:5px;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:2px;display:inline-block;transition:0.3s;font-size:1.1rem}
+        .btn-outline:hover{background:var(--blood-red);transform:translateY(-3px)}
 
         /* SECTIONS */
         .section{padding:6rem 0}
-        .section-title{font-size:2.5rem;font-weight:800;margin-bottom:3rem;text-align:center;color:var(--white);text-transform:uppercase}
+        .section-title{font-size:2.5rem;font-weight:800;margin-bottom:3rem;text-align:center;color:var(--white);text-transform:uppercase;letter-spacing:2px}
         .section-title span{color:var(--blood-red)}
 
-        /* PRODUCT GRID */
-        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
-        .card{background:rgba(255,255,255,0.03);border:1px solid rgba(220,20,60,0.3);border-radius:10px;overflow:hidden;transition:0.3s;position:relative}
-        .card:hover{transform:translateY(-10px);border-color:var(--gold);box-shadow:0 10px 30px rgba(220,20,60,0.2)}
-        .card-img{width:100%;height:350px;object-fit:cover;background:#111}
-        .card-img img{width:100%;height:100%;object-fit:cover}
-        .card-body{padding:2rem;text-align:center}
-        .card-title{font-size:1.5rem;font-weight:700;margin-bottom:0.5rem}
-        .card-price{font-size:1.8rem;color:var(--gold);font-weight:800;margin-bottom:1rem}
-        .card-price small{font-size:0.9rem;color:rgba(255,255,255,0.5);font-weight:400}
-        .card-desc{color:rgba(255,255,255,0.6);margin-bottom:1.5rem;font-size:0.9rem;line-height:1.5}
-        .card-btn{width:100%;padding:1rem;background:var(--blood-red);color:#fff;border:none;font-weight:700;cursor:pointer;text-transform:uppercase;transition:0.3s;text-decoration:none;display:inline-block}
-        .card-btn:hover{background:var(--gold);color:#000}
-        .tag{position:absolute;top:1rem;right:1rem;background:var(--gold);color:#000;padding:0.3rem 1rem;font-weight:700;font-size:0.8rem;border-radius:2px;z-index:10}
-
-        /* TESTIMONIAL */
-        .testimonial{background:linear-gradient(135deg,rgba(139,0,0,0.2),rgba(0,0,0,0));border-left:4px solid var(--blood-red);padding:3rem;margin:4rem 0;text-align:center}
-        .quote{font-size:1.5rem;font-style:italic;line-height:1.6;margin-bottom:1.5rem;color:rgba(255,255,255,0.9)}
-        .author{font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:2px}
+        /* VIDEOS */
+        .videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2.5rem;margin-top:3rem}
+        .video-wrapper{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(220,20,60,0.3);border:3px solid var(--burgundy);transition:0.3s}
+        .video-wrapper:hover{transform:translateY(-10px);border-color:var(--blood-red)}
+        .video-container{position:relative;padding-bottom:56.25%;height:0}
+        .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+        .video-info{padding:1.5rem;background:rgba(255,255,255,0.03)}
+        .video-title{font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
 
         /* STREAMING */
-        .streaming-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}
-        .streaming-btn{text-align:center;padding:1.5rem;border-radius:8px;text-decoration:none;font-weight:700;transition:0.3s}
+        .streaming{background:rgba(255,255,255,0.02)}
+        .streaming-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2rem}
+        .streaming-btn{text-align:center;padding:1.5rem;border-radius:8px;text-decoration:none;font-weight:700;transition:0.3s;display:flex;align-items:center;justify-content:center;gap:0.8rem}
         .streaming-btn:hover{transform:translateY(-5px)}
         .spotify{background:#1DB954;color:#fff}
         .apple{background:#FA243C;color:#fff}
         .youtube{background:#FF0000;color:#fff}
         .deezer{background:#A020F0;color:#fff}
+        .tiktok{background:#000;color:#fff;border:2px solid #fff}
+        .tidal{background:#000;color:#fff;border:2px solid #00D4FF}
+
+        /* TESTIMONIAL */
+        .testimonial{background:linear-gradient(135deg,rgba(139,0,0,0.2),transparent);border-left:4px solid var(--blood-red);padding:3rem;margin:4rem 0;text-align:center}
+        .quote{font-size:1.5rem;font-style:italic;line-height:1.6;margin-bottom:1.5rem;color:rgba(255,255,255,0.9)}
+        .author{font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:2px}
+
+        /* PRODUCTS PREVIEW */
+        .products-preview{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:3rem}
+        .product-card{background:rgba(255,255,255,0.03);border:1px solid var(--burgundy);border-radius:10px;overflow:hidden;transition:0.3s;position:relative}
+        .product-card:hover{transform:translateY(-10px);border-color:var(--gold)}
+        .product-badge{position:absolute;top:1rem;right:1rem;background:var(--gold);color:#000;padding:0.3rem 1rem;font-weight:700;font-size:0.75rem;border-radius:3px;z-index:10}
+        .product-img{width:100%;height:300px;background:#111;display:flex;align-items:center;justify-content:center;font-size:4rem}
+        .product-img img{width:100%;height:100%;object-fit:cover}
+        .product-body{padding:2rem;text-align:center}
+        .product-title{font-size:1.5rem;font-weight:700;margin-bottom:0.5rem}
+        .product-price{font-size:1.8rem;color:var(--gold);font-weight:800;margin-bottom:1rem}
+        .product-location{display:inline-block;padding:0.3rem 1rem;background:rgba(220,20,60,0.2);border:1px solid var(--blood-red);border-radius:20px;font-size:0.8rem;margin-bottom:1rem}
+        .product-location.co{background:rgba(30,144,255,0.2);border-color:#1E90FF}
+        .product-location.intl{background:rgba(255,215,0,0.2);border-color:var(--gold)}
 
         /* FOOTER */
-        .footer{padding:4rem 0;border-top:1px solid rgba(220,20,60,0.3);text-align:center;margin-top:4rem}
-        .socials{display:flex;justify-content:center;gap:2rem;margin-bottom:2rem}
-        .socials a{color:var(--white);text-decoration:none;font-size:1.5rem;transition:0.3s}
+        .footer{padding:4rem 0;border-top:2px solid var(--burgundy);text-align:center;margin-top:4rem;background:rgba(0,0,0,0.5)}
+        .socials{display:flex;justify-content:center;gap:2rem;margin-bottom:2rem;flex-wrap:wrap}
+        .socials a{color:var(--white);text-decoration:none;font-size:1.5rem;transition:0.3s;display:flex;align-items:center;gap:0.5rem}
         .socials a:hover{color:var(--blood-red);transform:scale(1.1)}
 
-        /* RESPONSIVE */
         @media(max-width:768px){
-            .hero-cta{flex-direction:column;align-items:center}
-            .btn-outline{margin:0}
-            .grid{grid-template-columns:1fr}
+            .hero-title{font-size:clamp(3rem,12vw,5rem)}
+            .videos-grid{grid-template-columns:1fr}
             .section{padding:4rem 0}
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-fixed"></div>
+    <div class="bg"></div>
     <div class="particles" id="particles"></div>
 
     <!-- HERO -->
     <section class="hero">
         <div class="container">
-            <div class="hero-badge">Nuevo Álbum + Merch Exclusivo</div>
+            <div class="hero-badge">Álbum + Merch Oficial</div>
             <h1 class="hero-title">MEM<span>O</span>RY</h1>
             <p class="hero-sub">Las cicatrices del pasado son las armas del futuro. Cagta Flex.</p>
             <div class="hero-cta">
-                <a href="#comprar" class="btn-main">Comprar Ahora</a>
-                <a href="#escuchar" class="btn-outline">Escuchar Álbum</a>
+                <a href="#videos" class="btn-primary">▶️ Escuchar Ahora</a>
+                <a href="comprar.html" class="btn-outline">🛒 Comprar</a>
             </div>
         </div>
     </section>
 
-    <!-- STREAMING LINKS -->
-    <section id="escuchar" class="section" style="background:rgba(255,255,255,0.02)">
+    <!-- VIDEOS -->
+    <section id="videos" class="section">
         <div class="container">
-            <h2 class="section-title">Escúchalo <span>En Todas Partes</span></h2>
-            <div class="streaming-grid">
-                <a href="https://open.spotify.com/intl-es/album/4eXayKWvvkhKF2uQ3QBm9Q" target="_blank" class="streaming-btn spotify">SPOTIFY</a>
-                <a href="https://music.apple.com/co/album/memory/6770545141" target="_blank" class="streaming-btn apple">APPLE MUSIC</a>
-                <a href="https://www.youtube.com/watch?v=2k-9629POx0&list=OLAK5uy_n-yWB-6dZYqL83tgAfYpMtc--" target="_blank" class="streaming-btn youtube">YOUTUBE</a>
-                <a href="https://www.deezer.com/mx/album/985545711" target="_blank" class="streaming-btn deezer">DEEZER</a>
+            <h2 class="section-title">Videos <span>Oficiales</span></h2>
+            <div class="videos-grid">
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/fASVXZADvow" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">DA SOSA (Official Audio)</h3>
+                    </div>
+                </div>
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/3cK_F0dkh3w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">CON MI YO (Official Audio)</h3>
+                    </div>
+                </div>
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/BodeGyegtOA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Bendición ft. Gpromode</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- TESTIMONIAL SIMPLE -->
+    <!-- STREAMING PLATFORMS -->
+    <section class="section streaming">
+        <div class="container">
+            <h2 class="section-title">Disponible En <span>Todas Partes</span></h2>
+            <div class="streaming-grid">
+                <a href="https://open.spotify.com/intl-es/album/4eXayKWvvkhKF2uQ3QBm9Q" target="_blank" class="streaming-btn spotify">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                    Spotify
+                </a>
+                <a href="https://music.apple.com/co/album/memory/6770545141" target="_blank" class="streaming-btn apple">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Apple Music
+                </a>
+                <a href="https://www.youtube.com/watch?v=2k-9629POx0&list=OLAK5uy_n-yWB-6dZYqL83tgAfYpMtc--" target="_blank" class="streaming-btn youtube">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    YouTube
+                </a>
+                <a href="https://www.deezer.com/mx/album/985545711" target="_blank" class="streaming-btn deezer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.999 2.925c-4.996 0-9.075 4.079-9.075 9.075s4.079 9.075 9.075 9.075 9.075-4.079 9.075-9.075-4.079-9.075-9.075-9.075zm0 16.027c-3.828 0-6.952-3.124-6.952-6.952s3.124-6.952 6.952-6.952 6.952 3.124 6.952 6.952-3.124 6.952-6.952 6.952z"/></svg>
+                    Deezer
+                </a>
+                <a href="https://www.tiktok.com/@cagtaflex" target="_blank" class="streaming-btn tiktok">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                    TikTok
+                </a>
+                <a href="#" target="_blank" class="streaming-btn tidal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                    Tidal
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
     <div class="container">
         <div class="testimonial">
-            <p class="quote">"MEMORY no es solo un álbum, es una experiencia sonora que te transporta a través de batallas internas y victorias personales. Cada track es un capítulo de una historia que resuena con cualquiera que haya luchado por sus sueños."</p>
+            <p class="quote">"MEMORY no es solo un álbum, es una experiencia sonora que te transporta a través de batallas internas y victorias personales."</p>
             <p class="author">— La Familia Cagta</p>
         </div>
     </div>
 
-    <!-- PRODUCTOS -->
-    <section id="comprar" class="section">
+    <!-- PRODUCTS PREVIEW -->
+    <section class="section">
         <div class="container">
-            <h2 class="section-title">Tienda <span>Oficial</span></h2>
-            <div class="grid">
+            <h2 class="section-title">Productos <span>Disponibles</span></h2>
+            <div class="products-preview">
                 
-                <!-- 1. ALBUM DIGITAL -->
-                <div class="card">
-                    <div class="card-img">
-                        <img src="img/portada-album.jpg" alt="Álbum Digital MEMORY">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Álbum Digital</h3>
-                        <div class="card-price">$15.000 <small>COP</small></div>
-                        <p class="card-desc">Descarga inmediata MP3/FLAC. Ideal para Colombia. Pago por Nequi.</p>
-                        <a href="https://wa.me/573102123844?text=Hola!%20Quiero%20comprar%20el%20%C3%81lbum%20Digital%20de%20MEMORY%20por%20Nequi" class="card-btn">Pagar con Nequi</a>
-                    </div>
-                </div>
-
-                <!-- 2. HOODIE -->
-                <div class="card">
-                    <div class="tag">INTERNACIONAL</div>
-                    <div class="card-img">
-                        <img src="img/hoodie-frontal.jpg" alt="Hoodie MEMORY">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Hoodie MEMORY</h3>
-                        <div class="card-price">$60.00 <small>USD</small></div>
-                        <p class="card-desc">Envío mundial. Algodón premium negro. Edición limitada.</p>
-                        <a href="https://cagta-flex-shop.fourthwall.com/products/memory-collection-hoodie-cagta-flex-official" target="_blank" class="card-btn">Comprar Hoodie</a>
+                <!-- ALBUM DIGITAL -->
+                <div class="product-card">
+                    <span class="product-badge">🇨🇴 Colombia</span>
+                    <div class="product-img">💿</div>
+                    <div class="product-body">
+                        <h3 class="product-title">Álbum Digital</h3>
+                        <div class="product-location co">Nequi - $15.000 COP</div>
+                        <p style="color:rgba(255,255,255,0.7);margin-bottom:1rem;font-size:0.9rem">Descarga inmediata MP3/FLAC</p>
+                        <a href="comprar.html" class="btn-primary" style="width:100%;display:block">Comprar</a>
                     </div>
                 </div>
 
-                <!-- 3. TAZA -->
-                <div class="card">
-                    <div class="tag">NUEVO</div>
-                    <div class="card-img">
-                        <img src="img/taza-memory.jpg" alt="Taza MEMORY">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Taza MEMORY</h3>
-                        <div class="card-price">$25.00 <small>USD</small></div>
-                        <p class="card-desc">Cerámica negra mate. Disponible nacional e internacional.</p>
-                        <a href="https://wa.me/573102123844?text=Hola!%20Quiero%20comprar%20la%20Taza%20MEMORY" class="card-btn">Comprar Taza</a>
+                <!-- HOODIE -->
+                <div class="product-card">
+                    <span class="product-badge">🌍 Internacional</span>
+                    <div class="product-img">🧥</div>
+                    <div class="product-body">
+                        <h3 class="product-title">Hoodie MEMORY</h3>
+                        <div class="product-location intl">Fourthwall - $60 USD</div>
+                        <p style="color:rgba(255,255,255,0.7);margin-bottom:1rem;font-size:0.9rem">Envío mundial disponible</p>
+                        <a href="comprar.html" class="btn-primary" style="width:100%;display:block">Ver Detalles</a>
                     </div>
                 </div>
 
-                <!-- 4. CD FÍSICO -->
-                <div class="card">
-                    <div class="tag">LIMITADO</div>
-                    <div class="card-img">
-                        <img src="img/cd-memory.jpg" alt="CD Físico MEMORY">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">CD Físico</h3>
-                        <div class="card-price">$60.000 <small>COP</small></div>
-                        <p class="card-desc">Solo Colombia. CD + Booklet + Sticker. Edición numerada.</p>
-                        <a href="https://wa.me/573102123844?text=Hola!%20Quiero%20comprar%20el%20CD%20F%C3%ADsico%20de%20MEMORY" class="card-btn">Reservar CD</a>
+                <!-- CD FISICO -->
+                <div class="product-card">
+                    <span class="product-badge">🇨🇴 Colombia</span>
+                    <div class="product-img">📀</div>
+                    <div class="product-body">
+                        <h3 class="product-title">CD Físico</h3>
+                        <div class="product-location co">Directo - $60.000 COP</div>
+                        <p style="color:rgba(255,255,255,0.7);margin-bottom:1rem;font-size:0.9rem">Edición limitada numerada</p>
+                        <a href="comprar.html" class="btn-primary" style="width:100%;display:block">Reservar</a>
                     </div>
                 </div>
 
@@ -191,13 +236,14 @@
                 <a href="https://instagram.com/cagtaflex" target="_blank">Instagram</a>
                 <a href="https://tiktok.com/@cagtaflex" target="_blank">TikTok</a>
                 <a href="https://youtube.com/@cagtaflex" target="_blank">YouTube</a>
+                <a href="https://open.spotify.com/artist/YOUR_ID" target="_blank">Spotify</a>
             </div>
             <p style="color:rgba(255,255,255,0.5)">© 2024 Terrivol Music. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <script>
-        // Partículas animadas
+        // Partículas
         const p = document.getElementById('particles');
         for(let i=0; i<50; i++){
             const span = document.createElement('span');
@@ -207,17 +253,6 @@
             span.style.animationDelay = (Math.random()*5) + 's';
             p.appendChild(span);
         }
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-            anchor.addEventListener('click',function(e){
-                e.preventDefault();
-                const target=document.querySelector(this.getAttribute('href'));
-                if(target){
-                    target.scrollIntoView({behavior:'smooth',block:'start'});
-                }
-            });
-        });
     </script>
 </body>
 </html>
