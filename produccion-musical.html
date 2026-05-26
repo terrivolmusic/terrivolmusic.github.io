@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producción Musical | Terrivol Music</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--purple:#7c3aed;--purple-light:#a78bfa;--dark:#0a0a0f;--card:#111118;--text:#e2e8f0;--muted:#94a3b8}
+        body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;line-height:1.6}
+        .stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+        .star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 3s infinite}
+        @keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:1}}
+        .container{max-width:1200px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+        
+        /* NAV */
+        nav{position:fixed;top:0;width:100%;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;z-index:100;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(124,58,237,0.1)}
+        .logo{font-size:1.5rem;font-weight:900;color:#fff;letter-spacing:-1px}
+        .logo span{color:var(--purple)}
+        .nav-links{display:flex;gap:2rem;list-style:none}
+        .nav-links a{color:var(--muted);text-decoration:none;font-size:0.9rem;transition:0.3s}
+        .nav-links a:hover{color:#fff}
+        .nav-cta{background:var(--purple);color:#fff;padding:0.6rem 1.5rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:0.3s}
+        .nav-cta:hover{background:var(--purple-light);transform:translateY(-2px)}
+        
+        /* HERO */
+        .hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;position:relative}
+        .hero::before{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:radial-gradient(circle at 70% 50%,rgba(124,58,237,0.15) 0%,transparent 60%);pointer-events:none}
+        .hero-content{max-width:700px}
+        .hero-badge{display:inline-block;background:rgba(124,58,237,0.2);border:1px solid rgba(124,58,237,0.3);color:var(--purple-light);padding:0.5rem 1.2rem;border-radius:50px;font-size:0.85rem;font-weight:600;margin-bottom:2rem}
+        .hero h1{font-size:clamp(3rem,6vw,5rem);font-weight:900;line-height:1.05;margin-bottom:1.5rem;letter-spacing:-2px}
+        .hero h1 span{background:linear-gradient(135deg,var(--purple),var(--purple-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .hero p{font-size:1.2rem;color:var(--muted);margin-bottom:2.5rem;max-width:550px}
+        .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+        .btn-primary{background:var(--purple);color:#fff;padding:1rem 2.5rem;border-radius:10px;text-decoration:none;font-weight:700;transition:0.3s;display:inline-flex;align-items:center;gap:0.5rem}
+        .btn-primary:hover{background:var(--purple-light);transform:translateY(-3px);box-shadow:0 10px 40px rgba(124,58,237,0.4)}
+        .btn-outline{border:2px solid rgba(124,58,237,0.4);color:#fff;padding:1rem 2.5rem;border-radius:10px;text-decoration:none;font-weight:700;transition:0.3s}
+        .btn-outline:hover{border-color:var(--purple);background:rgba(124,58,237,0.1)}
+        
+        /* WAVEFORM ANIMATION */
+        .waveform{position:absolute;right:5%;top:50%;transform:translateY(-50%);display:flex;gap:4px;align-items:center;height:200px}
+        .wave-bar{width:6px;background:linear-gradient(180deg,var(--purple),var(--purple-light));border-radius:3px;animation:wave 1.2s ease-in-out infinite}
+        .wave-bar:nth-child(1){height:40px;animation-delay:0s}
+        .wave-bar:nth-child(2){height:80px;animation-delay:0.1s}
+        .wave-bar:nth-child(3){height:120px;animation-delay:0.2s}
+        .wave-bar:nth-child(4){height:160px;animation-delay:0.3s}
+        .wave-bar:nth-child(5){height:200px;animation-delay:0.4s}
+        .wave-bar:nth-child(6){height:160px;animation-delay:0.5s}
+        .wave-bar:nth-child(7){height:120px;animation-delay:0.6s}
+        .wave-bar:nth-child(8){height:80px;animation-delay:0.7s}
+        .wave-bar:nth-child(9){height:40px;animation-delay:0.8s}
+        @keyframes wave{0%,100%{transform:scaleY(0.5)}50%{transform:scaleY(1)}}
+        
+        /* SECTIONS */
+        section{padding:6rem 0}
+        .section-label{color:var(--purple-light);font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem}
+        .section-title{font-size:clamp(2rem,4vw,3rem);font-weight:900;margin-bottom:1.5rem;letter-spacing:-1px}
+        .section-desc{color:var(--muted);font-size:1.1rem;max-width:600px;margin-bottom:3rem}
+        
+        /* PROCESS */
+        .process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-top:3rem}
+        .process-card{background:var(--card);border:1px solid rgba(124,58,237,0.15);border-radius:16px;padding:2.5rem;transition:0.3s;position:relative;overflow:hidden}
+        .process-card:hover{border-color:var(--purple);transform:translateY(-5px)}
+        .process-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--purple),var(--purple-light))}
+        .process-number{font-size:3rem;font-weight:900;color:rgba(124,58,237,0.2);margin-bottom:1rem}
+        .process-card h3{font-size:1.3rem;font-weight:700;margin-bottom:0.8rem}
+        .process-card p{color:var(--muted);font-size:0.95rem}
+        
+        /* PRICING */
+        .pricing-section{background:rgba(124,58,237,0.03);border-top:1px solid rgba(124,58,237,0.1);border-bottom:1px solid rgba(124,58,237,0.1)}
+        .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:3rem}
+        .pricing-card{background:var(--card);border:1px solid rgba(124,58,237,0.15);border-radius:20px;padding:3rem 2.5rem;transition:0.3s;position:relative}
+        .pricing-card.featured{border-color:var(--purple);background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(124,58,237,0.02))}
+        .pricing-card.featured::after{content:'MÁS POPULAR';position:absolute;top:-12px;right:2rem;background:var(--purple);color:#fff;padding:0.3rem 1rem;border-radius:20px;font-size:0.75rem;font-weight:700}
+        .pricing-card:hover{transform:translateY(-8px);border-color:var(--purple)}
+        .pricing-name{font-size:1.2rem;font-weight:700;color:var(--purple-light);margin-bottom:0.5rem}
+        .pricing-price{font-size:3rem;font-weight:900;margin:1rem 0}
+        .pricing-price span{font-size:1rem;color:var(--muted);font-weight:400}
+        .pricing-desc{color:var(--muted);margin-bottom:2rem;font-size:0.95rem}
+        .pricing-features{list-style:none;margin-bottom:2.5rem}
+        .pricing-features li{padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:0.8rem;font-size:0.95rem}
+        .pricing-features li::before{content:'✓';color:var(--purple-light);font-weight:700}
+        .pricing-btn{width:100%;padding:1rem;border-radius:10px;text-decoration:none;text-align:center;font-weight:700;transition:0.3s;display:block}
+        .pricing-btn.primary{background:var(--purple);color:#fff}
+        .pricing-btn.primary:hover{background:var(--purple-light)}
+        .pricing-btn.outline{border:2px solid rgba(124,58,237,0.4);color:#fff}
+        .pricing-btn.outline:hover{border-color:var(--purple)}
+        
+        /* CTA */
+        .cta-section{text-align:center;padding:8rem 0}
+        .cta-box{background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(124,58,237,0.05));border:1px solid rgba(124,58,237,0.2);border-radius:24px;padding:4rem;max-width:800px;margin:0 auto}
+        .cta-box h2{font-size:2.5rem;font-weight:900;margin-bottom:1rem}
+        .cta-box p{color:var(--muted);margin-bottom:2rem;font-size:1.1rem}
+        
+        /* FOOTER */
+        footer{padding:3rem 0;border-top:1px solid rgba(124,58,237,0.1);text-align:center;color:var(--muted);font-size:0.9rem}
+        
+        @media(max-width:768px){
+            .waveform{display:none}
+            .nav-links{display:none}
+            .hero h1{font-size:2.5rem}
+            .process-grid{grid-template-columns:1fr}
+            .pricing-grid{grid-template-columns:1fr}
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <nav>
+        <div class="logo">TM<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../servicios.html">Servicios</a></li>
+            <li><a href="../contacto.html">Contacto</a></li>
+        </ul>
+        <a href="../contacto.html" class="nav-cta">Trabajemos</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">🎵 Servicio Premium</div>
+                <h1>Producción <span>Musical</span></h1>
+                <p>Grabación, mezcla y masterización con calidad de estudio. Desde beats hasta álbumes completos con ingenieros expertos que entienden tu visión.</p>
+                <div class="hero-btns">
+                    <a href="#precios" class="btn-primary">Ver Planes →</a>
+                    <a href="../contacto.html" class="btn-outline">Cotizar Proyecto</a>
+                </div>
+            </div>
+        </div>
+        <div class="waveform">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+        </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section>
+        <div class="container">
+            <div class="section-label">Proceso</div>
+            <h2 class="section-title">Cómo trabajamos</h2>
+            <p class="section-desc">Un proceso claro y profesional para llevar tu música al siguiente nivel.</p>
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="process-number">01</div>
+                    <h3>Briefing Creativo</h3>
+                    <p>Entendemos tu visión, referencias y objetivos. Definimos el sonido, estilo y dirección artística del proyecto.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-number">02</div>
+                    <h3>Producción & Grabación</h3>
+                    <p>Creación de beats, arreglos y grabación en estudio profesional con equipo de alta gama.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-number">03</div>
+                    <h3>Mezcla Profesional</h3>
+                    <p>Balance, ecualización, compresión y efectos para que cada elemento suene perfecto en cualquier sistema.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-number">04</div>
+                    <h3>Mastering Final</h3>
+                    <p>Polish final para que tu música compita en calidad con los estándares de la industria. Listo para distribución.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRECIOS -->
+    <section class="pricing-section" id="precios">
+        <div class="container">
+            <div class="section-label">Planes</div>
+            <h2 class="section-title">Elige tu plan</h2>
+            <p class="section-desc">Opciones flexibles para cada etapa de tu carrera musical.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">Single</div>
+                    <div class="pricing-price">$150<span> USD</span></div>
+                    <p class="pricing-desc">Perfecto para lanzar tu próximo sencillo con calidad profesional.</p>
+                    <ul class="pricing-features">
+                        <li>1 canción completa</li>
+                        <li>Mezcla profesional</li>
+                        <li>Mastering</li>
+                        <li>2 revisiones incluidas</li>
+                        <li>Entrega en 7 días</li>
+                    </ul>
+                    <a href="../contacto.html" class="pricing-btn outline">Cotizar</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-name">EP (4-6 tracks)</div>
+                    <div class="pricing-price">$500<span> USD</span></div>
+                    <p class="pricing-desc">El paquete ideal para artistas que quieren hacer impacto con un proyecto sólido.</p>
+                    <ul class="pricing-features">
+                        <li>4-6 canciones</li>
+                        <li>Producción completa</li>
+                        <li>Mezcla + Mastering</li>
+                        <li>Revisiones ilimitadas</li>
+                        <li>Entrega en 21 días</li>
+                        <li>Asesoría de lanzamiento</li>
+                    </ul>
+                    <a href="../contacto.html" class="pricing-btn primary">Cotizar</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-name">Álbum Completo</div>
+                    <div class="pricing-price">$900<span> USD</span></div>
+                    <p class="pricing-desc">Producción completa de álbum con acompañamiento creativo de principio a fin.</p>
+                    <ul class="pricing-features">
+                        <li>10-14 canciones</li>
+                        <li>Producción & arreglos</li>
+                        <li>Mezcla + Mastering</li>
+                        <li>Revisiones ilimitadas</li>
+                        <li>Entrega en 45 días</li>
+                        <li>Estrategia de lanzamiento</li>
+                        <li>Portada incluida</li>
+                    </ul>
+                    <a href="../contacto.html" class="pricing-btn outline">Cotizar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>¿Listo para crear algo increíble?</h2>
+                <p>Cuéntanos sobre tu proyecto y te enviamos una cotización personalizada en menos de 24 horas.</p>
+                <a href="../contacto.html" class="btn-primary">Iniciar Proyecto →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Terrivol Music. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const stars=document.getElementById('stars');
+        for(let i=0;i<100;i++){
+            const star=document.createElement('div');
+            star.className='star';
+            star.style.left=Math.random()*100+'%';
+            star.style.top=Math.random()*100+'%';
+            star.style.animationDelay=Math.random()*3+'s';
+            star.style.opacity=Math.random();
+            stars.appendChild(star);
+        }
+    </script>
+</body>
+</html>
