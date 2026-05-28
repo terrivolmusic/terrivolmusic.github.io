@@ -82,7 +82,7 @@
         <span class="service-link">Ver detalles →</span>
       </a>
 
-      <a href="contacto.html?servicio=beats" class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
+      <a href="beats-licencias.html" class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         <h3 class="service-title">Beats & Licencias</h3>
         <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles para artistas. Calidad profesional, precios accesibles.</p>
@@ -103,21 +103,21 @@
         <span class="service-link">Ver detalles →</span>
       </a>
       
-      <a href="contacto.html?servicio=publishing" class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
+      <a href="publishing-derechos.html" class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         <h3 class="service-title">Publishing & Derechos</h3>
         <p class="service-desc">Gestión de publishing, registro de obras, recaudo de regalías y protección de derechos de autor a nivel mundial.</p>
         <span class="service-link">Cotizar →</span>
       </a>
       
-      <a href="contacto.html?servicio=clases" class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
+      <a href="clases-produccion.html" class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
         <h3 class="service-title">Clases de Producción Pro</h3>
         <p class="service-desc">Mentorías personalizadas 1-a-1. Aprende producción, mezcla y estrategia musical con expertos del sello.</p>
         <span class="service-link">Agendar clase →</span>
       </a>
 
-      <a href="contacto.html?servicio=audio-pro" class="service-card fade-up delay-3" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
+      <a href="audio-pro-empresas.html" class="service-card fade-up delay-3" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
         <h3 class="service-title">Audio Pro para Empresas</h3>
         <p class="service-desc">Mejora y optimización de audio para anuncios, contenido corporativo y marcas. Limpieza profesional y mastering estratégico.</p>
@@ -185,12 +185,12 @@ else if(step==='service'){lead.servicio=text;step='done';botMsg(kb[text.toLowerC
 document.getElementById('tm-chat-send').onclick=function(){handleInput(input.value);};input.onkeypress=function(e){if(e.key==='Enter')handleInput(input.value);};
 function userMsg(t){const d=document.createElement('div');d.className='tm-msg user';d.textContent=t;messages.appendChild(d);messages.scrollTop=messages.scrollHeight;}
 function botMsg(h){const d=document.createElement('div');d.className='tm-msg bot';d.innerHTML=h;messages.appendChild(d);messages.scrollTop=messages.scrollHeight;}
-function showBtns(){const opts=[{t:'🎙️ Producción',v:'produccion'},{t:'📀 Distribución',v:'distribucion'},{t:'🎹 Beats',v:'beats'},{t:'⚖️ Legal',v:'legal'},{t:'🎓 Clases',v:'clases'}];const wrap=document.createElement('div');wrap.style.cssText='display:flex;flex-wrap:wrap;margin:0.5rem 0';opts.forEach((b,i)=>{setTimeout(()=>{const btn=document.createElement('button');btn.className='tm-btn';btn.textContent=b.t;btn.onclick=()=>handleInput(b.v);wrap.appendChild(btn);},i*100);});messages.appendChild(wrap);messages.scrollTop=messages.scrollHeight;}
+function showBtns(){const opts=[{t:'🎙️ Producción',v:'produccion'},{t:'📀 Distribución',v:'distribucion'},{t:' Beats',v:'beats'},{t:'️ Legal',v:'legal'},{t:'🎓 Clases',v:'clases'}];const wrap=document.createElement('div');wrap.style.cssText='display:flex;flex-wrap:wrap;margin:0.5rem 0';opts.forEach((b,i)=>{setTimeout(()=>{const btn=document.createElement('button');btn.className='tm-btn';btn.textContent=b.t;btn.onclick=()=>handleInput(b.v);wrap.appendChild(btn);},i*100);});messages.appendChild(wrap);messages.scrollTop=messages.scrollHeight;}
 function forceCTA(){document.querySelectorAll('.tm-wa,.tm-email,.tm-cta-text').forEach(el=>el.remove());const txt=document.createElement('div');txt.className='tm-msg bot tm-cta-text';txt.innerHTML='🎯 <b>¿Listo para despegar?</b><br>Habla directo con un asesor o completa el formulario de contacto.';messages.appendChild(txt);const wa=document.createElement('button');wa.className='tm-wa';wa.innerHTML='💬 WhatsApp Directo';wa.onclick=openWA;messages.appendChild(wa);const em=document.createElement('button');em.className='tm-email';em.innerHTML='📧 Ir a Formulario de Contacto';em.onclick=openEmail;messages.appendChild(em);messages.scrollTop=messages.scrollHeight;}
-function saveLead(){console.log(' Lead:',lead);const fd=new FormData();fd.append('nombre',lead.nombre);fd.append('email',lead.email);fd.append('telefono',lead.tel);fd.append('servicio',lead.servicio);fetch('https://formspree.io/f/mqegnekp',{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(e=>console.warn(e));}
-function openWA(){const msg=`Hola Terrivol! 🚀%0A%0ASoy ${lead.nombre}%0A📧 ${lead.email}%0A📱 ${lead.tel}%0A Interés: ${lead.servicio}%0A%0AQuiero coordinar mi proyecto.`;window.open(`https://wa.me/573102123844?text=${msg}`,'_blank');}
+function saveLead(){console.log('🎯 Lead:',lead);const fd=new FormData();fd.append('nombre',lead.nombre);fd.append('email',lead.email);fd.append('telefono',lead.tel);fd.append('servicio',lead.servicio);fetch('https://formspree.io/f/mqegnekp',{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(e=>console.warn(e));}
+function openWA(){const msg=`Hola Terrivol! 🚀%0A%0ASoy ${lead.nombre}%0A ${lead.email}%0A📱 ${lead.tel}%0A🎯 Interés: ${lead.servicio}%0A%0AQuiero coordinar mi proyecto.`;window.open(`https://wa.me/573102123844?text=${msg}`,'_blank');}
 function openEmail(){window.location.href='contacto.html#formulario-contacto';botMsg('✅ <b>¡Redirigiendo al formulario!</b><br>Tus datos ya están registrados. Completa el formulario y te contactaremos en menos de 24 horas.');setTimeout(()=>{chatBox.classList.remove('open');},1000);}
-const kb={'produccion':'🎙️ <b>Producción Musical:</b> Desde $150 USD. Incluye grabación, mezcla y masterización con ingenieros expertos.','distribucion':'📀 <b>Distribución Digital:</b> Desde $20/año. Spotify, Apple Music, YouTube, Deezer y +150 plataformas. 100% regalías para ti.','beats':'🎹 <b>Beats & Licencias:</b> Desde $30 (MP3). Catálogo trap, reggaeton y melódico. Ver tienda: <a href="tienda.html">tienda.html</a>','legal':'️ <b>Asesoría Legal:</b> $80 USD. Registro de obras, publishing, contratos y estrategia de regalías.','clases':' <b>Clases Pro:</b> Desde $40/sesión. Mentorías 1-a-1 de producción y estrategia musical.','default':'📡 Recibido. Para darte coordenadas exactas, especifica: producción, distribución, beats, legal o clases. O contacta directo 👇'};})();
+const kb={'produccion':'🎙️ <b>Producción Musical:</b> Desde $150 USD. Incluye grabación, mezcla y masterización con ingenieros expertos.','distribucion':' <b>Distribución Digital:</b> Desde $20/año. Spotify, Apple Music, YouTube, Deezer y +150 plataformas. 100% regalías para ti.','beats':' <b>Beats & Licencias:</b> Desde $30 (MP3). Catálogo trap, reggaeton y melódico. Ver tienda: <a href="tienda.html">tienda.html</a>','legal':'⚖️ <b>Asesoría Legal:</b> $80 USD. Registro de obras, publishing, contratos y estrategia de regalías.','clases':'🎓 <b>Clases Pro:</b> Desde $40/sesión. Mentorías 1-a-1 de producción y estrategia musical.','default':'📡 Recibido. Para darte coordenadas exactas, especifica: producción, distribución, beats, legal o clases. O contacta directo 👇'};})();
 </script>
 </body>
 </html>
