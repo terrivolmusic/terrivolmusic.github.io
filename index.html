@@ -6,82 +6,64 @@
 <title>Terrivol Music | Sello Discográfico & Producción</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* Estilos específicos para el Index con efecto PRO */
-.hero-section { min-height: 80vh; display: flex; align-items: center; justify-content: center; position: relative; padding-top: 80px; overflow: hidden; text-align: center; }
-.hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse at 50% 50%, rgba(123,92,250,.15), transparent 60%); }
-.hero-content { position: relative; z-index: 1; max-width: 800px; padding: 0 2rem; }
-.hero-title { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; margin-bottom: 1.5rem; line-height: 1.1; letter-spacing: -2px; }
-.hero-title span { color: var(--accent); }
-.hero-desc { font-size: 1.2rem; color: var(--muted); margin-bottom: 3rem; line-height: 1.6; }
+/* ===== NUEVOS ESTILOS PRO ===== */
+.hero-pro { min-height: 90vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 6rem 2rem 4rem; overflow: hidden; text-align: center; }
+.hero-bg-pro { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse at 30% 20%, rgba(123,92,250,.25), transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(0,229,255,.15), transparent 60%); }
+.hero-overlay-pro { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,15,0.4) 0%, var(--black) 100%); z-index: 1; }
+.hero-content-pro { position: relative; z-index: 2; max-width: 850px; }
+.hero-badge { display: inline-block; background: rgba(123,92,250,.2); border: 1px solid var(--accent); color: var(--accent2); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: 1px; }
+.hero-title-pro { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 900; margin-bottom: 1.2rem; line-height: 1.05; letter-spacing: -1.5px; }
+.hero-title-pro span { background: linear-gradient(135deg, var(--accent), #00e5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-desc-pro { font-size: 1.15rem; color: var(--muted); margin-bottom: 2.5rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto; }
+.cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-glow { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; text-decoration: none; font-size: 1.05rem; transition: 0.3s; }
+.btn-glow:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(123,92,250,.5); }
+.btn-glow::after { content: ''; position: absolute; inset: -2px; background: linear-gradient(45deg, transparent, rgba(255,255,255,.4), transparent); transform: translateX(-100%); animation: shine 3s infinite; }
+@keyframes shine { 100% { transform: translateX(100%); } }
+.btn-ghost { background: rgba(255,255,255,.05); border: 1px solid var(--border); color: var(--text); padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 1.05rem; transition: 0.3s; }
+.btn-ghost:hover { background: rgba(123,92,250,.1); border-color: var(--accent); }
 
-/* Grid de Servicios en el Index */
-.services-preview { padding: 6rem 0; position: relative; }
-.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+/* LANZAMIENTOS */
+.releases-section { padding: 5rem 0; position: relative; }
+.releases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2.5rem; }
+.release-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: 0.4s; position: relative; text-decoration: none; color: var(--text); }
+.release-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 20px 50px rgba(123,92,250,.2); }
+.release-img { height: 280px; background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.release-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.release-card:hover .release-img img { transform: scale(1.05); }
+.release-tag { position: absolute; top: 12px; left: 12px; background: var(--accent); color: #fff; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; z-index: 2; }
+.play-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.4); opacity: 0; transition: 0.3s; }
+.release-card:hover .play-btn { opacity: 1; }
+.play-icon { width: 60px; height: 60px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; transform: scale(0.8); transition: 0.3s; }
+.release-card:hover .play-icon { transform: scale(1); }
+.release-info { padding: 1.5rem; }
+.release-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.release-meta { color: var(--muted); font-size: 0.9rem; display: flex; justify-content: space-between; align-items: center; }
+.release-link { color: var(--accent); font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.3rem; }
 
-/* TARJETAS CON EFECTO NEÓN Y SPOTLIGHT */
-.service-card {
-  background: rgba(20, 20, 30, 0.6); /* Un poco transparente */
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  padding: 2.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
-  color: var(--text);
-  display: flex;
-  flex-direction: column;
-  backdrop-filter: blur(10px); /* Efecto vidrio */
-}
+/* STATS / SOCIAL PROOF */
+.stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; padding: 4rem 0; text-align: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 4rem 0; }
+.stat-number { font-size: 2.5rem; font-weight: 900; color: var(--accent2); margin-bottom: 0.5rem; }
+.stat-label { color: var(--muted); font-size: 0.95rem; }
 
-/* Línea de color superior (Neón) */
-.service-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  opacity: 0; transition: opacity 0.4s;
-}
-
-/* Efecto de luz (Spotlight) que sigue al mouse */
-.service-card::after {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(123,92,250,0.1), transparent 40%);
-  opacity: 0; transition: opacity 0.4s; pointer-events: none;
-}
-
-.service-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--accent);
-  box-shadow: 0 20px 60px rgba(123,92,250,0.2), 0 0 0 1px rgba(123,92,250,0.5);
-}
-.service-card:hover::before { opacity: 1; }
-.service-card:hover::after { opacity: 1; }
-
-/* Iconos y Textos */
-.service-icon { width: 48px; height: 48px; margin-bottom: 1.5rem; color: var(--accent); transition: transform 0.3s; }
-.service-card:hover .service-icon { transform: scale(1.15) rotate(5deg); filter: drop-shadow(0 0 10px var(--accent)); }
-.service-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; }
-.service-desc { color: var(--muted); line-height: 1.6; font-size: 0.95rem; margin-bottom: 2rem; flex: 1; }
-.service-link { font-size: 0.9rem; font-weight: 600; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
-.service-link span { transition: transform 0.3s; }
-.service-card:hover .service-link span { transform: translateX(5px); }
-
-.btn-cta {
-  display: inline-flex; align-items: center; gap: 0.8rem;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: #fff; padding: 1rem 2.5rem; border-radius: 50px;
-  font-weight: 700; text-decoration: none; font-size: 1.1rem;
-  transition: 0.3s; margin-top: 2rem;
-}
-.btn-cta:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(123,92,250,0.4); }
+/* ROSTER / ARTISTAS */
+.roster-section { padding: 4rem 0; text-align: center; }
+.roster-grid { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.roster-item { width: 180px; text-align: center; }
+.roster-avatar { width: 120px; height: 120px; border-radius: 50%; background: var(--surface); border: 2px solid var(--border); margin: 0 auto 1rem; overflow: hidden; transition: 0.3s; }
+.roster-item:hover .roster-avatar { border-color: var(--accent); transform: scale(1.05); }
+.roster-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.roster-name { font-weight: 700; font-size: 1.1rem; }
+.roster-role { color: var(--muted); font-size: 0.85rem; }
 
 @media(max-width: 768px) {
-  .services-grid { grid-template-columns: 1fr; }
-  .hero-title { font-size: 3rem; }
+  .hero-title-pro { font-size: 2.5rem; }
+  .releases-grid { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
 <body>
-
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
@@ -93,110 +75,190 @@
     <div class="nav-links" id="navLinks">
       <a href="index.html" class="active">Inicio</a>
       <a href="servicios.html">Servicios</a>
+      <a href="blog.html">Blog</a>
       <a href="contacto.html">Contacto</a>
-      <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar" target="_blank" class="nav-cta-mobile"> TRABAJEMOS</a>
+      <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar" target="_blank" class="nav-cta-mobile">💼 TRABAJEMOS</a>
     </div>
     <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
   </div>
 </nav>
 
-<!-- HERO SECTION -->
-<section class="hero-section">
-  <div class="hero-bg"></div>
-  <div class="hero-content fade-up">
-    <h1 class="hero-title">Servicios Musicales <br><span>Profesionales</span></h1>
-    <p class="hero-desc">Lleva tu proyecto al siguiente nivel. Producción, distribución, beats y asesoría legal para artistas independientes.</p>
-    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-        <a href="servicios.html" class="btn-cta">Explorar todos los servicios →</a>
-        <a href="contacto.html" class="btn-outline" style="background:rgba(255,255,255,0.1); border:1px solid var(--border); color:#fff; padding:1rem 2.5rem; border-radius:50px; text-decoration:none;">Contactar ahora</a>
+<!-- HERO PRO -->
+<section class="hero-pro">
+  <div class="hero-bg-pro"></div>
+  <div class="hero-overlay-pro"></div>
+  <div class="hero-content-pro fade-up">
+    <div class="hero-badge">🔥 NUEVOS LANZAMIENTOS DISPONIBLES</div>
+    <h1 class="hero-title-pro">Tu música merece <span>sonar profesional</span></h1>
+    <p class="hero-desc-pro">Sello discográfico independiente. Producción, distribución, beats y estrategia legal para artistas que quieren dejar huella.</p>
+    <div class="cta-group">
+      <a href="servicios.html" class="btn-glow">Explorar Servicios →</a>
+      <a href="contacto.html" class="btn-ghost">Agendar Llamada</a>
     </div>
   </div>
 </section>
 
-<!-- SECCIÓN DE SERVICIOS (Con animación) -->
+<!-- LANZAMIENTOS DESTACADOS -->
+<section class="releases-section">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <p class="section-label">// ÚLTIMOS LANZAMIENTOS</p>
+        <h2 class="hero-title" style="font-size:clamp(1.8rem,4vw,2.8rem); margin:0.5rem 0;">Proyectos que están rompiendo</h2>
+      </div>
+      <a href="#" class="service-link" style="font-size:1rem;">Ver catálogo completo <span>→</span></a>
+    </div>
+
+    <div class="releases-grid">
+      <!-- Lanzamiento 1 -->
+      <a href="memory.html" class="release-card fade-up">
+        <div class="release-img">
+          <span class="release-tag">NUEVO</span>
+          <img src="img/portada-album-memory.jpg" alt="MEMORY - Cagta Flex">
+          <div class="play-btn"><div class="play-icon">▶</div></div>
+        </div>
+        <div class="release-info">
+          <h3 class="release-title">MEMORY</h3>
+          <div class="release-meta">
+            <span>Cagta Flex • Álbum</span>
+            <span class="release-link">Escuchar →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Lanzamiento 2 -->
+      <a href="#" class="release-card fade-up delay-1">
+        <div class="release-img">
+          <span class="release-tag" style="background:#00e5ff; color:#000;">EN STREAMING</span>
+          <img src="img/cover2.jpg" alt="Próximo Lanzamiento">
+          <div class="play-btn"><div class="play-icon">▶</div></div>
+        </div>
+        <div class="release-info">
+          <h3 class="release-title">Próximo Single</h3>
+          <div class="release-meta">
+            <span>Artista Invitado • Single</span>
+            <span class="release-link">Pre-Save →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Lanzamiento 3 -->
+      <a href="#" class="release-card fade-up delay-2">
+        <div class="release-img">
+          <span class="release-tag" style="background:var(--gold); color:#000;">EXCLUSIVO</span>
+          <img src="img/cover3.jpg" alt="Beat Pack">
+          <div class="play-btn"><div class="play-icon">▶</div></div>
+        </div>
+        <div class="release-info">
+          <h3 class="release-title">Beat Pack Vol. 3</h3>
+          <div class="release-meta">
+            <span>Terrivol Beats • Pack</span>
+            <span class="release-link">Comprar →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS / PRUEBA SOCIAL -->
+<div class="container">
+  <div class="stats-bar fade-up">
+    <div><div class="stat-number">50M+</div><div class="stat-label">Streams generados</div></div>
+    <div><div class="stat-number">150+</div><div class="stat-label">Plataformas</div></div>
+    <div><div class="stat-number">30+</div><div class="stat-label">Artistas activos</div></div>
+    <div><div class="stat-number">100%</div><div class="stat-label">Derechos del artista</div></div>
+  </div>
+</div>
+
+<!-- SERVICIOS RÁPIDOS -->
 <section class="services-preview">
   <div class="container">
+    <p class="section-label" style="text-align:center;">// LO QUE HACEMOS</p>
+    <h2 class="hero-title" style="text-align:center; font-size:clamp(1.8rem,4vw,2.8rem); margin:0.5rem 0 2rem;">Servicios musicales profesionales</h2>
     <div class="services-grid">
-      
-      <!-- Producción -->
       <a href="produccion-musical.html" class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         <h3 class="service-title">Producción Musical</h3>
         <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio.</p>
         <span class="service-link">Cotizar ahora <span>→</span></span>
       </a>
-
-      <!-- Distribución -->
       <a href="distribucion-digital.html" class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
         <h3 class="service-title">Distribución Digital</h3>
         <p class="service-desc">Lleva tu música a Spotify, Apple Music y +150 plataformas.</p>
         <span class="service-link">Cotizar ahora <span>→</span></span>
       </a>
-
-      <!-- Beats -->
       <a href="beats-licencias.html" class="service-card fade-up delay-2" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         <h3 class="service-title">Beats & Licencias</h3>
         <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles.</p>
         <span class="service-link">Explorar beats <span>→</span></span>
       </a>
-
-      <!-- Clases -->
-      <a href="clases-produccion.html" class="service-card fade-up delay-3" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        <h3 class="service-title">Clases de Producción Pro</h3>
-        <p class="service-desc">Mentorías 1-a-1 con expertos del sello.</p>
-        <span class="service-link">Agendar clase <span>→</span></span>
+      <a href="publishing-derechos.html" class="service-card fade-up delay-3" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <h3 class="service-title">Publishing & Derechos</h3>
+        <p class="service-desc">Protege tu obra y maximiza tus regalías.</p>
+        <span class="service-link">Asesoría legal <span>→</span></span>
       </a>
-
+    </div>
+    <div style="text-align:center; margin-top:3rem;">
+      <a href="servicios.html" class="btn-ghost" style="display:inline-flex; align-items:center; gap:0.5rem;">Ver todos los servicios <span>→</span></a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER SIMPLE -->
-<footer style="padding:2rem 0; text-align:center; border-top:1px solid rgba(255,255,255,0.1); color:var(--muted); font-size:0.9rem;">
-  <div class="container">© 2026 TERRIVOL MUSIC. Todos los derechos reservados.</div>
+<!-- ROSTER / ARTISTAS -->
+<section class="roster-section">
+  <div class="container">
+    <p class="section-label">// NUESTRO ROSTER</p>
+    <h2 class="hero-title" style="font-size:clamp(1.8rem,4vw,2.8rem); margin:0.5rem 0;">Artistas que confían en nosotros</h2>
+    <div class="roster-grid fade-up">
+      <div class="roster-item">
+        <div class="roster-avatar"><img src="img/cagta-flex.jpg" alt="Cagta Flex"></div>
+        <div class="roster-name">Cagta Flex</div>
+        <div class="roster-role">Artista Principal</div>
+      </div>
+      <div class="roster-item">
+        <div class="roster-avatar" style="background:var(--surface); display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:0.8rem;">Próximamente</div>
+        <div class="roster-name">¿Eres artista?</div>
+        <div class="roster-role">Únete al sello</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" style="padding:6rem 0;">
+  <div class="container">
+    <div class="cta-box fade-up" style="max-width:700px; margin:0 auto; text-align:center;">
+      <p class="section-label" style="justify-content:center; display:flex;">// EMPECEMOS</p>
+      <h2 class="cta-title">¿Listo para profesionalizar tu música?</h2>
+      <p class="cta-desc" style="margin-bottom:2rem;">Cuéntanos tu proyecto. Te respondemos en menos de 24 horas con una propuesta a tu medida.</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20servicio" target="_blank" class="btn-glow">💬 WhatsApp Directo</a>
+        <a href="contacto.html" class="btn-ghost">Enviar Propuesta</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+      <div class="footer-copy">© 2026 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
+      <div style="margin-top:1rem;opacity:0.7;font-size:0.9rem">terrivolmusiclove@gmail.com</div>
+    </div>
+  </div>
 </footer>
 
 <script>
-// Menú móvil
-function toggleMenu() {
-  const nav = document.getElementById('navLinks');
-  const btn = document.querySelector('.nav-mobile-btn');
-  if (nav && btn) {
-    nav.classList.toggle('open');
-    btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
-  }
-}
-
-// Cursor personalizado
-document.addEventListener('mousemove', function(e) {
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  if (cursor) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; }
-  if (ring) { ring.style.left = (e.clientX - 16) + 'px'; ring.style.top = (e.clientY - 16) + 'px'; }
-});
-
-// Lógica de la Animación (Spotlight)
-function handleMouseMove(e, card) {
-  const rect = card.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  card.style.setProperty('--mouse-x', x + 'px');
-  card.style.setProperty('--mouse-y', y + 'px');
-}
-function handleMouseLeave(card) {
-  card.style.setProperty('--mouse-x', '0px');
-  card.style.setProperty('--mouse-y', '0px');
-}
-
-// Animaciones al hacer scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+function toggleMenu(){const nav=document.getElementById('navLinks');const btn=document.querySelector('.nav-mobile-btn');if(nav&&btn){nav.classList.toggle('open');btn.textContent=nav.classList.contains('open')?'✕':'☰';}}
+document.addEventListener('mousemove',function(e){const cursor=document.getElementById('cursor');const ring=document.getElementById('cursorRing');if(cursor){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';}if(ring){ring.style.left=(e.clientX-16)+'px';ring.style.top=(e.clientY-16)+'px';}});
+function handleMouseMove(e,card){const rect=card.getBoundingClientRect();const x=e.clientX-rect.left;const y=e.clientY-rect.top;card.style.setProperty('--mouse-x',x+'px');card.style.setProperty('--mouse-y',y+'px');}
+function handleMouseLeave(card){card.style.setProperty('--mouse-x','0px');card.style.setProperty('--mouse-y','0px');}
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible');});},{threshold:0.1});document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
 </script>
-
 </body>
 </html>
