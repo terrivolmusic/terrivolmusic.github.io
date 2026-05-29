@@ -4,363 +4,238 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terrivol Music | Inicio</title>
-<!-- IMPORTAMOS LA FUENTE CORRECTA PARA QUE SE VEA IGUAL A SERVICIOS -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<meta name="description" content="Sello discográfico independiente. Producción, distribución, beats y asesoría legal para artistas.">
+<link rel="stylesheet" href="style.css">
 <style>
-/* ===== FUENTE FORZADA (MONTSERRAT PARA IGUALAR SERVICIOS) ===== */
-* {
-  font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Estilos específicos para el Index que complementan tu style.css */
+.hero-stats-custom {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin: 4rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
+.stat-item { text-align: center; }
+.stat-num { font-size: 2.5rem; font-weight: 800; color: var(--accent2); margin-bottom: 0.5rem; }
+.stat-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; }
 
-/* ===== VARIABLES (IDÉNTICAS A SERVICIOS) ===== */
-:root {
-  --accent: #7b5cfa; 
-  --accent2: #00e5ff; 
-  --bg: #0a0a0f; 
-  --surface: rgba(20,20,30,0.6);
-  --border: rgba(255,255,255,0.08); 
-  --text: #f8fafc; 
-  --muted: #94a3b8;
-}
-
-/* ===== RESET & BASE ===== */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { 
-  background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; 
-}
-.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-.section-padding { padding: 5rem 0; }
-.text-center { text-align: center; }
-.gradient-text { 
-  background: linear-gradient(135deg, var(--accent), var(--accent2)); 
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; 
-}
-.fade-up { opacity: 0; transform: translateY(30px); transition: 0.6s cubic-bezier(0.2,0.8,0.2,1); }
-.fade-up.visible { opacity: 1; transform: translateY(0); }
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
-.delay-3 { transition-delay: 0.3s; }
-
-/* ===== NAV (IDÉNTICA A SERVICIOS) ===== */
-.navbar { 
-  position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; 
-  background: rgba(10,10,15,0.95); backdrop-filter: blur(12px); 
-  border-bottom: 1px solid var(--border); transition: 0.3s; 
-}
-.nav-container { display: flex; justify-content: space-between; align-items: center; }
-.nav-logo { font-size: 1.35rem; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: -0.5px; }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.9rem; }
-.nav-links a:hover, .nav-links a.active { color: #fff; }
-.nav-cta-mobile { 
-  background: var(--accent); color: #fff !important; padding: 0.5rem 1rem; 
-  border-radius: 6px; font-weight: 700 !important; font-size: 0.8rem; letter-spacing: 0.5px;
-}
-.nav-mobile-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
-
-/* ===== HERO (ESTILO SERVICIOS) ===== */
-.hero-pro { 
-  min-height: 100vh; display: flex; align-items: center; justify-content: center; 
-  position: relative; padding: 8rem 2rem 4rem; overflow: hidden; text-align: center; 
-}
-.hero-bg-pro { 
-  position: absolute; inset: 0; z-index: 0; 
-  background: radial-gradient(ellipse at 30% 20%, rgba(123,92,250,.25), transparent 60%), 
-              radial-gradient(ellipse at 80% 80%, rgba(0,229,255,.15), transparent 60%); 
-}
-.hero-overlay-pro { 
-  position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,15,0.3) 0%, var(--bg) 100%); z-index: 1; 
-}
-.hero-content-pro { position: relative; z-index: 2; max-width: 850px; }
-.hero-badge { 
-  display: inline-block; background: rgba(123,92,250,.1); border: 1px solid rgba(123,92,250,.5); 
-  color: var(--accent2); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.75rem; font-weight: 800; 
-  margin-bottom: 1.5rem; letter-spacing: 1px; text-transform: uppercase; 
-}
-.hero-title { 
-  font-size: clamp(3rem, 7vw, 5rem); font-weight: 900; line-height: 1.05; 
-  margin-bottom: 1.2rem; letter-spacing: -1px; color: #fff; 
-}
-.hero-sub { 
-  font-size: 1.1rem; color: var(--muted); margin-bottom: 2.5rem; max-width: 650px; 
-  margin-left: auto; margin-right: auto; line-height: 1.6; font-weight: 500; 
-}
-.cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-.btn-primary { 
-  background: linear-gradient(90deg, var(--accent), #5c8cfa); /* Ajuste para parecerse al botón de la captura */
-  color: #fff; 
-  padding: 1rem 2.2rem; border-radius: 50px; font-weight: 700; text-decoration: none; 
-  font-size: 1rem; transition: 0.3s; position: relative; overflow: hidden; 
-  display: inline-flex; align-items: center; gap: 0.5rem; border: none;
-}
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(123,92,250,.4); }
-.btn-secondary { 
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; 
-  padding: 1rem 2.2rem; border-radius: 50px; font-weight: 700; text-decoration: none; 
-  font-size: 1rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; 
-}
-.btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
-
-/* ===== SERVICIOS RÁPIDOS (GRID ESTILO SERVICIOS) ===== */
-.services-quick { padding: 4rem 0 6rem; border-top: 1px solid var(--border); }
-.services-mini-grid { 
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
-  gap: 1.5rem; margin-top: 3rem; 
-}
-.service-mini { 
-  background: var(--surface); border: 1px solid var(--border); border-radius: 16px; 
-  padding: 2.5rem 1.5rem; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); 
-  text-decoration: none; color: var(--text); display: block; position: relative; 
-  overflow: hidden; backdrop-filter: blur(10px); height: 100%; display: flex; flex-direction: column; 
-  align-items: flex-start; text-align: left; /* Alineado a la izquierda como en servicios */
-}
-.service-mini::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; 
-  background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: 0.5; 
-}
-.service-mini:hover { 
-  transform: translateY(-5px); border-color: rgba(123,92,250,0.5); 
-  box-shadow: 0 15px 30px rgba(0,0,0,0.5); background: rgba(25,25,40,0.8);
-}
-.service-mini-icon { 
-  width: 48px; height: 48px; margin-bottom: 1.5rem; font-size: 2rem; color: var(--accent);
-  display: flex; align-items: center; justify-content: center; transition: 0.3s;
-}
-.service-mini h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.8rem; color: #fff; }
-.service-mini p { font-size: 0.9rem; color: var(--muted); margin: 0; line-height: 1.6; font-weight: 500; }
-
-/* ===== STATS ===== */
-.stats-bar { 
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2rem; 
-  padding: 3rem 0; text-align: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 2rem 0; 
-}
-.stat-item { padding: 1rem; }
-.stat-num { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900; color: #fff; margin-bottom: 0.3rem; } /* Cambiado a blanco como en el estilo general */
-.stat-label { color: var(--muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-
-/* ===== CTA FINAL (ESTILO SERVICIOS) ===== */
-.cta-section { padding: 4rem 0 6rem; }
-.cta-box {
-  background: rgba(20,20,30,0.4); 
-  border: 1px solid var(--border); 
-  border-radius: 24px; 
-  padding: 4rem 2rem; 
-  text-align: center; 
-  position: relative; 
-  overflow: hidden; 
-  max-width: 800px; 
-  margin: 0 auto;
-}
-.cta-box h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; margin-bottom: 1rem; position: relative; color: #fff; }
-.cta-box p { color: var(--muted); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; position: relative; font-size: 1.1rem; font-weight: 500; }
-.cta-box .cta-group { position: relative; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-/* ===== FOOTER ===== */
-footer { padding: 3rem 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 0.85rem; }
-footer a { color: var(--accent); text-decoration: none; }
-
-/* ===== RESPONSIVE ===== */
-@media(max-width: 900px) {
-  .services-mini-grid { grid-template-columns: 1fr; }
-  .hero-title { font-size: 2.8rem; }
-}
 @media(max-width: 768px) {
-  .nav-links { display: none; }
-  .nav-mobile-btn { display: block; }
-  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); }
+  .hero-stats-custom { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- CURSOR & STARS -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
 
 <!-- NAV -->
-<nav class="navbar">
-  <div class="nav-container container">
-    <a href="index.html" class="nav-logo">Terrivol Music</a>
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Terrivol Music"></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html" class="active">Inicio</a>
       <a href="servicios.html">Servicios</a>
       <a href="blog.html">Blog</a>
       <a href="contacto.html">Contacto</a>
-      <a href="https://wa.me/573102123844" target="_blank" class="nav-cta-mobile"> TRABAJEMOS</a>
+      <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar" target="_blank" class="nav-cta-mobile">💼 TRABAJEMOS</a>
     </div>
     <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero-pro">
-  <div class="hero-bg-pro"></div>
-  <div class="hero-overlay-pro"></div>
-  <div class="hero-content-pro fade-up">
-    <div class="hero-badge">SELLO DISCOGRÁFICO INDEPENDIENTE</div>
-    <h1 class="hero-title">Tu música merece <br><span class="gradient-text">sonar profesional</span></h1>
-    <p class="hero-sub">Producción, distribución, beats y asesoría legal. Todo lo que un artista necesita para crecer, en un solo lugar.</p>
-    <div class="cta-group">
-      <a href="servicios.html" class="btn-primary">Explorar Servicios →</a>
-      <a href="contacto.html" class="btn-secondary">Agendar Llamada</a>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge fade-up">🎧 SELLO DISCOGRÁFICO INDEPENDIENTE</div>
+      <h1 class="hero-title fade-up delay-1">Tu música merece <br><span>sonar profesional</span></h1>
+      <p class="hero-subtitle fade-up delay-2">Producción, distribución, beats y asesoría legal. Todo lo que un artista necesita para crecer, en un solo lugar.</p>
+      
+      <div class="hero-cta fade-up delay-3">
+        <a href="servicios.html" class="btn-primary">Explorar Servicios →</a>
+        <a href="contacto.html" class="btn-ghost">Agendar Llamada</a>
+      </div>
+
+      <div class="hero-trust fade-up delay-4">
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>+50M Streams generados</span>
+        </div>
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>100% Derechos del artista</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SERVICIOS RÁPIDOS -->
-<section class="services-quick">
+<section class="services">
   <div class="container">
-    <div class="text-center fade-up">
-      <p style="color:var(--accent2); font-weight:800; margin-bottom:0.5rem; letter-spacing:1px; text-transform:uppercase; font-size:0.8rem;">// LO QUE HACEMOS</p>
-      <h2 style="font-size:clamp(1.8rem,4vw,2.5rem);font-weight:900; color:#fff;">Soluciones para <span class="gradient-text">artistas</span></h2>
+    <p class="section-label fade-up">// LO QUE HACEMOS</p>
+    <h2 class="fade-up delay-1">Soluciones para <span style="color:var(--accent)">artistas</span></h2>
+    
+    <div class="services-grid">
+      <a href="produccion-musical.html" class="service-card fade-up">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <h3 class="service-title">Producción Musical</h3>
+        <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio.</p>
+        <span class="service-link">Cotizar ahora →</span>
+      </a>
+      
+      <a href="distribucion-digital.html" class="service-card fade-up delay-1">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+        <h3 class="service-title">Distribución Digital</h3>
+        <p class="service-desc">Lleva tu música a Spotify, Apple Music y +150 plataformas.</p>
+        <span class="service-link">Ver planes →</span>
+      </a>
+      
+      <a href="beats-licencias.html" class="service-card fade-up delay-2">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <h3 class="service-title">Beats & Licencias</h3>
+        <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles.</p>
+        <span class="service-link">Explorar beats →</span>
+      </a>
+      
+      <a href="publishing-derechos.html" class="service-card fade-up delay-3">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <h3 class="service-title">Publishing & Derechos</h3>
+        <p class="service-desc">Protege tu obra y maximiza tus regalías.</p>
+        <span class="service-link">Asesoría legal →</span>
+      </a>
     </div>
-    <div class="services-mini-grid">
-      <a href="produccion-musical.html" class="service-mini fade-up">
-        <div class="service-mini-icon">🎙️</div>
-        <h3>Producción</h3>
-        <p>Calidad de estudio profesional</p>
-      </a>
-      <a href="distribucion-digital.html" class="service-mini fade-up delay-1">
-        <div class="service-mini-icon">📀</div>
-        <h3>Distribución</h3>
-        <p>+150 plataformas globales</p>
-      </a>
-      <a href="beats-licencias.html" class="service-mini fade-up delay-2">
-        <div class="service-mini-icon">🎹</div>
-        <h3>Beats</h3>
-        <p>Catálogo exclusivo</p>
-      </a>
-      <a href="publishing-derechos.html" class="service-mini fade-up delay-3">
-        <div class="service-mini-icon">⚖️</div>
-        <h3>Legal</h3>
-        <p>Publishing & derechos</p>
-      </a>
+
+    <!-- STATS -->
+    <div class="hero-stats-custom fade-up">
+      <div class="stat-item">
+        <div class="stat-num" data-target="50">0</div>
+        <div class="stat-label">Millones de Streams</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="150">0</div>
+        <div class="stat-label">Plataformas Digitales</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="30">0</div>
+        <div class="stat-label">Artistas Activos</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-label">% Derechos del Artista</div>
+      </div>
     </div>
-    <div style="text-align:center; margin-top:2.5rem;" class="fade-up">
-      <a href="servicios.html" class="btn-secondary">Ver todos los servicios <span>→</span></a>
-    </div>
+
   </div>
 </section>
-
-<!-- STATS -->
-<div class="container">
-  <div class="stats-bar fade-up">
-    <div class="stat-item">
-      <div class="stat-num" data-target="50">0</div>
-      <div class="stat-label">Millones de Streams</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-target="150">0</div>
-      <div class="stat-label">Plataformas Digitales</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-target="30">0</div>
-      <div class="stat-label">Artistas Activos</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-target="100">0</div>
-      <div class="stat-label">% Derechos del Artista</div>
-    </div>
-  </div>
-</div>
 
 <!-- CTA FINAL -->
 <section class="cta-section">
   <div class="container">
     <div class="cta-box fade-up">
-      <p style="color:var(--accent2); font-weight:800; margin-bottom:0.5rem; position:relative; letter-spacing:1px; text-transform:uppercase; font-size:0.8rem;">// EMPECEMOS</p>
-      <h2>¿Listo para trabajar juntos?</h2>
-      <p>Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas.</p>
-      <div class="cta-group">
-        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20servicio" target="_blank" class="btn-primary">💬 WhatsApp</a>
-        <a href="contacto.html" class="btn-secondary">Enviar Propuesta</a>
+      <p class="section-label" style="text-align:center">// EMPECEMOS</p>
+      <h2 class="cta-title">¿Listo para trabajar juntos?</h2>
+      <p class="cta-desc">Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20servicio" target="_blank" class="btn-wa">💬 WhatsApp</a>
+        <a href="contacto.html" class="btn-primary">Enviar Propuesta</a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="container">
-    <p style="font-weight:700; color:#fff; margin-bottom:0.5rem; font-size:1.1rem;">Terrivol Music</p>
-    <p>© 2026 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</p>
-    <p style="margin-top:0.5rem;"><a href="mailto:terrivolmusiclove@gmail.com">terrivolmusiclove@gmail.com</a></p>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
+    <div class="footer-copy">© 2026 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
+    <div style="font-size:0.82rem;color:var(--muted)">terrivolmusiclove@gmail.com</div>
   </div>
 </footer>
 
-<!-- CHATBOT WIDGET (IDÉNTICO AL INDEX ANTERIOR) -->
+<!-- CHATBOT WIDGET -->
 <div id="tm-chat-widget">
   <button id="tm-chat-toggle" aria-label="Iniciar chat">🛸</button>
   <div id="tm-chat-box">
     <div id="tm-chat-header">
-      <div><div style="font-weight:700"> Terrivol Music</div><div style="font-size:0.7rem;opacity:0.7">Centro de Comando</div></div>
+      <div><div style="font-weight:700">🎵 Terrivol Music</div><div style="font-size:0.7rem;opacity:0.7">Centro de Comando</div></div>
       <button id="tm-chat-close" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer">×</button>
     </div>
     <div id="tm-chat-messages"></div>
-    <div style="display:flex;padding:0.8rem;gap:0.6rem;border-top:1px solid rgba(123,92,250,0.2)"><input type="text" id="tm-chat-input" placeholder="Transmite..." style="flex:1;background:rgba(123,92,250,0.1);border:1px solid rgba(123,92,250,0.3);border-radius:8px;padding:0.6rem;color:#fff"><button id="tm-chat-send" style="background:#7b5cfa;border:none;color:#fff;width:40px;border-radius:8px;cursor:pointer"></button></div>
+    <div style="display:flex;padding:0.8rem;gap:0.6rem;border-top:1px solid rgba(123,92,250,0.2)">
+      <input type="text" id="tm-chat-input" placeholder="Transmite..." style="flex:1;background:rgba(123,92,250,0.1);border:1px solid rgba(123,92,250,0.3);border-radius:8px;padding:0.6rem;color:#fff;font-family:'Space Mono',monospace">
+      <button id="tm-chat-send" style="background:#7b5cfa;border:none;color:#fff;width:40px;border-radius:8px;cursor:pointer">📡</button>
+    </div>
   </div>
 </div>
+
 <style>
-#tm-chat-widget{position:fixed;bottom:24px;right:24px;z-index:99999}#tm-chat-toggle{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#7b5cfa,#00e5ff);border:none;color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 25px rgba(123,92,250,0.4);animation:tmPulse 2s infinite}@keyframes tmPulse{0%,100%{box-shadow:0 8px 25px rgba(123,92,250,0.4)}50%{box-shadow:0 8px 35px rgba(0,229,255,0.6)}}#tm-chat-box{position:absolute;bottom:70px;right:0;width:380px;max-height:500px;background:rgba(10,10,25,0.98);border:1px solid rgba(123,92,250,0.3);border-radius:16px;display:none;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.6)}#tm-chat-box.open{display:flex}#tm-chat-header{background:linear-gradient(135deg,rgba(123,92,250,0.2),rgba(0,229,255,0.1));padding:1rem;border-bottom:1px solid rgba(123,92,250,0.3);display:flex;justify-content:space-between;align-items:center}#tm-chat-messages{flex:1;overflow-y:auto;padding:1rem;max-height:320px}.tm-msg{max-width:85%;padding:0.8rem;margin:0.5rem 0;border-radius:12px;font-size:0.9rem;line-height:1.5;animation:tmFade 0.3s}.tm-msg.bot{background:rgba(123,92,250,0.15);border:1px solid rgba(123,92,250,0.3);align-self:flex-start}.tm-msg.user{background:linear-gradient(135deg,#7b5cfa,#00e5ff);color:#fff;align-self:flex-end}.tm-msg a{color:#00e5ff;text-decoration:underline}@keyframes tmFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}.tm-btn{background:rgba(123,92,250,0.2);border:1px solid rgba(123,92,250,0.4);color:#fff;padding:0.5rem 1rem;border-radius:20px;font-size:0.8rem;cursor:pointer;margin:0.3rem}.tm-btn:hover{background:rgba(123,92,250,0.4)}.tm-wa{background:#25D366;color:#fff;border:none;padding:0.8rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.6rem;width:100%;font-size:0.95rem}.tm-email{background:rgba(123,92,250,0.3);border:1px solid #7b5cfa;color:#fff;padding:0.8rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.5rem;width:100%;font-size:0.95rem}@media(max-width:768px){#tm-chat-box{width:calc(100vw - 32px);max-width:400px}}</style>
-<script>(function(){const chatBox=document.getElementById('tm-chat-box');const messages=document.getElementById('tm-chat-messages');const input=document.getElementById('tm-chat-input');let step='init',lead={nombre:'',email:'',tel:'',servicio:''},captured=false;
-document.getElementById('tm-chat-toggle').onclick=function(){chatBox.classList.add('open');if(step==='init')setTimeout(()=>botMsg(' ¡Bienvenido al Centro de Comando Terrivol!<br><br>Para coordinar tu misión, ¿cuál es tu nombre?'),600);};
-document.getElementById('tm-chat-close').onclick=function(){chatBox.classList.remove('open');};
-function handleInput(text){if(!text.trim())return;userMsg(text);input.value='';
-if(!captured){if(step==='init'||step==='name'){step='name';lead.nombre=text.trim();setTimeout(()=>botMsg(`¡Excelente, ${lead.nombre}! 🎵 ¿Tu correo electrónico?`),600);step='email';}
-else if(step==='email'){if(!text.includes('@')){botMsg('⚠️ Coordenada inválida. Ingresa un email correcto.');return;}lead.email=text.trim();setTimeout(()=>botMsg(' ¿Tu número de WhatsApp? (ej: +57 300 123 4567)'),600);step='tel';}
-else if(step==='tel'){lead.tel=text.trim();captured=true;saveLead();setTimeout(()=>{botMsg('✅ ¡Datos sincronizados con la base orbital!<br><br>¿Qué servicio necesitas hoy?');showBtns();},600);step='service';}
-else if(step==='service'){lead.servicio=text;step='done';botMsg(kb[text.toLowerCase()]||kb.default);setTimeout(()=>forceCTA(),800);}}else{botMsg(kb[text.toLowerCase()]||kb.default);setTimeout(()=>forceCTA(),800);}}
-document.getElementById('tm-chat-send').onclick=function(){handleInput(input.value);};input.onkeypress=function(e){if(e.key==='Enter')handleInput(input.value);};
-function userMsg(t){const d=document.createElement('div');d.className='tm-msg user';d.textContent=t;messages.appendChild(d);messages.scrollTop=messages.scrollHeight;}
-function botMsg(h){const d=document.createElement('div');d.className='tm-msg bot';d.innerHTML=h;messages.appendChild(d);messages.scrollTop=messages.scrollHeight;}
-function showBtns(){const opts=[{t:'🎙️ Producción',v:'produccion'},{t:'📀 Distribución',v:'distribucion'},{t:'🎹 Beats',v:'beats'},{t:'⚖️ Legal',v:'legal'},{t:'🎓 Clases',v:'clases'}];const wrap=document.createElement('div');wrap.style.cssText='display:flex;flex-wrap:wrap;margin:0.5rem 0';opts.forEach((b,i)=>{setTimeout(()=>{const btn=document.createElement('button');btn.className='tm-btn';btn.textContent=b.t;btn.onclick=()=>handleInput(b.v);wrap.appendChild(btn);},i*100);});messages.appendChild(wrap);messages.scrollTop=messages.scrollHeight;}
-function forceCTA(){document.querySelectorAll('.tm-wa,.tm-email,.tm-cta-text').forEach(el=>el.remove());const txt=document.createElement('div');txt.className='tm-msg bot tm-cta-text';txt.innerHTML='🎯 <b>¿Listo para despegar?</b><br>Habla directo con un asesor o completa el formulario de contacto.';messages.appendChild(txt);const wa=document.createElement('button');wa.className='tm-wa';wa.innerHTML='💬 WhatsApp Directo';wa.onclick=openWA;messages.appendChild(wa);const em=document.createElement('button');em.className='tm-email';em.innerHTML=' Ir a Formulario de Contacto';em.onclick=openEmail;messages.appendChild(em);messages.scrollTop=messages.scrollHeight;}
-function saveLead(){console.log('🎯 Lead:',lead);const fd=new FormData();fd.append('nombre',lead.nombre);fd.append('email',lead.email);fd.append('telefono',lead.tel);fd.append('servicio',lead.servicio);fetch('https://formspree.io/f/mqegnekp',{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(e=>console.warn(e));}
-function openWA(){const msg=`Hola Terrivol! 🚀%0A%0ASoy ${lead.nombre}%0A📧 ${lead.email}%0A📱 ${lead.tel}%0A🎯 Interés: ${lead.servicio}%0A%0AQuiero coordinar mi proyecto.`;window.open(`https://wa.me/573102123844?text=${msg}`,'_blank');}
-function openEmail(){window.location.href='contacto.html#formulario-contacto';botMsg('✅ <b>¡Redirigiendo al formulario!</b><br>Tus datos ya están registrados. Completa el formulario y te contactaremos en menos de 24 horas.');setTimeout(()=>{chatBox.classList.remove('open');},1000);}
-const kb={'produccion':'🎙️ <b>Producción Musical:</b> Desde $150 USD. Incluye grabación, mezcla y masterización con ingenieros expertos.','distribucion':'📀 <b>Distribución Digital:</b> Desde $20/año. Spotify, Apple Music, YouTube, Deezer y +150 plataformas. 100% regalías para ti.','beats':'🎹 <b>Beats & Licencias:</b> Desde $30 (MP3). Catálogo trap, reggaeton y melódico. Ver tienda: <a href="tienda.html">tienda.html</a>','legal':'⚖️ <b>Asesoría Legal:</b> $80 USD. Registro de obras, publishing, contratos y estrategia de regalías.','clases':'🎓 <b>Clases Pro:</b> Desde $40/sesión. Mentorías 1-a-1 de producción y estrategia musical.','default':' Recibido. Para darte coordenadas exactas, especifica: producción, distribución, beats, legal o clases. O contacta directo 👇'};})();
-</script>
+#tm-chat-widget{position:fixed;bottom:24px;right:24px;z-index:99999}
+#tm-chat-toggle{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#7b5cfa,#00e5ff);border:none;color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 25px rgba(123,92,250,0.4);animation:tmPulse 2s infinite}
+@keyframes tmPulse{0%,100%{box-shadow:0 8px 25px rgba(123,92,250,0.4)}50%{box-shadow:0 8px 35px rgba(0,229,255,0.6)}}
+#tm-chat-box{position:absolute;bottom:70px;right:0;width:380px;max-height:500px;background:rgba(10,10,25,0.98);border:1px solid rgba(123,92,250,0.3);border-radius:16px;display:none;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.6);font-family:'Syne',sans-serif}
+#tm-chat-box.open{display:flex}
+#tm-chat-header{background:linear-gradient(135deg,rgba(123,92,250,0.2),rgba(0,229,255,0.1));padding:1rem;border-bottom:1px solid rgba(123,92,250,0.3);display:flex;justify-content:space-between;align-items:center}
+#tm-chat-messages{flex:1;overflow-y:auto;padding:1rem;max-height:320px}
+.tm-msg{max-width:85%;padding:0.8rem;margin:0.5rem 0;border-radius:12px;font-size:0.9rem;line-height:1.5;animation:tmFade 0.3s}
+.tm-msg.bot{background:rgba(123,92,250,0.15);border:1px solid rgba(123,92,250,0.3);align-self:flex-start}
+.tm-msg.user{background:linear-gradient(135deg,#7b5cfa,#00e5ff);color:#fff;align-self:flex-end}
+.tm-msg a{color:#00e5ff;text-decoration:underline}
+@keyframes tmFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.tm-btn{background:rgba(123,92,250,0.2);border:1px solid rgba(123,92,250,0.4);color:#fff;padding:0.5rem 1rem;border-radius:20px;font-size:0.8rem;cursor:pointer;margin:0.3rem;font-family:'Space Mono',monospace}
+.tm-btn:hover{background:rgba(123,92,250,0.4)}
+.tm-wa{background:#25D366;color:#fff;border:none;padding:0.8rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.6rem;width:100%;font-size:0.95rem}
+.tm-email{background:rgba(123,92,250,0.3);border:1px solid #7b5cfa;color:#fff;padding:0.8rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.5rem;width:100%;font-size:0.95rem}
+@media(max-width:768px){#tm-chat-box{width:calc(100vw - 32px);max-width:400px}}
+</style>
 
 <script>
 // Menú móvil
 function toggleMenu() {
   const nav = document.getElementById('navLinks');
-  nav.classList.toggle('open');
   const btn = document.querySelector('.nav-mobile-btn');
-  btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
+  if(nav && btn) {
+    nav.classList.toggle('open');
+    btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
+  }
 }
 
-// Cursor & Estrellas
+// Cursor personalizado
 document.addEventListener('mousemove', function(e) {
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
-  if(cursor) { cursor.style.left = e.clientX+'px'; cursor.style.top = e.clientY+'px'; }
-  if(ring) { ring.style.left = (e.clientX-16)+'px'; ring.style.top = (e.clientY-16)+'px'; }
+  if(cursor) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; }
+  if(ring) { ring.style.left = (e.clientX - 16) + 'px'; ring.style.top = (e.clientY - 16) + 'px'; }
 });
+
+// Efecto hover en cursor
+document.querySelectorAll('a, button, .service-card').forEach(el => {
+  el.addEventListener('mouseenter', () => document.getElementById('cursorRing').classList.add('hover'));
+  el.addEventListener('mouseleave', () => document.getElementById('cursorRing').classList.remove('hover'));
+});
+
+// Generar estrellas
 const stars = document.getElementById('stars');
 for(let i=0; i<80; i++) {
   const star = document.createElement('div');
   star.style.cssText = `position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:${Math.random()};left:${Math.random()*100}%;top:${Math.random()*100}%;animation:twinkle ${2+Math.random()*3}s infinite;`;
   stars.appendChild(star);
 }
-const style = document.createElement('style');
-style.textContent = '@keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:1}}';
-document.head.appendChild(style);
+const styleSheet = document.createElement('style');
+styleSheet.textContent = '@keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:1}}';
+document.head.appendChild(styleSheet);
 
-// Animaciones Fade Up
+// Animaciones al hacer scroll
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+}, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// Contadores
+// Contadores animados
 const counters = document.querySelectorAll('.stat-num');
 const countObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -381,10 +256,102 @@ const countObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 counters.forEach(c => countObserver.observe(c));
 
-// Navbar scroll
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').style.background = window.scrollY > 50 ? 'rgba(10,10,15,0.95)' : 'rgba(10,10,15,0.9)';
-});
+// Lógica del Chatbot
+(function(){
+  const chatBox = document.getElementById('tm-chat-box');
+  const messages = document.getElementById('tm-chat-messages');
+  const input = document.getElementById('tm-chat-input');
+  let step = 'init', lead = {nombre:'',email:'',tel:'',servicio:''}, captured = false;
+  
+  document.getElementById('tm-chat-toggle').onclick = function(){
+    chatBox.classList.add('open');
+    if(step === 'init') setTimeout(() => botMsg('🚀 ¡Bienvenido al Centro de Comando Terrivol!<br><br>Para coordinar tu misión, ¿cuál es tu nombre?'), 600);
+  };
+  document.getElementById('tm-chat-close').onclick = function(){ chatBox.classList.remove('open'); };
+  
+  function handleInput(text){
+    if(!text.trim()) return;
+    userMsg(text); input.value = '';
+    if(!captured){
+      if(step === 'init' || step === 'name'){
+        step = 'name'; lead.nombre = text.trim();
+        setTimeout(() => botMsg(`¡Excelente, ${lead.nombre}! 🎵 ¿Tu correo electrónico?`), 600);
+        step = 'email';
+      } else if(step === 'email'){
+        if(!text.includes('@')){ botMsg('⚠️ Coordenada inválida. Ingresa un email correcto.'); return; }
+        lead.email = text.trim();
+        setTimeout(() => botMsg('📡 ¿Tu número de WhatsApp? (ej: +57 300 123 4567)'), 600);
+        step = 'tel';
+      } else if(step === 'tel'){
+        lead.tel = text.trim(); captured = true; saveLead();
+        setTimeout(() => { botMsg('✅ ¡Datos sincronizados con la base orbital!<br><br>¿Qué servicio necesitas hoy?'); showBtns(); }, 600);
+        step = 'service';
+      } else if(step === 'service'){
+        lead.servicio = text; step = 'done';
+        botMsg(kb[text.toLowerCase()] || kb.default);
+        setTimeout(() => forceCTA(), 800);
+      }
+    } else {
+      botMsg(kb[text.toLowerCase()] || kb.default);
+      setTimeout(() => forceCTA(), 800);
+    }
+  }
+  
+  document.getElementById('tm-chat-send').onclick = function(){ handleInput(input.value); };
+  input.onkeypress = function(e){ if(e.key === 'Enter') handleInput(input.value); };
+  
+  function userMsg(t){ const d = document.createElement('div'); d.className = 'tm-msg user'; d.textContent = t; messages.appendChild(d); messages.scrollTop = messages.scrollHeight; }
+  function botMsg(h){ const d = document.createElement('div'); d.className = 'tm-msg bot'; d.innerHTML = h; messages.appendChild(d); messages.scrollTop = messages.scrollHeight; }
+  
+  function showBtns(){
+    const opts = [{t:'🎙️ Producción',v:'produccion'},{t:'📀 Distribución',v:'distribucion'},{t:'🎹 Beats',v:'beats'},{t:'⚖️ Legal',v:'legal'},{t:'🎓 Clases',v:'clases'}];
+    const wrap = document.createElement('div'); wrap.style.cssText = 'display:flex;flex-wrap:wrap;margin:0.5rem 0';
+    opts.forEach((b,i) => {
+      setTimeout(() => {
+        const btn = document.createElement('button'); btn.className = 'tm-btn'; btn.textContent = b.t;
+        btn.onclick = () => handleInput(b.v); wrap.appendChild(btn);
+      }, i*100);
+    });
+    messages.appendChild(wrap); messages.scrollTop = messages.scrollHeight;
+  }
+  
+  function forceCTA(){
+    document.querySelectorAll('.tm-wa,.tm-email,.tm-cta-text').forEach(el => el.remove());
+    const txt = document.createElement('div'); txt.className = 'tm-msg bot tm-cta-text';
+    txt.innerHTML = '🎯 <b>¿Listo para despegar?</b><br>Habla directo con un asesor o completa el formulario de contacto.';
+    messages.appendChild(txt);
+    const wa = document.createElement('button'); wa.className = 'tm-wa'; wa.innerHTML = '💬 WhatsApp Directo';
+    wa.onclick = openWA; messages.appendChild(wa);
+    const em = document.createElement('button'); em.className = 'tm-email'; em.innerHTML = '📧 Ir a Formulario';
+    em.onclick = openEmail; messages.appendChild(em);
+    messages.scrollTop = messages.scrollHeight;
+  }
+  
+  function saveLead(){
+    console.log('🎯 Lead:', lead);
+    const fd = new FormData(); fd.append('nombre', lead.nombre); fd.append('email', lead.email); fd.append('telefono', lead.tel); fd.append('servicio', lead.servicio);
+    fetch('https://formspree.io/f/mqegnekp', {method:'POST', body:fd, headers:{'Accept':'application/json'}}).catch(e => console.warn(e));
+  }
+  
+  function openWA(){
+    const msg = `Hola Terrivol! 🚀%0A%0ASoy ${lead.nombre}%0A📧 ${lead.email}%0A📱 ${lead.tel}%0A🎯 Interés: ${lead.servicio}%0A%0AQuiero coordinar mi proyecto.`;
+    window.open(`https://wa.me/573102123844?text=${msg}`, '_blank');
+  }
+  function openEmail(){
+    window.location.href = 'contacto.html#formulario-contacto';
+    botMsg('✅ <b>¡Redirigiendo al formulario!</b><br>Tus datos ya están registrados.');
+    setTimeout(() => { chatBox.classList.remove('open'); }, 1000);
+  }
+  
+  const kb = {
+    'produccion': '🎙️ <b>Producción Musical:</b> Desde $150 USD. Incluye grabación, mezcla y masterización.',
+    'distribucion': '📀 <b>Distribución Digital:</b> Desde $20/año. Spotify, Apple Music y +150 plataformas.',
+    'beats': '🎹 <b>Beats & Licencias:</b> Desde $30 (MP3). Catálogo trap, reggaeton y melódico.',
+    'legal': '⚖️ <b>Asesoría Legal:</b> $80 USD. Registro de obras, publishing y contratos.',
+    'clases': '🎓 <b>Clases Pro:</b> Desde $40/sesión. Mentorías 1-a-1 de producción.',
+    'default': '📡 Recibido. Especifica: producción, distribución, beats, legal o clases. O contacta directo 👇'
+  };
+})();
 </script>
 </body>
 </html>
