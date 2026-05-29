@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Servicios | Terrivol Music</title>
-<link rel="stylesheet" href="style.css">
+<title>Terrivol Music | Inicio</title>
+<meta name="description" content="Sello discográfico independiente. Producción, distribución, beats y asesoría legal para artistas.">
 <style>
-/* ===== VARIABLES DEL NUEVO ESTILO ===== */
+/* ===== VARIABLES DEL NUEVO ESTILO (EXACTAS A SERVICIOS.HTML) ===== */
 :root {
   --accent: #7b5cfa; 
   --accent2: #00e5ff; 
@@ -33,8 +33,11 @@ body {
 }
 .fade-up { opacity: 0; transform: translateY(30px); transition: 0.6s cubic-bezier(0.2,0.8,0.2,1); }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
 
-/* ===== NAV (IDÉNTICA AL INDEX) ===== */
+/* ===== NAV (IDÉNTICA A SERVICIOS.HTML) ===== */
 .navbar { 
   position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; 
   background: rgba(10,10,15,0.9); backdrop-filter: blur(12px); 
@@ -51,9 +54,9 @@ body {
 }
 .nav-mobile-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
-/* ===== HERO SERVICIOS ===== */
+/* ===== HERO (IDÉNTICO A SERVICIOS.HTML) ===== */
 .hero-pro { 
-  min-height: 70vh; display: flex; align-items: center; justify-content: center; 
+  min-height: 100vh; display: flex; align-items: center; justify-content: center; 
   position: relative; padding: 8rem 2rem 4rem; overflow: hidden; text-align: center; 
 }
 .hero-bg-pro { 
@@ -64,90 +67,84 @@ body {
 .hero-overlay-pro { 
   position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,15,0.3) 0%, var(--bg) 100%); z-index: 1; 
 }
-.hero-content-pro { position: relative; z-index: 2; max-width: 800px; }
+.hero-content-pro { position: relative; z-index: 2; max-width: 850px; }
 .hero-badge { 
   display: inline-block; background: rgba(123,92,250,.15); border: 1px solid rgba(123,92,250,.4); 
   color: var(--accent2); padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; 
   margin-bottom: 1.5rem; letter-spacing: 1px; text-transform: uppercase; 
 }
-.hero-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
-.hero-sub { font-size: 1.15rem; color: var(--muted); margin-bottom: 0; max-width: 600px; margin: 0 auto; }
+.hero-title { font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -1px; }
+.hero-sub { font-size: 1.15rem; color: var(--muted); margin-bottom: 2.5rem; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+.cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary { 
+  background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; 
+  padding: 1rem 2.4rem; border-radius: 50px; font-weight: 700; text-decoration: none; 
+  font-size: 1.05rem; transition: 0.3s; position: relative; overflow: hidden; 
+  display: inline-flex; align-items: center; gap: 0.5rem; 
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(123,92,250,.4); }
+.btn-primary::after { 
+  content: ''; position: absolute; inset: -2px; 
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,.3), transparent); 
+  transform: translateX(-100%); animation: shine 3s infinite; 
+}
+@keyframes shine { 100% { transform: translateX(100%); } }
+.btn-secondary { 
+  background: rgba(255,255,255,.05); border: 1px solid var(--border); color: #fff; 
+  padding: 1rem 2.4rem; border-radius: 50px; font-weight: 600; text-decoration: none; 
+  font-size: 1.05rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; 
+}
+.btn-secondary:hover { background: rgba(123,92,250,.1); border-color: var(--accent); }
 
-/* ===== GRID DE SERVICIOS (GLASSMORPHISM + NEON) ===== */
-.services-grid { 
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-  gap: 1.5rem; margin-top: 3rem; padding-bottom: 4rem; 
+/* ===== SERVICIOS RÁPIDOS (GRID ESTILO SERVICIOS) ===== */
+.services-quick { padding: 4rem 0 6rem; border-top: 1px solid var(--border); }
+.services-mini-grid { 
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+  gap: 1.5rem; margin-top: 3rem; 
 }
+.service-mini { 
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px; 
+  padding: 2rem 1.5rem; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); 
+  text-decoration: none; color: var(--text); display: block; position: relative; 
+  overflow: hidden; backdrop-filter: blur(10px); height: 100%; display: flex; flex-direction: column; 
+  align-items: center; text-align: center;
+}
+.service-mini::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; 
+  background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: 0; transition: 0.3s; 
+}
+.service-mini:hover::before { opacity: 1; }
+.service-mini:hover { 
+  transform: translateY(-5px); border-color: var(--accent); 
+  box-shadow: 0 15px 30px rgba(123,92,250,0.15), 0 0 0 1px rgba(123,92,250,0.3); 
+}
+.service-mini-icon { 
+  width: 48px; height: 48px; margin-bottom: 1rem; font-size: 1.5rem; color: var(--accent);
+  display: flex; align-items: center; justify-content: center; transition: 0.3s;
+}
+.service-mini:hover .service-mini-icon { transform: scale(1.1); filter: drop-shadow(0 0 8px var(--accent)); }
+.service-mini h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.service-mini p { font-size: 0.9rem; color: var(--muted); margin: 0; line-height: 1.5; flex: 1; }
 
-/* Tarjeta del Servicio */
-.service-card {
-  background: var(--surface); 
-  border: 1px solid var(--border); 
-  border-radius: 16px; 
-  padding: 2.5rem; 
-  transition: all 0.4s cubic-bezier(0.4,0,0.2,1); 
-  position: relative; 
-  overflow: hidden; 
-  backdrop-filter: blur(10px); 
-  text-decoration: none; 
-  color: var(--text); 
-  display: block; 
-  height: 100%; 
-  display: flex; 
-  flex-direction: column; 
+/* ===== STATS ===== */
+.stats-bar { 
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2rem; 
+  padding: 3rem 0; text-align: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 2rem 0; 
 }
-
-/* Efecto Neón Superior */
-.service-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; 
-  background: linear-gradient(90deg, var(--accent), var(--accent2)); 
-  opacity: 0; transition: opacity 0.4s; 
-}
-
-/* Efecto Spotlight (Luz que sigue el mouse) */
-.service-card::after {
-  content: ''; position: absolute; inset: 0; 
-  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(123,92,250,0.15), transparent 40%); 
-  opacity: 0; transition: opacity 0.4s; pointer-events: none; 
-}
-
-.service-card:hover {
-  transform: translateY(-8px); 
-  border-color: var(--accent); 
-  box-shadow: 0 20px 60px rgba(123,92,250,0.15), 0 0 0 1px rgba(123,92,250,0.3); 
-}
-.service-card:hover::before { opacity: 1; }
-.service-card:hover::after { opacity: 1; }
-
-.service-icon { 
-  width: 56px; height: 56px; margin-bottom: 1.5rem; color: var(--accent); 
-  transition: transform 0.3s; 
-}
-.service-card:hover .service-icon { transform: scale(1.1) rotate(5deg); filter: drop-shadow(0 0 8px var(--accent)); }
-.service-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.2; }
-.service-desc { color: var(--muted); line-height: 1.6; margin-bottom: 2rem; font-size: 0.95rem; flex: 1; }
-.service-link { 
-  font-weight: 600; color: var(--accent2); display: inline-flex; align-items: center; gap: 0.5rem; 
-  transition: gap 0.3s; font-size: 0.9rem; 
-}
-.service-card:hover .service-link { gap: 0.8rem; }
+.stat-item { padding: 1rem; }
+.stat-num { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900; color: var(--accent2); margin-bottom: 0.3rem; }
+.stat-label { color: var(--muted); font-size: 0.9rem; }
 
 /* ===== CTA FINAL (ESTILO NUEVO) ===== */
 .cta-section { padding: 4rem 0 6rem; }
 .cta-box {
-  background: linear-gradient(135deg, rgba(123,92,250,0.08), rgba(0,229,255,0.03)); 
-  border: 1px solid var(--border); 
-  border-radius: 24px; 
-  padding: 4rem 2rem; 
-  text-align: center; 
-  position: relative; 
-  overflow: hidden; 
-  max-width: 750px; 
-  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(123,92,250,.08), rgba(0,229,255,.03)); 
+  border: 1px solid var(--border); border-radius: 24px; padding: 4rem 2rem; 
+  text-align: center; position: relative; overflow: hidden; max-width: 750px; margin: 0 auto;
 }
 .cta-box::before {
   content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; 
-  background: radial-gradient(circle, rgba(123,92,250,0.12) 0%, transparent 50%); 
+  background: radial-gradient(circle, rgba(123,92,250,.12) 0%, transparent 50%); 
   animation: pulse 4s ease-in-out infinite; 
 }
 @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.15); opacity: 1; } }
@@ -155,28 +152,13 @@ body {
 .cta-box p { color: var(--muted); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; position: relative; font-size: 1.1rem; }
 .cta-box .cta-group { position: relative; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-/* Botones del CTA */
-.btn-primary { 
-  background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; 
-  padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; text-decoration: none; 
-  font-size: 1rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; 
-  border: none; cursor: pointer; 
-}
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(123,92,250,0.4); }
-.btn-secondary { 
-  background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: #fff; 
-  padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; text-decoration: none; 
-  font-size: 1rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; 
-}
-.btn-secondary:hover { background: rgba(123,92,250,0.1); border-color: var(--accent); }
-
 /* ===== FOOTER ===== */
 footer { padding: 3rem 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 0.85rem; }
 footer a { color: var(--accent); text-decoration: none; }
 
 /* ===== RESPONSIVE ===== */
 @media(max-width: 900px) {
-  .services-grid { grid-template-columns: 1fr; }
+  .services-mini-grid { grid-template-columns: 1fr; }
   .hero-title { font-size: 3rem; }
 }
 @media(max-width: 768px) {
@@ -188,18 +170,18 @@ footer a { color: var(--accent); text-decoration: none; }
 </head>
 <body>
 
-<!-- CURSOR & STARS -->
+<!-- CURSOR & STARS (IDÉNTICO A SERVICIOS.HTML) -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
 
-<!-- NAV -->
+<!-- NAV (IDÉNTICA A SERVICIOS.HTML) -->
 <nav class="navbar">
   <div class="nav-container container">
     <a href="index.html" class="nav-logo">Terrivol Music</a>
     <div class="nav-links" id="navLinks">
-      <a href="index.html">Inicio</a>
-      <a href="servicios.html" class="active">Servicios</a>
+      <a href="index.html" class="active">Inicio</a>
+      <a href="servicios.html">Servicios</a>
       <a href="blog.html">Blog</a>
       <a href="contacto.html">Contacto</a>
       <a href="https://wa.me/573102123844" target="_blank" class="nav-cta-mobile"> TRABAJEMOS</a>
@@ -208,103 +190,85 @@ footer a { color: var(--accent); text-decoration: none; }
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO (ESTILO SERVICIOS.HTML) -->
 <section class="hero-pro">
   <div class="hero-bg-pro"></div>
   <div class="hero-overlay-pro"></div>
   <div class="hero-content-pro fade-up">
-    <div class="hero-badge">// NUESTROS SERVICIOS</div>
-    <h1 class="hero-title">Todo para tu <span class="gradient-text">carrera musical</span></h1>
-    <p class="hero-sub">Desde la producción hasta la distribución y la protección legal. Soluciones integrales para artistas independientes.</p>
+    <div class="hero-badge"> SELLO DISCOGRÁFICO INDEPENDIENTE</div>
+    <h1 class="hero-title">Tu música merece <br><span class="gradient-text">sonar profesional</span></h1>
+    <p class="hero-sub">Producción, distribución, beats y asesoría legal. Todo lo que un artista necesita para crecer, en un solo lugar.</p>
+    <div class="cta-group">
+      <a href="servicios.html" class="btn-primary">Explorar Servicios →</a>
+      <a href="contacto.html" class="btn-secondary">Agendar Llamada</a>
+    </div>
   </div>
 </section>
 
-<!-- SERVICIOS -->
-<section class="container">
-  <div class="services-grid">
-    
-    <!-- 1. Producción -->
-    <a href="produccion-musical.html" class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-      <h3 class="service-title">Producción Musical</h3>
-      <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio. Transforma tu demo en un hit profesional.</p>
-      <span class="service-link">Ver detalles <span>→</span></span>
-    </a>
-
-    <!-- 2. Distribución -->
-    <a href="distribucion-digital.html" class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
-      <h3 class="service-title">Distribución Digital</h3>
-      <p class="service-desc">Sube tu música a Spotify, Apple Music, TikTok y +150 plataformas. Recauda el 100% de tus regalías.</p>
-      <span class="service-link">Ver planes <span>→</span></span>
-    </a>
-
-    <!-- 3. Beats -->
-    <a href="beats-licencias.html" class="service-card fade-up delay-2" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      <h3 class="service-title">Beats & Licencias</h3>
-      <p class="service-desc">Catálogo de instrumentales exclusivas (Trap, Reggaeton, Drill). Compra la licencia al instante.</p>
-      <span class="service-link">Explorar catálogo <span>→</span></span>
-    </a>
-
-    <!-- 4. Marketing -->
-    <a href="marketing-musical.html" class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-      <h3 class="service-title">Marketing Musical</h3>
-      <p class="service-desc">Estrategias de lanzamiento, campañas en redes y pitching a playlists para crecer tu audiencia.</p>
-      <span class="service-link">Ver estrategias <span>→</span></span>
-    </a>
-
-    <!-- 5. Audiovisual -->
-    <a href="contenido-audiovisual.html" class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg>
-      <h3 class="service-title">Contenido Audiovisual</h3>
-      <p class="service-desc">Videoclips, visualizers y contenido visual profesional para impulsar tu música en YouTube y redes.</p>
-      <span class="service-link">Ver portafolio <span>→</span></span>
-    </a>
-
-    <!-- 6. Consultoría -->
-    <a href="consultoria-management.html" class="service-card fade-up delay-2" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-      <h3 class="service-title">Consultoría & Management</h3>
-      <p class="service-desc">Asesoría estratégica para artistas y sellos. Desarrollo de marca, planificación y gestión de carrera.</p>
-      <span class="service-link">Agendar asesoría <span>→</span></span>
-    </a>
-
-    <!-- 7. Publishing -->
-    <a href="publishing-derechos.html" class="service-card fade-up" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-      <h3 class="service-title">Publishing & Derechos</h3>
-      <p class="service-desc">Registra tus obras, protege tus regalías y asegúrate de cobrar por cada reproducción de tu música.</p>
-      <span class="service-link">Solicitar info <span>→</span></span>
-    </a>
-
-    <!-- 8. Clases -->
-    <a href="clases-produccion.html" class="service-card fade-up delay-1" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-      <h3 class="service-title">Clases de Producción</h3>
-      <p class="service-desc">Mentorías 1-a-1 con expertos del sello. Aprende a producir, mezclar y distribuir tu música.</p>
-      <span class="service-link">Ver cursos <span>→</span></span>
-    </a>
-
-    <!-- 9. Audio Pro -->
-    <a href="audio-pro-empresas.html" class="service-card fade-up delay-2" onmousemove="handleMouseMove(event, this)" onmouseleave="handleMouseLeave(this)">
-      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-      <h3 class="service-title">Audio Pro Empresas</h3>
-      <p class="service-desc">Mejora de audio para podcasts, anuncios y contenido corporativo. Limpieza y mastering profesional.</p>
-      <span class="service-link">Cotizar servicio <span>→</span></span>
-    </a>
-
+<!-- SERVICIOS RÁPIDOS (GRID ESTILO SERVICIOS) -->
+<section class="services-quick">
+  <div class="container">
+    <div class="text-center fade-up">
+      <p class="section-label" style="color:var(--accent2); margin-bottom:0.5rem;">// LO QUE HACEMOS</p>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;">Soluciones para <span class="gradient-text">artistas</span></h2>
+    </div>
+    <div class="services-mini-grid">
+      <a href="produccion-musical.html" class="service-mini fade-up">
+        <div class="service-mini-icon">🎙️</div>
+        <h3>Producción</h3>
+        <p>Calidad de estudio profesional</p>
+      </a>
+      <a href="distribucion-digital.html" class="service-mini fade-up delay-1">
+        <div class="service-mini-icon">📀</div>
+        <h3>Distribución</h3>
+        <p>+150 plataformas globales</p>
+      </a>
+      <a href="beats-licencias.html" class="service-mini fade-up delay-2">
+        <div class="service-mini-icon">🎹</div>
+        <h3>Beats</h3>
+        <p>Catálogo exclusivo</p>
+      </a>
+      <a href="publishing-derechos.html" class="service-mini fade-up delay-3">
+        <div class="service-mini-icon">️</div>
+        <h3>Legal</h3>
+        <p>Publishing & derechos</p>
+      </a>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;" class="fade-up">
+      <a href="servicios.html" class="btn-secondary">Ver todos los servicios <span>→</span></a>
+    </div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- STATS -->
+<div class="container">
+  <div class="stats-bar fade-up">
+    <div class="stat-item">
+      <div class="stat-num" data-target="50">0</div>
+      <div class="stat-label">Millones de Streams</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" data-target="150">0</div>
+      <div class="stat-label">Plataformas Digitales</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" data-target="30">0</div>
+      <div class="stat-label">Artistas Activos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" data-target="100">0</div>
+      <div class="stat-label">% Derechos del Artista</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL (ESTILO SERVICIOS.HTML) -->
 <section class="cta-section">
   <div class="container">
     <div class="cta-box fade-up">
       <p style="color:var(--accent2); font-weight:700; margin-bottom:0.5rem; position:relative;">// EMPECEMOS</p>
-      <h2>¿Listo para trabajar juntos?</h2>
-      <p>Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas.</p>
+      <h2>¿Listo para profesionalizar tu música?</h2>
+      <p>Cuéntanos tu proyecto. Te respondemos en menos de 24 horas.</p>
       <div class="cta-group">
         <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20servicio" target="_blank" class="btn-primary">💬 WhatsApp</a>
         <a href="contacto.html" class="btn-secondary">Enviar Propuesta</a>
@@ -330,7 +294,7 @@ function toggleMenu() {
   btn.textContent = nav.classList.contains('open') ? '✕' : '☰';
 }
 
-// Cursor & Estrellas (MISMO CÓDIGO DEL INDEX)
+// Cursor & Estrellas (MISMO CÓDIGO DE SERVICIOS.HTML)
 document.addEventListener('mousemove', function(e) {
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -353,18 +317,31 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// Lógica Spotlight (Neón)
-function handleMouseMove(e, card) {
-  const rect = card.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  card.style.setProperty('--mouse-x', x + 'px');
-  card.style.setProperty('--mouse-y', y + 'px');
-}
-function handleMouseLeave(card) {
-  card.style.setProperty('--mouse-x', '0px');
-  card.style.setProperty('--mouse-y', '0px');
-}
+// Contadores
+const counters = document.querySelectorAll('.stat-num');
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      const suffix = el.parentElement.querySelector('.stat-label').textContent.includes('%') ? '%' : 'M+';
+      let current = 0;
+      const step = Math.ceil(target / 60);
+      const timer = setInterval(() => {
+        current += step;
+        if(current >= target) { el.textContent = target + suffix; clearInterval(timer); }
+        else { el.textContent = current + suffix; }
+      }, 25);
+      countObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => countObserver.observe(c));
+
+// Navbar scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.background = window.scrollY > 50 ? 'rgba(10,10,15,0.95)' : 'rgba(10,10,15,0.9)';
+});
 </script>
 </body>
 </html>
