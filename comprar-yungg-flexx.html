@@ -1,310 +1,166 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprar YUNGG FLEXX - Cagta Flex | Terrivol Music</title>
-    <meta name="description" content="Adquiere YUNGG FLEXX - Álbum digital de Cagta Flex. Disponible en alta calidad.">
-    <meta property="og:title" content="Comprar YUNGG FLEXX - Cagta Flex">
-    <meta property="og:description" content="Álbum completo en alta calidad - 9 tracks - $9.99 USD / $15.000 COP">
-    <meta property="og:type" content="product">
-    <meta property="og:image" content="img/yungg-flexx-cover.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        :root{--burgundy:#6B0000;--gold:#D4AF37;--black:#0a0a0a;--white:#fff;--orange:#FF6B35;--nequi:#DA0081;--sky-blue:#87CEEB;--deep-blue:#1E3A5F}
-        body{font-family:'Syne',sans-serif;background:var(--black);color:var(--white);min-height:100vh;position:relative;overflow-x:hidden;text-align:center}
-        
-        /* ===== SKY BACKGROUND ===== */
-        .sky-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;background:linear-gradient(180deg,#1E3A5F 0%,#87CEEB 50%,#B8E4F0 100%)}
-        .clouds-container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;pointer-events:none}
-        .cloud{position:absolute;background:rgba(255,255,255,0.5);border-radius:100px;filter:blur(35px);animation:drift linear infinite}
-        .cloud:nth-child(1){width:450px;height:130px;top:10%;left:-25%;animation-duration:40s;opacity:0.6}
-        .cloud:nth-child(2){width:320px;height:110px;top:40%;right:-20%;animation-duration:33s;opacity:0.4}
-        .cloud:nth-child(3){width:380px;height:100px;bottom:20%;left:-15%;animation-duration:37s;opacity:0.5}
-        .cloud:nth-child(4){width:300px;height:90px;top:60%;left:15%;animation-duration:30s;opacity:0.3}
-        @keyframes drift{0%{transform:translateX(0)}50%{transform:translateX(100px)}100%{transform:translateX(0)}}
-        
-        /* LIGHTNING */
-        .lightning{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;opacity:0;animation:thunderStorm 25s infinite}
-        .lightning::before{content:'';position:absolute;top:0;left:50%;width:2px;height:280px;background:linear-gradient(180deg,#fff,#87CEEB,#fff);box-shadow:0 0 25px #87CEEB,0 0 50px #fff;transform:translateX(-50%) skewX(-12deg);animation:lightningFlash 0.35s ease-out}
-        @keyframes thunderStorm{0%,85%,100%{opacity:0}87%{opacity:0.35}88%{opacity:0}90%{opacity:0.25}91%{opacity:0}100%{opacity:0}}
-        @keyframes lightningFlash{0%{height:0;opacity:1}50%{height:320px;opacity:1}100%{height:0;opacity:0}}
-        
-        .container{max-width:900px;width:100%;margin:0 auto;padding:3rem 1rem;text-align:center;position:relative;z-index:1}
-        
-        /* HEADER */
-        .header{text-align:center;margin-bottom:3rem;animation:fadeInDown 1s ease}
-        @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
-        .title{font-size:clamp(2.5rem,8vw,4.5rem);font-weight:800;background:linear-gradient(135deg,var(--white),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.5rem;letter-spacing:3px}
-        .artist{font-size:clamp(1.2rem,3vw,1.8rem);color:var(--deep-blue);font-weight:700;text-transform:uppercase;letter-spacing:4px;background:rgba(255,255,255,0.9);display:inline-block;padding:0.5rem 2rem;border-radius:50px;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
-        
-        /* COVER & INFO */
-        .product-container{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-bottom:3rem}
-        .cover-container{position:relative;animation:scaleIn 1.2s ease}
-        @keyframes scaleIn{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
-        .cover-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:95%;height:95%;background:radial-gradient(circle,rgba(255,107,53,0.6) 0%,rgba(135,206,235,0.4) 50%,transparent 70%);animation:pulseGlow 3s ease-in-out infinite;border-radius:12px;filter:blur(20px)}
-        @keyframes pulseGlow{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.5}50%{transform:translate(-50%,-50%) scale(1.15);opacity:0.8}}
-        .cover{width:100%;height:auto;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 0 2px rgba(255,255,255,0.1);position:relative;z-index:1;display:block;margin:0 auto}
-        .product-info{animation:fadeInRight 1s ease 0.3s both;text-align:left}
-        @keyframes fadeInRight{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
-        .album-title{font-size:2rem;font-weight:800;margin-bottom:1rem;color:var(--orange)}
-        .album-desc{color:rgba(255,255,255,0.8);line-height:1.8;margin-bottom:2rem;font-size:1rem}
-        .album-details{background:rgba(255,255,255,0.05);border:1px solid rgba(255,107,53,0.3);border-radius:12px;padding:1.5rem;margin-bottom:2rem}
-        .detail-item{display:flex;justify-content:space-between;padding:0.8rem 0;border-bottom:1px solid rgba(255,255,255,0.1)}
-        .detail-item:last-child{border-bottom:none}
-        .detail-label{color:rgba(255,255,255,0.6)}
-        .detail-value{color:var(--gold);font-weight:700}
-        
-        /* PRICING OPTIONS */
-        .pricing-section{animation:fadeInUp 1s ease 0.5s both}
-        @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-        .section-title{text-align:center;font-size:1.5rem;color:var(--deep-blue);margin-bottom:2rem;text-transform:uppercase;letter-spacing:2px;background:rgba(255,255,255,0.9);display:inline-block;padding:0.8rem 2rem;border-radius:50px;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
-        .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-bottom:2rem}
-        .pricing-card{background:rgba(255,255,255,0.05);border:2px solid rgba(255,107,53,0.4);border-radius:16px;padding:2rem;text-align:center;transition:all 0.3s;position:relative;overflow:hidden;backdrop-filter:blur(10px)}
-        .pricing-card:hover{transform:translateY(-10px);border-color:var(--orange);box-shadow:0 20px 60px rgba(255,107,53,0.3)}
-        .pricing-card.featured{border-color:var(--gold);background:linear-gradient(135deg,rgba(255,107,53,0.15),rgba(218,0,129,0.1))}
-        .pricing-card.featured::before{content:'🔥 MÁS POPULAR';position:absolute;top:10px;right:-30px;background:linear-gradient(135deg,var(--orange),var(--gold));color:#fff;padding:0.3rem 3rem;font-size:0.75rem;font-weight:700;transform:rotate(45deg)}
-        .pricing-icon{font-size:3rem;margin-bottom:1rem}
-        .pricing-name{font-size:1.3rem;font-weight:700;margin-bottom:0.5rem;color:var(--white)}
-        .pricing-price{font-size:2.5rem;font-weight:800;color:var(--gold);margin:1rem 0}
-        .pricing-price-usd{font-size:1.5rem;color:var(--orange);display:block;margin:0.5rem 0;font-weight:700}
-        .pricing-desc{color:rgba(255,255,255,0.7);font-size:0.95rem;margin-bottom:1.5rem;line-height:1.6}
-        .pricing-features{list-style:none;text-align:left;margin-bottom:2rem}
-        .pricing-features li{padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;gap:0.5rem}
-        .pricing-features li::before{content:'✓';color:var(--gold);font-weight:800}
-        .buy-btn{width:100%;padding:1rem;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;cursor:pointer;transition:all 0.3s;text-transform:uppercase;letter-spacing:1px;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;text-decoration:none}
-        .buy-btn-nequi{background:linear-gradient(135deg,var(--nequi),#FF1493);color:#fff}
-        .buy-btn-nequi:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(218,0,129,0.4)}
-        .buy-btn-digital{background:linear-gradient(135deg,var(--burgundy),var(--orange));color:#fff;border:2px solid var(--gold)}
-        .buy-btn-digital:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(255,107,53,0.4)}
-        
-        /* PAYMENT INFO */
-        .payment-info{background:rgba(218,0,129,0.1);border:2px solid var(--nequi);border-radius:12px;padding:2rem;margin-top:2rem;text-align:center;backdrop-filter:blur(5px)}
-        .payment-info h3{color:var(--nequi);margin-bottom:1rem;font-size:1.3rem}
-        .payment-info p{color:rgba(255,255,255,0.8);line-height:1.8;margin-bottom:1rem}
-        .payment-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.5rem;text-align:left}
-        .step{background:rgba(255,255,255,0.05);border-radius:8px;padding:1rem}
-        .step-number{background:var(--nequi);color:#fff;width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:0.5rem}
-        .step-title{color:var(--nequi);font-weight:700;margin-bottom:0.3rem}
-        .step-desc{color:rgba(255,255,255,0.7);font-size:0.9rem}
-        
-        /* FOOTER */
-        .footer{text-align:center;color:rgba(255,255,255,0.6);font-size:0.9rem;padding:3rem 2rem;border-top:2px solid rgba(255,107,53,0.3);background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);margin-top:3rem}
-        .footer a{color:var(--orange);text-decoration:none;transition:color 0.3s}
-        .footer a:hover{color:var(--gold)}
-        
-        /* MODAL */
-        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:10000;align-items:center;justify-content:center;padding:2rem}
-        .modal.active{display:flex}
-        .modal-content{background:linear-gradient(135deg,#1a1a2e,#16213e);border:2px solid var(--nequi);border-radius:20px;max-width:500px;width:100%;padding:2.5rem;position:relative;animation:modalSlide 0.3s ease}
-        @keyframes modalSlide{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
-        .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer}
-        .modal-title{font-size:1.8rem;color:var(--nequi);margin-bottom:1rem;text-align:center}
-        .modal-text{color:rgba(255,255,255,0.8);line-height:1.8;margin-bottom:1.5rem}
-        .modal-code{background:rgba(218,0,129,0.2);border:2px dashed var(--nequi);border-radius:10px;padding:1.5rem;text-align:center;margin:1rem 0}
-        .code-number{font-size:2rem;font-weight:800;color:var(--nequi);letter-spacing:2px}
-        .copy-btn{background:var(--nequi);color:#fff;border:none;padding:0.8rem 2rem;border-radius:8px;font-weight:700;cursor:pointer;margin-top:1rem;transition:all 0.3s;text-decoration:none;display:inline-block}
-        .copy-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(218,0,129,0.4)}
-        
-        @media(max-width:768px){
-            .product-container{grid-template-columns:1fr;gap:2rem}
-            .product-info{text-align:center}
-            .pricing-grid{grid-template-columns:1fr}
-            .payment-steps{grid-template-columns:1fr}
-            .title{font-size:clamp(2rem,10vw,3.5rem)}
-        }
-        
-        .reveal{opacity:0;transform:translateY(50px);transition:all 0.8s ease}
-        .reveal.active{opacity:1;transform:translateY(0)}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comprar YUNGG FLEXX | Cagta Flex</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* Estilos específicos YUNGG FLEXX (Azul/Rosa/Negro) */
+:root {
+  --yungg-blue: #00e5ff;
+  --yungg-pink: #ff00ff;
+  --bg-dark: #05050a;
+}
+body { background: var(--bg-dark); color: #fff; font-family: 'Syne', sans-serif; }
+
+.hero-shop {
+  padding: 8rem 2rem 4rem; text-align: center;
+  background: radial-gradient(circle at center, rgba(0,229,255,0.1) 0%, transparent 70%);
+}
+.hero-shop h1 {
+  font-size: clamp(3rem, 8vw, 6rem); font-weight: 900;
+  background: linear-gradient(90deg, #fff, var(--yungg-blue));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem; text-transform: uppercase; letter-spacing: -2px;
+}
+.hero-shop p { color: #94a3b8; font-size: 1.2rem; max-width: 600px; margin: 0 auto 3rem; }
+
+.products-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 2rem;
+}
+.product-card {
+  background: rgba(20,20,30,0.6); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px; overflow: hidden; transition: 0.3s;
+  display: flex; flex-direction: column;
+}
+.product-card:hover { border-color: var(--yungg-blue); transform: translateY(-5px); }
+.product-img {
+  height: 300px; background: #111; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+}
+.product-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.product-card:hover .product-img img { transform: scale(1.05); }
+.product-info { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
+.product-tag {
+  color: var(--yungg-pink); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 0.5rem;
+}
+.product-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; }
+.product-desc { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; flex: 1; }
+.product-actions { display: flex; flex-direction: column; gap: 0.8rem; }
+.btn-nequi {
+  background: #2c0e37; border: 1px solid #ff00ff; color: #fff;
+  padding: 0.8rem; border-radius: 8px; text-align: center; text-decoration: none;
+  font-weight: 700; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.btn-nequi:hover { background: #ff00ff; color: #000; }
+.btn-fourthwall {
+  background: linear-gradient(90deg, var(--yungg-blue), #0077ff); color: #fff;
+  padding: 0.8rem; border-radius: 8px; text-align: center; text-decoration: none;
+  font-weight: 700; transition: 0.3s;
+}
+.btn-fourthwall:hover { box-shadow: 0 0 20px rgba(0,229,255,0.4); }
+
+.section-label { text-align: center; color: var(--yungg-blue); font-family: 'Space Mono', monospace; margin-top: 4rem; font-size: 0.9rem; letter-spacing: 2px; }
+</style>
 </head>
 <body>
-    <!-- SKY BACKGROUND -->
-    <div class="sky-bg"></div>
-    <div class="clouds-container">
-        <div class="cloud"></div>
-        <div class="cloud"></div>
-        <div class="cloud"></div>
-        <div class="cloud"></div>
+
+<!-- NAV SIMPLE -->
+<nav style="padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
+  <a href="index.html" style="color: #fff; font-weight: 800; font-size: 1.2rem; text-decoration: none;">Terrivol Music</a>
+  <a href="yungg-flexx.html" style="color: var(--yungg-blue); text-decoration: none; font-weight: 600;">Volver al Álbum</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero-shop">
+  <h1>YUNGG FLEXX<br><span style="color: var(--yungg-pink); -webkit-text-fill-color: var(--yungg-pink);">Store</span></h1>
+  <p>Merch oficial, álbum digital y ediciones físicas limitadas. El renacimiento de Cagta Flex.</p>
+</section>
+
+<!-- PRODUCTOS -->
+<div class="section-label">// ÁLBUM DIGITAL</div>
+<div class="products-grid">
+  <!-- Álbum Digital -->
+  <div class="product-card">
+    <div class="product-img">
+      <!-- Usa la portada del álbum aquí -->
+      <img src="img/yungg-cover.jpg" alt="YUNGG FLEXX Album Cover">
     </div>
-    <div class="lightning"></div>
-    
-    <div class="container">
-        <!-- HEADER -->
-        <div class="header">
-            <h1 class="title">YUNGG FLEXX</h1>
-            <p class="artist">Cagta Flex</p>
-        </div>
-        
-        <!-- PRODUCT INFO -->
-        <div class="product-container reveal">
-            <div class="cover-container">
-                <div class="cover-glow"></div>
-                <img src="img/yungg-flexx-cover.jpg" alt="YUNGG FLEXX - Cagta Flex" class="cover">
-            </div>
-            <div class="product-info">
-                <h2 class="album-title">Álbum Completo</h2>
-                <p class="album-desc">
-                    <strong>YUNGG FLEXX</strong> es el álbum que marca el renacimiento de Cagta Flex. 
-                    Una propuesta fresca que combina trap urbano con melodías pegajosas y letras 
-                    que conectan directamente con la calle.
-                </p>
-                <div class="album-details">
-                    <div class="detail-item">
-                        <span class="detail-label">🎵 Tracks</span>
-                        <span class="detail-value">9 canciones</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">⏱️ Duración</span>
-                        <span class="detail-value">31 min 12 seg</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">🎼 Género</span>
-                        <span class="detail-value">Trap/Drill/Urbano</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">📅 Año</span>
-                        <span class="detail-value">2024</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">🎛️ Producción</span>
-                        <span class="detail-value">Terrivol Music</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- PRICING -->
-        <section class="pricing-section reveal">
-            <h2 class="section-title">Elige tu opción de compra</h2>
-            <div class="pricing-grid">
-                <!-- NEQUI -->
-                <div class="pricing-card">
-                    <div class="pricing-icon">📱</div>
-                    <h3 class="pricing-name">Pago por Nequi</h3>
-                    <div class="pricing-price">$15.000 COP</div>
-                    <span class="pricing-price-usd">≈ $4 USD</span>
-                    <p class="pricing-desc">Paga fácilmente con Nequi y recibe el álbum digital inmediatamente. Ideal para Colombia.</p>
-                    <ul class="pricing-features">
-                        <li>Álbum completo en MP3 320kbps</li>
-                        <li>9 tracks oficiales</li>
-                        <li>Descarga inmediata</li>
-                        <li>Acceso de por vida</li>
-                        <li>Soporte por WhatsApp</li>
-                    </ul>
-                    <button class="buy-btn buy-btn-nequi" onclick="openNequiModal()">Comprar con Nequi</button>
-                </div>
-                
-                <!-- DIGITAL ALBUM - FOURTHWALL -->
-                <div class="pricing-card featured">
-                    <div class="pricing-icon">💿</div>
-                    <h3 class="pricing-name">Álbum Digital Premium</h3>
-                    <div class="pricing-price">$9.99 USD</div>
-                    <span class="pricing-price-usd">≈ $34.000 COP</span>
-                    <p class="pricing-desc">Compra internacional segura vía Fourthwall. Todos los métodos de pago disponibles (Tarjeta, PayPal).</p>
-                    <ul class="pricing-features">
-                        <li>Álbum completo en alta calidad</li>
-                        <li>9 tracks oficiales</li>
-                        <li>Descarga digital inmediata</li>
-                        <li>Acceso de por vida</li>
-                        <li>Soporte internacional</li>
-                        <li>PayPal, tarjetas, etc.</li>
-                    </ul>
-                    <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx" target="_blank" class="buy-btn buy-btn-digital">Comprar en Fourthwall</a>
-                </div>
-            </div>
-            
-            <!-- NEQUI INFO -->
-            <div class="payment-info reveal">
-                <h3>💳 ¿Cómo pagar con Nequi?</h3>
-                <p>Sigue estos simples pasos para completar tu compra:</p>
-                <div class="payment-steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <div class="step-title">Abre Nequi</div>
-                        <div class="step-desc">Ingresa a tu app de Nequi</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <div class="step-title">Enviar dinero</div>
-                        <div class="step-desc">Usa el número: 310 212 3844</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <div class="step-title">Confirma</div>
-                        <div class="step-desc">Envía comprobante y recibe tu álbum</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- FOOTER -->
-        <footer class="footer">
-            <p style="margin-bottom:0.5rem;font-size:1rem">© 2026 Terrivol Music. Todos los derechos reservados.</p>
-            <p>Contacto: <a href="mailto:terrivolmusiclove@gmail.com">terrivolmusiclove@gmail.com</a> | WhatsApp: +57 310 212 3844</p>
-        </footer>
+    <div class="product-info">
+      <span class="product-tag">Digital Download</span>
+      <h3 class="product-title">YUNGG FLEXX - Álbum Completo</h3>
+      <p class="product-desc">Descarga inmediata en MP3 320kbps y WAV. Incluye 10 tracks: DA SOSA, MON DESTIN, DRILL HPZ y más.</p>
+      <div class="product-actions">
+        <a href="https://wa.me/573102123844?text=Hola,%20quiero%20pagar%20el%20álbum%20YUNGG%20FLEXX%20por%20Nequi" class="btn-nequi">💳 Pagar con Nequi (COL)</a>
+        <!-- PON AQUÍ TU LINK DE FOURTHWALL PARA EL ÁLBUM DIGITAL -->
+        <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx-digital" target="_blank" class="btn-fourthwall">🌎 Comprar Internacional (USD)</a>
+      </div>
     </div>
-    
-    <!-- NEQUI MODAL -->
-    <div class="modal" id="nequiModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeNequiModal()">&times;</button>
-            <h2 class="modal-title">💳 Pago con Nequi</h2>
-            <div class="modal-text">
-                <p><strong>Realiza tu pago al siguiente número:</strong></p>
-                <div class="modal-code">
-                    <div class="code-number">310 212 3844</div>
-                    <p style="margin-top:0.5rem;color:rgba(255,255,255,0.7);font-size:0.9rem">A nombre de: Terrivol Music</p>
-                </div>
-                <p style="margin:1rem 0"><strong>Valor:</strong> <span style="color:var(--nequi);font-size:1.3rem">$15.000 COP</span> <span style="color:rgba(255,255,255,0.7);font-size:1rem">≈ $4 USD</span></p>
-                <p style="font-size:0.9rem;color:rgba(255,255,255,0.7)">
-                    Una vez realizado el pago, envía el comprobante por WhatsApp al mismo número 
-                    y te enviaremos el álbum digital inmediatamente.
-                </p>
-            </div>
-            <div style="text-align:center">
-                <a href="https://wa.me/573102123844?text=Hola!%20Acabo%20de%20hacer%20el%20pago%20de%20YUNGG%20FLEXX%20por%20Nequi%20(%2415.000%20COP).%20Aquí%20mi%20comprobante:" target="_blank" class="copy-btn">
-                    Enviar Comprobante por WhatsApp
-                </a>
-            </div>
-        </div>
+  </div>
+</div>
+
+<div class="section-label">// MERCH OFICIAL</div>
+<div class="products-grid">
+  
+  <!-- Hoodie -->
+  <div class="product-card">
+    <div class="product-img">
+      <img src="img/yungg-hoodie.jpg" alt="Hoodie Cagta Flex">
     </div>
-    
-    <script>
-        // Partículas (opcional si quieres mantener el efecto, aunque el cielo ya hace el trabajo)
-        // Aquí no agregué partículas extra para no saturar, el cielo y truenos son suficientes
-        
-        // Modal functions
-        function openNequiModal(){
-            document.getElementById('nequiModal').classList.add('active');
-            document.body.style.overflow='hidden';
-        }
-        
-        function closeNequiModal(){
-            document.getElementById('nequiModal').classList.remove('active');
-            document.body.style.overflow='auto';
-        }
-        
-        // Cerrar modal al hacer clic fuera
-        document.getElementById('nequiModal').addEventListener('click',function(e){
-            if(e.target===this) closeNequiModal();
-        });
-        
-        // Scroll reveal
-        function reveal(){
-            var reveals=document.querySelectorAll(".reveal");
-            for(var i=0;i<reveals.length;i++){
-                var windowHeight=window.innerHeight;
-                var elementTop=reveals[i].getBoundingClientRect().top;
-                var elementVisible=150;
-                if(elementTop<windowHeight-elementVisible){
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll",reveal);
-        reveal();
-    </script>
+    <div class="product-info">
+      <span class="product-tag">Ropa Oficial</span>
+      <h3 class="product-title">YUNGG FLEXX Hoodie</h3>
+      <p class="product-desc">Buso negro premium 100% algodón con logo futurista. Edición limitada. Tallas S-3XL.</p>
+      <div class="product-actions">
+        <a href="https://wa.me/573102123844?text=Hola,%20quiero%20el%20Hoodie%20YUNGG%20FLEXX" class="btn-nequi">💳 Preguntar por Nequi</a>
+        <!-- PON AQUÍ TU LINK DE FOURTHWALL PARA EL HOODIE -->
+        <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx-hoodie" target="_blank" class="btn-fourthwall">🌎 Comprar Internacional</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Camiseta -->
+  <div class="product-card">
+    <div class="product-img">
+      <img src="img/yungg-camiseta.jpg" alt="Camiseta Cagta Flex">
+    </div>
+    <div class="product-info">
+      <span class="product-tag">Ropa Oficial</span>
+      <h3 class="product-title">YUNGG FLEXX T-Shirt</h3>
+      <p class="product-desc">Camiseta negra de algodón peinado con estampado de alta calidad. Corte unisex.</p>
+      <div class="product-actions">
+        <a href="https://wa.me/573102123844?text=Hola,%20quiero%20la%20Camiseta%20YUNGG%20FLEXX" class="btn-nequi">💳 Preguntar por Nequi</a>
+        <!-- PON AQUÍ TU LINK DE FOURTHWALL PARA LA CAMISETA -->
+        <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx-tshirt" target="_blank" class="btn-fourthwall">🌎 Comprar Internacional</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CD Físico -->
+  <div class="product-card">
+    <div class="product-img">
+      <img src="img/yungg-cd.jpg" alt="CD YUNGG FLEXX">
+    </div>
+    <div class="product-info">
+      <span class="product-tag">Edición Física</span>
+      <h3 class="product-title">YUNGG FLEXX - CD Oficial</h3>
+      <p class="product-desc">CD físico con arte oficial (Mockup niño), booklet y tracklist completo. Envío internacional disponible.</p>
+      <div class="product-actions">
+        <a href="https://wa.me/573102123844?text=Hola,%20quiero%20el%20CD%20Físico%20YUNGG%20FLEXX" class="btn-nequi">💳 Preguntar por Nequi</a>
+        <!-- PON AQUÍ TU LINK DE FOURTHWALL PARA EL CD -->
+        <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx-cd" target="_blank" class="btn-fourthwall">🌎 Comprar Internacional</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer style="text-align: center; padding: 4rem 2rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 4rem; color: #666;">
+  <p>© 2026 Terrivol Music / Cagta Flex. Todos los derechos reservados.</p>
+</footer>
+
 </body>
 </html>
