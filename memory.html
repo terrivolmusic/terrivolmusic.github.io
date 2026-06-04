@@ -5,87 +5,447 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEMORY - Cagta Flex | Álbum Oficial + Merch</title>
     <meta name="description" content="MEMORY - El nuevo álbum de Cagta Flex. Escúchalo ya en todas las plataformas.">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        :root{--burgundy:#8B0000;--blood-red:#DC143C;--black:#0a0a0a;--white:#fff;--gold:#D4AF37}
-        body{font-family:'Syne',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
-        .bg{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#050505 0%,#1a0000 100%);z-index:-2}
-        .particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-        .particle{position:absolute;width:2px;height:2px;background:var(--blood-red);border-radius:50%;opacity:0.5;animation:float 15s linear infinite}
-        @keyframes float{0%{transform:translateY(100vh);opacity:0}50%{opacity:0.8}100%{transform:translateY(-10vh);opacity:0}}
-        .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
-        .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem 0;position:relative}
-        .hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at center,rgba(220,20,60,0.15) 0%,transparent 70%);pointer-events:none}
-        .hero-badge{background:var(--blood-red);color:#fff;padding:0.5rem 2rem;border-radius:50px;font-size:0.85rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:2rem;display:inline-block;border:2px solid var(--gold);animation:fadeInDown 1s ease}
-        @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
-        .hero-title{font-size:clamp(4rem,12vw,8rem);font-weight:800;color:var(--white);line-height:0.9;margin-bottom:1rem;letter-spacing:-3px;text-shadow:0 0 60px rgba(220,20,60,0.5)}
-        .hero-title span{color:var(--blood-red)}
-        .hero-sub{font-size:1.3rem;color:rgba(255,255,255,0.8);margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto}
-        .hero-cta{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
-        .btn-primary{background:var(--gold);color:#000;padding:1.2rem 3rem;border-radius:5px;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:2px;display:inline-block;transition:0.3s;border:2px solid var(--gold);font-size:1.1rem}
-        .btn-primary:hover{background:transparent;color:var(--gold);transform:translateY(-3px)}
-        .btn-outline{border:2px solid var(--blood-red);color:var(--white);padding:1.2rem 3rem;border-radius:5px;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:2px;display:inline-block;transition:0.3s;font-size:1.1rem}
-        .btn-outline:hover{background:var(--blood-red);transform:translateY(-3px)}
-        .section{padding:6rem 0}
-        .section-title{font-size:2.5rem;font-weight:800;margin-bottom:3rem;text-align:center;color:var(--white);text-transform:uppercase;letter-spacing:2px}
+        :root{
+            --burgundy:#8B0000;
+            --blood-red:#DC143C;
+            --black:#0a0a0a;
+            --white:#fff;
+            --gold:#D4AF37;
+            --dark-red:#1a0000;
+        }
+        
+        html{scroll-behavior:smooth}
+        body{
+            font-family:'Syne',sans-serif;
+            background:var(--black);
+            color:var(--white);
+            overflow-x:hidden;
+            cursor:none;
+        }
+
+        /* Custom Cursor */
+        .cursor{
+            width:8px;height:8px;background:var(--blood-red);border-radius:50%;
+            position:fixed;top:0;left:0;pointer-events:none;z-index:999999;
+            transform:translate(-50%,-50%);transition:transform 0.1s ease;
+        }
+        .cursor-ring{
+            width:32px;height:32px;border:1px solid var(--blood-red);border-radius:50%;
+            position:fixed;top:0;left:0;pointer-events:none;z-index:999998;
+            transform:translate(-50%,-50%);transition:all 0.15s ease-out;
+        }
+        .cursor-ring.hover{
+            transform:translate(-50%,-50%) scale(2);
+            border-color:var(--gold);
+            background:rgba(212,175,55,0.1);
+        }
+        @media(pointer:coarse){
+            .cursor,.cursor-ring{display:none !important}
+            body{cursor:auto !important}
+        }
+
+        /* Background */
+        .bg{
+            position:fixed;top:0;left:0;width:100%;height:100%;
+            background:linear-gradient(135deg,#050505 0%,#1a0000 50%,#0a0a0a 100%);
+            z-index:-2;
+        }
+        .particles{
+            position:fixed;top:0;left:0;width:100%;height:100%;
+            z-index:-1;pointer-events:none;
+        }
+        .particle{
+            position:absolute;width:2px;height:2px;
+            background:var(--blood-red);border-radius:50%;
+            opacity:0.5;animation:float 15s linear infinite;
+        }
+        @keyframes float{
+            0%{transform:translateY(100vh) translateX(0);opacity:0}
+            50%{opacity:0.8}
+            100%{transform:translateY(-10vh) translateX(100px);opacity:0}
+        }
+
+        .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+        /* Navigation */
+        nav{
+            position:fixed;top:0;width:100%;z-index:1000;
+            padding:1.5rem 2rem;
+            background:rgba(10,10,10,0.95);
+            backdrop-filter:blur(10px);
+            border-bottom:1px solid rgba(220,20,60,0.3);
+        }
+        .nav-container{
+            max-width:1200px;margin:0 auto;
+            display:flex;justify-content:space-between;align-items:center;
+        }
+        .nav-logo{
+            font-size:1.5rem;font-weight:800;color:var(--white);
+            text-decoration:none;letter-spacing:2px;
+        }
+        .nav-logo span{color:var(--blood-red)}
+        .nav-links{display:flex;gap:2rem;align-items:center}
+        .nav-links a{
+            color:rgba(255,255,255,0.7);text-decoration:none;
+            font-size:0.9rem;font-weight:600;transition:0.3s;
+            text-transform:uppercase;letter-spacing:1px;
+        }
+        .nav-links a:hover{color:var(--gold)}
+        .nav-cta{
+            background:var(--blood-red);color:#fff;padding:0.6rem 1.5rem;
+            border-radius:5px;font-weight:700;text-decoration:none;
+            transition:0.3s;border:2px solid var(--blood-red);
+        }
+        .nav-cta:hover{
+            background:transparent;color:var(--blood-red);
+            box-shadow:0 0 20px rgba(220,20,60,0.5);
+        }
+
+        /* Hero */
+        .hero{
+            min-height:100vh;display:flex;flex-direction:column;
+            align-items:center;justify-content:center;text-align:center;
+            padding:8rem 2rem 4rem;position:relative;
+            background:radial-gradient(circle at center,rgba(220,20,60,0.15) 0%,transparent 70%);
+        }
+        .hero-badge{
+            background:linear-gradient(135deg,var(--burgundy),var(--blood-red));
+            color:#fff;padding:0.6rem 2.5rem;border-radius:50px;
+            font-size:0.85rem;font-weight:700;letter-spacing:3px;
+            text-transform:uppercase;margin-bottom:2.5rem;
+            display:inline-block;border:2px solid var(--gold);
+            animation:fadeInDown 1s ease,glow 3s ease-in-out infinite;
+            box-shadow:0 0 30px rgba(220,20,60,0.5);
+        }
+        @keyframes fadeInDown{
+            from{opacity:0;transform:translateY(-30px)}
+            to{opacity:1;transform:translateY(0)}
+        }
+        @keyframes glow{
+            0%,100%{box-shadow:0 0 30px rgba(220,20,60,0.5)}
+            50%{box-shadow:0 0 50px rgba(212,175,55,0.8)}
+        }
+        .hero-title{
+            font-size:clamp(5rem,15vw,10rem);font-weight:800;
+            color:var(--white);line-height:0.85;margin-bottom:1.5rem;
+            letter-spacing:-5px;
+            text-shadow:0 0 80px rgba(220,20,60,0.6);
+            animation:scaleIn 1.2s ease;
+        }
+        .hero-title span{
+            color:var(--blood-red);
+            display:block;
+            text-shadow:0 0 60px rgba(220,20,60,0.8);
+        }
+        @keyframes scaleIn{
+            from{opacity:0;transform:scale(0.8)}
+            to{opacity:1;transform:scale(1)}
+        }
+        .hero-sub{
+            font-size:1.4rem;color:rgba(255,255,255,0.8);
+            margin-bottom:3rem;max-width:700px;margin-left:auto;margin-right:auto;
+            font-family:'Space Mono',monospace;
+            animation:fadeIn 1.5s ease;
+        }
+        @keyframes fadeIn{
+            from{opacity:0}
+            to{opacity:1}
+        }
+        .hero-cta{
+            display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;
+            position:relative;z-index:1;
+        }
+        .btn-primary{
+            background:var(--gold);color:#000;padding:1.3rem 3.5rem;
+            border-radius:5px;font-weight:800;text-decoration:none;
+            text-transform:uppercase;letter-spacing:2px;
+            display:inline-block;transition:all 0.3s;
+            border:2px solid var(--gold);font-size:1.1rem;
+            position:relative;overflow:hidden;
+        }
+        .btn-primary::before{
+            content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);
+            transition:0.5s;
+        }
+        .btn-primary:hover::before{left:100%}
+        .btn-primary:hover{
+            background:transparent;color:var(--gold);
+            transform:translateY(-5px);
+            box-shadow:0 10px 40px rgba(212,175,55,0.4);
+        }
+        .btn-outline{
+            border:2px solid var(--blood-red);color:var(--white);
+            padding:1.3rem 3.5rem;border-radius:5px;font-weight:800;
+            text-decoration:none;text-transform:uppercase;letter-spacing:2px;
+            display:inline-block;transition:all 0.3s;font-size:1.1rem;
+            background:transparent;
+        }
+        .btn-outline:hover{
+            background:var(--blood-red);transform:translateY(-5px);
+            box-shadow:0 10px 40px rgba(220,20,60,0.4);
+        }
+
+        /* Section */
+        .section{padding:8rem 0;position:relative}
+        .section-title{
+            font-size:3rem;font-weight:800;margin-bottom:4rem;
+            text-align:center;color:var(--white);text-transform:uppercase;
+            letter-spacing:3px;position:relative;
+        }
+        .section-title::after{
+            content:'';display:block;width:100px;height:3px;
+            background:linear-gradient(90deg,var(--burgundy),var(--gold));
+            margin:1rem auto 0;
+        }
         .section-title span{color:var(--blood-red)}
-        .videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2.5rem;margin-top:3rem}
-        .video-wrapper{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(220,20,60,0.3);border:3px solid var(--burgundy);transition:0.3s}
-        .video-wrapper:hover{transform:translateY(-10px);border-color:var(--blood-red)}
-        .video-container{position:relative;padding-bottom:56.25%;height:0}
-        .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
-        .video-info{padding:1.5rem;background:rgba(255,255,255,0.03)}
-        .video-title{font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
-        .streaming{background:rgba(255,255,255,0.02)}
-        .streaming-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;margin-top:2rem}
-        .streaming-btn{text-align:center;padding:1.5rem;border-radius:8px;text-decoration:none;font-weight:700;transition:0.3s;display:flex;align-items:center;justify-content:center;gap:0.8rem}
-        .streaming-btn:hover{transform:translateY(-5px)}
-        .spotify{background:#1DB954;color:#fff}
-        .apple{background:#FA243C;color:#fff}
-        .youtube{background:#FF0000;color:#fff}
-        .deezer{background:#A020F0;color:#fff}
-        .tiktok{background:#000;color:#fff;border:2px solid #fff}
-        .testimonial{background:linear-gradient(135deg,rgba(139,0,0,0.2),transparent);border-left:4px solid var(--blood-red);padding:3rem;margin:4rem 0;text-align:center}
-        .quote{font-size:1.5rem;font-style:italic;line-height:1.6;margin-bottom:1.5rem;color:rgba(255,255,255,0.9)}
-        .author{font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:2px}
-        .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2.5rem;margin-top:3rem}
-        .product-card{background:rgba(255,255,255,0.03);border:2px solid var(--burgundy);border-radius:12px;overflow:hidden;transition:0.3s;position:relative}
-        .product-card:hover{transform:translateY(-10px);border-color:var(--gold)}
-        .product-badge{position:absolute;top:1rem;right:1rem;background:var(--gold);color:#000;padding:0.3rem 1rem;font-weight:700;font-size:0.75rem;border-radius:3px;z-index:10}
-        .product-img{width:100%;height:350px;background:#111;overflow:hidden}
-        .product-img img{width:100%;height:100%;object-fit:cover}
-        .product-body{padding:2rem;text-align:center}
-        .product-title{font-size:1.5rem;font-weight:700;margin-bottom:0.5rem}
-        .product-price{font-size:1.8rem;color:var(--gold);font-weight:800;margin:1rem 0}
-        .product-location{display:inline-block;padding:0.4rem 1.2rem;background:rgba(30,144,255,0.2);border:1px solid #1E90FF;border-radius:20px;font-size:0.8rem;margin-bottom:1rem}
-        .product-location.intl{background:rgba(212,175,55,0.2);border-color:var(--gold)}
-        .product-desc{color:rgba(255,255,255,0.7);margin-bottom:1.5rem;line-height:1.6}
-        .btn-buy{display:block;width:100%;padding:1rem;background:var(--blood-red);color:#fff;border:none;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;transition:0.3s;text-transform:uppercase}
-        .btn-buy:hover{background:var(--gold);color:#000}
-        .footer{padding:4rem 0;border-top:2px solid var(--burgundy);text-align:center;margin-top:4rem;background:rgba(0,0,0,0.5)}
-        .socials{display:flex;justify-content:center;gap:2rem;margin-bottom:2rem;flex-wrap:wrap}
-        .socials a{color:var(--white);text-decoration:none;font-size:1.5rem;transition:0.3s}
-        .socials a:hover{color:var(--blood-red);transform:scale(1.1)}
-        @media(max-width:768px){.hero-title{font-size:clamp(3rem,12vw,5rem)}.videos-grid{grid-template-columns:1fr}.section{padding:4rem 0}.products-grid{grid-template-columns:1fr}}
+
+        /* Videos */
+        .videos-grid{
+            display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+            gap:3rem;margin-top:3rem;
+        }
+        .video-wrapper{
+            position:relative;border-radius:12px;overflow:hidden;
+            box-shadow:0 20px 60px rgba(220,20,60,0.3);
+            border:3px solid var(--burgundy);transition:all 0.4s;
+            background:rgba(139,0,0,0.1);
+        }
+        .video-wrapper:hover{
+            transform:translateY(-15px) scale(1.02);
+            border-color:var(--gold);
+            box-shadow:0 30px 80px rgba(212,175,55,0.3);
+        }
+        .video-container{
+            position:relative;padding-bottom:56.25%;height:0;
+        }
+        .video-container iframe{
+            position:absolute;top:0;left:0;width:100%;height:100%;
+            border:none;
+        }
+        .video-info{
+            padding:2rem;background:rgba(255,255,255,0.03);
+            border-top:1px solid rgba(220,20,60,0.3);
+        }
+        .video-title{
+            font-size:1.3rem;font-weight:700;color:var(--white);
+            margin-bottom:0.5rem;
+        }
+
+        /* Streaming */
+        .streaming{
+            background:linear-gradient(180deg,rgba(139,0,0,0.1),transparent);
+            border-top:1px solid rgba(220,20,60,0.2);
+            border-bottom:1px solid rgba(220,20,60,0.2);
+        }
+        .streaming-grid{
+            display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+            gap:2rem;margin-top:3rem;
+        }
+        .streaming-btn{
+            text-align:center;padding:1.8rem;border-radius:12px;
+            text-decoration:none;font-weight:700;transition:all 0.3s;
+            display:flex;align-items:center;justify-content:center;gap:1rem;
+            font-size:1.1rem;border:2px solid transparent;
+        }
+        .streaming-btn:hover{
+            transform:translateY(-8px) scale(1.05);
+            box-shadow:0 15px 40px rgba(0,0,0,0.4);
+        }
+        .spotify{
+            background:#1DB954;color:#fff;
+        }
+        .spotify:hover{border-color:#1DB954}
+        .apple{
+            background:#FA243C;color:#fff;
+        }
+        .apple:hover{border-color:#FA243C}
+        .youtube{
+            background:#FF0000;color:#fff;
+        }
+        .youtube:hover{border-color:#FF0000}
+        .deezer{
+            background:#A020F0;color:#fff;
+        }
+        .deezer:hover{border-color:#A020F0}
+        .tiktok{
+            background:#000;color:#fff;border:2px solid #fff;
+        }
+        .tiktok:hover{background:#fff;color:#000}
+
+        /* Testimonial */
+        .testimonial{
+            background:linear-gradient(135deg,rgba(139,0,0,0.3),rgba(212,175,55,0.1));
+            border-left:5px solid var(--blood-red);
+            border-right:5px solid var(--gold);
+            padding:4rem;margin:6rem 0;
+            text-align:center;position:relative;
+            border-radius:12px;
+            box-shadow:0 20px 60px rgba(220,20,60,0.2);
+        }
+        .testimonial::before{
+            content:'"';font-size:8rem;color:var(--blood-red);
+            opacity:0.2;position:absolute;top:-20px;left:20px;
+        }
+        .quote{
+            font-size:1.8rem;font-style:italic;line-height:1.6;
+            margin-bottom:2rem;color:rgba(255,255,255,0.9);
+            font-family:'Space Mono',monospace;
+        }
+        .author{
+            font-weight:800;color:var(--gold);
+            text-transform:uppercase;letter-spacing:3px;
+            font-size:1.1rem;
+        }
+
+        /* Products */
+        .products-grid{
+            display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:3rem;margin-top:3rem;
+        }
+        .product-card{
+            background:rgba(255,255,255,0.03);
+            border:2px solid var(--burgundy);border-radius:16px;
+            overflow:hidden;transition:all 0.4s;position:relative;
+        }
+        .product-card:hover{
+            transform:translateY(-15px);
+            border-color:var(--gold);
+            box-shadow:0 30px 80px rgba(212,175,55,0.2);
+        }
+        .product-badge{
+            position:absolute;top:1.5rem;right:1.5rem;
+            background:var(--gold);color:#000;
+            padding:0.5rem 1.2rem;font-weight:700;
+            font-size:0.8rem;border-radius:5px;z-index:10;
+            text-transform:uppercase;letter-spacing:1px;
+            box-shadow:0 5px 15px rgba(212,175,55,0.4);
+        }
+        .product-img{
+            width:100%;height:380px;background:#111;overflow:hidden;
+            position:relative;
+        }
+        .product-img img{
+            width:100%;height:100%;object-fit:cover;
+            transition:transform 0.5s;
+        }
+        .product-card:hover .product-img img{
+            transform:scale(1.1);
+        }
+        .product-body{padding:2.5rem;text-align:center}
+        .product-title{
+            font-size:1.6rem;font-weight:700;margin-bottom:0.8rem;
+            color:var(--white);
+        }
+        .product-price{
+            font-size:2rem;color:var(--gold);font-weight:800;
+            margin:1.5rem 0;font-family:'Space Mono',monospace;
+        }
+        .product-location{
+            display:inline-block;padding:0.5rem 1.5rem;
+            background:rgba(30,144,255,0.2);
+            border:1px solid #1E90FF;border-radius:25px;
+            font-size:0.85rem;margin-bottom:1.5rem;
+            font-family:'Space Mono',monospace;
+        }
+        .product-location.intl{
+            background:rgba(212,175,55,0.2);
+            border-color:var(--gold);color:var(--gold);
+        }
+        .product-desc{
+            color:rgba(255,255,255,0.7);margin-bottom:2rem;
+            line-height:1.7;font-size:1rem;
+        }
+        .btn-buy{
+            display:block;width:100%;padding:1.2rem;
+            background:var(--blood-red);color:#fff;border:none;
+            font-weight:700;cursor:pointer;text-decoration:none;
+            text-align:center;transition:all 0.3s;
+            text-transform:uppercase;letter-spacing:2px;
+            border-radius:8px;font-size:1rem;
+        }
+        .btn-buy:hover{
+            background:var(--gold);color:#000;
+            transform:translateY(-3px);
+            box-shadow:0 10px 30px rgba(212,175,55,0.4);
+        }
+
+        /* Footer */
+        .footer{
+            padding:5rem 2rem;border-top:3px solid var(--burgundy);
+            text-align:center;margin-top:6rem;
+            background:linear-gradient(180deg,transparent,rgba(139,0,0,0.2));
+        }
+        .socials{
+            display:flex;justify-content:center;gap:3rem;
+            margin-bottom:3rem;flex-wrap:wrap;
+        }
+        .socials a{
+            color:var(--white);text-decoration:none;font-size:1.5rem;
+            transition:all 0.3s;font-weight:600;
+            text-transform:uppercase;letter-spacing:1px;
+        }
+        .socials a:hover{
+            color:var(--blood-red);transform:scale(1.1);
+            text-shadow:0 0 20px rgba(220,20,60,0.6);
+        }
+        .footer-copy{
+            color:rgba(255,255,255,0.5);font-size:0.9rem;
+            font-family:'Space Mono',monospace;
+        }
+
+        /* Responsive */
+        @media(max-width:768px){
+            .hero-title{font-size:clamp(3.5rem,12vw,6rem)}
+            .hero-sub{font-size:1.1rem}
+            .hero-cta{flex-direction:column;align-items:center}
+            .btn-primary,.btn-outline{width:100%;max-width:350px}
+            .videos-grid{grid-template-columns:1fr}
+            .section{padding:5rem 0}
+            .section-title{font-size:2.2rem}
+            .products-grid{grid-template-columns:1fr}
+            .streaming-grid{grid-template-columns:1fr}
+            .nav-links{display:none}
+        }
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
     <div class="bg"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- HERO -->
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">TERRIVOL<span>.</span></a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="#videos">Videos</a>
+                <a href="#productos">Merch</a>
+                <a href="comprar-memory.html" class="nav-cta">Tienda</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
     <section class="hero">
         <div class="hero-badge">Álbum + Merch Oficial</div>
-        <h1 class="hero-title">MEM<span>O</span>RY</h1>
-        <p class="hero-sub">Las cicatrices del pasado son las armas del futuro. Cagta Flex.</p>
+        <h1 class="hero-title">MEM<span>ORY</span></h1>
+        <p class="hero-sub">"Las cicatrices del pasado son las armas del futuro" — Cagta Flex</p>
         <div class="hero-cta">
             <a href="#videos" class="btn-primary">▶️ Escuchar Ahora</a>
             <a href="comprar-memory.html" class="btn-outline">🛒 Ver Merch</a>
         </div>
     </section>
 
-    <!-- VIDEOS -->
+    <!-- Videos -->
     <section id="videos" class="section">
         <div class="container">
             <h2 class="section-title">Videos <span>Oficiales</span></h2>
@@ -118,21 +478,36 @@
         </div>
     </section>
 
-    <!-- STREAMING -->
+    <!-- Streaming -->
     <section class="section streaming">
         <div class="container">
             <h2 class="section-title">Disponible En <span>Todas Partes</span></h2>
             <div class="streaming-grid">
-                <a href="https://open.spotify.com/intl-es/album/4eXayKWvvkhKF2uQ3QBm9Q" target="_blank" class="streaming-btn spotify">Spotify</a>
-                <a href="https://music.apple.com/co/album/memory/6770545141" target="_blank" class="streaming-btn apple">Apple Music</a>
-                <a href="https://youtube.com/playlist?list=PL1i1Ed0n0vaNe5NL7qVLKNUqFJlOaDUeF&si=6W7DqWwXyiCNmnfA" target="_blank" class="streaming-btn youtube">YouTube</a>
-                <a href="https://www.deezer.com/mx/album/985545711" target="_blank" class="streaming-btn deezer">Deezer</a>
-                <a href="https://www.tiktok.com/@cagtaflex" target="_blank" class="streaming-btn tiktok">TikTok</a>
+                <a href="https://open.spotify.com/intl-es/album/4eXayKWvvkhKF2uQ3QBm9Q" target="_blank" class="streaming-btn spotify">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                    Spotify
+                </a>
+                <a href="https://music.apple.com/co/album/memory/6770545141" target="_blank" class="streaming-btn apple">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.801.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03c.525 0 1.048-.034 1.57-.1.82-.105 1.597-.35 2.296-.81 1.12-.74 1.84-1.77 2.15-3.09.137-.59.187-1.19.217-1.793.013-.25.017-.5.017-.75V6.275c0-.05-.003-.1-.005-.15z"/></svg>
+                    Apple Music
+                </a>
+                <a href="https://youtube.com/playlist?list=PL1i1Ed0n0vaNe5NL7qVLKNUqFJlOaDUeF&si=6W7DqWwXyiCNmnfA" target="_blank" class="streaming-btn youtube">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    YouTube
+                </a>
+                <a href="https://www.deezer.com/mx/album/985545711" target="_blank" class="streaming-btn deezer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.81 4.13v3.18h-3.18V4.13h3.18zM6.35 10.49v3.18H3.17v-3.18h3.18zm4.23 0v3.18H7.4v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18zM6.35 14.67v3.18H3.17v-3.18h3.18zm4.23 0v3.18H7.4v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18zM2.17 18.85v3.18H-1v-3.18h3.17zm4.23 0v3.18H3.22v-3.18h3.18zm4.23 0v3.18H7.45v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18z"/></svg>
+                    Deezer
+                </a>
+                <a href="https://www.tiktok.com/@cagtaflex" target="_blank" class="streaming-btn tiktok">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>
+                    TikTok
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- TESTIMONIAL -->
+    <!-- Testimonial -->
     <div class="container">
         <div class="testimonial">
             <p class="quote">"MEMORY no es solo un álbum, es una experiencia sonora que te transporta a través de batallas internas y victorias personales."</p>
@@ -140,48 +515,63 @@
         </div>
     </div>
 
-    <!-- PRODUCTS -->
+    <!-- Products -->
     <section id="productos" class="section">
         <div class="container">
             <h2 class="section-title">Merch <span>Oficial</span></h2>
             <div class="products-grid">
+                <!-- Digital Album -->
                 <div class="product-card">
                     <span class="product-badge">🌍 Digital</span>
-                    <div class="product-img"><img src="img/portada-album-memory.jpg" alt="Álbum Digital MEMORY"></div>
+                    <div class="product-img">
+                        <img src="img/portada-album.jpg" alt="Álbum Digital MEMORY" onerror="this.src='img/portada-album-memory.jpg'">
+                    </div>
                     <div class="product-body">
                         <h3 class="product-title">Álbum Digital</h3>
                         <div class="product-location">Desde $15.000 COP / $9.99 USD</div>
-                        <p class="product-desc">Descarga inmediata MP3/FLAC</p>
+                        <p class="product-desc">Descarga inmediata en MP3/FLAC alta calidad. Incluye 10 tracks exclusivos.</p>
                         <a href="comprar-memory.html" class="btn-buy">Comprar Ahora</a>
                     </div>
                 </div>
+
+                <!-- Hoodie -->
                 <div class="product-card">
                     <span class="product-badge">🌍 Internacional</span>
-                    <div class="product-img"><img src="img/hoodie-frontal.jpeg" alt="Hoodie MEMORY"></div>
+                    <div class="product-img">
+                        <img src="img/hoodie-frontal.jpeg" alt="Hoodie MEMORY">
+                    </div>
                     <div class="product-body">
                         <h3 class="product-title">Hoodie MEMORY</h3>
                         <div class="product-location intl">Fourthwall - $60 USD</div>
-                        <p class="product-desc">Envío mundial disponible</p>
+                        <p class="product-desc">Hoodie negro premium con diseño exclusivo MEMORY. Algodón de alta calidad.</p>
                         <a href="comprar-memory.html" class="btn-buy">Ver Detalles</a>
                     </div>
                 </div>
+
+                <!-- Physical CD -->
                 <div class="product-card">
                     <span class="product-badge">🇨🇴 Colombia</span>
-                    <div class="product-img"><img src="img/cd-memory.jpg" alt="CD Físico MEMORY"></div>
+                    <div class="product-img">
+                        <img src="img/cd-memory.jpg" alt="CD Físico MEMORY">
+                    </div>
                     <div class="product-body">
                         <h3 class="product-title">CD Físico</h3>
                         <div class="product-location">Directo - $60.000 COP</div>
-                        <p class="product-desc">Edición limitada numerada</p>
+                        <p class="product-desc">Edición limitada numerada con arte impreso y booklet exclusivo.</p>
                         <a href="comprar-memory.html" class="btn-buy">Reservar</a>
                     </div>
                 </div>
+
+                <!-- Mug -->
                 <div class="product-card">
                     <span class="product-badge">🌍 Internacional</span>
-                    <div class="product-img"><img src="img/taza-memory.jpg" alt="Taza MEMORY"></div>
+                    <div class="product-img">
+                        <img src="img/taza-memory.jpg" alt="Taza MEMORY">
+                    </div>
                     <div class="product-body">
                         <h3 class="product-title">Taza MEMORY</h3>
                         <div class="product-location intl">Fourthwall - $25 USD</div>
-                        <p class="product-desc">Cerámica negra premium</p>
+                        <p class="product-desc">Taza de cerámica negra premium con diseño MEMORY. Perfecta para tu café.</p>
                         <a href="comprar-memory.html" class="btn-buy">Ver Detalles</a>
                     </div>
                 </div>
@@ -189,19 +579,41 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="socials">
                 <a href="https://instagram.com/cagtaflex" target="_blank">Instagram</a>
                 <a href="https://tiktok.com/@cagtaflex" target="_blank">TikTok</a>
                 <a href="https://youtube.com/@cagtaflex" target="_blank">YouTube</a>
+                <a href="https://open.spotify.com/artist/cagtaflex" target="_blank">Spotify</a>
             </div>
-            <p style="color:rgba(255,255,255,0.5)">© 2024 Terrivol Music. Todos los derechos reservados.</p>
+            <p class="footer-copy">© 2024 Terrivol Music. Cagta Flex - MEMORY. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <script>
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorRing = document.getElementById('cursorRing');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            setTimeout(() => {
+                cursorRing.style.left = e.clientX + 'px';
+                cursorRing.style.top = e.clientY + 'px';
+            }, 50);
+        });
+
+        // Hover effect for cursor
+        const hoverElements = document.querySelectorAll('a, button, .product-card, .video-wrapper, .streaming-btn');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+        });
+
+        // Particles
         const p = document.getElementById('particles');
         for(let i=0; i<50; i++){
             const span = document.createElement('span');
@@ -211,12 +623,26 @@
             span.style.animationDelay = (Math.random()*5) + 's';
             p.appendChild(span);
         }
+
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
             anchor.addEventListener('click',function(e){
                 e.preventDefault();
                 const target=document.querySelector(this.getAttribute('href'));
                 if(target){ target.scrollIntoView({behavior:'smooth',block:'start'}); }
             });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if(window.scrollY > 100){
+                nav.style.background = 'rgba(10,10,10,0.98)';
+                nav.style.boxShadow = '0 5px 30px rgba(220,20,60,0.3)';
+            } else {
+                nav.style.background = 'rgba(10,10,10,0.95)';
+                nav.style.boxShadow = 'none';
+            }
         });
     </script>
 </body>
