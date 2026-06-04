@@ -12,7 +12,31 @@
   --yungg-pink: #ff00ff;
   --bg-dark: #05050a;
 }
-body { background: var(--bg-dark); color: #fff; font-family: 'Syne', sans-serif; }
+body { 
+  background: var(--bg-dark); color: #fff; font-family: 'Syne', sans-serif;
+  cursor: none; /* Ocultar cursor por defecto */
+}
+
+/* Custom Cursor */
+.cursor {
+  width: 8px; height: 8px; background: var(--yungg-blue); border-radius: 50%;
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999999;
+  transform: translate(-50%, -50%); transition: transform 0.1s ease;
+}
+.cursor-ring {
+  width: 32px; height: 32px; border: 1px solid var(--yungg-blue); border-radius: 50%;
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999998;
+  transform: translate(-50%, -50%); transition: all 0.15s ease-out;
+}
+.cursor-ring.hover {
+  transform: translate(-50%, -50%) scale(1.5);
+  border-color: var(--yungg-pink);
+  background: rgba(255,0,255,0.1);
+}
+@media (pointer: coarse) {
+  .cursor, .cursor-ring { display: none !important; }
+  body { cursor: auto !important; }
+}
 
 .hero-shop {
   padding: 8rem 2rem 4rem; text-align: center;
@@ -64,9 +88,18 @@ body { background: var(--bg-dark); color: #fff; font-family: 'Syne', sans-serif;
 .btn-fourthwall:hover { box-shadow: 0 0 20px rgba(0,229,255,0.4); }
 
 .section-label { text-align: center; color: var(--yungg-blue); font-family: 'Space Mono', monospace; margin-top: 4rem; font-size: 0.9rem; letter-spacing: 2px; }
+
+@media(max-width: 768px) {
+  .products-grid { grid-template-columns: 1fr; padding: 1rem; }
+  .hero-shop h1 { font-size: clamp(2.5rem, 8vw, 4rem); }
+}
 </style>
 </head>
 <body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- NAV SIMPLE -->
 <nav style="padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
@@ -86,7 +119,6 @@ body { background: var(--bg-dark); color: #fff; font-family: 'Syne', sans-serif;
   <!-- Álbum Digital -->
   <div class="product-card">
     <div class="product-img">
-      <!-- Usa la portada del álbum aquí -->
       <img src="img/yungg-cover.jpg" alt="YUNGG FLEXX Album Cover">
     </div>
     <div class="product-info">
@@ -95,7 +127,6 @@ body { background: var(--bg-dark); color: #fff; font-family: 'Syne', sans-serif;
       <p class="product-desc">Descarga inmediata en MP3 320kbps y WAV. Incluye 10 tracks: DA SOSA, MON DESTIN, DRILL HPZ y más.</p>
       <div class="product-actions">
         <a href="https://wa.me/573102123844?text=Hola,%20quiero%20pagar%20el%20álbum%20YUNGG%20FLEXX%20por%20Nequi" class="btn-nequi">💳 Pagar con Nequi (COL)</a>
-        <!-- PON AQUÍ TU LINK DE FOURTHWALL PARA EL ÁLBUM DIGITAL -->
         <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx-digital" target="_blank" class="btn-fourthwall">🌎 Comprar Internacional (USD)</a>
       </div>
     </div>
@@ -116,7 +147,6 @@ body { background: var(--bg-dark); color: #fff; font-family: 'Syne', sans-serif;
       <p class="product-desc">Buso negro premium 100% algodón con logo futurista. Edición limitada. Tallas S-3XL.</p>
       <div class="product-actions">
         <a href="https://wa.me/573102123844?text=Hola,%20quiero%20el%20Hoodie%20YUNGG%20FLEXX" class="btn-nequi">💳 Preguntar por Nequi</a>
-        <!-- PON AQUÍ TU LINK DE FOURTHWALL PARA EL HOODIE -->
         <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx-hoodie" target="_blank" class="btn-fourthwall">🌎 Comprar Internacional</a>
       </div>
     </div>
@@ -133,7 +163,6 @@ body { background: var(--bg-dark); color: #fff; font-family: 'Syne', sans-serif;
       <p class="product-desc">Camiseta negra de algodón peinado con estampado de alta calidad. Corte unisex.</p>
       <div class="product-actions">
         <a href="https://wa.me/573102123844?text=Hola,%20quiero%20la%20Camiseta%20YUNGG%20FLEXX" class="btn-nequi">💳 Preguntar por Nequi</a>
-        <!-- PON AQUÍ TU LINK DE FOURTHWALL PARA LA CAMISETA -->
         <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx-tshirt" target="_blank" class="btn-fourthwall">🌎 Comprar Internacional</a>
       </div>
     </div>
@@ -150,7 +179,6 @@ body { background: var(--bg-dark); color: #fff; font-family: 'Syne', sans-serif;
       <p class="product-desc">CD físico con arte oficial (Mockup niño), booklet y tracklist completo. Envío internacional disponible.</p>
       <div class="product-actions">
         <a href="https://wa.me/573102123844?text=Hola,%20quiero%20el%20CD%20Físico%20YUNGG%20FLEXX" class="btn-nequi">💳 Preguntar por Nequi</a>
-        <!-- PON AQUÍ TU LINK DE FOURTHWALL PARA EL CD -->
         <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx-cd" target="_blank" class="btn-fourthwall">🌎 Comprar Internacional</a>
       </div>
     </div>
@@ -161,6 +189,28 @@ body { background: var(--bg-dark); color: #fff; font-family: 'Syne', sans-serif;
 <footer style="text-align: center; padding: 4rem 2rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 4rem; color: #666;">
   <p>© 2026 Terrivol Music / Cagta Flex. Todos los derechos reservados.</p>
 </footer>
+
+<script>
+// Custom Cursor Logic
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    cursorRing.style.left = e.clientX + 'px';
+    cursorRing.style.top = e.clientY + 'px';
+  }, 50);
+});
+
+// Hover effect for interactive elements
+const hoverElements = document.querySelectorAll('a, button, .product-card');
+hoverElements.forEach(el => {
+  el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+});
+</script>
 
 </body>
 </html>
