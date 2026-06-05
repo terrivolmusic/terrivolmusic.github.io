@@ -153,25 +153,119 @@ body {
   display: inline-flex; align-items: center; gap: 0.5rem;
 }
 
-/* Quick Links Grid */
-.quick-section { padding: 5rem 2rem; }
-.quick-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+/* Album Products Section */
+.album-products-section {
+  padding: 5rem 2rem;
+  border-top: 1px solid var(--border);
 }
-.quick-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 2rem 1.5rem; transition: 0.3s;
-  text-decoration: none; color: var(--text); text-align: center;
-  display: flex; flex-direction: column; align-items: center;
+.album-products-section.yungg {
+  background: linear-gradient(180deg, rgba(0,229,255,0.03), transparent);
 }
-.quick-card:hover {
-  border-color: var(--accent); transform: translateY(-5px);
-  background: rgba(123,92,250,0.05);
+.album-products-section.memory {
+  background: linear-gradient(180deg, rgba(220,20,60,0.03), transparent);
 }
-.quick-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-.quick-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
-.quick-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+.album-products-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.album-products-header h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+.album-products-header.yungg h3 {
+  background: linear-gradient(135deg, #00e5ff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.album-products-header.memory h3 {
+  background: linear-gradient(135deg, #DC143C, #D4AF37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.album-products-header p {
+  color: var(--muted);
+  font-size: 1rem;
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: 0.3s;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+.product-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(123,92,250,0.15);
+}
+.product-img {
+  height: 260px;
+  background: #111;
+  overflow: hidden;
+}
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+.product-card:hover .product-img img {
+  transform: scale(1.05);
+}
+.product-info {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.product-tag {
+  color: var(--accent2);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  font-family: 'Space Mono', monospace;
+}
+.product-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.product-desc {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+.product-btn {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  padding: 0.8rem;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+.product-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(123,92,250,0.4);
+}
 
 /* Platforms */
 .platforms-section { background: rgba(20,20,30,0.3); border-top: 1px solid var(--border); }
@@ -261,7 +355,7 @@ footer a { color: var(--accent); text-decoration: none; }
   .hero-cta { flex-direction: column; }
   .btn-pill { width: 100%; justify-content: center; }
   .section { padding: 3.5rem 1.5rem; }
-  .albums-grid, .quick-grid { grid-template-columns: 1fr; }
+  .albums-grid, .products-grid { grid-template-columns: 1fr; }
   .platforms-grid { gap: 0.8rem; }
   .platform-btn { padding: 0.8rem 1.3rem; font-size: 0.85rem; }
   .social-grid { flex-direction: column; align-items: center; }
@@ -305,7 +399,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <p class="hero-sub fade-up delay-2">Música, merch oficial y contenido exclusivo. El renacimiento del sonido independiente desde Bogotá.</p>
     <div class="hero-cta fade-up delay-3">
       <a href="#albumes" class="btn-pill btn-pill-primary">🎵 Escuchar Música</a>
-      <a href="#merch" class="btn-pill btn-pill-secondary">🛒 Ver Productos</a>
+      <a href="#merch-yungg" class="btn-pill btn-pill-secondary">🛒 Ver Productos</a>
     </div>
   </div>
 </section>
@@ -347,42 +441,121 @@ footer a { color: var(--accent); text-decoration: none; }
   </div>
 </section>
 
-<!-- MERCH / QUICK LINKS -->
-<section id="merch" class="section quick-section">
-  <div class="section-header">
-    <p class="section-label fade-up">// Tienda Oficial</p>
-    <h2 class="section-title fade-up delay-1">Merch & <span>Productos</span></h2>
-    <p class="section-desc fade-up delay-2">Todo lo que necesitas para llevar el sonido contigo</p>
+<!-- YUNGG FLEXX PRODUCTS -->
+<section id="merch-yungg" class="album-products-section yungg">
+  <div class="album-products-header yungg fade-up">
+    <p class="section-label" style="color: #00e5ff;">// YUNGG FLEXX</p>
+    <h3>Productos YUNGG FLEXX</h3>
+    <p>Merch oficial del álbum más reciente</p>
   </div>
 
-  <div class="quick-grid">
-    <a href="comprar-yungg-flexx.html" class="quick-card fade-up">
-      <div class="quick-icon">💿</div>
-      <h3 class="quick-title">YUNGG FLEXX</h3>
-      <p class="quick-desc">Álbum digital + merch</p>
+  <div class="products-grid">
+    <a href="comprar-yungg-flexx.html" class="product-card fade-up">
+      <div class="product-img">
+        <img src="img/yungg-cover.jpg" alt="YUNGG FLEXX Album">
+      </div>
+      <div class="product-info">
+        <span class="product-tag">Álbum Digital</span>
+        <h3 class="product-title">YUNGG FLEXX</h3>
+        <p class="product-desc">10 tracks de trap urbano. Descarga inmediata MP3/FLAC.</p>
+        <span class="product-btn">Ver opciones de compra →</span>
+      </div>
     </a>
 
-    <a href="comprar-yungg-flexx.html" class="quick-card fade-up delay-1">
-      <div class="quick-icon">🧥</div>
-      <h3 class="quick-title">Hoodie YUNGG</h3>
-      <p class="quick-desc">Buso negro premium</p>
+    <a href="comprar-yungg-flexx.html" class="product-card fade-up delay-1">
+      <div class="product-img">
+        <img src="img/yungg-hoodie.jpg" alt="Hoodie YUNGG FLEXX">
+      </div>
+      <div class="product-info">
+        <span class="product-tag">Merch Oficial</span>
+        <h3 class="product-title">Hoodie YUNGG FLEXX</h3>
+        <p class="product-desc">Buso negro premium con logo futurista. Algodón 100%.</p>
+        <span class="product-btn">Ver opciones de compra →</span>
+      </div>
     </a>
 
-    <a href="comprar-yungg-flexx.html" class="quick-card fade-up delay-2">
-      <div class="quick-icon">👕</div>
-      <h3 class="quick-title">T-Shirt YUNGG</h3>
-      <p class="quick-desc">Camiseta oficial</p>
+    <a href="comprar-yungg-flexx.html" class="product-card fade-up delay-2">
+      <div class="product-img">
+        <img src="img/yungg-camiseta.jpg" alt="Camiseta YUNGG FLEXX">
+      </div>
+      <div class="product-info">
+        <span class="product-tag">Merch Oficial</span>
+        <h3 class="product-title">T-Shirt YUNGG FLEXX</h3>
+        <p class="product-desc">Camiseta negra con estampado retro-futurista. Corte unisex.</p>
+        <span class="product-btn">Ver opciones de compra →</span>
+      </div>
     </a>
 
-    <a href="comprar-yungg-flexx.html" class="quick-card fade-up delay-3">
-      <div class="quick-icon">💿</div>
-      <h3 class="quick-title">MEMORY</h3>
-      <p class="quick-desc">Álbum digital</p>
+    <a href="comprar-yungg-flexx.html" class="product-card fade-up delay-3">
+      <div class="product-img">
+        <img src="img/yungg-cd.jpg" alt="CD YUNGG FLEXX">
+      </div>
+      <div class="product-info">
+        <span class="product-tag">Edición Física</span>
+        <h3 class="product-title">CD YUNGG FLEXX</h3>
+        <p class="product-desc">CD físico con arte oficial y booklet. Edición limitada.</p>
+        <span class="product-btn">Ver opciones de compra →</span>
+      </div>
     </a>
   </div>
+</section>
 
-  <div style="text-align: center; margin-top: 3rem;" class="fade-up">
-    <a href="comprar-yungg-flexx.html" class="btn-pill btn-pill-secondary">Ver opciones de compra →</a>
+<!-- MEMORY PRODUCTS -->
+<section id="merch-memory" class="album-products-section memory">
+  <div class="album-products-header memory fade-up">
+    <p class="section-label" style="color: #DC143C;">// MEMORY</p>
+    <h3>Productos MEMORY</h3>
+    <p>Colección oficial del álbum</p>
+  </div>
+
+  <div class="products-grid">
+    <a href="tienda-global-memory.html" class="product-card fade-up">
+      <div class="product-img">
+        <img src="img/portada-album-memory.jpg" alt="MEMORY Album">
+      </div>
+      <div class="product-info">
+        <span class="product-tag">Álbum Digital</span>
+        <h3 class="product-title">MEMORY</h3>
+        <p class="product-desc">Descarga completa del álbum en MP3/FLAC alta calidad.</p>
+        <span class="product-btn">Ver opciones de compra →</span>
+      </div>
+    </a>
+
+    <a href="tienda-global-memory.html" class="product-card fade-up delay-1">
+      <div class="product-img">
+        <img src="img/hoodie-frontal.jpeg" alt="Hoodie MEMORY">
+      </div>
+      <div class="product-info">
+        <span class="product-tag">Merch Oficial</span>
+        <h3 class="product-title">Hoodie MEMORY</h3>
+        <p class="product-desc">Buso negro premium con diseño exclusivo MEMORY.</p>
+        <span class="product-btn">Ver opciones de compra →</span>
+      </div>
+    </a>
+
+    <a href="tienda-global-memory.html" class="product-card fade-up delay-2">
+      <div class="product-img">
+        <img src="img/taza-memory.jpg" alt="Taza MEMORY">
+      </div>
+      <div class="product-info">
+        <span class="product-tag">Accesorio</span>
+        <h3 class="product-title">Taza MEMORY</h3>
+        <p class="product-desc">Taza de cerámica negra premium con diseño MEMORY.</p>
+        <span class="product-btn">Ver opciones de compra →</span>
+      </div>
+    </a>
+
+    <a href="tienda-global-memory.html" class="product-card fade-up delay-3">
+      <div class="product-img">
+        <img src="img/cd-memory.jpg" alt="CD MEMORY">
+      </div>
+      <div class="product-info">
+        <span class="product-tag">Edición Física</span>
+        <h3 class="product-title">CD MEMORY</h3>
+        <p class="product-desc">CD físico edición limitada numerada con booklet exclusivo.</p>
+        <span class="product-btn">Ver opciones de compra →</span>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -481,7 +654,7 @@ document.addEventListener('mousemove', function(e) {
   if(cursor) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; }
   if(ring) { ring.style.left = (e.clientX - 16) + 'px'; ring.style.top = (e.clientY - 16) + 'px'; }
 });
-document.querySelectorAll('a, button, .quick-card, .album-card, .platform-btn, .social-btn').forEach(el => {
+document.querySelectorAll('a, button, .product-card, .album-card, .platform-btn, .social-btn').forEach(el => {
   el.addEventListener('mouseenter', () => document.getElementById('cursorRing').classList.add('hover'));
   el.addEventListener('mouseleave', () => document.getElementById('cursorRing').classList.remove('hover'));
 });
