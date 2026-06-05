@@ -3,33 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terrivol Music | Inicio</title>
+<title>Terrivol Music | Sello Discográfico Independiente</title>
+<meta name="description" content="Terrivol Music - Sello discográfico independiente. Producción, distribución, merch y asesoría legal para artistas.">
 <link rel="stylesheet" href="style.css">
 <style>
-/* Ajustes específicos para igualar el estilo PRO de Servicios */
+/* ===== MEJORAS PRO ===== */
 
-/* 1. Títulos con degradado */
+/* Hero con gradiente mejorado */
 .hero-title span {
-  background: linear-gradient(90deg, #7b5cfa, #00e5ff);
+  background: linear-gradient(135deg, #7b5cfa, #00e5ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* 2. Tarjetas de servicios estilo Servicios (oscuras con borde sutil) */
+/* Stats Section */
+.stats-section {
+  padding: 4rem 2rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(20,20,30,0.3);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.stat-num {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+.stat-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Space Mono', monospace;
+}
+
+/* Artist Featured Section */
+.artist-section {
+  padding: 6rem 2rem;
+  background: rgba(20,20,30,0.3);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.artist-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  background: rgba(20,20,30,0.6);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 3rem;
+  transition: 0.3s;
+  text-decoration: none;
+  color: var(--text);
+}
+.artist-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(123,92,250,0.15);
+}
+.artist-img {
+  aspect-ratio: 1;
+  background: #111;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+.artist-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.artist-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(123,92,250,0.2), transparent);
+}
+.artist-info h3 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #fff, var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.artist-tag {
+  color: var(--accent2);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.artist-desc {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.artist-link {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Services Enhanced */
 .service-card {
   background: rgba(15, 15, 25, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   padding: 2.5rem 2rem;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  opacity: 0;
+  transition: 0.3s;
 }
 .service-card:hover {
   border-color: rgba(123, 92, 250, 0.5);
   transform: translateY(-5px);
   background: rgba(20, 20, 35, 0.8);
+  box-shadow: 0 20px 60px rgba(123,92,250,0.15);
 }
+.service-card:hover::before { opacity: 1; }
 .service-link {
-  color: #00e5ff; /* Cyan para los enlaces */
+  color: #00e5ff;
   font-family: 'Space Mono', monospace;
   font-size: 0.8rem;
   font-weight: 700;
@@ -40,11 +162,73 @@
 }
 .service-link:hover { gap: 0.8rem; }
 
-/* 3. Nueva Sección CTA (Estilo Caja Grande) */
+/* Products Preview */
+.products-section {
+  padding: 6rem 2rem;
+  background: rgba(20,20,30,0.3);
+  border-top: 1px solid var(--border);
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.product-card {
+  background: rgba(20,20,30,0.6);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: 0.3s;
+  text-decoration: none;
+  color: var(--text);
+}
+.product-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(123,92,250,0.15);
+}
+.product-img {
+  height: 260px;
+  background: #111;
+  overflow: hidden;
+}
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+.product-card:hover .product-img img { transform: scale(1.05); }
+.product-info { padding: 1.5rem; }
+.product-tag {
+  color: var(--accent2);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  font-family: 'Space Mono', monospace;
+}
+.product-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.product-desc {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* CTA Pro */
 .cta-pro-section {
   padding: 6rem 0;
   display: flex;
   justify-content: center;
+  background: linear-gradient(135deg, rgba(123,92,250,0.08), rgba(0,229,255,0.03));
+  border-top: 1px solid var(--border);
 }
 .cta-pro-box {
   background: linear-gradient(180deg, rgba(20, 20, 35, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%);
@@ -58,15 +242,14 @@
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
-/* Efecto de brillo sutil en el fondo */
 .cta-pro-box::before {
   content: '';
   position: absolute;
-  top: -50%; left: -50%; width: 200%; height: 200%;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
   background: radial-gradient(circle, rgba(123, 92, 250, 0.1) 0%, transparent 60%);
   pointer-events: none;
 }
-
 .cta-label {
   color: #00e5ff;
   font-family: 'Space Mono', monospace;
@@ -75,6 +258,7 @@
   letter-spacing: 1px;
   margin-bottom: 1rem;
   display: block;
+  position: relative;
 }
 .cta-pro-title {
   font-size: clamp(2rem, 5vw, 3rem);
@@ -82,14 +266,14 @@
   color: #fff;
   margin-bottom: 1rem;
   line-height: 1.1;
+  position: relative;
 }
 .cta-pro-desc {
   color: #94a3b8;
   font-size: 1.1rem;
   margin-bottom: 2.5rem;
+  position: relative;
 }
-
-/* Botones estilo Pill (Redondeados) */
 .btn-pill {
   padding: 1rem 2rem;
   border-radius: 50px;
@@ -100,6 +284,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
 }
 .btn-pill-primary {
   background: linear-gradient(90deg, #7b5cfa, #00e5ff);
@@ -120,7 +305,51 @@
   border-color: #fff;
 }
 
+/* Footer Enhanced */
+footer {
+  padding: 4rem 2rem 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.footer-brand {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.3s;
+  font-weight: 600;
+}
+.footer-socials a:hover { color: var(--accent2); }
+.footer-copy {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-family: 'Space Mono', monospace;
+}
+
+/* Responsive */
+@media(max-width: 900px) {
+  .artist-card {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  .artist-info h3 { font-size: 2rem; }
+}
 @media(max-width: 768px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .products-grid { grid-template-columns: 1fr; }
   .cta-pro-box { padding: 3rem 1.5rem; }
   .btn-pill { width: 100%; justify-content: center; margin-bottom: 0.5rem; }
 }
@@ -132,13 +361,14 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
 
-<!-- NAV (Sin Blog) -->
+<!-- NAV -->
 <nav>
   <div class="nav-container">
     <a href="index.html" class="nav-logo"><img src="logo.png" alt="Terrivol Music"></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html" class="active">Inicio</a>
       <a href="servicios.html">Servicios</a>
+      <a href="tienda.html">Tienda</a>
       <a href="contacto.html">Contacto</a>
       <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar" target="_blank" class="nav-cta-mobile">💼 TRABAJEMOS</a>
     </div>
@@ -154,17 +384,61 @@
     <div class="hero-content">
       <div class="hero-badge fade-up">🎧 SELLO DISCOGRÁFICO INDEPENDIENTE</div>
       <h1 class="hero-title fade-up delay-1">Tu música merece <br><span>sonar profesional</span></h1>
-      <p class="hero-subtitle fade-up delay-2">Producción, distribución, beats y asesoría legal. Todo lo que un artista necesita para crecer, en un solo lugar.</p>
+      <p class="hero-subtitle fade-up delay-2">Producción, distribución, merch oficial y asesoría legal. Todo lo que un artista necesita para crecer, en un solo lugar.</p>
       
       <div class="hero-cta fade-up delay-3">
         <a href="servicios.html" class="btn-primary">Explorar Servicios →</a>
-        <a href="contacto.html" class="btn-ghost">Agendar Llamada</a>
+        <a href="tienda.html" class="btn-ghost">🛒 Ver Tienda</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICIOS (Estilo Tarjetas Oscuras) -->
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="fade-up">
+      <div class="stat-num" data-target="50">0</div>
+      <div class="stat-label">Millones de Streams</div>
+    </div>
+    <div class="fade-up delay-1">
+      <div class="stat-num" data-target="150">0</div>
+      <div class="stat-label">Plataformas</div>
+    </div>
+    <div class="fade-up delay-2">
+      <div class="stat-num" data-target="30">0</div>
+      <div class="stat-label">Artistas</div>
+    </div>
+    <div class="fade-up delay-3">
+      <div class="stat-num" data-target="100">0</div>
+      <div class="stat-label">% Regalías</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTISTA DESTACADO -->
+<section class="artist-section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <p class="section-label fade-up">// Nuestro Artista</p>
+      <h2 class="fade-up delay-1" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #fff;">Conoce a <span style="background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Cagta Flex</span></h2>
+    </div>
+    
+    <a href="cagtaflex.html" class="artist-card fade-up">
+      <div class="artist-img">
+        <img src="img/yungg-cover.jpg" alt="Cagta Flex">
+      </div>
+      <div class="artist-info">
+        <p class="artist-tag">Artista Principal</p>
+        <h3>CAGTA FLEX</h3>
+        <p class="artist-desc">Trap urbano, melodías pegajosas y letras que conectan con la calle. El renacimiento del sonido independiente desde Bogotá. Descubre sus álbumes YUNGG FLEXX y MEMORY.</p>
+        <span class="artist-link">Explorar artista →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
 <section class="services">
   <div class="container">
     <p class="section-label fade-up">// LO QUE HACEMOS</p>
@@ -174,41 +448,120 @@
       <a href="produccion-musical.html" class="service-card fade-up">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         <h3 class="service-title">Producción Musical</h3>
-        <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio.</p>
+        <p class="service-desc">Grabación, mezcla y masterización con calidad de estudio profesional.</p>
         <span class="service-link">Ver detalles →</span>
       </a>
       
       <a href="distribucion-digital.html" class="service-card fade-up delay-1">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
         <h3 class="service-title">Distribución Digital</h3>
-        <p class="service-desc">Lleva tu música a Spotify, Apple Music y +150 plataformas.</p>
+        <p class="service-desc">Spotify, Apple Music, YouTube y +150 plataformas. 100% regalías.</p>
         <span class="service-link">Ver planes →</span>
       </a>
       
       <a href="beats-licencias.html" class="service-card fade-up delay-2">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         <h3 class="service-title">Beats & Licencias</h3>
-        <p class="service-desc">Catálogo de beats exclusivos y licencias flexibles.</p>
-        <span class="service-link">Explorar beats →</span>
+        <p class="service-desc">Catálogo de instrumentales exclusivas. Trap, Reggaeton, Drill.</p>
+        <span class="service-link">Explorar →</span>
       </a>
       
-      <a href="publishing-derechos.html" class="service-card fade-up delay-3">
+      <a href="marketing-musical.html" class="service-card fade-up">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/></svg>
+        <h3 class="service-title">Marketing Musical</h3>
+        <p class="service-desc">Estrategias de lanzamiento, campañas y pitching a playlists.</p>
+        <span class="service-link">Ver más →</span>
+      </a>
+      
+      <a href="publishing-derechos.html" class="service-card fade-up delay-1">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         <h3 class="service-title">Publishing & Derechos</h3>
-        <p class="service-desc">Protege tu obra y maximiza tus regalías.</p>
-        <span class="service-link">Asesoría legal →</span>
+        <p class="service-desc">Registro de obras, protección de regalías y asesoría legal.</p>
+        <span class="service-link">Solicitar info →</span>
       </a>
+      
+      <a href="clases-produccion.html" class="service-card fade-up delay-2">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <h3 class="service-title">Clases de Producción</h3>
+        <p class="service-desc">Mentorías 1-a-1 con expertos del sello. Aprende a producir.</p>
+        <span class="service-link">Ver cursos →</span>
+      </a>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;" class="fade-up">
+      <a href="servicios.html" class="btn-ghost">Ver todos los servicios →</a>
     </div>
   </div>
 </section>
 
-<!-- CTA PRO (Estilo Caja Grande como en Servicios) -->
+<!-- TIENDA PREVIEW -->
+<section class="products-section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <p class="section-label fade-up">// TIENDA OFICIAL</p>
+      <h2 class="fade-up delay-1" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #fff;">Merch & <span style="background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Álbumes</span></h2>
+      <p class="fade-up delay-2" style="color: var(--muted); font-size: 1.05rem; max-width: 600px; margin: 1rem auto 0;">Lleva el sonido contigo. Productos oficiales con envío internacional.</p>
+    </div>
+
+    <div class="products-grid">
+      <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx" target="_blank" class="product-card fade-up">
+        <div class="product-img">
+          <img src="img/yungg-cover.jpg" alt="YUNGG FLEXX Album">
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Álbum Digital</span>
+          <h3 class="product-title">YUNGG FLEXX</h3>
+          <p class="product-desc">10 tracks de trap urbano. Descarga inmediata.</p>
+        </div>
+      </a>
+
+      <a href="https://cagta-flex-shop.fourthwall.com/products/memory-digital-album" target="_blank" class="product-card fade-up delay-1">
+        <div class="product-img">
+          <img src="img/portada-album-memory.jpg" alt="MEMORY Album">
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Álbum Digital</span>
+          <h3 class="product-title">MEMORY</h3>
+          <p class="product-desc">Las cicatrices del pasado son las armas del futuro.</p>
+        </div>
+      </a>
+
+      <a href="https://cagta-flex-shop.fourthwall.com/products/yunggflexxofficialhoodie-cagtaflex" target="_blank" class="product-card fade-up delay-2">
+        <div class="product-img">
+          <img src="img/yungg-hoodie.jpg" alt="Hoodie YUNGG FLEXX">
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Merch Oficial</span>
+          <h3 class="product-title">Hoodie YUNGG FLEXX</h3>
+          <p class="product-desc">Buso negro premium con logo futurista.</p>
+        </div>
+      </a>
+
+      <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx-official-t-shirt-cagta-flex" target="_blank" class="product-card fade-up delay-3">
+        <div class="product-img">
+          <img src="img/yungg-camiseta.jpg" alt="Camiseta YUNGG FLEXX">
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Merch Oficial</span>
+          <h3 class="product-title">T-Shirt YUNGG FLEXX</h3>
+          <p class="product-desc">Camiseta negra con estampado retro-futurista.</p>
+        </div>
+      </a>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;" class="fade-up">
+      <a href="tienda.html" class="btn-primary">Ver tienda completa →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA PRO -->
 <section class="cta-pro-section">
   <div class="container">
     <div class="cta-pro-box fade-up">
       <span class="cta-label">// EMPECEMOS</span>
       <h2 class="cta-pro-title">¿Listo para trabajar juntos?</h2>
-      <p class="cta-pro-desc">Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas.</p>
+      <p class="cta-pro-desc">Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas con una propuesta personalizada.</p>
       <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
         <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20servicio" target="_blank" class="btn-pill btn-pill-primary">💬 WhatsApp</a>
         <a href="contacto.html" class="btn-pill btn-pill-secondary">Enviar Propuesta</a>
@@ -217,15 +570,20 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
-    <div class="footer-copy">© 2026 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
-    <div style="font-size:0.82rem;color:var(--muted)">terrivolmusiclove@gmail.com</div>
+  <p class="footer-brand">Terrivol Music</p>
+  <div class="footer-socials">
+    <a href="https://instagram.com/terrivolmusic" target="_blank">Instagram</a>
+    <a href="https://youtube.com/@terrivolmusic" target="_blank">YouTube</a>
+    <a href="https://tiktok.com/@terrivolmusic" target="_blank">TikTok</a>
+    <a href="https://facebook.com/terrivolmusic" target="_blank">Facebook</a>
   </div>
+  <p class="footer-copy">© 2026 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</p>
+  <p style="margin-top: 0.5rem; font-size: 0.8rem;"><a href="mailto:terrivolmusiclove@gmail.com" style="color: var(--accent); text-decoration: none;">terrivolmusiclove@gmail.com</a></p>
 </footer>
 
-<!-- CHATBOT WIDGET -->
+<!-- CHATBOT -->
 <div id="tm-chat-widget">
   <button id="tm-chat-toggle" aria-label="Iniciar chat">🛸</button>
   <div id="tm-chat-box">
@@ -242,7 +600,6 @@
 </div>
 
 <style>
-/* Estilos Chatbot */
 #tm-chat-widget{position:fixed;bottom:24px;right:24px;z-index:99999}
 #tm-chat-toggle{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#7b5cfa,#00e5ff);border:none;color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 25px rgba(123,92,250,0.4);animation:tmPulse 2s infinite}
 @keyframes tmPulse{0%,100%{box-shadow:0 8px 25px rgba(123,92,250,0.4)}50%{box-shadow:0 8px 35px rgba(0,229,255,0.6)}}
@@ -268,16 +625,19 @@ function toggleMenu() {
   const btn = document.querySelector('.nav-mobile-btn');
   if(nav && btn) { nav.classList.toggle('open'); btn.textContent = nav.classList.contains('open') ? '✕' : '☰'; }
 }
+
 document.addEventListener('mousemove', function(e) {
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   if(cursor) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; }
   if(ring) { ring.style.left = (e.clientX - 16) + 'px'; ring.style.top = (e.clientY - 16) + 'px'; }
 });
-document.querySelectorAll('a, button, .service-card').forEach(el => {
+
+document.querySelectorAll('a, button, .service-card, .product-card, .artist-card').forEach(el => {
   el.addEventListener('mouseenter', () => document.getElementById('cursorRing').classList.add('hover'));
   el.addEventListener('mouseleave', () => document.getElementById('cursorRing').classList.remove('hover'));
 });
+
 const stars = document.getElementById('stars');
 for(let i=0; i<80; i++) {
   const star = document.createElement('div');
@@ -287,12 +647,34 @@ for(let i=0; i<80; i++) {
 const styleSheet = document.createElement('style');
 styleSheet.textContent = '@keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:1}}';
 document.head.appendChild(styleSheet);
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// Chatbot Logic
+// Counters
+const counters = document.querySelectorAll('.stat-num');
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      const suffix = target === 100 ? '%' : (target === 50 ? 'M+' : '+');
+      let current = 0;
+      const step = Math.ceil(target / 60);
+      const timer = setInterval(() => {
+        current += step;
+        if(current >= target) { el.textContent = target + suffix; clearInterval(timer); }
+        else { el.textContent = current + suffix; }
+      }, 25);
+      countObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => countObserver.observe(c));
+
+// Chatbot
 (function(){
   const chatBox = document.getElementById('tm-chat-box');
   const messages = document.getElementById('tm-chat-messages');
@@ -325,10 +707,10 @@ document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     const wa = document.createElement('button'); wa.className = 'tm-wa'; wa.innerHTML = '💬 WhatsApp Directo'; wa.onclick = openWA; messages.appendChild(wa);
     const em = document.createElement('button'); em.className = 'tm-email'; em.innerHTML = '📧 Ir a Formulario'; em.onclick = openEmail; messages.appendChild(em); messages.scrollTop = messages.scrollHeight;
   }
-  function saveLead(){ const fd = new FormData(); fd.append('nombre', lead.nombre); fd.append('email', lead.email); fd.append('telefono', lead.tel); fd.append('servicio', lead.servicio); fetch('https://formspree.io/f/mqegnekp', {method:'POST', body:fd, headers:{'Accept':'application/json'}}).catch(e => console.warn(e)); }
+  function saveLead(){ const fd = new FormData(); fd.append('nombre', lead.nombre); fd.append('email', lead.email); fd.append('telefono', lead.tel); fd.append('servicio', lead.servicio); fd.append('origen', 'index.html'); fetch('https://formspree.io/f/mqegnekp', {method:'POST', body:fd, headers:{'Accept':'application/json'}}).catch(e => console.warn(e)); }
   function openWA(){ const msg = `Hola Terrivol! 🚀%0A%0ASoy ${lead.nombre}%0A📧 ${lead.email}%0A📱 ${lead.tel}%0A🎯 Interés: ${lead.servicio}`; window.open(`https://wa.me/573102123844?text=${msg}`, '_blank'); }
   function openEmail(){ window.location.href = 'contacto.html'; botMsg('✅ Redirigiendo...'); setTimeout(() => { chatBox.classList.remove('open'); }, 1000); }
-  const kb = {'produccion': '🎙️ Producción desde $150 USD.','distribucion': '📀 Distribución desde $20/año.','beats': '🎹 Beats desde $30.','legal': '⚖️ Asesoría Legal $80 USD.','clases': '🎓 Clases desde $40/sesión.','default': '📡 Especifica: producción, distribución, beats, legal o clases.'};
+  const kb = {'produccion': '🎙️ Producción desde $150 USD. Grabación, mezcla y masterización profesional.','distribucion': '📀 Distribución desde $20/año. +150 plataformas, 100% regalías.','beats': '🎹 Beats desde $30. Catálogo trap, reggaeton y melódico.','legal': '⚖️ Asesoría Legal $80 USD. Registro y publishing.','clases': '🎓 Clases desde $40/sesión. Mentorías 1-a-1.','default': '📡 Especifica: producción, distribución, beats, legal o clases.'};
 })();
 </script>
 </body>
