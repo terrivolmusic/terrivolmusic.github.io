@@ -47,81 +47,48 @@
   font-family: 'Space Mono', monospace;
 }
 
-/* Artist Featured Section */
-.artist-section {
+/* Why Us Section */
+.why-section {
   padding: 6rem 2rem;
   background: rgba(20,20,30,0.3);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
-.artist-card {
-  max-width: 1000px;
-  margin: 0 auto;
+.why-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.why-card {
   background: rgba(20,20,30,0.6);
   border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 3rem;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
   transition: 0.3s;
-  text-decoration: none;
-  color: var(--text);
 }
-.artist-card:hover {
+.why-card:hover {
   border-color: var(--accent);
   transform: translateY(-5px);
   box-shadow: 0 20px 60px rgba(123,92,250,0.15);
 }
-.artist-img {
-  aspect-ratio: 1;
-  background: #111;
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
-}
-.artist-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.artist-img::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(123,92,250,0.2), transparent);
-}
-.artist-info h3 {
-  font-size: 2.5rem;
-  font-weight: 900;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #fff, var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.artist-tag {
-  color: var(--accent2);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-.artist-desc {
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.6;
+.why-icon {
+  font-size: 3rem;
   margin-bottom: 1.5rem;
+  display: block;
 }
-.artist-link {
-  color: var(--accent);
-  font-weight: 700;
+.why-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.why-desc {
+  color: var(--muted);
   font-size: 0.95rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  line-height: 1.6;
 }
 
 /* Services Enhanced */
@@ -161,66 +128,6 @@
   margin-top: 1rem;
 }
 .service-link:hover { gap: 0.8rem; }
-
-/* Products Preview */
-.products-section {
-  padding: 6rem 2rem;
-  background: rgba(20,20,30,0.3);
-  border-top: 1px solid var(--border);
-}
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.product-card {
-  background: rgba(20,20,30,0.6);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: 0.3s;
-  text-decoration: none;
-  color: var(--text);
-}
-.product-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-5px);
-  box-shadow: 0 20px 60px rgba(123,92,250,0.15);
-}
-.product-img {
-  height: 260px;
-  background: #111;
-  overflow: hidden;
-}
-.product-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: 0.5s;
-}
-.product-card:hover .product-img img { transform: scale(1.05); }
-.product-info { padding: 1.5rem; }
-.product-tag {
-  color: var(--accent2);
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
-  font-family: 'Space Mono', monospace;
-}
-.product-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-.product-desc {
-  color: var(--muted);
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
 
 /* CTA Pro */
 .cta-pro-section {
@@ -339,17 +246,9 @@ footer {
 }
 
 /* Responsive */
-@media(max-width: 900px) {
-  .artist-card {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 2rem;
-  }
-  .artist-info h3 { font-size: 2rem; }
-}
 @media(max-width: 768px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-  .products-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
   .cta-pro-box { padding: 3rem 1.5rem; }
   .btn-pill { width: 100%; justify-content: center; margin-bottom: 0.5rem; }
 }
@@ -416,25 +315,39 @@ footer {
   </div>
 </section>
 
-<!-- ARTISTA DESTACADO -->
-<section class="artist-section">
+<!-- POR QUÉ ELEGIRNOS -->
+<section class="why-section">
   <div class="container">
     <div style="text-align: center; margin-bottom: 3rem;">
-      <p class="section-label fade-up">// Nuestro Artista</p>
-      <h2 class="fade-up delay-1" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #fff;">Conoce a <span style="background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Cagta Flex</span></h2>
+      <p class="section-label fade-up">// Nuestro Enfoque</p>
+      <h2 class="fade-up delay-1" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #fff;">¿Por qué <span style="background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Terrivol</span>?</h2>
     </div>
-    
-    <a href="cagtaflex.html" class="artist-card fade-up">
-      <div class="artist-img">
-        <img src="img/yungg-cover.jpg" alt="Cagta Flex">
+
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <span class="why-icon">🎯</span>
+        <h3 class="why-title">Calidad Profesional</h3>
+        <p class="why-desc">Estándares de la industria en cada proyecto. Equipo de alta gama y acústica tratada para resultados de primer nivel.</p>
       </div>
-      <div class="artist-info">
-        <p class="artist-tag">Artista Principal</p>
-        <h3>CAGTA FLEX</h3>
-        <p class="artist-desc">Trap urbano, melodías pegajosas y letras que conectan con la calle. El renacimiento del sonido independiente desde Bogotá. Descubre sus álbumes YUNGG FLEXX y MEMORY.</p>
-        <span class="artist-link">Explorar artista →</span>
+
+      <div class="why-card fade-up delay-1">
+        <span class="why-icon">🚀</span>
+        <h3 class="why-title">Ecosistema Completo</h3>
+        <p class="why-desc">Desde la producción hasta la distribución y el marketing. Todo lo que necesitas en un solo lugar, sin complicaciones.</p>
       </div>
-    </a>
+
+      <div class="why-card fade-up delay-2">
+        <span class="why-icon">💎</span>
+        <h3 class="why-title">100% Para el Artista</h3>
+        <p class="why-desc">Tus regalías son tuyas. Transparencia total en contratos, publishing y derechos. Tu música, tus beneficios.</p>
+      </div>
+
+      <div class="why-card fade-up delay-3">
+        <span class="why-icon">🌎</span>
+        <h3 class="why-title">Alcance Global</h3>
+        <p class="why-desc">Distribución en +150 plataformas worldwide. Envío internacional de merch. Tu música llega a todos lados.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -490,67 +403,6 @@ footer {
 
     <div style="text-align: center; margin-top: 3rem;" class="fade-up">
       <a href="servicios.html" class="btn-ghost">Ver todos los servicios →</a>
-    </div>
-  </div>
-</section>
-
-<!-- TIENDA PREVIEW -->
-<section class="products-section">
-  <div class="container">
-    <div style="text-align: center; margin-bottom: 3rem;">
-      <p class="section-label fade-up">// TIENDA OFICIAL</p>
-      <h2 class="fade-up delay-1" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #fff;">Merch & <span style="background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Álbumes</span></h2>
-      <p class="fade-up delay-2" style="color: var(--muted); font-size: 1.05rem; max-width: 600px; margin: 1rem auto 0;">Lleva el sonido contigo. Productos oficiales con envío internacional.</p>
-    </div>
-
-    <div class="products-grid">
-      <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx" target="_blank" class="product-card fade-up">
-        <div class="product-img">
-          <img src="img/yungg-cover.jpg" alt="YUNGG FLEXX Album">
-        </div>
-        <div class="product-info">
-          <span class="product-tag">Álbum Digital</span>
-          <h3 class="product-title">YUNGG FLEXX</h3>
-          <p class="product-desc">10 tracks de trap urbano. Descarga inmediata.</p>
-        </div>
-      </a>
-
-      <a href="https://cagta-flex-shop.fourthwall.com/products/memory-digital-album" target="_blank" class="product-card fade-up delay-1">
-        <div class="product-img">
-          <img src="img/portada-album-memory.jpg" alt="MEMORY Album">
-        </div>
-        <div class="product-info">
-          <span class="product-tag">Álbum Digital</span>
-          <h3 class="product-title">MEMORY</h3>
-          <p class="product-desc">Las cicatrices del pasado son las armas del futuro.</p>
-        </div>
-      </a>
-
-      <a href="https://cagta-flex-shop.fourthwall.com/products/yunggflexxofficialhoodie-cagtaflex" target="_blank" class="product-card fade-up delay-2">
-        <div class="product-img">
-          <img src="img/yungg-hoodie.jpg" alt="Hoodie YUNGG FLEXX">
-        </div>
-        <div class="product-info">
-          <span class="product-tag">Merch Oficial</span>
-          <h3 class="product-title">Hoodie YUNGG FLEXX</h3>
-          <p class="product-desc">Buso negro premium con logo futurista.</p>
-        </div>
-      </a>
-
-      <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx-official-t-shirt-cagta-flex" target="_blank" class="product-card fade-up delay-3">
-        <div class="product-img">
-          <img src="img/yungg-camiseta.jpg" alt="Camiseta YUNGG FLEXX">
-        </div>
-        <div class="product-info">
-          <span class="product-tag">Merch Oficial</span>
-          <h3 class="product-title">T-Shirt YUNGG FLEXX</h3>
-          <p class="product-desc">Camiseta negra con estampado retro-futurista.</p>
-        </div>
-      </a>
-    </div>
-
-    <div style="text-align: center; margin-top: 3rem;" class="fade-up">
-      <a href="tienda.html" class="btn-primary">Ver tienda completa →</a>
     </div>
   </div>
 </section>
@@ -633,7 +485,7 @@ document.addEventListener('mousemove', function(e) {
   if(ring) { ring.style.left = (e.clientX - 16) + 'px'; ring.style.top = (e.clientY - 16) + 'px'; }
 });
 
-document.querySelectorAll('a, button, .service-card, .product-card, .artist-card').forEach(el => {
+document.querySelectorAll('a, button, .service-card, .why-card').forEach(el => {
   el.addEventListener('mouseenter', () => document.getElementById('cursorRing').classList.add('hover'));
   el.addEventListener('mouseleave', () => document.getElementById('cursorRing').classList.remove('hover'));
 });
