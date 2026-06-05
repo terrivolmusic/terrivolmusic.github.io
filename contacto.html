@@ -4,23 +4,319 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contacto | Terrivol Music</title>
+<meta name="description" content="Contacta a Terrivol Music. Cotiza tu proyecto musical con nosotros.">
 <link rel="stylesheet" href="style.css">
 <style>
-.contact-hero{min-height:80vh;display:flex;align-items:center;position:relative;padding:8rem 0 4rem}
-.contact-hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 20%,rgba(123,92,250,.25),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,229,255,.15),transparent 60%)}
-.contact-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,3,10,.9) 0%,rgba(3,3,10,.7) 50%,rgba(123,92,250,.15) 100%)}
-.contact-content{position:relative;z-index:1;text-align:center;max-width:700px;margin:0 auto}
-.contact-form{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2.5rem;margin:3rem 0}
-.contact-form input,.contact-form textarea{width:100%;padding:1rem;margin-bottom:1rem;background:var(--surface2);border:1px solid var(--border);border-radius:2px;color:var(--text);font-family:'Syne',sans-serif}
-.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--accent)}
-.contact-form textarea{min-height:120px;resize:vertical}
-.contact-direct{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin:3rem 0}
-.contact-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.5rem;text-align:center;transition:all .3s}
-.contact-card:hover{border-color:var(--accent);transform:translateY(-4px)}
-.contact-card-icon{font-size:2rem;margin-bottom:1rem}
-.contact-card-title{font-weight:700;margin-bottom:.5rem}
-.contact-card-link{color:var(--accent2);text-decoration:none;font-size:.9rem}
-@media(max-width:768px){.contact-hero{padding:4rem 0 2rem}.contact-form{padding:2rem}.contact-direct{grid-template-columns:1fr}}
+/* ===== ESTILOS PRO CONTACTO ===== */
+
+/* Hero Contacto */
+.contact-hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  background: radial-gradient(ellipse at 30% 20%, rgba(123,92,250,.25), transparent 60%),
+              radial-gradient(ellipse at 80% 80%, rgba(0,229,255,.15), transparent 60%);
+}
+.contact-hero .hero-badge {
+  display: inline-block;
+  background: rgba(123,92,250,0.15);
+  border: 1px solid rgba(123,92,250,0.4);
+  color: var(--accent2);
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Space Mono', monospace;
+}
+.contact-hero h1 {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -2px;
+  color: #fff;
+}
+.contact-hero h1 span {
+  background: linear-gradient(135deg, #7b5cfa, #00e5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+}
+.contact-hero p {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 6rem 2rem;
+  background: rgba(20,20,30,0.3);
+  border-top: 1px solid var(--border);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* Form */
+.contact-form {
+  background: rgba(15,15,25,0.6);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.contact-form::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Space Mono', monospace;
+}
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Syne', sans-serif;
+  transition: 0.3s;
+  outline: none;
+}
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(123,92,250,0.2);
+}
+.form-textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+.form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+.form-select option {
+  background: #0a0a0f;
+  color: #fff;
+}
+.btn-submit {
+  width: 100%;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Syne', sans-serif;
+}
+.btn-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(123,92,250,0.4);
+}
+
+/* Contact Info */
+.contact-info {
+  padding: 2rem 0;
+}
+.contact-info h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.contact-info h2 span {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.contact-info > p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+.info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.info-card {
+  background: rgba(20,20,30,0.6);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: 0.3s;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.info-card:hover {
+  border-color: var(--accent);
+  transform: translateX(10px);
+  box-shadow: 0 10px 30px rgba(123,92,250,0.15);
+}
+.info-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, rgba(123,92,250,0.2), rgba(0,229,255,0.1));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+.info-content h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: #fff;
+}
+.info-content p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.info-content .info-link {
+  color: var(--accent2);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+/* Response Time */
+.response-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(123,92,250,0.08), rgba(0,229,255,0.03));
+}
+.response-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 800px;
+  margin: 2rem auto 0;
+}
+.response-item {
+  background: rgba(20,20,30,0.6);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  transition: 0.3s;
+}
+.response-item:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+}
+.response-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.response-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+.response-time {
+  color: var(--accent2);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* Footer */
+footer {
+  padding: 4rem 2rem 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.footer-brand {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: 0.3s;
+  font-weight: 600;
+}
+.footer-socials a:hover { color: var(--accent2); }
+.footer-copy {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-family: 'Space Mono', monospace;
+}
+
+/* Responsive */
+@media(max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .contact-form { padding: 2rem; }
+}
+@media(max-width: 768px) {
+  .contact-hero { padding: 6rem 1.5rem 3rem; }
+  .contact-section { padding: 4rem 1.5rem; }
+  .response-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -29,157 +325,172 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="stars" id="stars"></div>
 
-<!-- NAV SIMPLIFICADO -->
-<nav class="navbar">
-  <div class="nav-container container">
+<!-- NAV - SIN TIENDA -->
+<nav>
+  <div class="nav-container">
     <a href="index.html" class="nav-logo"><img src="logo.png" alt="Terrivol Music"></a>
     <div class="nav-links" id="navLinks">
-      <a href="index.html">Inicio</a>
-      <a href="servicios.html">Servicios</a>
-      <a href="contacto.html" class="active">Contacto</a>
-      <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="nav-cta-mobile">💼 TRABAJEMOS</a>
+      <a href="index.html">INICIO</a>
+      <a href="servicios.html">SERVICIOS</a>
+      <a href="contacto.html" class="active" style="background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 700;">CONTACTO</a>
+      <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar" target="_blank" class="nav-cta-mobile">💼 TRABAJEMOS</a>
     </div>
-    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
+    <button class="nav-mobile-btn" onclick="toggleMenu()"></button>
   </div>
 </nav>
 
 <!-- HERO CONTACTO -->
 <section class="contact-hero">
-  <div class="contact-hero-bg"></div>
-  <div class="contact-hero-overlay"></div>
   <div class="container">
-    <div class="contact-content">
-      <div class="hero-badge fade-up">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        HABLEMOS DE TU PROYECTO
-      </div>
-      <h1 class="hero-title fade-up delay-1">¿Listo para crear?</h1>
-      <p class="hero-subtitle fade-up delay-2">Cuéntanos sobre tu música. Producción, distribución, beats o clases: estamos listos para llevarte al siguiente nivel.</p>
-      
-      <div class="hero-cta fade-up delay-3" style="justify-content:center;display:flex;gap:1rem;flex-wrap:wrap">
-        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="btn-wa">💬 WhatsApp</a>
-        <a href="#formulario-contacto" class="btn-primary">Completar Formulario</a>
-      </div>
-      
-      <div class="hero-trust fade-up delay-4" style="justify-content:center;margin-top:2.5rem;border:none">
-        <div class="trust-badge">📍 Bogotá, Colombia</div>
-        <div class="trust-badge">⚡ Respuesta &lt;24h</div>
-        <div class="trust-badge">🔒 Datos protegidos</div>
-      </div>
-    </div>
+    <div class="hero-badge fade-up"> Centro de Contacto</div>
+    <h1 class="fade-up delay-1">Hablemos de tu<br><span>proyecto musical</span></h1>
+    <p class="fade-up delay-2">Cuéntanos qué necesitas y te respondemos en menos de 24 horas con una propuesta personalizada.</p>
   </div>
 </section>
 
-<!-- FORMULARIO DE CONTACTO (CON ID PARA SCROLL) -->
-<section class="services" id="formulario-contacto">
-  <div class="container">
+<!-- CONTACTO -->
+<section class="contact-section">
+  <div class="contact-grid">
+    <!-- FORMULARIO -->
     <div class="contact-form fade-up">
-      <h3 style="text-align:center;margin-bottom:1.5rem;color:var(--accent)">O escríbenos directamente</h3>
       <form action="https://formspree.io/f/mqegnekp" method="POST">
-        <input type="text" name="name" placeholder="Tu nombre" required>
-        <input type="email" name="email" placeholder="Tu email" required>
-        <input type="text" name="servicio" placeholder="Servicio de interés (opcional)">
-        <textarea name="message" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
-        <button type="submit" class="btn-primary" style="width:100%">Enviar mensaje</button>
+        <div class="form-group">
+          <label class="form-label">Nombre</label>
+          <input type="text" name="nombre" class="form-input" placeholder="Tu nombre completo" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" name="email" class="form-input" placeholder="tu@email.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">WhatsApp</label>
+          <input type="tel" name="telefono" class="form-input" placeholder="+57 300 123 4567">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Servicio de Interés</label>
+          <select name="servicio" class="form-select" required>
+            <option value="">Selecciona un servicio</option>
+            <option value="produccion">🎙️ Producción Musical</option>
+            <option value="distribucion">📀 Distribución Digital</option>
+            <option value="beats"> Beats & Licencias</option>
+            <option value="marketing">📢 Marketing Musical</option>
+            <option value="publishing">️ Publishing & Derechos</option>
+            <option value="clases">🎓 Clases de Producción</option>
+            <option value="otro">✨ Otro</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Cuéntanos sobre tu proyecto</label>
+          <textarea name="mensaje" class="form-textarea" placeholder="Describe tu proyecto, objetivos, presupuesto aproximado..." required></textarea>
+        </div>
+        
+        <button type="submit" class="btn-submit">Enviar Propuesta 🚀</button>
       </form>
     </div>
-  </div>
-</section>
 
-<!-- CONTACTO DIRECTO -->
-<section class="services" style="background:var(--surface2)">
-  <div class="container">
-    <p class="section-label" style="text-align:center">// CONECTA DIRECTO</p>
-    <div class="contact-direct">
-      <div class="contact-card fade-up">
-        <div class="contact-card-icon">💬</div>
-        <div class="contact-card-title">WhatsApp</div>
-        <a href="https://wa.me/573102123844" target="_blank" class="contact-card-link">Chat directo →</a>
-      </div>
-      <div class="contact-card fade-up delay-1">
-        <div class="contact-card-icon">✉️</div>
-        <div class="contact-card-title">Email</div>
-        <a href="mailto:terrivolmusiclove@gmail.com" class="contact-card-link">terrivolmusiclove@gmail.com</a>
-      </div>
-      <div class="contact-card fade-up delay-2">
-        <div class="contact-card-icon">📱</div>
-        <div class="contact-card-title">Instagram</div>
-        <a href="https://instagram.com/terrivolmusic" target="_blank" class="contact-card-link">@terrivolmusic →</a>
+    <!-- INFO CONTACTO -->
+    <div class="contact-info fade-up delay-1">
+      <h2>Conecta con <span>Terrivol</span></h2>
+      <p>Estamos aquí para ayudarte a llevar tu música al siguiente nivel. Elige el canal que prefieras.</p>
+      
+      <div class="info-cards">
+        <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20información%20sobre%20sus%20servicios" target="_blank" class="info-card">
+          <div class="info-icon">💬</div>
+          <div class="info-content">
+            <h3>WhatsApp Directo</h3>
+            <p>Respuesta inmediata en horario laboral</p>
+            <span class="info-link">+57 310 212 3844 →</span>
+          </div>
+        </a>
+        
+        <a href="mailto:terrivolmusiclove@gmail.com" class="info-card">
+          <div class="info-icon">📧</div>
+          <div class="info-content">
+            <h3>Email</h3>
+            <p>Para propuestas detalladas y contratos</p>
+            <span class="info-link">terrivolmusiclove@gmail.com →</span>
+          </div>
+        </a>
+        
+        <div class="info-card">
+          <div class="info-icon">📍</div>
+          <div class="info-content">
+            <h3>Ubicación</h3>
+            <p>Bogotá, Colombia</p>
+            <span class="info-link">Atención worldwide 🌎</span>
+          </div>
+        </div>
+        
+        <a href="https://instagram.com/terrivolmusic" target="_blank" class="info-card">
+          <div class="info-icon"></div>
+          <div class="info-content">
+            <h3>Redes Sociales</h3>
+            <p>Síguenos para contenido exclusivo</p>
+            <span class="info-link">@terrivolmusic →</span>
+          </div>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- TIEMPOS DE RESPUESTA -->
+<section class="response-section">
+  <div class="container">
+    <p class="section-label fade-up" style="color: var(--accent2); font-family: 'Space Mono', monospace; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem;">// Tiempos de Respuesta</p>
+    <h2 class="section-title fade-up delay-1" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #fff; margin-bottom: 1rem;">Siempre <span style="background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">conectados</span></h2>
+    
+    <div class="response-grid">
+      <div class="response-item fade-up">
+        <div class="response-icon">💬</div>
+        <h3 class="response-title">WhatsApp</h3>
+        <p class="response-time">&lt; 2 horas</p>
+      </div>
+      
+      <div class="response-item fade-up delay-1">
+        <div class="response-icon">📧</div>
+        <h3 class="response-title">Email</h3>
+        <p class="response-time">&lt; 24 horas</p>
+      </div>
+      
+      <div class="response-item fade-up delay-2">
+        <div class="response-icon">📱</div>
+        <h3 class="response-title">Redes Sociales</h3>
+        <p class="response-time">&lt; 6 horas</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-inner">
-      <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
-      <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</div>
-      <div style="margin-top:1rem;opacity:0.7;font-size:0.9rem">terrivolmusiclove@gmail.com</div>
-    </div>
+  <p class="footer-brand">Terrivol Music</p>
+  <div class="footer-socials">
+    <a href="https://instagram.com/terrivolmusic" target="_blank">Instagram</a>
+    <a href="https://youtube.com/@terrivolmusic" target="_blank">YouTube</a>
+    <a href="https://tiktok.com/@terrivolmusic" target="_blank">TikTok</a>
+    <a href="https://facebook.com/terrivolmusic" target="_blank">Facebook</a>
   </div>
+  <p class="footer-copy">© 2026 TERRIVOL MUSIC · BOGOTÁ, COLOMBIA</p>
+  <p style="margin-top: 0.5rem;"><a href="mailto:terrivolmusiclove@gmail.com" style="color: var(--accent); text-decoration: none;">terrivolmusiclove@gmail.com</a></p>
 </footer>
 
-<script>
-// Menú móvil
-function toggleMenu(){
-  const nav=document.getElementById('navLinks');
-  const btn=document.querySelector('.nav-mobile-btn');
-  if(nav&&btn){
-    nav.classList.toggle('open');
-    btn.textContent=nav.classList.contains('open')?'✕':'☰';
-  }
-}
-
-// Cursor
-document.addEventListener('mousemove',function(e){
-  const cursor=document.getElementById('cursor');
-  const ring=document.getElementById('cursorRing');
-  if(cursor){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'}
-  if(ring){ring.style.left=(e.clientX-16)+'px';ring.style.top=(e.clientY-16)+'px'}
-});
-
-// Animaciones fade-up
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')})
-},{threshold:0.1});
-document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
-
-// Scroll suave para enlaces internos
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-  anchor.addEventListener('click',function(e){
-    e.preventDefault();
-    const target=document.querySelector(this.getAttribute('href'));
-    if(target){
-      target.scrollIntoView({behavior:'smooth',block:'start'});
-    }
-  });
-});
-
-// Auto-scroll si viene del chatbot con hash
-window.addEventListener('load',function(){
-  if(window.location.hash==='#formulario-contacto'){
-    setTimeout(()=>{
-      document.getElementById('formulario-contacto').scrollIntoView({behavior:'smooth',block:'start'});
-    },500);
-  }
-});
-</script>
-<!-- ===== CHATBOT TERRIVOL MUSIC PRO ===== -->
+<!-- CHATBOT WIDGET -->
 <div id="tm-chat-widget">
   <button id="tm-chat-toggle" aria-label="Iniciar chat">🛸</button>
   <div id="tm-chat-box">
     <div id="tm-chat-header">
-      <div>
-        <div style="font-weight:700">🎵 Terrivol Music</div>
-        <div style="font-size:0.7rem;opacity:0.7">Centro de Comando</div>
-      </div>
+      <div><div style="font-weight:700"> Terrivol Music</div><div style="font-size:0.7rem;opacity:0.7">Centro de Comando</div></div>
       <button id="tm-chat-close" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer">×</button>
     </div>
     <div id="tm-chat-messages"></div>
     <div style="display:flex;padding:0.8rem;gap:0.6rem;border-top:1px solid rgba(123,92,250,0.2)">
-      <input type="text" id="tm-chat-input" placeholder="Transmite..." style="flex:1;background:rgba(123,92,250,0.1);border:1px solid rgba(123,92,250,0.3);border-radius:8px;padding:0.6rem;color:#fff">
-      <button id="tm-chat-send" style="background:#7b5cfa;border:none;color:#fff;width:40px;border-radius:8px;cursor:pointer">📡</button>
+      <input type="text" id="tm-chat-input" placeholder="Transmite..." style="flex:1;background:rgba(123,92,250,0.1);border:1px solid rgba(123,92,250,0.3);border-radius:8px;padding:0.6rem;color:#fff;font-family:'Space Mono',monospace">
+      <button id="tm-chat-send" style="background:#7b5cfa;border:none;color:#fff;width:40px;border-radius:8px;cursor:pointer"></button>
     </div>
   </div>
 </div>
@@ -188,7 +499,7 @@ window.addEventListener('load',function(){
 #tm-chat-widget{position:fixed;bottom:24px;right:24px;z-index:99999}
 #tm-chat-toggle{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#7b5cfa,#00e5ff);border:none;color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 25px rgba(123,92,250,0.4);animation:tmPulse 2s infinite}
 @keyframes tmPulse{0%,100%{box-shadow:0 8px 25px rgba(123,92,250,0.4)}50%{box-shadow:0 8px 35px rgba(0,229,255,0.6)}}
-#tm-chat-box{position:absolute;bottom:70px;right:0;width:380px;max-height:500px;background:rgba(10,10,25,0.98);border:1px solid rgba(123,92,250,0.3);border-radius:16px;display:none;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+#tm-chat-box{position:absolute;bottom:70px;right:0;width:380px;max-height:500px;background:rgba(10,10,25,0.98);border:1px solid rgba(123,92,250,0.3);border-radius:16px;display:none;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.6);font-family:'Syne',sans-serif}
 #tm-chat-box.open{display:flex}
 #tm-chat-header{background:linear-gradient(135deg,rgba(123,92,250,0.2),rgba(0,229,255,0.1));padding:1rem;border-bottom:1px solid rgba(123,92,250,0.3);display:flex;justify-content:space-between;align-items:center}
 #tm-chat-messages{flex:1;overflow-y:auto;padding:1rem;max-height:320px}
@@ -197,7 +508,7 @@ window.addEventListener('load',function(){
 .tm-msg.user{background:linear-gradient(135deg,#7b5cfa,#00e5ff);color:#fff;align-self:flex-end}
 .tm-msg a{color:#00e5ff;text-decoration:underline}
 @keyframes tmFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.tm-btn{background:rgba(123,92,250,0.2);border:1px solid rgba(123,92,250,0.4);color:#fff;padding:0.5rem 1rem;border-radius:20px;font-size:0.8rem;cursor:pointer;margin:0.3rem}
+.tm-btn{background:rgba(123,92,250,0.2);border:1px solid rgba(123,92,250,0.4);color:#fff;padding:0.5rem 1rem;border-radius:20px;font-size:0.8rem;cursor:pointer;margin:0.3rem;font-family:'Space Mono',monospace}
 .tm-btn:hover{background:rgba(123,92,250,0.4)}
 .tm-wa{background:#25D366;color:#fff;border:none;padding:0.8rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.6rem;width:100%;font-size:0.95rem}
 .tm-email{background:rgba(123,92,250,0.3);border:1px solid #7b5cfa;color:#fff;padding:0.8rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.5rem;width:100%;font-size:0.95rem}
@@ -205,97 +516,77 @@ window.addEventListener('load',function(){
 </style>
 
 <script>
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  const btn = document.querySelector('.nav-mobile-btn');
+  if(nav && btn) { nav.classList.toggle('open'); btn.textContent = nav.classList.contains('open') ? '✕' : '☰'; }
+}
+
+document.addEventListener('mousemove', function(e) {
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  if(cursor) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; }
+  if(ring) { ring.style.left = (e.clientX - 16) + 'px'; ring.style.top = (e.clientY - 16) + 'px'; }
+});
+
+document.querySelectorAll('a, button, .info-card, .response-item').forEach(el => {
+  el.addEventListener('mouseenter', () => document.getElementById('cursorRing').classList.add('hover'));
+  el.addEventListener('mouseleave', () => document.getElementById('cursorRing').classList.remove('hover'));
+});
+
+const stars = document.getElementById('stars');
+for(let i=0; i<80; i++) {
+  const star = document.createElement('div');
+  star.style.cssText = `position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:${Math.random()};left:${Math.random()*100}%;top:${Math.random()*100}%;animation:twinkle ${2+Math.random()*3}s infinite;`;
+  stars.appendChild(star);
+}
+const styleSheet = document.createElement('style');
+styleSheet.textContent = '@keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:1}}';
+document.head.appendChild(styleSheet);
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Chatbot
 (function(){
-  const chatBox=document.getElementById('tm-chat-box');
-  const messages=document.getElementById('tm-chat-messages');
-  const input=document.getElementById('tm-chat-input');
-  let step='init', lead={nombre:'',email:'',tel:'',servicio:''}, captured=false;
-
-  document.getElementById('tm-chat-toggle').onclick=function(){
-    chatBox.classList.add('open');
-    if(step==='init') setTimeout(()=>botMsg('🚀 ¡Bienvenido al Centro de Comando Terrivol!<br><br>Para coordinar tu misión, ¿cuál es tu nombre?'), 600);
-  };
-  document.getElementById('tm-chat-close').onclick=function(){ chatBox.classList.remove('open'); };
-
+  const chatBox = document.getElementById('tm-chat-box');
+  const messages = document.getElementById('tm-chat-messages');
+  const input = document.getElementById('tm-chat-input');
+  let step = 'init', lead = {nombre:'',email:'',tel:'',servicio:''}, captured = false;
+  document.getElementById('tm-chat-toggle').onclick = function(){ chatBox.classList.add('open'); if(step === 'init') setTimeout(() => botMsg('🚀 ¡Bienvenido al Centro de Comando Terrivol!<br><br>¿Necesitas ayuda con tu proyecto? Primero, ¿cuál es tu nombre?'), 600); };
+  document.getElementById('tm-chat-close').onclick = function(){ chatBox.classList.remove('open'); };
   function handleInput(text){
-    if(!text.trim()) return;
-    userMsg(text); input.value='';
-    
+    if(!text.trim()) return; userMsg(text); input.value = '';
     if(!captured){
-      if(step==='init'||step==='name'){
-        step='name'; lead.nombre=text.trim();
-        setTimeout(()=>botMsg(`¡Excelente, ${lead.nombre}! 🎵 ¿Tu correo electrónico?`), 600);
-        step='email';
-      } else if(step==='email'){
-        if(!text.includes('@')){ botMsg('⚠️ Coordenada inválida. Ingresa un email correcto.'); return; }
-        lead.email=text.trim();
-        setTimeout(()=>botMsg('📡 ¿Tu número de WhatsApp? (ej: +57 300 123 4567)'), 600);
-        step='tel';
-      } else if(step==='tel'){
-        lead.tel=text.trim(); captured=true; saveLead();
-        setTimeout(()=>{ botMsg('✅ ¡Datos sincronizados con la base orbital!<br><br>¿Qué servicio necesitas hoy?'); showBtns(); }, 600);
-        step='service';
-      } else if(step==='service'){
-        lead.servicio=text; step='done';
-        botMsg(kb[text.toLowerCase()] || kb.default);
-        setTimeout(()=>forceCTA(), 800);
-      }
-    } else {
-      botMsg(kb[text.toLowerCase()] || kb.default);
-      setTimeout(()=>forceCTA(), 800);
-    }
+      if(step === 'init' || step === 'name'){ step = 'name'; lead.nombre = text.trim(); setTimeout(() => botMsg(`¡Excelente, ${lead.nombre}! 🎵 ¿Tu correo electrónico?`), 600); step = 'email'; }
+      else if(step === 'email'){ if(!text.includes('@')){ botMsg('⚠️ Coordenada inválida. Ingresa un email correcto.'); return; } lead.email = text.trim(); setTimeout(() => botMsg('📡 ¿Tu número de WhatsApp? (ej: +57 300 123 4567)'), 600); step = 'tel'; }
+      else if(step === 'tel'){ lead.tel = text.trim(); captured = true; saveLead(); setTimeout(() => { botMsg('✅ ¡Datos sincronizados!<br><br>¿Qué servicio te interesa?'); showBtns(); }, 600); step = 'service'; }
+      else if(step === 'service'){ lead.servicio = text; step = 'done'; botMsg(kb[text.toLowerCase()] || kb.default); setTimeout(() => forceCTA(), 800); }
+    } else { botMsg(kb[text.toLowerCase()] || kb.default); setTimeout(() => forceCTA(), 800); }
   }
-
-  document.getElementById('tm-chat-send').onclick=function(){ handleInput(input.value); };
-  input.onkeypress=function(e){ if(e.key==='Enter') handleInput(input.value); };
-
-  function userMsg(t){ const d=document.createElement('div'); d.className='tm-msg user'; d.textContent=t; messages.appendChild(d); messages.scrollTop=messages.scrollHeight; }
-  function botMsg(h){ const d=document.createElement('div'); d.className='tm-msg bot'; d.innerHTML=h; messages.appendChild(d); messages.scrollTop=messages.scrollHeight; }
-
+  document.getElementById('tm-chat-send').onclick = function(){ handleInput(input.value); };
+  input.onkeypress = function(e){ if(e.key === 'Enter') handleInput(input.value); };
+  function userMsg(t){ const d = document.createElement('div'); d.className = 'tm-msg user'; d.textContent = t; messages.appendChild(d); messages.scrollTop = messages.scrollHeight; }
+  function botMsg(h){ const d = document.createElement('div'); d.className = 'tm-msg bot'; d.innerHTML = h; messages.appendChild(d); messages.scrollTop = messages.scrollHeight; }
   function showBtns(){
-    const opts=[{t:'🎙️ Producción',v:'produccion'},{t:'📀 Distribución',v:'distribucion'},{t:'🎹 Beats',v:'beats'},{t:'⚖️ Legal',v:'legal'},{t:'🎓 Clases',v:'clases'}];
-    const wrap=document.createElement('div'); wrap.style.cssText='display:flex;flex-wrap:wrap;margin:0.5rem 0';
-    opts.forEach((b,i)=>{ setTimeout(()=>{ const btn=document.createElement('button'); btn.className='tm-btn'; btn.textContent=b.t; btn.onclick=()=>handleInput(b.v); wrap.appendChild(btn); }, i*100); });
-    messages.appendChild(wrap); messages.scrollTop=messages.scrollHeight;
+    const opts = [{t:'🎙️ Producción',v:'produccion'},{t:'📀 Distribución',v:'distribucion'},{t:' Beats',v:'beats'},{t:'⚖️ Legal',v:'legal'},{t:'🎓 Clases',v:'clases'}];
+    const wrap = document.createElement('div'); wrap.style.cssText = 'display:flex;flex-wrap:wrap;margin:0.5rem 0';
+    opts.forEach((b,i) => { setTimeout(() => { const btn = document.createElement('button'); btn.className = 'tm-btn'; btn.textContent = b.t; btn.onclick = () => handleInput(b.v); wrap.appendChild(btn); }, i*100); });
+    messages.appendChild(wrap); messages.scrollTop = messages.scrollHeight;
   }
-
   function forceCTA(){
-    document.querySelectorAll('.tm-wa,.tm-email,.tm-cta-text').forEach(el=>el.remove());
-    const txt=document.createElement('div'); txt.className='tm-msg bot tm-cta-text';
-    txt.innerHTML='🎯 <b>¿Listo para despegar?</b><br>Habla directo con un asesor o completa el formulario de contacto.';
-    messages.appendChild(txt);
-    const wa=document.createElement('button'); wa.className='tm-wa'; wa.innerHTML='💬 WhatsApp Directo'; wa.onclick=openWA; messages.appendChild(wa);
-    const em=document.createElement('button'); em.className='tm-email'; em.innerHTML='📧 Ir a Formulario de Contacto'; em.onclick=openEmail; messages.appendChild(em);
-    messages.scrollTop=messages.scrollHeight;
+    document.querySelectorAll('.tm-wa,.tm-email,.tm-cta-text').forEach(el => el.remove());
+    const txt = document.createElement('div'); txt.className = 'tm-msg bot tm-cta-text'; txt.innerHTML = '🎯 <b>¿Listo para despegar?</b><br>Habla directo con un asesor o completa el formulario.'; messages.appendChild(txt);
+    const wa = document.createElement('button'); wa.className = 'tm-wa'; wa.innerHTML = '💬 WhatsApp Directo'; wa.onclick = openWA; messages.appendChild(wa);
+    const em = document.createElement('button'); em.className = 'tm-email'; em.innerHTML = '📧 Ir al Formulario'; em.onclick = openEmail; messages.appendChild(em); messages.scrollTop = messages.scrollHeight;
   }
-
-  function saveLead(){
-    console.log('🎯 Lead:',lead);
-    const fd=new FormData(); fd.append('nombre',lead.nombre); fd.append('email',lead.email); fd.append('telefono',lead.tel); fd.append('servicio',lead.servicio);
-    fetch('https://formspree.io/f/mqegnekp',{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(e=>console.warn(e));
-  }
-
-  function openWA(){
-    const msg=`Hola Terrivol! 🚀%0A%0ASoy ${lead.nombre}%0A📧 ${lead.email}%0A📱 ${lead.tel}%0A🎯 Interés: ${lead.servicio}%0A%0AQuiero coordinar mi proyecto.`;
-    window.open(`https://wa.me/573102123844?text=${msg}`,'_blank');
-  }
-
-  function openEmail(){
-    window.location.href='contacto.html#formulario-contacto';
-    botMsg('✅ <b>¡Redirigiendo al formulario!</b><br>Tus datos ya están registrados. Completa el formulario y te contactaremos en menos de 24 horas.');
-    setTimeout(()=>{ chatBox.classList.remove('open'); }, 1000);
-  }
-
-  const kb={
-    'produccion':'🎙️ <b>Producción Musical:</b> Desde $150 USD. Incluye grabación, mezcla y masterización con ingenieros expertos.',
-    'distribucion':'📀 <b>Distribución Digital:</b> Desde $20/año. Spotify, Apple Music, YouTube, Deezer y +150 plataformas. 100% regalías para ti.',
-    'beats':'🎹 <b>Beats & Licencias:</b> Desde $30 (MP3). Catálogo trap, reggaeton y melódico. Ver tienda: <a href="tienda.html">tienda.html</a>',
-    'legal':'⚖️ <b>Asesoría Legal:</b> $80 USD. Registro de obras, publishing, contratos y estrategia de regalías. Ver: <a href="legal-music.html">legal-music.html</a>',
-    'clases':'🎓 <b>Clases Pro:</b> Desde $40/sesión. Mentorías 1-a-1 de producción y estrategia musical.',
-    'default':'📡 Recibido. Para darte coordenadas exactas, especifica: producción, distribución, beats, legal o clases. O contacta directo 👇'
-  };
+  function saveLead(){ const fd = new FormData(); fd.append('nombre', lead.nombre); fd.append('email', lead.email); fd.append('telefono', lead.tel); fd.append('servicio', lead.servicio); fd.append('origen', 'contacto.html'); fetch('https://formspree.io/f/mqegnekp', {method:'POST', body:fd, headers:{'Accept':'application/json'}}).catch(e => console.warn(e)); }
+  function openWA(){ const msg = `Hola Terrivol! 🚀%0A%0ASoy ${lead.nombre}%0A📧 ${lead.email}%0A📱 ${lead.tel}%0A🎯 Interés: ${lead.servicio}`; window.open(`https://wa.me/573102123844?text=${msg}`, '_blank'); }
+  function openEmail(){ document.querySelector('.contact-form').scrollIntoView({behavior:'smooth'}); botMsg('✅ <b>¡Formulario arriba!</b><br>Completa tus datos y te contactaremos.'); setTimeout(() => { chatBox.classList.remove('open'); }, 1000); }
+  const kb = {'produccion': '🎙️ Producción desde $150 USD. Grabación, mezcla y masterización profesional.','distribucion': '📀 Distribución desde $20/año. +150 plataformas, 100% regalías.','beats': '🎹 Beats desde $30. Catálogo trap, reggaeton y melódico.','legal': '⚖️ Asesoría Legal $80 USD. Registro y publishing.','clases': '🎓 Clases desde $40/sesión. Mentorías 1-a-1.','default': '📡 Especifica: producción, distribución, beats, legal o clases.'};
 })();
 </script>
-<!-- ===== FIN CHATBOT ===== -->
 </body>
 </html>
