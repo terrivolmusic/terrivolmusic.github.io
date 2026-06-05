@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cagta Flex | Hub Oficial</title>
+<meta name="description" content="Hub oficial de Cagta Flex. Música, merch, videos y más.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #7b5cfa;
+  --accent2: #00e5ff;
+  --bg: #0a0a0f;
+  --surface: rgba(20,20,30,0.6);
+  --border: rgba(255,255,255,0.08);
+  --text: #f8fafc;
+  --muted: #94a3b8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Cursor */
+.cursor { width: 8px; height: 8px; background: var(--accent2); border-radius: 50%; position: fixed; pointer-events: none; z-index: 999999; transform: translate(-50%,-50%); transition: transform 0.1s; }
+.cursor-ring { width: 32px; height: 32px; border: 1px solid rgba(0,229,255,0.5); border-radius: 50%; position: fixed; pointer-events: none; z-index: 999998; transform: translate(-50%,-50%); transition: all 0.15s ease-out; }
+.cursor-ring.hover { transform: translate(-50%,-50%) scale(1.5); border-color: var(--accent); background: rgba(123,92,250,0.1); }
+@media (pointer: coarse) { .cursor, .cursor-ring { display: none !important; } body { cursor: auto !important; } }
+
+/* Nav */
+.navbar {
+  position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0;
+  background: rgba(10,10,15,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { font-size: 1.2rem; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: -0.5px; }
+.nav-logo span { color: var(--accent2); }
+.nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+.nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+.nav-links a:hover { color: #fff; }
+.nav-cta { background: var(--accent); color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 6px; }
+.nav-cta:hover { background: var(--accent2); color: #000 !important; }
+
+/* Hero */
+.hero-hub {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 8rem 2rem 4rem; position: relative;
+  background: radial-gradient(ellipse at 30% 20%, rgba(123,92,250,.25), transparent 60%),
+              radial-gradient(ellipse at 80% 80%, rgba(0,229,255,.15), transparent 60%);
+}
+.hero-content { max-width: 900px; position: relative; z-index: 2; }
+.hero-badge {
+  display: inline-block; background: rgba(123,92,250,.15);
+  border: 1px solid rgba(123,92,250,.4); color: var(--accent2);
+  padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.75rem;
+  font-weight: 700; margin-bottom: 1.5rem; letter-spacing: 2px;
+  text-transform: uppercase; font-family: 'Space Mono', monospace;
+}
+.hero-title {
+  font-size: clamp(3.5rem, 10vw, 7rem); font-weight: 900;
+  line-height: 0.9; margin-bottom: 1rem; color: #fff;
+  letter-spacing: -3px;
+}
+.hero-title span {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-size: 1.15rem; color: var(--muted); max-width: 600px;
+  margin: 0 auto 2.5rem; line-height: 1.6;
+}
+.hero-cta {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; padding: 1rem 2.2rem; border-radius: 50px;
+  font-weight: 700; text-decoration: none; transition: 0.3s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border: none; font-size: 0.95rem;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(123,92,250,0.4); }
+.btn-secondary {
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  color: #fff; padding: 1rem 2.2rem; border-radius: 50px;
+  font-weight: 600; text-decoration: none; transition: 0.3s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.95rem;
+}
+.btn-secondary:hover { background: rgba(123,92,250,0.1); border-color: var(--accent); }
+
+/* Sections */
+.section { padding: 5rem 2rem; }
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-label {
+  color: var(--accent2); font-family: 'Space Mono', monospace;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+  color: #fff; margin-bottom: 1rem;
+}
+.section-desc {
+  color: var(--muted); font-size: 1.05rem; max-width: 600px;
+  margin: 0 auto; line-height: 1.6;
+}
+
+/* Albums Grid */
+.albums-section { background: rgba(20,20,30,0.3); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.albums-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem; max-width: 1200px; margin: 0 auto;
+}
+.album-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden; transition: 0.3s;
+  text-decoration: none; color: var(--text);
+}
+.album-card:hover {
+  border-color: var(--accent); transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(123,92,250,0.2);
+}
+.album-img { height: 280px; background: #111; overflow: hidden; }
+.album-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.album-card:hover .album-img img { transform: scale(1.05); }
+.album-info { padding: 2rem; }
+.album-tag {
+  color: var(--accent2); font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;
+  font-family: 'Space Mono', monospace;
+}
+.album-name { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+.album-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
+.album-link {
+  color: var(--accent); font-weight: 700; font-size: 0.9rem;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+
+/* Quick Links Grid */
+.quick-section { padding: 5rem 2rem; }
+.quick-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem; max-width: 1200px; margin: 0 auto;
+}
+.quick-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 2rem 1.5rem; transition: 0.3s;
+  text-decoration: none; color: var(--text); text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+.quick-card:hover {
+  border-color: var(--accent); transform: translateY(-5px);
+  background: rgba(123,92,250,0.05);
+}
+.quick-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.quick-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.quick-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+
+/* Platforms */
+.platforms-section { background: rgba(20,20,30,0.3); border-top: 1px solid var(--border); }
+.platforms-grid {
+  display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+  max-width: 900px; margin: 0 auto;
+}
+.platform-btn {
+  display: flex; align-items: center; gap: 0.6rem;
+  background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+  padding: 0.9rem 1.8rem; border-radius: 50px; text-decoration: none;
+  color: #fff; font-weight: 600; transition: 0.3s; font-size: 0.9rem;
+}
+.platform-btn svg { width: 20px; height: 20px; fill: currentColor; }
+.platform-btn:hover { background: rgba(255,255,255,0.08); transform: translateY(-3px); }
+.platform-btn.spotify:hover { color: #1DB954; border-color: #1DB954; }
+.platform-btn.apple:hover { color: #FA243C; border-color: #FA243C; }
+.platform-btn.youtube:hover { color: #FF0000; border-color: #FF0000; }
+.platform-btn.tiktok:hover { color: #00f2ea; border-color: #00f2ea; }
+.platform-btn.deezer:hover { color: #A238FF; border-color: #A238FF; }
+
+/* Social */
+.social-section { padding: 5rem 2rem; text-align: center; }
+.social-grid {
+  display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
+  max-width: 800px; margin: 2rem auto 0;
+}
+.social-btn {
+  display: flex; align-items: center; gap: 0.8rem;
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 1rem 2rem; border-radius: 12px; text-decoration: none;
+  color: #fff; font-weight: 700; transition: 0.3s;
+}
+.social-btn:hover { transform: translateY(-3px); }
+.social-btn.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-color: #dc2743; }
+.social-btn.youtube:hover { background: #FF0000; border-color: #FF0000; }
+.social-btn.tiktok:hover { background: #000; border-color: #00f2ea; color: #00f2ea; }
+.social-btn.facebook:hover { background: #1877F2; border-color: #1877F2; }
+.social-btn.spotify:hover { background: #1DB954; border-color: #1DB954; }
+.social-btn svg { width: 22px; height: 22px; fill: currentColor; }
+
+/* VIP */
+.vip-section {
+  padding: 5rem 2rem; text-align: center;
+  background: linear-gradient(180deg, transparent, rgba(123,92,250,0.05));
+  border-top: 1px solid var(--border);
+}
+.vip-form {
+  display: flex; gap: 1rem; justify-content: center;
+  max-width: 500px; margin: 2rem auto 0; flex-wrap: wrap;
+}
+.vip-input {
+  flex: 1; min-width: 250px; padding: 1rem 1.5rem;
+  border-radius: 50px; border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03); color: #fff;
+  font-size: 1rem; outline: none; font-family: 'Syne', sans-serif;
+}
+.vip-input:focus { border-color: var(--accent2); }
+.vip-btn {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; border: none; padding: 1rem 2rem;
+  border-radius: 50px; font-weight: 800; cursor: pointer;
+  transition: 0.3s; font-size: 0.95rem;
+}
+.vip-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(123,92,250,0.4); }
+
+/* Footer */
+footer {
+  padding: 3rem 2rem; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.85rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+.footer-brand {
+  font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;
+}
+
+/* Chatbot */
+#tm-chat-widget{position:fixed;bottom:24px;right:24px;z-index:99999}
+#tm-chat-toggle{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#7b5cfa,#00e5ff);border:none;color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 25px rgba(123,92,250,0.4);animation:tmPulse 2s infinite}
+@keyframes tmPulse{0%,100%{box-shadow:0 8px 25px rgba(123,92,250,0.4)}50%{box-shadow:0 8px 35px rgba(0,229,255,0.6)}}
+#tm-chat-box{position:absolute;bottom:70px;right:0;width:380px;max-height:500px;background:rgba(10,10,25,0.98);border:1px solid rgba(123,92,250,0.3);border-radius:16px;display:none;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.6);font-family:'Syne',sans-serif}
+#tm-chat-box.open{display:flex}
+#tm-chat-header{background:linear-gradient(135deg,rgba(123,92,250,0.2),rgba(0,229,255,0.1));padding:1rem;border-bottom:1px solid rgba(123,92,250,0.3);display:flex;justify-content:space-between;align-items:center}
+#tm-chat-messages{flex:1;overflow-y:auto;padding:1rem;max-height:320px}
+.tm-msg{max-width:85%;padding:0.8rem;margin:0.5rem 0;border-radius:12px;font-size:0.9rem;line-height:1.5;animation:tmFade 0.3s}
+.tm-msg.bot{background:rgba(123,92,250,0.15);border:1px solid rgba(123,92,250,0.3);align-self:flex-start}
+.tm-msg.user{background:linear-gradient(135deg,#7b5cfa,#00e5ff);color:#fff;align-self:flex-end}
+.tm-msg a{color:#00e5ff;text-decoration:underline}
+@keyframes tmFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.tm-btn{background:rgba(123,92,250,0.2);border:1px solid rgba(123,92,250,0.4);color:#fff;padding:0.5rem 1rem;border-radius:20px;font-size:0.8rem;cursor:pointer;margin:0.3rem;font-family:'Space Mono',monospace}
+.tm-btn:hover{background:rgba(123,92,250,0.4)}
+.tm-wa{background:#25D366;color:#fff;border:none;padding:0.8rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.6rem;width:100%;font-size:0.95rem}
+.tm-email{background:rgba(123,92,250,0.3);border:1px solid #7b5cfa;color:#fff;padding:0.8rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.5rem;width:100%;font-size:0.95rem}
+@media(max-width:768px){#tm-chat-box{width:calc(100vw - 32px);max-width:400px}}
+
+/* Responsive */
+@media(max-width: 768px) {
+  .nav-links { display: none; }
+  .hero-hub { padding: 6rem 1.5rem 3rem; }
+  .hero-cta { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  .section { padding: 3.5rem 1.5rem; }
+  .albums-grid, .quick-grid { grid-template-columns: 1fr; }
+  .platforms-grid { gap: 0.8rem; }
+  .platform-btn { padding: 0.8rem 1.3rem; font-size: 0.85rem; }
+  .social-grid { flex-direction: column; align-items: center; }
+  .social-btn { width: 100%; max-width: 300px; justify-content: center; }
+  .vip-form { flex-direction: column; }
+  .vip-input, .vip-btn { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">Terrivol<span>.</span></a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="tienda.html">Tienda</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-hub">
+  <div class="hero-content">
+    <div class="hero-badge">🎤 Artista Oficial de Terrivol Music</div>
+    <h1 class="hero-title">CAGTA<br><span>FLEX</span></h1>
+    <p class="hero-sub">Música, merch oficial y contenido exclusivo. El renacimiento del sonido independiente desde Bogotá.</p>
+    <div class="hero-cta">
+      <a href="#albumes" class="btn-primary">🎵 Escuchar Música</a>
+      <a href="#tienda" class="btn-secondary">🛒 Ver Tienda</a>
+    </div>
+  </div>
+</section>
+
+<!-- ÁLBUMES -->
+<section id="albumes" class="section albums-section">
+  <div class="section-header">
+    <p class="section-label">// Discografía</p>
+    <h2 class="section-title">Álbumes Oficiales</h2>
+    <p class="section-desc">Explora los proyectos musicales de Cagta Flex</p>
+  </div>
+  
+  <div class="albums-grid">
+    <!-- YUNGG FLEXX -->
+    <a href="yungg-flexx.html" class="album-card">
+      <div class="album-img">
+        <img src="img/yungg-cover.jpg" alt="YUNGG FLEXX">
+      </div>
+      <div class="album-info">
+        <span class="album-tag">Nuevo Álbum • 2026</span>
+        <h3 class="album-name">YUNGG FLEXX</h3>
+        <p class="album-desc">Trap urbano, melodías pegajosas y letras que conectan con la calle. 10 tracks del renacimiento.</p>
+        <span class="album-link">Explorar álbum →</span>
+      </div>
+    </a>
+
+    <!-- MEMORY -->
+    <a href="memory.html" class="album-card">
+      <div class="album-img">
+        <img src="img/portada-album-memory.jpg" alt="MEMORY">
+      </div>
+      <div class="album-info">
+        <span class="album-tag">Álbum • 2024</span>
+        <h3 class="album-name">MEMORY</h3>
+        <p class="album-desc">Las cicatrices del pasado son las armas del futuro. Una experiencia sonora única.</p>
+        <span class="album-link">Explorar álbum →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- TIENDA / QUICK LINKS -->
+<section id="tienda" class="section quick-section">
+  <div class="section-header">
+    <p class="section-label">// Tienda Oficial</p>
+    <h2 class="section-title">Merch & Productos</h2>
+    <p class="section-desc">Todo lo que necesitas para llevar el sonido contigo</p>
+  </div>
+
+  <div class="quick-grid">
+    <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx" target="_blank" class="quick-card">
+      <div class="quick-icon">💿</div>
+      <h3 class="quick-title">YUNGG FLEXX</h3>
+      <p class="quick-desc">Álbum digital completo</p>
+    </a>
+
+    <a href="https://cagta-flex-shop.fourthwall.com/products/yunggflexxofficialhoodie-cagtaflex" target="_blank" class="quick-card">
+      <div class="quick-icon">🧥</div>
+      <h3 class="quick-title">Hoodie YUNGG</h3>
+      <p class="quick-desc">Buso negro premium</p>
+    </a>
+
+    <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx-official-t-shirt-cagta-flex" target="_blank" class="quick-card">
+      <div class="quick-icon">👕</div>
+      <h3 class="quick-title">T-Shirt YUNGG</h3>
+      <p class="quick-desc">Camiseta oficial</p>
+    </a>
+
+    <a href="https://cagta-flex-shop.fourthwall.com" target="_blank" class="quick-card">
+      <div class="quick-icon">🛒</div>
+      <h3 class="quick-title">Ver Todo</h3>
+      <p class="quick-desc">Catálogo completo</p>
+    </a>
+  </div>
+
+  <div style="text-align: center; margin-top: 3rem;">
+    <a href="tienda.html" class="btn-secondary">Ver tienda completa Terrivol →</a>
+  </div>
+</section>
+
+<!-- PLATAFORMAS -->
+<section class="section platforms-section">
+  <div class="section-header">
+    <p class="section-label">// Escúchalo</p>
+    <h2 class="section-title">En Todas Las Plataformas</h2>
+  </div>
+
+  <div class="platforms-grid">
+    <a href="https://open.spotify.com/intl-es/album/53dyLkwx68D3BCLKqgeXn2" target="_blank" class="platform-btn spotify">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      Spotify
+    </a>
+    <a href="https://music.apple.com/co/album/yungg-flexx/1896450707" target="_blank" class="platform-btn apple">
+      <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Apple Music
+    </a>
+    <a href="https://www.youtube.com/playlist?list=OLAK5uy_loV0T3zgIcvwmdqzMFNiUeMuNy2w7O_lA" target="_blank" class="platform-btn youtube">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+    <a href="https://www.tiktok.com/@cagtaflex" target="_blank" class="platform-btn tiktok">
+      <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>
+      TikTok
+    </a>
+    <a href="https://link.deezer.com/s/33sgf0qZSSVN9oLS3hZRu" target="_blank" class="platform-btn deezer">
+      <svg viewBox="0 0 24 24"><path d="M18.81 4.13v3.18h-3.18V4.13h3.18zM6.35 10.49v3.18H3.17v-3.18h3.18zm4.23 0v3.18H7.4v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18zM6.35 14.67v3.18H3.17v-3.18h3.18zm4.23 0v3.18H7.4v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18z"/></svg>
+      Deezer
+    </a>
+  </div>
+</section>
+
+<!-- REDES SOCIALES -->
+<section class="section social-section">
+  <div class="section-header">
+    <p class="section-label">// Conecta</p>
+    <h2 class="section-title">Sígueme en Redes</h2>
+    <p class="section-desc">Contenido exclusivo, detrás de cámaras y lanzamientos</p>
+  </div>
+
+  <div class="social-grid">
+    <a href="https://www.instagram.com/cagtaflex" target="_blank" class="social-btn instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="https://youtube.com/@cagtaflex" target="_blank" class="social-btn youtube">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+    <a href="https://www.tiktok.com/@cagtaflex" target="_blank" class="social-btn tiktok">
+      <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>
+      TikTok
+    </a>
+    <a href="https://www.facebook.com/CagtaFlex/" target="_blank" class="social-btn facebook">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+    <a href="https://open.spotify.com/intl-es/artist/cagtaflex" target="_blank" class="social-btn spotify">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      Spotify
+    </a>
+  </div>
+</section>
+
+<!-- VIP -->
+<section class="vip-section">
+  <p class="section-label">// Exclusivo</p>
+  <h2 class="section-title">Únete a la Lista VIP</h2>
+  <p class="section-desc">Recibe lanzamientos exclusivos, contenido detrás de cámaras y acceso anticipado</p>
+  <form class="vip-form" action="https://formspree.io/f/mqegnekp" method="POST">
+    <input type="email" name="email" class="vip-input" placeholder="tu@email.com" required>
+    <button type="submit" class="vip-btn">SUSCRIBIRME</button>
+  </form>
+</section>
+
+<footer>
+  <p class="footer-brand">CAGTA FLEX</p>
+  <p>Artista oficial de <a href="index.html">Terrivol Music</a></p>
+  <p style="margin-top: 0.5rem;">© 2026 Terrivol Music · Bogotá, Colombia</p>
+</footer>
+
+<!-- CHATBOT -->
+<div id="tm-chat-widget">
+  <button id="tm-chat-toggle" aria-label="Iniciar chat">🛸</button>
+  <div id="tm-chat-box">
+    <div id="tm-chat-header">
+      <div><div style="font-weight:700">🎵 Cagta Flex</div><div style="font-size:0.7rem;opacity:0.7">Centro de Comando</div></div>
+      <button id="tm-chat-close" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer">×</button>
+    </div>
+    <div id="tm-chat-messages"></div>
+    <div style="display:flex;padding:0.8rem;gap:0.6rem;border-top:1px solid rgba(123,92,250,0.2)">
+      <input type="text" id="tm-chat-input" placeholder="Transmite..." style="flex:1;background:rgba(123,92,250,0.1);border:1px solid rgba(123,92,250,0.3);border-radius:8px;padding:0.6rem;color:#fff;font-family:'Space Mono',monospace">
+      <button id="tm-chat-send" style="background:#7b5cfa;border:none;color:#fff;width:40px;border-radius:8px;cursor:pointer">📡</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    cursorRing.style.left = e.clientX + 'px';
+    cursorRing.style.top = e.clientY + 'px';
+  }, 50);
+});
+const hoverElements = document.querySelectorAll('a, button, .quick-card, .album-card, .platform-btn, .social-btn');
+hoverElements.forEach(el => {
+  el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+});
+
+// Chatbot
+(function(){
+  const chatBox = document.getElementById('tm-chat-box');
+  const messages = document.getElementById('tm-chat-messages');
+  const input = document.getElementById('tm-chat-input');
+  let step = 'init', lead = {nombre:'',email:'',tel:'',interes:''}, captured = false;
+  
+  document.getElementById('tm-chat-toggle').onclick = function(){
+    chatBox.classList.add('open');
+    if(step === 'init') setTimeout(() => botMsg('🚀 ¡Bienvenido al Centro de Comando de Cagta Flex!<br><br>¿Buscas música, merch o info? Primero, ¿cuál es tu nombre?'), 600);
+  };
+  document.getElementById('tm-chat-close').onclick = function(){ chatBox.classList.remove('open'); };
+  
+  function handleInput(text){
+    if(!text.trim()) return;
+    userMsg(text); input.value = '';
+    if(!captured){
+      if(step === 'init' || step === 'name'){
+        step = 'name'; lead.nombre = text.trim();
+        setTimeout(() => botMsg(`¡Qué buena, ${lead.nombre}! 🎵 ¿Tu correo electrónico?`), 600);
+        step = 'email';
+      } else if(step === 'email'){
+        if(!text.includes('@')){ botMsg('⚠️ Coordenada inválida. Ingresa un email correcto.'); return; }
+        lead.email = text.trim();
+        setTimeout(() => botMsg('📡 ¿Tu número de WhatsApp? (ej: +57 300 123 4567)'), 600);
+        step = 'tel';
+      } else if(step === 'tel'){
+        lead.tel = text.trim(); captured = true; saveLead();
+        setTimeout(() => { botMsg('✅ ¡Datos sincronizados!<br><br>¿Qué te interesa?'); showBtns(); }, 600);
+        step = 'interes';
+      } else if(step === 'interes'){
+        lead.interes = text; step = 'done';
+        botMsg(kb[text.toLowerCase()] || kb.default);
+        setTimeout(() => forceCTA(), 800);
+      }
+    } else {
+      botMsg(kb[text.toLowerCase()] || kb.default);
+      setTimeout(() => forceCTA(), 800);
+    }
+  }
+  
+  document.getElementById('tm-chat-send').onclick = function(){ handleInput(input.value); };
+  input.onkeypress = function(e){ if(e.key === 'Enter') handleInput(input.value); };
+  
+  function userMsg(t){ const d = document.createElement('div'); d.className = 'tm-msg user'; d.textContent = t; messages.appendChild(d); messages.scrollTop = messages.scrollHeight; }
+  function botMsg(h){ const d = document.createElement('div'); d.className = 'tm-msg bot'; d.innerHTML = h; messages.appendChild(d); messages.scrollTop = messages.scrollHeight; }
+  
+  function showBtns(){
+    const opts = [
+      {t:'💿 YUNGG FLEXX',v:'yungg'},
+      {t:'💿 MEMORY',v:'memory'},
+      {t:'👕 Merch',v:'merch'},
+      {t:'🎥 Videos',v:'videos'},
+      {t:'🤝 Colabs',v:'colabs'}
+    ];
+    const wrap = document.createElement('div'); wrap.style.cssText = 'display:flex;flex-wrap:wrap;margin:0.5rem 0';
+    opts.forEach((b,i) => {
+      setTimeout(() => {
+        const btn = document.createElement('button'); btn.className = 'tm-btn'; btn.textContent = b.t;
+        btn.onclick = () => handleInput(b.v); wrap.appendChild(btn);
+      }, i*100);
+    });
+    messages.appendChild(wrap); messages.scrollTop = messages.scrollHeight;
+  }
+  
+  function forceCTA(){
+    document.querySelectorAll('.tm-wa,.tm-email,.tm-cta-text').forEach(el => el.remove());
+    const txt = document.createElement('div'); txt.className = 'tm-msg bot tm-cta-text';
+    txt.innerHTML = '🎯 <b>¿Listo para conectar?</b><br>Habla directo con el equipo de Cagta Flex.';
+    messages.appendChild(txt);
+    const wa = document.createElement('button'); wa.className = 'tm-wa'; wa.innerHTML = '💬 WhatsApp Directo'; wa.onclick = openWA; messages.appendChild(wa);
+    messages.scrollTop = messages.scrollHeight;
+  }
+  
+  function saveLead(){
+    const fd = new FormData();
+    fd.append('nombre', lead.nombre);
+    fd.append('email', lead.email);
+    fd.append('telefono', lead.tel);
+    fd.append('interes', lead.interes);
+    fd.append('origen', 'cagtaflex.html');
+    fetch('https://formspree.io/f/mqegnekp', {method:'POST', body:fd, headers:{'Accept':'application/json'}}).catch(e => console.warn(e));
+  }
+  
+  function openWA(){
+    const msg = `Hola Cagta Flex! 🚀%0A%0ASoy ${lead.nombre}%0A📧 ${lead.email}%0A📱 ${lead.tel}%0A🎯 Interés: ${lead.interes}`;
+    window.open(`https://wa.me/573102123844?text=${msg}`, '_blank');
+  }
+  
+  const kb = {
+    'yungg': '💿 <b>YUNGG FLEXX:</b> El nuevo álbum. Trap urbano con 10 tracks.<br>🎧 Escúchalo en todas las plataformas.<br>🛒 <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx" target="_blank">Comprar álbum</a>',
+    'memory': '💿 <b>MEMORY:</b> Las cicatrices del pasado son las armas del futuro.<br>🎧 Disponible en todas las plataformas.<br>👉 <a href="memory.html">Ver página del álbum</a>',
+    'merch': '👕 <b>Merch Oficial:</b> Hoodies, camisetas y más.<br>🛒 <a href="https://cagta-flex-shop.fourthwall.com" target="_blank">Ver tienda completa</a>',
+    'videos': '🎥 <b>Videos Oficiales:</b><br>• <a href="https://youtu.be/zRM4Ru8fZBw" target="_blank">BTA SHATTA</a><br>• <a href="https://youtu.be/fn6y0iDfBI0" target="_blank">YMVV 109</a><br>• <a href="https://youtu.be/xhU2yWzaYKI" target="_blank">Mon Destin</a>',
+    'colabs': '🤝 <b>Colabs & Booking:</b><br>Para colaboraciones, booking o negocios, escríbenos directo por WhatsApp.',
+    'default': '📡 Recibido. Selecciona: yungg, memory, merch, videos o colabs.'
+  };
+})();
+</script>
+</body>
+</html>
