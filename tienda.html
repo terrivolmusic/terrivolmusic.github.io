@@ -1,129 +1,463 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tienda — Terrivol Music</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tienda Oficial | Terrivol Music</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.page-hero{padding:10rem 0 5rem;border-bottom:1px solid var(--border)}
-.tienda-section{padding:6rem 0}
-.tienda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
-.product-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .3s;position:relative}
-.product-card:hover{transform:translateY(-4px);border-color:var(--accent)}
-.product-card.featured{border-color:var(--accent2)}
-.product-badge{position:absolute;top:1rem;right:1rem;font-family:'Space Mono',monospace;font-size:.65rem;padding:.3rem .7rem;border-radius:2px;background:var(--accent2);color:var(--bg)}
-.product-top{padding:2rem 2rem 1rem;border-bottom:1px solid var(--border)}
-.product-icon{font-size:2rem;margin-bottom:.8rem}
-.product-name{font-size:1.1rem;font-weight:800;margin-bottom:.3rem}
-.product-type{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--accent);letter-spacing:.06em}
-.product-body{padding:1.5rem 2rem}
-.product-features{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
-.product-features li{font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:6px}
-.product-features li::before{content:'✓';color:var(--accent2);font-size:.8rem}
-.product-price{font-size:1.4rem;font-weight:800;margin-bottom:1rem}
-.product-price span{font-size:.85rem;font-weight:400;color:var(--muted)}
-.product-cta{display:block;width:100%;text-align:center;padding:.85rem;background:transparent;border:1px solid var(--border);color:var(--text);font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;border-radius:2px;cursor:pointer;transition:all .2s;text-decoration:none}
-.product-cta:hover{background:var(--accent);border-color:var(--accent);color:white}
-.product-card.featured .product-cta{background:var(--accent2);border-color:var(--accent2);color:var(--bg)}
-.product-card.featured .product-cta:hover{opacity:.9}
-@media(max-width:768px){.tienda-grid{grid-template-columns:1fr}}
+/* ===== VARIABLES ESTILO TERRIVOL ===== */
+:root {
+  --accent: #7b5cfa;
+  --accent2: #00e5ff;
+  --bg: #0a0a0f;
+  --surface: rgba(20,20,30,0.6);
+  --border: rgba(255,255,255,0.08);
+  --text: #f8fafc;
+  --muted: #94a3b8;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ===== CURSOR PERSONALIZADO ===== */
+.cursor {
+  width: 8px; height: 8px; background: var(--accent2); border-radius: 50%;
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999999;
+  transform: translate(-50%, -50%); transition: transform 0.1s ease;
+}
+.cursor-ring {
+  width: 32px; height: 32px; border: 1px solid rgba(0,229,255,0.5); border-radius: 50%;
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999998;
+  transform: translate(-50%, -50%); transition: all 0.15s ease-out;
+}
+.cursor-ring.hover {
+  transform: translate(-50%, -50%) scale(1.5);
+  border-color: var(--accent);
+  background: rgba(123,92,250,0.1);
+}
+@media (pointer: coarse) {
+  .cursor, .cursor-ring { display: none !important; }
+  body { cursor: auto !important; }
+}
+
+/* ===== NAV ===== */
+.navbar {
+  position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0;
+  background: rgba(10,10,15,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-container {
+  max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-logo {
+  font-size: 1.2rem; font-weight: 800; color: #fff;
+  text-decoration: none; letter-spacing: -0.5px;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--muted); text-decoration: none; font-weight: 500;
+  transition: 0.3s; font-size: 0.9rem;
+}
+.nav-links a:hover, .nav-links a.active { color: #fff; }
+.nav-cta {
+  background: var(--accent); color: #fff !important; padding: 0.5rem 1rem;
+  border-radius: 6px; font-weight: 600 !important;
+}
+
+/* ===== HERO ===== */
+.hero-shop {
+  min-height: 60vh; display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 8rem 2rem 4rem; position: relative;
+  background: radial-gradient(ellipse at 30% 20%, rgba(123,92,250,.25), transparent 60%),
+              radial-gradient(ellipse at 80% 80%, rgba(0,229,255,.15), transparent 60%);
+}
+.hero-content { max-width: 800px; position: relative; z-index: 2; }
+.hero-badge {
+  display: inline-block; background: rgba(123,92,250,.15);
+  border: 1px solid rgba(123,92,250,.4); color: var(--accent2);
+  padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem;
+  font-weight: 700; margin-bottom: 1.5rem; letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900;
+  line-height: 1.1; margin-bottom: 1rem; color: #fff;
+}
+.hero-title span {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-size: 1.15rem; color: var(--muted); max-width: 600px;
+  margin: 0 auto 2rem; line-height: 1.6;
+}
+
+/* ===== SECCIONES ===== */
+.section { padding: 4rem 2rem; }
+.section-header {
+  text-align: center; margin-bottom: 3rem;
+}
+.section-label {
+  color: var(--accent2); font-family: 'Space Mono', monospace;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+  color: #fff; margin-bottom: 1rem;
+}
+.section-desc {
+  color: var(--muted); font-size: 1.1rem; max-width: 600px;
+  margin: 0 auto; line-height: 1.6;
+}
+
+/* ===== ARTIST GRID ===== */
+.artist-section {
+  background: rgba(20,20,30,0.3);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.artist-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem; max-width: 1200px; margin: 0 auto;
+}
+.artist-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden; transition: 0.3s;
+  text-decoration: none; color: var(--text);
+}
+.artist-card:hover {
+  border-color: var(--accent); transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(123,92,250,0.15);
+}
+.artist-img {
+  height: 250px; background: #111; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.artist-img img {
+  width: 100%; height: 100%; object-fit: cover; transition: 0.5s;
+}
+.artist-card:hover .artist-img img { transform: scale(1.05); }
+.artist-info { padding: 2rem; }
+.artist-name {
+  font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;
+}
+.artist-album {
+  color: var(--accent2); font-size: 0.9rem; font-weight: 600;
+  margin-bottom: 1rem;
+}
+.artist-desc {
+  color: var(--muted); font-size: 0.95rem; line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.artist-link {
+  color: var(--accent); font-weight: 700; font-size: 0.9rem;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+
+/* ===== PRODUCTS GRID ===== */
+.products-section { padding: 4rem 2rem; }
+.products-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem; max-width: 1200px; margin: 0 auto;
+}
+.product-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden; transition: 0.3s;
+  display: flex; flex-direction: column;
+}
+.product-card:hover {
+  border-color: var(--accent); transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(123,92,250,0.15);
+}
+.product-img {
+  height: 280px; background: #111; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.product-img img {
+  width: 100%; height: 100%; object-fit: cover; transition: 0.5s;
+}
+.product-card:hover .product-img img { transform: scale(1.05); }
+.product-info { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
+.product-tag {
+  color: var(--accent2); font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;
+}
+.product-title {
+  font-size: 1.3rem; font-weight: 800; margin-bottom: 0.8rem;
+}
+.product-desc {
+  color: var(--muted); font-size: 0.9rem; line-height: 1.6;
+  margin-bottom: 1.5rem; flex: 1;
+}
+.product-actions {
+  display: flex; flex-direction: column; gap: 0.8rem;
+}
+.btn-buy {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; padding: 0.9rem; border-radius: 8px; text-align: center;
+  text-decoration: none; font-weight: 700; transition: 0.3s;
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.btn-buy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(123,92,250,0.4);
+}
+.btn-whatsapp {
+  background: #25D366; color: #fff; padding: 0.9rem; border-radius: 8px;
+  text-align: center; text-decoration: none; font-weight: 700;
+  transition: 0.3s; display: flex; align-items: center;
+  justify-content: center; gap: 0.5rem;
+}
+.btn-whatsapp:hover {
+  background: #128C7E; transform: translateY(-2px);
+}
+
+/* ===== CTA FINAL ===== */
+.cta-section {
+  padding: 6rem 2rem; text-align: center;
+  background: linear-gradient(135deg, rgba(123,92,250,0.08), rgba(0,229,255,0.03));
+  border-top: 1px solid var(--border);
+}
+.cta-box {
+  max-width: 700px; margin: 0 auto;
+}
+.cta-title {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+  margin-bottom: 1rem; color: #fff;
+}
+.cta-desc {
+  color: var(--muted); font-size: 1.1rem; margin-bottom: 2rem;
+  line-height: 1.6;
+}
+.cta-buttons {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; padding: 1rem 2.5rem; border-radius: 50px;
+  font-weight: 700; text-decoration: none; transition: 0.3s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(123,92,250,0.4);
+}
+.btn-secondary {
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  color: #fff; padding: 1rem 2.5rem; border-radius: 50px;
+  font-weight: 600; text-decoration: none; transition: 0.3s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-secondary:hover {
+  background: rgba(123,92,250,0.1); border-color: var(--accent);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 3rem 2rem; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.85rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 768px) {
+  .nav-links { display: none; }
+  .hero-shop { padding: 6rem 1.5rem 3rem; }
+  .section { padding: 3rem 1.5rem; }
+  .artist-grid, .products-grid { grid-template-columns: 1fr; }
+  .cta-buttons { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+}
 </style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
-<div class="stars" id="stars"></div><div class="nebula nebula-1"></div>
-<nav id="nav-placeholder"></nav>
-<section class="page-hero">
-  <div class="container">
-    <p class="section-label fade-up">// TIENDA</p>
-    <h1 class="fade-up delay-1" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1;letter-spacing:-0.02em">Elige tu servicio.<br><span style="color:var(--accent)">Nosotros hacemos el resto.</span></h1>
-    <p class="fade-up delay-2" style="color:var(--muted);font-size:1rem;max-width:500px;line-height:1.7;margin-top:1.5rem">Todos los precios son orientativos. Cada proyecto es único — te enviamos un presupuesto exacto en 24 horas.</p>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">Terrivol Music</a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="tienda.html" class="active">Tienda</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-shop">
+  <div class="hero-content">
+    <div class="hero-badge">Tienda Oficial</div>
+    <h1 class="hero-title">Terrivol <span>Music Store</span></h1>
+    <p class="hero-sub">Álbumes, merch oficial y ediciones limitadas de nuestros artistas. Compra segura con envío internacional.</p>
   </div>
 </section>
 
-<section class="tienda-section">
-  <div class="container">
-    <p class="section-label">// MASTERIZACIÓN</p>
-    <h2>Mastering profesional</h2>
-    <div class="tienda-grid">
-      <div class="product-card">
-        <div class="product-top"><div class="product-icon">🔊</div><div class="product-name">Master Básico</div><div class="product-type">1 TRACK</div></div>
-        <div class="product-body">
-          <ul class="product-features"><li>1 canción masterizada</li><li>Entrega en WAV y MP3</li><li>Optimizado para streaming</li><li>1 revisión incluida</li></ul>
-          <div class="product-price">Consultar <span>/ por track</span></div>
-          <a href="https://wa.me/573102123844?text=Quiero%20masterizar%201%20track" target="_blank" class="product-cta">Consultar precio →</a>
+<!-- ARTISTAS -->
+<section class="section artist-section">
+  <div class="section-header">
+    <p class="section-label">// Nuestros Artistas</p>
+    <h2 class="section-title">Explora por Artista</h2>
+    <p class="section-desc">Descubre el catálogo completo de cada artista de Terrivol Music</p>
+  </div>
+  
+  <div class="artist-grid">
+    <!-- CAGTA FLEXX -->
+    <a href="yungg-flexx.html" class="artist-card">
+      <div class="artist-img">
+        <img src="img/yungg-cover.jpg" alt="Cagta Flex - YUNGG FLEXX">
+      </div>
+      <div class="artist-info">
+        <h3 class="artist-name">Cagta Flex</h3>
+        <p class="artist-album">YUNGG FLEXX • MEMORY</p>
+        <p class="artist-desc">Trap urbano, melodías pegajosas y letras que conectan con la calle. El renacimiento del sonido independiente.</p>
+        <span class="artist-link">Ver álbumes →</span>
+      </div>
+    </a>
+
+    <!-- PRÓXIMAMENTE -->
+    <div class="artist-card" style="opacity: 0.6;">
+      <div class="artist-img" style="background: linear-gradient(135deg, rgba(123,92,250,0.2), rgba(0,229,255,0.1));">
+        <div style="text-align: center; padding: 2rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🎵</div>
+          <p style="color: var(--accent2); font-weight: 700;">Próximamente</p>
         </div>
       </div>
-      <div class="product-card featured">
-        <span class="product-badge">MÁS POPULAR</span>
-        <div class="product-top"><div class="product-icon">🔊</div><div class="product-name">Pack Master 5</div><div class="product-type">5 TRACKS</div></div>
-        <div class="product-body">
-          <ul class="product-features"><li>5 canciones masterizadas</li><li>Todos los formatos</li><li>Coherencia de álbum</li><li>2 revisiones por track</li><li>Entrega express disponible</li></ul>
-          <div class="product-price">Consultar <span>/ 5 tracks</span></div>
-          <a href="https://wa.me/573102123844?text=Quiero%20el%20pack%20de%205%20masters" target="_blank" class="product-cta">Consultar precio →</a>
+      <div class="artist-info">
+        <h3 class="artist-name">Nuevo Artista</h3>
+        <p class="artist-album">En desarrollo</p>
+        <p class="artist-desc">Estamos trabajando en nuevos lanzamientos. Mantente atento a nuestras redes.</p>
+        <span class="artist-link">Síguenos en redes →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS DESTACADOS -->
+<section class="products-section">
+  <div class="section-header">
+    <p class="section-label">// Productos Destacados</p>
+    <h2 class="section-title">Lo Más Nuevo</h2>
+    <p class="section-desc">Los lanzamientos más recientes de nuestra tienda</p>
+  </div>
+
+  <div class="products-grid">
+    <!-- YUNGG FLEXX ÁLBUM -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="img/yungg-cover.jpg" alt="YUNGG FLEXX Album">
+      </div>
+      <div class="product-info">
+        <span class="product-tag">Álbum Digital</span>
+        <h3 class="product-title">YUNGG FLEXX</h3>
+        <p class="product-desc">El álbum que marca el renacimiento. 10 tracks de trap urbano con melodías pegajosas.</p>
+        <div class="product-actions">
+          <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx" target="_blank" class="btn-buy">🌎 Comprar Internacional</a>
+          <a href="https://wa.me/573102123844?text=Hola,%20quiero%20el%20álbum%20YUNGG%20FLEXX%20(Colombia)" class="btn-whatsapp">🇴 Comprar Colombia</a>
         </div>
       </div>
-      <div class="product-card">
-        <div class="product-top"><div class="product-icon">🔊</div><div class="product-name">Pack Álbum</div><div class="product-type">10+ TRACKS</div></div>
-        <div class="product-body">
-          <ul class="product-features"><li>Álbum completo</li><li>Coherencia sonora total</li><li>Revisiones ilimitadas</li><li>Stems entregados</li><li>DDP para distribución física</li></ul>
-          <div class="product-price">Consultar <span>/ álbum</span></div>
-          <a href="https://wa.me/573102123844?text=Quiero%20masterizar%20mi%20álbum%20completo" target="_blank" class="product-cta">Consultar precio →</a>
+    </div>
+
+    <!-- MEMORY ÁLBUM -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="img/portada-album-memory.jpg" alt="MEMORY Album">
+      </div>
+      <div class="product-info">
+        <span class="product-tag">Álbum Digital</span>
+        <h3 class="product-title">MEMORY</h3>
+        <p class="product-desc">Las cicatrices del pasado son las armas del futuro. Una experiencia sonora única.</p>
+        <div class="product-actions">
+          <a href="https://cagta-flex-shop.fourthwall.com/products/memory-digital-album" target="_blank" class="btn-buy">🌎 Comprar Internacional</a>
+          <a href="https://wa.me/573102123844?text=Hola,%20quiero%20el%20álbum%20MEMORY%20(Colombia)" class="btn-whatsapp">🇨🇴 Comprar Colombia</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOODIE YUNGG FLEXX -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="img/yungg-hoodie.jpg" alt="Hoodie YUNGG FLEXX">
+      </div>
+      <div class="product-info">
+        <span class="product-tag">Merch Oficial</span>
+        <h3 class="product-title">Hoodie YUNGG FLEXX</h3>
+        <p class="product-desc">Buso negro premium con logo futurista. Algodón 100%, edición limitada.</p>
+        <div class="product-actions">
+          <a href="https://cagta-flex-shop.fourthwall.com/products/yunggflexxofficialhoodie-cagtaflex" target="_blank" class="btn-buy"> Comprar Internacional</a>
+          <a href="https://wa.me/573102123844?text=Hola,%20quiero%20el%20Hoodie%20YUNGG%20FLEXX" class="btn-whatsapp">🇴 Comprar Colombia</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAMISETA YUNGG FLEXX -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="img/yungg-camiseta.jpg" alt="Camiseta YUNGG FLEXX">
+      </div>
+      <div class="product-info">
+        <span class="product-tag">Merch Oficial</span>
+        <h3 class="product-title">T-Shirt YUNGG FLEXX</h3>
+        <p class="product-desc">Camiseta negra con estampado retro-futurista. Algodón peinado, corte unisex.</p>
+        <div class="product-actions">
+          <a href="https://cagta-flex-shop.fourthwall.com/products/yungg-flexx-official-t-shirt-cagta-flex" target="_blank" class="btn-buy">🌎 Comprar Internacional</a>
+          <a href="https://wa.me/573102123844?text=Hola,%20quiero%20la%20Camiseta%20YUNGG%20FLEXX" class="btn-whatsapp">🇨🇴 Comprar Colombia</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="tienda-section" style="padding-top:0">
-  <div class="container">
-    <p class="section-label">// CONSULTORÍA</p>
-    <h2>Music business</h2>
-    <div class="tienda-grid">
-      <div class="product-card">
-        <div class="product-top"><div class="product-icon">📊</div><div class="product-name">Sesión Express</div><div class="product-type">1 HORA</div></div>
-        <div class="product-body">
-          <ul class="product-features"><li>1 hora de consultoría</li><li>Tema específico a elegir</li><li>Grabación de la sesión</li><li>Resumen por escrito</li></ul>
-          <div class="product-price">Consultar <span>/ sesión</span></div>
-          <a href="https://wa.me/573102123844?text=Quiero%20una%20sesión%20de%20consultoría%20de%201%20hora" target="_blank" class="product-cta">Consultar precio →</a>
-        </div>
-      </div>
-      <div class="product-card featured">
-        <span class="product-badge">RECOMENDADO</span>
-        <div class="product-top"><div class="product-icon">📊</div><div class="product-name">Estrategia Completa</div><div class="product-type">3 SESIONES</div></div>
-        <div class="product-body">
-          <ul class="product-features"><li>3 sesiones de 1h</li><li>Plan de carrera personalizado</li><li>Revisión de contratos</li><li>Estrategia de publishing</li><li>Soporte por WhatsApp 30 días</li></ul>
-          <div class="product-price">Consultar <span>/ paquete</span></div>
-          <a href="https://wa.me/573102123844?text=Quiero%20el%20paquete%20de%20estrategia%20completa" target="_blank" class="product-cta">Consultar precio →</a>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-top"><div class="product-icon">📊</div><div class="product-name">Distribución + Estrategia</div><div class="product-type">PAQUETE LANZAMIENTO</div></div>
-        <div class="product-body">
-          <ul class="product-features"><li>Distribución en +150 DSPs</li><li>Pitching a playlists</li><li>Estrategia de contenido</li><li>Análisis post-lanzamiento</li></ul>
-          <div class="product-price">Consultar <span>/ lanzamiento</span></div>
-          <a href="https://wa.me/573102123844?text=Quiero%20el%20paquete%20de%20distribución%20y%20estrategia" target="_blank" class="product-cta">Consultar precio →</a>
-        </div>
-      </div>
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="cta-box">
+    <p class="section-label">// Tienda Completa</p>
+    <h2 class="cta-title">¿Quieres ver todo el catálogo?</h2>
+    <p class="cta-desc">Visita nuestra tienda oficial en Fourthwall para ver todos los productos disponibles, tallas y opciones de envío internacional.</p>
+    <div class="cta-buttons">
+      <a href="https://cagta-flex-shop.fourthwall.com" target="_blank" class="btn-primary"> Ir a Fourthwall Store</a>
+      <a href="https://wa.me/573102123844?text=Hola,%20quiero%20ver%20todos%20los%20productos%20disponibles" class="btn-secondary">💬 Preguntar por WhatsApp</a>
     </div>
-  </div>
-</section>
-
-<section style="padding:4rem 0;text-align:center;border-top:1px solid var(--border)">
-  <div class="container">
-    <h2 style="font-size:1.8rem;margin-bottom:.8rem">¿No encuentras lo que buscas?</h2>
-    <p style="color:var(--muted);margin-bottom:2rem">Armamos paquetes personalizados según tu proyecto y presupuesto.</p>
-    <a href="https://wa.me/573102123844?text=Quiero%20un%20paquete%20personalizado" target="_blank" class="btn-wa">💬 Pedir presupuesto personalizado</a>
   </div>
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <a href="index.html" class="footer-logo"><img src="logo.png" alt="Terrivol Music"></a>
-    <div class="footer-links"><a href="servicios.html">Servicios</a><a href="portafolio.html">Portafolio</a><a href="contacto.html">Contacto</a></div>
-    <div class="footer-copy">© 2025 TERRIVOL MUSIC · BOGOTÁ</div>
-  </div>
+  <p>© 2026 Terrivol Music. Todos los derechos reservados.</p>
+  <p style="margin-top: 0.5rem;"><a href="mailto:terrivolmusiclove@gmail.com">terrivolmusiclove@gmail.com</a></p>
 </footer>
-<script src="nav.js"></script><script>document.getElementById('nav-placeholder').innerHTML=buildNav('tienda');</script>
-<script src="main.js"></script>
-</body></html>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    cursorRing.style.left = e.clientX + 'px';
+    cursorRing.style.top = e.clientY + 'px';
+  }, 50);
+});
+
+const hoverElements = document.querySelectorAll('a, button, .product-card, .artist-card');
+hoverElements.forEach(el => {
+  el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+});
+</script>
+</body>
+</html>
