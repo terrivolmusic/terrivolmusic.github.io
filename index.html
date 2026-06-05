@@ -7,15 +7,15 @@
 <meta name="description" content="Terrivol Music - Sello discográfico independiente. Producción, distribución y asesoría legal para artistas.">
 <link rel="stylesheet" href="style.css">
 <style>
-/* ===== ESTILOS PRO TIPO CAGTA FLEX ===== */
+/* ===== ESTILOS PRO EQUILIBRADOS ===== */
 
-/* Hero con textos grandes y degradados */
+/* Hero con textos proporcionales */
 .hero-title {
-  font-size: clamp(4rem, 12vw, 8rem);
+  font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 900;
-  line-height: 0.9;
+  line-height: 1;
   margin-bottom: 1.5rem;
-  letter-spacing: -3px;
+  letter-spacing: -2px;
 }
 .hero-title span {
   background: linear-gradient(135deg, #7b5cfa, #00e5ff);
@@ -38,10 +38,10 @@
   font-family: 'Space Mono', monospace;
 }
 .hero-subtitle {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: var(--muted);
-  max-width: 700px;
-  margin: 0 auto 3rem;
+  max-width: 650px;
+  margin: 0 auto 2.5rem;
   line-height: 1.6;
 }
 
@@ -54,14 +54,14 @@
 }
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
 }
 .stat-num {
-  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 900;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
   -webkit-background-clip: text;
@@ -70,7 +70,7 @@
 }
 .stat-label {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: 'Space Mono', monospace;
@@ -93,8 +93,8 @@
   margin-bottom: 0.5rem;
 }
 .section-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
   color: #fff;
   margin-bottom: 1rem;
 }
@@ -129,14 +129,14 @@
   display: block;
 }
 .why-title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 800;
   margin-bottom: 1rem;
   color: #fff;
 }
 .why-desc {
   color: var(--muted);
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.6;
 }
 
@@ -239,21 +239,21 @@
   text-transform: uppercase;
 }
 .cta-pro-title {
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
-  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
   color: #fff;
   margin-bottom: 1rem;
   line-height: 1.1;
 }
 .cta-pro-desc {
   color: #94a3b8;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 2.5rem;
 }
 .btn-pill {
-  padding: 1.2rem 2.5rem;
+  padding: 1rem 2.2rem;
   border-radius: 50px;
-  font-weight: 800;
+  font-weight: 700;
   text-decoration: none;
   font-size: 1rem;
   transition: all 0.3s;
@@ -267,7 +267,7 @@
   border: none;
 }
 .btn-pill-primary:hover {
-  box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
   transform: translateY(-3px);
 }
 .btn-pill-secondary {
@@ -287,7 +287,7 @@ footer {
   text-align: center;
 }
 .footer-brand {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: #fff;
   margin-bottom: 1rem;
@@ -316,7 +316,7 @@ footer {
 
 /* Responsive */
 @media(max-width: 768px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .why-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .cta-pro-box { padding: 3rem 1.5rem; }
@@ -337,7 +337,7 @@ footer {
     <div class="nav-links" id="navLinks">
       <a href="index.html" class="active">INICIO</a>
       <a href="servicios.html">SERVICIOS</a>
-      <a href="contacto.html">CONTACTO</a>
+      <a href="contacto.html" style="background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 700;">CONTACTO</a>
       <a href="https://wa.me/573102123844?text=Hola%20Terrivol%2C%20quiero%20cotizar" target="_blank" class="nav-cta-mobile">💼 TRABAJEMOS</a>
     </div>
     <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
@@ -502,23 +502,61 @@ footer {
   <p style="margin-top: 0.5rem;"><a href="mailto:terrivolmusiclove@gmail.com" style="color: var(--accent); text-decoration: none;">terrivolmusiclove@gmail.com</a></p>
 </footer>
 
-<!-- Scripts (cursor, stars, chatbot - igual que antes) -->
+<!-- CHATBOT WIDGET -->
+<div id="tm-chat-widget">
+  <button id="tm-chat-toggle" aria-label="Iniciar chat">🛸</button>
+  <div id="tm-chat-box">
+    <div id="tm-chat-header">
+      <div><div style="font-weight:700">🎵 Terrivol Music</div><div style="font-size:0.7rem;opacity:0.7">Centro de Comando</div></div>
+      <button id="tm-chat-close" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer">×</button>
+    </div>
+    <div id="tm-chat-messages"></div>
+    <div style="display:flex;padding:0.8rem;gap:0.6rem;border-top:1px solid rgba(123,92,250,0.2)">
+      <input type="text" id="tm-chat-input" placeholder="Transmite..." style="flex:1;background:rgba(123,92,250,0.1);border:1px solid rgba(123,92,250,0.3);border-radius:8px;padding:0.6rem;color:#fff;font-family:'Space Mono',monospace">
+      <button id="tm-chat-send" style="background:#7b5cfa;border:none;color:#fff;width:40px;border-radius:8px;cursor:pointer">📡</button>
+    </div>
+  </div>
+</div>
+
+<style>
+#tm-chat-widget{position:fixed;bottom:24px;right:24px;z-index:99999}
+#tm-chat-toggle{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#7b5cfa,#00e5ff);border:none;color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 25px rgba(123,92,250,0.4);animation:tmPulse 2s infinite}
+@keyframes tmPulse{0%,100%{box-shadow:0 8px 25px rgba(123,92,250,0.4)}50%{box-shadow:0 8px 35px rgba(0,229,255,0.6)}}
+#tm-chat-box{position:absolute;bottom:70px;right:0;width:380px;max-height:500px;background:rgba(10,10,25,0.98);border:1px solid rgba(123,92,250,0.3);border-radius:16px;display:none;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.6);font-family:'Syne',sans-serif}
+#tm-chat-box.open{display:flex}
+#tm-chat-header{background:linear-gradient(135deg,rgba(123,92,250,0.2),rgba(0,229,255,0.1));padding:1rem;border-bottom:1px solid rgba(123,92,250,0.3);display:flex;justify-content:space-between;align-items:center}
+#tm-chat-messages{flex:1;overflow-y:auto;padding:1rem;max-height:320px}
+.tm-msg{max-width:85%;padding:0.8rem;margin:0.5rem 0;border-radius:12px;font-size:0.9rem;line-height:1.5;animation:tmFade 0.3s}
+.tm-msg.bot{background:rgba(123,92,250,0.15);border:1px solid rgba(123,92,250,0.3);align-self:flex-start}
+.tm-msg.user{background:linear-gradient(135deg,#7b5cfa,#00e5ff);color:#fff;align-self:flex-end}
+.tm-msg a{color:#00e5ff;text-decoration:underline}
+@keyframes tmFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.tm-btn{background:rgba(123,92,250,0.2);border:1px solid rgba(123,92,250,0.4);color:#fff;padding:0.5rem 1rem;border-radius:20px;font-size:0.8rem;cursor:pointer;margin:0.3rem;font-family:'Space Mono',monospace}
+.tm-btn:hover{background:rgba(123,92,250,0.4)}
+.tm-wa{background:#25D366;color:#fff;border:none;padding:0.8rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.6rem;width:100%;font-size:0.95rem}
+.tm-email{background:rgba(123,92,250,0.3);border:1px solid #7b5cfa;color:#fff;padding:0.8rem;border-radius:10px;cursor:pointer;font-weight:700;margin-top:0.5rem;width:100%;font-size:0.95rem}
+@media(max-width:768px){#tm-chat-box{width:calc(100vw - 32px);max-width:400px}}
+</style>
+
 <script>
 function toggleMenu() {
   const nav = document.getElementById('navLinks');
   const btn = document.querySelector('.nav-mobile-btn');
   if(nav && btn) { nav.classList.toggle('open'); btn.textContent = nav.classList.contains('open') ? '✕' : '☰'; }
 }
+
 document.addEventListener('mousemove', function(e) {
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   if(cursor) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; }
   if(ring) { ring.style.left = (e.clientX - 16) + 'px'; ring.style.top = (e.clientY - 16) + 'px'; }
 });
+
 document.querySelectorAll('a, button, .service-card, .why-card').forEach(el => {
   el.addEventListener('mouseenter', () => document.getElementById('cursorRing').classList.add('hover'));
   el.addEventListener('mouseleave', () => document.getElementById('cursorRing').classList.remove('hover'));
 });
+
 const stars = document.getElementById('stars');
 for(let i=0; i<80; i++) {
   const star = document.createElement('div');
@@ -528,10 +566,13 @@ for(let i=0; i<80; i++) {
 const styleSheet = document.createElement('style');
 styleSheet.textContent = '@keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:1}}';
 document.head.appendChild(styleSheet);
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Counters
 const counters = document.querySelectorAll('.stat-num');
 const countObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -551,6 +592,45 @@ const countObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 counters.forEach(c => countObserver.observe(c));
+
+// Chatbot
+(function(){
+  const chatBox = document.getElementById('tm-chat-box');
+  const messages = document.getElementById('tm-chat-messages');
+  const input = document.getElementById('tm-chat-input');
+  let step = 'init', lead = {nombre:'',email:'',tel:'',servicio:''}, captured = false;
+  document.getElementById('tm-chat-toggle').onclick = function(){ chatBox.classList.add('open'); if(step === 'init') setTimeout(() => botMsg('🚀 ¡Bienvenido al Centro de Comando Terrivol!<br><br>Para coordinar tu misión, ¿cuál es tu nombre?'), 600); };
+  document.getElementById('tm-chat-close').onclick = function(){ chatBox.classList.remove('open'); };
+  function handleInput(text){
+    if(!text.trim()) return; userMsg(text); input.value = '';
+    if(!captured){
+      if(step === 'init' || step === 'name'){ step = 'name'; lead.nombre = text.trim(); setTimeout(() => botMsg(`¡Excelente, ${lead.nombre}! 🎵 ¿Tu correo electrónico?`), 600); step = 'email'; }
+      else if(step === 'email'){ if(!text.includes('@')){ botMsg('⚠️ Coordenada inválida. Ingresa un email correcto.'); return; } lead.email = text.trim(); setTimeout(() => botMsg('📡 ¿Tu número de WhatsApp? (ej: +57 300 123 4567)'), 600); step = 'tel'; }
+      else if(step === 'tel'){ lead.tel = text.trim(); captured = true; saveLead(); setTimeout(() => { botMsg('✅ ¡Datos sincronizados con la base orbital!<br><br>¿Qué servicio necesitas hoy?'); showBtns(); }, 600); step = 'service'; }
+      else if(step === 'service'){ lead.servicio = text; step = 'done'; botMsg(kb[text.toLowerCase()] || kb.default); setTimeout(() => forceCTA(), 800); }
+    } else { botMsg(kb[text.toLowerCase()] || kb.default); setTimeout(() => forceCTA(), 800); }
+  }
+  document.getElementById('tm-chat-send').onclick = function(){ handleInput(input.value); };
+  input.onkeypress = function(e){ if(e.key === 'Enter') handleInput(input.value); };
+  function userMsg(t){ const d = document.createElement('div'); d.className = 'tm-msg user'; d.textContent = t; messages.appendChild(d); messages.scrollTop = messages.scrollHeight; }
+  function botMsg(h){ const d = document.createElement('div'); d.className = 'tm-msg bot'; d.innerHTML = h; messages.appendChild(d); messages.scrollTop = messages.scrollHeight; }
+  function showBtns(){
+    const opts = [{t:'🎙️ Producción',v:'produccion'},{t:'📀 Distribución',v:'distribucion'},{t:'🎹 Beats',v:'beats'},{t:'⚖️ Legal',v:'legal'},{t:'🎓 Clases',v:'clases'}];
+    const wrap = document.createElement('div'); wrap.style.cssText = 'display:flex;flex-wrap:wrap;margin:0.5rem 0';
+    opts.forEach((b,i) => { setTimeout(() => { const btn = document.createElement('button'); btn.className = 'tm-btn'; btn.textContent = b.t; btn.onclick = () => handleInput(b.v); wrap.appendChild(btn); }, i*100); });
+    messages.appendChild(wrap); messages.scrollTop = messages.scrollHeight;
+  }
+  function forceCTA(){
+    document.querySelectorAll('.tm-wa,.tm-email,.tm-cta-text').forEach(el => el.remove());
+    const txt = document.createElement('div'); txt.className = 'tm-msg bot tm-cta-text'; txt.innerHTML = '🎯 <b>¿Listo para despegar?</b><br>Habla directo con un asesor.'; messages.appendChild(txt);
+    const wa = document.createElement('button'); wa.className = 'tm-wa'; wa.innerHTML = '💬 WhatsApp Directo'; wa.onclick = openWA; messages.appendChild(wa);
+    const em = document.createElement('button'); em.className = 'tm-email'; em.innerHTML = '📧 Ir a Formulario'; em.onclick = openEmail; messages.appendChild(em); messages.scrollTop = messages.scrollHeight;
+  }
+  function saveLead(){ const fd = new FormData(); fd.append('nombre', lead.nombre); fd.append('email', lead.email); fd.append('telefono', lead.tel); fd.append('servicio', lead.servicio); fd.append('origen', 'index.html'); fetch('https://formspree.io/f/mqegnekp', {method:'POST', body:fd, headers:{'Accept':'application/json'}}).catch(e => console.warn(e)); }
+  function openWA(){ const msg = `Hola Terrivol! 🚀%0A%0ASoy ${lead.nombre}%0A📧 ${lead.email}%0A📱 ${lead.tel}%0A🎯 Interés: ${lead.servicio}`; window.open(`https://wa.me/573102123844?text=${msg}`, '_blank'); }
+  function openEmail(){ window.location.href = 'contacto.html'; botMsg('✅ Redirigiendo...'); setTimeout(() => { chatBox.classList.remove('open'); }, 1000); }
+  const kb = {'produccion': '🎙️ Producción desde $150 USD. Grabación, mezcla y masterización profesional.','distribucion': '📀 Distribución desde $20/año. +150 plataformas, 100% regalías.','beats': '🎹 Beats desde $30. Catálogo trap, reggaeton y melódico.','legal': '⚖️ Asesoría Legal $80 USD. Registro y publishing.','clases': '🎓 Clases desde $40/sesión. Mentorías 1-a-1.','default': '📡 Especifica: producción, distribución, beats, legal o clases.'};
+})();
 </script>
 </body>
 </html>
