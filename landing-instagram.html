@@ -57,36 +57,35 @@ body {
   margin-bottom: 3rem;
 }
 .profile-logo {
-  width: 120px;
-  height: 120px;
-  border-radius: 24px;
+  width: 140px;
+  height: 140px;
   margin: 0 auto 1.5rem;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
-  padding: 4px;
-  box-shadow: 0 0 40px rgba(123,92,250,0.4);
-  animation: pulse 3s ease-in-out infinite;
+  border-radius: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 60px rgba(123,92,250,0.5), 0 0 100px rgba(0,229,255,0.3);
+  animation: pulse 3s ease-in-out infinite;
+  position: relative;
 }
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 40px rgba(123,92,250,0.4); }
-  50% { box-shadow: 0 0 60px rgba(0,229,255,0.6); }
+  0%, 100% { 
+    box-shadow: 0 0 60px rgba(123,92,250,0.5), 0 0 100px rgba(0,229,255,0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 80px rgba(0,229,255,0.7), 0 0 120px rgba(123,92,250,0.5);
+    transform: scale(1.05);
+  }
 }
 .profile-logo-inner {
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  background: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 900;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: -2px;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(255,255,255,0.5);
+  letter-spacing: -4px;
+  line-height: 1;
 }
 .profile-badge {
   display: inline-block;
@@ -223,7 +222,7 @@ body {
   font-family: 'Space Mono', monospace;
 }
 
-/* Social Grid - AHORA 2 COLUMNAS */
+/* Social Grid */
 .social-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -325,6 +324,13 @@ body {
 @media(max-width: 480px) {
   .container { padding: 2rem 1rem; }
   .profile h1 { font-size: 2rem; }
+  .profile-logo {
+    width: 120px;
+    height: 120px;
+  }
+  .profile-logo-inner {
+    font-size: 3.5rem;
+  }
   .social-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
   .social-btn { padding: 1rem; font-size: 0.9rem; }
   .social-btn svg { width: 22px; height: 22px; }
@@ -435,7 +441,7 @@ body {
     </div>
   </div>
 
-  <!-- REDES SOCIALES - SOLO INSTAGRAM Y FACEBOOK -->
+  <!-- REDES SOCIALES -->
   <div class="section fade-up delay-4">
     <p class="section-label">// Síguenos</p>
     <div class="social-grid">
