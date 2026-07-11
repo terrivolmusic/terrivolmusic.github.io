@@ -73,7 +73,7 @@ body {
   margin-bottom: 2.5rem;
   border: 2px solid rgba(212,175,55,0.4);
   border-radius: 12px;
-  background: url('cover-art.jpg') center/cover no-repeat;
+  background: url('img/cover-art.jpg') center/cover no-repeat;
   background-color: #111;
   transition: transform 0.5s;
 }
@@ -179,6 +179,25 @@ body {
 }
 .music-info p { color: var(--muted); margin-bottom: 2rem; }
 
+/* YouTube Player */
+.youtube-player {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 2rem 0;
+  box-shadow: 0 10px 40px rgba(212,175,55,0.3);
+}
+.youtube-player iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* Platforms */
 .platforms-grid {
   display: grid;
@@ -207,21 +226,65 @@ body {
   border-color: var(--gold);
 }
 
-/* WAV Download */
+/* WAV Download - TWO OPTIONS */
 .wav-download {
   background: linear-gradient(135deg, var(--burgundy), #1a0a0a);
   border: 2px solid var(--gold);
   padding: 2rem;
   border-radius: 16px;
   margin-top: 2rem;
-  text-align: center;
 }
 .wav-download h4 {
   color: var(--gold);
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
+  text-align: center;
 }
-.wav-download p { color: var(--muted); margin-bottom: 1.5rem; font-size: 0.95rem; }
+.wav-download > p { 
+  color: var(--muted); 
+  margin-bottom: 1.5rem; 
+  font-size: 0.95rem;
+  text-align: center;
+}
+.purchase-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.purchase-option {
+  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(212,175,55,0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: 0.3s;
+}
+.purchase-option:hover {
+  border-color: var(--gold);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(212,175,55,0.2);
+}
+.purchase-option h5 {
+  color: var(--gold);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.purchase-option .price {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 1rem 0;
+}
+.purchase-option p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.purchase-option .btn {
+  width: 100%;
+  display: block;
+}
 
 /* TikTok Section */
 .tiktok-section {
@@ -406,7 +469,7 @@ footer {
 /* Responsive */
 @media(max-width: 900px) {
   .music-container, .contact-container { grid-template-columns: 1fr; gap: 2rem; }
-  .platforms-grid { grid-template-columns: 1fr; }
+  .platforms-grid, .purchase-options { grid-template-columns: 1fr; }
 }
 @media(max-width: 768px) {
   .nav-links { display: none; }
@@ -432,14 +495,13 @@ footer {
 <!-- NAV PRO -->
 <nav class="navbar">
   <div class="nav-container">
-    <!-- ENLACE A TU WEB PRINCIPAL -->
     <a href="index.html" class="nav-logo">Terrivol<span>.</span></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Inicio</a>
       <a href="#music">Música</a>
       <a href="#merch">Merch</a>
       <a href="#contact">Contacto</a>
-      <a href="https://wa.me/573102238444?text=Hola%20Cagta%20Flex" target="_blank" class="nav-cta">📱 WhatsApp</a>
+      <a href="https://wa.me/573102238444?text=Hola%20Cagta%20Flex" target="_blank" class="nav-cta"> WhatsApp</a>
     </div>
     <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
   </div>
@@ -466,12 +528,17 @@ footer {
   
   <div class="music-container">
     <div class="album-art fade-up">
-      <img src="cover-art.jpg" alt="Mucho Fendy - Cover Art">
+      <img src="img/cover-art.jpg" alt="Mucho Fendy - Cover Art">
     </div>
     
     <div class="music-info fade-up delay-1">
       <h3>MUCHO FENDY</h3>
       <p>Boom bap comercial con flow latino. Prod. Fullnes para Terrivol Music.</p>
+      
+      <!-- YOUTUBE PLAYER -->
+      <div class="youtube-player">
+        <iframe src="https://www.youtube.com/embed/-IsyuV6DoTA" title="Mucho Fendy - Video Oficial" allowfullscreen></iframe>
+      </div>
       
       <div class="platforms-grid">
         <a href="https://music.apple.com/co/album/mucho-fendy-single/6789658182" target="_blank" class="platform-btn">
@@ -492,10 +559,28 @@ footer {
         </a>
       </div>
 
+      <!-- WAV DOWNLOAD - TWO OPTIONS -->
       <div class="wav-download">
-        <h4> Descarga WAV Master</h4>
+        <h4>🎵 Descarga WAV Master</h4>
         <p>Archivo WAV 24-bit de alta calidad + licencia básica de uso</p>
-        <a href="https://cagta-flex-shop.fourthwall.com/en-usd/products/cagta-flex-mucho-fendy-wav-master" target="_blank" class="btn-store-main">Comprar WAV - $25 USD</a>
+        
+        <div class="purchase-options">
+          <!-- NACIONAL -->
+          <div class="purchase-option">
+            <h5>🇨🇴 Nacional</h5>
+            <div class="price">$25,000 COP</div>
+            <p>Pago vía Nequi</p>
+            <a href="https://wa.me/573102238444?text=Hola%20Cagta%20Flex,%20quiero%20comprar%20el%20WAV%20de%20Mucho%20Fendy%20(Nacional%20-%20Nequi)" target="_blank" class="btn-store-main">Comprar por Nequi</a>
+          </div>
+          
+          <!-- INTERNACIONAL -->
+          <div class="purchase-option">
+            <h5>🌍 Internacional</h5>
+            <div class="price">$9.99 USD</div>
+            <p>Pago seguro online</p>
+            <a href="https://cagta-flex-shop.fourthwall.com/en-usd/products/cagta-flex-mucho-fendy-wav-master" target="_blank" class="btn-store-main">Comprar Online</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -504,7 +589,7 @@ footer {
 <!-- TIKTOK -->
 <section class="tiktok-section">
   <p class="section-label fade-up" style="color: var(--gold);">// Viral</p>
-  <h2 class="fade-up delay-1">🎵 Úsalo En TikTok</h2>
+  <h2 class="fade-up delay-1"> Úsalo En TikTok</h2>
   <p class="fade-up delay-2">Crea contenido con "Mucho Fendy" y etiqueta @cagtaflex</p>
   <a href="https://www.tiktok.com/@cagtaflex" target="_blank" class="tiktok-btn fade-up delay-3">
     <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: currentColor;"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>
@@ -521,11 +606,11 @@ footer {
   
   <div class="merch-grid">
     <div class="merch-card fade-up">
-      <img src="merch-tee.jpg" alt="Mucho Fendy T-Shirt">
+      <img src="img/merch-tee.jpg" alt="Mucho Fendy T-Shirt">
       <div class="merch-info">
         <h3>Edición Limitada</h3>
         <p style="color: var(--muted); line-height: 1.7;">Camiseta 100% algodón premium con el diseño exclusivo de la portada. Confeccionada en Bella+Canvas Supersoft. Tallas S-XL disponibles.</p>
-        <div class="merch-price">$30.00 USD</div>
+        <div class="merch-price">$29.99 USD</div>
         <a href="https://cagta-flex-shop.fourthwall.com/en-usd/products/mucho-fendy-tee" target="_blank" class="buy-btn">Comprar Ahora</a>
       </div>
     </div>
