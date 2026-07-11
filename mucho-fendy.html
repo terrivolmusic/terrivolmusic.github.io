@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUCHO FENDY | Cagta Flex - Single Oficial</title>
+<meta name="description" content="MUCHO FENDY - Nuevo single de Cagta Flex. Boom bap comercial con flow latino. Prod. Fullnes.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --burgundy: #6B0000;
+  --burgundy-light: #8B0000;
+  --gold: #D4AF37;
+  --gold-light: #FFD700;
+  --accent: #D4AF37;
+  --accent2: #6B0000;
+  --bg-dark: #0a0505;
+  --bg: #0f0a0a;
+  --surface: rgba(30,20,20,0.6);
+  --border: rgba(212,175,55,0.15);
+  --text: #f8fafc;
+  --muted: #94a3b8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Cursor PRO */
+.cursor { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999999; transform: translate(-50%,-50%); transition: transform 0.1s; }
+.cursor-ring { width: 32px; height: 32px; border: 1px solid rgba(212,175,55,0.5); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999998; transform: translate(-50%,-50%); transition: all 0.15s ease-out; }
+.cursor-ring.hover { transform: translate(-50%,-50%) scale(1.5); border-color: var(--burgundy); background: rgba(107,0,0,0.2); }
+@media (pointer: coarse) { .cursor, .cursor-ring { display: none !important; } body { cursor: auto !important; } }
+
+/* Nav PRO */
+.navbar {
+  position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0;
+  background: rgba(10,5,5,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { font-size: 1.2rem; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: -0.5px; }
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a { color: var(--muted); text-decoration: none; font-weight: 500; transition: 0.3s; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { background: var(--burgundy); color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 600 !important; border: 1px solid var(--gold); }
+.nav-cta:hover { background: var(--gold); color: #000 !important; }
+.nav-mobile-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+
+/* Hero */
+.hero-mf {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  background: radial-gradient(circle at 50% 40%, rgba(107,0,0,0.3) 0%, rgba(212,175,55,0.1) 60%, transparent 100%);
+}
+.album-cover-large {
+  width: 320px;
+  height: 320px;
+  box-shadow: 0 0 60px rgba(212,175,55,0.4), 0 0 100px rgba(107,0,0,0.3);
+  margin-bottom: 2.5rem;
+  border: 2px solid rgba(212,175,55,0.4);
+  border-radius: 12px;
+  background: url('cover-art.jpg') center/cover no-repeat;
+  background-color: #111;
+  transition: transform 0.5s;
+}
+.album-cover-large:hover { transform: scale(1.05) rotate(2deg); }
+.hero-mf h2 {
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 4px;
+  margin-bottom: 1.5rem;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+}
+.hero-mf h1 {
+  font-size: clamp(4rem, 12vw, 9rem);
+  font-weight: 900;
+  line-height: 0.85;
+  text-transform: uppercase;
+  letter-spacing: -3px;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 60px rgba(212,175,55,0.5), 3px 3px 0px var(--burgundy);
+}
+.hero-desc {
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+.btn-store-main {
+  background: var(--gold);
+  color: #000;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: 0.3s;
+  display: inline-block;
+  margin: 0 0.5rem;
+  border: 2px solid var(--gold);
+}
+.btn-store-main:hover {
+  background: transparent;
+  color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+}
+.btn-outline {
+  background: transparent;
+  border: 2px solid rgba(212,175,55,0.4);
+  color: var(--gold);
+}
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 30px rgba(212,175,55,0.3);
+}
+
+/* Sections */
+.section { padding: 6rem 2rem; }
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-label {
+  color: var(--gold);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* Music & Video */
+.music-section {
+  background: #080505;
+  border-top: 1px solid var(--border);
+}
+.music-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.album-art {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(212,175,55,0.2);
+}
+.album-art img { width: 100%; display: block; }
+.music-info h3 {
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  font-family: 'Space Mono', monospace;
+}
+.music-info p { color: var(--muted); margin-bottom: 2rem; }
+
+/* Platforms */
+.platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.platform-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  background: rgba(212,175,55,0.05);
+  border: 1px solid rgba(212,175,55,0.2);
+  padding: 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.platform-btn svg { width: 20px; height: 20px; fill: currentColor; }
+.platform-btn:hover {
+  background: rgba(212,175,55,0.15);
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+
+/* WAV Download */
+.wav-download {
+  background: linear-gradient(135deg, var(--burgundy), #1a0a0a);
+  border: 2px solid var(--gold);
+  padding: 2rem;
+  border-radius: 16px;
+  margin-top: 2rem;
+  text-align: center;
+}
+.wav-download h4 {
+  color: var(--gold);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.wav-download p { color: var(--muted); margin-bottom: 1.5rem; font-size: 0.95rem; }
+
+/* TikTok Section */
+.tiktok-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: rgba(0,242,234,0.05);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.tiktok-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #00f2ea, #ff0050);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.tiktok-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #00f2ea, #ff0050);
+  color: #fff;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 800;
+  margin-top: 1.5rem;
+  transition: 0.3s;
+}
+.tiktok-btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,242,234,0.3); }
+
+/* Merch */
+.merch-section {
+  background: #080505;
+  border-top: 1px solid var(--border);
+}
+.merch-grid {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.merch-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+.merch-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(212,175,55,0.2);
+}
+.merch-card img { width: 100%; display: block; }
+.merch-info { padding: 2rem; }
+.merch-info h3 {
+  color: var(--gold);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.merch-price {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 1rem 0;
+}
+.buy-btn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background: var(--gold);
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 800;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+  transition: 0.3s;
+}
+.buy-btn:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+/* Contact PRO */
+.contact-section {
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, transparent, rgba(107,0,0,0.1));
+  border-top: 1px solid var(--border);
+}
+.contact-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+.contact-info h3 {
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+.contact-info p {
+  color: var(--muted);
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+.contact-details { margin-top: 2rem; }
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+.contact-item svg { width: 24px; height: 24px; fill: var(--gold); }
+.contact-item a { color: var(--gold); text-decoration: none; font-weight: 600; }
+.contact-item a:hover { text-decoration: underline; }
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  background: rgba(212,175,55,0.05);
+  border: 1px solid rgba(212,175,55,0.2);
+  padding: 1rem;
+  border-radius: 12px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.social-btn:hover {
+  background: rgba(212,175,55,0.15);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+/* Contact Form */
+.contact-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+.contact-form h3 { color: var(--gold); margin-bottom: 1.5rem; font-size: 1.5rem; }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; color: var(--muted); margin-bottom: 0.5rem; font-size: 0.9rem; }
+.form-group input, .form-group textarea {
+  width: 100%; padding: 1rem; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212,175,55,0.2); border-radius: 8px;
+  color: #fff; font-family: 'Syne', sans-serif; font-size: 1rem; outline: none; transition: 0.3s;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 20px rgba(212,175,55,0.1); }
+.form-group textarea { min-height: 120px; resize: vertical; }
+.submit-btn {
+  width: 100%; padding: 1rem; background: var(--gold); color: #000;
+  border: none; border-radius: 8px; font-weight: 800; font-size: 1rem; cursor: pointer; transition: 0.3s;
+}
+.submit-btn:hover { background: #fff; transform: translateY(-2px); }
+
+/* Footer */
+footer {
+  text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem;
+}
+.footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
+.footer-links a { color: var(--muted); text-decoration: none; transition: 0.3s; }
+.footer-links a:hover { color: var(--gold); }
+
+/* Animations */
+.fade-up { opacity: 0; transform: translateY(30px); transition: 0.6s cubic-bezier(0.2,0.8,0.2,1); }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+/* Responsive */
+@media(max-width: 900px) {
+  .music-container, .contact-container { grid-template-columns: 1fr; gap: 2rem; }
+  .platforms-grid { grid-template-columns: 1fr; }
+}
+@media(max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-mobile-btn { display: block; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: absolute;
+    top: 100%; left: 0; right: 0; background: rgba(10,5,5,0.98);
+    padding: 1.5rem; border-bottom: 1px solid var(--border);
+  }
+  .hero-mf { padding: 6rem 1.5rem 3rem; }
+  .hero-mf h1 { font-size: 4.5rem; }
+  .album-cover-large { width: 260px; height: 260px; }
+  .section { padding: 4rem 1.5rem; }
+  .social-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV PRO -->
+<nav class="navbar">
+  <div class="nav-container">
+    <!-- ENLACE A TU WEB PRINCIPAL -->
+    <a href="index.html" class="nav-logo">Terrivol<span>.</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Inicio</a>
+      <a href="#music">Música</a>
+      <a href="#merch">Merch</a>
+      <a href="#contact">Contacto</a>
+      <a href="https://wa.me/573102238444?text=Hola%20Cagta%20Flex" target="_blank" class="nav-cta">📱 WhatsApp</a>
+    </div>
+    <button class="nav-mobile-btn" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-mf">
+  <div class="album-cover-large fade-up"></div>
+  <h2 class="fade-up delay-1">Cagta Flex Presenta</h2>
+  <h1 class="fade-up delay-2">Mucho<br>Fendy</h1>
+  <p class="hero-desc fade-up delay-3">Boom bap comercial con flow latino. Producción de lujo para la calle y el club. Prod. Fullnes.</p>
+  <div class="hero-cta fade-up delay-3" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+    <a href="#music" class="btn-store-main">▶ Escuchar Ahora</a>
+    <a href="#merch" class="btn-store-main btn-outline"> Ver Merch</a>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music" class="section music-section">
+  <div class="section-header">
+    <p class="section-label fade-up">// Single Oficial</p>
+    <h2 class="section-title fade-up delay-1">Disponible En Todas Las Plataformas</h2>
+  </div>
+  
+  <div class="music-container">
+    <div class="album-art fade-up">
+      <img src="cover-art.jpg" alt="Mucho Fendy - Cover Art">
+    </div>
+    
+    <div class="music-info fade-up delay-1">
+      <h3>MUCHO FENDY</h3>
+      <p>Boom bap comercial con flow latino. Prod. Fullnes para Terrivol Music.</p>
+      
+      <div class="platforms-grid">
+        <a href="https://music.apple.com/co/album/mucho-fendy-single/6789658182" target="_blank" class="platform-btn">
+          <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Apple Music
+        </a>
+        <a href="https://link.deezer.com/s/33NQ69QygkObKDmEZUmX1" target="_blank" class="platform-btn">
+          <svg viewBox="0 0 24 24"><path d="M18.81 4.13v3.18h-3.18V4.13h3.18zM6.35 10.49v3.18H3.17v-3.18h3.18zm4.23 0v3.18H7.4v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18zM6.35 14.67v3.18H3.17v-3.18h3.18zm4.23 0v3.18H7.4v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18zm4.23 0v3.18h-3.18v-3.18h3.18z"/></svg>
+          Deezer
+        </a>
+        <a href="https://youtu.be/RoLD5NTAiwA?si=dKBABsV_fq05k11Q" target="_blank" class="platform-btn">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          YouTube Music
+        </a>
+        <a href="https://youtu.be/-IsyuV6DoTA?si=SoEOxbVqSHCI4VBA" target="_blank" class="platform-btn">
+          <svg viewBox="0 0 24 24"><path d="M10 14.65v-5.3L15 12l-5 2.65zm7.77-4.33c-.77-.32-1.2-.5-1.2-.5L18 9.06c1.84-.96 2.52-3.23 1.56-5.06s-3.23-2.52-5.06-1.56L6 6.94c-1.28.67-2.07 2.04-1.91 3.45.16 1.41 1.23 2.59 2.62 2.87.29.06.58.09.88.09.78 0 1.54-.22 2.2-.64l.86-.45v5.3c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-2.5l1.2.5c.77.32 1.2.5 1.2.5L15 16.94c1.84.96 4.1.25 5.06-1.56s.25-4.1-1.56-5.06z"/></svg>
+          Video Oficial
+        </a>
+      </div>
+
+      <div class="wav-download">
+        <h4> Descarga WAV Master</h4>
+        <p>Archivo WAV 24-bit de alta calidad + licencia básica de uso</p>
+        <a href="https://cagta-flex-shop.fourthwall.com/en-usd/products/cagta-flex-mucho-fendy-wav-master" target="_blank" class="btn-store-main">Comprar WAV - $25 USD</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIKTOK -->
+<section class="tiktok-section">
+  <p class="section-label fade-up" style="color: var(--gold);">// Viral</p>
+  <h2 class="fade-up delay-1">🎵 Úsalo En TikTok</h2>
+  <p class="fade-up delay-2">Crea contenido con "Mucho Fendy" y etiqueta @cagtaflex</p>
+  <a href="https://www.tiktok.com/@cagtaflex" target="_blank" class="tiktok-btn fade-up delay-3">
+    <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: currentColor;"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>
+    Usar En TikTok
+  </a>
+</section>
+
+<!-- MERCH -->
+<section id="merch" class="section merch-section">
+  <div class="section-header">
+    <p class="section-label fade-up">// Merch Oficial</p>
+    <h2 class="section-title fade-up delay-1">Mucho Fendy Tee</h2>
+  </div>
+  
+  <div class="merch-grid">
+    <div class="merch-card fade-up">
+      <img src="merch-tee.jpg" alt="Mucho Fendy T-Shirt">
+      <div class="merch-info">
+        <h3>Edición Limitada</h3>
+        <p style="color: var(--muted); line-height: 1.7;">Camiseta 100% algodón premium con el diseño exclusivo de la portada. Confeccionada en Bella+Canvas Supersoft. Tallas S-XL disponibles.</p>
+        <div class="merch-price">$30.00 USD</div>
+        <a href="https://cagta-flex-shop.fourthwall.com/en-usd/products/mucho-fendy-tee" target="_blank" class="buy-btn">Comprar Ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section contact-section">
+  <div class="section-header">
+    <p class="section-label fade-up">// Booking & Contacto</p>
+    <h2 class="section-title fade-up delay-1">Trabajemos Juntos</h2>
+  </div>
+  
+  <div class="contact-container">
+    <div class="contact-info fade-up">
+      <h3>Información De Contacto</h3>
+      <p>Para booking de shows, colaboraciones, producción musical o cualquier consulta, no dudes en contactarnos. Estamos listos para llevar tu proyecto al siguiente nivel.</p>
+      
+      <div class="contact-details">
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <a href="mailto:contacto@terrivolmusic.com">contacto@terrivolmusic.com</a>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <a href="tel:+573102238444">+57 310 223 8444</a>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-1.5c0-.55.45-1 1-1h3c1.66 0 3 1.34 3 3v3.5c0 .55-.45 1-1 1h-1.1c-.9 0-1.64.58-1.9 1.39-.26.81.34 1.59 1.17 1.59h2.56c.83 0 1.43-.78 1.17-1.59z"/></svg>
+          <span>Bogotá, Colombia</span>
+        </div>
+      </div>
+
+      <div class="social-grid">
+        <a href="https://instagram.com/cagtaflex" target="_blank" class="social-btn">Instagram</a>
+        <a href="https://youtube.com/cagtaflex" target="_blank" class="social-btn">YouTube</a>
+        <a href="https://facebook.com/CagtaFlex" target="_blank" class="social-btn">Facebook</a>
+        <a href="https://wa.me/573102238444" target="_blank" class="social-btn">WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="contact-form fade-up delay-1">
+      <h3>Envíanos Un Mensaje</h3>
+      <form action="https://formspree.io/f/mqegnekp" method="POST">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Enviar Mensaje</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Inicio (Terrivol)</a>
+    <a href="#music">Música</a>
+    <a href="#merch">Merch</a>
+    <a href="#contact">Contacto</a>
+  </div>
+  <p>© 2026 Terrivol Music. Cagta Flex - MUCHO FENDY.</p>
+  <p style="margin-top: 0.5rem; font-size: 0.85rem;">Distributed by Distrokid | Publishing: Sony Music Publishing</p>
+</footer>
+
+<script>
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  const btn = document.querySelector('.nav-mobile-btn');
+  if(nav && btn) { nav.classList.toggle('open'); btn.textContent = nav.classList.contains('open') ? '✕' : '☰'; }
+}
+
+document.addEventListener('mousemove', function(e) {
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  if(cursor) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; }
+  if(ring) { ring.style.left = (e.clientX - 16) + 'px'; ring.style.top = (e.clientY - 16) + 'px'; }
+});
+document.querySelectorAll('a, button, .video-card, .platform-btn, .merch-card, .social-btn').forEach(el => {
+  el.addEventListener('mouseenter', () => document.getElementById('cursorRing').classList.add('hover'));
+  el.addEventListener('mouseleave', () => document.getElementById('cursorRing').classList.remove('hover'));
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
