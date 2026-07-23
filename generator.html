@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BFYT Command Center - Generador Pro Avanzado</title>
+    <title>BFYT Command Center - Generador Pro Avanzado con IA Contextual</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -78,7 +78,7 @@
             border-color: #8a2be2;
             box-shadow: 0 0 15px rgba(138,43,226,0.3);
         }
-        textarea { min-height: 100px; resize: vertical; }
+        textarea { min-height: 120px; resize: vertical; }
         
         .generate-btn {
             width: 100%;
@@ -266,13 +266,44 @@
             border-color: #00f2ff;
             color: white;
         }
+        
+        .context-analysis {
+            background: linear-gradient(135deg, rgba(0,242,255,0.1), rgba(138,43,226,0.1));
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 2px solid #00f2ff;
+        }
+        .context-analysis h3 {
+            color: #00f2ff;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .context-analysis p {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .context-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .context-tag {
+            background: rgba(138,43,226,0.3);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #00f2ff;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1> COMMAND CENTER</h1>
-            <p class="subtitle">Beats BFYT | Generador Automático Pro Avanzado</p>
+            <p class="subtitle">Beats BFYT | Generador Inteligente con IA Contextual</p>
         </header>
 
         <div class="dashboard">
@@ -289,8 +320,8 @@
                     <label>Energía del Beat</label>
                     <div class="energy-selector">
                         <button type="button" class="energy-btn" data-energy="low">Baja (Chill/Melodic)</button>
-                        <button type="button" class="energy-btn" data-energy="medium">Media (Cinematic)</button>
-                        <button type="button" class="energy-btn active" data-energy="high">Alta (Rage/Drill)</button>
+                        <button type="button" class="energy-btn active" data-energy="medium">Media (Cinematic)</button>
+                        <button type="button" class="energy-btn" data-energy="high">Alta (Rage/Drill)</button>
                     </div>
                 </div>
                 
@@ -303,13 +334,14 @@
                         <option value="drill">UK Drill (Sliding 808s, Piano Oscuro)</option>
                         <option value="opium">Opium / Carti (Psicodélico, Underground)</option>
                         <option value="space">Space/Futuristic (Galáctico, Cósmico)</option>
+                        <option value="angelic">Angelic/Celestial (Etereo, Paz, Voz)</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
                     <label>Describe el Beat (Texto Libre)</label>
-                    <textarea id="descripcion" placeholder="Ej: este beat suena futurista, como del espacio, con synths brillantes y 808s pesados, vibe tranquilo pero épico..."></textarea>
-                    <small style="color: #666; display: block; margin-top: 5px;"> Escribe como quieras, el sistema interpretará y mejorará</small>
+                    <textarea id="descripcion" placeholder="Ej: sample como de una voz angelical, transmite mucha calma y energía de paz. para buena letra."></textarea>
+                    <small style="color: #666; display: block; margin-top: 5px;"> Escribe como quieras, la IA interpretará y mejorará automáticamente</small>
                 </div>
                 
                 <button class="generate-btn" onclick="generarData()">🚀 Generar Todo Automático</button>
@@ -319,13 +351,19 @@
             <div class="card">
                 <h2>📊 Resultados <span class="badge">Elige tus favoritos</span></h2>
                 
+                <div class="context-analysis" id="contextAnalysis" style="display:none;">
+                    <h3>🧠 Análisis Contextual de tu Descripción:</h3>
+                    <p id="contextText"></p>
+                    <div class="context-tags" id="contextTags"></div>
+                </div>
+                
                 <div class="output-section">
                     <h3>🎯 Opciones de Nombres (Elige 1)</h3>
                     <div class="name-options" id="nameOptions"></div>
                 </div>
 
                 <div class="output-section">
-                    <h3>📺 Opciones de Títulos (Elige 1)</h3>
+                    <h3> Opciones de Títulos (Elige 1)</h3>
                     <div class="title-options" id="titleOptions"></div>
                 </div>
 
@@ -347,7 +385,7 @@
                 </div>
 
                 <div class="output-section">
-                    <h3>🎨 Prompt Cover Art (Nano Banana Pro)</h3>
+                    <h3> Prompt Cover Art (Nano Banana Pro)</h3>
                     <button class="copy-btn" onclick="copiar('out-prompt')"> Copiar</button>
                     <div class="output-box" id="out-prompt"></div>
                 </div>
@@ -356,7 +394,7 @@
     </div>
 
     <script>
-        // BASE DE DATOS EXPANDIDA DE NOMBRES (150+ nombres)
+        // BASE DE DATOS EXPANDIDA DE NOMBRES ORGANIZADOS POR VIBE
         const nombresDB = {
             cinematic: [
                 "Aether Drift", "Nebula Protocol", "Quantum Ascension", "Stellar Mechanism", 
@@ -405,10 +443,18 @@
                 "Space Odyssey", "Cosmic Horizon", "Stellar Nebula", "Orbital Protocol",
                 "Quantum Stars", "Galactic Dreams", "Cosmic Voyage", "Stellar Circuit",
                 "Nebula Protocol", "Interstellar Dreams", "Space Ascension", "Cosmic Drift"
+            ],
+            angelic: [
+                "Universal Ascent", "Angelic Ascension", "Celestial Peace", "Heaven's Echo",
+                "Divine Serenity", "Angelic Protocol", "Celestial Harmony", "Ethereal Dawn",
+                "Sacred Orbit", "Angelic Veil", "Celestial Protocol", "Divine Ascension",
+                "Heavenly Circuit", "Angelic Nebula", "Celestial Drift", "Sacred Echo",
+                "Divine Harmony", "Ethereal Peace", "Angelic Horizon", "Celestial Rise",
+                "Sacred Protocol", "Divine Veil", "Heavenly Ascent", "Ethereal Orbit"
             ]
         };
 
-        // ARTISTAS POR CATEGORÍA Y ENERGÍA
+        // ARTISTAS POR CATEGORÍA, ENERGÍA Y VIBE
         const artistasDB = {
             cinematic: {
                 high: ["Travis Scott", "Yeat", "Metro Boomin", "Don Toliver", "Future"],
@@ -439,37 +485,43 @@
                 high: ["Yeat", "Travis Scott", "Kid Cudi", "Future", "Metro Boomin"],
                 medium: ["Travis Scott", "Kid Cudi", "Don Toliver", "Yeat", "Post Malone"],
                 low: ["Kid Cudi", "Travis Scott", "Post Malone", "Tame Impala", "MGMT"]
+            },
+            angelic: {
+                high: ["Travis Scott", "Don Toliver", "Kid Cudi", "Yeat", "Future"],
+                medium: ["Travis Scott", "Don Toliver", "Kid Cudi", "Post Malone", "The Weeknd"],
+                low: ["Kid Cudi", "Don Toliver", "Post Malone", "The Weeknd", "Lana Del Rey"]
             }
         };
 
-        // PROCESADOR DE LENGUAJE NATURAL SIMPLIFICADO
+        // SISTEMA DE INTELIGENCIA CONTEXTUAL AVANZADO
         const keywordsMap = {
             // Energía
-            'futurista': { mood: 'space', energy: 'medium' },
-            'espacial': { mood: 'space', energy: 'medium' },
-            'galactico': { mood: 'space', energy: 'medium' },
-            'cosmico': { mood: 'space', energy: 'low' },
-            'tranquilo': { energy: 'low' },
-            'chill': { energy: 'low' },
-            'calm': { energy: 'low' },
-            'suave': { energy: 'low' },
-            'relajado': { energy: 'low' },
-            'epico': { energy: 'high' },
-            'fuerte': { energy: 'high' },
-            'agresivo': { energy: 'high' },
-            'energia': { energy: 'high' },
-            'intenso': { energy: 'high' },
-            'brillante': { energy: 'high' },
+            'futurista': { mood: 'space', energy: 'medium', vibe: 'futuristic' },
+            'espacial': { mood: 'space', energy: 'medium', vibe: 'cosmic' },
+            'galactico': { mood: 'space', energy: 'medium', vibe: 'cosmic' },
+            'cosmico': { mood: 'space', energy: 'low', vibe: 'ethereal' },
+            'tranquilo': { energy: 'low', vibe: 'calm' },
+            'chill': { energy: 'low', vibe: 'calm' },
+            'calm': { energy: 'low', vibe: 'calm' },
+            'calma': { energy: 'low', vibe: 'calm' },
+            'suave': { energy: 'low', vibe: 'calm' },
+            'relajado': { energy: 'low', vibe: 'calm' },
+            'epico': { energy: 'high', vibe: 'epic' },
+            'fuerte': { energy: 'high', vibe: 'powerful' },
+            'agresivo': { energy: 'high', vibe: 'aggressive' },
+            'energia': { energy: 'high', vibe: 'energetic' },
+            'intenso': { energy: 'high', vibe: 'intense' },
+            'brillante': { energy: 'high', vibe: 'bright' },
             
-            // Moods
-            'triste': { mood: 'melodic' },
-            'emocional': { mood: 'melodic' },
-            'melancolico': { mood: 'melodic' },
-            'piano': { mood: 'melodic' },
-            'orquestal': { mood: 'cinematic' },
-            'cuerdas': { mood: 'cinematic' },
-            'violines': { mood: 'cinematic' },
-            'oscuro': { mood: 'cinematic' },
+            // Moods específicos
+            'triste': { mood: 'melodic', vibe: 'sad' },
+            'emocional': { mood: 'melodic', vibe: 'emotional' },
+            'melancolico': { mood: 'melodic', vibe: 'melancholic' },
+            'piano': { mood: 'melodic', element: 'piano' },
+            'orquestal': { mood: 'cinematic', element: 'orchestral' },
+            'cuerdas': { mood: 'cinematic', element: 'strings' },
+            'violines': { mood: 'cinematic', element: 'strings' },
+            'oscuro': { mood: 'cinematic', vibe: 'dark' },
             'drill': { mood: 'drill' },
             'sliding': { mood: 'drill' },
             'rage': { mood: 'rage' },
@@ -478,14 +530,54 @@
             'carti': { mood: 'opium' },
             'psicodelico': { mood: 'opium' },
             
+            // Angelical/Celestial (CRUCIAL)
+            'angelical': { mood: 'angelic', vibe: 'angelic', energy: 'low' },
+            'angelic': { mood: 'angelic', vibe: 'angelic', energy: 'low' },
+            'celestial': { mood: 'angelic', vibe: 'celestial', energy: 'low' },
+            'etereo': { mood: 'angelic', vibe: 'ethereal', energy: 'low' },
+            'eterea': { mood: 'angelic', vibe: 'ethereal', energy: 'low' },
+            'paz': { mood: 'angelic', vibe: 'peaceful', energy: 'low' },
+            'pacifico': { mood: 'angelic', vibe: 'peaceful', energy: 'low' },
+            'voz': { element: 'vocals' },
+            'vocal': { element: 'vocals' },
+            'sample': { element: 'sample' },
+            'divino': { mood: 'angelic', vibe: 'divine' },
+            'sagrado': { mood: 'angelic', vibe: 'sacred' },
+            'armonia': { mood: 'angelic', vibe: 'harmonious' },
+            'armonía': { mood: 'angelic', vibe: 'harmonious' },
+            
             // Elementos
             'synths': { element: 'synths' },
             'sintetizadores': { element: 'synths' },
             '808': { element: '808' },
             'bajos': { element: '808' },
             'pads': { element: 'pads' },
-            'atmosferico': { element: 'pads' }
+            'atmosferico': { element: 'pads' },
+            'letra': { purpose: 'lyrics' },
+            'rap': { purpose: 'rap' }
         };
+
+        // MEJORADOR DE TEXTO AUTOMÁTICO
+        function mejorarTexto(textoOriginal, contexto) {
+            let textoMejorado = textoOriginal;
+            
+            // Reemplazar descripciones casuales con términos profesionales
+            if (contexto.vibe === 'angelic') {
+                textoMejorado = textoMejorado
+                    .replace(/voz angelical/gi, 'ethereal vocal samples')
+                    .replace(/calma/gi, 'serene atmosphere')
+                    .replace(/paz/gi, 'peaceful energy')
+                    .replace(/para buena letra/gi, 'perfect for introspective lyrics');
+            }
+            
+            if (contexto.vibe === 'futuristic') {
+                textoMejorado = textoMejorado
+                    .replace(/futurista/gi, 'futuristic sound design')
+                    .replace(/espacial/gi, 'cosmic atmosphere');
+            }
+            
+            return textoMejorado;
+        }
 
         let selectedName = '';
         let selectedTitle = '';
@@ -499,13 +591,18 @@
         });
 
         function procesarDescripcion(texto) {
+            if (!texto) return { mood: null, energy: null, vibe: null, keywords: [], element: null, purpose: null };
+            
             const palabras = texto.toLowerCase().split(/\s+/);
-            let result = { mood: null, energy: null, keywords: [] };
+            let result = { mood: null, energy: null, vibe: null, keywords: [], element: null, purpose: null };
             
             palabras.forEach(palabra => {
                 if (keywordsMap[palabra]) {
                     if (keywordsMap[palabra].mood) result.mood = keywordsMap[palabra].mood;
                     if (keywordsMap[palabra].energy) result.energy = keywordsMap[palabra].energy;
+                    if (keywordsMap[palabra].vibe) result.vibe = keywordsMap[palabra].vibe;
+                    if (keywordsMap[palabra].element) result.element = keywordsMap[palabra].element;
+                    if (keywordsMap[palabra].purpose) result.purpose = keywordsMap[palabra].purpose;
                     result.keywords.push(palabra);
                 }
             });
@@ -519,17 +616,30 @@
             const moodSelect = document.getElementById('mood').value;
             const energiaActiva = document.querySelector('.energy-btn.active').dataset.energy;
             
-            // Procesar descripción si existe
+            // Procesar descripción con IA contextual
             let moodFinal = moodSelect;
             let energiaFinal = energiaActiva;
+            let vibeFinal = null;
+            let contexto = { mood: null, energy: null, vibe: null, keywords: [] };
             
             if (descripcion) {
-                const procesado = procesarDescripcion(descripcion);
-                if (procesado.mood) moodFinal = procesado.mood;
-                if (procesado.energy) energiaFinal = procesado.energy;
+                contexto = procesarDescripcion(descripcion);
+                if (contexto.mood) moodFinal = contexto.mood;
+                if (contexto.energy) energiaFinal = contexto.energy;
+                if (contexto.vibe) vibeFinal = contexto.vibe;
+                
+                // Mostrar análisis contextual
+                document.getElementById('contextAnalysis').style.display = 'block';
+                document.getElementById('contextText').textContent = 
+                    `Detectamos: ${contexto.keywords.join(', ')}. Ajustando automáticamente el vibe a "${moodFinal}" con energía ${energiaFinal === 'high' ? 'alta' : energiaFinal === 'medium' ? 'media' : 'baja'}${vibeFinal ? ' y atmósfera ' + vibeFinal : ''}.`;
+                
+                const tagsHTML = contexto.keywords.map(k => `<span class="context-tag">${k}</span>`).join('');
+                document.getElementById('contextTags').innerHTML = tagsHTML;
+            } else {
+                document.getElementById('contextAnalysis').style.display = 'none';
             }
             
-            // Generar 3 opciones de nombres
+            // Generar 3 opciones de nombres basados en el mood detectado
             const nombres = nombresDB[moodFinal] || nombresDB.cinematic;
             const opcionesNombres = [];
             for (let i = 0; i < 3; i++) {
@@ -540,17 +650,18 @@
             
             // Generar 3 opciones de títulos con diferentes estrategias
             const artistas = artistasDB[moodFinal][energiaFinal];
-            const microNicho = getMicroNicho(moodFinal);
+            const microNicho = getMicroNicho(moodFinal, vibeFinal);
             const playlist = getPlaylist(moodFinal);
+            const vibeText = getVibeText(moodFinal, vibeFinal);
             
             // Estrategia 1: Artista x Artista
-            const titulo1 = `${artistas[0]} x ${artistas[1]} Type Beat - "${selectedName}" | ${getVibe(moodFinal)} ${bpm} BPM`;
+            const titulo1 = `${artistas[0]} x ${artistas[1]} Type Beat - "${selectedName}" | ${vibeText} ${bpm} BPM`;
             
             // Estrategia 2: Micro-nicho + BPM
-            const titulo2 = `${microNicho} Type Beat - "${selectedName}" | ${getVibe(moodFinal)} ${bpm} BPM`;
+            const titulo2 = `${microNicho} Type Beat - "${selectedName}" | ${vibeText} ${bpm} BPM`;
             
             // Estrategia 3: Artista solo
-            const titulo3 = `${artistas[0]} Type Beat - "${selectedName}" | ${getVibe(moodFinal)} ${bpm} BPM`;
+            const titulo3 = `${artistas[0]} Type Beat - "${selectedName}" | ${vibeText} ${bpm} BPM`;
             
             const opcionesTitulos = [
                 { estrategia: "Artist x Artist (Máximo alcance)", titulo: titulo1 },
@@ -581,10 +692,11 @@
             
             // Meta
             document.getElementById('out-meta').textContent = 
-                `Canal: Beats BFYT\nPlaylist: ${playlist}\nMicro-nicho: ${microNicho}\nEnergía: ${energiaFinal === 'high' ? 'Alta' : energiaFinal === 'medium' ? 'Media' : 'Baja'}`;
+                `Canal: Beats BFYT\nPlaylist: ${playlist}\nMicro-nicho: ${microNicho}\nEnergía: ${energiaFinal === 'high' ? 'Alta' : energiaFinal === 'medium' ? 'Media' : 'Baja'}${vibeFinal ? '\nVibe: ' + vibeFinal.charAt(0).toUpperCase() + vibeFinal.slice(1) : ''}`;
 
-            // Descripción
-            const desc = `${selectedName} is a ${microNicho.toLowerCase()} beat with ${getDescVibe(moodFinal)}. 
+            // Descripción mejorada
+            const descMejorada = descripcion ? mejorarTexto(descripcion, contexto) : '';
+            const desc = `${selectedName} is a ${microNicho.toLowerCase()} beat with ${getDescVibe(moodFinal, vibeFinal)}${descMejorada ? ' featuring ' + descMejorada : ''}. 
 
 🛒 Purchase a license & download instantly: https://beats-bfyt-shop.fourthwall.com
 
@@ -593,7 +705,7 @@
 • Standard: $29.99 (MP3 + WAV, Commercial use)
 • Premium: $49.99 (MP3 + WAV + STEMS, Full commercial use)
 
-⚠️ FREE for non-profit use only (must credit "Prod. by Beats BFYT" in the title). Purchase a license for commercial use, Spotify, Apple Music, or monetization.
+️ FREE for non-profit use only (must credit "Prod. by Beats BFYT" in the title). Purchase a license for commercial use, Spotify, Apple Music, or monetization.
 
 📱 Follow the journey:
 Instagram: @beatsfreeyoutube_
@@ -603,12 +715,31 @@ TikTok: @beatsfreeyoutube_
             document.getElementById('out-desc').textContent = desc;
 
             // Tags
-            const tags = generarTags(microNicho, selectedName, bpm, moodFinal);
+            const tags = generarTags(microNicho, selectedName, bpm, moodFinal, vibeFinal);
             document.getElementById('out-tags').textContent = tags;
 
-            // Prompt Cover Art
-            const prompt = `Raw photo, shot on 35mm film camera, breathtakingly beautiful curvy New York Latina woman with voluptuous hourglass figure, fit and thick, transmitting pure trap flow, boss energy, and street luxury elegance. Striking facial features, fierce confident gaze, glamorous makeup with sharp eyeliner and glossy lips. She sits in luxury car at night wearing a sleek dark metallic silk outfit that hugs her curves elegantly. Heavy diamond Cuban link chain with "${selectedName.toUpperCase()}" text pendant clearly visible between her fingers as her hand rests on the chain, long acrylic nails with chrome finish, iced-out diamond rings on her fingers, iced-out rose gold watch catching soft neon light. Moody nocturnal atmosphere with subtle holographic mist, dark luxury car interior with ambient LED strips. Cinematic lighting highlighting her hand on the chain, her curves, facial contours, and jewelry sparkle. Professional trap music video aesthetic, sensual luxurious vibe, high contrast, shallow depth of field, NO TEXT OVERLAY, NO LETTERS except chain pendant --ar 1:1 --style raw_photo --quality 2`;
+            // Prompt Cover Art (ajustado según el vibe)
+            const prompt = generarPromptCoverArt(selectedName, moodFinal, vibeFinal);
             document.getElementById('out-prompt').textContent = prompt;
+        }
+
+        function generarPromptCoverArt(nombre, mood, vibe) {
+            // Ajustar el prompt según el vibe detectado
+            let lighting = "soft purple and cyan neon light";
+            let outfit = "sleek dark metallic silk outfit";
+            let atmosphere = "moody nocturnal atmosphere";
+            
+            if (vibe === 'angelic' || mood === 'angelic') {
+                lighting = "ethereal white and soft gold light with celestial glow";
+                outfit = "elegant white or champagne silk outfit";
+                atmosphere = "heavenly atmosphere with soft light rays";
+            } else if (vibe === 'futuristic' || mood === 'space') {
+                lighting = "holographic cyan and purple neon with cosmic glow";
+                outfit = "futuristic metallic outfit with reflective details";
+                atmosphere = "interstellar atmosphere with nebula-like mist";
+            }
+            
+            return `Raw photo, shot on 35mm film camera, breathtakingly beautiful curvy New York Latina woman with voluptuous hourglass figure, fit and thick, transmitting pure trap flow, boss energy, and street luxury elegance. Striking facial features, fierce confident gaze, glamorous makeup with sharp eyeliner and glossy lips. She sits in luxury car at night wearing a ${outfit} that hugs her curves elegantly. Heavy diamond Cuban link chain with "${nombre.toUpperCase()}" text pendant clearly visible between her fingers as her hand rests on the chain, long acrylic nails with chrome finish, iced-out diamond rings on her fingers, iced-out rose gold watch catching ${lighting}. ${atmosphere} with subtle holographic mist, dark luxury car interior with ambient LED strips. Cinematic lighting highlighting her hand on the chain, her curves, facial contours, and jewelry sparkle. Professional trap music video aesthetic, sensual luxurious vibe, high contrast, shallow depth of field, NO TEXT OVERLAY, NO LETTERS except chain pendant --ar 1:1 --style raw_photo --quality 2`;
         }
 
         function selectName(nombre, element) {
@@ -625,14 +756,15 @@ TikTok: @beatsfreeyoutube_
             element.classList.add('selected');
         }
 
-        function getMicroNicho(mood) {
+        function getMicroNicho(mood, vibe) {
             const moods = {
                 cinematic: "Cinematic Trap",
                 melodic: "Dark Melodic",
                 rage: "Rage",
                 drill: "UK Drill",
                 opium: "Opium",
-                space: "Space Trap"
+                space: "Space Trap",
+                angelic: "Angelic Trap"
             };
             return moods[mood] || "Cinematic Trap";
         }
@@ -644,47 +776,70 @@ TikTok: @beatsfreeyoutube_
                 rage: "Rage / Underground Beats",
                 drill: "UK Drill / Brooklyn Drill",
                 opium: "Opium / Carti Style Beats",
-                space: "Cinematic Trap Beats"
+                space: "Cinematic Trap Beats",
+                angelic: "Cinematic Trap Beats"
             };
             return playlists[mood] || "Cinematic Trap Beats";
         }
 
-        function getVibe(mood) {
+        function getVibeText(mood, vibe) {
+            if (vibe) {
+                const vibes = {
+                    angelic: "Angelic Cinematic",
+                    celestial: "Celestial Trap",
+                    ethereal: "Ethereal Trap",
+                    peaceful: "Peaceful Cinematic",
+                    futuristic: "Futuristic Dark",
+                    cosmic: "Cosmic Cinematic",
+                    dark: "Dark Cinematic",
+                    emotional: "Emotional Melodic",
+                    sad: "Sad Melodic"
+                };
+                return vibes[vibe] || "Dark Cinematic";
+            }
+            
             const vibes = {
                 cinematic: "Dark Cinematic",
                 melodic: "Emotional Melodic",
                 rage: "High Energy Hardcore",
                 drill: "Dark Piano Drill",
                 opium: "Dark Psychedelic",
-                space: "Futuristic Space"
+                space: "Futuristic Space",
+                angelic: "Angelic Cinematic"
             };
             return vibes[mood] || "Dark Cinematic";
         }
 
-        function getDescVibe(mood) {
+        function getDescVibe(mood, vibe) {
+            if (vibe === 'angelic') return "ethereal vocal samples, celestial melodies and angelic atmosphere";
+            if (vibe === 'celestial') return "celestial synth layers, heavenly pads and divine production";
+            if (vibe === 'ethereal') return "ethereal textures, otherworldly soundscapes and transcendent vibes";
+            
             const vibes = {
                 cinematic: "cinematic orchestral textures and epic dark production",
                 melodic: "emotional piano progressions and melancholic atmospheric pads",
                 rage: "aggressive distorted synths and high-energy 808s",
                 drill: "sliding 808s, rapid hi-hats and dark drill percussion",
                 opium: "dark psychedelic textures and eerie neon-lit production",
-                space: "futuristic space synths and cosmic atmospheric production"
+                space: "futuristic space synths and cosmic atmospheric production",
+                angelic: "ethereal vocal samples, celestial melodies and angelic atmosphere"
             };
             return vibes[mood] || "cinematic orchestral textures and epic dark production";
         }
 
-        function generarTags(microNicho, nombre, bpm, mood) {
+        function generarTags(microNicho, nombre, bpm, mood, vibe) {
             const tagsBase = {
                 cinematic: "cinematic trap type beat, cinematic beat, dark trap instrumental, epic trap beat, orchestral trap, movie type beat, dark cinematic instrumental, travis scott type beat, yeat type beat, metro boomin type beat, cinematic instrumental 2026, dark cinematic beat, film score trap, dramatic trap beat, powerful trap instrumental, cinematic rap beat, atmospheric trap, luxury trap beat",
                 melodic: "dark melodic type beat, melodic trap beat, sad trap beat, emotional trap instrumental, juice wrld type beat, iann dior type beat, the kid laroi type beat, sad piano beat, dark atmospheric trap, melodic rap beat, heartbreak trap beat, chill melodic beat, sad type beat 2026, melancholic trap, emotional piano beat, dark synth beat, atmospheric melodic trap",
-                rage: "rage type beat, rage instrumental, hardcore trap beat, underground type beat, playboi carti type beat, opium type beat, ken carson type beat, destroy lonely type beat, aggressive trap beat, energy trap instrumental, rage beat 2026, punk trap beat, distorted trap beat, carti style beat, high energy rap beat, hyperpop trap, intense trap beat",
+                rage: "rage type beat, rage instrumental, hardcore trap beat, underground type beat, playboi carti type beat, opium type beat, ken carson type beat, hyperpop beat, aggressive trap beat, energy trap instrumental, rage beat 2026, punk trap beat, distorted trap beat, carti style beat, high energy rap beat, hyperpop trap, intense trap beat",
                 drill: "uk drill type beat, drill instrumental, brooklyn drill beat, dark piano drill, pop smoke type beat, central cee type beat, ny drill beat, sliding 808 drill, cold drill beat, dark drill instrumental, piano drill beat, hard drill beat, uk drill 2026, drill beat instrumental, grim drill type beat, melodic drill beat, dark drill 2026",
                 opium: "opium type beat, playboi carti type beat, dark psychedelic beat, neon trap beat, carti instrumental, ken carson type beat, destroy lonely type beat, rage type beat, underground trap beat, opium beat 2026, psychedelic trap beat, dark synth beat, carti style instrumental, eerie trap beat, futuristic dark beat, vampire trap, dark rage beat",
-                space: "space trap type beat, cosmic trap beat, futuristic trap beat, sci-fi trap instrumental, galactic beat, yeat type beat, travis scott type beat, kid cudi type beat, space instrumental 2026, cosmic dark beat, atmospheric space trap, dark sci-fi beat, interstellar trap, nebula beat, stellar trap beat, orbital trap"
+                space: "space trap type beat, cosmic trap beat, futuristic trap beat, sci-fi trap instrumental, galactic beat, yeat type beat, travis scott type beat, kid cudi type beat, space instrumental 2026, cosmic dark beat, atmospheric space trap, dark sci-fi beat, interstellar trap, nebula beat, stellar trap beat, orbital trap",
+                angelic: "angelic trap beat, celestial trap beat, ethereal trap beat, travis scott type beat, don toliver type beat, kid cudi type beat, angelic instrumental 2026, heavenly trap beat, divine trap beat, atmospheric angelic beat, celestial melodic trap, ethereal vocal beat, peaceful trap instrumental, spiritual trap beat, transcendent trap"
             };
             
             let tags = tagsBase[mood] || tagsBase.cinematic;
-            tags += `, ${nombre.toLowerCase().replace(' ', '')} beat, ${bpm} bpm ${microNicho.toLowerCase()}, Beats BFYT beats, premium trap production, ${microNicho.toLowerCase()} instrumental, dark ${microNicho.toLowerCase()} beat, underground ${microNicho.toLowerCase()}, melodic ${microNicho.toLowerCase()}, atmospheric trap beat, ${microNicho.toLowerCase()} beat for rap, ${microNicho.toLowerCase()} instrumental 2026, trap beat with ${getVibe(mood).toLowerCase()}, Beats BFYT original, sophisticated ${microNicho.toLowerCase()} beat, luxury ${microNicho.toLowerCase()} instrumental, ${microNicho.toLowerCase()} beat ${bpm} bpm, ${getVibe(mood).toLowerCase()} trap instrumental, ${microNicho.toLowerCase()} type beat 2026, premium type beat, Beats BFYT production, ${microNicho.toLowerCase()} beat free, ${getVibe(mood).toLowerCase()} type beat, ${microNicho.toLowerCase()} instrumental free, trap instrumental ${bpm} bpm, ${microNicho.toLowerCase()} beat download`;
+            tags += `, ${nombre.toLowerCase().replace(' ', '')} beat, ${bpm} bpm ${microNicho.toLowerCase()}, Beats BFYT beats, premium trap production, ${microNicho.toLowerCase()} instrumental, dark ${microNicho.toLowerCase()} beat, underground ${microNicho.toLowerCase()}, melodic ${microNicho.toLowerCase()}, atmospheric trap beat, ${microNicho.toLowerCase()} beat for rap, ${microNicho.toLowerCase()} instrumental 2026, trap beat with ${getVibeText(mood, vibe).toLowerCase()}, Beats BFYT original, sophisticated ${microNicho.toLowerCase()} beat, luxury ${microNicho.toLowerCase()} instrumental, ${microNicho.toLowerCase()} beat ${bpm} bpm, ${getVibeText(mood, vibe).toLowerCase()} trap instrumental, ${microNicho.toLowerCase()} type beat 2026, premium type beat, Beats BFYT production, ${microNicho.toLowerCase()} beat free, ${getVibeText(mood, vibe).toLowerCase()} type beat, ${microNicho.toLowerCase()} instrumental free, trap instrumental ${bpm} bpm, ${microNicho.toLowerCase()} beat download`;
             
             // Cortar a 500 caracteres
             const tagsCortadas = tags.substring(0, 500);
