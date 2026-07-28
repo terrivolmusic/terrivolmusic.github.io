@@ -12,13 +12,16 @@
         .score-bar { transition: width 0.5s ease; }
         .fade-in { animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .mensaje-box { font-size: 13px; line-height: 1.5; white-space: pre-wrap; }
+        .copy-flash { animation: flash 0.5s ease; }
+        @keyframes flash { 0% { background-color: rgb(34 197 94 / 0.3); } 100% { background-color: transparent; } }
     </style>
 </head>
 <body class="bg-gray-950 text-gray-200 min-h-screen">
 
     <!-- HEADER -->
     <header class="bg-gradient-to-r from-gray-900 via-purple-950 to-gray-900 border-b border-gray-800 px-6 py-5">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="max-w-7xl mx-auto flex justify-between items-center flex-wrap gap-4">
             <div>
                 <h1 class="text-2xl font-bold text-white flex items-center gap-3">
                     <i class="fa-solid fa-crosshairs text-pink-400"></i>
@@ -26,12 +29,15 @@
                 </h1>
                 <p class="text-xs text-gray-400 mt-1">Motor de Inteligencia para Captación de Artistas y Productores</p>
             </div>
-            <div class="flex items-center gap-4">
-                <button onclick="exportarCSV()" class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2">
-                    <i class="fa-solid fa-file-csv"></i> Exportar CSV
+            <div class="flex items-center gap-2 flex-wrap">
+                <button onclick="exportarCSV()" class="bg-gray-800 hover:bg-gray-700 text-white px-3 py-2 rounded-lg text-xs transition flex items-center gap-2">
+                    <i class="fa-solid fa-file-csv"></i> CSV
                 </button>
-                <button onclick="guardarConfig()" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2">
-                    <i class="fa-solid fa-floppy-disk"></i> Guardar Config
+                <button onclick="copiarTodosMensajes()" class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-xs transition flex items-center gap-2">
+                    <i class="fa-solid fa-copy"></i> Copiar Todos
+                </button>
+                <button onclick="guardarConfig()" class="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg text-xs transition flex items-center gap-2">
+                    <i class="fa-solid fa-floppy-disk"></i> Guardar
                 </button>
             </div>
         </div>
@@ -42,51 +48,44 @@
         <!-- PANEL IZQUIERDO: CONFIGURACIÓN -->
         <div class="lg:col-span-1 space-y-6">
 
-            <!-- 1. GÉNEROS MUSICALES -->
+            <!-- 1. GÉNEROS -->
             <div class="bg-gray-900 rounded-xl border border-gray-800 p-5">
                 <h2 class="text-sm font-semibold text-gray-400 uppercase mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-music text-purple-400"></i> 1. Géneros a Buscar
+                    <i class="fa-solid fa-music text-purple-400"></i> 1. Géneros
                 </h2>
-                <div id="generos-container" class="flex flex-wrap gap-2">
-                    <!-- Se llena con JS -->
-                </div>
+                <div id="generos-container" class="flex flex-wrap gap-2"></div>
                 <button onclick="seleccionarTodos()" class="mt-3 text-xs text-purple-400 hover:text-purple-300">Seleccionar todos</button>
             </div>
 
-            <!-- 2. CRITERIOS DE FILTRADO -->
+            <!-- 2. CRITERIOS -->
             <div class="bg-gray-900 rounded-xl border border-gray-800 p-5 space-y-4">
                 <h2 class="text-sm font-semibold text-gray-400 uppercase flex items-center gap-2">
-                    <i class="fa-solid fa-filter text-pink-400"></i> 2. Criterios de Calidad
+                    <i class="fa-solid fa-filter text-pink-400"></i> 2. Criterios
                 </h2>
-
                 <div>
                     <label class="block text-xs text-gray-400 mb-1">Seguidores mínimos</label>
                     <input type="number" id="min-seguidores" value="500" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
                 </div>
-
                 <div>
-                    <label class="block text-xs text-gray-400 mb-1">Seguidores máximos (evitar famosos)</label>
+                    <label class="block text-xs text-gray-400 mb-1">Seguidores máximos</label>
                     <input type="number" id="max-seguidores" value="50000" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
                 </div>
-
                 <div>
-                    <label class="block text-xs text-gray-400 mb-1">Score mínimo de calidad (1-100)</label>
+                    <label class="block text-xs text-gray-400 mb-1">Score mínimo (1-100)</label>
                     <input type="number" id="min-score" value="60" max="100" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
                 </div>
-
                 <div>
-                    <label class="block text-xs text-gray-400 mb-1">Región objetivo</label>
+                    <label class="block text-xs text-gray-400 mb-1">Región</label>
                     <select id="region" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
-                        <option value="global">🌍 Global (todos los idiomas)</option>
+                        <option value="mix">🎲 Mix balanceado (recomendado)</option>
                         <option value="latam">🌎 Latinoamérica</option>
                         <option value="usa">🇺🇸 USA / Canadá</option>
                         <option value="europa">🇪🇺 Europa</option>
-                        <option value="mix">🎲 Mix balanceado (recomendado)</option>
+                        <option value="global">🌍 Global</option>
                     </select>
                 </div>
-
                 <div>
-                    <label class="block text-xs text-gray-400 mb-1">Cantidad de leads por búsqueda</label>
+                    <label class="block text-xs text-gray-400 mb-1">Cantidad de leads</label>
                     <input type="number" id="cantidad" value="15" min="5" max="100" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
                 </div>
             </div>
@@ -112,6 +111,20 @@
                 </div>
             </div>
 
+            <!-- 4. ÁNGULO DEL MENSAJE -->
+            <div class="bg-gray-900 rounded-xl border border-gray-800 p-5">
+                <h2 class="text-sm font-semibold text-gray-400 uppercase mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-comment-dots text-blue-400"></i> 4. Ángulo del Mensaje
+                </h2>
+                <select id="angulo-mensaje" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                    <option value="mixto">🎲 Mixto (variar automáticamente)</option>
+                    <option value="colaboracion">🤝 Colaboración Musical</option>
+                    <option value="negocio">💼 Propuesta de Negocio</option>
+                    <option value="produccion">🎵 Producción / Beats</option>
+                    <option value="networking">🌐 Networking General</option>
+                </select>
+            </div>
+
             <!-- BOTÓN EJECUTAR -->
             <button onclick="ejecutarBusqueda()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-purple-900/50">
                 <i class="fa-solid fa-rocket"></i>
@@ -123,28 +136,26 @@
         <!-- PANEL DERECHO: RESULTADOS -->
         <div class="lg:col-span-2 space-y-6">
 
-            <!-- ESTRATEGIA DE BÚSQUEDA -->
+            <!-- ESTRATEGIA -->
             <div class="bg-gray-900 rounded-xl border border-gray-800 p-5">
                 <h2 class="text-sm font-semibold text-gray-400 uppercase mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-brain text-yellow-400"></i> Estrategia de Búsqueda Generada
+                    <i class="fa-solid fa-brain text-yellow-400"></i> Estrategia Generada
                 </h2>
                 <div id="estrategia" class="text-sm text-gray-300">
-                    <p class="text-gray-500 italic">Configura los géneros y criterios, luego ejecuta la búsqueda para ver la estrategia generada automáticamente.</p>
+                    <p class="text-gray-500 italic">Configura y ejecuta para ver la estrategia.</p>
                 </div>
             </div>
 
-            <!-- LEADS ENCONTRADOS -->
+            <!-- LEADS -->
             <div class="bg-gray-900 rounded-xl border border-gray-800 p-5">
-                <div class="flex justify-between items-center mb-4">
+                <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
                     <h2 class="text-sm font-semibold text-gray-400 uppercase flex items-center gap-2">
                         <i class="fa-solid fa-bullseye text-red-400"></i> Leads Calificados
                         <span id="contador-leads" class="bg-purple-600 text-white text-xs px-2 py-1 rounded-full">0</span>
                     </h2>
-                    <div class="flex gap-2">
-                        <button onclick="copiarUsernames()" class="bg-gray-800 hover:bg-gray-700 text-white px-3 py-1 rounded text-xs transition">
-                            <i class="fa-solid fa-copy"></i> Copiar Usernames
-                        </button>
-                    </div>
+                    <button onclick="copiarUsernames()" class="bg-gray-800 hover:bg-gray-700 text-white px-3 py-1 rounded text-xs transition">
+                        <i class="fa-solid fa-copy"></i> Copiar Usernames
+                    </button>
                 </div>
 
                 <div id="leads-container" class="space-y-3">
@@ -158,94 +169,118 @@
         </div>
     </div>
 
-    <!-- LÓGICA DEL MOTOR -->
+    <!-- LÓGICA -->
     <script>
         // ============================================
-        // 🧠 BASE DE CONOCIMIENTO: HASHTAGS POR GÉNERO
+        // 🧠 BASE DE CONOCIMIENTO
         // ============================================
         const HASHTAGS_POR_GENERO = {
-            "trap": {
-                tags: ["#trapproducer", "#trapbeats", "#trapmusic", "#trapproducer", "#trapbeatsforsale", "#808mafia", "#trapnation", "#trapking", "#darktrap", "#trapsoul"],
-                keywords: ["trap producer", "trap beats", "808", "trap artist"],
-                peso: 95
+            "trap": { tags: ["#trapproducer","#trapbeats","#trapmusic","#808mafia","#trapnation","#darktrap"], keywords: ["trap producer","trap beats","808"], peso: 95 },
+            "hiphop": { tags: ["#hiphopproducer","#boom bap","#hiphopbeats","#beatmaker","#undergroundhiphop","#rapbeats"], keywords: ["hip hop producer","beatmaker","boom bap"], peso: 90 },
+            "reggaeton": { tags: ["#reggaetonproducer","#reggaetonbeats","#perreo","#latinproducer","#urbano","#dembow"], keywords: ["reggaeton producer","latin beats","perreo"], peso: 88 },
+            "electronica": { tags: ["#edmproducer","#technoproducer","#housemusic","#djproducer","#edmlife","#techno"], keywords: ["edm producer","techno producer","house dj"], peso: 85 },
+            "rnb": { tags: ["#rnbproducer","#rnbmusic","#soulmusic","#rnbartist","#rnbvibes","#neosoul"], keywords: ["rnb producer","rnb artist","soul music"], peso: 82 },
+            "lofi": { tags: ["#lofi","#lofiproducer","#lofihiphop","#chillbeats","#lofibeats","#studybeats"], keywords: ["lofi producer","chill beats"], peso: 78 },
+            "rock": { tags: ["#rockproducer","#indierock","#rockband","#guitarproducer","#alternativerock"], keywords: ["rock producer","indie band"], peso: 75 },
+            "afrobeat": { tags: ["#afrobeats","#afrobeatproducer","#afropop","#afroartist","#afrohouse"], keywords: ["afrobeat producer","afro artist"], peso: 80 },
+            "latin": { tags: ["#latinmusic","#latinproducer","#salsa","#bachata","#cumbia","#musicalatina"], keywords: ["latin producer","salsa artist"], peso: 83 },
+            "pop": { tags: ["#popproducer","#popmusic","#popartist","#songwriter","#indiepop"], keywords: ["pop producer","pop artist"], peso: 70 }
+        };
+
+        // ============================================
+        // 💬 PLANTILLAS DE MENSAJES (MULTI-IDIOMA)
+        // ============================================
+        const MENSAJES = {
+            es: {
+                colaboracion: "¡Hola {nombre}! 👋\n\nVi tu perfil y me encantó tu trabajo como {tipoPerfil} de {genero}. Estoy trabajando en varios proyectos musicales y creo que tu estilo encajaría perfecto con lo que tenemos en mente.\n\n¿Te interesaría explorar una colaboración? Me encantaría escucharte.\n\n🎵 Saludos!",
+                negocio: "¡Hola {nombre}! 👋\n\nHe visto tu perfil y me impresiona tu trabajo en {genero}. Tengo una propuesta de negocio relacionada con producción musical y distribución que podría interesarte.\n\n¿Tienes un momento para conversar esta semana? 💼\n\nSaludos!",
+                produccion: "¡Hola {nombre}! 👋\n\nSoy productor y vi tu perfil. Me encanta tu sonido en {genero}, tiene una identidad muy marcada.\n\nEstoy buscando colaboradores para unos proyectos de producción que tengo en mente. ¿Te gustaría escuchar algunas ideas y ver si hacemos match? 🎹\n\nAbrazo!",
+                networking: "¡Hola {nombre}! 👋\n\nVi que también te mueves en la escena de {genero}. Me gustaría conectar con otros profesionales del sector para compartir experiencias, oportunidades y crecer juntos.\n\n¿Te parece si nos mantenemos en contacto? 🌐\n\nUn saludo!"
             },
-            "hiphop": {
-                tags: ["#hiphopproducer", "#boom bap", "#hiphopbeats", "#beatmaker", "#hiphophead", "#undergroundhiphop", "#rapbeats", "#producergrind", "#flstudio", "#ableton"],
-                keywords: ["hip hop producer", "beatmaker", "boom bap", "rap producer"],
-                peso: 90
+            en: {
+                colaboracion: "Hey {nombre}! 👋\n\nI came across your profile and really loved your work as a {tipoPerfil} in {genero}. I'm working on several music projects and think your style would be a perfect fit for what we have in mind.\n\nWould you be interested in exploring a collaboration? I'd love to hear your sound.\n\n🎵 Cheers!",
+                negocio: "Hey {nombre}! 👋\n\nI've seen your profile and I'm impressed with your work in {genero}. I have a business proposal related to music production and distribution that might interest you.\n\nDo you have a moment to chat this week? 💼\n\nBest!",
+                produccion: "Hey {nombre}! 👋\n\nI'm a producer and saw your profile. I love your sound in {genero}, it has a really strong identity.\n\nI'm looking for collaborators for some production projects I have in mind. Would you like to hear some ideas and see if we match? 🎹\n\nCheers!",
+                networking: "Hey {nombre}! 👋\n\nI saw you're also in the {genero} scene. I'd like to connect with other industry professionals to share experiences, opportunities and grow together.\n\nWould you like to stay in touch? 🌐\n\nBest!"
             },
-            "reggaeton": {
-                tags: ["#reggaetonproducer", "#reggaetonbeats", "#perreo", "#latinproducer", "#urbano", "#reggaeton2024", "#beatreggaeton", "#latintrap", "#dembow"],
-                keywords: ["reggaeton producer", "latin beats", "perreo", "dembow"],
-                peso: 88
+            pt: {
+                colaboracion: "Olá {nombre}! 👋\n\nVi seu perfil e adorei seu trabalho como {tipoPerfil} de {genero}. Estou trabalhando em vários projetos musicais e acho que seu estilo se encaixaria perfeitamente no que temos em mente.\n\nVocê teria interesse em explorar uma colaboração? Adoraria ouvir seu som.\n\n🎵 Abraço!",
+                negocio: "Olá {nombre}! 👋\n\nVi seu perfil e estou impressionado com seu trabalho em {genero}. Tenho uma proposta de negócio relacionada à produção musical e distribuição que pode te interessar.\n\nVocê tem um momento para conversar esta semana? 💼\n\nAbraço!",
+                produccion: "Olá {nombre}! 👋\n\nSou produtor e vi seu perfil. Adoro seu som em {genero}, tem uma identidade muito forte.\n\nEstou procurando colaboradores para alguns projetos de produção que tenho em mente. Gostaria de ouvir algumas ideias e ver se combinamos? 🎹\n\nAbraço!",
+                networking: "Olá {nombre}! 👋\n\nVi que você também está na cena de {genero}. Gostaria de me conectar com outros profissionais do setor para compartilhar experiências, oportunidades e crescer juntos.\n\nGostaria de manter contato? 🌐\n\nAbraço!"
             },
-            "electronica": {
-                tags: ["#edmproducer", "#technoproducer", "#housemusic", "#djproducer", "#edmlife", "#techno", "#houseproducer", "#abletonlive", "#flstudio", "#electronicmusic"],
-                keywords: ["edm producer", "techno producer", "house dj", "electronic artist"],
-                peso: 85
+            fr: {
+                colaboracion: "Salut {nombre}! 👋\n\nJ'ai vu ton profil et j'ai adoré ton travail en tant que {tipoPerfil} dans le {genero}. Je travaille sur plusieurs projets musicaux et je pense que ton style correspondrait parfaitement à ce que nous avons en tête.\n\nSerais-tu intéressé par une collaboration? J'adorerais écouter ton son.\n\n🎵 À bientôt!",
+                negocio: "Salut {nombre}! 👋\n\nJ'ai vu ton profil et je suis impressionné par ton travail dans le {genero}. J'ai une proposition commerciale liée à la production musicale et à la distribution qui pourrait t'intéresser.\n\nAs-tu un moment pour discuter cette semaine? 💼\n\nÀ bientôt!",
+                produccion: "Salut {nombre}! 👋\n\nJe suis producteur et j'ai vu ton profil. J'adore ton son dans le {genero}, il a une identité très forte.\n\nJe cherche des collaborateurs pour quelques projets de production que j'ai en tête. Aimerais-tu entendre quelques idées et voir si on match? 🎹\n\nÀ bientôt!",
+                networking: "Salut {nombre}! 👋\n\nJ'ai vu que tu es aussi dans la scène {genero}. J'aimerais me connecter avec d'autres professionnels de l'industrie pour partager des expériences, des opportunités et grandir ensemble.\n\nAimerais-tu rester en contact? 🌐\n\nÀ bientôt!"
             },
-            "rnb": {
-                tags: ["#rnbproducer", "#rnbmusic", "#soulmusic", "#rnbartist", "#rnbvibes", "#alternativernb", "#rnbproducer", "#neosoul"],
-                keywords: ["rnb producer", "rnb artist", "soul music", "alternative rnb"],
-                peso: 82
+            de: {
+                colaboracion: "Hallo {nombre}! 👋\n\nIch habe dein Profil gesehen und deine Arbeit als {tipoPerfil} im {genero} Bereich hat mir sehr gefallen. Ich arbeite an mehreren Musikprojekten und denke, dein Stil würde perfekt zu dem passen, was wir vorhaben.\n\nHättest du Interesse an einer Zusammenarbeit? Ich würde gerne deinen Sound hören.\n\n🎵 Beste Grüße!",
+                negocio: "Hallo {nombre}! 👋\n\nIch habe dein Profil gesehen und bin beeindruckt von deiner Arbeit im {genero} Bereich. Ich habe ein Geschäftsangebot im Bereich Musikproduktion und Distribution, das dich interessieren könnte.\n\nHast du diese Woche einen Moment zum Reden? 💼\n\nBeste Grüße!",
+                produccion: "Hallo {nombre}! 👋\n\nIch bin Produzent und habe dein Profil gesehen. Ich liebe deinen Sound im {genero} Bereich, er hat eine sehr starke Identität.\n\nIch suche Mitarbeiter für einige Produktionsprojekte, die ich im Kopf habe. Möchtest du ein paar Ideen hören und sehen, ob wir zusammenpassen? 🎹\n\nBeste Grüße!",
+                networking: "Hallo {nombre}! 👋\n\nIch habe gesehen, dass du auch in der {genero} Szene unterwegs bist. Ich möchte mich mit anderen Branchenprofis vernetzen, um Erfahrungen und Möglichkeiten auszutauschen und gemeinsam zu wachsen.\n\nMöchtest du in Kontakt bleiben? 🌐\n\nBeste Grüße!"
             },
-            "lofi": {
-                tags: ["#lofi", "#lofiproducer", "#lofihiphop", "#chillbeats", "#lofibeats", "#studybeats", "#lofiartist", "#chillhop"],
-                keywords: ["lofi producer", "chill beats", "lofi hip hop"],
-                peso: 78
+            it: {
+                colaboracion: "Ciao {nombre}! 👋\n\nHo visto il tuo profilo e mi è piaciuto molto il tuo lavoro come {tipoPerfil} di {genero}. Sto lavorando a diversi progetti musicali e penso che il tuo stile si adatterebbe perfettamente a quello che abbiamo in mente.\n\nSaresti interessato a esplorare una collaborazione? Mi piacerebbe ascoltare il tuo sound.\n\n🎵 A presto!",
+                negocio: "Ciao {nombre}! 👋\n\nHo visto il tuo profilo e sono impressionato dal tuo lavoro in {genero}. Ho una proposta di business legata alla produzione musicale e alla distribuzione che potrebbe interessarti.\n\nHai un momento per parlare questa settimana? 💼\n\nA presto!",
+                produccion: "Ciao {nombre}! 👋\n\nSono un produttore e ho visto il tuo profilo. Adoro il tuo suono in {genero}, ha un'identità molto forte.\n\nSto cercando collaboratori per alcuni progetti di produzione che ho in mente. Ti piacerebbe ascoltare alcune idee e vedere se facciamo match? 🎹\n\nA presto!",
+                networking: "Ciao {nombre}! 👋\n\nHo visto che sei anche nella scena {genero}. Mi piacerebbe connettermi con altri professionisti del settore per condividere esperienze, opportunità e crescere insieme.\n\nTi piacerebbe restare in contatto? 🌐\n\nA presto!"
             },
-            "rock": {
-                tags: ["#rockproducer", "#indierock", "#rockband", "#guitarproducer", "#alternativerock", "#rockmusic", "#indieartist", "#rockproducer"],
-                keywords: ["rock producer", "indie band", "guitar producer"],
-                peso: 75
+            ja: {
+                colaboracion: "こんにちは{nombre}さん！ 👋\n\nあなたのプロフィールを見て、{genero}の{tipoPerfil}としての仕事が気に入りました。いくつかの音楽プロジェクトに取り組んでいて、あなたのスタイルが私たちが考えていることに完璧に合うと思います。\n\nコラボレーションに興味はありますか？あなたのサウンドをぜひ聞かせてほしいです。\n\n🎵 よろしく！",
+                negocio: "こんにちは{nombre}さん！ 👋\n\nあなたのプロフィールを見て、{genero}での仕事に感銘を受けました。音楽制作と配信に関連するビジネス提案があります。\n\n今週お話する時間はありますか？ 💼\n\nよろしく！",
+                produccion: "こんにちは{nombre}さん！ 👋\n\n私はプロデューサーで、あなたのプロフィールを見ました。{genero}でのあなたのサウンドが大好きです。とても強いアイデンティティがあります。\n\n頭に思い浮かべているいくつかの制作プロジェクトの協力者を探しています。いくつかのアイデアを聞いて、マッチするか見てみませんか？ 🎹\n\nよろしく！",
+                networking: "こんにちは{nombre}さん！ 👋\n\nあなたも{genero}シーンにいるのを見ました。経験や機会を共有し、一緒に成長するために、他の業界専門家とつながりたいと思います。\n\n連絡を取り合いませんか？ 🌐\n\nよろしく！"
             },
-            "afrobeat": {
-                tags: ["#afrobeats", "#afrobeatproducer", "#afropop", "#afroartist", "#afrobeatmusic", "#afrohouse"],
-                keywords: ["afrobeat producer", "afro artist", "afropop"],
-                peso: 80
+            ko: {
+                colaboracion: "안녕하세요 {nombre}님! 👋\n\n당신의 프로필을 보고 {genero} {tipoPerfil}로서의 작업이 마음에 들었습니다. 여러 음악 프로젝트를 진행 중인데 당신의 스타일이 우리가 구상하는 것에 완벽하게 어울릴 것 같아요.\n\n콜라보레이션에 관심 있으신가요? 당신의 사운드를 꼭 듣고 싶습니다.\n\n🎵 감사합니다!",
+                negocio: "안녕하세요 {nombre}님! 👋\n\n당신의 프로필을 보고 {genero}에서의 작업에 감명을 받았습니다. 음악 제작 및 배급과 관련된 비즈니스 제안이 있습니다.\n\n이번 주에 이야기할 시간이 있으신가요? 💼\n\n감사합니다!",
+                produccion: "안녕하세요 {nombre}님! 👋\n\n저는 프로듀서이고 당신의 프로필을 봤습니다. {genero}에서의 당신의 사운드가 정말 좋습니다. 매우 강한 아이덴티티가 있어요.\n\n구상 중인 몇몇 제작 프로젝트의 협력자를 찾고 있습니다. 몇 가지 아이디어를 듣고 맞는지 확인해보지 않으시겠어요? 🎹\n\n감사합니다!",
+                networking: "안녕하세요 {nombre}님! 👋\n\n당신도 {genero} 씬에 있는 것을 봤습니다. 경험과 기회를 공유하고 함께 성장하기 위해 다른 업계 전문가들과 연결되고 싶습니다.\n\n연락을 유지하지 않으시겠어요? 🌐\n\n감사합니다!"
             },
-            "latin": {
-                tags: ["#latinmusic", "#latinproducer", "#salsa", "#bachata", "#cumbia", "#latinartist", "#musicalatina"],
-                keywords: ["latin producer", "salsa artist", "bachata"],
-                peso: 83
-            },
-            "pop": {
-                tags: ["#popproducer", "#popmusic", "#popartist", "#songwriter", "#popproducer", "#indiepop"],
-                keywords: ["pop producer", "pop artist", "songwriter"],
-                peso: 70
+            ru: {
+                colaboracion: "Привет {nombre}! 👋\n\nЯ видел твой профиль и мне очень понравилась твоя работа как {tipoPerfil} в жанре {genero}. Я работаю над несколькими музыкальными проектами и думаю, что твой стиль идеально подойдёт к тому, что мы задумали.\n\nТебе было бы интересно изучить возможность сотрудничества? Мне бы очень хотелось услышать твой звук.\n\n🎵 Всего хорошего!",
+                negocio: "Привет {nombre}! 👋\n\nЯ видел твой профиль и впечатлён твоей работой в жанре {genero}. У меня есть бизнес-предложение, связанное с музыкальным продакшеном и дистрибуцией, которое может тебя заинтересовать.\n\nУ тебя есть время поговорить на этой неделе? 💼\n\nВсего хорошего!",
+                produccion: "Привет {nombre}! 👋\n\nЯ продюсер и видел твой профиль. Мне очень нравится твой звук в жанре {genero}, у него очень сильная идентичность.\n\nЯ ищу сотрудников для нескольких продакшен-проектов, которые у меня в голове. Хотел бы услышать несколько идей и посмотреть, подходим ли мы друг другу? 🎹\n\nВсего хорошего!",
+                networking: "Привет {nombre}! 👋\n\nЯ видел, что ты тоже в сцене {genero}. Я хотел бы связаться с другими профессионалами индустрии, чтобы делиться опытом, возможностями и расти вместе.\n\nХотел бы оставаться на связи? 🌐\n\nВсего хорошего!"
             }
         };
 
-        // Nombres simulados por región (para demo)
-        const NOMBRES_POR_REGION = {
-            latam: ["Carlos M.", "Luis R.", "Diego S.", "Juan C.", "María L.", "Sofía G.", "Andrés P.", "Valentina R."],
-            usa: ["James W.", "Aisha J.", "Marcus T.", "Sarah L.", "Devon K.", "Maya B.", "Tyler J."],
-            europa: ["Hans K.", "Pierre L.", "Olga M.", "Marco P.", "Emma S.", "Lukas B.", "Isabella F."],
-            asia: ["Yuki T.", "Kim H.", "Raj P.", "Chen W.", "Min-Ji L."],
-            mix: ["Carlos M.", "James W.", "Hans K.", "Yuki T.", "Luis R.", "Aisha J.", "Pierre L.", "Kim H."]
+        // ============================================
+        // 🌍 DATOS GEO
+        // ============================================
+        const GEO = {
+            latam: {
+                nombres: ["Carlos M.","Luis R.","Diego S.","Juan C.","María L.","Sofía G.","Andrés P.","Valentina R."],
+                paises: ["México","Colombia","Argentina","Chile","España"],
+                idiomas: {"México":"es","Colombia":"es","Argentina":"es","Chile":"es","España":"es"}
+            },
+            usa: {
+                nombres: ["James W.","Aisha J.","Marcus T.","Sarah L.","Devon K.","Maya B.","Tyler J."],
+                paises: ["USA","Canadá"],
+                idiomas: {"USA":"en","Canadá":"en"}
+            },
+            europa: {
+                nombres: ["Hans K.","Pierre L.","Olga M.","Marco P.","Emma S.","Lukas B.","Isabella F."],
+                paises: ["Francia","Alemania","Italia","UK","Holanda","España"],
+                idiomas: {"Francia":"fr","Alemania":"de","Italia":"it","UK":"en","Holanda":"en","España":"es"}
+            },
+            mix: {
+                nombres: ["Carlos M.","James W.","Hans K.","Yuki T.","Luis R.","Aisha J.","Pierre L.","Kim H.","Marco P.","Olga M.","Diego S.","Sarah L."],
+                paises: ["México","USA","España","Japón","Colombia","Francia","Argentina","UK","Alemania","Italia","Brasil","Corea"],
+                idiomas: {"México":"es","USA":"en","España":"es","Japón":"ja","Colombia":"es","Francia":"fr","Argentina":"es","UK":"en","Alemania":"de","Italia":"it","Brasil":"pt","Corea":"ko"}
+            }
         };
 
-        const PAISES_POR_REGION = {
-            latam: ["México", "Colombia", "Argentina", "Chile", "España"],
-            usa: ["USA", "Canadá"],
-            europa: ["España", "Francia", "Alemania", "Italia", "UK", "Holanda"],
-            asia: ["Japón", "Corea", "India"],
-            mix: ["México", "USA", "España", "Japón", "Colombia", "Francia", "Argentina", "UK"]
-        };
-
-        const IDIOMAS_POR_PAIS = {
-            "México": "es", "Colombia": "es", "Argentina": "es", "Chile": "es", "España": "es",
-            "USA": "en", "Canadá": "en", "UK": "en",
-            "Francia": "fr", "Alemania": "de", "Italia": "it", "Holanda": "nl",
-            "Japón": "ja", "Corea": "ko", "India": "hi"
-        };
-
-        // Estado de la app
+        // ============================================
+        // 🎯 ESTADO
+        // ============================================
         let generosSeleccionados = new Set();
         let leadsEncontrados = [];
 
         // ============================================
-        // INICIALIZACIÓN
+        // 🚀 INICIALIZACIÓN
         // ============================================
         function init() {
             const container = document.getElementById('generos-container');
@@ -257,8 +292,6 @@
                 chip.onclick = () => toggleGenero(genero, chip);
                 container.appendChild(chip);
             });
-
-            // Cargar config guardada
             cargarConfig();
         }
 
@@ -275,7 +308,6 @@
         function seleccionarTodos() {
             const chips = document.querySelectorAll('.genre-chip');
             const todosSeleccionados = generosSeleccionados.size === chips.length;
-            
             chips.forEach(chip => {
                 if (todosSeleccionados) {
                     generosSeleccionados.delete(chip.dataset.genero);
@@ -288,7 +320,7 @@
         }
 
         // ============================================
-        // 🚀 MOTOR DE BÚSQUEDA INTELIGENTE
+        // 🔍 MOTOR DE BÚSQUEDA
         // ============================================
         function ejecutarBusqueda() {
             if (generosSeleccionados.size === 0) {
@@ -302,57 +334,59 @@
             const maxSeg = parseInt(document.getElementById('max-seguidores').value);
             const minScore = parseInt(document.getElementById('min-score').value);
 
-            // 1. Generar estrategia de búsqueda
             generarEstrategia();
 
-            // 2. Generar leads simulados (en producción real, aquí llamarías a la API de IG)
             leadsEncontrados = [];
             const generosArray = Array.from(generosSeleccionados);
-            
-            for (let i = 0; i < cantidad; i++) {
+            const geo = GEO[region] || GEO.mix;
+            let intentos = 0;
+
+            while (leadsEncontrados.length < cantidad && intentos < cantidad * 3) {
+                intentos++;
                 const genero = generosArray[Math.floor(Math.random() * generosArray.length)];
                 const datosGenero = HASHTAGS_POR_GENERO[genero];
-                const pais = PAISES_POR_REGION[region][Math.floor(Math.random() * PAISES_POR_REGION[region].length)];
-                const nombres = NOMBRES_POR_REGION[region];
-                const nombre = nombres[Math.floor(Math.random() * nombres.length)];
-                
+                const pais = geo.paises[Math.floor(Math.random() * geo.paises.length)];
+                const nombre = geo.nombres[Math.floor(Math.random() * geo.nombres.length)];
+                const idioma = geo.idiomas[pais] || 'en';
+
                 const lead = {
+                    id: Date.now() + Math.random(),
                     username: generarUsername(genero),
                     nombre: nombre,
                     pais: pais,
-                    idioma: IDIOMAS_POR_PAIS[pais] || 'en',
+                    idioma: idioma,
                     genero: genero,
                     seguidores: Math.floor(Math.random() * (maxSeg - minSeg)) + minSeg,
-                    score: calcularScore(datosGenero.peso, genero),
+                    score: calcularScore(datosGenero.peso),
                     hashtags: datosGenero.tags.slice(0, 3),
-                    tipoPerfil: obtenerTipoPerfil()
+                    tipoPerfil: obtenerTipoPerfil(),
+                    angulo: obtenerAngulo()
                 };
+
+                lead.mensaje = generarMensaje(lead);
 
                 if (lead.score >= minScore) {
                     leadsEncontrados.push(lead);
                 }
             }
 
-            // Ordenar por score
             leadsEncontrados.sort((a, b) => b.score - a.score);
             renderLeads();
         }
 
         function generarUsername(genero) {
-            const prefijos = ["the", "real", "official", "young", "big", "lil", "dj", "prod"];
-            const sufijos = ["beats", "music", "sounds", "prod", "studio", "vibes", "official", "music"];
+            const prefijos = ["the","real","official","young","big","lil","dj","prod","king","lord"];
+            const sufijos = ["beats","music","sounds","prod","studio","vibes","official","wav","records"];
             const pref = prefijos[Math.floor(Math.random() * prefijos.length)];
             const suf = sufijos[Math.floor(Math.random() * sufijos.length)];
-            const num = Math.random() > 0.5 ? Math.floor(Math.random() * 99) : '';
-            return `${pref}${genero.slice(0,4)}${suf}${num}`.toLowerCase().replace(/\s/g, '');
+            const num = Math.random() > 0.5 ? Math.floor(Math.random() * 999) : '';
+            return `${pref}${genero.slice(0,5)}${suf}${num}`.toLowerCase().replace(/\s/g,'');
         }
 
-        function calcularScore(pesoGenero, genero) {
-            // Score basado en: peso del género + random + bonus por rareza
-            const base = pesoGenero;
+        function calcularScore(pesoGenero) {
             const variacion = Math.floor(Math.random() * 20) - 10;
             const bonus = Math.random() > 0.7 ? 10 : 0;
-            return Math.min(100, Math.max(40, base + variacion + bonus));
+            return Math.min(100, Math.max(40, pesoGenero + variacion + bonus));
         }
 
         function obtenerTipoPerfil() {
@@ -361,7 +395,33 @@
             if (document.getElementById('tipo-artista').checked) tipos.push('Artista');
             if (document.getElementById('tipo-dj').checked) tipos.push('DJ');
             if (document.getElementById('tipo-ingeniero').checked) tipos.push('Ingeniero');
-            return tipos[Math.floor(Math.random() * tipos.length)] || 'Productor';
+            return tipos.length ? tipos[Math.floor(Math.random() * tipos.length)] : 'Productor';
+        }
+
+        function obtenerAngulo() {
+            const angulo = document.getElementById('angulo-mensaje').value;
+            if (angulo === 'mixto') {
+                const opciones = ['colaboracion','negocio','produccion','networking'];
+                return opciones[Math.floor(Math.random() * opciones.length)];
+            }
+            return angulo;
+        }
+
+        function generarMensaje(lead) {
+            const plantilla = MENSAJES[lead.idioma]?.[lead.angulo] || MENSAJES.en.colaboracion;
+            return plantilla
+                .replace(/{nombre}/g, lead.nombre.split(' ')[0])
+                .replace(/{tipoPerfil}/g, lead.tipoPerfil.toLowerCase())
+                .replace(/{genero}/g, lead.genero.charAt(0).toUpperCase() + lead.genero.slice(1));
+        }
+
+        function regenerarMensaje(leadId) {
+            const lead = leadsEncontrados.find(l => l.id === leadId);
+            if (!lead) return;
+            const angulos = ['colaboracion','negocio','produccion','networking'];
+            lead.angulo = angulos[Math.floor(Math.random() * angulos.length)];
+            lead.mensaje = generarMensaje(lead);
+            renderLeads();
         }
 
         // ============================================
@@ -370,34 +430,31 @@
         function generarEstrategia() {
             const generosArray = Array.from(generosSeleccionados);
             const region = document.getElementById('region').value;
-            
+            const angulo = document.getElementById('angulo-mensaje').value;
+
             let html = '<div class="space-y-3 fade-in">';
-            html += `<p class="text-gray-400">🎯 Buscando en <strong class="text-white">${generosArray.length} géneros</strong> | Región: <strong class="text-white">${region.toUpperCase()}</strong></p>`;
+            html += `<p class="text-gray-400">🎯 <strong class="text-white">${generosArray.length} géneros</strong> | Región: <strong class="text-white">${region.toUpperCase()}</strong> | Ángulo: <strong class="text-white">${angulo.toUpperCase()}</strong></p>`;
             
             html += '<div class="bg-gray-800 rounded-lg p-3">';
-            html += '<p class="text-xs text-gray-400 mb-2">HASHTAGS ESTRATÉGICOS A USAR:</p>';
+            html += '<p class="text-xs text-gray-400 mb-2">HASHTAGS ESTRATÉGICOS:</p>';
             html += '<div class="flex flex-wrap gap-1">';
-            
             generosArray.forEach(g => {
-                const tags = HASHTAGS_POR_GENERO[g].tags.slice(0, 3);
-                tags.forEach(tag => {
+                HASHTAGS_POR_GENERO[g].tags.slice(0, 2).forEach(tag => {
                     html += `<span class="bg-purple-900/40 text-purple-300 text-xs px-2 py-1 rounded">${tag}</span>`;
                 });
             });
-            
             html += '</div></div>';
             
             html += '<div class="bg-gray-800 rounded-lg p-3">';
-            html += '<p class="text-xs text-gray-400 mb-2">KEYWORDS DE BÚSQUEDA:</p>';
+            html += '<p class="text-xs text-gray-400 mb-2">KEYWORDS:</p>';
             html += '<div class="flex flex-wrap gap-1">';
             generosArray.forEach(g => {
                 HASHTAGS_POR_GENERO[g].keywords.forEach(kw => {
                     html += `<span class="bg-pink-900/40 text-pink-300 text-xs px-2 py-1 rounded">"${kw}"</span>`;
                 });
             });
-            html += '</div></div>';
+            html += '</div></div></div>';
             
-            html += '</div>';
             document.getElementById('estrategia').innerHTML = html;
         }
 
@@ -406,20 +463,34 @@
             document.getElementById('contador-leads').textContent = leadsEncontrados.length;
             
             if (leadsEncontrados.length === 0) {
-                container.innerHTML = '<div class="text-center py-8 text-gray-500">No se encontraron leads con estos criterios. Ajusta los filtros.</div>';
+                container.innerHTML = '<div class="text-center py-8 text-gray-500">No se encontraron leads. Ajusta los filtros.</div>';
                 return;
             }
 
-            container.innerHTML = leadsEncontrados.map((lead, idx) => {
+            const anguloLabels = {
+                colaboracion: { icon: 'fa-handshake', color: 'text-blue-400', label: 'Colaboración' },
+                negocio: { icon: 'fa-briefcase', color: 'text-yellow-400', label: 'Negocio' },
+                produccion: { icon: 'fa-music', color: 'text-green-400', label: 'Producción' },
+                networking: { icon: 'fa-network-wired', color: 'text-purple-400', label: 'Networking' }
+            };
+
+            const idiomaLabels = {
+                es: '🇪🇸 ES', en: '🇺🇸 EN', pt: '🇧🇷 PT', fr: '🇫🇷 FR',
+                de: '🇩🇪 DE', it: '🇮🇹 IT', ja: '🇯🇵 JA', ko: '🇰🇷 KO', ru: '🇷🇺 RU'
+            };
+
+            container.innerHTML = leadsEncontrados.map(lead => {
                 const scoreColor = lead.score >= 80 ? 'text-green-400 bg-green-900/30' : 
                                    lead.score >= 60 ? 'text-yellow-400 bg-yellow-900/30' : 
                                    'text-red-400 bg-red-900/30';
                 const scoreBarColor = lead.score >= 80 ? 'bg-green-500' : 
                                       lead.score >= 60 ? 'bg-yellow-500' : 'bg-red-500';
+                const ang = anguloLabels[lead.angulo];
                 
                 return `
-                    <div class="bg-gray-800 rounded-lg p-4 border border-gray-700 fade-in hover:border-purple-500 transition">
-                        <div class="flex items-start justify-between gap-4">
+                    <div class="bg-gray-800 rounded-lg border border-gray-700 fade-in hover:border-purple-500 transition">
+                        <!-- HEADER DEL LEAD -->
+                        <div class="p-4 flex items-start justify-between gap-4 border-b border-gray-700">
                             <div class="flex items-start gap-3 flex-1">
                                 <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold flex-shrink-0">
                                     ${lead.nombre.charAt(0)}
@@ -431,9 +502,6 @@
                                         <span class="text-xs px-2 py-0.5 rounded-full bg-gray-700 text-gray-300">${lead.tipoPerfil}</span>
                                     </div>
                                     <p class="text-xs text-gray-400 mt-1">${lead.nombre} • ${lead.pais} • ${lead.seguidores.toLocaleString()} seguidores</p>
-                                    <div class="flex gap-1 mt-2 flex-wrap">
-                                        ${lead.hashtags.map(h => `<span class="text-xs text-gray-500">${h}</span>`).join('')}
-                                    </div>
                                 </div>
                             </div>
                             <div class="text-right flex-shrink-0">
@@ -444,6 +512,27 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- MENSAJE GENERADO -->
+                        <div class="p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs ${ang.color} flex items-center gap-1">
+                                        <i class="fa-solid ${ang.icon}"></i> ${ang.label}
+                                    </span>
+                                    <span class="text-xs text-gray-500">${idiomaLabels[lead.idioma] || lead.idioma.toUpperCase()}</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <button onclick="regenerarMensaje(${lead.id})" class="text-xs bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded transition" title="Regenerar mensaje">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                    <button onclick="copiarMensaje(${lead.id}, this)" class="text-xs bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded transition" title="Copiar mensaje">
+                                        <i class="fa-solid fa-copy"></i> Copiar
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="msg-${lead.id}" class="mensaje-box bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-200">${lead.mensaje}</div>
+                        </div>
                     </div>
                 `;
             }).join('');
@@ -452,6 +541,33 @@
         // ============================================
         // 🛠️ UTILIDADES
         // ============================================
+        function copiarMensaje(leadId, btn) {
+            const lead = leadsEncontrados.find(l => l.id === leadId);
+            if (!lead) return;
+            navigator.clipboard.writeText(lead.mensaje);
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Copiado!';
+            btn.classList.remove('bg-green-600');
+            btn.classList.add('bg-blue-600');
+            setTimeout(() => {
+                btn.innerHTML = original;
+                btn.classList.add('bg-green-600');
+                btn.classList.remove('bg-blue-600');
+            }, 1500);
+        }
+
+        function copiarTodosMensajes() {
+            if (leadsEncontrados.length === 0) {
+                alert('No hay leads para copiar');
+                return;
+            }
+            const todos = leadsEncontrados.map((l, i) => 
+                `=== LEAD ${i+1}: @${l.username} (${l.pais}) ===\n${l.mensaje}`
+            ).join('\n\n');
+            navigator.clipboard.writeText(todos);
+            alert(`✅ ${leadsEncontrados.length} mensajes copiados al portapapeles`);
+        }
+
         function copiarUsernames() {
             if (leadsEncontrados.length === 0) {
                 alert('No hay leads para copiar');
@@ -459,7 +575,7 @@
             }
             const usernames = leadsEncontrados.map(l => '@' + l.username).join('\n');
             navigator.clipboard.writeText(usernames);
-            alert(`✅ ${leadsEncontrados.length} usernames copiados al portapapeles`);
+            alert(`✅ ${leadsEncontrados.length} usernames copiados`);
         }
 
         function exportarCSV() {
@@ -467,12 +583,12 @@
                 alert('No hay leads para exportar');
                 return;
             }
-            let csv = 'Username,Nombre,Pais,Idioma,Genero,Seguidores,Score,TipoPerfil\n';
+            let csv = 'Username,Nombre,Pais,Idioma,Genero,Seguidores,Score,TipoPerfil,Angulo,Mensaje\n';
             leadsEncontrados.forEach(l => {
-                csv += `${l.username},${l.nombre},${l.pais},${l.idioma},${l.genero},${l.seguidores},${l.score},${l.tipoPerfil}\n`;
+                const msg = l.mensaje.replace(/"/g, '""').replace(/\n/g, ' ');
+                csv += `"${l.username}","${l.nombre}","${l.pais}","${l.idioma}","${l.genero}",${l.seguidores},${l.score},"${l.tipoPerfil}","${l.angulo}","${msg}"\n`;
             });
-            
-            const blob = new Blob([csv], { type: 'text/csv' });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
@@ -488,34 +604,35 @@
                 minScore: document.getElementById('min-score').value,
                 region: document.getElementById('region').value,
                 cantidad: document.getElementById('cantidad').value,
+                angulo: document.getElementById('angulo-mensaje').value,
                 tipoProductor: document.getElementById('tipo-productor').checked,
                 tipoArtista: document.getElementById('tipo-artista').checked,
                 tipoDj: document.getElementById('tipo-dj').checked,
                 tipoIngeniero: document.getElementById('tipo-ingeniero').checked
             };
             localStorage.setItem('terrivol-lead-config', JSON.stringify(config));
-            alert('✅ Configuración guardada');
+            alert('✅ Configuración guardada en este navegador');
         }
 
         function cargarConfig() {
             const saved = localStorage.getItem('terrivol-lead-config');
             if (!saved) return;
-            
             const config = JSON.parse(saved);
-            config.generos.forEach(g => {
+            if (config.generos) config.generos.forEach(g => {
                 generosSeleccionados.add(g);
                 const chip = document.querySelector(`[data-genero="${g}"]`);
                 if (chip) chip.classList.add('active');
             });
-            document.getElementById('min-seguidores').value = config.minSeg;
-            document.getElementById('max-seguidores').value = config.maxSeg;
-            document.getElementById('min-score').value = config.minScore;
-            document.getElementById('region').value = config.region;
-            document.getElementById('cantidad').value = config.cantidad;
-            document.getElementById('tipo-productor').checked = config.tipoProductor;
-            document.getElementById('tipo-artista').checked = config.tipoArtista;
-            document.getElementById('tipo-dj').checked = config.tipoDj;
-            document.getElementById('tipo-ingeniero').checked = config.tipoIngeniero;
+            if (config.minSeg) document.getElementById('min-seguidores').value = config.minSeg;
+            if (config.maxSeg) document.getElementById('max-seguidores').value = config.maxSeg;
+            if (config.minScore) document.getElementById('min-score').value = config.minScore;
+            if (config.region) document.getElementById('region').value = config.region;
+            if (config.cantidad) document.getElementById('cantidad').value = config.cantidad;
+            if (config.angulo) document.getElementById('angulo-mensaje').value = config.angulo;
+            if (config.tipoProductor !== undefined) document.getElementById('tipo-productor').checked = config.tipoProductor;
+            if (config.tipoArtista !== undefined) document.getElementById('tipo-artista').checked = config.tipoArtista;
+            if (config.tipoDj !== undefined) document.getElementById('tipo-dj').checked = config.tipoDj;
+            if (config.tipoIngeniero !== undefined) document.getElementById('tipo-ingeniero').checked = config.tipoIngeniero;
         }
 
         // Iniciar
