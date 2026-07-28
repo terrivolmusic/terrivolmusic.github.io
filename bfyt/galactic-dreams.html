@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galactic Dreams - Cinematic Space Trap Beat | 143 BPM | Premium Production by Beats BFYT">
+    <title>Galactic Dreams | Cinematic Space Trap Beat - Beats BFYT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8a2be2;
+            --secondary: #00f2ff;
+            --bg-dark: #0a0a0f;
+            --bg-card: #16161e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 242, 255, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Main Beat Section */
+        .beat-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+            align-items: center;
+        }
+
+        @media (max-width: 968px) {
+            .beat-hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* Cover Art */
+        .cover-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(138, 43, 226, 0.3);
+            aspect-ratio: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cover-art {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .cover-container:hover .cover-art {
+            transform: scale(1.05);
+        }
+
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(0, 242, 255, 0.1));
+            pointer-events: none;
+        }
+
+        /* Beat Info */
+        .beat-info h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .beat-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            background: rgba(138, 43, 226, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--secondary);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            font-weight: 500;
+        }
+
+        .beat-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        /* Audio Player */
+        .audio-player {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, box-shadow 0.3s;
+            flex-shrink: 0;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.5);
+        }
+
+        .play-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+            margin-left: 3px;
+        }
+
+        .progress-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.1s;
+            border-radius: 10px;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-family: 'Space Grotesk', monospace;
+        }
+
+        /* License Cards */
+        .licenses-section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .licenses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .license-card {
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .license-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 242, 255, 0.15);
+        }
+
+        .license-card.featured {
+            border-color: var(--secondary);
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.05), rgba(138, 43, 226, 0.05));
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .license-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .license-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+        }
+
+        .license-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .license-features li {
+            padding: 10px 0;
+            color: var(--text-secondary);
+            padding-left: 30px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .license-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
+        }
+
+        /* Details Section */
+        .details-section {
+            background: var(--bg-card);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .beat-hero, .license-card, .details-section {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .license-card:nth-child(2) { animation-delay: 0.1s; }
+        .license-card:nth-child(3) { animation-delay: 0.2s; }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">BEATS BFYT</div>
+            <nav class="nav-links">
+                <a href="https://youtube.com/@beatsfreeyoutube_" target="_blank">YouTube</a>
+                <a href="https://instagram.com/beatsfreeyoutube_" target="_blank">Instagram</a>
+                <a href="https://payhip.com/beatsbfyt" target="_blank">Shop</a>
+            </nav>
+        </header>
+
+        <!-- Main Beat Section -->
+        <div class="beat-hero">
+            <!-- Cover Art -->
+            <div class="cover-container">
+                <img src="Woman_in_luxury_car_2K_202607222137.jpg" alt="Galactic Dreams Cover Art" class="cover-art">
+                <div class="cover-overlay"></div>
+            </div>
+
+            <!-- Beat Info -->
+            <div class="beat-info">
+                <h1>Galactic Dreams</h1>
+                <div class="beat-meta">
+                    <span class="meta-tag">Cinematic Trap</span>
+                    <span class="meta-tag">143 BPM</span>
+                    <span class="meta-tag">Space</span>
+                    <span class="meta-tag">Futuristic</span>
+                </div>
+
+                <p class="beat-description">
+                    Futuristic cinematic trap beat with modern synthesizers and cosmic atmosphere. 
+                    Deep 808 bass, spatial synth layers, and elegant trap percussion create an 
+                    interstellar soundscape perfect for melodic flows and storytelling.
+                </p>
+
+                <!-- Audio Player -->
+                <div class="audio-player">
+                    <div class="player-controls">
+                        <button class="play-btn" onclick="togglePlay()" aria-label="Play/Pause">
+                            <svg id="playIcon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                        <div class="progress-container">
+                            <div class="progress-bar" onclick="seek(event)">
+                                <div class="progress" id="progressBar"></div>
+                            </div>
+                            <div class="time-display">
+                                <span id="currentTime">0:00</span>
+                                <span id="duration">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <audio id="audioPlayer" preload="metadata">
+                        <source src="PREVIEW BEAT PRO MP3.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 15px;">
+                    🎵 Preview only - Purchase a license for full quality files
+                </p>
+            </div>
+        </div>
+
+        <!-- Licenses Section -->
+        <div class="licenses-section">
+            <h2 class="section-title">Choose Your License</h2>
+            
+            <div class="licenses-grid">
+                <!-- Basic License -->
+                <div class="license-card">
+                    <div class="license-name">Basic</div>
+                    <div class="license-price">$14.99</div>
+                    <ul class="license-features">
+                        <li>MP3 File (Tagged)</li>
+                        <li>Non-Profit Use Only</li>
+                        <li>Up to 10,000 Streams</li>
+                        <li>Credit Required</li>
+                        <li>1 Music Video</li>
+                    </ul>
+                    <a href="https://payhip.com/b/YOUR_BASIC_LINK" class="buy-btn" target="_blank">
+                        Purchase Basic
+                    </a>
+                </div>
+
+                <!-- Standard License (Featured) -->
+                <div class="license-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="license-name">Standard</div>
+                    <div class="license-price">$29.99</div>
+                    <ul class="license-features">
+                        <li>MP3 + WAV Files</li>
+                        <li>Commercial Use</li>
+                        <li>Up to 100,000 Streams</li>
+                        <li>Spotify, Apple Music, YouTube</li>
+                        <li>Unlimited Music Videos</li>
+                        <li>Radio Broadcast Rights</li>
+                    </ul>
+                    <a href="https://payhip.com/b/YOUR_STANDARD_LINK" class="buy-btn" target="_blank">
+                        Purchase Standard
+                    </a>
+                </div>
+
+                <!-- Premium License -->
+                <div class="license-card">
+                    <div class="license-name">Premium</div>
+                    <div class="license-price">$49.99</div>
+                    <ul class="license-features">
+                        <li>MP3 + WAV + STEMS</li>
+                        <li>Unlimited Commercial Use</li>
+                        <li>Unlimited Streams</li>
+                        <li>Full Ownership Rights</li>
+                        <li>Radio & Performance Rights</li>
+                        <li>Priority Support</li>
+                        <li>Custom Edits Available</li>
+                    </ul>
+                    <a href="https://payhip.com/b/YOUR_PREMIUM_LINK" class="buy-btn" target="_blank">
+                        Purchase Premium
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Details Section -->
+        <div class="details-section">
+            <h2 class="section-title">Production Details</h2>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">
+                "Galactic Dreams" is a cutting-edge cinematic trap production that blends futuristic 
+                sound design with cosmic atmospheres. Built at 143 BPM, this beat features modern 
+                synthesizers, deep 808 bass, and elegant trap percussion perfect for artists looking 
+                to create introspective, melodic tracks with a futuristic edge.
+            </p>
+            
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Producer</span>
+                    <span class="detail-value">Beats BFYT</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">BPM</span>
+                    <span class="detail-value">143</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Key</span>
+                    <span class="detail-value">C Minor</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Genre</span>
+                    <span class="detail-value">Cinematic Trap</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Style</span>
+                    <span class="detail-value">Space / Futuristic</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Mood</span>
+                    <span class="detail-value">Epic, Cosmic, Elegant</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="social-links">
+                <a href="https://youtube.com/@beatsfreeyoutube_" target="_blank">YouTube</a>
+                <a href="https://instagram.com/beatsfreeyoutube_" target="_blank">Instagram</a>
+                <a href="https://tiktok.com/@beatsfreeyoutube_" target="_blank">TikTok</a>
+                <a href="https://payhip.com/beatsbfyt" target="_blank">Shop</a>
+            </div>
+            <p>&copy; 2026 Beats BFYT. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.85rem;">Part of Terrivol Music ENT</p>
+        </footer>
+    </div>
+
+    <script>
+        const audio = document.getElementById('audioPlayer');
+        const playBtn = document.querySelector('.play-btn');
+        const playIcon = document.getElementById('playIcon');
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+            } else {
+                audio.pause();
+                playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+            }
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = progress + '%';
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audio.duration);
+        });
+
+        function seek(event) {
+            const bar = event.currentTarget;
+            const clickPosition = event.offsetX / bar.offsetWidth;
+            audio.currentTime = clickPosition * audio.duration;
+        }
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Auto-play preview on page load (optional)
+        // window.addEventListener('load', () => {
+        //     audio.volume = 0.5;
+        //     audio.play();
+        // });
+    </script>
+</body>
+</html>
