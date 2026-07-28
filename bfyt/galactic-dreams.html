@@ -31,10 +31,21 @@
             color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Background Animation */
-        .bg-gradient {
+        /* Animated Starfield Background */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        /* Nebula Gradient Overlay */
+        .nebula-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -42,20 +53,69 @@
             height: 100%;
             z-index: -1;
             background: 
-                radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 242, 255, 0.1) 0%, transparent 50%);
-            animation: gradientShift 15s ease infinite;
+                radial-gradient(ellipse at 20% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(0, 242, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(138, 43, 226, 0.05) 0%, transparent 70%);
+            animation: nebulaPulse 8s ease-in-out infinite;
         }
 
-        @keyframes gradientShift {
+        @keyframes nebulaPulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
+        }
+
+        /* Shooting Stars */
+        .shooting-star {
+            position: fixed;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+            border-radius: 50%;
+            animation: shoot 3s linear infinite;
+            opacity: 0;
+        }
+
+        .shooting-star:nth-child(1) {
+            top: 20%;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .shooting-star:nth-child(2) {
+            top: 60%;
+            left: -100px;
+            animation-delay: 2s;
+        }
+
+        .shooting-star:nth-child(3) {
+            top: 40%;
+            left: -100px;
+            animation-delay: 4s;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px)) translateY(100px);
+                opacity: 0;
+            }
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 40px 20px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Header */
@@ -65,6 +125,7 @@
             align-items: center;
             padding: 20px 0;
             margin-bottom: 60px;
+            animation: fadeInDown 1s ease;
         }
 
         .logo {
@@ -75,6 +136,23 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.5; box-shadow: 0 0 10px var(--primary); }
+            50% { opacity: 1; box-shadow: 0 0 20px var(--secondary); }
         }
 
         .nav-links {
@@ -87,11 +165,27 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
         }
 
         .nav-links a:hover {
             color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Main Beat Section */
@@ -101,6 +195,7 @@
             gap: 60px;
             margin-bottom: 80px;
             align-items: center;
+            animation: fadeInUp 1.2s ease;
         }
 
         @media (max-width: 968px) {
@@ -110,15 +205,21 @@
             }
         }
 
-        /* Cover Art */
+        /* Cover Art with Floating Animation */
         .cover-container {
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 30px 80px rgba(138, 43, 226, 0.3);
+            box-shadow: 0 30px 80px rgba(138, 43, 226, 0.4);
             aspect-ratio: 1;
             max-width: 600px;
             margin: 0 auto;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
         .cover-art {
@@ -138,8 +239,33 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(0, 242, 255, 0.1));
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(0, 242, 255, 0.2));
             pointer-events: none;
+            animation: overlayPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes overlayPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Rotating Ring Effect */
+        .cover-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            border: 2px solid rgba(0, 242, 255, 0.3);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         /* Beat Info */
@@ -153,6 +279,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: textGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.6)); }
         }
 
         .beat-meta {
@@ -170,6 +302,18 @@
             color: var(--secondary);
             border: 1px solid rgba(138, 43, 226, 0.3);
             font-weight: 500;
+            transition: all 0.3s;
+            animation: tagPulse 2s ease-in-out infinite;
+        }
+
+        .meta-tag:hover {
+            background: rgba(0, 242, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        @keyframes tagPulse {
+            0%, 100% { box-shadow: 0 0 5px rgba(138, 43, 226, 0.3); }
+            50% { box-shadow: 0 0 15px rgba(0, 242, 255, 0.5); }
         }
 
         .beat-description {
@@ -179,19 +323,39 @@
             font-size: 1.05rem;
         }
 
-        /* Audio Player */
+        /* Audio Player with Waveform Animation */
         .audio-player {
             background: var(--bg-card);
             padding: 25px;
             border-radius: 15px;
             border: 1px solid var(--border);
             margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audio-player::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 242, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .player-controls {
             display: flex;
             align-items: center;
             gap: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .play-btn {
@@ -204,8 +368,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s, box-shadow 0.3s;
+            transition: all 0.3s;
             flex-shrink: 0;
+            position: relative;
+        }
+
+        .play-btn::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            animation: ripple 2s ease-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
         }
 
         .play-btn:hover {
@@ -242,6 +423,20 @@
             width: 0%;
             transition: width 0.1s;
             border-radius: 10px;
+            position: relative;
+        }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--secondary);
         }
 
         .time-display {
@@ -252,7 +447,7 @@
             font-family: 'Space Grotesk', monospace;
         }
 
-        /* License Cards */
+        /* License Cards with Hover Effects */
         .licenses-section {
             margin-bottom: 80px;
         }
@@ -262,6 +457,23 @@
             font-size: 2rem;
             margin-bottom: 40px;
             text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            margin: 15px auto 0;
+            border-radius: 10px;
+            animation: lineGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes lineGlow {
+            0%, 100% { box-shadow: 0 0 5px var(--primary); }
+            50% { box-shadow: 0 0 20px var(--secondary); }
         }
 
         .licenses-grid {
@@ -277,15 +489,36 @@
             padding: 35px;
             border-radius: 20px;
             border: 2px solid var(--border);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .license-card:nth-child(1) { animation-delay: 0.1s; }
+        .license-card:nth-child(2) { animation-delay: 0.2s; }
+        .license-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .license-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .license-card:hover::before {
+            opacity: 1;
         }
 
         .license-card:hover {
             border-color: var(--secondary);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 242, 255, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 242, 255, 0.2);
         }
 
         .license-card.featured {
@@ -303,6 +536,12 @@
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 10px var(--primary); }
+            50% { box-shadow: 0 0 20px var(--secondary); }
         }
 
         .license-name {
@@ -333,6 +572,12 @@
             padding-left: 30px;
             position: relative;
             font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .license-features li:hover {
+            color: var(--text-primary);
+            transform: translateX(5px);
         }
 
         .license-features li::before {
@@ -360,11 +605,31 @@
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .buy-btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .buy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.5);
         }
 
         /* Details Section */
@@ -374,6 +639,7 @@
             border-radius: 20px;
             border: 1px solid var(--border);
             margin-bottom: 60px;
+            animation: fadeInUp 1s ease;
         }
 
         .details-grid {
@@ -387,6 +653,11 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .detail-item:hover {
+            transform: translateY(-5px);
         }
 
         .detail-label {
@@ -420,29 +691,104 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.9rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .social-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
         }
 
         .social-links a:hover {
             color: var(--secondary);
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .social-links a:hover::after {
+            width: 100%;
         }
 
-        .beat-hero, .license-card, .details-section {
-            animation: fadeIn 0.8s ease forwards;
+        /* Keyframe Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .license-card:nth-child(2) { animation-delay: 0.1s; }
-        .license-card:nth-child(3) { animation-delay: 0.2s; }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Particle Effect */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFloat 10s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="bg-gradient"></div>
+    <!-- Starfield Canvas -->
+    <canvas id="starfield"></canvas>
+    
+    <!-- Nebula Overlay -->
+    <div class="nebula-overlay"></div>
+    
+    <!-- Shooting Stars -->
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+
+    <!-- Floating Particles -->
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 40%; animation-delay: 6s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 8s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 5s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 7s;"></div>
     
     <div class="container">
         <!-- Header -->
@@ -619,6 +965,56 @@
     </div>
 
     <script>
+        // Starfield Animation
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const stars = [];
+        const numStars = 200;
+        
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                speed: Math.random() * 0.5 + 0.1,
+                opacity: Math.random()
+            });
+        }
+        
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+                
+                star.y += star.speed;
+                
+                if (star.y > canvas.height) {
+                    star.y = 0;
+                    star.x = Math.random() * canvas.width;
+                }
+                
+                star.opacity = Math.random() * 0.5 + 0.5;
+            });
+            
+            requestAnimationFrame(animateStars);
+        }
+        
+        animateStars();
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Audio Player
         const audio = document.getElementById('audioPlayer');
         const playBtn = document.querySelector('.play-btn');
         const playIcon = document.getElementById('playIcon');
@@ -658,12 +1054,6 @@
             const secs = Math.floor(seconds % 60);
             return `${mins}:${secs.toString().padStart(2, '0')}`;
         }
-
-        // Auto-play preview on page load (optional)
-        // window.addEventListener('load', () => {
-        //     audio.volume = 0.5;
-        //     audio.play();
-        // });
     </script>
 </body>
 </html>
