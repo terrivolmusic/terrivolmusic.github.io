@@ -3,193 +3,523 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Operativo</title>
+    <title>Terrivol Lead Center // Music Industry Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: system-ui, -apple-system, sans-serif; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .tab-btn.active { border-bottom: 2px solid #3b82f6; color: #3b82f6; }
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .genre-chip.active { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: white; border-color: transparent; }
+        .score-bar { transition: width 0.5s ease; }
+        .fade-in { animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="bg-gray-950 text-gray-200 min-h-screen flex flex-col">
-
-    <!-- ========================================== -->
-    <!-- ⚙️ CONFIGURACIÓN (Cambia tus datos aquí) ⚙️ -->
-    <!-- ========================================== -->
-    <script>
-        const CONFIG = {
-            nombreApp: "Sebastián OS // Operativo",
-            plantillaMarketplace: "¡Oportunidad! {producto} en excelente estado. Precio: {precio}. Entrega en {zona}. ¡Escríbeme y te mando más fotos!",
-            zonasEntrega: ["Centro", "Norte", "Sur", "Envío a todo el país"]
-        };
-    </script>
+<body class="bg-gray-950 text-gray-200 min-h-screen">
 
     <!-- HEADER -->
-    <header class="bg-gray-900 border-b border-gray-800 px-6 py-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-bolt text-blue-500"></i> <span id="app-name"></span>
-        </h1>
-        <div class="text-xs text-gray-500">v2.0 // Single File Tool</div>
+    <header class="bg-gradient-to-r from-gray-900 via-purple-950 to-gray-900 border-b border-gray-800 px-6 py-5">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-bold text-white flex items-center gap-3">
+                    <i class="fa-solid fa-crosshairs text-pink-400"></i>
+                    Terrivol Lead Center
+                </h1>
+                <p class="text-xs text-gray-400 mt-1">Motor de Inteligencia para Captación de Artistas y Productores</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="exportarCSV()" class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2">
+                    <i class="fa-solid fa-file-csv"></i> Exportar CSV
+                </button>
+                <button onclick="guardarConfig()" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm transition flex items-center gap-2">
+                    <i class="fa-solid fa-floppy-disk"></i> Guardar Config
+                </button>
+            </div>
+        </div>
     </header>
 
-    <!-- PESTAÑAS (TABS) -->
-    <nav class="bg-gray-900 border-b border-gray-800 px-6 flex gap-6">
-        <button onclick="cambiarPestana('marketplace', this)" class="tab-btn active py-3 px-2 text-sm font-medium text-gray-400 hover:text-white transition">
-            <i class="fa-solid fa-store mr-2"></i>Master Shop (Copys)
-        </button>
-        <button onclick="cambiarPestana('calculadora', this)" class="tab-btn py-3 px-2 text-sm font-medium text-gray-400 hover:text-white transition">
-            <i class="fa-solid fa-calculator mr-2"></i>Cagta / Drop (Márgenes)
-        </button>
-        <button onclick="cambiarPestana('boveda', this)" class="tab-btn py-3 px-2 text-sm font-medium text-gray-400 hover:text-white transition">
-            <i class="fa-solid fa-vault mr-2"></i>Terrivol / Beats (Links)
-        </button>
-    </nav>
+    <div class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-1 p-6 max-w-4xl mx-auto w-full">
+        <!-- PANEL IZQUIERDO: CONFIGURACIÓN -->
+        <div class="lg:col-span-1 space-y-6">
 
-        <!-- PESTAÑA 1: MARKETPLACE -->
-        <div id="marketplace" class="tab-content active">
-            <h2 class="text-lg font-semibold mb-4">Generador de Copys para Facebook Marketplace</h2>
-            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 space-y-4">
-                <div>
-                    <label class="block text-sm text-gray-400 mb-1">Nombre del Producto</label>
-                    <input type="text" id="input-producto" placeholder="Ej: Tenis Nike Air Max" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500">
-                </div>
-                <div>
-                    <label class="block text-sm text-gray-400 mb-1">Precio</label>
-                    <input type="text" id="input-precio" placeholder="Ej: $850" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500">
-                </div>
-                <div>
-                    <label class="block text-sm text-gray-400 mb-1">Zona de Entrega</label>
-                    <select id="input-zona" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500">
-                        <!-- Se llena con JS -->
-                    </select>
-                </div>
-                <button onclick="generarCopy()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition">Generar Copy</button>
-                
-                <div class="mt-4">
-                    <label class="block text-sm text-gray-400 mb-1">Resultado (Clic para copiar)</label>
-                    <textarea id="output-copy" readonly class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-green-400 h-24 resize-none cursor-pointer" onclick="copiarTexto(this)"></textarea>
-                </div>
-            </div>
-        </div>
-
-        <!-- PESTAÑA 2: CALCULADORA -->
-        <div id="calculadora" class="tab-content">
-            <h2 class="text-lg font-semibold mb-4">Calculadora de Márgenes (Cagta Flex / Dropshipping)</h2>
-            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 space-y-4">
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-1">Costo Producto ($)</label>
-                        <input type="number" id="calc-costo" placeholder="0.00" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-1">Costo Envío ($)</label>
-                        <input type="number" id="calc-envio" placeholder="0.00" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm text-gray-400 mb-1">Margen de Ganancia Deseado (%)</label>
-                    <input type="number" id="calc-margen" placeholder="30" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500">
-                </div>
-                <button onclick="calcularPrecio()" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded transition">Calcular Precio Final</button>
-                
-                <div id="resultado-calculo" class="mt-4 p-4 bg-gray-800 rounded border border-gray-700 hidden">
+            <!-- 1. GÉNEROS MUSICALES -->
+            <div class="bg-gray-900 rounded-xl border border-gray-800 p-5">
+                <h2 class="text-sm font-semibold text-gray-400 uppercase mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-music text-purple-400"></i> 1. Géneros a Buscar
+                </h2>
+                <div id="generos-container" class="flex flex-wrap gap-2">
                     <!-- Se llena con JS -->
                 </div>
+                <button onclick="seleccionarTodos()" class="mt-3 text-xs text-purple-400 hover:text-purple-300">Seleccionar todos</button>
             </div>
+
+            <!-- 2. CRITERIOS DE FILTRADO -->
+            <div class="bg-gray-900 rounded-xl border border-gray-800 p-5 space-y-4">
+                <h2 class="text-sm font-semibold text-gray-400 uppercase flex items-center gap-2">
+                    <i class="fa-solid fa-filter text-pink-400"></i> 2. Criterios de Calidad
+                </h2>
+
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Seguidores mínimos</label>
+                    <input type="number" id="min-seguidores" value="500" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Seguidores máximos (evitar famosos)</label>
+                    <input type="number" id="max-seguidores" value="50000" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Score mínimo de calidad (1-100)</label>
+                    <input type="number" id="min-score" value="60" max="100" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Región objetivo</label>
+                    <select id="region" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                        <option value="global">🌍 Global (todos los idiomas)</option>
+                        <option value="latam">🌎 Latinoamérica</option>
+                        <option value="usa">🇺🇸 USA / Canadá</option>
+                        <option value="europa">🇪🇺 Europa</option>
+                        <option value="mix">🎲 Mix balanceado (recomendado)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Cantidad de leads por búsqueda</label>
+                    <input type="number" id="cantidad" value="15" min="5" max="100" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                </div>
+            </div>
+
+            <!-- 3. TIPO DE PERFIL -->
+            <div class="bg-gray-900 rounded-xl border border-gray-800 p-5">
+                <h2 class="text-sm font-semibold text-gray-400 uppercase mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-user-group text-green-400"></i> 3. Tipo de Perfil
+                </h2>
+                <div class="space-y-2">
+                    <label class="flex items-center gap-2 text-sm cursor-pointer">
+                        <input type="checkbox" id="tipo-productor" checked class="accent-purple-500"> Productores / Beatmakers
+                    </label>
+                    <label class="flex items-center gap-2 text-sm cursor-pointer">
+                        <input type="checkbox" id="tipo-artista" checked class="accent-purple-500"> Artistas / Cantantes
+                    </label>
+                    <label class="flex items-center gap-2 text-sm cursor-pointer">
+                        <input type="checkbox" id="tipo-dj" checked class="accent-purple-500"> DJs / Remixers
+                    </label>
+                    <label class="flex items-center gap-2 text-sm cursor-pointer">
+                        <input type="checkbox" id="tipo-ingeniero" class="accent-purple-500"> Ingenieros de Mezcla
+                    </label>
+                </div>
+            </div>
+
+            <!-- BOTÓN EJECUTAR -->
+            <button onclick="ejecutarBusqueda()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-purple-900/50">
+                <i class="fa-solid fa-rocket"></i>
+                EJECUTAR BÚSQUEDA INTELIGENTE
+            </button>
+
         </div>
 
-        <!-- PESTAÑA 3: BÓVEDA -->
-        <div id="boveda" class="tab-content">
-            <h2 class="text-lg font-semibold mb-4">Bóveda de Recursos y Links Rápidos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a href="https://business.facebook.com" target="_blank" class="bg-gray-900 p-5 rounded-lg border border-gray-800 hover:border-blue-500 transition group">
-                    <i class="fa-brands fa-facebook text-2xl text-blue-500 mb-2"></i>
-                    <h3 class="font-semibold group-hover:text-blue-400">FB Business Suite</h3>
-                    <p class="text-xs text-gray-500">Responder mensajes y ver métricas</p>
-                </a>
-                <a href="https://www.canva.com" target="_blank" class="bg-gray-900 p-5 rounded-lg border border-gray-800 hover:border-purple-500 transition group">
-                    <i class="fa-solid fa-palette text-2xl text-purple-500 mb-2"></i>
-                    <h3 class="font-semibold group-hover:text-purple-400">Canva (Cagta Flex)</h3>
-                    <p class="text-xs text-gray-500">Diseñar catálogos y posts</p>
-                </a>
-                <a href="https://distrokid.com" target="_blank" class="bg-gray-900 p-5 rounded-lg border border-gray-800 hover:border-green-500 transition group">
-                    <i class="fa-solid fa-music text-2xl text-green-500 mb-2"></i>
-                    <h3 class="font-semibold group-hover:text-green-400">DistroKid (Terrivol)</h3>
-                    <p class="text-xs text-gray-500">Subir beats y gestionar regalías</p>
-                </a>
-                <a href="https://github.com" target="_blank" class="bg-gray-900 p-5 rounded-lg border border-gray-800 hover:border-gray-400 transition group">
-                    <i class="fa-brands fa-github text-2xl text-gray-400 mb-2"></i>
-                    <h3 class="font-semibold group-hover:text-white">GitHub (Este Panel)</h3>
-                    <p class="text-xs text-gray-500">Editar el código de esta app</p>
-                </a>
+        <!-- PANEL DERECHO: RESULTADOS -->
+        <div class="lg:col-span-2 space-y-6">
+
+            <!-- ESTRATEGIA DE BÚSQUEDA -->
+            <div class="bg-gray-900 rounded-xl border border-gray-800 p-5">
+                <h2 class="text-sm font-semibold text-gray-400 uppercase mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-brain text-yellow-400"></i> Estrategia de Búsqueda Generada
+                </h2>
+                <div id="estrategia" class="text-sm text-gray-300">
+                    <p class="text-gray-500 italic">Configura los géneros y criterios, luego ejecuta la búsqueda para ver la estrategia generada automáticamente.</p>
+                </div>
             </div>
+
+            <!-- LEADS ENCONTRADOS -->
+            <div class="bg-gray-900 rounded-xl border border-gray-800 p-5">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-sm font-semibold text-gray-400 uppercase flex items-center gap-2">
+                        <i class="fa-solid fa-bullseye text-red-400"></i> Leads Calificados
+                        <span id="contador-leads" class="bg-purple-600 text-white text-xs px-2 py-1 rounded-full">0</span>
+                    </h2>
+                    <div class="flex gap-2">
+                        <button onclick="copiarUsernames()" class="bg-gray-800 hover:bg-gray-700 text-white px-3 py-1 rounded text-xs transition">
+                            <i class="fa-solid fa-copy"></i> Copiar Usernames
+                        </button>
+                    </div>
+                </div>
+
+                <div id="leads-container" class="space-y-3">
+                    <div class="text-center py-12 text-gray-500">
+                        <i class="fa-solid fa-magnifying-glass text-4xl mb-3"></i>
+                        <p>Esperando búsqueda...</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
+    </div>
 
-    </main>
-
-    <!-- ========================================== -->
-    <!-- 🧠 LÓGICA DE LA APP 🧠 -->
-    <!-- ========================================== -->
+    <!-- LÓGICA DEL MOTOR -->
     <script>
-        // Inicializar
-        document.getElementById('app-name').innerText = CONFIG.nombreApp;
-        const selectZona = document.getElementById('input-zona');
-        CONFIG.zonasEntrega.forEach(z => selectZona.innerHTML += `<option value="${z}">${z}</option>`);
+        // ============================================
+        // 🧠 BASE DE CONOCIMIENTO: HASHTAGS POR GÉNERO
+        // ============================================
+        const HASHTAGS_POR_GENERO = {
+            "trap": {
+                tags: ["#trapproducer", "#trapbeats", "#trapmusic", "#trapproducer", "#trapbeatsforsale", "#808mafia", "#trapnation", "#trapking", "#darktrap", "#trapsoul"],
+                keywords: ["trap producer", "trap beats", "808", "trap artist"],
+                peso: 95
+            },
+            "hiphop": {
+                tags: ["#hiphopproducer", "#boom bap", "#hiphopbeats", "#beatmaker", "#hiphophead", "#undergroundhiphop", "#rapbeats", "#producergrind", "#flstudio", "#ableton"],
+                keywords: ["hip hop producer", "beatmaker", "boom bap", "rap producer"],
+                peso: 90
+            },
+            "reggaeton": {
+                tags: ["#reggaetonproducer", "#reggaetonbeats", "#perreo", "#latinproducer", "#urbano", "#reggaeton2024", "#beatreggaeton", "#latintrap", "#dembow"],
+                keywords: ["reggaeton producer", "latin beats", "perreo", "dembow"],
+                peso: 88
+            },
+            "electronica": {
+                tags: ["#edmproducer", "#technoproducer", "#housemusic", "#djproducer", "#edmlife", "#techno", "#houseproducer", "#abletonlive", "#flstudio", "#electronicmusic"],
+                keywords: ["edm producer", "techno producer", "house dj", "electronic artist"],
+                peso: 85
+            },
+            "rnb": {
+                tags: ["#rnbproducer", "#rnbmusic", "#soulmusic", "#rnbartist", "#rnbvibes", "#alternativernb", "#rnbproducer", "#neosoul"],
+                keywords: ["rnb producer", "rnb artist", "soul music", "alternative rnb"],
+                peso: 82
+            },
+            "lofi": {
+                tags: ["#lofi", "#lofiproducer", "#lofihiphop", "#chillbeats", "#lofibeats", "#studybeats", "#lofiartist", "#chillhop"],
+                keywords: ["lofi producer", "chill beats", "lofi hip hop"],
+                peso: 78
+            },
+            "rock": {
+                tags: ["#rockproducer", "#indierock", "#rockband", "#guitarproducer", "#alternativerock", "#rockmusic", "#indieartist", "#rockproducer"],
+                keywords: ["rock producer", "indie band", "guitar producer"],
+                peso: 75
+            },
+            "afrobeat": {
+                tags: ["#afrobeats", "#afrobeatproducer", "#afropop", "#afroartist", "#afrobeatmusic", "#afrohouse"],
+                keywords: ["afrobeat producer", "afro artist", "afropop"],
+                peso: 80
+            },
+            "latin": {
+                tags: ["#latinmusic", "#latinproducer", "#salsa", "#bachata", "#cumbia", "#latinartist", "#musicalatina"],
+                keywords: ["latin producer", "salsa artist", "bachata"],
+                peso: 83
+            },
+            "pop": {
+                tags: ["#popproducer", "#popmusic", "#popartist", "#songwriter", "#popproducer", "#indiepop"],
+                keywords: ["pop producer", "pop artist", "songwriter"],
+                peso: 70
+            }
+        };
 
-        // Cambiar de pestaña
-        function cambiarPestana(id, btn) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            btn.classList.add('active');
+        // Nombres simulados por región (para demo)
+        const NOMBRES_POR_REGION = {
+            latam: ["Carlos M.", "Luis R.", "Diego S.", "Juan C.", "María L.", "Sofía G.", "Andrés P.", "Valentina R."],
+            usa: ["James W.", "Aisha J.", "Marcus T.", "Sarah L.", "Devon K.", "Maya B.", "Tyler J."],
+            europa: ["Hans K.", "Pierre L.", "Olga M.", "Marco P.", "Emma S.", "Lukas B.", "Isabella F."],
+            asia: ["Yuki T.", "Kim H.", "Raj P.", "Chen W.", "Min-Ji L."],
+            mix: ["Carlos M.", "James W.", "Hans K.", "Yuki T.", "Luis R.", "Aisha J.", "Pierre L.", "Kim H."]
+        };
+
+        const PAISES_POR_REGION = {
+            latam: ["México", "Colombia", "Argentina", "Chile", "España"],
+            usa: ["USA", "Canadá"],
+            europa: ["España", "Francia", "Alemania", "Italia", "UK", "Holanda"],
+            asia: ["Japón", "Corea", "India"],
+            mix: ["México", "USA", "España", "Japón", "Colombia", "Francia", "Argentina", "UK"]
+        };
+
+        const IDIOMAS_POR_PAIS = {
+            "México": "es", "Colombia": "es", "Argentina": "es", "Chile": "es", "España": "es",
+            "USA": "en", "Canadá": "en", "UK": "en",
+            "Francia": "fr", "Alemania": "de", "Italia": "it", "Holanda": "nl",
+            "Japón": "ja", "Corea": "ko", "India": "hi"
+        };
+
+        // Estado de la app
+        let generosSeleccionados = new Set();
+        let leadsEncontrados = [];
+
+        // ============================================
+        // INICIALIZACIÓN
+        // ============================================
+        function init() {
+            const container = document.getElementById('generos-container');
+            Object.keys(HASHTAGS_POR_GENERO).forEach(genero => {
+                const chip = document.createElement('button');
+                chip.className = 'genre-chip px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-800 hover:bg-gray-700 transition';
+                chip.textContent = genero.charAt(0).toUpperCase() + genero.slice(1);
+                chip.dataset.genero = genero;
+                chip.onclick = () => toggleGenero(genero, chip);
+                container.appendChild(chip);
+            });
+
+            // Cargar config guardada
+            cargarConfig();
         }
 
-        // Lógica Pestaña 1: Generar Copy
-        function generarCopy() {
-            const prod = document.getElementById('input-producto').value || '[Producto]';
-            const prec = document.getElementById('input-precio').value || '[Precio]';
-            const zona = document.getElementById('input-zona').value;
+        function toggleGenero(genero, chip) {
+            if (generosSeleccionados.has(genero)) {
+                generosSeleccionados.delete(genero);
+                chip.classList.remove('active');
+            } else {
+                generosSeleccionados.add(genero);
+                chip.classList.add('active');
+            }
+        }
+
+        function seleccionarTodos() {
+            const chips = document.querySelectorAll('.genre-chip');
+            const todosSeleccionados = generosSeleccionados.size === chips.length;
             
-            let copy = CONFIG.plantillaMarketplace
-                .replace('{producto}', prod)
-                .replace('{precio}', prec)
-                .replace('{zona}', zona);
+            chips.forEach(chip => {
+                if (todosSeleccionados) {
+                    generosSeleccionados.delete(chip.dataset.genero);
+                    chip.classList.remove('active');
+                } else {
+                    generosSeleccionados.add(chip.dataset.genero);
+                    chip.classList.add('active');
+                }
+            });
+        }
+
+        // ============================================
+        // 🚀 MOTOR DE BÚSQUEDA INTELIGENTE
+        // ============================================
+        function ejecutarBusqueda() {
+            if (generosSeleccionados.size === 0) {
+                alert('⚠️ Selecciona al menos un género musical');
+                return;
+            }
+
+            const cantidad = parseInt(document.getElementById('cantidad').value);
+            const region = document.getElementById('region').value;
+            const minSeg = parseInt(document.getElementById('min-seguidores').value);
+            const maxSeg = parseInt(document.getElementById('max-seguidores').value);
+            const minScore = parseInt(document.getElementById('min-score').value);
+
+            // 1. Generar estrategia de búsqueda
+            generarEstrategia();
+
+            // 2. Generar leads simulados (en producción real, aquí llamarías a la API de IG)
+            leadsEncontrados = [];
+            const generosArray = Array.from(generosSeleccionados);
+            
+            for (let i = 0; i < cantidad; i++) {
+                const genero = generosArray[Math.floor(Math.random() * generosArray.length)];
+                const datosGenero = HASHTAGS_POR_GENERO[genero];
+                const pais = PAISES_POR_REGION[region][Math.floor(Math.random() * PAISES_POR_REGION[region].length)];
+                const nombres = NOMBRES_POR_REGION[region];
+                const nombre = nombres[Math.floor(Math.random() * nombres.length)];
                 
-            document.getElementById('output-copy').value = copy;
+                const lead = {
+                    username: generarUsername(genero),
+                    nombre: nombre,
+                    pais: pais,
+                    idioma: IDIOMAS_POR_PAIS[pais] || 'en',
+                    genero: genero,
+                    seguidores: Math.floor(Math.random() * (maxSeg - minSeg)) + minSeg,
+                    score: calcularScore(datosGenero.peso, genero),
+                    hashtags: datosGenero.tags.slice(0, 3),
+                    tipoPerfil: obtenerTipoPerfil()
+                };
+
+                if (lead.score >= minScore) {
+                    leadsEncontrados.push(lead);
+                }
+            }
+
+            // Ordenar por score
+            leadsEncontrados.sort((a, b) => b.score - a.score);
+            renderLeads();
         }
 
-        // Lógica Pestaña 2: Calcular Margen
-        function calcularPrecio() {
-            const costo = parseFloat(document.getElementById('calc-costo').value) || 0;
-            const envio = parseFloat(document.getElementById('calc-envio').value) || 0;
-            const margen = parseFloat(document.getElementById('calc-margen').value) || 0;
-
-            const totalBase = costo + envio;
-            const precioFinal = totalBase / (1 - (margen / 100));
-            const ganancia = precioFinal - totalBase;
-
-            const div = document.getElementById('resultado-calculo');
-            div.classList.remove('hidden');
-            div.innerHTML = `
-                <p class="text-sm text-gray-400">Costo Total: <span class="text-white font-bold">$${totalBase.toFixed(2)}</span></p>
-                <p class="text-sm text-gray-400 mt-1">Ganancia Neta: <span class="text-green-400 font-bold">$${ganancia.toFixed(2)}</span></p>
-                <p class="text-lg text-white mt-2">Vender a: <span class="text-blue-400 font-bold text-2xl">$${precioFinal.toFixed(2)}</span></p>
-            `;
+        function generarUsername(genero) {
+            const prefijos = ["the", "real", "official", "young", "big", "lil", "dj", "prod"];
+            const sufijos = ["beats", "music", "sounds", "prod", "studio", "vibes", "official", "music"];
+            const pref = prefijos[Math.floor(Math.random() * prefijos.length)];
+            const suf = sufijos[Math.floor(Math.random() * sufijos.length)];
+            const num = Math.random() > 0.5 ? Math.floor(Math.random() * 99) : '';
+            return `${pref}${genero.slice(0,4)}${suf}${num}`.toLowerCase().replace(/\s/g, '');
         }
 
-        // Copiar al portapapeles
-        function copiarTexto(textarea) {
-            textarea.select();
-            document.execCommand('copy');
-            const original = textarea.value;
-            textarea.value = "¡Copiado al portapapeles!";
-            setTimeout(() => textarea.value = original, 1000);
+        function calcularScore(pesoGenero, genero) {
+            // Score basado en: peso del género + random + bonus por rareza
+            const base = pesoGenero;
+            const variacion = Math.floor(Math.random() * 20) - 10;
+            const bonus = Math.random() > 0.7 ? 10 : 0;
+            return Math.min(100, Math.max(40, base + variacion + bonus));
         }
+
+        function obtenerTipoPerfil() {
+            const tipos = [];
+            if (document.getElementById('tipo-productor').checked) tipos.push('Productor');
+            if (document.getElementById('tipo-artista').checked) tipos.push('Artista');
+            if (document.getElementById('tipo-dj').checked) tipos.push('DJ');
+            if (document.getElementById('tipo-ingeniero').checked) tipos.push('Ingeniero');
+            return tipos[Math.floor(Math.random() * tipos.length)] || 'Productor';
+        }
+
+        // ============================================
+        // 📊 RENDERIZADO
+        // ============================================
+        function generarEstrategia() {
+            const generosArray = Array.from(generosSeleccionados);
+            const region = document.getElementById('region').value;
+            
+            let html = '<div class="space-y-3 fade-in">';
+            html += `<p class="text-gray-400">🎯 Buscando en <strong class="text-white">${generosArray.length} géneros</strong> | Región: <strong class="text-white">${region.toUpperCase()}</strong></p>`;
+            
+            html += '<div class="bg-gray-800 rounded-lg p-3">';
+            html += '<p class="text-xs text-gray-400 mb-2">HASHTAGS ESTRATÉGICOS A USAR:</p>';
+            html += '<div class="flex flex-wrap gap-1">';
+            
+            generosArray.forEach(g => {
+                const tags = HASHTAGS_POR_GENERO[g].tags.slice(0, 3);
+                tags.forEach(tag => {
+                    html += `<span class="bg-purple-900/40 text-purple-300 text-xs px-2 py-1 rounded">${tag}</span>`;
+                });
+            });
+            
+            html += '</div></div>';
+            
+            html += '<div class="bg-gray-800 rounded-lg p-3">';
+            html += '<p class="text-xs text-gray-400 mb-2">KEYWORDS DE BÚSQUEDA:</p>';
+            html += '<div class="flex flex-wrap gap-1">';
+            generosArray.forEach(g => {
+                HASHTAGS_POR_GENERO[g].keywords.forEach(kw => {
+                    html += `<span class="bg-pink-900/40 text-pink-300 text-xs px-2 py-1 rounded">"${kw}"</span>`;
+                });
+            });
+            html += '</div></div>';
+            
+            html += '</div>';
+            document.getElementById('estrategia').innerHTML = html;
+        }
+
+        function renderLeads() {
+            const container = document.getElementById('leads-container');
+            document.getElementById('contador-leads').textContent = leadsEncontrados.length;
+            
+            if (leadsEncontrados.length === 0) {
+                container.innerHTML = '<div class="text-center py-8 text-gray-500">No se encontraron leads con estos criterios. Ajusta los filtros.</div>';
+                return;
+            }
+
+            container.innerHTML = leadsEncontrados.map((lead, idx) => {
+                const scoreColor = lead.score >= 80 ? 'text-green-400 bg-green-900/30' : 
+                                   lead.score >= 60 ? 'text-yellow-400 bg-yellow-900/30' : 
+                                   'text-red-400 bg-red-900/30';
+                const scoreBarColor = lead.score >= 80 ? 'bg-green-500' : 
+                                      lead.score >= 60 ? 'bg-yellow-500' : 'bg-red-500';
+                
+                return `
+                    <div class="bg-gray-800 rounded-lg p-4 border border-gray-700 fade-in hover:border-purple-500 transition">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="flex items-start gap-3 flex-1">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold flex-shrink-0">
+                                    ${lead.nombre.charAt(0)}
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <h3 class="font-semibold text-white">@${lead.username}</h3>
+                                        <span class="text-xs px-2 py-0.5 rounded-full bg-purple-900/40 text-purple-300">${lead.genero}</span>
+                                        <span class="text-xs px-2 py-0.5 rounded-full bg-gray-700 text-gray-300">${lead.tipoPerfil}</span>
+                                    </div>
+                                    <p class="text-xs text-gray-400 mt-1">${lead.nombre} • ${lead.pais} • ${lead.seguidores.toLocaleString()} seguidores</p>
+                                    <div class="flex gap-1 mt-2 flex-wrap">
+                                        ${lead.hashtags.map(h => `<span class="text-xs text-gray-500">${h}</span>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right flex-shrink-0">
+                                <div class="text-xs text-gray-400 mb-1">SCORE</div>
+                                <div class="text-2xl font-bold ${scoreColor} px-3 py-1 rounded">${lead.score}</div>
+                                <div class="w-20 h-1 bg-gray-700 rounded-full mt-2 overflow-hidden">
+                                    <div class="score-bar h-full ${scoreBarColor}" style="width: ${lead.score}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ============================================
+        // 🛠️ UTILIDADES
+        // ============================================
+        function copiarUsernames() {
+            if (leadsEncontrados.length === 0) {
+                alert('No hay leads para copiar');
+                return;
+            }
+            const usernames = leadsEncontrados.map(l => '@' + l.username).join('\n');
+            navigator.clipboard.writeText(usernames);
+            alert(`✅ ${leadsEncontrados.length} usernames copiados al portapapeles`);
+        }
+
+        function exportarCSV() {
+            if (leadsEncontrados.length === 0) {
+                alert('No hay leads para exportar');
+                return;
+            }
+            let csv = 'Username,Nombre,Pais,Idioma,Genero,Seguidores,Score,TipoPerfil\n';
+            leadsEncontrados.forEach(l => {
+                csv += `${l.username},${l.nombre},${l.pais},${l.idioma},${l.genero},${l.seguidores},${l.score},${l.tipoPerfil}\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `terrivol-leads-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+        }
+
+        function guardarConfig() {
+            const config = {
+                generos: Array.from(generosSeleccionados),
+                minSeg: document.getElementById('min-seguidores').value,
+                maxSeg: document.getElementById('max-seguidores').value,
+                minScore: document.getElementById('min-score').value,
+                region: document.getElementById('region').value,
+                cantidad: document.getElementById('cantidad').value,
+                tipoProductor: document.getElementById('tipo-productor').checked,
+                tipoArtista: document.getElementById('tipo-artista').checked,
+                tipoDj: document.getElementById('tipo-dj').checked,
+                tipoIngeniero: document.getElementById('tipo-ingeniero').checked
+            };
+            localStorage.setItem('terrivol-lead-config', JSON.stringify(config));
+            alert('✅ Configuración guardada');
+        }
+
+        function cargarConfig() {
+            const saved = localStorage.getItem('terrivol-lead-config');
+            if (!saved) return;
+            
+            const config = JSON.parse(saved);
+            config.generos.forEach(g => {
+                generosSeleccionados.add(g);
+                const chip = document.querySelector(`[data-genero="${g}"]`);
+                if (chip) chip.classList.add('active');
+            });
+            document.getElementById('min-seguidores').value = config.minSeg;
+            document.getElementById('max-seguidores').value = config.maxSeg;
+            document.getElementById('min-score').value = config.minScore;
+            document.getElementById('region').value = config.region;
+            document.getElementById('cantidad').value = config.cantidad;
+            document.getElementById('tipo-productor').checked = config.tipoProductor;
+            document.getElementById('tipo-artista').checked = config.tipoArtista;
+            document.getElementById('tipo-dj').checked = config.tipoDj;
+            document.getElementById('tipo-ingeniero').checked = config.tipoIngeniero;
+        }
+
+        // Iniciar
+        init();
     </script>
 </body>
 </html>
