@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aether Drift - Cinematic Trap Type Beat | Dark Futuristic Production 143 BPM | Beats BFYT">
+    <title>Aether Drift | Cinematic Trap Beat - Beats BFYT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f1a 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 242, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 20px;
+            background: rgba(22, 22, 30, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #8a2be2, #00f2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        /* Main Beat Section */
+        .beat-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .beat-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cover Art */
+        .cover-art {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(138, 43, 226, 0.4);
+            aspect-ratio: 1;
+        }
+
+        .cover-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .cover-art:hover img {
+            transform: scale(1.05);
+        }
+
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(0, 242, 255, 0.2));
+            pointer-events: none;
+        }
+
+        /* Beat Info */
+        .beat-info h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #fff, #00f2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .beat-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            background: rgba(138, 43, 226, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #00f2ff;
+            border: 1px solid rgba(138, 43, 226, 0.5);
+        }
+
+        /* Audio Player */
+        .audio-player {
+            background: rgba(22, 22, 30, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8a2be2, #00f2ff);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .play-btn svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            margin-left: 5px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #8a2be2, #00f2ff);
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        .time-display {
+            color: #888;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        /* License Cards */
+        .licenses {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .license-card {
+            background: rgba(22, 22, 30, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .license-card:hover {
+            border-color: #00f2ff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
+        }
+
+        .license-card.featured {
+            border-color: #00f2ff;
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.1), rgba(138, 43, 226, 0.1));
+        }
+
+        .license-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .license-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00f2ff;
+        }
+
+        .license-price {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #8a2be2, #00f2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .license-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .license-features li {
+            padding: 8px 0;
+            color: #aaa;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .license-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00f2ff;
+            font-weight: bold;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #8a2be2, #00f2ff);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.5);
+        }
+
+        /* Description */
+        .description {
+            background: rgba(22, 22, 30, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .description h2 {
+            color: #00f2ff;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .description p {
+            line-height: 1.8;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #00f2ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">BEATS BFYT</div>
+            <div class="tagline">Premium Cinematic Trap Production</div>
+        </header>
+
+        <!-- Main Beat Showcase -->
+        <div class="beat-showcase">
+            <!-- Cover Art -->
+            <div class="cover-art">
+                <img src="https://i.imgur.com/YOUR_IMAGE_ID.jpg" alt="Aether Drift Cover Art">
+                <div class="cover-overlay"></div>
+            </div>
+
+            <!-- Beat Info -->
+            <div class="beat-info">
+                <h1>Aether Drift</h1>
+                <div class="beat-meta">
+                    <span class="meta-tag">🎵 Cinematic Trap</span>
+                    <span class="meta-tag">🎹 143 BPM</span>
+                    <span class="meta-tag"> Futuristic</span>
+                    <span class="meta-tag">✨ Dark Elegant</span>
+                </div>
+
+                <!-- Audio Player -->
+                <div class="audio-player">
+                    <div class="player-controls">
+                        <button class="play-btn" onclick="togglePlay()">
+                            <svg id="playIcon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                        <div class="progress-bar" onclick="seek(event)">
+                            <div class="progress" id="progressBar"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="currentTime">0:00</span> / <span id="duration">3:15</span>
+                        </div>
+                    </div>
+                    <audio id="audioPlayer" preload="metadata">
+                        <source src="https://your-audio-file.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <p style="color: #888; font-size: 1.1rem; line-height: 1.6;">
+                    Futuristic cinematic trap beat with modern synthesizers and dark ethereal atmosphere. 
+                    Calm yet enigmatic production with deep 808 bass, spatial synth layers, and elegant trap percussion.
+                </p>
+            </div>
+        </div>
+
+        <!-- License Options -->
+        <h2 style="text-align: center; margin-bottom: 30px; color: #00f2ff; font-size: 2rem;">Choose Your License</h2>
+        
+        <div class="licenses">
+            <!-- Basic License -->
+            <div class="license-card">
+                <div class="license-header">
+                    <div class="license-name">Basic</div>
+                    <div class="license-price">$14.99</div>
+                </div>
+                <ul class="license-features">
+                    <li>MP3 File (Tagged)</li>
+                    <li>Non-Profit Use Only</li>
+                    <li>Up to 10,000 Streams</li>
+                    <li>Credit Required: "Prod. by Beats BFYT"</li>
+                </ul>
+                <a href="https://payhip.com/b/YOUR_BASIC_LINK" class="buy-btn" target="_blank">
+                    Purchase Basic License →
+                </a>
+            </div>
+
+            <!-- Standard License (Featured) -->
+            <div class="license-card featured">
+                <div class="license-header">
+                    <div class="license-name">Standard ⭐</div>
+                    <div class="license-price">$29.99</div>
+                </div>
+                <ul class="license-features">
+                    <li>MP3 + WAV Files (Untagged)</li>
+                    <li>Commercial Use</li>
+                    <li>Up to 100,000 Streams</li>
+                    <li>Spotify, Apple Music, YouTube</li>
+                    <li>Music Video License</li>
+                </ul>
+                <a href="https://payhip.com/b/YOUR_STANDARD_LINK" class="buy-btn" target="_blank">
+                    Purchase Standard License →
+                </a>
+            </div>
+
+            <!-- Premium License -->
+            <div class="license-card">
+                <div class="license-header">
+                    <div class="license-name">Premium</div>
+                    <div class="license-price">$49.99</div>
+                </div>
+                <ul class="license-features">
+                    <li>MP3 + WAV + STEMS</li>
+                    <li>Unlimited Commercial Use</li>
+                    <li>Unlimited Streams</li>
+                    <li>Full Ownership Rights</li>
+                    <li>Radio & Performance Rights</li>
+                    <li>Priority Support</li>
+                </ul>
+                <a href="https://payhip.com/b/YOUR_PREMIUM_LINK" class="buy-btn" target="_blank">
+                    Purchase Premium License →
+                </a>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="description">
+            <h2>About This Beat</h2>
+            <p>
+                <strong>"Aether Drift"</strong> is a cutting-edge cinematic trap production that blends futuristic sound design 
+                with dark, elegant atmospheres. Built at 143 BPM, this beat features:
+            </p>
+            <ul style="color: #aaa; line-height: 2; padding-left: 20px;">
+                <li>Modern synthesizers with spatial processing</li>
+                <li>Deep, commanding 808 bass</li>
+                <li>Ethereal pads and atmospheric textures</li>
+                <li>Elegant trap percussion patterns</li>
+                <li>Cinematic transitions and builds</li>
+            </ul>
+            <p style="margin-top: 20px;">
+                Perfect for artists looking to create introspective, melodic tracks with a futuristic edge. 
+                Ideal for Travis Scott, Don Toliver, Kid Cudi, or Yeat style vocals.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="social-links">
+                <a href="https://youtube.com/@beatsfreeyoutube_" target="_blank">YouTube</a>
+                <a href="https://instagram.com/beatsfreeyoutube_" target="_blank">Instagram</a>
+                <a href="https://tiktok.com/@beatsfreeyoutube_" target="_blank">TikTok</a>
+                <a href="https://payhip.com/beatsbfyt" target="_blank">Shop</a>
+            </div>
+            <p>&copy; 2026 Beats BFYT. All rights reserved. | Part of Terrivol Music ENT</p>
+        </footer>
+    </div>
+
+    <script>
+        const audio = document.getElementById('audioPlayer');
+        const playBtn = document.querySelector('.play-btn');
+        const playIcon = document.getElementById('playIcon');
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+            } else {
+                audio.pause();
+                playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+            }
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = progress + '%';
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audio.duration);
+        });
+
+        function seek(event) {
+            const bar = event.currentTarget;
+            const clickPosition = event.offsetX / bar.offsetWidth;
+            audio.currentTime = clickPosition * audio.duration;
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+    </script>
+</body>
+</html>
