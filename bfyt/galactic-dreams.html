@@ -9,11 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --primary: #8a2be2;
@@ -37,20 +33,14 @@
         /* Animated Starfield Background */
         #starfield {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -2;
         }
 
         /* Nebula Gradient Overlay */
         .nebula-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
             background: 
                 radial-gradient(ellipse at 20% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
@@ -67,47 +57,21 @@
         /* Shooting Stars */
         .shooting-star {
             position: fixed;
-            width: 100px;
-            height: 2px;
+            width: 100px; height: 2px;
             background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
             border-radius: 50%;
-            animation: shoot 3s linear infinite;
+            animation: shoot 4s linear infinite;
             opacity: 0;
         }
-
-        .shooting-star:nth-child(1) {
-            top: 20%;
-            left: -100px;
-            animation-delay: 0s;
-        }
-
-        .shooting-star:nth-child(2) {
-            top: 60%;
-            left: -100px;
-            animation-delay: 2s;
-        }
-
-        .shooting-star:nth-child(3) {
-            top: 40%;
-            left: -100px;
-            animation-delay: 4s;
-        }
+        .shooting-star:nth-child(1) { top: 20%; left: -100px; animation-delay: 0s; }
+        .shooting-star:nth-child(2) { top: 60%; left: -100px; animation-delay: 2.5s; }
+        .shooting-star:nth-child(3) { top: 40%; left: -100px; animation-delay: 5s; }
 
         @keyframes shoot {
-            0% {
-                transform: translateX(0) translateY(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            70% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(calc(100vw + 100px)) translateY(100px);
-                opacity: 0;
-            }
+            0% { transform: translateX(0) translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translateX(calc(100vw + 100px)) translateY(100px); opacity: 0; }
         }
 
         .container {
@@ -142,10 +106,7 @@
         .logo::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
+            bottom: -5px; left: 0; width: 100%; height: 2px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             animation: glow 2s ease-in-out infinite;
         }
@@ -155,11 +116,7 @@
             50% { opacity: 1; box-shadow: 0 0 20px var(--secondary); }
         }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
+        .nav-links { display: flex; gap: 30px; }
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -168,25 +125,15 @@
             transition: all 0.3s;
             position: relative;
         }
-
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
+            bottom: -5px; left: 0; width: 0; height: 2px;
             background: var(--secondary);
             transition: width 0.3s;
         }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a:hover::after { width: 100%; }
 
         /* Main Beat Section */
         .beat-hero {
@@ -199,10 +146,7 @@
         }
 
         @media (max-width: 968px) {
-            .beat-hero {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+            .beat-hero { grid-template-columns: 1fr; gap: 40px; }
         }
 
         /* Cover Art with Floating Animation */
@@ -223,22 +167,16 @@
         }
 
         .cover-art {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .cover-container:hover .cover-art {
-            transform: scale(1.05);
-        }
+        .cover-container:hover .cover-art { transform: scale(1.05); }
 
         .cover-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(0, 242, 255, 0.2));
             pointer-events: none;
             animation: overlayPulse 4s ease-in-out infinite;
@@ -249,14 +187,10 @@
             50% { opacity: 0.8; }
         }
 
-        /* Rotating Ring Effect */
         .cover-container::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: -50%; left: -50%; width: 200%; height: 200%;
             border: 2px solid rgba(0, 242, 255, 0.3);
             border-radius: 50%;
             animation: rotate 20s linear infinite;
@@ -323,7 +257,7 @@
             font-size: 1.05rem;
         }
 
-        /* Audio Player with Waveform Animation */
+        /* Audio Player */
         .audio-player {
             background: var(--bg-card);
             padding: 25px;
@@ -337,10 +271,7 @@
         .audio-player::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            top: 0; left: -100%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 242, 255, 0.1), transparent);
             animation: shimmer 3s infinite;
         }
@@ -359,8 +290,7 @@
         }
 
         .play-btn {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border: none;
@@ -376,8 +306,7 @@
         .play-btn::before {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             animation: ripple 2s ease-out infinite;
@@ -394,19 +323,9 @@
             box-shadow: 0 10px 30px rgba(138, 43, 226, 0.5);
         }
 
-        .play-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
-            margin-left: 3px;
-        }
+        .play-btn svg { width: 20px; height: 20px; fill: white; margin-left: 3px; }
 
-        .progress-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .progress-container { flex: 1; display: flex; flex-direction: column; gap: 8px; }
 
         .progress-bar {
             height: 6px;
@@ -429,11 +348,9 @@
         .progress::after {
             content: '';
             position: absolute;
-            right: 0;
-            top: 50%;
+            right: 0; top: 50%;
             transform: translateY(-50%);
-            width: 12px;
-            height: 12px;
+            width: 12px; height: 12px;
             background: var(--secondary);
             border-radius: 50%;
             box-shadow: 0 0 10px var(--secondary);
@@ -447,10 +364,8 @@
             font-family: 'Space Grotesk', monospace;
         }
 
-        /* License Cards with Hover Effects */
-        .licenses-section {
-            margin-bottom: 80px;
-        }
+        /* License Cards */
+        .licenses-section { margin-bottom: 80px; }
 
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
@@ -463,8 +378,7 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 100px;
-            height: 3px;
+            width: 100px; height: 3px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             margin: 15px auto 0;
             border-radius: 10px;
@@ -502,18 +416,13 @@
         .license-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: -50%; left: -50%; width: 200%; height: 200%;
             background: radial-gradient(circle, rgba(0, 242, 255, 0.1) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.4s;
         }
 
-        .license-card:hover::before {
-            opacity: 1;
-        }
+        .license-card:hover::before { opacity: 1; }
 
         .license-card:hover {
             border-color: var(--secondary);
@@ -528,8 +437,7 @@
 
         .featured-badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 20px; right: 20px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             padding: 5px 12px;
             border-radius: 12px;
@@ -561,10 +469,7 @@
             margin-bottom: 25px;
         }
 
-        .license-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
+        .license-features { list-style: none; margin-bottom: 30px; }
 
         .license-features li {
             padding: 10px 0;
@@ -612,20 +517,15 @@
         .buy-btn::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.3);
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
 
-        .buy-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
+        .buy-btn:hover::before { width: 300px; height: 300px; }
 
         .buy-btn:hover {
             transform: translateY(-3px);
@@ -644,7 +544,7 @@
 
         .details-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
             margin-top: 30px;
         }
@@ -656,9 +556,7 @@
             transition: all 0.3s;
         }
 
-        .detail-item:hover {
-            transform: translateY(-5px);
-        }
+        .detail-item:hover { transform: translateY(-5px); }
 
         .detail-label {
             font-size: 0.85rem;
@@ -698,72 +596,23 @@
         .social-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
+            bottom: -5px; left: 0; width: 0; height: 2px;
             background: var(--secondary);
             transition: width 0.3s;
         }
 
-        .social-links a:hover {
-            color: var(--secondary);
-        }
-
-        .social-links a:hover::after {
-            width: 100%;
-        }
+        .social-links a:hover { color: var(--secondary); }
+        .social-links a:hover::after { width: 100%; }
 
         /* Keyframe Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Particle Effect */
-        .particle {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: var(--secondary);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: particleFloat 10s linear infinite;
-            opacity: 0.3;
-        }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-100px) translateX(100px);
-                opacity: 0;
-            }
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -778,17 +627,6 @@
     <div class="shooting-star"></div>
     <div class="shooting-star"></div>
     <div class="shooting-star"></div>
-
-    <!-- Floating Particles -->
-    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-    <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
-    <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
-    <div class="particle" style="left: 40%; animation-delay: 6s;"></div>
-    <div class="particle" style="left: 50%; animation-delay: 8s;"></div>
-    <div class="particle" style="left: 60%; animation-delay: 1s;"></div>
-    <div class="particle" style="left: 70%; animation-delay: 3s;"></div>
-    <div class="particle" style="left: 80%; animation-delay: 5s;"></div>
-    <div class="particle" style="left: 90%; animation-delay: 7s;"></div>
     
     <div class="container">
         <!-- Header -->
@@ -870,7 +708,7 @@
                         <li>Credit Required</li>
                         <li>1 Music Video</li>
                     </ul>
-                    <a href="https://payhip.com/b/YOUR_BASIC_LINK" class="buy-btn" target="_blank">
+                    <a href="https://payhip.com/b/71hNI" class="buy-btn" target="_blank">
                         Purchase Basic
                     </a>
                 </div>
@@ -888,7 +726,7 @@
                         <li>Unlimited Music Videos</li>
                         <li>Radio Broadcast Rights</li>
                     </ul>
-                    <a href="https://payhip.com/b/YOUR_STANDARD_LINK" class="buy-btn" target="_blank">
+                    <a href="https://payhip.com/b/yVaN3" class="buy-btn" target="_blank">
                         Purchase Standard
                     </a>
                 </div>
@@ -906,7 +744,7 @@
                         <li>Priority Support</li>
                         <li>Custom Edits Available</li>
                     </ul>
-                    <a href="https://payhip.com/b/YOUR_PREMIUM_LINK" class="buy-btn" target="_blank">
+                    <a href="https://payhip.com/b/lDKiR" class="buy-btn" target="_blank">
                         Purchase Premium
                     </a>
                 </div>
@@ -933,10 +771,6 @@
                     <span class="detail-value">143</span>
                 </div>
                 <div class="detail-item">
-                    <span class="detail-label">Key</span>
-                    <span class="detail-value">C Minor</span>
-                </div>
-                <div class="detail-item">
                     <span class="detail-label">Genre</span>
                     <span class="detail-value">Cinematic Trap</span>
                 </div>
@@ -947,6 +781,10 @@
                 <div class="detail-item">
                     <span class="detail-label">Mood</span>
                     <span class="detail-value">Epic, Cosmic, Elegant</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Delivery</span>
+                    <span class="detail-value">Instant Digital Download</span>
                 </div>
             </div>
         </div>
