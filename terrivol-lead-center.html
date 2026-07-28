@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Operativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-btn.active { border-bottom: 2px solid #3b82f6; color: #3b82f6; }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-200 min-h-screen flex flex-col">
+
+    <!-- ========================================== -->
+    <!-- ⚙️ CONFIGURACIÓN (Cambia tus datos aquí) ⚙️ -->
+    <!-- ========================================== -->
+    <script>
+        const CONFIG = {
+            nombreApp: "Sebastián OS // Operativo",
+            plantillaMarketplace: "¡Oportunidad! {producto} en excelente estado. Precio: {precio}. Entrega en {zona}. ¡Escríbeme y te mando más fotos!",
+            zonasEntrega: ["Centro", "Norte", "Sur", "Envío a todo el país"]
+        };
+    </script>
+
+    <!-- HEADER -->
+    <header class="bg-gray-900 border-b border-gray-800 px-6 py-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-bolt text-blue-500"></i> <span id="app-name"></span>
+        </h1>
+        <div class="text-xs text-gray-500">v2.0 // Single File Tool</div>
+    </header>
+
+    <!-- PESTAÑAS (TABS) -->
+    <nav class="bg-gray-900 border-b border-gray-800 px-6 flex gap-6">
+        <button onclick="cambiarPestana('marketplace', this)" class="tab-btn active py-3 px-2 text-sm font-medium text-gray-400 hover:text-white transition">
+            <i class="fa-solid fa-store mr-2"></i>Master Shop (Copys)
+        </button>
+        <button onclick="cambiarPestana('calculadora', this)" class="tab-btn py-3 px-2 text-sm font-medium text-gray-400 hover:text-white transition">
+            <i class="fa-solid fa-calculator mr-2"></i>Cagta / Drop (Márgenes)
+        </button>
+        <button onclick="cambiarPestana('boveda', this)" class="tab-btn py-3 px-2 text-sm font-medium text-gray-400 hover:text-white transition">
+            <i class="fa-solid fa-vault mr-2"></i>Terrivol / Beats (Links)
+        </button>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-1 p-6 max-w-4xl mx-auto w-full">
+
+        <!-- PESTAÑA 1: MARKETPLACE -->
+        <div id="marketplace" class="tab-content active">
+            <h2 class="text-lg font-semibold mb-4">Generador de Copys para Facebook Marketplace</h2>
+            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 space-y-4">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">Nombre del Producto</label>
+                    <input type="text" id="input-producto" placeholder="Ej: Tenis Nike Air Max" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">Precio</label>
+                    <input type="text" id="input-precio" placeholder="Ej: $850" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">Zona de Entrega</label>
+                    <select id="input-zona" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500">
+                        <!-- Se llena con JS -->
+                    </select>
+                </div>
+                <button onclick="generarCopy()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition">Generar Copy</button>
+                
+                <div class="mt-4">
+                    <label class="block text-sm text-gray-400 mb-1">Resultado (Clic para copiar)</label>
+                    <textarea id="output-copy" readonly class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-green-400 h-24 resize-none cursor-pointer" onclick="copiarTexto(this)"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- PESTAÑA 2: CALCULADORA -->
+        <div id="calculadora" class="tab-content">
+            <h2 class="text-lg font-semibold mb-4">Calculadora de Márgenes (Cagta Flex / Dropshipping)</h2>
+            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Costo Producto ($)</label>
+                        <input type="number" id="calc-costo" placeholder="0.00" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Costo Envío ($)</label>
+                        <input type="number" id="calc-envio" placeholder="0.00" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">Margen de Ganancia Deseado (%)</label>
+                    <input type="number" id="calc-margen" placeholder="30" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500">
+                </div>
+                <button onclick="calcularPrecio()" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded transition">Calcular Precio Final</button>
+                
+                <div id="resultado-calculo" class="mt-4 p-4 bg-gray-800 rounded border border-gray-700 hidden">
+                    <!-- Se llena con JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- PESTAÑA 3: BÓVEDA -->
+        <div id="boveda" class="tab-content">
+            <h2 class="text-lg font-semibold mb-4">Bóveda de Recursos y Links Rápidos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <a href="https://business.facebook.com" target="_blank" class="bg-gray-900 p-5 rounded-lg border border-gray-800 hover:border-blue-500 transition group">
+                    <i class="fa-brands fa-facebook text-2xl text-blue-500 mb-2"></i>
+                    <h3 class="font-semibold group-hover:text-blue-400">FB Business Suite</h3>
+                    <p class="text-xs text-gray-500">Responder mensajes y ver métricas</p>
+                </a>
+                <a href="https://www.canva.com" target="_blank" class="bg-gray-900 p-5 rounded-lg border border-gray-800 hover:border-purple-500 transition group">
+                    <i class="fa-solid fa-palette text-2xl text-purple-500 mb-2"></i>
+                    <h3 class="font-semibold group-hover:text-purple-400">Canva (Cagta Flex)</h3>
+                    <p class="text-xs text-gray-500">Diseñar catálogos y posts</p>
+                </a>
+                <a href="https://distrokid.com" target="_blank" class="bg-gray-900 p-5 rounded-lg border border-gray-800 hover:border-green-500 transition group">
+                    <i class="fa-solid fa-music text-2xl text-green-500 mb-2"></i>
+                    <h3 class="font-semibold group-hover:text-green-400">DistroKid (Terrivol)</h3>
+                    <p class="text-xs text-gray-500">Subir beats y gestionar regalías</p>
+                </a>
+                <a href="https://github.com" target="_blank" class="bg-gray-900 p-5 rounded-lg border border-gray-800 hover:border-gray-400 transition group">
+                    <i class="fa-brands fa-github text-2xl text-gray-400 mb-2"></i>
+                    <h3 class="font-semibold group-hover:text-white">GitHub (Este Panel)</h3>
+                    <p class="text-xs text-gray-500">Editar el código de esta app</p>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- 🧠 LÓGICA DE LA APP 🧠 -->
+    <!-- ========================================== -->
+    <script>
+        // Inicializar
+        document.getElementById('app-name').innerText = CONFIG.nombreApp;
+        const selectZona = document.getElementById('input-zona');
+        CONFIG.zonasEntrega.forEach(z => selectZona.innerHTML += `<option value="${z}">${z}</option>`);
+
+        // Cambiar de pestaña
+        function cambiarPestana(id, btn) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        // Lógica Pestaña 1: Generar Copy
+        function generarCopy() {
+            const prod = document.getElementById('input-producto').value || '[Producto]';
+            const prec = document.getElementById('input-precio').value || '[Precio]';
+            const zona = document.getElementById('input-zona').value;
+            
+            let copy = CONFIG.plantillaMarketplace
+                .replace('{producto}', prod)
+                .replace('{precio}', prec)
+                .replace('{zona}', zona);
+                
+            document.getElementById('output-copy').value = copy;
+        }
+
+        // Lógica Pestaña 2: Calcular Margen
+        function calcularPrecio() {
+            const costo = parseFloat(document.getElementById('calc-costo').value) || 0;
+            const envio = parseFloat(document.getElementById('calc-envio').value) || 0;
+            const margen = parseFloat(document.getElementById('calc-margen').value) || 0;
+
+            const totalBase = costo + envio;
+            const precioFinal = totalBase / (1 - (margen / 100));
+            const ganancia = precioFinal - totalBase;
+
+            const div = document.getElementById('resultado-calculo');
+            div.classList.remove('hidden');
+            div.innerHTML = `
+                <p class="text-sm text-gray-400">Costo Total: <span class="text-white font-bold">$${totalBase.toFixed(2)}</span></p>
+                <p class="text-sm text-gray-400 mt-1">Ganancia Neta: <span class="text-green-400 font-bold">$${ganancia.toFixed(2)}</span></p>
+                <p class="text-lg text-white mt-2">Vender a: <span class="text-blue-400 font-bold text-2xl">$${precioFinal.toFixed(2)}</span></p>
+            `;
+        }
+
+        // Copiar al portapapeles
+        function copiarTexto(textarea) {
+            textarea.select();
+            document.execCommand('copy');
+            const original = textarea.value;
+            textarea.value = "¡Copiado al portapapeles!";
+            setTimeout(() => textarea.value = original, 1000);
+        }
+    </script>
+</body>
+</html>
