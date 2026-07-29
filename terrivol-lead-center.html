@@ -41,43 +41,57 @@
                 <!-- TIPO DE CLIENTE -->
                 <div>
                     <label class="block text-xs text-gray-400 mb-2">👤 Tipo de Cliente</label>
-                    <div id="tipos-cliente" class="flex flex-wrap gap-2">
-                        <!-- Se llena con JS -->
-                    </div>
+                    <div id="tipos-cliente" class="flex flex-wrap gap-2"></div>
                 </div>
 
                 <!-- OBJETIVO DE NEGOCIO -->
                 <div>
                     <label class="block text-xs text-gray-400 mb-2">🎯 Objetivo de Contacto</label>
-                    <div id="objetivos" class="flex flex-wrap gap-2">
-                        <!-- Se llena con JS -->
-                    </div>
+                    <div id="objetivos" class="flex flex-wrap gap-2"></div>
                 </div>
 
                 <!-- GÉNERO MUSICAL -->
                 <div>
                     <label class="block text-xs text-gray-400 mb-2">🎵 Género Musical</label>
-                    <div id="generos" class="flex flex-wrap gap-2">
-                        <!-- Se llena con JS -->
-                    </div>
+                    <div id="generos" class="flex flex-wrap gap-2"></div>
                 </div>
 
                 <!-- REGIÓN -->
                 <div>
-                    <label class="block text-xs text-gray-400 mb-2">🌍 Región</label>
+                    <label class="block text-xs text-gray-400 mb-2"> Región</label>
                     <select id="region-select" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
                         <option value="global">🌍 Global (todos los idiomas)</option>
                         <option value="latam-norte">🇲🇽 México / Centroamérica</option>
-                        <option value="latam-sur">🇦🇷 Argentina / Chile / Uruguay</option>
                         <option value="latam-caribe">🇨🇴 Colombia / Venezuela / Caribe</option>
+                        <option value="latam-sur">🇦🇷 Argentina / Chile / Uruguay</option>
                         <option value="brasil">🇧🇷 Brasil</option>
-                        <option value="usa">🇺🇸 USA / Canadá</option>
+                        <option value="usa">🇺 USA / Canadá</option>
                         <option value="uk">🇬🇧 UK / Irlanda</option>
                         <option value="europa-norte">🇩🇪 Alemania / Holanda / Escandinavia</option>
                         <option value="europa-sur">🇪🇸 España / Francia / Italia / Portugal</option>
                         <option value="africa">🌍 África (Nigeria, Sudáfrica, etc.)</option>
                         <option value="asia">🇯🇵 Japón / Corea / India</option>
-                        <option value="oceania">🇦🇺 Australia / Nueva Zelanda</option>
+                        <option value="oceania">🇦 Australia / Nueva Zelanda</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- RANGO DE SEGUIDORES -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-2">👥 Seguidores mínimos</label>
+                    <input type="number" id="min-seguidores" value="1000" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-2">👥 Seguidores máximos</label>
+                    <input type="number" id="max-seguidores" value="100000" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-2">🎯 Tipo de artista</label>
+                    <select id="tipo-artista-select" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                        <option value="independiente">Independiente</option>
+                        <option value="con-sello">Con sello</option>
+                        <option value="mixto">Mixto</option>
                     </select>
                 </div>
             </div>
@@ -113,11 +127,11 @@
                     <div>
                         <label class="block text-xs text-gray-400 mb-1">Vibe del perfil</label>
                         <select id="vibe-select" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
-                            <option value="mixto">🎲 Mixto (variar)</option>
+                            <option value="mixto"> Mixto (variar)</option>
                             <option value="underground">🔥 Underground / Raw</option>
                             <option value="mainstream">⭐ Mainstream / Comercial</option>
                             <option value="indie">🎸 Indie / Alternativo</option>
-                            <option value="experimental">🧪 Experimental / Avant-garde</option>
+                            <option value="experimental"> Experimental / Avant-garde</option>
                             <option value="profesional">💼 Muy profesional / Corporativo</option>
                             <option value="casual">😎 Casual / Cercano</option>
                         </select>
@@ -128,7 +142,7 @@
                             <option value="mixto">🎲 Mixto</option>
                             <option value="emergente">🌱 Emergente (1K-10K)</option>
                             <option value="mid">📈 Mid-tier (10K-100K)</option>
-                            <option value="establecido">🏆 Establecido (100K+)</option>
+                            <option value="establecido"> Establecido (100K+)</option>
                         </select>
                     </div>
                     <div>
@@ -142,7 +156,7 @@
                             <option value="de">🇩🇪 Deutsch</option>
                             <option value="it">🇮🇹 Italiano</option>
                             <option value="ja">🇯🇵 日本語</option>
-                            <option value="ko">🇰🇷 한국어</option>
+                            <option value="ko">🇷 한국어</option>
                         </select>
                     </div>
                 </div>
@@ -195,11 +209,11 @@
             "productor": { label: "🎹 Productor / Beatmaker", icon: "fa-headphones" },
             "dj": { label: "🎧 DJ / Remixer", icon: "fa-record-vinyl" },
             "manager": { label: "💼 Manager", icon: "fa-briefcase" },
-            "sello": { label: "🏢 Sello Discográfico", icon: "fa-building" },
-            "ar": { label: "🔍 A&R", icon: "fa-magnifying-glass" },
+            "sello": { label: " Sello Discográfico", icon: "fa-building" },
+            "ar": { label: " A&R", icon: "fa-magnifying-glass" },
             "ingeniero": { label: "🎚️ Ingeniero de Mezcla/Master", icon: "fa-sliders" },
             "songwriter": { label: "✍️ Songwriter / Topliner", icon: "fa-pen" },
-            "promotor": { label: "📣 Promotor / Eventos", icon: "fa-bullhorn" },
+            "promotor": { label: " Promotor / Eventos", icon: "fa-bullhorn" },
             "sync": { label: "🎬 Sync / Licensing", icon: "fa-film" },
             "publicista": { label: "📢 Publicista / PR", icon: "fa-newspaper" }
         };
@@ -215,19 +229,242 @@
             "networking": { label: "🌐 Networking General", icon: "fa-network-wired" }
         };
 
-        const GENEROS = {
-            "trap": ["trapproducer","trapbeats","trapmusic","808","darktrap","trapsoul"],
-            "hiphop": ["hiphopproducer","boom bap","beatmaker","undergroundhiphop","rapbeats","hiphophead"],
-            "reggaeton": ["reggaetonproducer","perreo","latinproducer","urbano","dembow","reggaetonbeats"],
-            "electronica": ["edmproducer","technoproducer","housemusic","djproducer","techno","edmlife"],
-            "rnb": ["rnbproducer","rnbmusic","soulmusic","rnbartist","neosoul","rnbvibes"],
-            "lofi": ["lofi","lofiproducer","chillbeats","lofibeats","studybeats","chillhop"],
-            "rock": ["rockproducer","indierock","rockband","alternativerock","indieartist"],
-            "afrobeat": ["afrobeats","afrobeatproducer","afropop","afroartist","afrohouse"],
-            "latin": ["latinmusic","latinproducer","salsa","bachata","cumbia","musicalatina"],
-            "pop": ["popproducer","popmusic","popartist","songwriter","indiepop"],
-            "metal": ["metalproducer","metalband","heavymetal","metalcore","deathmetal"],
-            "jazz": ["jazzproducer","jazzmusic","jazzartist","smoothjazz","jazzfusion"]
+        // HASHTAGS POR GÉNERO Y REGIÓN (COHERENCIA REGIONAL)
+        const GENEROS_HASHTAGS = {
+            "trap": {
+                es: ["traplatino","trapmx","trapcolombia","trapargentina","trapchile","trapvenezuela","trapcaribe","traplatam","trapurbano","trapenespañol","trapperreo","traplatinoamerica","trapmusica","trapbeats","trapproducer","traplatinooficial"],
+                en: ["trapproducer","trapbeats","trapmusic","808mafia","darktrap","trapsoul","trapnation","trapking","trapbeatsforsale","traplife"],
+                pt: ["trapbr","trapbrasil","trapportugues","traplusofono","trapportugal","traprio","trapsaopaulo"],
+                fr: ["trapfr","trapfrance","trapfrancais","trapparis","traplyon"],
+                de: ["trapde","trapgermany","trapdeutsch","trapberlin","trapmunich"],
+                it: ["trapit","trapitalia","trapitaliano","trapmilano","traproma"],
+                ja: ["trapjapan","trapjp","traptokyo","trapjapanese"],
+                ko: ["trapkorea","trapkr","trapkpop","trapseoul"]
+            },
+            "hiphop": {
+                es: ["hiphoplatino","hiphopmx","hiphopcolombia","hiphopargentina","hiphopchile","hiphopvenezuela","hiphopcaribe","hiphopenespañol","raplatino","rapmx","rapcolombia","rapargentina","rapchile","rapvenezuela","rapcaribe","rapenespañol"],
+                en: ["hiphopproducer","boombap","hiphopbeats","beatmaker","undergroundhiphop","rapbeats","hiphophead","hiphoplife","hiphopculture","hiphopmusic"],
+                pt: ["hiphopbr","hiphopbrasil","rapbr","rapbrasil","hiphopportugues","rapportugues"],
+                fr: ["hiphopfr","hiphopfrance","rapfr","rapfrancais","hiphopfrancais"],
+                de: ["hiphopde","hiphopgermany","rapde","rapgermany","hiphopdeutsch"],
+                it: ["hiphopit","hiphopitalia","rapit","rapitaliano","hiphopitaliano"],
+                ja: ["hiphopjapan","hiphopjp","rapjapan","rapjp"],
+                ko: ["hiphopkorea","hiphopkr","rapkorea","rapkr","hiphopkpop"]
+            },
+            "reggaeton": {
+                es: ["reggaeton","reggaetonmx","reggaetoncolombia","reggaetonargentina","reggaetonchile","reggaetonvenezuela","reggaetoncaribe","reggaetonlatino","reggaetonlatam","reggaetonenespañol","perreo","perreolatino","perreomx","perreocolombia","perreoargentina","perreocaribe","dembow","dembowmx","dembowcolombia","dembowcaribe","urbano","urbanolatino","urbanomx","urbanocolombia","urbanoargentina","urbanocaribe"],
+                en: ["reggaeton","reggaetonmusic","reggaetonbeats","reggaetonproducer","perreo","perreomusic","dembow","dembowmusic","latinurban","latintrap"],
+                pt: ["reggaetonbr","reggaetonbrasil","funkbr","funkbrasil","bailefunk"],
+                fr: ["reggaetonfr","reggaetonfrance"],
+                de: ["reggaetonde","reggaetongermany"],
+                it: ["reggaetonit","reggaetonitalia"],
+                ja: ["reggaetonjapan","reggaetonjp"],
+                ko: ["reggaetonkorea","reggaetonkr"]
+            },
+            "electronica": {
+                es: ["electronicalatina","electronicamx","electronicacolombia","electronicaargentina","electronicachile","electronicavenezuela","electronicacaribe","djlatino","djmx","djcolombia","djargentina","djchile","djvenezuela","djcaribe","productorlatino","productormx","productorcolombia","productorargentina","productorchile","productorvenezuela","productorcaribe"],
+                en: ["edmproducer","technoproducer","housemusic","djproducer","edmlife","techno","houseproducer","abletonlive","flstudio","electronicmusic","djlife","djset","djmix","edm","edmfamily","edmmusic","technomusic","housemusic","deephouse","techhouse"],
+                pt: ["electronicabr","electronicabrasil","djbr","djbrasil","funkbr","funkbrasil","bailefunk","technobr","technobrasil"],
+                fr: ["electronicfr","electronicfrance","djfr","djfrance","technofr","technofrance","housefr","housefrance"],
+                de: ["electronicde","electronicgermany","djde","djgermany","technode","technoberlin","technogermany","housede","housegermany"],
+                it: ["electronicit","electronicitalia","djit","djitalia","technoit","technoitalia","houseit","houseitalia"],
+                ja: ["electronicjapan","electronicjp","dj japan","dj jp","technojapan","technojp","housejapan","housejp"],
+                ko: ["electronickorea","electronic kr","dj korea","dj kr","techno korea","techno kr","house korea","house kr"]
+            },
+            "rnb": {
+                es: ["rnblatino","rnbmx","rnbcolombia","rnbargentina","rnbchile","rnbvenezuela","rnbcaribe","rnbenespañol","soul latino","soul mx","soul colombia","soul argentina","soul chile","soul venezuela","soul caribe","neosoul latino","neosoul mx","neosoul colombia","neosoul argentina","neosoul chile","neosoul venezuela","neosoul caribe"],
+                en: ["rnbproducer","rnbmusic","soulmusic","rnbartist","rnbvibes","neosoul","rnb","rnbmusic","rnbartist","rnbvibes","soul","soulmusic","soulartist","soulvibes","alternativernb","alternativesoul","rnbproducer","rnbbeatmaker","rnbbeats","rnbproduction"],
+                pt: ["rnbbr","rnbbrasil","soulbr","soulbrasil","neosoulbr","neosoulbrasil"],
+                fr: ["rnbfr","rnbfrance","soulfr","soulfrance","neosoulfr","neosoulfrance"],
+                de: ["rnbde","rnbgermany","soulde","soulgermany","neosoulde","neosoulgermany"],
+                it: ["rnbit","rnbitalia","soulit","soulitalia","neosoulit","neosoulitalia"],
+                ja: ["rnbjapan","rnbjp","souljapan","souljp","neosouljapan","neosouljp"],
+                ko: ["rnbkorea","rnbkr","soulkorea","soulkr","neosoulkorea","neosoulkr"]
+            },
+            "lofi": {
+                es: ["lofilatino","lofimx","loficcolombia","lofiargentina","lofichile","lofivenezuela","loficaribe","chillbeatslatino","chillbeatsmx","chillbeatscolombia","chillbeatsargentina","chillbeatschile","chillbeatsvenezuela","chillbeatscaribe","lofiproducerlatino","lofiproducermx","lofiproducercolombia","lofiproducerargentina","lofiproducerchile","lofiproducer venezuela","lofiproducer caribe"],
+                en: ["lofi","lofiproducer","lofihiphop","chillbeats","lofibeats","studybeats","chillhop","lofimusic","lofiartist","lofibeats","lofiproducer","lofihiphop","chillbeats","studybeats","chillhop","lofibeats","lofimusic","lofiartist","lofibeats","lofiproducer"],
+                pt: ["lofibr","lofibrasil","chillbeatsbr","chillbeatsbrasil","lofiproducerbr","lofiproducerbrasil"],
+                fr: ["lofifr","lofifrance","chillbeatsfr","chillbeatsfrance","lofiproducerfr","lofiproducerfrance"],
+                de: ["lofide","lofgermany","chillbeatsde","chillbeatsgermany","lofiproducerde","lofiproducergermany"],
+                it: ["lofit","lofitalia","chillbeatsit","chillbeatsitalia","lofiproducerit","lofiproduceritalia"],
+                ja: ["lofijapan","lofijp","chillbeatsjapan","chillbeatsjp","lofiproducerjapan","lofiproducerjp"],
+                ko: ["lofikorea","lofikr","chillbeatskorea","chillbeatskr","lofiproducerkorea","lofiproducerkr"]
+            },
+            "rock": {
+                es: ["rocklatino","rockmx","rockcolombia","rockargentina","rockchile","rockvenezuela","rockcaribe","indierocklatino","indierockmx","indierockcolombia","indierockargentina","indierockchile","indierockvenezuela","indierockcaribe","alternativerocklatino","alternativerockmx","alternativerockcolombia","alternativerockargentina","alternativerockchile","alternativerockvenezuela","alternativerockcaribe"],
+                en: ["rockproducer","indierock","rockband","alternativerock","indieartist","rockmusic","rockband","indierockband","alternativerockband","indierockmusic","alternativerockmusic","indierockartist","alternativerockartist","indierockproducer","alternativerockproducer"],
+                pt: ["rockbr","rockbrasil","indierockbr","indierockbrasil","alternativerockbr","alternativerockbrasil"],
+                fr: ["rockfr","rockfrance","indierockfr","indierockfrance","alternativerockfr","alternativerockfrance"],
+                de: ["rockde","rockgermany","indierockde","indierockgermany","alternativerockde","alternativerockgermany"],
+                it: ["rockit","rockitalia","indierockit","indierockitalia","alternativerockit","alternativerockitalia"],
+                ja: ["rockjapan","rockjp","indierockjapan","indierockjp","alternativerockjapan","alternativerockjp"],
+                ko: ["rockkorea","rockkr","indierockkorea","indierockkr","alternativerockkorea","alternativerockkr"]
+            },
+            "afrobeat": {
+                es: ["afrobeatlatino","afrobeatmx","afrobeatcolombia","afrobeatargentina","afrobeatchile","afrobeatvenezuela","afrobeatcaribe","afropoplatino","afropopmx","afropopcolombia","afropopargentina","afropopchile","afropopvenezuela","afropopcaribe","afrohouselatino","afrohousemx","afrohousecolombia","afrohouseargentina","afrohousechile","afrohousevenezuela","afrohousecaribe"],
+                en: ["afrobeats","afrobeatproducer","afropop","afroartist","afrobeatmusic","afrohouse","afrobeatsmusic","afrobeatsartist","afrobeatsproducer","afropopmusic","afropopartist","afropopproducer","afrohousemusic","afrohouseartist","afrohouseproducer"],
+                pt: ["afrobeatbr","afrobeatbrasil","afropopbr","afropopbrasil","afrohousebr","afrohousebrasil"],
+                fr: ["afrobeatfr","afrobeatfrance","afropopfr","afropopfrance","afrohousefr","afrohousefrance"],
+                de: ["afrobeatde","afrobeatgermany","afropopde","afropopgermany","afrohousede","afrohousegermany"],
+                it: ["afrobeatit","afrobeatitalia","afropopit","afropopitalia","afrohouseit","afrohouseitalia"],
+                ja: ["afrobeatjapan","afrobeatjp","afropopjapan","afropopjp","afrohousejapan","afrohousejp"],
+                ko: ["afrobeatkorea","afrobeatkr","afropopkorea","afropopkr","afrohousekorea","afrohousekr"]
+            },
+            "latin": {
+                es: ["latinmusic","latinmusiclatino","latinmusicmx","latinmusiccolombia","latinmusicargentina","latinmusicchile","latinmusicvenezuela","latinmusiccaribe","latinproducer","latinproducerlatino","latinproducermx","latinproducercolombia","latinproducerargentina","latinproducerchile","latinproducervenezuela","latinproducercaribe","salsa","salsalatina","salsamx","salsacolombia","salsaargentina","salsachile","salsavenezuela","salsacaribe","bachata","bachatalatina","bachatamx","bachatacolombia","bachataargentina","bachatachile","bachatavenezuela","bachatacaribe","cumbia","cumbialatina","cumbiamx","cumbiacolombia","cumbiaargentina","cumbiachile","cumbiavenezuela","cumbiacaribe"],
+                en: ["latinmusic","latinproducer","latinartist","latinsinger","latinsongwriter","latincomposer","latinbeatmaker","latinproducer","latinmusicproducer","latinmusicartist","latinmusicsinger","latinmusicsongwriter","latinmusiccomposer","latinmusicbeatmaker"],
+                pt: ["latinmusicbr","latinmusicbrasil","latinproducerbr","latinproducerbrasil","latinartistbr","latinartistbrasil"],
+                fr: ["latinmusicfr","latinmusicfrance","latinproducerfr","latinproducerfrance","latinartistfr","latinartistfrance"],
+                de: ["latinmusicde","latinmusicgermany","latinproducerde","latinproducergermany","latinartistde","latinartistgermany"],
+                it: ["latinmusicit","latinmusicitalia","latinproducerit","latinproduceritalia","latinartistit","latinartistitalia"],
+                ja: ["latinmusicjapan","latinmusicjp","latinproducerjapan","latinproducerjp","latinartistjapan","latinartistjp"],
+                ko: ["latinmusickorea","latinmusickr","latinproducerkorea","latinproducerkr","latinartistkorea","latinartistkr"]
+            },
+            "pop": {
+                es: ["poplatino","popmx","popcolombia","popargentina","popchile","popvenezuela","popcaribe","indiepoplatino","indiepopmx","indiepopcolombia","indiepopargentina","indiepopchile","indiepopvenezuela","indiepopcaribe","popartistlatino","popartistmx","popartistcolombia","popartistargentina","popartistchile","popartistvenezuela","popartistcaribe"],
+                en: ["popproducer","popmusic","popartist","songwriter","indiepop","popmusic","popartist","popsinger","popsongwriter","popcomposer","popproducer","popbeatmaker","popmusicproducer","popmusicartist","popmusicsinger","popmusicsongwriter","popmusiccomposer","popmusicbeatmaker"],
+                pt: ["popbr","popbrasil","indiepopbr","indiepopbrasil","popartistbr","popartistbrasil"],
+                fr: ["popfr","popfrance","indiepopfr","indiepopfrance","popartistfr","popartistfrance"],
+                de: ["popde","popgermany","indiepopde","indiepopgermany","popartistde","popartistgermany"],
+                it: ["popit","popitalia","indiepopit","indiepopitalia","popartistit","popartistitalia"],
+                ja: ["popjapan","popjp","indiepopjapan","indiepopjp","popartistjapan","popartistjp"],
+                ko: ["popkorea","popkr","indiepopkorea","indiepopkr","popartistkorea","popartistkr"]
+            },
+            "metal": {
+                es: ["metallatino","metalmx","metalcolombia","metalargentina","metalchile","metalvenezuela","metalcaribe","heavymetallatino","heavymetalmx","heavymetalcolombia","heavymetalargentina","heavymetalchile","heavymetalvenezuela","heavymetalcaribe","metalcorelatino","metalcoremx","metalcorecolombia","metalcoreargentina","metalcorechile","metalcorevenezuela","metalcorecaribe"],
+                en: ["metalproducer","metalband","heavymetal","metalcore","deathmetal","metal","heavymetalband","metalcoreband","deathmetalband","metalproducer","metalband","heavymetalproducer","metalcoreproducer","deathmetalproducer"],
+                pt: ["metalbr","metalbrasil","heavymetalbr","heavymetalbrasil","metalcorebr","metalcorebrasil"],
+                fr: ["metalfr","metalfrance","heavymetalfr","heavymetalfrance","metalcorefr","metalcorefrance"],
+                de: ["metalde","metalgermany","heavymetalde","heavymetalgermany","metalcorede","metalcoregermany"],
+                it: ["metalit","metalitalia","heavymetalit","heavymetalitalia","metalcoreit","metalcoreitalia"],
+                ja: ["metaljapan","metaljp","heavymetaljapan","heavymetaljp","metalcorejapan","metalcorejp"],
+                ko: ["metalkorea","metalkr","heavymetalkorea","heavymetalkr","metalcorekorea","metalcorekr"]
+            },
+            "jazz": {
+                es: ["jazzlatino","jazzmx","jazzcolombia","jazzargentina","jazzchile","jazzvenezuela","jazzcaribe","smoothjazzlatino","smoothjazzmx","smoothjazzcolombia","smoothjazzargentina","smoothjazzchile","smoothjazzvenezuela","smoothjazzcaribe","jazzfusionlatino","jazzfusionmx","jazzfusioncolombia","jazzfusionargentina","jazzfusionchile","jazzfusionvenezuela","jazzfusioncaribe"],
+                en: ["jazzproducer","jazzmusic","jazzartist","smoothjazz","jazzfusion","jazz","jazzmusic","jazzartist","jazzmusician","jazzcomposer","jazzproducer","jazzbeatmaker","jazzmusicproducer","jazzmusicartist","jazzmusicsinger","jazzmusicsongwriter","jazzmusiccomposer","jazzmusicbeatmaker"],
+                pt: ["jazzbr","jazzbrasil","smoothjazzbr","smoothjazzbrasil","jazzfusionbr","jazzfusionbrasil"],
+                fr: ["jazzfr","jazzfrance","smoothjazzfr","smoothjazzfrance","jazzfusionfr","jazzfusionfrance"],
+                de: ["jazzde","jazzgermany","smoothjazzde","smoothjazzgermany","jazzfusionde","jazzfusiongermany"],
+                it: ["jazzit","jazzitalia","smoothjazzit","smoothjazzitalia","jazzfusionit","jazzfusionitalia"],
+                ja: ["jazzjapan","jazzjp","smoothjazzjapan","smoothjazzjp","jazzfusionjapan","jazzfusionjp"],
+                ko: ["jazzkorea","jazzkr","smoothjazzkorea","smoothjazzkr","jazzfusionkorea","jazzfusionkr"]
+            }
+        };
+
+        // HASHTAGS POR TIPO DE CLIENTE Y REGIÓN
+        const TIPOS_HASHTAGS = {
+            "artista": {
+                es: ["artistalatino","artistamx","artistacolombia","artistaargentina","artistachile","artistavenezuela","artistacaribe","cantantelatino","cantantemx","cantantecolombia","cantanteargentina","cantantechile","cantantevenezuela","cantantecaribe","rapperlatino","rappermx","rappercolombia","rapperargentina","rapperchile","rapper venezuela","rapper caribe","vocalistalatino","vocalistamx","vocalistacolombia","vocalistaargentina","vocalistachile","vocalistavenezuela","vocalistacaribe"],
+                en: ["artist","singer","rapper","vocalist","musician","performer","entertainer","recordingartist","indieartist","unsignedartist","independentartist","newartist","emergingartist","upcomingartist","risingartist"],
+                pt: ["artistabr","artistabrasil","cantantebr","cantantebrasil","rapperbr","rapperbrasil","vocalistabr","vocalistabrasil"],
+                fr: ["artistfr","artistfrance","chanteurfr","chanteurfrance","rappeurfr","rappeurfrance","vocalistfr","vocalistfrance"],
+                de: ["artistde","artistgermany","sängerde","sängergermany","rapperde","rappergermany","vocalistde","vocalistgermany"],
+                it: ["artistit","artistitalia","cantanteit","cantanteitalia","rapperit","rapperitalia","vocalistit","vocalistitalia"],
+                ja: ["artistjapan","artistjp","singerjapan","singerjp","rapperjapan","rapperjp","vocalistjapan","vocalistjp"],
+                ko: ["artistkorea","artistkr","singerkorea","singerkr","rapperkorea","rapperkr","vocalistkorea","vocalistkr"]
+            },
+            "productor": {
+                es: ["productorlatino","productormx","productorcolombia","productorargentina","productorchile","productorvenezuela","productorcaribe","beatmakerlatino","beatmakermx","beatmakercolombia","beatmakerargentina","beatmakerchile","beatmakervenezuela","beatmakercaribe","producerlatino","producermx","producercolombia","producerargentina","producerchile","producervenezuela","producercaribe"],
+                en: ["producer","beatmaker","musicproducer","beatproducer","recordproducer","audio producer","soundproducer","musicmaker","beatcreator","beatmaker","musicproducer","beatproducer","recordproducer","audioproducer","soundproducer","musicmaker","beatcreator"],
+                pt: ["produtorbr","produtorbrasil","beatmakerbr","beatmakerbrasil","producerbr","producerbrasil"],
+                fr: ["producteurfr","producteurfrance","beatmakerfr","beatmakerfrance","producerfr","producerfrance"],
+                de: ["produzentde","produzentgermany","beatmakerde","beatmakergermany","producerde","producergermany"],
+                it: ["produttoreit","produttoreitalia","beatmakerit","beatmakeritalia","producerit","produceritalia"],
+                ja: ["producerjapan","producerjp","beatmakerjapan","beatmakerjp","musicproducerjapan","musicproducerjp"],
+                ko: ["producerkorea","producerkr","beatmakerkorea","beatmakerkr","musicproducerkorea","musicproducerkr"]
+            },
+            "dj": {
+                es: ["djlatino","djmx","djcolombia","djargentina","djchile","djvenezuela","djcaribe","djsetlatino","djsetmx","djsetcolombia","djsetargentina","djsetchile","djsetvenezuela","djsetcaribe","djmixlatino","djmixmx","djmixcolombia","djmixargentina","djmixchile","djmixvenezuela","djmixcaribe"],
+                en: ["dj","djlife","djset","djmix","djmusic","djproducer","djturntablist","djcontroller","djsoftware","djgear","djsetup","djbooth","djclub","djfestival","djparty","djnight","djevent","djgig","djshow","djperformance"],
+                pt: ["djbr","djbrasil","djsetbr","djsetbrasil","djmixbr","djmixbrasil"],
+                fr: ["djfr","djfrance","djsetfr","djsetfrance","djmixfr","djmixfrance"],
+                de: ["djde","djgermany","djsetde","djsetgermany","djmixde","djmixgermany"],
+                it: ["djit","djitalia","djsetit","djsetitalia","djmixit","djmixitalia"],
+                ja: ["dj japan","dj jp","djsetjapan","djsetjp","djmixjapan","djmixjp"],
+                ko: ["dj korea","dj kr","djsetkorea","djsetkr","djmixkorea","djmixkr"]
+            },
+            "manager": {
+                es: ["managerlatino","managermx","managercolombia","managerargentina","managerchile","managervenezuela","managercaribe","artistmanagerlatino","artistmanagermx","artistmanagercolombia","artistmanagerargentina","artistmanagerchile","artistmanagervenezuela","artistmanagercaribe","musicmanagerlatino","musicmanagermx","musicmanagercolombia","musicmanagerargentina","musicmanagerchile","musicmanagervenezuela","musicmanagercaribe"],
+                en: ["manager","artistmanager","musicmanager","talentmanager","bandmanager","tourmanager","bookingmanager","eventmanager","promoter","agent","representative","management","managementcompany","managementfirm","managementagency"],
+                pt: ["managerbr","managerbrasil","artistmanagerbr","artistmanagerbrasil","musicmanagerbr","musicmanagerbrasil"],
+                fr: ["managerfr","managerfrance","artistmanagerfr","artistmanagerfrance","musicmanagerfr","musicmanagerfrance"],
+                de: ["managerde","managergermany","artistmanagerde","artistmanagergermany","musicmanagerde","musicmanagergermany"],
+                it: ["managerit","manageritalia","artistmanagerit","artistmanageritalia","musicmanagerit","musicmanageritalia"],
+                ja: ["managerjapan","managerjp","artistmanagerjapan","artistmanagerjp","musicmanagerjapan","musicmanagerjp"],
+                ko: ["managerkorea","managerkr","artistmanagerkorea","artistmanagerkr","musicmanagerkorea","musicmanagerkr"]
+            },
+            "sello": {
+                es: ["sellolatino","sellomx","sellocolombia","selloargentina","sellochile","sellovenezuela","sellocaribe","discograficalatino","discograficamx","discograficacolombia","discograficaargentina","discograficachile","discograficavenezuela","discograficacaribe","label latinoa","label mx","label colombia","label argentina","label chile","label venezuela","label caribe"],
+                en: ["recordlabel","label","indielabel","musiclabel","recordcompany","musiccompany","independentlabel","indierecordlabel","indiemusiclabel","recordlabelowner","labelowner","musiclabelowner","recordlabelceo","labelceo","musiclabelceo"],
+                pt: ["gravadorabr","gravadorabrasil","labelbr","labelbrasil","recordlabelbr","recordlabelbrasil"],
+                fr: ["labelfr","labelfrance","recordlabelfr","recordlabelfrance","indielabelfr","indielabelfrance"],
+                de: ["labelde","labelgermany","recordlabelde","recordlabelgermany","indielabelde","indielabelgermany"],
+                it: ["labelit","labelitalia","recordlabelit","recordlabelitalia","indielabelit","indielabelitalia"],
+                ja: ["labeljapan","labeljp","recordlabeljapan","recordlabeljp","indielabeljapan","indielabeljp"],
+                ko: ["labelkorea","labelkr","recordlabelkorea","recordlabelkr","indielabelkorea","indielabelkr"]
+            },
+            "ar": {
+                es: ["arlatino","armx","arcolombia","arargentina","archile","arvenezuela","arcaribe","aandrlatino","aandrmx","aandrcolombia","aandrargentina","aandrchile","aandrvenezuela","aandrcaribe","areplatino","arepmx","arepcolombia","arepargentina","arepchile","arepvenezuela","arepcaribe"],
+                en: ["aandr","arep","aandrs","areps","artistsandrepertoire","artistrelations","talentscout","talentacquisition","music scout","music talent","music discovery","music curation","music selection","music evaluation","music assessment"],
+                pt: ["arbr","arbrasil","aandrbr","aandrbrasil","arepbr","arepbrasil"],
+                fr: ["arfr","arfrance","aandrfr","aandrfrance","arepfr","arepfrance"],
+                de: ["arde","ardegermany","aandrde","aandrgermany","arepde","arepgermany"],
+                it: ["arit","aritalia","aandrit","aandritalia","arepit","arepitalia"],
+                ja: ["arjapan","arjp","aandrjapan","aandrjp","arepjapan","arepjp"],
+                ko: ["arkorea","arkr","aandrkorea","aandrkr","arepkorea","arepkr"]
+            },
+            "ingeniero": {
+                es: ["ingenierolatino","ingenieromx","ingenierocolombia","ingenieroargentina","ingenierochile","ingenierovenezuela","ingenierocaribe","mezclalatino","mezclamx","mezclacolombia","mezclaargentina","mezclachile","mezclavenezuela","mezclacaribe","masteringlatino","masteringmx","masteringcolombia","masteringargentina","masteringchile","masteringvenezuela","masteringcaribe"],
+                en: ["mixengineer","mastering","audioengineer","soundengineer","recordingengineer","mixingengineer","masteringengineer","audioengineer","soundengineer","recordingengineer","mixingengineer","masteringengineer","audioengineering","soundengineering","recordingengineering","mixingengineering","masteringengineering"],
+                pt: ["engenheirobr","engenheirobrasil","mixengineerbr","mixengineerbrasil","masteringbr","masteringbrasil"],
+                fr: ["ingenieurfr","ingenieurfrance","mixengineerfr","mixengineerfrance","masteringfr","masteringfrance"],
+                de: ["ingenieurde","ingenieurgermany","mixengineerde","mixengineergermany","masteringde","masteringgermany"],
+                it: ["ingegnereit","ingegnereitalia","mixengineerit","mixengineeritalia","masteringit","masteringitalia"],
+                ja: ["engineerjapan","engineerjp","mixengineerjapan","mixengineerjp","masteringjapan","masteringjp"],
+                ko: ["engineerkorea","engineerkr","mixengineerkorea","mixengineerkr","masteringkorea","masteringkr"]
+            },
+            "songwriter": {
+                es: ["songwriterlatino","songwritermx","songwritercolombia","songwriterargentina","songwriterchile","songwritervenezuela","songwritercaribe","compositorlatino","compositormx","compositorcolombia","compositorargentina","compositorchile","compositorvenezuela","compositorcaribe","toplinerlatino","toplinermx","toplinercolombia","toplinerargentina","toplinerchile","toplinervenezuela","toplinercaribe"],
+                en: ["songwriter","topliner","composer","lyricist","melodywriter","songwriting","songwriter","topliner","composer","lyricist","melodywriter","songwriting","songwriter","topliner","composer","lyricist","melodywriter","songwriting"],
+                pt: ["compositorbr","compositorbrasil","songwriterbr","songwriterbrasil","toplinerbr","toplinerbrasil"],
+                fr: ["compositeurfr","compositeurfrance","songwriterfr","songwriterfrance","toplinerfr","toplinerfrance"],
+                de: ["komponistde","komponistgermany","songwriterde","songwritergermany","toplinerde","toplinergermany"],
+                it: ["compositoreit","compositoreitalia","songwriterit","songwriteritalia","toplinerit","toplineritalia"],
+                ja: ["songwriterjapan","songwriterjp","composerjapan","composerjp","toplinerjapan","toplinerjp"],
+                ko: ["songwriterkorea","songwriterkr","composerkorea","composerkr","toplinerkorea","toplinerkr"]
+            },
+            "promotor": {
+                es: ["promotorlatino","promotormx","promotorcolombia","promotorargentina","promotorchile","promotorvenezuela","promotorcaribe","eventolatino","eventomx","eventocolombia","eventoargentina","eventochile","eventovenezuela","eventocaribe","bookinglatino","bookingmx","bookingcolombia","bookingargentina","bookingchile","bookingvenezuela","bookingcaribe"],
+                en: ["promoter","events","booking","eventpromoter","musicpromoter","concertpromoter","festivalpromoter","clubpromoter","nightlifepromoter","entertainmentpromoter","bookingagent","bookingmanager","eventmanager","eventcoordinator","eventplanner"],
+                pt: ["promotorbr","promotorbrasil","eventobr","eventobrasil","bookingbr","bookingbrasil"],
+                fr: ["promoteurfr","promoteurfrance","eventfr","eventfrance","bookingfr","bookingfrance"],
+                de: ["promotorde","promotorgermany","eventde","eventgermany","bookingde","bookinggermany"],
+                it: ["promotoreit","promotoreitalia","eventoit","eventoitalia","bookingit","bookingitalia"],
+                ja: ["promoterjapan","promoterjp","eventjapan","eventjp","bookingjapan","bookingjp"],
+                ko: ["promoterkorea","promoterkr","eventkorea","eventkr","bookingkorea","bookingkr"]
+            },
+            "sync": {
+                es: ["synclatino","syncmx","synccolombia","syncargentina","syncchile","syncvenezuela","synccaribe","licensinglatino","licensingmx","licensingcolombia","licensingargentina","licensingchile","licensingvenezuela","licensingcaribe","musiclicensinglatino","musiclicensingmx","musiclicensingcolombia","musiclicensingargentina","musiclicensingchile","musiclicensingvenezuela","musiclicensingcaribe"],
+                en: ["synclicensing","musiclicensing","sync","licensing","musiclicensing","synclicensing","syncagent","licensingagent","musiclicensingagent","synclicensingagent","musiclicensingmanager","synclicensingmanager","musiclicensingcoordinator","synclicensingcoordinator","musiclicensingdirector","synclicensingdirector"],
+                pt: ["syncbr","syncbrasil","licensingbr","licensingbrasil","musiclicensingbr","musiclicensingbrasil"],
+                fr: ["syncfr","syncfrance","licensingfr","licensingfrance","musiclicensingfr","musiclicensingfrance"],
+                de: ["syncde","syncgermany","licensingde","licensinggermany","musiclicensingde","musiclicensinggermany"],
+                it: ["syncit","syncitalia","licensingit","licensingitalia","musiclicensingit","musiclicensingitalia"],
+                ja: ["syncjapan","syncjp","licensingjapan","licensingjp","musiclicensingjapan","musiclicensingjp"],
+                ko: ["synckorea","synckr","licensingkorea","licensingkr","musiclicensingkorea","musiclicensingkr"]
+            },
+            "publicista": {
+                es: ["publicistalatino","publicistamx","publicistacolombia","publicistaargentina","publicistachile","publicistavenezuela","publicistacaribe","prlatino","prmx","prcolombia","prargentina","prchile","prvenezuela","prcaribe","prensarlatino","prensamx","prensacolombia","prensaargentina","prensachile","prensavenezuela","prensacaribe"],
+                en: ["publicist","musicpr","pr","press","publicrelations","musicpublicist","musicpr","musicpress","musicpublicrelations","prmanager","prmanager","prcoordinator","prdirector","prspecialist","prconsultant"],
+                pt: ["publicistabr","publicistabrasil","prbr","prbrasil","pressbr","pressbrasil"],
+                fr: ["publicistfr","publicistfrance","prfr","prfrance","pressfr","pressfrance"],
+                de: ["publicistade","publicistagermany","prde","prgermany","pressde","pressgermany"],
+                it: ["publicistait","publicistaitalia","prit","prit","pressit","pressitalia"],
+                ja: ["publicistjapan","publicistjp","prjapan","prjp","pressjapan","pressjp"],
+                ko: ["publicistkorea","publicistkr","prkorea","prkr","presskorea","presskr"]
+            }
         };
 
         // ============================================
@@ -256,17 +493,17 @@
                 artista_produccion: {
                     underground: "¡Qué onda! 👋 Vi tu perfil y me voló tu rollo {genero}, se nota que tienes una identidad súper marcada. Estoy produciendo unos proyectos y creo que tu sonido encajaría perfecto con lo que estamos armando.\n\n¿Te late que platemos? Me encantaría escuchar más de tu rollo.\n\n🎵 ¡Saludos!",
                     mainstream: "¡Hola! 👋 He seguido tu trabajo en {genero} y la verdad me impresiona mucho tu nivel. Estoy produciendo varios proyectos de alto impacto y creo que tu estilo podría sumar muchísimo.\n\n¿Tienes un momento para conversar esta semana? Me encantaría explorar una colaboración.\n\n🎵 Saludos!",
-                    indie: "¡Hola! 👋 Vi tu perfil y me encantó tu propuesta en {genero}, tienes un sonido muy auténtico. Estoy produciendo unos proyectos y creo que tu vibra encajaría perfecto.\n\n¿Te interesaría platicar? Me encantaría escuchar más de tu música.\n\n🎵 Abrazo!",
-                    experimental: "¡Qué onda! 👋 Vi tu perfil y me fascinó lo que haces en {genero}, se nota que rompes moldes. Estoy produciendo proyectos con un enfoque diferente y creo que tu sonido podría aportar algo único.\n\n¿Te late explorar algo juntos?\n\n🎵 Saludos!",
+                    indie: "¡Hola!  Vi tu perfil y me encantó tu propuesta en {genero}, tienes un sonido muy auténtico. Estoy produciendo unos proyectos y creo que tu vibra encajaría perfecto.\n\n¿Te interesaría platicar? Me encantaría escuchar más de tu música.\n\n🎵 Abrazo!",
+                    experimental: "¡Qué onda! 👋 Vi tu perfil y me fascinó lo que haces en {genero}, se nota que rompes moldes. Estoy produciendo proyectos con un enfoque diferente y creo que tu sonido podría aportar algo único.\n\n¿Te late explorar algo juntos?\n\n Saludos!",
                     profesional: "¡Hola! 👋 He revisado tu perfil y me parece muy profesional tu trabajo en {genero}. Estoy desarrollando proyectos de producción y creo que tu perfil encaja con lo que buscamos.\n\n¿Tendrías disponibilidad para una llamada esta semana?\n\n🎵 Saludos cordiales!",
-                    casual: "¡Hola! 👋 Vi tu perfil y me gustó mucho tu rollo en {genero}. Estoy armando unos proyectos y creo que tu sonido podría encajar bien.\n\n¿Te late que platemos?\n\n🎵 ¡Saludos!"
+                    casual: "¡Hola! 👋 Vi tu perfil y me gustó mucho tu rollo en {genero}. Estoy armando unos proyectos y creo que tu sonido podría encajar bien.\n\n¿Te late que platemos?\n\n ¡Saludos!"
                 },
                 artista_colaboracion: {
                     underground: "¡Qué onda! 👋 Vi tu perfil y me voló tu rollo {genero}. Estoy armando unos collabs y creo que tu estilo encajaría perfecto.\n\n¿Te late explorar algo juntos? Me encantaría escuchar tu sonido.\n\n🎵 ¡Saludos!",
-                    mainstream: "¡Hola! 👋 He seguido tu trabajo en {genero} y la verdad me impresiona mucho. Estoy armando colaboraciones con artistas de nivel y creo que tu perfil sería un match increíble.\n\n¿Tienes un momento para conversar?\n\n🎵 Saludos!",
+                    mainstream: "¡Hola! 👋 He seguido tu trabajo en {genero} y la verdad me impresiona mucho. Estoy armando colaboraciones con artistas de nivel y creo que tu perfil sería un match increíble.\n\n¿Tienes un momento para conversar?\n\n Saludos!",
                     indie: "¡Hola! 👋 Vi tu perfil y me encantó tu propuesta en {genero}. Estoy buscando artistas con sonido auténtico para unos collabs.\n\n¿Te interesaría platicar?\n\n🎵 Abrazo!",
                     experimental: "¡Qué onda! 👋 Me fascinó lo que haces en {genero}, se nota que rompes moldes. Estoy armando collabs con artistas que piensan diferente.\n\n¿Te late explorar algo?\n\n🎵 Saludos!",
-                    profesional: "¡Hola! 👋 He revisado tu perfil y me parece muy interesante tu trabajo en {genero}. Estoy desarrollando colaboraciones estratégicas y creo que tu perfil encaja.\n\n¿Tendrías disponibilidad para una llamada?\n\n🎵 Saludos cordiales!",
+                    profesional: "¡Hola! 👋 He revisado tu perfil y me parece muy interesante tu trabajo en {genero}. Estoy desarrollando colaboraciones estratégicas y creo que tu perfil encaja.\n\n¿Tendrías disponibilidad para una llamada?\n\n Saludos cordiales!",
                     casual: "¡Hola! 👋 Vi tu perfil y me gustó mucho tu rollo en {genero}. Estoy armando unos collabs y creo que tu sonido podría encajar.\n\n¿Te late que platemos?\n\n🎵 ¡Saludos!"
                 },
                 artista_negocio: {
@@ -275,25 +512,25 @@
                     indie: "¡Hola! 👋 Vi tu perfil y me encantó tu propuesta en {genero}. Tengo una propuesta de negocio que creo puede ayudarte a crecer.\n\n¿Te interesaría platicar?\n\n💼 Abrazo!",
                     experimental: "¡Qué onda! 👋 Me fascinó lo que haces en {genero}. Tengo una propuesta de negocio para artistas con un enfoque diferente.\n\n¿Te late explorar?\n\n💼 Saludos!",
                     profesional: "¡Hola! 👋 He revisado tu perfil y me parece muy profesional tu trabajo en {genero}. Tengo una propuesta de negocio que creo puede interesarte.\n\n¿Tendrías disponibilidad para una llamada?\n\n💼 Saludos cordiales!",
-                    casual: "¡Hola! 👋 Vi tu perfil y me gustó mucho tu rollo en {genero}. Tengo una propuesta de negocio que creo te puede interesar.\n\n¿Te late que platemos?\n\n💼 ¡Saludos!"
+                    casual: "¡Hola! 👋 Vi tu perfil y me gustó mucho tu rollo en {genero}. Tengo una propuesta de negocio que creo te puede interesar.\n\n¿Te late que platemos?\n\n ¡Saludos!"
                 },
                 manager: "¡Hola! 👋 Vi que manejas talento en la escena {genero}. Estoy buscando representación para unos artistas/productores con los que trabajo y creo que tu perfil encaja.\n\n¿Tienes un momento para conversar?\n\n💼 Saludos!",
-                sello: "¡Hola! 👋 He seguido el trabajo de su sello en {genero} y me parece excelente. Tengo material de artistas/productores que creo encajaría perfecto con su línea editorial.\n\n¿A quién podría enviar una demo o propuesta?\n\n🎵 Saludos!",
-                ar: "¡Hola! 👋 Vi que estás en A&R y te mueves en la escena {genero}. Tengo unos artistas/productores con proyectos muy interesantes que creo podrían encajar con lo que buscan.\n\n¿Tienes un momento para que te los presente?\n\n🔍 Saludos!",
+                sello: "¡Hola! 👋 He seguido el trabajo de su sello en {genero} y me parece excelente. Tengo material de artistas/productores que creo encajaría perfecto con su línea editorial.\n\n¿A quién podría enviar una demo o propuesta?\n\n Saludos!",
+                ar: "¡Hola! 👋 Vi que estás en A&R y te mueves en la escena {genero}. Tengo unos artistas/productores con proyectos muy interesantes que creo podrían encajar con lo que buscan.\n\n¿Tienes un momento para que te los presente?\n\n Saludos!",
                 ingeniero: "¡Qué onda! 👋 Vi tu perfil y me impresiona tu trabajo como ingeniero en {genero}. Estoy buscando a alguien de confianza para mezclar/masterizar unos proyectos.\n\n¿Tienes disponibilidad y me podrías pasar tus tarifas?\n\n🎚️ ¡Saludos!",
                 songwriter: "¡Hola! 👋 Vi tu perfil y me encantó tu trabajo como songwriter en {genero}. Estoy buscando topliners/compositores para unos proyectos de artistas.\n\n¿Te interesaría platicar?\n\n✍️ Saludos!",
-                promotor: "¡Hola! 👋 Vi que organizas eventos en la escena {genero}. Tengo artistas/productores que creo encajarían perfecto en tu línea de programación.\n\n¿Tienes un momento para conversar sobre posibles bookings?\n\n🎫 Saludos!",
+                promotor: "¡Hola! 👋 Vi que organizas eventos en la escena {genero}. Tengo artistas/productores que creo encajarían perfecto en tu línea de programación.\n\n¿Tienes un momento para conversar sobre posibles bookings?\n\n Saludos!",
                 sync: "¡Hola! 👋 Vi tu perfil y me parece muy interesante tu trabajo en sync/licencias para {genero}. Tengo catálogo de artistas/productores que creo podría encajar en proyectos audiovisuales.\n\n¿Tienes un momento para conversar?\n\n🎬 Saludos!",
                 publicista: "¡Hola! 👋 Vi tu perfil y me parece muy interesante tu trabajo en PR para {genero}. Estoy buscando apoyo de prensa para unos lanzamientos.\n\n¿Tienes un momento para conversar?\n\n📢 Saludos!"
             },
             en: {
                 artista_produccion: {
-                    underground: "Yo! 👋 Checked your profile and your {genero} sound is fire, you got a crazy identity. I'm producing some projects and think your vibe would fit perfectly.\n\nWanna link up? Would love to hear more of your stuff.\n\n🎵 Cheers!",
+                    underground: "Yo! 👋 Checked your profile and your {genero} sound is fire, you got a crazy identity. I'm producing some projects and think your vibe would fit perfectly.\n\nWanna link up? Would love to hear more of your stuff.\n\n Cheers!",
                     mainstream: "Hey! 👋 Been following your work in {genero} and honestly impressed with your level. I'm producing several high-impact projects and think your style could add a lot.\n\nGot a moment to chat this week? Would love to explore a collab.\n\n🎵 Best!",
                     indie: "Hey! 👋 Saw your profile and loved your {genero} proposal, you got a really authentic sound. I'm producing some projects and think your vibe would fit perfectly.\n\nInterested in chatting? Would love to hear more of your music.\n\n🎵 Cheers!",
                     experimental: "Yo! 👋 Saw your profile and fascinated by what you do in {genero}, you clearly break molds. I'm producing projects with a different approach and think your sound could bring something unique.\n\nDown to explore something together?\n\n🎵 Cheers!",
                     profesional: "Hello! 👋 Reviewed your profile and your work in {genero} seems very professional. I'm developing production projects and think your profile fits what we're looking for.\n\nWould you be available for a call this week?\n\n🎵 Best regards!",
-                    casual: "Hey! 👋 Saw your profile and really liked your {genero} vibe. I'm putting together some projects and think your sound could fit well.\n\nWanna chat?\n\n🎵 Cheers!"
+                    casual: "Hey! 👋 Saw your profile and really liked your {genero} vibe. I'm putting together some projects and think your sound could fit well.\n\nWanna chat?\n\n Cheers!"
                 },
                 artista_colaboracion: {
                     underground: "Yo! 👋 Checked your profile and your {genero} sound is fire. I'm putting together some collabs and think your style would fit perfectly.\n\nDown to explore something together? Would love to hear your sound.\n\n🎵 Cheers!",
@@ -370,7 +607,7 @@
         function init() {
             renderChips('tipos-cliente', TIPOS_CLIENTE, tiposSeleccionados);
             renderChips('objetivos', OBJETIVOS, objetivosSeleccionados);
-            renderChips('generos', GENEROS, generosSeleccionados, true);
+            renderChips('generos', GENEROS_HASHTAGS, generosSeleccionados, true);
         }
 
         function renderChips(containerId, data, stateSet, isGenero = false) {
@@ -402,33 +639,27 @@
                 return;
             }
 
+            const region = document.getElementById('region-select').value;
+            const regionLang = REGION_IDIOMA[region] || 'auto';
+
             const output = document.getElementById('estrategia-output');
             const links = document.getElementById('hashtags-links');
             links.innerHTML = '';
             output.classList.remove('hidden');
 
-            // Generar hashtags según tipos y géneros
+            // Generar hashtags según tipos, géneros y región
             const hashtagsSet = new Set();
             
             generosSeleccionados.forEach(g => {
-                GENEROS[g].forEach(tag => hashtagsSet.add(tag));
+                const lang = regionLang === 'auto' ? 'en' : regionLang;
+                const tags = GENEROS_HASHTAGS[g]?.[lang] || GENEROS_HASHTAGS[g].en || [];
+                tags.slice(0, 10).forEach(tag => hashtagsSet.add(tag));
             });
 
             tiposSeleccionados.forEach(t => {
-                const tagMap = {
-                    "artista": ["artist", "singer", "rapper", "vocalist"],
-                    "productor": ["producer", "beatmaker", "prod"],
-                    "dj": ["dj", "djlife", "djset"],
-                    "manager": ["manager", "artistmanager", "musicmanager"],
-                    "sello": ["recordlabel", "label", "indielabel"],
-                    "ar": ["aandr", "arep", "aandrs"],
-                    "ingeniero": ["mixengineer", "mastering", "audioengineer"],
-                    "songwriter": ["songwriter", "topliner", "composer"],
-                    "promotor": ["promoter", "events", "booking"],
-                    "sync": ["synclicensing", "musiclicensing", "sync"],
-                    "publicista": ["musicpr", "publicist", "press"]
-                };
-                if (tagMap[t]) tagMap[t].forEach(tag => hashtagsSet.add(tag));
+                const lang = regionLang === 'auto' ? 'en' : regionLang;
+                const tags = TIPOS_HASHTAGS[t]?.[lang] || TIPOS_HASHTAGS[t].en || [];
+                tags.slice(0, 10).forEach(tag => hashtagsSet.add(tag));
             });
 
             Array.from(hashtagsSet).forEach(tag => {
@@ -484,6 +715,7 @@
             const nivel = document.getElementById('nivel-select').value;
             const idiomaPref = document.getElementById('idioma-select').value;
             const bio = document.getElementById('input-bio').value.trim();
+            const tipoArtista = document.getElementById('tipo-artista-select').value;
 
             // Si no hay tipos u objetivos seleccionados, usar defaults
             const tipos = tiposSeleccionados.size > 0 ? Array.from(tiposSeleccionados) : ['artista'];
@@ -503,7 +735,7 @@
                 const vibeUsado = vibe === 'mixto' ? vibes[idx % vibes.length] : vibe;
                 const nivelUsado = nivel === 'mixto' ? niveles[idx % niveles.length] : nivel;
 
-                const mensaje = generarMensajePersonalizado(idioma, tipo, objetivo, genero, vibeUsado, nivelUsado, bio, username);
+                const mensaje = generarMensajePersonalizado(idioma, tipo, objetivo, genero, vibeUsado, nivelUsado, bio, username, tipoArtista);
 
                 mensajesGenerados.push({
                     username,
@@ -513,6 +745,7 @@
                     genero,
                     vibe: vibeUsado,
                     nivel: nivelUsado,
+                    tipoArtista,
                     mensaje
                 });
             });
@@ -520,12 +753,19 @@
             renderResultados();
         }
 
-        function generarMensajePersonalizado(idioma, tipo, objetivo, genero, vibe, nivel, bio, username) {
+        function generarMensajePersonalizado(idioma, tipo, objetivo, genero, vibe, nivel, bio, username, tipoArtista) {
             // Para artistas, usar plantilla específica según objetivo y vibe
             if (tipo === 'artista') {
                 const key = `artista_${objetivo}`;
                 const plantilla = MENSAJES[idioma]?.[key]?.[vibe] || MENSAJES.en.artista_produccion.underground;
                 let mensaje = plantilla.replace(/{genero}/g, genero.charAt(0).toUpperCase() + genero.slice(1));
+                
+                // Agregar mención de tipo de artista
+                if (tipoArtista === 'independiente') {
+                    mensaje += `\n\nMe encanta que seas independiente, eso demuestra mucha autenticidad.`;
+                } else if (tipoArtista === 'con-sello') {
+                    mensaje += `\n\nVi que trabajas con un sello, me parece genial.`;
+                }
                 
                 // Si hay bio, agregar mención personalizada
                 if (bio) {
@@ -559,17 +799,17 @@
             };
 
             const tipoLabels = {
-                artista: '🎤 Artista', productor: '🎹 Productor', dj: '🎧 DJ',
+                artista: '🎤 Artista', productor: ' Productor', dj: '🎧 DJ',
                 manager: '💼 Manager', sello: '🏢 Sello', ar: '🔍 A&R',
                 ingeniero: '🎚️ Ingeniero', songwriter: '✍️ Songwriter',
-                promotor: '📣 Promotor', sync: '🎬 Sync', publicista: '📢 PR'
+                promotor: ' Promotor', sync: '🎬 Sync', publicista: '📢 PR'
             };
 
             const objetivoLabels = {
-                produccion: '🎵 Producción', colaboracion: '🤝 Collab',
+                produccion: '🎵 Producción', colaboracion: ' Collab',
                 negocio: '💼 Negocio', management: '📋 Management',
                 distribucion: '📦 Distribución', sync: '🎬 Sync',
-                booking: '🎫 Booking', networking: '🌐 Networking'
+                booking: '🎫 Booking', networking: ' Networking'
             };
 
             container.innerHTML = mensajesGenerados.map((item, idx) => {
@@ -607,6 +847,7 @@
                                 <div class="flex gap-2 flex-wrap">
                                     <span class="text-xs bg-purple-900/40 text-purple-300 px-2 py-0.5 rounded">${item.vibe}</span>
                                     <span class="text-xs bg-blue-900/40 text-blue-300 px-2 py-0.5 rounded">${item.nivel}</span>
+                                    <span class="text-xs bg-green-900/40 text-green-300 px-2 py-0.5 rounded">${item.tipoArtista}</span>
                                 </div>
                                 <button onclick="copiarMsg(this, ${idx})" class="text-xs bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded transition">
                                     <i class="fa-solid fa-copy"></i> Copiar
@@ -651,10 +892,10 @@
                 alert('Primero genera los mensajes');
                 return;
             }
-            let csv = 'Username,Tipo,Objetivo,Genero,Idioma,Vibe,Nivel,Mensaje\n';
+            let csv = 'Username,Tipo,Objetivo,Genero,Idioma,Vibe,Nivel,TipoArtista,Mensaje\n';
             mensajesGenerados.forEach(item => {
                 const msg = item.mensaje.replace(/"/g, '""').replace(/\n/g, ' ');
-                csv += `"${item.username}","${item.tipo}","${item.objetivo}","${item.genero}","${item.idioma}","${item.vibe}","${item.nivel}","${msg}"\n`;
+                csv += `"${item.username}","${item.tipo}","${item.objetivo}","${item.genero}","${item.idioma}","${item.vibe}","${item.nivel}","${item.tipoArtista}","${msg}"\n`;
             });
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
