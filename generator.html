@@ -3,547 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BFYT Command Center - Generador Pro V2</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>BFYT Growth Engine V5 - Final</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
-            color: #e0e0e0;
-            min-height: 100vh;
-            padding: 20px;
+        :root {
+            --bg: #050507; --card: #121216; --border: #22222a;
+            --primary: #7c3aed; --accent: #06b6d4; --success: #10b981;
+            --text: #f4f4f5; --muted: #a1a1aa;
         }
-        .container { max-width: 1400px; margin: 0 auto; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; padding: 2rem; }
+        .container { max-width: 1500px; margin: 0 auto; }
         
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, rgba(138,43,226,0.15), rgba(0,242,255,0.15));
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 40px;
-        }
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.8rem;
-            background: linear-gradient(90deg, #8a2be2, #00f2ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-        .subtitle { color: #888; font-size: 1.1rem; }
-        
-        .dashboard { display: grid; grid-template-columns: 1fr 2fr; gap: 25px; }
-        @media (max-width: 900px) { .dashboard { grid-template-columns: 1fr; } }
-        
-        .card {
-            background: rgba(22,22,30,0.95);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-        }
-        .card h2 {
-            color: #00f2ff;
-            margin-bottom: 25px;
-            font-size: 1.3rem;
-            border-bottom: 2px solid rgba(138,43,226,0.3);
-            padding-bottom: 12px;
-        }
-        
-        .form-group { margin-bottom: 22px; }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #aaa;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 14px;
-            background: #0f0f15;
-            border: 2px solid #2a2a35;
-            border-radius: 10px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #8a2be2;
-            box-shadow: 0 0 15px rgba(138,43,226,0.3);
-        }
+        header { text-align: center; margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+        h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; background: linear-gradient(to right, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+        .subtitle { color: var(--muted); font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+        .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; }
+        @media (max-width: 1024px) { .grid { grid-template-columns: 1fr; } }
+
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; }
+        .card h2 { font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        input, select, textarea { width: 100%; background: #000; border: 1px solid var(--border); color: var(--text); padding: 0.75rem; border-radius: 0.5rem; font-size: 1rem; transition: all 0.2s; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2); }
         textarea { min-height: 100px; resize: vertical; }
+
+        .btn-generate { width: 100%; background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border: none; padding: 1rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: transform 0.2s; text-transform: uppercase; letter-spacing: 0.05em; }
+        .btn-generate:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3); }
+
+        .output-section { margin-bottom: 2rem; position: relative; }
+        .output-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+        .output-header h3 { font-size: 1rem; color: var(--primary); font-weight: 600; }
+        .copy-btn { background: var(--border); color: var(--text); border: none; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-size: 0.75rem; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+        .copy-btn:hover { background: var(--accent); color: #000; }
+
+        .box { background: #000; border: 1px solid var(--border); padding: 1rem; border-radius: 0.5rem; font-family: monospace; font-size: 0.9rem; line-height: 1.6; color: #d4d4d8; white-space: pre-wrap; word-wrap: break-word; }
         
-        .generate-btn {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(90deg, #8a2be2, #00f2ff);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-size: 1.15rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-        .generate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(138,43,226,0.5);
-        }
+        .options-grid { display: grid; gap: 0.75rem; }
+        .option-card { background: #000; border: 1px solid var(--border); padding: 1rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; }
+        .option-card:hover { border-color: var(--primary); background: rgba(124, 58, 237, 0.05); }
+        .option-card.active { border-color: var(--accent); background: rgba(6, 182, 212, 0.1); }
         
-        .output-section {
-            margin-bottom: 28px;
-            position: relative;
-            background: #0f0f15;
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 4px solid #8a2be2;
-        }
-        .output-section h3 {
-            color: #8a2be2;
-            margin-bottom: 12px;
-            font-size: 1rem;
-        }
-        .output-box {
-            background: #0a0a0f;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #2a2a35;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            min-height: 60px;
-            color: #ccc;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        .copy-btn {
-            position: absolute;
-            top: 22px;
-            right: 22px;
-            background: #2a2a35;
-            border: none;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        .copy-btn:hover { background: #00f2ff; color: #0a0a0f; }
-        
-        .badge {
-            display: inline-block;
-            padding: 4px 12px;
-            background: linear-gradient(90deg, #8a2be2, #00f2ff);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-left: 10px;
-        }
-        
-        .name-options, .title-options { display: grid; gap: 15px; }
-        .name-card, .title-card {
-            background: linear-gradient(135deg, rgba(138,43,226,0.1), rgba(0,242,255,0.1));
-            padding: 20px;
-            border-radius: 12px;
-            border: 2px solid #8a2be2;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .name-card:hover, .title-card:hover {
-            border-color: #00f2ff;
-            transform: translateX(5px);
-        }
-        .name-card.selected, .title-card.selected {
-            background: linear-gradient(135deg, rgba(138,43,226,0.3), rgba(0,242,255,0.3));
-            border-color: #00f2ff;
-        }
-        .name-card h4 { color: #00f2ff; font-size: 1.3rem; margin-bottom: 5px; }
-        .name-card p { color: #888; font-size: 0.85rem; }
-        .title-card h4 { color: #8a2be2; margin-bottom: 8px; font-size: 0.9rem; }
-        .title-card p { color: #e0e0e0; font-family: 'Courier New', monospace; font-size: 0.95rem; }
-        
-        .energy-selector {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .energy-btn {
-            padding: 12px;
-            background: #0f0f15;
-            border: 2px solid #2a2a35;
-            border-radius: 8px;
-            color: #888;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        .energy-btn.active {
-            background: linear-gradient(90deg, #8a2be2, #00f2ff);
-            border-color: #00f2ff;
-            color: white;
-        }
-        
-        .scene-preview {
-            background: rgba(0,242,255,0.05);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
-            border: 1px solid rgba(0,242,255,0.2);
-        }
-        .scene-preview h4 { color: #00f2ff; margin-bottom: 8px; font-size: 0.9rem; }
-        .scene-preview p { color: #aaa; font-size: 0.85rem; line-height: 1.5; }
-        
-        .warning {
-            background: rgba(255,165,0,0.1);
-            border: 1px solid rgba(255,165,0,0.3);
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-size: 0.85rem;
-            color: #ffa500;
-        }
+        .regen-btn { background: transparent; border: 1px solid var(--muted); color: var(--muted); padding: 0.3rem 0.6rem; border-radius: 0.4rem; font-size: 0.7rem; cursor: pointer; }
+        .regen-btn:hover { border-color: var(--text); color: var(--text); }
+
+        .growth-tag { display: inline-block; background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.7rem; font-weight: 700; margin-right: 0.5rem; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>⚡ COMMAND CENTER V2</h1>
-            <p class="subtitle">Beats BFYT | Sistema Anti-Repetición + Escenas Variadas</p>
+            <h1>GROWTH ENGINE V5 - FINAL</h1>
+            <p class="subtitle">Sistema de Expansión Masiva | Retención + Viralidad + Conversión</p>
         </header>
 
-        <div class="dashboard">
-            <div class="card">
-                <h2>⚙️ Configurar Beat</h2>
-                
-                <div class="form-group">
-                    <label>BPM</label>
-                    <input type="number" id="bpm" placeholder="Ej: 125">
-                </div>
-                
-                <div class="form-group">
-                    <label>Energía</label>
-                    <div class="energy-selector">
-                        <button type="button" class="energy-btn" data-energy="low">Baja</button>
-                        <button type="button" class="energy-btn active" data-energy="medium">Media</button>
-                        <button type="button" class="energy-btn" data-energy="high">Alta</button>
+        <div class="grid">
+            <div>
+                <div class="card">
+                    <h2>️ Datos del Beat</h2>
+                    <div class="form-group">
+                        <label>BPM</label>
+                        <input type="number" id="bpm" placeholder="Ej: 125">
                     </div>
+                    <div class="form-group">
+                        <label>Mood / Energía</label>
+                        <select id="mood">
+                            <option value="cinematic">Cinematic (Épico, Orquestal)</option>
+                            <option value="melodic">Dark Melodic (Triste, Piano)</option>
+                            <option value="rage">Rage (Agresivo, Distorsión)</option>
+                            <option value="drill">UK Drill (Oscuro, Sliding 808s)</option>
+                            <option value="opium">Opium (Psicodélico, Underground)</option>
+                            <option value="space">Space (Futurista, Galáctico)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Intención / Descripción (Libre)</label>
+                        <textarea id="intencion" placeholder="Ej: beat futurista con synths brillantes, vibe de ascensión, 808s profundos..."></textarea>
+                    </div>
+                    <button class="btn-generate" onclick="generarTodo()">🚀 Generar Campaña de Expansión</button>
                 </div>
-                
-                <div class="form-group">
-                    <label>Mood / Vibe</label>
-                    <select id="mood">
-                        <option value="cinematic">Cinematic Trap</option>
-                        <option value="melodic">Dark Melodic</option>
-                        <option value="rage">Rage / Aggressive</option>
-                        <option value="drill">UK Drill</option>
-                        <option value="opium">Opium / Carti</option>
-                        <option value="space">Space / Futuristic</option>
-                        <option value="angelic">Angelic / Celestial</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Describe el Beat</label>
-                    <textarea id="descripcion" placeholder="Ej: futurista, synths brillantes, 808s pesados, vibe tranquilo pero épico..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>🚫 Nombres Ya Usados (separados por coma)</label>
-                    <textarea id="nombresUsados" placeholder="Ej: Velvet Night, Neon Orbit, Aether Drift, Galactic Dreams..." style="min-height: 60px;"></textarea>
-                    <small style="color: #666; display: block; margin-top: 5px;">⚠️ El sistema evitará estos nombres</small>
-                </div>
-                
-                <button class="generate-btn" onclick="generarData()">🚀 Generar Todo</button>
             </div>
 
-            <div class="card">
-                <h2> Resultados <span class="badge">V2 Pro</span></h2>
-                
-                <div class="output-section">
-                    <h3>🎯 Opciones de Nombres (Elige 1)</h3>
-                    <div class="name-options" id="nameOptions"></div>
-                </div>
-
-                <div class="output-section">
-                    <h3>📺 Opciones de Títulos (Elige 1)</h3>
-                    <div class="title-options" id="titleOptions"></div>
-                </div>
-
-                <div class="output-section">
-                    <h3>🎨 Escena Cover Art Seleccionada</h3>
-                    <div class="scene-preview" id="scenePreview">
-                        <h4>Esperando generación...</h4>
-                        <p>Los detalles de la escena aparecerán aquí</p>
+            <div>
+                <div class="card">
+                    <h2>🎯 Núcleo de Identidad</h2>
+                    <div class="output-section">
+                        <div class="output-header">
+                            <h3>Nombres Sugeridos</h3>
+                            <button class="regen-btn" onclick="regenerarNombres()"> Cambiar</button>
+                        </div>
+                        <div class="options-grid" id="nameOptions"></div>
+                    </div>
+                    <div class="output-section">
+                        <div class="output-header"><h3>Títulos (Estrategia 60/25/15)</h3></div>
+                        <div class="options-grid" id="titleOptions"></div>
                     </div>
                 </div>
 
-                <div class="output-section">
-                    <h3>🎯 Canal & Playlist</h3>
-                    <div class="output-box" id="out-meta"></div>
+                <div class="card">
+                    <h2>🚀 Módulo de Expansión (Alcance Masivo)</h2>
+                    <div class="output-section">
+                        <div class="output-header"><h3><span class="growth-tag">VIRAL</span> Ganchos para TikTok / Reels / Shorts</h3><button class="copy-btn" onclick="copiar('out-shorts')">Copiar</button></div>
+                        <div class="box" id="out-shorts"></div>
+                    </div>
+                    <div class="output-section">
+                        <div class="output-header"><h3><span class="growth-tag">RETENCIÓN</span> Estrategia Intro (Fix 1:01)</h3><button class="copy-btn" onclick="copiar('out-intro')">Copiar</button></div>
+                        <div class="box" id="out-intro"></div>
+                    </div>
                 </div>
 
-                <div class="output-section">
-                    <h3>📝 Descripción</h3>
-                    <button class="copy-btn" onclick="copiar('out-desc')">📋 Copiar</button>
-                    <div class="output-box" id="out-desc"></div>
+                <div class="card">
+                    <h2> SEO y Conversión (YouTube)</h2>
+                    <div class="output-section">
+                        <div class="output-header"><h3>Descripción Optimizada</h3><button class="copy-btn" onclick="copiar('out-desc')">Copiar</button></div>
+                        <div class="box" id="out-desc"></div>
+                    </div>
+                    <div class="output-section">
+                        <div class="output-header"><h3>Tags (500 chars)</h3><button class="copy-btn" onclick="copiar('out-tags')">Copiar</button></div>
+                        <div class="box" id="out-tags"></div>
+                    </div>
                 </div>
 
-                <div class="output-section">
-                    <h3>🏷️ Tags (500 chars)</h3>
-                    <button class="copy-btn" onclick="copiar('out-tags')">📋 Copiar</button>
-                    <div class="output-box" id="out-tags"></div>
-                </div>
-
-                <div class="output-section">
-                    <h3>🎨 Prompt Cover Art (VARIADO)</h3>
-                    <button class="copy-btn" onclick="copiar('out-prompt')">📋 Copiar</button>
-                    <div class="output-box" id="out-prompt"></div>
+                <div class="card">
+                    <h2>🎨 Visual & Branding</h2>
+                    <div class="output-section">
+                        <div class="output-header"><h3>Prompt Cover Art (Dinámico)</h3><button class="copy-btn" onclick="copiar('out-prompt')">Copiar</button></div>
+                        <div class="box" id="out-prompt"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // BASE DE DATOS COMBINATORIA (20 raíces A + 20 raíces B = 400 combinaciones)
-        const raicesA = {
-            cinematic: ["Velvet", "Ivory", "Crystal", "Obsidian", "Platinum", "Noir", "Shadow", "Eclipse", "Phantom", "Onyx", "Titan", "Apex", "Prism", "Nebula", "Quantum", "Stellar", "Cosmic", "Void", "Eternal", "Silent"],
-            melodic: ["Velvet", "Crystal", "Silent", "Fading", "Broken", "Eternal", "Lost", "Midnight", "Echo", "Silk", "Frequency", "Dollar", "After", "Neon", "Cosmic", "Gravity", "Orbit", "Mind", "Call", "2:17"],
-            rage: ["Luminous", "Black", "Midnight", "Neon", "Rage", "Voltage", "Destroy", "Chaos", "Apex", "Riot", "Maximum", "Dark", "System", "Breach", "Cyber", "Digital", "Berserk", "Engine", "Overload", "Apocalypse"],
-            drill: ["Burgundy", "Shadow", "Velvet", "Cosmic", "Noir", "Ivory", "Midnight", "Phantom", "Silent", "Dark", "Code", "Zero", "Ghost", "Night", "Steel", "Urban", "Concrete", "Block", "Drill", "Sector"],
-            opium: ["Neon", "Psychedelic", "Cartel", "Opium", "Destroy", "Vampire", "Playboi", "Ken", "Carti", "Underground", "Psycho", "Blood", "Vampire", "Destroy", "Dreams", "Nights", "Protocol", "Mode", "State", "X"],
-            space: ["Galactic", "Stellar", "Cosmic", "Nebula", "Interstellar", "Quantum", "Starlight", "Orbital", "Space", "Stellar", "Nebula", "Galactic", "Quantum", "Cosmic", "Orbital", "Stellar", "Galactic", "Cosmic", "Space", "Nebula"],
-            angelic: ["Universal", "Angelic", "Celestial", "Heaven", "Divine", "Angelic", "Celestial", "Ethereal", "Sacred", "Angelic", "Celestial", "Divine", "Heavenly", "Angelic", "Celestial", "Sacred", "Divine", "Ethereal", "Angelic", "Celestial"]
-        };
-        
-        const raicesB = {
-            cinematic: ["Protocol", "Mechanism", "Syndicate", "Cartel", "Ascension", "Horizon", "Cathedral", "Symphony", "Circuit", "Dawn", "Veil", "Rise", "Velocity", "Drift", "Orbit", "Cascade", "Infinity", "Zenith", "Sky", "Night"],
-            melodic: ["Nocturne", "Oblivion", "Confession", "Dreams", "Memories", "Mind", "After", "Ritual", "Tears", "Heart", "Eyes", "Echo", "Drip", "Signal", "X", "Diamonds", "Gravity", "Call", "AM", "Night"],
-            rage: ["Force", "Visa", "Cartel", "Chaos", "Protocol", "X", "Mode", "Theory", "Predator", "Control", "Overdrive", "Voltage", "Crash", "Protocol", "Warfare", "Riot", "Rage", "Berserk", "Engine", "Apocalypse"],
-            drill: ["Protocol", "Cascade", "District", "Drill", "District", "Syndicate", "Drill", "Block", "Ops", "Sector", "Black", "Visibility", "Protocol", "Raid", "Curtain", "Shadow", "Jungle", "Protocol", "Symphony", "Ops"],
-            opium: ["Orbit", "Dawn", "Dreams", "Nights", "Lonely", "State", "Dreams", "Mode", "Protocol", "X", "Vampire", "Cartel", "Active", "Blood", "Kiss", "Mode", "Dreams", "Nights", "Cartel", "Rage"],
-            space: ["Protocol", "Drift", "Ascension", "Dreams", "Void", "Protocol", "Dreams", "Circuit", "Voyage", "Ascension", "Void", "Odyssey", "Horizon", "Nebula", "Protocol", "Stars", "Dreams", "Voyage", "Circuit", "Drift"],
-            angelic: ["Ascent", "Ascension", "Peace", "Echo", "Serenity", "Protocol", "Harmony", "Dawn", "Orbit", "Veil", "Protocol", "Ascension", "Circuit", "Nebula", "Drift", "Echo", "Harmony", "Peace", "Horizon", "Rise"]
-        };
+        const raicesA = ["Aether", "Velvet", "Neon", "Shadow", "Crystal", "Ivory", "Midnight", "Phantom", "Cosmic", "Stellar", "Quantum", "Nebula", "Obsidian", "Platinum", "Noir", "Eclipse", "Titan", "Apex", "Prism", "Void", "Eternal", "Silent", "Fading", "Broken", "Lost", "Echo", "Silk", "Frequency", "Dollar", "After", "Luminous", "Black", "Voltage", "Destroy", "Chaos", "Riot", "Maximum", "Dark", "System", "Breach", "Cyber", "Digital", "Berserk", "Engine", "Overload", "Apocalypse", "Burgundy", "Code", "Zero", "Ghost", "Steel", "Urban", "Concrete", "Block", "Psychedelic", "Cartel", "Opium", "Vampire", "Playboi", "Underground", "Psycho", "Blood", "Dreams", "Nights", "Protocol", "Mode", "State", "Galactic", "Interstellar", "Starlight", "Orbital", "Space", "Universal", "Angelic", "Celestial", "Heaven", "Divine", "Ethereal", "Sacred", "Harmony"];
+        const raicesB = ["Drift", "Protocol", "Mechanism", "Syndicate", "Cartel", "Ascension", "Horizon", "Cathedral", "Symphony", "Circuit", "Dawn", "Veil", "Rise", "Velocity", "Orbit", "Cascade", "Infinity", "Zenith", "Sky", "Night", "Nocturne", "Oblivion", "Confession", "Memories", "Mind", "Ritual", "Tears", "Heart", "Eyes", "Signal", "Force", "Visa", "Theory", "Predator", "Control", "Overdrive", "Crash", "Warfare", "District", "Ops", "Sector", "Visibility", "Raid", "Curtain", "Jungle", "Lonely", "Active", "X", "Voyage", "Odyssey", "Peace", "Serenity", "Ascent", "Echoes", "Whispers", "Illusions", "Mirage", "Specter", "Wraith", "Requiem", "Anthem", "Legacy", "Dynasty", "Empire", "Kingdom", "Realm", "Domain", "Frontier", "Expanse", "Horizon", "Matrix", "Vector", "Pulse", "Wave", "Flux", "Core", "Node", "Link", "Gate", "Portal"];
 
-        // SISTEMA DE ESCENAS VARIADAS POR MOOD
         const escenas = {
-            cinematic: [
-                { locacion: "luxury penthouse at night with floor-to-ceiling windows overlooking city skyline", outfit: "elegant long black silk gown with diamond shoulder details", iluminacion: "warm golden and soft purple ambient lighting from city lights", pose: "standing by the window looking at the city, one hand holding a crystal glass", accesorios: "long diamond earrings, diamond bracelet, elegant updo hairstyle" },
-                { locacion: "grand classical theater with velvet red curtains and golden details", outfit: "sophisticated dark burgundy velvet dress with dramatic sleeves", iluminacion: "dramatic stage spotlight with purple and gold tones", pose: "sitting on theater stage edge, legs crossed, confident gaze", accesorios: "statement diamond necklace, vintage-inspired jewelry, wavy hair down" },
-                { locacion: "luxury mansion library with dark wood panels and leather books", outfit: "refined black tuxedo-style outfit with satin lapels", iluminacion: "warm amber fireplace glow mixed with cool blue moonlight from windows", pose: "leaning against mahogany desk, one hand on hip, intellectual gaze", accesorios: "gold vintage watch, subtle diamond studs, sleek pulled-back hair" }
-            ],
-            melodic: [
-                { locacion: "rainy night by a large window in a dim apartment, city lights blurred outside", outfit: "oversized soft grey cashmere sweater with delicate silver chains", iluminacion: "cool blue moonlight mixed with warm lamp glow, rain reflections", pose: "sitting on windowsill hugging knees, melancholic gaze looking out", accesorios: "delicate silver necklace, small hoop earrings, natural wavy hair" },
-                { locacion: "empty rooftop at night with scattered fairy lights and city panorama", outfit: "flowing dark purple chiffon dress catching the wind", iluminacion: "soft purple and pink ambient lighting from fairy lights and distant city", pose: "standing at rooftop edge with arms slightly open, eyes closed peaceful", accesorios: "layered delicate necklaces, small diamond rings, loose romantic hair" },
-                { locacion: "vintage recording studio with analog equipment and warm lighting", outfit: "comfortable but stylish black turtleneck with subtle sparkle details", iluminacion: "warm amber studio lights with soft blue monitor glow", pose: "sitting on studio couch with headphones around neck, thoughtful expression", accesorios: "minimalist gold jewelry, natural makeup, medium length hair" }
-            ],
-            rage: [
-                { locacion: "underground warehouse with concrete walls and industrial pipes", outfit: "black leather jacket over mesh top with heavy chains", iluminacion: "intense red and orange strobe lighting with smoke effects", pose: "aggressive stance with one foot on crate, intense direct gaze", accesorios: "multiple heavy Cuban link chains, large diamond rings, bold makeup with sharp eyeliner" },
-                { locacion: "abandoned parking garage with graffiti walls at night", outfit: "oversized black hoodie with designer logos and baggy cargo pants", iluminacion: "harsh neon red and electric blue lighting from street lamps", pose: "sitting on sports car hood, one leg bent, defiant attitude", accesorios: "iced-out watch, multiple chains layered, braided or styled hair" },
-                { locacion: "dark nightclub with laser lights and fog machine", outfit: "futuristic metallic silver crop top with black leather pants", iluminacion: "pulsing magenta and cyan laser beams cutting through fog", pose: "dancing pose with one arm raised, energetic expression", accesorios: "chunky diamond jewelry, body chains, bold colored hair or extensions" }
-            ],
-            drill: [
-                { locacion: "London street at night with red double-decker bus in background", outfit: "black puffer jacket with designer details and dark jeans", iluminacion: "cold blue street lighting with orange bus lights reflection", pose: "walking toward camera with hands in pockets, serious expression", accesorios: "thick silver chain, diamond stud earrings, short styled hair" },
-                { locacion: "Brooklyn rooftop with Manhattan skyline at night", outfit: "all-black tactical-style outfit with utility vest", iluminacion: "cool grey-blue city lights with occasional warm window glows", pose: "leaning against rooftop railing, looking over shoulder at camera", accesorios: "platinum chain, diamond tennis bracelet, fade haircut or sleek ponytail" },
-                { locacion: "underground subway station with tiled walls and fluorescent lights", outfit: "dark tracksuit with subtle luxury brand details", iluminacion: "harsh fluorescent white-blue lighting with yellow warning lights", pose: "standing on platform edge, arms crossed, intense stare", accesorios: "gold grill visible, heavy chain, braids or cornrows" }
-            ],
-            opium: [
-                { locacion: "psychedelic room with mirrored walls and LED strips", outfit: "all-black avant-garde outfit with asymmetric cuts and chains", iluminacion: "saturated red and magenta lighting with occasional green flashes", pose: "sitting cross-legged on floor, head tilted, mysterious half-smile", accesorios: "multiple layered chains, face jewelry, dyed hair or bold wig" },
-                { locacion: "neon-lit Tokyo alley at night with Japanese signs", outfit: "futuristic black techwear with straps and buckles", iluminacion: "intense neon pink and electric blue from signs and puddles", pose: "walking away looking back over shoulder, one hand raised", accesorios: "cyberpunk-style jewelry, visor or futuristic sunglasses, colored hair" },
-                { locacion: "dark art gallery with abstract paintings and spotlights", outfit: "all-black designer outfit with subtle reflective details", iluminacion: "dramatic white spotlights on art with deep red ambient fill", pose: "standing in front of large painting, arms behind back, contemplative", accesorios: "minimalist but expensive jewelry, sleek hair, bold red lips" }
-            ],
-            space: [
-                { locacion: "futuristic space station observation deck with Earth visible through window", outfit: "metallic silver futuristic bodysuit with glowing accent lines", iluminacion: "cool cyan and deep purple cosmic lighting with star reflections", pose: "floating pose with arms slightly extended, looking at Earth", accesorios: "holographic jewelry, futuristic visor or headpiece, sleek metallic hair" },
-                { locacion: "neon-lit spaceship cockpit with holographic displays", outfit: "dark navy pilot-style outfit with metallic details", iluminacion: "blue holographic display glow mixed with purple ambient", pose: "sitting in pilot seat with one hand on controls, focused gaze", accesorios: "tech-inspired jewelry, smart watch, short practical hairstyle" },
-                { locacion: "alien landscape with two moons and crystalline formations", outfit: "flowing iridescent outfit that shifts colors", iluminacion: "ethereal purple and teal lighting from alien sky and crystals", pose: "standing among crystals with arms open, awe expression", accesorios: "crystal-inspired jewelry, ethereal makeup, long flowing hair" }
-            ],
-            angelic: [
-                { locacion: "ethereal white marble temple with columns and soft clouds", outfit: "flowing white and gold goddess-style gown with delicate draping", iluminacion: "soft golden divine light rays from above with white ambient glow", pose: "standing with arms slightly raised, serene peaceful expression", accesorios: "delicate gold halo-inspired headpiece, pearl jewelry, long flowing blonde or light hair" },
-                { locacion: "heavenly garden with white flowers and soft mist", outfit: "champagne silk dress with feather details on shoulders", iluminacion: "warm golden hour lighting with soft white mist and flower petals", pose: "walking through garden touching flowers, gentle smile", accesorios: "pearl drop earrings, delicate gold bracelet, romantic updo with loose strands" },
-                { locacion: "cloud-filled sky at sunset with golden and pink tones", outfit: "iridescent white-pink gown that catches the light", iluminacion: "golden sunset rays with pink and purple cloud reflections", pose: "sitting on cloud-like surface with legs crossed, peaceful gaze upward", accesorios: "crystal and pearl jewelry, ethereal makeup with glow, long wavy hair" }
-            ]
-        };
-
-        // ARTISTAS POR MOOD Y ENERGÍA
-        const artistasDB = {
-            cinematic: { high: ["Travis Scott", "Yeat", "Metro Boomin"], medium: ["Travis Scott", "Don Toliver", "Kid Cudi"], low: ["Kid Cudi", "Post Malone", "The Weeknd"] },
-            melodic: { high: ["Juice WRLD", "Trippie Redd", "Lil Peep"], medium: ["Juice WRLD", "Iann Dior", "The Kid LAROI"], low: ["Juice WRLD", "The Kid LAROI", "Powfu"] },
-            rage: { high: ["Playboi Carti", "Ken Carson", "Destroy Lonely"], medium: ["Playboi Carti", "Ken Carson", "Yeat"], low: ["Playboi Carti", "Lil Uzi Vert", "Trippie Redd"] },
-            drill: { high: ["Pop Smoke", "Central Cee", "Headie One"], medium: ["Pop Smoke", "Central Cee", "Fivio Foreign"], low: ["Pop Smoke", "Central Cee", "Digga D"] },
-            opium: { high: ["Playboi Carti", "Ken Carson", "Destroy Lonely"], medium: ["Playboi Carti", "Ken Carson", "Yeat"], low: ["Playboi Carti", "Lil Uzi Vert", "Trippie Redd"] },
-            space: { high: ["Yeat", "Travis Scott", "Kid Cudi"], medium: ["Travis Scott", "Kid Cudi", "Don Toliver"], low: ["Kid Cudi", "Travis Scott", "Post Malone"] },
-            angelic: { high: ["Travis Scott", "Don Toliver", "Kid Cudi"], medium: ["Travis Scott", "Don Toliver", "Kid Cudi"], low: ["Kid Cudi", "Don Toliver", "The Weeknd"] }
+            cinematic: { loc: "luxury penthouse at night with floor-to-ceiling windows overlooking city skyline", out: "elegant long black silk gown with diamond shoulder details", light: "warm golden and soft purple ambient lighting from city lights", pose: "standing by the window looking at the city, one hand holding a crystal glass", acc: "long diamond earrings, diamond bracelet, elegant updo hairstyle" },
+            melodic: { loc: "rainy night by a large window in a dim apartment, city lights blurred outside", out: "oversized soft grey cashmere sweater with delicate silver chains", light: "cool blue moonlight mixed with warm lamp glow, rain reflections", pose: "sitting on windowsill hugging knees, melancholic gaze looking out", acc: "delicate silver necklace, small hoop earrings, natural wavy hair" },
+            rage: { loc: "underground warehouse with concrete walls and industrial pipes", out: "black leather jacket over mesh top with heavy chains", light: "intense red and orange strobe lighting with smoke effects", pose: "aggressive stance with one foot on crate, intense direct gaze", acc: "multiple heavy Cuban link chains, large diamond rings, bold makeup with sharp eyeliner" },
+            drill: { loc: "London street at night with red double-decker bus in background", out: "black puffer jacket with designer details and dark jeans", light: "cold blue street lighting with orange bus lights reflection", pose: "walking toward camera with hands in pockets, serious expression", acc: "thick silver chain, diamond stud earrings, short styled hair" },
+            opium: { loc: "psychedelic room with mirrored walls and LED strips", out: "all-black avant-garde outfit with asymmetric cuts and chains", light: "saturated red and magenta lighting with occasional green flashes", pose: "sitting cross-legged on floor, head tilted, mysterious half-smile", acc: "multiple layered chains, face jewelry, dyed hair or bold wig" },
+            space: { loc: "futuristic space station observation deck with Earth visible through window", out: "metallic silver futuristic bodysuit with glowing accent lines", light: "cool cyan and deep purple cosmic lighting with star reflections", pose: "floating pose with arms slightly extended, looking at Earth", acc: "holographic jewelry, futuristic visor or headpiece, sleek metallic hair" }
         };
 
         const moods = {
-            cinematic: { micro: "Cinematic Trap", vibe: "Dark Cinematic", playlist: "Cinematic Trap Beats", descVibe: "cinematic orchestral textures and epic dark production" },
-            melodic: { micro: "Dark Melodic", vibe: "Emotional Melodic", playlist: "Dark Melodic / Sad Trap", descVibe: "emotional piano progressions and melancholic atmospheric pads" },
-            rage: { micro: "Rage", vibe: "High Energy Hardcore", playlist: "Rage / Underground Beats", descVibe: "aggressive distorted synths and high-energy 808s" },
-            drill: { micro: "UK Drill", vibe: "Dark Piano Drill", playlist: "UK Drill / Brooklyn Drill", descVibe: "sliding 808s, rapid hi-hats and dark drill percussion" },
-            opium: { micro: "Opium", vibe: "Dark Psychedelic", playlist: "Opium / Carti Style Beats", descVibe: "dark psychedelic textures and eerie neon-lit production" },
-            space: { micro: "Space Trap", vibe: "Futuristic Space", playlist: "Cinematic Trap Beats", descVibe: "futuristic space synths and cosmic atmospheric production" },
-            angelic: { micro: "Angelic Trap", vibe: "Angelic Cinematic", playlist: "Cinematic Trap Beats", descVibe: "ethereal vocal samples, celestial melodies and angelic atmosphere" }
+            cinematic: { micro: "Cinematic Trap", vibe: "Dark Cinematic", playlist: "Cinematic Trap Beats", descVibe: "cinematic orchestral textures and epic dark production", artist: ["Travis Scott", "Don Toliver"] },
+            melodic: { micro: "Dark Melodic", vibe: "Emotional Melodic", playlist: "Dark Melodic / Sad Trap", descVibe: "emotional piano progressions and melancholic atmospheric pads", artist: ["Juice WRLD", "Iann Dior"] },
+            rage: { micro: "Rage", vibe: "High Energy Hardcore", playlist: "Rage / Underground Beats", descVibe: "aggressive distorted synths and high-energy 808s", artist: ["Playboi Carti", "Ken Carson"] },
+            drill: { micro: "UK Drill", vibe: "Dark Piano Drill", playlist: "UK Drill / Brooklyn Drill", descVibe: "sliding 808s, rapid hi-hats and dark drill percussion", artist: ["Pop Smoke", "Central Cee"] },
+            opium: { micro: "Opium", vibe: "Dark Psychedelic", playlist: "Opium / Carti Style Beats", descVibe: "dark psychedelic textures and eerie neon-lit production", artist: ["Playboi Carti", "Destroy Lonely"] },
+            space: { micro: "Space Trap", vibe: "Futuristic Space", playlist: "Cinematic Trap Beats", descVibe: "futuristic space synths and cosmic atmospheric production", artist: ["Travis Scott", "Kid Cudi"] }
         };
 
+        let currentNames = [];
         let selectedName = '';
         let selectedTitle = '';
         let escenaSeleccionada = null;
 
-        document.querySelectorAll('.energy-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.energy-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-
-        function generarNombreCombinatorio(mood, nombresUsados) {
-            const listaA = raicesA[mood] || raicesA.cinematic;
-            const listaB = raicesB[mood] || raicesB.cinematic;
-            
+        function generarNombresUnicos(cantidad) {
+            let nombres = [];
             let intentos = 0;
-            let nombre;
-            
-            do {
-                const raizA = listaA[Math.floor(Math.random() * listaA.length)];
-                const raizB = listaB[Math.floor(Math.random() * listaB.length)];
-                nombre = `${raizA} ${raizB}`;
+            while(nombres.length < cantidad && intentos < 100) {
+                const a = raicesA[Math.floor(Math.random() * raicesA.length)];
+                const b = raicesB[Math.floor(Math.random() * raicesB.length)];
+                const nombre = `${a} ${b}`;
+                if(!nombres.includes(nombre) && !currentNames.includes(nombre)) {
+                    nombres.push(nombre);
+                }
                 intentos++;
-            } while (nombresUsados.includes(nombre.toLowerCase()) && intentos < 100);
-            
-            return nombre;
+            }
+            return nombres;
         }
 
-        function generarData() {
-            const bpm = document.getElementById('bpm').value || "120";
-            const descripcion = document.getElementById('descripcion').value;
-            const moodKey = document.getElementById('mood').value;
-            const energiaActiva = document.querySelector('.energy-btn.active').dataset.energy;
-            const nombresUsadosRaw = document.getElementById('nombresUsados').value;
-            
-            const nombresUsados = nombresUsadosRaw.split(',').map(n => n.trim().toLowerCase()).filter(n => n);
-            
-            const mood = moods[moodKey];
-            const artistas = artistasDB[moodKey][energiaActiva];
-            
-            // Generar 3 nombres únicos
-            const opcionesNombres = [];
-            for (let i = 0; i < 3; i++) {
-                opcionesNombres.push(generarNombreCombinatorio(moodKey, nombresUsados.concat(opcionesNombres.map(n => n.toLowerCase()))));
-            }
-            selectedName = opcionesNombres[0];
-            
-            // Seleccionar escena aleatoria
-            const escenasMood = escenas[moodKey] || escenas.cinematic;
-            escenaSeleccionada = escenasMood[Math.floor(Math.random() * escenasMood.length)];
-            
-            // Generar 3 títulos
-            const titulo1 = `${artistas[0]} x ${artistas[1]} Type Beat - "${selectedName}" | ${mood.vibe} ${bpm} BPM`;
-            const titulo2 = `${mood.micro} Type Beat - "${selectedName}" | ${mood.vibe} ${bpm} BPM`;
-            const titulo3 = `${artistas[0]} Type Beat - "${selectedName}" | ${mood.vibe} ${bpm} BPM`;
-            
-            const opcionesTitulos = [
-                { estrategia: "Artist x Artist (Máximo alcance)", titulo: titulo1 },
-                { estrategia: "Micro-nicho (SEO puro)", titulo: titulo2 },
-                { estrategia: "Single Artist (Balance)", titulo: titulo3 }
-            ];
-            selectedTitle = titulo1;
-            
-            // Renderizar nombres
-            document.getElementById('nameOptions').innerHTML = opcionesNombres.map((nombre, i) => `
-                <div class="name-card ${i === 0 ? 'selected' : ''}" onclick="selectName('${nombre}', this)">
-                    <h4>${nombre}</h4>
-                    <p>Click para seleccionar</p>
-                </div>
-            `).join('');
-            
-            // Renderizar títulos
-            document.getElementById('titleOptions').innerHTML = opcionesTitulos.map((op, i) => `
-                <div class="title-card ${i === 0 ? 'selected' : ''}" onclick="selectTitle('${op.titulo}', this)">
-                    <h4>${op.estrategia}</h4>
-                    <p>${op.titulo}</p>
-                </div>
-            `).join('');
-            
-            // Preview de escena
-            document.getElementById('scenePreview').innerHTML = `
-                <h4> Escena: ${escenaSeleccionada.locacion.split(' ').slice(0, 5).join(' ')}...</h4>
-                <p><strong>Locación:</strong> ${escenaSeleccionada.locacion}</p>
-                <p><strong>Outfit:</strong> ${escenaSeleccionada.outfit}</p>
-                <p><strong>Iluminación:</strong> ${escenaSeleccionada.iluminacion}</p>
-                <p><strong>Pose:</strong> ${escenaSeleccionada.pose}</p>
-                <p><strong>Accesorios:</strong> ${escenaSeleccionada.accesorios}</p>
-            `;
-            
-            // Meta
-            document.getElementById('out-meta').textContent = `Canal: Beats BFYT\nPlaylist: ${mood.playlist}\nMicro-nicho: ${mood.micro}`;
-            
-            // Descripción
-            const desc = `${selectedName} is a ${mood.micro.toLowerCase()} beat with ${mood.descVibe}${descripcion ? '. ' + descripcion : ''}. 
+        function regenerarNombres() {
+            currentNames = generarNombresUnicos(3);
+            selectedName = currentNames[0];
+            renderizarNombres();
+            actualizarTitulos();
+        }
 
-🛒 Purchase a license & download instantly: https://beats-bfyt-shop.fourthwall.com
+        function renderizarNombres() {
+            document.getElementById('nameOptions').innerHTML = currentNames.map((nombre, i) => `
+                <div class="option-card ${i === 0 ? 'active' : ''}" onclick="seleccionarNombre('${nombre}', this)">
+                    <div><div class="option-title">${nombre}</div><div class="option-desc">Click para seleccionar</div></div>
+                </div>
+            `).join('');
+        }
+
+        function seleccionarNombre(nombre, element) {
+            selectedName = nombre;
+            document.querySelectorAll('#nameOptions .option-card').forEach(c => c.classList.remove('active'));
+            element.classList.add('active');
+            actualizarTitulos();
+            actualizarPrompt();
+        }
+
+        function actualizarTitulos() {
+            const bpm = document.getElementById('bpm').value || "120";
+            const moodKey = document.getElementById('mood').value;
+            const mood = moods[moodKey];
+            const art = mood.artist;
+
+            // 60% Nicho / 25% Amplio USA / 15% Branding BFYT
+            const t1 = `${mood.micro} Type Beat - "${selectedName}" | ${mood.vibe} ${bpm} BPM`;
+            const t2 = `${art[0]} x ${art[1]} Type Beat - "${selectedName}" | ${mood.vibe} ${bpm} BPM`;
+            const t3 = `Beats BFYT Type Beat - "${selectedName}" | ${mood.vibe} ${bpm} BPM`;
+
+            document.getElementById('titleOptions').innerHTML = `
+                <div class="option-card active" onclick="seleccionarTitulo(this, '${t1.replace(/'/g, "\\'")}')">
+                    <div><div class="option-title">60% Micro-Nicho (SEO Puro)</div><div class="option-desc">${t1}</div></div>
+                </div>
+                <div class="option-card" onclick="seleccionarTitulo(this, '${t2.replace(/'/g, "\\'")}')">
+                    <div><div class="option-title">25% Amplio USA (Artist x Artist)</div><div class="option-desc">${t2}</div></div>
+                </div>
+                <div class="option-card" onclick="seleccionarTitulo(this, '${t3.replace(/'/g, "\\'")}')">
+                    <div><div class="option-title">15% Branding (Beats BFYT)</div><div class="option-desc">${t3}</div></div>
+                </div>
+            `;
+            selectedTitle = t1;
+        }
+
+        function seleccionarTitulo(element, titulo) {
+            selectedTitle = titulo;
+            document.querySelectorAll('#titleOptions .option-card').forEach(c => c.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        function actualizarPrompt() {
+            if(!escenaSeleccionada) return;
+            const prompt = `Raw photo, shot on 35mm film camera, breathtakingly beautiful curvy New York Latina woman with voluptuous hourglass figure, transmitting boss energy and street luxury elegance. Striking facial features, fierce confident gaze, glamorous makeup. She is at ${escenaSeleccionada.loc}, wearing ${escenaSeleccionada.out}. ${escenaSeleccionada.pose}. ${escenaSeleccionada.acc}. Lighting: ${escenaSeleccionada.light}. Heavy diamond Cuban link chain with "${selectedName.toUpperCase()}" text pendant clearly visible between her fingers. Professional trap music video aesthetic, sensual luxurious vibe, high contrast, shallow depth of field, NO TEXT OVERLAY, NO LETTERS except chain pendant --ar 1:1 --style raw_photo --quality 2`;
+            document.getElementById('out-prompt').textContent = prompt;
+        }
+
+        function generarTodo() {
+            const bpm = document.getElementById('bpm').value || "120";
+            const intencion = document.getElementById('intencion').value;
+            const moodKey = document.getElementById('mood').value;
+            const mood = moods[moodKey];
+
+            currentNames = generarNombresUnicos(3);
+            selectedName = currentNames[0];
+            renderizarNombres();
+
+            escenaSeleccionada = escenas[moodKey] || escenas.cinematic;
+            actualizarTitulos();
+            actualizarPrompt();
+
+            const hooks = `🎯 OPCIÓN 1 (POV Artista):
+Texto en pantalla: "POV: Encontraste el beat perfecto para tu próximo single"
+Acción: Muestras la pantalla de tu DAW con el beat sonando, luego cortas a la miniatura.
+Audio: El drop más fuerte del beat (segundo 0:15).
+
+🎯 OPCIÓN 2 (Reacción/Calidad):
+Texto en pantalla: "Este beat de ${bpm} BPM suena a $10,000"
+Acción: Primer plano de la miniatura, luego zoom a los detalles visuales mientras suena el bajo.
+Audio: Intro cinematográfica + entrada del 808.
+
+🎯 OPCIÓN 3 (Storytelling):
+Texto en pantalla: "Hice este beat pensando en ${mood.artist[0]} y quedó así..."
+Acción: Pantalla dividida: Tú produciendo / Miniatura del beat.
+Audio: Parte más melódica o atmosférica del beat.`;
+            document.getElementById('out-shorts').textContent = hooks;
+
+            const introStrategy = `🔥 ESTRATEGIA ANTI-REBOTE (Primeros 10 segundos del video de YouTube):
+
+1. SEGUNDO 0:00 - 0:03: NO empieces con el beat directo. Pon un efecto de sonido de "cinta cargando" o "radio sintonizando" + un texto en pantalla que diga: "Wait for the drop 🔥" o "Headphones recommended 🎧".
+2. SEGUNDO 0:03 - 0:08: Muestra la miniatura del beat con un ligero zoom lento (efecto Ken Burns) y un filtro de grano de película.
+3. SEGUNDO 0:08 - 0:10: Pantalla en negro por 0.5 segundos (silencio total).
+4. SEGUNDO 0:10: ¡BOOM! Entra el beat con toda la fuerza.
+
+💡 Por qué funciona: Rompe el patrón de scroll, genera expectativa y obliga al cerebro a quedarse para el "drop". Esto subirá tu retención de 1:01 a 1:45+.`;
+            document.getElementById('out-intro').textContent = introStrategy;
+
+            const desc = `${selectedName} is a ${mood.micro.toLowerCase()} beat with ${mood.descVibe}${intencion ? '. ' + intencion : ''}. 
+
+🛒 LICENSES (BUY 1 GET 1 FREE - Limited Offer):
+https://beats-bfyt-shop.fourthwall.com
 
 💿 License Tiers:
-• Basic: $14.99 (MP3, Non-profit use)
-• Standard: $29.99 (MP3 + WAV, Commercial use)
-• Premium: $49.99 (MP3 + WAV + STEMS, Full commercial use)
+• Basic: $19.99 (MP3, Non-profit use)
+• Premium: $39.99 (MP3 + WAV, Commercial use)
+• Trackout: $79.99 (MP3 + WAV + STEMS)
+• Unlimited: $149.99 (Full commercial rights)
 
 ⚠️ FREE for non-profit use only (must credit "Prod. by Beats BFYT" in the title). Purchase a license for commercial use, Spotify, Apple Music, or monetization.
 
-📱 Follow the journey:
+ Follow the journey:
 Instagram: @beatsfreeyoutube_
 TikTok: @beatsfreeyoutube_
 
 #typebeat #${mood.micro.replace(' ', '')} #BeatsBFYT #${selectedName.replace(' ', '')}`;
             document.getElementById('out-desc').textContent = desc;
-            
-            // Tags
-            const tagsBase = {
-                cinematic: "cinematic trap type beat, cinematic beat, dark trap instrumental, epic trap beat, orchestral trap, travis scott type beat, yeat type beat, metro boomin type beat",
-                melodic: "dark melodic type beat, melodic trap beat, sad trap beat, emotional trap instrumental, juice wrld type beat, iann dior type beat, the kid laroi type beat",
-                rage: "rage type beat, rage instrumental, hardcore trap beat, playboi carti type beat, opium type beat, ken carson type beat, destroy lonely type beat",
-                drill: "uk drill type beat, drill instrumental, brooklyn drill beat, pop smoke type beat, central cee type beat, ny drill beat, sliding 808 drill",
-                opium: "opium type beat, playboi carti type beat, dark psychedelic beat, ken carson type beat, destroy lonely type beat, rage type beat, underground trap beat",
-                space: "space trap type beat, cosmic trap beat, futuristic trap beat, yeat type beat, travis scott type beat, kid cudi type beat, space instrumental 2026",
-                angelic: "angelic trap beat, celestial trap beat, ethereal trap beat, travis scott type beat, don toliver type beat, kid cudi type beat, angelic instrumental 2026"
-            };
-            
-            let tags = tagsBase[moodKey] || tagsBase.cinematic;
-            tags += `, ${selectedName.toLowerCase().replace(' ', '')} beat, ${bpm} bpm ${mood.micro.toLowerCase()}, Beats BFYT, premium trap production, ${mood.micro.toLowerCase()} instrumental, dark ${mood.micro.toLowerCase()} beat, atmospheric trap beat, ${mood.micro.toLowerCase()} type beat 2026, ${mood.vibe.toLowerCase()} trap instrumental, ${mood.micro.toLowerCase()} beat download`;
-            
-            const tagsCortadas = tags.substring(0, 500);
-            const ultimoComa = tagsCortadas.lastIndexOf(',');
-            document.getElementById('out-tags').textContent = ultimoComa > 400 ? tagsCortadas.substring(0, ultimoComa) : tagsCortadas;
-            
-            // Prompt Cover Art VARIADO
-            const prompt = `Raw photo, shot on 35mm film camera, breathtakingly beautiful curvy Latina woman with voluptuous hourglass figure, transmitting boss energy and street luxury elegance. Striking facial features, fierce confident gaze, glamorous makeup. She is at ${escenaSeleccionada.locacion}, wearing ${escenaSeleccionada.outfit}. ${escenaSeleccionada.pose}. ${escenaSeleccionada.accesorios}. Lighting: ${escenaSeleccionada.iluminacion}. Heavy diamond Cuban link chain with "${selectedName.toUpperCase()}" text pendant clearly visible. Professional trap music video aesthetic, sensual luxurious vibe, high contrast, shallow depth of field, NO TEXT OVERLAY, NO LETTERS except chain pendant --ar 1:1 --style raw_photo --quality 2`;
-            document.getElementById('out-prompt').textContent = prompt;
-        }
 
-        function selectName(nombre, element) {
-            selectedName = nombre;
-            document.querySelectorAll('.name-card').forEach(c => c.classList.remove('selected'));
-            element.classList.add('selected');
-            generarData();
-        }
-
-        function selectTitle(titulo, element) {
-            selectedTitle = titulo;
-            document.querySelectorAll('.title-card').forEach(c => c.classList.remove('selected'));
-            element.classList.add('selected');
+            const tagsBase = `${mood.micro.toLowerCase()} type beat, ${selectedName.toLowerCase().replace(' ', '')} beat, ${bpm} bpm ${mood.micro.toLowerCase()}, Beats BFYT, premium trap production, ${mood.micro.toLowerCase()} instrumental, dark ${mood.micro.toLowerCase()} beat, atmospheric trap beat, ${mood.micro.toLowerCase()} type beat 2026, ${mood.vibe.toLowerCase()} trap instrumental, ${mood.micro.toLowerCase()} beat download, cinematic trap, futuristic beat, luxury trap, dark trap instrumental, ${mood.artist[0].toLowerCase()} type beat, ${mood.artist[1].toLowerCase()} type beat`;
+            const tagsCortadas = tagsBase.substring(0, 500);
+            document.getElementById('out-tags').textContent = tagsCortadas.substring(0, tagsCortadas.lastIndexOf(','));
         }
 
         function copiar(id) {
@@ -552,12 +311,12 @@ TikTok: @beatsfreeyoutube_
                 const btn = event.target;
                 const original = btn.textContent;
                 btn.textContent = '✅ ¡Copiado!';
-                btn.style.background = '#00f2ff';
-                btn.style.color = '#0a0a0f';
+                btn.style.background = 'var(--success)';
+                btn.style.color = '#000';
                 setTimeout(() => {
                     btn.textContent = original;
-                    btn.style.background = '#2a2a35';
-                    btn.style.color = 'white';
+                    btn.style.background = 'var(--border)';
+                    btn.style.color = 'var(--text)';
                 }, 2000);
             });
         }
