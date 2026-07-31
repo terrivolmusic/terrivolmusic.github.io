@@ -709,7 +709,8 @@
 
         <div class="beat-hero">
             <div class="cover-container">
-                <img src="img/Woman_in_luxury_car_2K_202607292133.jpeg" alt="Broken Stars Cover Art" class="cover-art">
+                <!-- CORREGIDO: ../img/ sube un nivel desde bfyt/ hacia la raíz -->
+                <img src="../img/Woman_in_luxury_car_2K_202607292133.jpeg" alt="Broken Stars Cover Art" class="cover-art">
                 <div class="cover-overlay"></div>
             </div>
 
@@ -760,14 +761,15 @@
                     </div>
 
                     <div class="volume-control">
-                        <span class="volume-icon">🔊</span>
+                        <span class="volume-icon"></span>
                         <div class="volume-slider" onclick="setVolume(event)">
                             <div class="volume-level" id="volumeLevel"></div>
                         </div>
                     </div>
 
+                    <!-- CORREGIDO: ../img/ sube un nivel desde bfyt/ hacia la raíz -->
                     <audio id="audioPlayer" preload="metadata">
-                        <source src="img/Broker Stars PREVIEW.mp3" type="audio/mpeg">
+                        <source src="../img/Broker Stars PREVIEW.mp3" type="audio/mpeg">
                     </audio>
                 </div>
 
