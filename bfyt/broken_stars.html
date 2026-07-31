@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Broken Stars - Emotional Melodic Trap Beat | 139 BPM | Premium Production by Beats BFYT">
+    <title>Broken Stars | Emotional Melodic Trap Beat - Beats BFYT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #ff006e;
+            --secondary: #00f5d4;
+            --bg-dark: #050508;
+            --bg-card: #12121a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+        }
+
+        .nebula-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(255, 0, 110, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(0, 245, 212, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 0, 110, 0.05) 0%, transparent 70%);
+            animation: nebulaPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes nebulaPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .shooting-star {
+            position: fixed;
+            width: 100px; height: 2px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+            border-radius: 50%;
+            animation: shoot 4s linear infinite;
+            opacity: 0;
+        }
+        .shooting-star:nth-child(1) { top: 20%; left: -100px; animation-delay: 0s; }
+        .shooting-star:nth-child(2) { top: 60%; left: -100px; animation-delay: 2.5s; }
+        .shooting-star:nth-child(3) { top: 40%; left: -100px; animation-delay: 5s; }
+
+        @keyframes shoot {
+            0% { transform: translateX(0) translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translateX(calc(100vw + 100px)) translateY(100px); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.5; box-shadow: 0 0 10px var(--primary); }
+            50% { opacity: 1; box-shadow: 0 0 20px var(--secondary); }
+        }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .beat-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+            align-items: center;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        @media (max-width: 968px) {
+            .beat-hero { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        .cover-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(255, 0, 110, 0.3);
+            aspect-ratio: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .cover-art {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .cover-container:hover .cover-art { transform: scale(1.05); }
+
+        .cover-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.2), rgba(0, 245, 212, 0.15));
+            pointer-events: none;
+            animation: overlayPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes overlayPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .cover-container::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            border: 2px solid rgba(0, 245, 212, 0.3);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .beat-info h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 245, 212, 0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(0, 245, 212, 0.6)); }
+        }
+
+        .beat-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            background: rgba(255, 0, 110, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--secondary);
+            border: 1px solid rgba(255, 0, 110, 0.3);
+            font-weight: 500;
+            transition: all 0.3s;
+            animation: tagPulse 2s ease-in-out infinite;
+        }
+
+        .meta-tag:hover {
+            background: rgba(0, 245, 212, 0.2);
+            transform: scale(1.05);
+        }
+
+        @keyframes tagPulse {
+            0%, 100% { box-shadow: 0 0 5px rgba(255, 0, 110, 0.3); }
+            50% { box-shadow: 0 0 15px rgba(0, 245, 212, 0.5); }
+        }
+
+        .beat-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        .audio-player {
+            background: linear-gradient(135deg, rgba(18, 18, 26, 0.95), rgba(5, 5, 8, 0.95));
+            padding: 35px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 0, 110, 0.3);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .audio-player::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(0, 245, 212, 0.05) 0%, transparent 70%);
+            animation: playerPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes playerPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .visualizer {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 4px;
+            height: 60px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .visualizer-bar {
+            width: 6px;
+            background: linear-gradient(180deg, var(--secondary), var(--primary));
+            border-radius: 3px;
+            animation: visualize 1s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+        }
+
+        .visualizer-bar:nth-child(1) { height: 20%; animation-delay: 0s; }
+        .visualizer-bar:nth-child(2) { height: 60%; animation-delay: 0.1s; }
+        .visualizer-bar:nth-child(3) { height: 40%; animation-delay: 0.2s; }
+        .visualizer-bar:nth-child(4) { height: 80%; animation-delay: 0.3s; }
+        .visualizer-bar:nth-child(5) { height: 30%; animation-delay: 0.4s; }
+        .visualizer-bar:nth-child(6) { height: 70%; animation-delay: 0.5s; }
+        .visualizer-bar:nth-child(7) { height: 50%; animation-delay: 0.6s; }
+        .visualizer-bar:nth-child(8) { height: 90%; animation-delay: 0.7s; }
+        .visualizer-bar:nth-child(9) { height: 35%; animation-delay: 0.8s; }
+        .visualizer-bar:nth-child(10) { height: 65%; animation-delay: 0.9s; }
+
+        @keyframes visualize {
+            0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
+            50% { transform: scaleY(1); opacity: 1; }
+        }
+
+        .visualizer.playing .visualizer-bar { animation-play-state: running; }
+        .visualizer.paused .visualizer-bar {
+            animation-play-state: paused;
+            transform: scaleY(0.3);
+            opacity: 0.3;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .play-btn {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            flex-shrink: 0;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.4);
+        }
+
+        .play-btn::before {
+            content: '';
+            position: absolute;
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            animation: ripple 2s ease-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .play-btn:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(0, 245, 212, 0.6);
+        }
+
+        .play-btn svg {
+            width: 24px; height: 24px;
+            fill: white;
+            margin-left: 3px;
+            transition: transform 0.3s;
+        }
+
+        .progress-container { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.1s;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.5);
+        }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 50%;
+            transform: translateY(-50%);
+            width: 16px; height: 16px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--secondary), 0 0 40px var(--primary);
+            transition: right 0.1s;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--secondary);
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .volume-icon {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        .volume-slider {
+            flex: 1;
+            max-width: 150px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .volume-level {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 70%;
+            border-radius: 10px;
+        }
+
+        .licenses-section { margin-bottom: 80px; }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px; height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            margin: 15px auto 0;
+            border-radius: 10px;
+            animation: lineGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes lineGlow {
+            0%, 100% { box-shadow: 0 0 5px var(--primary); }
+            50% { box-shadow: 0 0 20px var(--secondary); }
+        }
+
+        .licenses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .license-card {
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .license-card:nth-child(1) { animation-delay: 0.1s; }
+        .license-card:nth-child(2) { animation-delay: 0.2s; }
+        .license-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .license-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(0, 245, 212, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .license-card:hover::before { opacity: 1; }
+
+        .license-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 245, 212, 0.2);
+        }
+
+        .license-card.featured {
+            border-color: var(--secondary);
+            background: linear-gradient(135deg, rgba(0, 245, 212, 0.05), rgba(255, 0, 110, 0.05));
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 10px var(--primary); }
+            50% { box-shadow: 0 0 20px var(--secondary); }
+        }
+
+        .license-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .license-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+        }
+
+        .license-features { list-style: none; margin-bottom: 30px; }
+
+        .license-features li {
+            padding: 10px 0;
+            color: var(--text-secondary);
+            padding-left: 30px;
+            position: relative;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .license-features li:hover {
+            color: var(--text-primary);
+            transform: translateX(5px);
+        }
+
+        .license-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .buy-btn:hover::before { width: 300px; height: 300px; }
+
+        .buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 0, 110, 0.5);
+        }
+
+        .details-section {
+            background: var(--bg-card);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            margin-bottom: 60px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .detail-item:hover { transform: translateY(-5px); }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .social-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .social-links a:hover { color: var(--secondary); }
+        .social-links a:hover::after { width: 100%; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="nebula-overlay"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">BEATS BFYT</div>
+            <nav class="nav-links">
+                <a href="https://youtube.com/@beatsfreeyoutube_" target="_blank">YouTube</a>
+                <a href="https://instagram.com/beatsfreeyoutube_" target="_blank">Instagram</a>
+                <a href="https://payhip.com/beatsbfyt" target="_blank">Shop</a>
+            </nav>
+        </header>
+
+        <div class="beat-hero">
+            <div class="cover-container">
+                <img src="Woman_in_luxury_car_2K_202607292133.jpeg" alt="Broken Stars Cover Art" class="cover-art">
+                <div class="cover-overlay"></div>
+            </div>
+
+            <div class="beat-info">
+                <h1>Broken Stars</h1>
+                <div class="beat-meta">
+                    <span class="meta-tag">Emotional Melodic</span>
+                    <span class="meta-tag">139 BPM</span>
+                    <span class="meta-tag">Rick Ross Type</span>
+                    <span class="meta-tag">The Kid LAROI Type</span>
+                </div>
+
+                <p class="beat-description">
+                    Emotional melodic trap beat with cinematic piano, deep 808s, and atmospheric synth layers. 
+                    Perfect for introspective storytelling, melodic flows, and high-energy rap verses. 
+                    Blends the luxury vibe of Rick Ross, the raw energy of Meek Mill, and the melodic emotion of The Kid LAROI.
+                </p>
+
+                <div class="audio-player">
+                    <div class="visualizer paused" id="visualizer">
+                        <div class="visualizer-bar"></div>
+                        <div class="visualizer-bar"></div>
+                        <div class="visualizer-bar"></div>
+                        <div class="visualizer-bar"></div>
+                        <div class="visualizer-bar"></div>
+                        <div class="visualizer-bar"></div>
+                        <div class="visualizer-bar"></div>
+                        <div class="visualizer-bar"></div>
+                        <div class="visualizer-bar"></div>
+                        <div class="visualizer-bar"></div>
+                    </div>
+
+                    <div class="player-controls">
+                        <button class="play-btn" onclick="togglePlay()" aria-label="Play/Pause">
+                            <svg id="playIcon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                        <div class="progress-container">
+                            <div class="progress-bar" onclick="seek(event)">
+                                <div class="progress" id="progressBar"></div>
+                            </div>
+                            <div class="time-display">
+                                <span id="currentTime">0:00</span>
+                                <span id="duration">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="volume-control">
+                        <span class="volume-icon">🔊</span>
+                        <div class="volume-slider" onclick="setVolume(event)">
+                            <div class="volume-level" id="volumeLevel"></div>
+                        </div>
+                    </div>
+
+                    <!-- CORREGIDO: Nombre exacto del archivo de audio solicitado -->
+                    <audio id="audioPlayer" preload="metadata">
+                        <source src="Broker Stars PREVIEW.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 15px;">
+                     Preview only - Purchase a license for full quality files
+                </p>
+            </div>
+        </div>
+
+        <div class="licenses-section">
+            <h2 class="section-title">Choose Your License</h2>
+            
+            <div class="licenses-grid">
+                <div class="license-card">
+                    <div class="license-name">Basic</div>
+                    <div class="license-price">$14.99</div>
+                    <ul class="license-features">
+                        <li>MP3 File (Tagged)</li>
+                        <li>Non-Profit Use Only</li>
+                        <li>Up to 10,000 Streams</li>
+                        <li>Credit Required</li>
+                        <li>1 Music Video</li>
+                    </ul>
+                    <a href="https://payhip.com/b/oOH29" class="buy-btn" target="_blank">Purchase Basic</a>
+                </div>
+
+                <div class="license-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="license-name">Standard</div>
+                    <div class="license-price">$29.99</div>
+                    <ul class="license-features">
+                        <li>MP3 + WAV Files</li>
+                        <li>Commercial Use</li>
+                        <li>Up to 100,000 Streams</li>
+                        <li>Spotify, Apple Music, YouTube</li>
+                        <li>Unlimited Music Videos</li>
+                        <li>Radio Broadcast Rights</li>
+                    </ul>
+                    <a href="https://payhip.com/b/uMWNm" class="buy-btn" target="_blank">Purchase Standard</a>
+                </div>
+
+                <div class="license-card">
+                    <div class="license-name">Premium</div>
+                    <div class="license-price">$49.99</div>
+                    <ul class="license-features">
+                        <li>MP3 + WAV + STEMS</li>
+                        <li>Unlimited Commercial Use</li>
+                        <li>Unlimited Streams</li>
+                        <li>Full Ownership Rights</li>
+                        <li>Radio & Performance Rights</li>
+                        <li>Priority Support</li>
+                        <li>Custom Edits Available</li>
+                    </ul>
+                    <a href="https://payhip.com/b/yDJXs" class="buy-btn" target="_blank">Purchase Premium</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="details-section">
+            <h2 class="section-title">Production Details</h2>
+            <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">
+                "Broken Stars" is a premium emotional melodic trap production that blends cinematic piano 
+                with hard-hitting 808s and atmospheric textures. Built at 139 BPM, this beat is designed 
+                for artists who want to combine luxury rap aesthetics with deep, introspective, and melodic 
+                vocal deliveries.
+            </p>
+            
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Producer</span>
+                    <span class="detail-value">Beats BFYT</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">BPM</span>
+                    <span class="detail-value">139</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Genre</span>
+                    <span class="detail-value">Emotional Melodic Trap</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Style</span>
+                    <span class="detail-value">Luxury Rap / Cinematic</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Mood</span>
+                    <span class="detail-value">Emotional, Epic, Introspective</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Delivery</span>
+                    <span class="detail-value">Instant Digital Download</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://youtube.com/@beatsfreeyoutube_" target="_blank">YouTube</a>
+                <a href="https://instagram.com/beatsfreeyoutube_" target="_blank">Instagram</a>
+                <a href="https://tiktok.com/@beatsfreeyoutube_" target="_blank">TikTok</a>
+                <a href="https://payhip.com/beatsbfyt" target="_blank">Shop</a>
+            </div>
+            <p>&copy; 2026 Beats BFYT. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.85rem;">Part of Terrivol Music ENT</p>
+        </footer>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const stars = [];
+        const numStars = 200;
+        
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5,
+                speed: Math.random() * 0.5 + 0.1,
+                opacity: Math.random()
+            });
+        }
+        
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+                
+                star.y += star.speed;
+                
+                if (star.y > canvas.height) {
+                    star.y = 0;
+                    star.x = Math.random() * canvas.width;
+                }
+                
+                star.opacity = Math.random() * 0.5 + 0.5;
+            });
+            
+            requestAnimationFrame(animateStars);
+        }
+        
+        animateStars();
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const audio = document.getElementById('audioPlayer');
+        const playBtn = document.querySelector('.play-btn');
+        const playIcon = document.getElementById('playIcon');
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const visualizer = document.getElementById('visualizer');
+        const volumeLevel = document.getElementById('volumeLevel');
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+                visualizer.classList.remove('paused');
+                visualizer.classList.add('playing');
+            } else {
+                audio.pause();
+                playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+                visualizer.classList.remove('playing');
+                visualizer.classList.add('paused');
+            }
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = progress + '%';
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audio.duration);
+        });
+
+        function seek(event) {
+            const bar = event.currentTarget;
+            const clickPosition = event.offsetX / bar.offsetWidth;
+            audio.currentTime = clickPosition * audio.duration;
+        }
+
+        function setVolume(event) {
+            const slider = event.currentTarget;
+            const clickPosition = event.offsetX / slider.offsetWidth;
+            audio.volume = clickPosition;
+            volumeLevel.style.width = (clickPosition * 100) + '%';
+        }
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        audio.volume = 0.7;
+    </script>
+</body>
+</html>
