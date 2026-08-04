@@ -1,23 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BBN Generator | Boom Baap Nations</title>
+  <title>BBN Smart Generator | Boom Baap Nations</title>
   <style>
     :root {
       --bg: #0a0a0a; --surface: #111; --border: #2a2a2a;
       --text: #e0e0e0; --text-muted: #888; --accent: #c9a227; --accent-hover: #e0b830;
       --font-mono: 'Courier New', monospace; --font-serif: 'Georgia', serif;
-      --radius: 6px; --max-w: 1100px;
+      --radius: 6px; --max-w: 1200px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg); color: var(--text); font-family: var(--font-mono);
       line-height: 1.6; position: relative;
     }
-    /* Film grain overlay */
     body::before {
       content: ""; position: fixed; inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
@@ -27,54 +25,69 @@
     header { text-align: center; padding: 2rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
     h1 { font-family: var(--font-serif); font-size: 2.2rem; margin-bottom: 0.5rem; }
     h1 span { color: var(--accent); }
-    .subtitle { color: var(--text-muted); font-size: 0.95rem; }
+    .subtitle { color: var(--text-muted); font-size: 0.9rem; }
     
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
-    .card h3 { font-family: var(--font-serif); margin-bottom: 1rem; color: var(--accent); }
+    .card h3 { font-family: var(--font-serif); margin-bottom: 1rem; color: var(--accent); font-size: 1.1rem; }
     
-    label { display: block; margin-bottom: 0.3rem; font-size: 0.9rem; color: var(--text-muted); }
+    label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; color: var(--text-muted); }
     input, select, textarea {
       width: 100%; padding: 0.7rem; background: #161616; border: 1px solid var(--border);
-      border-radius: var(--radius); color: var(--text); font-family: var(--font-mono); margin-bottom: 1rem;
+      border-radius: var(--radius); color: var(--text); font-family: var(--font-mono); margin-bottom: 1rem; font-size: 0.95rem;
     }
     input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
     
     .btn {
       background: var(--accent); color: #000; padding: 0.8rem 1.5rem; border: none;
       border-radius: var(--radius); font-weight: bold; cursor: pointer; transition: 0.2s;
-      display: inline-flex; align-items: center; gap: 0.5rem;
+      display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.95rem;
     }
     .btn:hover { background: var(--accent-hover); }
     .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
     .btn-outline:hover { background: var(--accent); color: #000; }
-    .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
+    .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+    .btn-full { width: 100%; justify-content: center; margin-top: 0.5rem; }
     
-    .output { background: #0f0f0f; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; font-size: 0.9rem; white-space: pre-wrap; margin-top: 0.5rem; min-height: 80px; }
-    .output-title { font-weight: bold; color: var(--accent); }
+    .output { background: #0f0f0f; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; font-size: 0.9rem; white-space: pre-wrap; margin-top: 0.5rem; min-height: 60px; max-height: 300px; overflow-y: auto; }
+    .output-title { font-weight: bold; color: var(--accent); font-size: 1rem; }
+    .char-count { font-size: 0.75rem; color: var(--text-muted); text-align: right; margin-top: 0.3rem; }
     
-    .section-title { font-family: var(--font-serif); font-size: 1.3rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .section-title { font-family: var(--font-serif); font-size: 1.3rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
     
     .tags-grid { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
-    .tag { background: #1a1a1a; padding: 0.3rem 0.6rem; border-radius: 3px; font-size: 0.8rem; border: 1px solid var(--border); }
+    .tag { background: #1a1a1a; padding: 0.3rem 0.6rem; border-radius: 3px; font-size: 0.75rem; border: 1px solid var(--border); }
     
     .shorts-list { display: flex; flex-direction: column; gap: 1rem; }
     .short-item { background: #161616; padding: 1rem; border-radius: var(--radius); border-left: 3px solid var(--accent); }
-    .short-item h4 { color: var(--accent); margin-bottom: 0.3rem; }
+    .short-item h4 { color: var(--accent); margin-bottom: 0.4rem; font-size: 1rem; }
+    .short-item p { font-size: 0.85rem; margin-bottom: 0.3rem; }
+    .short-item strong { color: var(--text-muted); }
+    
+    .mood-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .mood-chip { 
+      background: #1a1a1a; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.8rem; 
+      border: 1px solid var(--border); cursor: pointer; transition: 0.2s;
+    }
+    .mood-chip:hover, .mood-chip.active { border-color: var(--accent); background: #222; color: var(--accent); }
+    
+    .artist-preview { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .artist-badge { background: #1a1a1a; padding: 0.3rem 0.7rem; border-radius: 4px; font-size: 0.8rem; border: 1px solid var(--border); }
     
     footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--border); margin-top: 3rem; color: var(--text-muted); font-size: 0.85rem; }
     
     @media (max-width: 700px) {
       .grid { grid-template-columns: 1fr; }
       h1 { font-size: 1.8rem; }
+      .section-title { font-size: 1.1rem; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Boom Baap <span>Nations</span> Generator</h1>
-      <p class="subtitle">Títulos • Descripciones • Tags • Prompts • Shorts | Vintage Hip Hop SEO System</p>
+      <h1>Boom Baap <span>Nations</span> Smart Generator</h1>
+      <p class="subtitle">BPM + Mood + Sample → Título multi-artista • Tags 500c • SEO • Cover • Shorts</p>
     </header>
 
     <!-- INPUTS -->
@@ -85,37 +98,51 @@
         <input type="text" id="beatName" placeholder="Ej: Street Sermon" value="Street Sermon">
         
         <label>BPM</label>
-        <input type="number" id="bpm" placeholder="Ej: 161" value="161">
+        <input type="number" id="bpm" placeholder="Ej: 161" value="161" min="70" max="180">
         
-        <label>Artista Referente</label>
-        <select id="artist">
-          <option value="Griselda">Griselda</option>
-          <option value="Wu-Tang">Wu-Tang</option>
-          <option value="Nujabes">Nujabes</option>
-          <option value="J Dilla">J Dilla</option>
-          <option value="Mobb Deep">Mobb Deep</option>
-          <option value="Westside Gunn">Westside Gunn</option>
-          <option value="Nas">Nas</option>
-          <option value="DJ Premier">DJ Premier</option>
+        <label>Energía</label>
+        <select id="energy">
+          <option value="raw">Raw / Crudo</option>
+          <option value="chill">Chill / Relax</option>
+          <option value="dark">Dark / Oscuro</option>
+          <option value="soulful">Soulful / Emotivo</option>
+          <option value="jazzy">Jazzy / Elegante</option>
+          <option value="gritty">Gritty / Callejero</option>
         </select>
         
-        <label>Subgénero</label>
-        <select id="subgenre">
-          <option value="Raw Boom Bap">Raw Boom Bap</option>
-          <option value="Chill Jazz Boom Bap">Chill Jazz Boom Bap</option>
-          <option value="90s NY Jazz Boom Bap">90s NY Jazz Boom Bap</option>
-          <option value="Dark Underground Hip Hop">Dark Underground Hip Hop</option>
-          <option value="Soulful Boom Bap">Soulful Boom Bap</option>
-          <option value="Lo-Fi Hip Hop">Lo-Fi Hip Hop</option>
-          <option value="Gospel Flip Boom Bap">Gospel Flip Boom Bap</option>
+        <label>Sample Principal</label>
+        <select id="sample">
+          <option value="vocal">Vocal (pitched down)</option>
+          <option value="choir">Coro / Gospel</option>
+          <option value="piano">Piano Jazz</option>
+          <option value="guitar">Guitarra</option>
+          <option value="trumpet">Trompeta / Vientos</option>
+          <option value="strings">Cuerdas / Orquestal</option>
+          <option value="bass">Bassline prominente</option>
+          <option value="drums">Drums crudos + sample minimal</option>
         </select>
         
-        <label>Vibe / Sample</label>
-        <input type="text" id="vibe" placeholder="Ej: Latin vocal pitched down, crudo" value="Latin vocal pitched down, crudo">
+        <label>Vibe / Mood (selecciona hasta 3)</label>
+        <div class="mood-chips" id="moodChips">
+          <span class="mood-chip" data-mood="nocturnal">Nocturno</span>
+          <span class="mood-chip" data-mood="street">Callejero</span>
+          <span class="mood-chip" data-mood="introspective">Introspectivo</span>
+          <span class="mood-chip" data-mood="melancholic">Melancólico</span>
+          <span class="mood-chip" data-mood="elegant">Elegante</span>
+          <span class="mood-chip" data-mood="gritty">Sucio / Raw</span>
+          <span class="mood-chip" data-mood="spiritual">Espiritual</span>
+          <span class="mood-chip" data-mood="cinematic">Cinematográfico</span>
+        </div>
       </div>
 
       <div class="card">
         <h3>⚙️ Configuración</h3>
+        <label>Número de artistas en título</label>
+        <select id="artistCount">
+          <option value="2">2 artistas (recomendado)</option>
+          <option value="3">3 artistas (máximo alcance)</option>
+        </select>
+        
         <label>Link de Licencia (Fourthwall)</label>
         <input type="text" id="shopLink" value="https://boom-baap-nations-shop.fourthwall.com">
         
@@ -128,29 +155,31 @@
         <label>Label IG</label>
         <input type="text" id="labelIg" value="https://www.instagram.com/terrivolmusic/">
         
-        <button class="btn" onclick="generateAll()">✨ Generar Todo</button>
-        <button class="btn btn-outline" style="margin-top:0.5rem" onclick="copyAll()">📋 Copiar Todo</button>
+        <button class="btn btn-full" onclick="generateAll()">✨ Generar Todo</button>
+        <button class="btn btn-outline btn-full" onclick="copyAll()">📋 Copiar Todo</button>
       </div>
     </div>
 
     <!-- OUTPUTS -->
-    <h2 class="section-title">📝 Título Optimizado</h2>
+    <h2 class="section-title">📝 Título Optimizado (Multi-Artista)</h2>
     <div class="card">
-      <div class="output output-title" id="outTitle">[FREE] Griselda Type Beat - "Street Sermon" | Raw Boom Bap 161 BPM</div>
+      <div class="output output-title" id="outTitle">[FREE] Griselda x Mobb Deep Type Beat - "Street Sermon" | Raw Boom Bap 161 BPM</div>
+      <div class="artist-preview" id="artistPreview"></div>
       <button class="btn btn-sm" onclick="copyText('outTitle')">Copiar</button>
     </div>
 
-    <h2 class="section-title">📄 Descripción Completa</h2>
-    <div class="card">
-      <div class="output" id="outDesc"></div>
-      <button class="btn btn-sm" onclick="copyText('outDesc')">Copiar</button>
-    </div>
-
-    <h2 class="section-title">🏷️ 30 Tags SEO (YouTube Studio)</h2>
+    <h2 class="section-title">🏷️ Tags SEO (500 caracteres máx)</h2>
     <div class="card">
       <div class="output" id="outTags"></div>
+      <div class="char-count" id="tagsCount">0/500 caracteres</div>
       <div class="tags-grid" id="tagsVisual"></div>
       <button class="btn btn-sm" onclick="copyText('outTags')" style="margin-top:0.8rem">Copiar Tags</button>
+    </div>
+
+    <h2 class="section-title">📄 Descripción SEO Completa</h2>
+    <div class="card">
+      <div class="output" id="outDesc"></div>
+      <button class="btn btn-sm" onclick="copyText('outDesc')">Copiar Descripción</button>
     </div>
 
     <h2 class="section-title">🎨 Prompt Cover Art (IA)</h2>
@@ -167,50 +196,163 @@
 
     <footer>
       © 2026 Boom Baap Nations | Terivol Music ENT<br>
-      Generator v1.0 • Cashflow primero, prestigio después, marca sólida siempre
+      Smart Generator v2.0 • Cashflow primero, prestigio después, marca sólida siempre
     </footer>
   </div>
 
   <script>
-    // === DATABASE BBN ===
+    // === DATABASE INTELIGENTE BBN ===
     const db = {
-      beatNames: ["Street Sermon","Velvet Whisper","Mafia Horns","Midnight Smoke","Brick & Gospel","Nocturne Drums","Soul Crate","Concrete Jazz","Raw Testament","Shadow Loop","Gutter Psalms","Vinyl Confession","Dusty Anthem","Crate Soul","Hood Hymn"],
-      artists: ["Griselda","Wu-Tang","Nujabes","J Dilla","Mobb Deep","Westside Gunn","Nas","DJ Premier","Pete Rock","Alchemist","Conway","Benny The Butcher"],
-      subgenres: ["Raw Boom Bap","Chill Jazz Boom Bap","90s NY Jazz Boom Bap","Dark Underground Hip Hop","Soulful Boom Bap","Lo-Fi Hip Hop","Gospel Flip Boom Bap","Crate Digging Rap","East Coast Boom Bap","Nocturnal Hip Hop"],
-      vibes: ["Latin vocal pitched down","Choir sample dusty","Jazz trumpet noir","Piano soul crudo","Vinyl crackle + drums","Guitarra pitch down","Female vocal smooth","Dark bassline gritty","String sample melancholic","Saxo jazz nocturno"],
-      hashtags: ["#typebeat","#griseldatypebeat","#boombap","#bbn","#undergroundhiphop","#rawhiphop","#jazzrap","#90shiphop","#nujabestypebeat","#wutangtypebeat"]
+      artists: {
+        raw: ["Griselda", "Mobb Deep", "Westside Gunn", "Conway", "Benny The Butcher"],
+        chill: ["Nujabes", "J Dilla", "Uyama Hiroto", "Fat Jon", "Marcus D"],
+        dark: ["Wu-Tang", "Mobb Deep", "Griselda", "Raekwon", "Ghostface Killah"],
+        soulful: ["J Dilla", "Pete Rock", "DJ Premier", "Nujabes", "9th Wonder"],
+        jazzy: ["Nujabes", "A Tribe Called Quest", "Gang Starr", "Pete Rock", "J Dilla"],
+        gritty: ["Mobb Deep", "Wu-Tang", "Griselda", "Nas", "AZ"]
+      },
+      subgenres: {
+        raw: "Raw Underground Boom Bap",
+        chill: "Chill Jazz Boom Bap",
+        dark: "Dark Boom Bap",
+        soulful: "Soulful Boom Bap",
+        jazzy: "Jazz Rap Boom Bap",
+        gritty: "Gritty East Coast Boom Bap"
+      },
+      sampleKeywords: {
+        vocal: "pitched vocal sample",
+        choir: "gospel choir sample",
+        piano: "jazz piano sample",
+        guitar: "pitched guitar sample",
+        trumpet: "jazz trumpet sample",
+        strings: "orchestral string sample",
+        bass: "deep bassline",
+        drums: "raw drum break"
+      },
+      vibeAdj: {
+        nocturnal: "nocturnal",
+        street: "street-ready",
+        introspective: "introspective",
+        melancholic: "melancholic",
+        elegant: "elegant",
+        gritty: "gritty",
+        spiritual: "spiritual",
+        cinematic: "cinematic"
+      },
+      hashtags: ["#typebeat","#boombap","#bbn","#undergroundhiphop","#rawhiphop","#jazzrap","#90shiphop","#griseldatypebeat","#nujabestypebeat","#wutangtypebeat"]
     };
 
-    // === GENERATORS ===
+    let selectedMoods = [];
+
+    // === EVENT LISTENERS FOR MOOD CHIPS ===
+    document.querySelectorAll('.mood-chip').forEach(chip => {
+      chip.addEventListener('click', function() {
+        const mood = this.dataset.mood;
+        if(selectedMoods.includes(mood)) {
+          selectedMoods = selectedMoods.filter(m => m !== mood);
+          this.classList.remove('active');
+        } else if(selectedMoods.length < 3) {
+          selectedMoods.push(mood);
+          this.classList.add('active');
+        }
+      });
+    });
+
+    // === CORE GENERATORS ===
+    function getArtistPair(energy, count) {
+      const pool = db.artists[energy] || db.artists.raw;
+      const shuffled = [...pool].sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, parseInt(count)).join(' x ');
+    }
+
     function generateTitle() {
       const name = document.getElementById('beatName').value || 'Beat Name';
-      const artist = document.getElementById('artist').value;
-      const subgenre = document.getElementById('subgenre').value;
+      const energy = document.getElementById('energy').value;
+      const subgenre = db.subgenres[energy];
       const bpm = document.getElementById('bpm').value || '120';
-      return `[FREE] ${artist} Type Beat - "${name}" | ${subgenre} ${bpm} BPM`;
+      const artistCount = document.getElementById('artistCount').value;
+      const artists = getArtistPair(energy, artistCount);
+      
+      // Update artist preview
+      document.getElementById('artistPreview').innerHTML = artists.split(' x ').map(a => 
+        `<span class="artist-badge">🎤 ${a}</span>`
+      ).join('');
+      
+      return `[FREE] ${artists} Type Beat - "${name}" | ${subgenre} ${bpm} BPM`;
+    }
+
+    function generateTags() {
+      const name = document.getElementById('beatName').value.toLowerCase().replace(/[^a-z0-9\s]/g, '');
+      const energy = document.getElementById('energy').value;
+      const sample = document.getElementById('sample').value;
+      const bpm = document.getElementById('bpm').value;
+      const artists = getArtistPair(energy, 2).toLowerCase().split(' x ');
+      
+      const base = [
+        name,
+        ...artists.map(a => `${a.replace(/\s/g,'')} type beat`),
+        db.subgenres[energy].toLowerCase().replace(/\s+/g, '_'),
+        `${bpm} bpm boom bap`,
+        db.sampleKeywords[sample],
+        'underground hip hop beat',
+        'raw boom bap',
+        '90s hip hop instrumental',
+        'dusty drums beat',
+        'vinyl texture rap',
+        'boom baap nations',
+        'terivol music ent',
+        'sebastian andrade',
+        'lyricist type beat',
+        'crate digging boom bap',
+        'street rap beat',
+        ...selectedMoods.map(m => `${db.vibeAdj[m]} hip hop`),
+        'free type beat',
+        'gritty hip hop',
+        'authentic boom bap',
+        'classic boom bap',
+        'soulful hip hop',
+        'jazz rap instrumental',
+        'dark boom bap',
+        'pitched down sample',
+        'vocal sample flip',
+        'boom bap 2026',
+        'east coast boom bap',
+        'conscious rap beat',
+        'nocturnal hip hop'
+      ];
+      
+      // Build string up to 500 chars
+      let result = '';
+      for(const tag of base) {
+        if((result + tag + ', ').length <= 500) {
+          result += tag + ', ';
+        } else break;
+      }
+      return result.slice(0, -2); // remove last comma+space
     }
 
     function generateDescription() {
       const name = document.getElementById('beatName').value || 'Beat Name';
-      const artist = document.getElementById('artist').value;
-      const subgenre = document.getElementById('subgenre').value;
+      const energy = document.getElementById('energy').value;
+      const sample = document.getElementById('sample').value;
       const bpm = document.getElementById('bpm').value || '120';
-      const vibe = document.getElementById('vibe').value || 'dusty drums, soulful sample';
+      const artists = getArtistPair(energy, 2);
       const shop = document.getElementById('shopLink').value;
       const ig = document.getElementById('instagram').value;
       const email = document.getElementById('email').value;
       const label = document.getElementById('labelIg').value;
+      const vibeWords = selectedMoods.map(m => db.vibeAdj[m]).join(', ') || 'crudo, auténtico, underground';
 
-      return `🔥 [FREE] ${artist} Type Beat - "${name}" | ${subgenre} ${bpm} BPM
+      return `🔥 [FREE] ${artists} Type Beat - "${name}" | ${db.subgenres[energy]} ${bpm} BPM
 
-"${name}" is a ${subgenre.toLowerCase()} beat with ${vibe}. Produced in the style of ${artist} and underground 90s hip hop.
+"${name}" is a ${db.subgenres[energy].toLowerCase()} beat with ${db.sampleKeywords[sample]}, dusty drums, vinyl texture, and ${vibeWords} vibe. Produced in the style of ${artists} and underground 90s hip hop.
 
 🛒 Purchase a license & download instantly (WAV + Trackouts): 
 ${shop}
 
 💿 License Tiers:
 • Basic: $14.99 (MP3, Non-profit use)
-• Standard: $29.99 (MP3 + WAV, Commercial use)
+• Standard: $29.99 (MP3 + WAV, Commercial use) ⭐
 • Premium: $49.99 (MP3 + WAV + STEMS, Full commercial use)
 🎁 PROMO: Buy 1 Get 1 Free (Limited time)
 
@@ -218,11 +360,11 @@ ${shop}
 
 🔥 CARACTERÍSTICAS:
 • BPM: ${bpm} (half-time boom bap feel)
-• Sample: ${vibe}
-• Estilo: ${subgenre} / Underground Hip Hop
-• Elementos: Vinyl texture, raw drums, dusty snares, ${vibe.split(',')[0]}
-• Vibe: Nocturno, crudo, callejero, introspectivo, auténtico
-• Referencias: ${artist}, Underground 90s Hip Hop, Dark Boom Bap
+• Sample: ${db.sampleKeywords[sample]}
+• Estilo: ${db.subgenres[energy]} / Underground Hip Hop
+• Elementos: Vinyl texture, raw drums, dusty snares, ${db.sampleKeywords[sample]}
+• Vibe: ${vibeWords}, auténtico, 90s NY soul
+• Referencias: ${artists}, Underground 90s Hip Hop
 
 📧 Contact: ${email}
 📱 Follow the journey:
@@ -231,60 +373,44 @@ Label: ${label}
 
 🔔 SUSCRÍBETE para nuevos Beats.
 
-#typebeat #${artist.toLowerCase().replace(' ','')}typebeat #boombap #bbn #undergroundhiphop`;
-    }
-
-    function generateTags() {
-      const name = document.getElementById('beatName').value.toLowerCase().replace(/[^a-z0-9\s]/g, '');
-      const artist = document.getElementById('artist').value.toLowerCase().replace(' ', '');
-      const subgenre = document.getElementById('subgenre').value.toLowerCase().replace(/\s+/g, '_');
-      const bpm = document.getElementById('bpm').value;
-      
-      const base = [
-        name, `${artist} type beat`, subgenre.replace('_',' '), `${bpm} bpm boom bap`,
-        'underground hip hop beat', 'raw boom bap', '90s hip hop instrumental',
-        'dusty drums beat', 'vinyl texture rap', 'boom baap nations',
-        'terivol music ent', 'sebastian andrade', 'lyricist type beat',
-        'crate digging boom bap', 'street rap beat', 'nocturnal hip hop',
-        'introspective rap beat', 'hardcore boom bap', 'east coast boom bap',
-        'conscious rap beat', 'free type beat', 'gritty hip hop',
-        'authentic boom bap', 'classic boom bap', 'soulful hip hop',
-        'jazz rap instrumental', 'dark boom bap', 'pitched down sample',
-        'vocal sample flip', 'boom bap 2026'
-      ];
-      return base.join(', ');
+#typebeat #${artists.toLowerCase().split(' x ')[0].replace(/\s/g,'')}typebeat #boombap #bbn #undergroundhiphop`;
     }
 
     function generateCoverPrompt() {
       const name = document.getElementById('beatName').value;
-      return `Black and white cinematic portrait, fisheye lens subtle distortion, beautiful Latina woman in elegant streetwear, NYC rooftop at dusk or urban alley at night, dramatic chiaroscuro lighting, film grain 16mm overlay, vintage analog aesthetic, underground hip hop vibe, premium minimalism, no text, 16:9 ratio --style raw --ar 16:9`;
+      const energy = document.getElementById('energy').value;
+      const moodDesc = selectedMoods.map(m => db.vibeAdj[m]).join(', ') || 'raw underground';
+      
+      return `Black and white cinematic portrait, fisheye lens subtle distortion, beautiful Latina woman in elegant streetwear, NYC ${energy === 'chill' ? 'rooftop at dusk' : 'urban alley at night'}, dramatic ${energy === 'dark' ? 'chiaroscuro' : 'natural'} lighting, film grain 16mm overlay, vintage analog aesthetic, underground hip hop vibe, ${moodDesc} atmosphere, premium minimalism, no text, 16:9 ratio --style raw --ar 16:9`;
     }
 
     function generateShorts() {
       const name = document.getElementById('beatName').value;
       const bpm = document.getElementById('bpm').value;
-      const vibe = document.getElementById('vibe').value;
+      const sample = document.getElementById('sample').value;
+      const energy = document.getElementById('energy').value;
+      const sampleText = db.sampleKeywords[sample];
       
       return [
         {
           title: "The Hook Drop",
-          visual: "Chica latina B&W + fisheye, NYC night, caminata lenta o pose intensa",
+          visual: `Chica latina B&W + fisheye, NYC ${energy === 'chill' ? 'rooftop dusk' : 'alley night'}, ${energy === 'raw' ? 'intense pose' : 'relaxed flow'}`,
           audio: `Parte más potente del beat (hook principal)`,
-          text: `"${vibe.split(',')[0]}" → "${name}" → "Shop ↓"`,
+          text: `"${sampleText}" → "${name}" → "Shop ↓"`,
           desc: `Raw boom bap for real lyricists 🔥 Full beat on channel #BoomBap #UndergroundHipHop`
         },
         {
-          title: "POV Nocturno",
-          visual: "Rooftop at night, atmósfera oscura, grain 16mm, luz dramática",
+          title: "POV Vibe",
+          visual: `${energy === 'chill' ? 'Rooftop at dusk' : 'Dark alley'}, atmósfera ${selectedMoods[0] || 'underground'}, grain 16mm`,
           audio: `Intro atmosférica → entrada del beat con sample`,
-          text: `"POV: When the night falls... 🌃" → "${bpm} BPM Raw Boom Bap" → "Free ↓"`,
-          desc: `Nocturnal vibes only 🌙 Underground Hip Hop #BoomBapNations #RawBeats`
+          text: `"POV: ${selectedMoods[0] ? `When it's ${selectedMoods[0]}...` : 'Found the perfect beat'} 🌃" → "${bpm} BPM" → "Free ↓"`,
+          desc: `${selectedMoods[0] || 'Nocturnal'} vibes only 🌙 Underground Hip Hop #BoomBapNations #RawBeats`
         },
         {
           title: "Producer Breakdown",
           visual: "DAW mostrando sample original vs procesado (pitch down + drums)",
           audio: `Sample limpio → sample con pitch down + entrada de drums`,
-          text: `"Flipped a ${vibe.split(' ')[0]} sample" → "Pitch down + raw drums" → "Shop link ↓"`,
+          text: `"Flipped a ${sampleText}" → "Pitch down + raw drums" → "Shop link ↓"`,
           desc: `Behind the beat 🎹 BOGO active #BeatMaking #BoomBap #BoomBapNations`
         }
       ];
@@ -293,8 +419,9 @@ Label: ${label}
     // === RENDER ===
     function generateAll() {
       document.getElementById('outTitle').textContent = generateTitle();
-      document.getElementById('outDesc').textContent = generateDescription();
       document.getElementById('outTags').textContent = generateTags();
+      document.getElementById('tagsCount').textContent = `${generateTags().length}/500 caracteres`;
+      document.getElementById('outDesc').textContent = generateDescription();
       document.getElementById('outCover').textContent = generateCoverPrompt();
       
       // Tags visual chips
@@ -314,10 +441,10 @@ Label: ${label}
         shortsContainer.innerHTML += `
           <div class="short-item">
             <h4>SHORT ${i+1}: ${short.title}</h4>
-            <strong>🎬 Visual:</strong> ${short.visual}<br>
-            <strong>🎵 Audio:</strong> ${short.audio}<br>
-            <strong>📝 Texto Overlay:</strong> ${short.text}<br>
-            <strong>📄 Descripción:</strong> ${short.desc}
+            <p><strong>🎬 Visual:</strong> ${short.visual}</p>
+            <p><strong>🎵 Audio:</strong> ${short.audio}</p>
+            <p><strong>📝 Texto Overlay:</strong> ${short.text}</p>
+            <p><strong>📄 Descripción:</strong> ${short.desc}</p>
           </div>
         `;
       });
@@ -339,17 +466,17 @@ Label: ${label}
 TÍTULO:
 ${generateTitle()}
 
+TAGS (500c):
+${generateTags()}
+
 DESCRIPCIÓN:
 ${generateDescription()}
-
-TAGS:
-${generateTags()}
 
 COVER PROMPT:
 ${generateCoverPrompt()}
 
 SHORTS:
-${generateShorts().map((s,i)=>`#${i+1} ${s.title}\nVisual: ${s.visual}\nAudio: ${s.audio}\nTexto: ${s.text}\nDesc: ${s.desc}`).join('\n\n')}
+${generateShorts().map((s,i)=>`#${i+1} ${s.title}\n🎬 ${s.visual}\n🎵 ${s.audio}\n📝 ${s.text}\n📄 ${s.desc}`).join('\n\n')}
       `.trim();
       navigator.clipboard.writeText(all).then(() => alert('✅ Todo copiado al portapapeles'));
     }
