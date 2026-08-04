@@ -94,17 +94,17 @@
   <div class="container">
     <header>
       <h1>Boom Baap <span>Nations</span> Auto-Generator</h1>
-      <p class="subtitle">BPM + Mood + Sample → Nombre automático • Título multi-artista • Tags 500c • SEO • Cover • Shorts</p>
+      <p class="subtitle">BPM + Mood + Sample → Nombre coherente • Título multi-artista • Tags 500c • SEO • Cover • Shorts</p>
     </header>
 
     <!-- INPUTS -->
     <div class="grid">
       <div class="card">
-        <h3> Características del Beat</h3>
-        <label>BPM</label>
+        <h3>🎵 Características del Beat</h3>
+        <label>BPM (Determina velocidad del nombre)</label>
         <input type="number" id="bpm" placeholder="Ej: 161" value="161" min="70" max="180">
         
-        <label>Energía</label>
+        <label>Energía (Determina el estilo del nombre)</label>
         <select id="energy">
           <option value="raw">Raw / Crudo</option>
           <option value="chill">Chill / Relax</option>
@@ -138,13 +138,13 @@
           <span class="mood-chip" data-mood="cinematic">Cinematográfico</span>
         </div>
         
-        <button class="btn btn-full" onclick="generateBeatName()">✨ Generar Nombre del Beat</button>
+        <button class="btn btn-full" onclick="generateBeatName()">✨ Generar Nombre Coherente</button>
       </div>
 
       <div class="card">
         <h3>⚙️ Configuración</h3>
-        <label>Nombre del Beat (selecciona o edita)</label>
-        <input type="text" id="beatName" placeholder="El sistema generará nombres automáticamente" readonly>
+        <label>Nombre del Beat (selecciona el mejor)</label>
+        <input type="text" id="beatName" placeholder="Genera nombres primero..." readonly>
         <div class="name-suggestions" id="nameSuggestions"></div>
         
         <label>Número de artistas en título</label>
@@ -165,7 +165,7 @@
         <label>Label IG</label>
         <input type="text" id="labelIg" value="https://www.instagram.com/terrivolmusic/">
         
-        <button class="btn btn-full" onclick="generateAll()">🚀 Generar Todo el Contenido</button>
+        <button class="btn btn-full" onclick="generateAll()"> Generar Todo el Contenido</button>
         <button class="btn btn-outline btn-full" onclick="copyAll()">📋 Copiar Todo</button>
       </div>
     </div>
@@ -178,7 +178,7 @@
       <button class="btn btn-sm" onclick="copyText('outTitle')">Copiar</button>
     </div>
 
-    <h2 class="section-title">️ Tags SEO (500 caracteres máx)</h2>
+    <h2 class="section-title">🏷️ Tags SEO (500 caracteres máx)</h2>
     <div class="card">
       <div class="output" id="outTags"></div>
       <div class="char-count" id="tagsCount">0/500 caracteres</div>
@@ -186,7 +186,7 @@
       <button class="btn btn-sm" onclick="copyText('outTags')" style="margin-top:0.8rem">Copiar Tags</button>
     </div>
 
-    <h2 class="section-title"> Descripción SEO Completa</h2>
+    <h2 class="section-title">📄 Descripción SEO Completa</h2>
     <div class="card">
       <div class="output" id="outDesc"></div>
       <button class="btn btn-sm" onclick="copyText('outDesc')">Copiar Descripción</button>
@@ -206,72 +206,41 @@
 
     <footer>
       © 2026 Boom Baap Nations | Terivol Music ENT<br>
-      Auto-Generator v3.0 • Cashflow primero, prestigio después, marca sólida siempre
+      Auto-Generator v4.0 • Cashflow primero, prestigio después, marca sólida siempre
     </footer>
   </div>
 
   <script>
-    // === BASE DE DATOS DE NOMBRES POR ENERGÍA/SAMPLE ===
-    const beatNames = {
-      raw: {
-        vocal: ["Street Sermon", "Concrete Psalms", "Gutter Gospel", "Hood Hymn", "Brick Testament", "Asphalt Angels", "Raw Confession", "Dusty Prophecy"],
-        choir: ["Sacred Streets", "Ghetto Gospel", "Church of Concrete", "Blessed & Cursed", "Sanctified Soul", "Divine Grit", "Holy Hustle", "Redemption Road"],
-        piano: ["Ivory Grit", "Keys of Struggle", "Piano confessions", "Broken Keys", "Dusty Ivory", "Street Sonata", "Concrete Concerto", "Hood Harmonies"],
-        guitar: ["String Tension", "Fretboard Fury", "Guitar Grit", "Six String Soul", "Distorted Truth", "Amplified Pain", "String Theory", "Funky Testament"],
-        trumpet: ["Brass & Concrete", "Horn Section Hustle", "Trumpet Testimony", "Brass Grit", "Jazz & Justice", "Horn Confessions", "Brass Prophecy", "Trumpet Tales"],
-        strings: ["String Section Soul", "Orchestral Grit", "Symphony of Streets", "String Theory", "Violin Vengeance", "Cello Confessions", "Bass & Bow", "String Sermons"],
-        bass: ["Bassline Testament", "Low End Theory", "Sub Sonic Soul", "Bass Confessions", "Deep End", "Subterranean", "Bass & Grit", "Low Frequency"],
-        drums: ["Drum Gospel", "Percussion Prophecy", "Beat Baptism", "Rhythm & Grit", "Drum Confession", "Percussion Psalms", "Beat Testament", "Rhythm Revelation"]
+    // === BASE DE DATOS INTELIGENTE POR BPM + ENERGÍA ===
+    // Lógica: El nombre debe hacer sentido con la velocidad y la energía.
+    
+    const beatNamesDB = {
+      // ALTA VELOCIDAD (>140 BPM)
+      fast: {
+        raw: ["Street Velocity", "Raw Grit", "Fast Lane", "160 Chop", "Hyper Grit", "Raw Speed", "Concrete Sprint"],
+        chill: ["Lo-Fi Fast", "Jazz Hop Bounce", "Chill Velocity", "Speed Soul", "Fast Relax"],
+        dark: ["Night Runner", "Dark Sprint", "Shadow Speed", "Fast Noir"],
+        soulful: ["Soul Sprint", "Fast Heartbeat", "Soul Bounce"],
+        jazzy: ["Fast Jazz", "Bebop Speed", "Jazz Bounce", "Swing Fast"],
+        gritty: ["Gritty Run", "Street Sprint", "Fast Grit"]
       },
-      chill: {
-        vocal: ["Velvet Whisper", "Smooth Sermon", "Chill Confession", "Lazy Sunday", "Mellow Mood", "Soft Spoken", "Gentle Flow", "Quiet Storm"],
-        choir: ["Heavenly Chill", "Angelic Vibes", "Gospel Lounge", "Sacred Smooth", "Divine Relax", "Spiritual Chill", "Celestial Soul", "Ethereal Gospel"],
-        piano: ["Jazz Lounge", "Piano Dreams", "Ivory Dreams", "Smooth Keys", "Mellow Piano", "Chill Keys", "Lazy Keys", "Gentle Ivory"],
-        guitar: ["Acoustic Chill", "Guitar Dreams", "String Serenity", "Mellow Strings", "Smooth Guitar", "Lazy Guitar", "Gentle Pluck", "Acoustic Soul"],
-        trumpet: ["Jazz Cafe", "Trumpet Dreams", "Smooth Brass", "Mellow Horn", "Lounge Jazz", "Cafe Music", "Smooth Jazz", "Jazz Lounge"],
-        strings: ["String Dreams", "Orchestral Chill", "Symphony Lounge", "Mellow Strings", "Smooth Orchestra", "Gentle Strings", "Lazy Symphony", "String Serenity"],
-        bass: ["Bass Lounge", "Low End Chill", "Sub Sonic Dreams", "Mellow Bass", "Smooth Low End", "Lazy Bass", "Gentle Groove", "Bass Serenity"],
-        drums: ["Drum Lounge", "Percussion Chill", "Beat Dreams", "Mellow Beats", "Smooth Drums", "Lazy Rhythm", "Gentle Percussion", "Drum Serenity"]
+      // VELOCIDAD MEDIA (100-140 BPM) - EL ESTÁNDAR BOOM BAP
+      mid: {
+        raw: ["Street Sermon", "Concrete Psalms", "Gutter Gospel", "Brick Testament", "Raw Confession", "Dusty Prophecy", "Hood Hymn"],
+        chill: ["Velvet Whisper", "Smooth Sermon", "Chill Confession", "Lazy Sunday", "Mellow Mood", "Gentle Flow", "Quiet Storm"],
+        dark: ["Midnight Smoke", "Dark Confession", "Shadow Sermon", "Noir Narrative", "Grim Gospel", "Sinister Soul", "Dark Testament"],
+        soulful: ["Soul Sermon", "Heartfelt Hymn", "Emotional Gospel", "Soulful Confession", "Deep Soul", "Heart & Soul"],
+        jazzy: ["Jazz Sermon", "Smooth Jazz", "Jazz Confession", "Swing Sermon", "Bebop Gospel", "Jazz Testament"],
+        gritty: ["Gritty Gospel", "Street Sermon", "Concrete Confession", "Urban Gospel", "Raw Gospel", "Gritty Sermon"]
       },
-      dark: {
-        vocal: ["Midnight Smoke", "Dark Confession", "Shadow Sermon", "Noir Narrative", "Grim Gospel", "Sinister Soul", "Dark Testament", "Twilight Tales"],
-        choir: ["Dark Chapel", "Gothic Gospel", "Shadow Choir", "Noir Hymn", "Sinister Sacred", "Dark Divine", "Grim Gospel", "Twilight Testament"],
-        piano: ["Dark Keys", "Noir Piano", "Shadow Sonata", "Grim Ivory", "Sinister Keys", "Dark Concerto", "Midnight Piano", "Twilight Keys"],
-        guitar: ["Dark Strings", "Noir Guitar", "Shadow Pluck", "Grim Guitar", "Sinister Strings", "Dark Acoustic", "Midnight Guitar", "Twilight Strings"],
-        trumpet: ["Dark Brass", "Noir Trumpet", "Shadow Horn", "Grim Jazz", "Sinister Brass", "Dark Jazz", "Midnight Trumpet", "Twilight Horn"],
-        strings: ["Dark Orchestra", "Noir Strings", "Shadow Symphony", "Grim Orchestra", "Sinister Strings", "Dark Violin", "Midnight Strings", "Twilight Symphony"],
-        bass: ["Dark Bass", "Noir Low End", "Shadow Sub", "Grim Bass", "Sinister Low", "Dark Sub", "Midnight Bass", "Twilight Low End"],
-        drums: ["Dark Drums", "Noir Percussion", "Shadow Beats", "Grim Rhythm", "Sinister Drums", "Dark Percussion", "Midnight Drums", "Twilight Beats"]
-      },
-      soulful: {
-        vocal: ["Soul Sermon", "Heartfelt Hymn", "Emotional Gospel", "Soulful Confession", "Deep Soul", "Heart & Soul", "Soul Testament", "Emotional Anthem"],
-        choir: ["Soul Choir", "Gospel Soul", "Heartfelt Choir", "Emotional Gospel", "Soulful Sacred", "Deep Gospel", "Soul Hymn", "Heart Choir"],
-        piano: ["Soul Keys", "Heartfelt Piano", "Emotional Ivory", "Soulful Keys", "Deep Piano", "Soul Sonata", "Heartfelt Keys", "Emotional Piano"],
-        guitar: ["Soul Guitar", "Heartfelt Strings", "Emotional Guitar", "Soulful Pluck", "Deep Strings", "Soul Acoustic", "Heartfelt Guitar", "Emotional Strings"],
-        trumpet: ["Soul Brass", "Heartfelt Trumpet", "Emotional Jazz", "Soulful Horn", "Deep Jazz", "Soul Trumpet", "Heartfelt Brass", "Emotional Horn"],
-        strings: ["Soul Orchestra", "Heartfelt Strings", "Emotional Symphony", "Soulful Orchestra", "Deep Strings", "Soul Symphony", "Heartfelt Orchestra", "Emotional Strings"],
-        bass: ["Soul Bass", "Heartfelt Low End", "Emotional Bass", "Soulful Sub", "Deep Bass", "Soul Low End", "Heartfelt Bass", "Emotional Sub"],
-        drums: ["Soul Drums", "Heartfelt Beats", "Emotional Rhythm", "Soulful Percussion", "Deep Drums", "Soul Beats", "Heartfelt Drums", "Emotional Percussion"]
-      },
-      jazzy: {
-        vocal: ["Jazz Sermon", "Smooth Jazz", "Jazz Confession", "Swing Sermon", "Bebop Gospel", "Jazz Testament", "Smooth Sermon", "Jazz Narrative"],
-        choir: ["Jazz Choir", "Swing Gospel", "Bebop Choir", "Jazz Gospel", "Smooth Choir", "Jazz Sacred", "Swing Sacred", "Bebop Gospel"],
-        piano: ["Jazz Piano", "Swing Keys", "Bebop Piano", "Jazz Ivory", "Smooth Piano", "Jazz Sonata", "Swing Sonata", "Bebop Keys"],
-        guitar: ["Jazz Guitar", "Swing Guitar", "Bebop Strings", "Jazz Strings", "Smooth Guitar", "Jazz Acoustic", "Swing Acoustic", "Bebop Guitar"],
-        trumpet: ["Jazz Trumpet", "Swing Brass", "Bebop Trumpet", "Jazz Horn", "Smooth Brass", "Jazz Cafe", "Swing Cafe", "Bebop Jazz"],
-        strings: ["Jazz Orchestra", "Swing Strings", "Bebop Strings", "Jazz Symphony", "Smooth Orchestra", "Jazz Ensemble", "Swing Ensemble", "Bebop Orchestra"],
-        bass: ["Jazz Bass", "Swing Bass", "Bebop Bass", "Jazz Low End", "Smooth Bass", "Jazz Groove", "Swing Groove", "Bebop Bass"],
-        drums: ["Jazz Drums", "Swing Drums", "Bebop Drums", "Jazz Rhythm", "Smooth Drums", "Jazz Percussion", "Swing Percussion", "Bebop Percussion"]
-      },
-      gritty: {
-        vocal: ["Gritty Gospel", "Street Sermon", "Concrete Confession", "Urban Gospel", "Raw Gospel", "Gritty Sermon", "Street Testament", "Urban Testament"],
-        choir: ["Gritty Choir", "Street Choir", "Concrete Choir", "Urban Choir", "Raw Choir", "Gritty Gospel", "Street Gospel", "Urban Gospel"],
-        piano: ["Gritty Keys", "Street Piano", "Concrete Keys", "Urban Piano", "Raw Piano", "Gritty Ivory", "Street Ivory", "Urban Ivory"],
-        guitar: ["Gritty Guitar", "Street Guitar", "Concrete Strings", "Urban Guitar", "Raw Guitar", "Gritty Strings", "Street Strings", "Urban Strings"],
-        trumpet: ["Gritty Brass", "Street Trumpet", "Concrete Brass", "Urban Brass", "Raw Brass", "Gritty Horn", "Street Horn", "Urban Horn"],
-        strings: ["Gritty Strings", "Street Strings", "Concrete Orchestra", "Urban Strings", "Raw Strings", "Gritty Orchestra", "Street Orchestra", "Urban Orchestra"],
-        bass: ["Gritty Bass", "Street Bass", "Concrete Bass", "Urban Bass", "Raw Bass", "Gritty Low End", "Street Low End", "Urban Low End"],
-        drums: ["Gritty Drums", "Street Drums", "Concrete Drums", "Urban Drums", "Raw Drums", "Gritty Percussion", "Street Percussion", "Urban Percussion"]
+      // BAJA VELOCIDAD (<100 BPM)
+      slow: {
+        raw: ["Heavy Grit", "Slow Burn Raw", "Low End Grit", "Heavy Concrete"],
+        chill: ["Slow Chill", "Heavy Relax", "Slow Soul"],
+        dark: ["Slow Darkness", "Heavy Shadow", "Deep Dark"],
+        soulful: ["Heavy Soul", "Slow Love", "Deep Emotion"],
+        jazzy: ["Slow Jazz", "Heavy Swing", "Deep Jazz"],
+        gritty: ["Slow Grit", "Heavy Gritty"]
       }
     };
 
@@ -333,18 +302,22 @@
       });
     });
 
-    // === GENERADOR DE NOMBRES ===
+    // === GENERADOR DE NOMBRES (LÓGICA BPM + ENERGÍA) ===
     function generateBeatName() {
+      const bpm = parseInt(document.getElementById('bpm').value) || 120;
       const energy = document.getElementById('energy').value;
-      const sample = document.getElementById('sample').value;
-      const bpm = document.getElementById('bpm').value;
       
-      // Obtener nombres basados en energía y sample
-      const names = beatNames[energy][sample] || beatNames.raw.vocal;
+      // Determinar rango de velocidad
+      let speedCategory = "mid";
+      if(bpm >= 140) speedCategory = "fast";
+      else if(bpm <= 95) speedCategory = "slow";
       
-      // Seleccionar 3-5 nombres aleatorios
+      // Obtener nombres del mapa inteligente
+      const names = beatNamesDB[speedCategory][energy] || beatNamesDB.mid.raw;
+      
+      // Seleccionar 5 nombres aleatorios
       const shuffled = [...names].sort(() => 0.5 - Math.random());
-      const selected = shuffled.slice(0, Math.min(5, names.length));
+      const selected = shuffled.slice(0, 5);
       
       // Mostrar sugerencias
       const suggestionsDiv = document.getElementById('nameSuggestions');
@@ -465,11 +438,11 @@
       const label = document.getElementById('labelIg').value;
       const vibeWords = selectedMoods.map(m => db.vibeAdj[m]).join(', ') || 'crudo, auténtico, underground';
 
-      return ` [FREE] ${artists} Type Beat - "${name}" | ${db.subgenres[energy]} ${bpm} BPM
+      return `🔥 [FREE] ${artists} Type Beat - "${name}" | ${db.subgenres[energy]} ${bpm} BPM
 
 "${name}" is a ${db.subgenres[energy].toLowerCase()} beat with ${db.sampleKeywords[sample]}, dusty drums, vinyl texture, and ${vibeWords} vibe. Produced in the style of ${artists} and underground 90s hip hop.
 
-🛒 Purchase a license & download instantly (WAV + Trackouts): 
+ Purchase a license & download instantly (WAV + Trackouts): 
 ${shop}
 
 💿 License Tiers:
@@ -493,7 +466,7 @@ ${shop}
 Instagram: ${ig}
 Label: ${label}
 
-🔔 SUSCRÍBETE para nuevos Beats.
+ SUSCRÍBETE para nuevos Beats.
 
 #typebeat #${artists.toLowerCase().split(' x ')[0].replace(/\s/g,'')}typebeat #boombap #bbn #undergroundhiphop`;
     }
@@ -533,7 +506,7 @@ Label: ${label}
           visual: "DAW mostrando sample original vs procesado (pitch down + drums)",
           audio: `Sample limpio → sample con pitch down + entrada de drums`,
           text: `"Flipped a ${sampleText}" → "Pitch down + raw drums" → "Shop link ↓"`,
-          desc: `Behind the beat 🎹 BOGO active #BeatMaking #BoomBap #BoomBapNations`
+          desc: `Behind the beat  BOGO active #BeatMaking #BoomBap #BoomBapNations`
         }
       ];
     }
@@ -564,8 +537,8 @@ Label: ${label}
           <div class="short-item">
             <h4>SHORT ${i+1}: ${short.title}</h4>
             <p><strong>🎬 Visual:</strong> ${short.visual}</p>
-            <p><strong> Audio:</strong> ${short.audio}</p>
-            <p><strong>📝 Texto Overlay:</strong> ${short.text}</p>
+            <p><strong>🎵 Audio:</strong> ${short.audio}</p>
+            <p><strong> Texto Overlay:</strong> ${short.text}</p>
             <p><strong>📄 Descripción:</strong> ${short.desc}</p>
           </div>
         `;
@@ -598,15 +571,15 @@ COVER PROMPT:
 ${generateCoverPrompt()}
 
 SHORTS:
-${generateShorts().map((s,i)=>`#${i+1} ${s.title}\n🎬 ${s.visual}\n🎵 ${s.audio}\n📝 ${s.text}\n ${s.desc}`).join('\n\n')}
+${generateShorts().map((s,i)=>`#${i+1} ${s.title}\n🎬 ${s.visual}\n ${s.audio}\n📝 ${s.text}\n📄 ${s.desc}`).join('\n\n')}
       `.trim();
       navigator.clipboard.writeText(all).then(() => alert('✅ Todo copiado al portapapeles'));
     }
 
     function copyShorts() {
       const text = generateShorts().map((s,i)=>`SHORT ${i+1}: ${s.title}
- ${s.visual}
- ${s.audio}
+🎬 ${s.visual}
+🎵 ${s.audio}
 📝 ${s.text}
 📄 ${s.desc}`).join('\n\n');
       navigator.clipboard.writeText(text).then(() => alert('✅ Shorts copiados'));
