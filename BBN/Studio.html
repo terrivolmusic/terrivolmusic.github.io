@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boom Baap Nations | Vintage Hip Hop Beats & Licenses</title>
+  <style>
+    /* === RESET & VARIABLES === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a; --surface: #111; --border: #2a2a2a;
+      --text: #e0e0e0; --text-muted: #888;
+      --accent: #c9a227; --accent-hover: #e0b830;
+      --font-mono: 'Courier New', Courier, monospace;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --max-width: 900px; --radius: 6px;
+    }
+    body {
+      background-color: var(--bg); color: var(--text); font-family: var(--font-mono);
+      line-height: 1.6; position: relative; overflow-x: hidden;
+    }
+    /* Film Grain Overlay */
+    body::before {
+      content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 2rem 1.5rem; }
+    a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; letter-spacing: 0.5px; margin-bottom: 1rem; }
+    h1 { font-size: 2.5rem; text-align: center; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.8rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-top: 2rem; }
+    .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; }
+    .badge { background: var(--accent); color: #000; padding: 0.2rem 0.6rem; border-radius: 3px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 0.5rem; }
+
+    /* === PLAYER === */
+    .player-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin: 2rem 0; text-align: center; }
+    audio { width: 100%; margin: 1rem 0; filter: grayscale(100%) contrast(1.1); }
+    .track-list { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem; }
+    .track-item { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem; background: #161616; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: all 0.2s; }
+    .track-item:hover { border-color: var(--accent); background: #1a1a1a; }
+    .track-item.active { border-color: var(--accent); background: #1e1e1e; }
+    .track-info { display: flex; flex-direction: column; }
+    .track-name { font-weight: bold; }
+    .track-meta { font-size: 0.8rem; color: var(--text-muted); }
+    .play-icon { font-size: 1.2rem; color: var(--accent); }
+
+    /* === LICENSES === */
+    .licenses { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .license-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; transition: transform 0.2s, border-color 0.2s; }
+    .license-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .license-card.featured { border-color: var(--accent); position: relative; }
+    .license-card.featured::before { content: "⭐ MÁS POPULAR"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
+    .price { font-size: 2rem; font-weight: bold; color: var(--accent); margin: 1rem 0; }
+    .features { list-style: none; text-align: left; margin: 1rem 0; font-size: 0.9rem; }
+    .features li { margin-bottom: 0.4rem; padding-left: 1.2rem; position: relative; }
+    .features li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); }
+    .features li.no::before { content: "✗"; color: #ff4444; }
+    .btn { display: inline-block; background: var(--accent); color: #000; padding: 0.8rem 1.5rem; border-radius: var(--radius); font-weight: bold; text-decoration: none; transition: background 0.2s; width: 100%; }
+    .btn:hover { background: var(--accent-hover); text-decoration: none; }
+    .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+    .btn-outline:hover { background: var(--accent); color: #000; }
+
+    /* === PROMO & FOOTER === */
+    .promo-banner { background: #1a1a1a; border: 1px dashed var(--accent); padding: 1rem; text-align: center; border-radius: var(--radius); margin: 2rem 0; font-size: 0.95rem; }
+    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin: 1.5rem 0; flex-wrap: wrap; }
+    footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--border); margin-top: 3rem; font-size: 0.85rem; color: var(--text-muted); }
+    .disclaimer { font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.5; }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .licenses { grid-template-columns: 1fr; }
+      .container { padding: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HERO -->
+    <header>
+      <h1>Boom Baap <span style="color:var(--accent)">Nations</span></h1>
+      <p class="subtitle">Vintage Hip Hop | Jazz Rap | 90s NY Soul | Raw Boom Bap<br>Prod. by Terivol Music ENT</p>
+    </header>
+
+    <!-- PLAYER -->
+    <section class="player-box">
+      <h2>🎧 Preview Tracks</h2>
+      <audio id="mainPlayer" controls preload="metadata">
+        <source src="assets/street-sermon.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+      </audio>
+      <div class="track-list" id="trackList">
+        <!-- Tracks injected via JS -->
+      </div>
+    </section>
+
+    <!-- LICENSES -->
+    <section>
+      <h2> Licencias & Descargas</h2>
+      <div class="licenses">
+        <!-- BASIC -->
+        <div class="license-card">
+          <h3>Basic</h3>
+          <div class="price">$14.99</div>
+          <ul class="features">
+            <li>MP3 (320kbps)</li>
+            <li>Uso no comercial / Demos</li>
+            <li>Hasta 5,000 streams</li>
+            <li>Crédito obligatorio: "Prod. by Boom Baap Nations"</li>
+            <li class="no">Sin uso comercial / monetización</li>
+            <li class="no">Sin stems/trackouts</li>
+          </ul>
+          <a href="https://boom-baap-nations-shop.fourthwall.com" class="btn btn-outline">Comprar Basic</a>
+        </div>
+        <!-- STANDARD -->
+        <div class="license-card featured">
+          <h3>Standard</h3>
+          <div class="price">$29.99</div>
+          <ul class="features">
+            <li>MP3 + WAV (24-bit/44.1kHz)</li>
+            <li>Uso comercial permitido</li>
+            <li>Monetización en todas las plataformas</li>
+            <li>Hasta 50,000 streams</li>
+            <li>Videos musicales, radio, shows en vivo</li>
+            <li class="no">Sin stems/trackouts</li>
+          </ul>
+          <a href="https://boom-baap-nations-shop.fourthwall.com" class="btn">Comprar Standard</a>
+        </div>
+        <!-- PREMIUM -->
+        <div class="license-card">
+          <h3>Premium</h3>
+          <div class="price">$49.99</div>
+          <ul class="features">
+            <li>MP3 + WAV + STEMS (Trackouts)</li>
+            <li>Derechos comerciales completos</li>
+            <li>Streams ilimitados</li>
+            <li>Radio, TV, sincronización, shows</li>
+            <li>Productor tag removido</li>
+            <li>Entrega instantánea</li>
+          </ul>
+          <a href="https://boom-baap-nations-shop.fourthwall.com" class="btn btn-outline">Comprar Premium</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMO -->
+    <div class="promo-banner">
+      🎁 <strong>OFERTA ACTIVA:</strong> Compra 1 Licencia y Lleva 2 (BOGO). Tiempo limitado.
+    </div>
+
+    <!-- SOCIAL & CONTACT -->
+    <section style="text-align:center; margin: 2rem 0;">
+      <h2>📬 Contacto & Redes</h2>
+      <div class="social-links">
+        <a href="mailto:terrivolmusiclove@gmail.com">📧 Email</a>
+        <a href="https://www.instagram.com/cagtaflex" target="_blank">📱 Instagram</a>
+        <a href="https://www.instagram.com/terrivolmusic" target="_blank">🌍 Label IG</a>
+        <a href="https://boom-baap-nations-shop.fourthwall.com" target="_blank">🛒 Tienda Oficial</a>
+      </div>
+      <p class="disclaimer">
+        ⚠️ <strong>Aviso Legal:</strong> Todos los beats son gratuitos para uso NO COMERCIAL con crédito adecuado. 
+        Para monetizar en Spotify, Apple Music, YouTube o cualquier plataforma comercial, es obligatorio adquirir una licencia. 
+        La reventa o redistribución del beat sin licencia está prohibida.
+      </p>
+    </section>
+
+    <footer>
+      © 2026 Boom Baap Nations | Terivol Music ENT. Todos los derechos reservados.<br>
+      Sistema de licencias gestionado vía Fourthwall.
+    </footer>
+  </div>
+
+  <script>
+    // === DATA DE TRACKS (EDITA AQUÍ PARA AÑADIR/QUITAR BEATS) ===
+    const tracks = [
+      { id: 1, name: "Street Sermon", bpm: 161, vibe: "Raw Latin Boom Bap", src: "assets/street-sermon.mp3" },
+      { id: 2, name: "Velvet Whisper", bpm: 160, vibe: "Chill Jazz Vocal Sample", src: "assets/velvet-whisper.mp3" },
+      { id: 3, name: "Mafia Horns", bpm: 89, vibe: "Dark Jazz Trumpet", src: "assets/mafia-horns.mp3" },
+      { id: 4, name: "Midnight Smoke", bpm: 133, vibe: "Griselda Dark Chill", src: "assets/midnight-smoke.mp3" }
+    ];
+
+    const trackListEl = document.getElementById('trackList');
+    const player = document.getElementById('mainPlayer');
+
+    // Render lista
+    tracks.forEach(track => {
+      const div = document.createElement('div');
+      div.className = 'track-item';
+      div.dataset.src = track.src;
+      div.innerHTML = `
+        <div class="track-info">
+          <span class="track-name">${track.name}</span>
+          <span class="track-meta">${track.bpm} BPM • ${track.vibe}</span>
+        </div>
+        <span class="play-icon">▶</span>
+      `;
+      div.addEventListener('click', () => loadTrack(track, div));
+      trackListEl.appendChild(div);
+    });
+
+    function loadTrack(track, element) {
+      document.querySelectorAll('.track-item').forEach(el => el.classList.remove('active'));
+      element.classList.add('active');
+      player.src = track.src;
+      player.load();
+      player.play().catch(() => {});
+    }
+
+    // Sync iconos play/pause
+    player.addEventListener('play', () => {
+      document.querySelectorAll('.track-item').forEach(el => {
+        el.querySelector('.play-icon').textContent = (el.dataset.src === player.src) ? '⏸' : '▶';
+      });
+    });
+    player.addEventListener('pause', () => {
+      document.querySelectorAll('.track-item').forEach(el => {
+        if(el.dataset.src === player.src) el.querySelector('.play-icon').textContent = '▶';
+      });
+    });
+  </script>
+</body>
+</html>
