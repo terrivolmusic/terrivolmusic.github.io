@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <!-- ==========================================================
-  BBN LANDING TEMPLATE v1.1 — Boom Baap Nations
-  REGLAS PERMANENTES (aplicar a TODAS las landings futuras):
+  BBN LANDING TEMPLATE v1.2 — Boom Baap Nations
+  FIX v1.2: Audio 100% nativo (sin Web Audio API) → cero cortes en móvil.
+            Visualizador simulado (no procesa el audio).
+  REGLAS PERMANENTES:
   • NO incluir "cagtaflex" ni marcas personales ajenas al sello
   • CTA principal hace scroll a la sección de licencias (#licenses)
   • Contacto oficial: Store Fourthwall + @terrivolmusic + terrivolmusic.github.io + email
@@ -203,6 +205,7 @@ footer .logo{margin-bottom:1rem}
     </div>
     <canvas id="viz"></canvas>
   </div>
+  <!-- AUDIO 100% NATIVO: sin procesamiento Web Audio → cero cortes en móvil -->
   <audio id="audio" preload="metadata" src="Gritty%20Run%20Pre.mp3"></audio>
 </section>
 
@@ -323,27 +326,17 @@ $('#footMail').href = 'mailto:' + CONFIG.contact.email;
 const mq = `${CONFIG.beatName.toUpperCase()} ✦ <b>${CONFIG.bpm} BPM</b> ✦ ${CONFIG.subgenre.toUpperCase()} ✦ <b>${CONFIG.artists.toUpperCase()}</b> ✦ PROD. BOOM BAAP NATIONS ✦ WAV + STEMS ✦ `;
 $('#marquee').innerHTML = (mq + mq).repeat(2);
 
-/* ===== PLAYER ===== */
+/* ===== PLAYER (AUDIO NATIVO — SIN WEB AUDIO API) ===== */
 const audio = $('#audio');
-let ctx, analyser, dataArr;
-function initGraph(){
-  if(ctx) return;
-  try{
-    ctx = new (window.AudioContext||window.webkitAudioContext)();
-    const src = ctx.createMediaElementSource(audio);
-    analyser = ctx.createAnalyser(); analyser.fftSize = 128;
-    src.connect(analyser); analyser.connect(ctx.destination);
-    dataArr = new Uint8Array(analyser.frequencyBinCount);
-  }catch(e){ analyser = null; }
-}
 function toggle(){
-  if(audio.paused){ initGraph(); if(ctx) ctx.resume(); audio.play(); }
+  if(audio.paused) audio.play();
   else audio.pause();
 }
 $('#playBtn').onclick = toggle;
 $('#heroPlay').onclick = toggle;
 audio.onplay = () => { document.body.classList.add('playing'); $('#playBtn').textContent='⏸'; $('#heroPlay').textContent='⏸ PAUSE'; };
 audio.onpause = () => { document.body.classList.remove('playing'); $('#playBtn').textContent='▶'; $('#heroPlay').textContent='▶ PLAY PREVIEW'; };
+audio.onended = () => { document.body.classList.remove('playing'); $('#playBtn').textContent='▶'; $('#heroPlay').textContent='▶ PLAY PREVIEW'; };
 audio.onloadedmetadata = () => $('#tDur').textContent = fmt(audio.duration);
 audio.ontimeupdate = () => {
   $('#tCur').textContent = fmt(audio.currentTime);
@@ -355,7 +348,7 @@ $('#progress').onclick = e => {
 };
 function fmt(s){ s=Math.floor(s||0); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); }
 
-/* ===== VISUALIZER ===== */
+/* ===== VISUALIZER SIMULADO (no toca el audio → 0 cortes en móvil) ===== */
 const canvas = $('#viz'), c = canvas.getContext('2d');
 function sizeCanvas(){ canvas.width = canvas.clientWidth*2; canvas.height = 140; }
 sizeCanvas(); window.onresize = sizeCanvas;
@@ -363,12 +356,15 @@ sizeCanvas(); window.onresize = sizeCanvas;
   requestAnimationFrame(draw);
   const w=canvas.width, h=canvas.height, N=56, bw=w/N;
   c.clearRect(0,0,w,h);
-  if(analyser && !audio.paused) analyser.getByteFrequencyData(dataArr);
+  const playing = !audio.paused;
   for(let i=0;i<N;i++){
     let v = 0.04;
-    if(!audio.paused){
-      v = analyser ? (dataArr[Math.floor(i/N*dataArr.length*0.8)]/255)
-                   : 0.25 + 0.55*Math.abs(Math.sin(i*0.35+t*0.004))*Math.abs(Math.sin(t*0.0011+i));
+    if(playing){
+      // Ondas suaves combinadas = movimiento orgánico tipo groove
+      const a = Math.sin(i*0.35 + t*0.004)*0.5+0.5;
+      const b = Math.sin(i*0.13 - t*0.0023)*0.5+0.5;
+      const d = Math.sin(t*0.0011 + i*0.7)*0.5+0.5;
+      v = 0.15 + 0.75*(a*0.45 + b*0.30 + d*0.25);
     }
     const bh = Math.max(3, v*h);
     c.fillStyle = i%4===0 ? 'rgba(230,193,74,.9)' : 'rgba(201,162,39,.5)';
