@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <!-- ==========================================================
-  BBN LANDING TEMPLATE v1.0 — Boom Baap Nations
+  BBN LANDING TEMPLATE v1.1 — Boom Baap Nations
+  REGLAS PERMANENTES (aplicar a TODAS las landings futuras):
+  • NO incluir "cagtaflex" ni marcas personales ajenas al sello
+  • CTA principal hace scroll a la sección de licencias (#licenses)
+  • Contacto oficial: Store Fourthwall + @terrivolmusic + terrivolmusic.github.io + email
   CÓMO REUTILIZAR PARA UN NUEVO BEAT:
   1) Duplica este archivo (ej: nuevo-beat.html)
-  2) Edita SOLO el objeto CONFIG al final (en <script>)
-  3) Actualiza las etiquetas og: del <head> (para compartir en redes)
+  2) Edita SOLO el objeto CONFIG en <script>
+  3) Actualiza las etiquetas og: del <head>
   4) Sube carátula + preview a la carpeta /BBN/ en GitHub
 ========================================================== -->
 <html lang="es">
@@ -28,6 +32,7 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:'Oswald',sans-serif;line-height:1.6;overflow-x:hidden}
 ::selection{background:var(--gold);color:#000}
+#licenses{scroll-margin-top:90px}
 
 /* ===== FILM GRAIN OVERLAY ===== */
 .grain{position:fixed;inset:-100px;pointer-events:none;z-index:999;opacity:.09;
@@ -108,7 +113,6 @@ canvas#viz{width:100%;height:70px;margin-top:1.5rem;display:block}
 .lic.featured::before{content:"⭐ BEST VALUE";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;font-family:'Bebas Neue';letter-spacing:2px;padding:.2rem 1rem;font-size:.9rem}
 .lic h3{font-family:'Bebas Neue';font-size:1.6rem;letter-spacing:2px}
 .price{font-family:'Bebas Neue';font-size:3rem;color:var(--gold);margin:.6rem 0 1.2rem}
-.price small{font-size:1rem;color:var(--muted)}
 .feat{list-style:none;flex:1;margin-bottom:1.6rem}
 .feat li{font-size:.9rem;color:var(--muted);padding:.35rem 0 .35rem 1.5rem;position:relative;border-bottom:1px dashed #1e1e1e}
 .feat li::before{content:"✓";position:absolute;left:0;color:var(--gold)}
@@ -155,8 +159,8 @@ footer .logo{margin-bottom:1rem}
 <header class="topbar">
   <div class="logo">BOOM BAAP <span>NATIONS</span></div>
   <nav class="top-links">
-    <a href="https://boom-baap-nations-shop.fourthwall.com" target="_blank">STORE</a>
-    <a href="https://www.instagram.com/terrivolmusic/" target="_blank">TERIVOL MUSIC ENT</a>
+    <a id="topStore" href="https://boom-baap-nations-shop.fourthwall.com" target="_blank">STORE</a>
+    <a id="topLabel" href="https://www.instagram.com/terrivolmusic/" target="_blank">TERIVOL MUSIC ENT</a>
   </nav>
 </header>
 
@@ -178,7 +182,7 @@ footer .logo{margin-bottom:1rem}
     <p class="hero-desc">Raw East Coast boom bap con drums crudos, textura de vinilo y alma de los 90s. Hecho para lyricists que necesitan pegada real. Licencia al instante, entrega automática.</p>
     <div class="cta-row">
       <button class="btn btn-gold" id="heroPlay">▶ PLAY PREVIEW</button>
-      <a class="btn btn-ghost" id="heroCta" href="#" target="_blank">GET LICENSE ⚡</a>
+      <a class="btn btn-ghost" href="#licenses">GET LICENSE ↓</a>
     </div>
     <p class="trust-mini">⚡ INSTANT DELIVERY &nbsp;•&nbsp; 🔒 SECURE CHECKOUT &nbsp;•&nbsp; 🎧 WAV + STEMS</p>
   </div>
@@ -203,7 +207,7 @@ footer .logo{margin-bottom:1rem}
 </section>
 
 <!-- ===== LICENSES ===== -->
-<section class="licenses">
+<section class="licenses" id="licenses">
   <h2 class="sec-title reveal">CHOOSE YOUR <span>LICENSE</span></h2>
   <p class="sec-sub reveal">Entrega instantánea • Pago seguro vía Fourthwall</p>
   <div class="lic-grid">
@@ -264,10 +268,10 @@ footer .logo{margin-bottom:1rem}
 <footer>
   <div class="logo">BOOM BAAP <span>NATIONS</span></div>
   <div class="foot-links">
-    <a href="https://boom-baap-nations-shop.fourthwall.com" target="_blank">🛒 STORE</a>
-    <a href="https://www.instagram.com/cagtaflex" target="_blank">📱 @CAGTAFLEX</a>
-    <a href="https://www.instagram.com/terrivolmusic/" target="_blank">🌍 @TERRIVOLMUSIC</a>
-    <a href="mailto:terrivolmusiclove@gmail.com">📧 CONTACTO</a>
+    <a id="footStore" href="https://boom-baap-nations-shop.fourthwall.com" target="_blank">🛒 STORE</a>
+    <a id="footLabel" href="https://www.instagram.com/terrivolmusic/" target="_blank">🌍 @TERRIVOLMUSIC</a>
+    <a id="footWeb" href="https://terrivolmusic.github.io" target="_blank">🌐 TERRIVOLMUSIC.GITHUB.IO</a>
+    <a id="footMail" href="mailto:terrivolmusiclove@gmail.com">📧 CONTACTO</a>
   </div>
   <p class="legal">⚠️ Free for non-profit use with proper credit. Commercial use, monetization, Spotify/Apple Music requires a purchased license. © 2026 Boom Baap Nations | Terivol Music ENT.</p>
 </footer>
@@ -287,6 +291,12 @@ const CONFIG = {
     basic:    "https://boom-baap-nations-shop.fourthwall.com/products/grittyrun-basic-license-mp3",
     standard: "https://boom-baap-nations-shop.fourthwall.com/products/grittyrun-standard-license-mp3-wav",
     premium:  "https://boom-baap-nations-shop.fourthwall.com/products/grittyrun-premium-license-mp3-wav-stems"
+  },
+  contact: {
+    shop:    "https://boom-baap-nations-shop.fourthwall.com",
+    labelIg: "https://www.instagram.com/terrivolmusic/",
+    website: "https://terrivolmusic.github.io",
+    email:   "terrivolmusiclove@gmail.com"
   }
 };
 
@@ -304,8 +314,13 @@ $('#audio').src = CONFIG.audio;
 $('#linkBasic').href = CONFIG.links.basic;
 $('#linkStandard').href = CONFIG.links.standard;
 $('#linkPremium').href = CONFIG.links.premium;
-$('#heroCta').href = CONFIG.links.standard;
-const mq = `GRITTY RUN ✦ <b>${CONFIG.bpm} BPM</b> ✦ ${CONFIG.subgenre.toUpperCase()} ✦ <b>${CONFIG.artists.toUpperCase()}</b> ✦ PROD. BOOM BAAP NATIONS ✦ WAV + STEMS ✦ `;
+$('#topStore').href = CONFIG.contact.shop;
+$('#topLabel').href = CONFIG.contact.labelIg;
+$('#footStore').href = CONFIG.contact.shop;
+$('#footLabel').href = CONFIG.contact.labelIg;
+$('#footWeb').href = CONFIG.contact.website;
+$('#footMail').href = 'mailto:' + CONFIG.contact.email;
+const mq = `${CONFIG.beatName.toUpperCase()} ✦ <b>${CONFIG.bpm} BPM</b> ✦ ${CONFIG.subgenre.toUpperCase()} ✦ <b>${CONFIG.artists.toUpperCase()}</b> ✦ PROD. BOOM BAAP NATIONS ✦ WAV + STEMS ✦ `;
 $('#marquee').innerHTML = (mq + mq).repeat(2);
 
 /* ===== PLAYER ===== */
