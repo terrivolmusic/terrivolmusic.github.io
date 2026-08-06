@@ -86,6 +86,12 @@
         .playlist-box{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(56,189,248,.06));border:1px solid rgba(139,92,246,.25);border-radius:10px;padding:1rem;margin-top:.5rem}
         .playlist-name{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--primary2)}
         .playlist-hint{font-size:.78rem;color:var(--muted);margin-top:.3rem}
+        .playlist-output-box{background:linear-gradient(135deg,rgba(244,114,182,.06),rgba(139,92,246,.06));border:1px solid rgba(244,114,182,.25);border-radius:10px;padding:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+        .pl-icon{font-size:2rem;opacity:.8}
+        .pl-info{flex:1;min-width:150px}
+        .pl-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:.15rem}
+        .pl-name{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:#f472b6}
+        .pl-action{font-size:.72rem;color:var(--muted);background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.35rem .7rem;width:100%;text-align:center;margin-top:.2rem}
     </style>
 </head>
 <body>
@@ -178,6 +184,12 @@
                 </div>
                 <div class="title-box" id="out-title"></div>
             </div>
+            <div class="out-section" id="sec-playlist" style="display:none">
+                <div class="out-header">
+                    <h3><span style="color:#f472b6">&#127925;</span> Playlist de YouTube</h3>
+                </div>
+                <div class="playlist-output-box" id="out-playlist"></div>
+            </div>
             <div class="out-section" id="sec-desc" style="display:none">
                 <div class="out-header">
                     <h3><span style="color:var(--blue)">&#128221;</span> Descripcion</h3>
@@ -266,7 +278,7 @@ function forceNicheChange(){detectarNicho()}
 function generarTodo(){
 if(!currentNiche){detectarNicho();if(!currentNiche)return}
 var bpm=document.getElementById("bpm").value||"?";var energy=parseInt(document.getElementById("energy").value);var estilo=document.getElementById("estilo").value;var notas=document.getElementById("notas").value;var a1=document.getElementById("artista1").value.trim();var niche=niches[currentNiche];
-var secs=["sec-names","sec-titles","sec-desc","sec-tags","sec-pinned","sec-prompt"];
+var secs=["sec-names","sec-titles","sec-playlist","sec-desc","sec-tags","sec-pinned","sec-prompt"];
 for(var s=0;s<secs.length;s++){document.getElementById(secs[s]).style.display=""}
 document.getElementById("placeholder").style.display="none";
 if(currentNames.length===0){currentNames=generarNombres(3)}
@@ -274,6 +286,7 @@ selectedName=currentNames[0];renderNombres();
 var titulo=a1?a1+" Type Beat \u2014 "+niche.name+" \u2014 "+selectedName:niche.name+" Type Beat \u2014 "+selectedName;
 currentTitulo=titulo;
 document.getElementById("out-title").textContent=titulo;
+document.getElementById("out-playlist").innerHTML='<div class="pl-icon">&#128193;</div><div class="pl-info"><div class="pl-label">Agregar este beat a:</div><div class="pl-name">'+niche.playlist+'</div></div><div class="pl-action">&#10132; YouTube Studio &rarr; Video &rarr; Agregar a Playlist</div>';
 generarDescripcion(bpm,energy,estilo,notas,a1,niche);
 generarTags(bpm,estilo,notas,a1,niche);
 generarPinned(bpm,a1,niche);
