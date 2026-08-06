@@ -230,6 +230,7 @@ drill:{name:"UK Drill",bpmRange:[138,150],energyRange:[6,10],keywords:["drill","
 rage:{name:"Rage",bpmRange:[140,155],energyRange:[7,10],keywords:["rage","yeat","aggressive","distorted","heavy","intense","rage beat","berserk","destroy","chaos","overload","hardcore"],playlist:"Rage / Underground Beats",descVibe:"aggressive distorted synths and high-energy 808s",baseTags:["rage type beat","rage beat","aggressive trap beat","distorted beat","rage instrumental","underground rage beat","rage beats 2025","heavy trap beat"],thumb:{colors:"intense red, electric blue, and black",outfit:"distressed black leather motorcycle jacket with metal studs over mesh top, edgy and bold",hair:"voluminous curly dark hair with subtle purple highlights, wild and untamed",makeup:"bold dramatic makeup with heavy smoky eyes, dark lips and sharp contour for fierce look",lighting:"intense red and electric blue neon lighting from car dashboard, high contrast shadows",pose:"leaning out of luxury car window, one arm resting on roof, intense aggressive gaze at camera",bg:"dark car interior with aggressive neon lighting, motion blur"}},
 melodic:{name:"Dark Melodic",bpmRange:[115,130],energyRange:[1,5],keywords:["melodic","sad","emotional","piano","juice wrld","laroi","melancholic","heartbreak","pain","tears","ambient pad","soft","chill","r&b"],playlist:"Dark Melodic / Sad Trap",descVibe:"emotional piano progressions and melancholic atmospheric pads",baseTags:["dark melodic type beat","melodic trap beat","sad trap beat","emotional piano beat","dark melodic instrumental","melodic trap 2025","piano trap beat","sad instrumental"],thumb:{colors:"cool blue, soft purple, and teal",outfit:"oversized black leather jacket over fitted dark turtleneck with subtle silver chains",hair:"long wavy brunette hair with natural waves falling over shoulders",makeup:"soft smoky eye makeup with glossy nude lips and subtle contour",lighting:"cool blue and soft purple neon lighting from car interior LEDs, rainy night reflections on windows",pose:"sitting in back seat of luxury car, leaning head against window, melancholic gaze looking out at city lights",bg:"luxury car interior at night, rain on windows, blurred city lights"}}
 };
+
 var suggestArtists={
 opium:["Playboi Carti","Ken Carson","Destroy Lonely","Homixide Gang"],
 cinematic:["Travis Scott","Don Toliver","Metro Boomin","Future"],
@@ -237,30 +238,39 @@ drill:["Central Cee","Pop Smoke","Digga D","Headie One"],
 rage:["Yeat","Ken Carson","Summrs","OsamaSon"],
 melodic:["Juice WRLD","The Kid LAROI","Iann Dior","Post Malone"]
 };
+
 var RA=["Aether","Velvet","Neon","Shadow","Crystal","Ivory","Midnight","Phantom","Cosmic","Stellar","Quantum","Nebula","Obsidian","Platinum","Noir","Eclipse","Titan","Apex","Prism","Void","Eternal","Silent","Fading","Broken","Lost","Echo","Silk","Frequency","Voltage","Breach","Cyber","Digital","Berserk","Overload","Burgundy","Code","Zero","Ghost","Steel","Urban","Concrete","Psychedelic","Cartel","Vampire","Underground","Blood","Dreams","Protocol","Galactic","Toxic","Savage","Venom","Astral","Frozen","Burning","Cold","Crimson","Riot","Chaos","Maximum","Dark","System","Engine","District","Sector","Black"];
 var RB=["Drift","Protocol","Mechanism","Syndicate","Ascension","Horizon","Cathedral","Symphony","Circuit","Dawn","Veil","Rise","Velocity","Orbit","Cascade","Infinity","Zenith","Nocturne","Oblivion","Confession","Memories","Ritual","Tears","Signal","Theory","Predator","Control","Overdrive","Crash","Warfare","Ops","Visibility","Raid","Jungle","Lonely","Active","Voyage","Odyssey","Echoes","Whispers","Illusions","Mirage","Specter","Wraith","Requiem","Anthem","Legacy","Dynasty","Empire","Kingdom","Realm","Frontier","Matrix","Vector","Pulse","Wave","Flux","Core","Gate","Portal","Overture","Rain","Outlaw","Sky","Night"];
 var usedNames={};
 function generarNombres(cant){var nombres=[],intentos=0;while(nombres.length<cant&&intentos<300){var a=RA[Math.floor(Math.random()*RA.length)];var b=RB[Math.floor(Math.random()*RB.length)];var n=a+" "+b;if(nombres.indexOf(n)===-1&&!usedNames[n]){nombres.push(n);usedNames[n]=true}intentos++}return nombres}
+
 var currentNiche=null;var currentNames=[];var selectedName="";var currentTitulo="";
+
 function updateEnergy(){var val=parseInt(document.getElementById("energy").value);var lbl=document.getElementById("energyLabel");if(val<=3){lbl.textContent="Baja";lbl.className="energy-val energy-low"}else if(val<=6){lbl.textContent="Media";lbl.className="energy-val energy-med"}else{lbl.textContent="Alta";lbl.className="energy-val energy-high"}}
+
 function detectarNicho(){
-var bpm=parseInt(document.getElementById("bpm").value)||0;var energy=parseInt(document.getElementById("energy").value);var estilo=(document.getElementById("estilo").value||"").toLowerCase();var force=document.getElementById("forceNiche").value;
+var bpm=parseInt(document.getElementById("bpm").value)||0;
+var energy=parseInt(document.getElementById("energy").value);
+var estilo=(document.getElementById("estilo").value||"").toLowerCase();
+var force=document.getElementById("forceNiche").value;
 if(force){setNiche(force,100,"Manual");return}
 if(bpm===0&&!estilo){document.getElementById("detectName").textContent="--";document.getElementById("detectConf").textContent="Ingresa BPM o estilo";document.getElementById("suggest1").innerHTML="";document.getElementById("playlistBox").style.display="none";currentNiche=null;return}
 var scores={};var keys=Object.keys(niches);
-for(var i=0;i<keys.length;i++){var k=keys[i];var n=niches[k];var score=0;
-if(bpm>0){if(bpm>=n.bpmRange[0]&&bpm<=n.bpmRange[1]){score+=40}else{var dist=0;if(bpm<n.bpmRange[0])dist=n.bpmRange[0]-bpm;else dist=bpm-n.bpmRange[1];score+=Math.max(0,40-dist*3)}}
-if(energy>=n.energyRange[0]&&energy<=n.energyRange[1]){score+=30}else{var eDist=0;if(energy<n.energyRange[0])eDist=n.energyRange[0]-energy;else eDist=energy-n.energyRange[1];score+=Math.max(0,30-eDist*6)}}
+for(var i=0;i<keys.length;i++){
+var k=keys[i];var n=niches[k];var score=0;
+if(bpm>0){if(bpm>=n.bpmRange[0]&&bpm<=n.bpmRange[1]){score+=40}else{var dist=0;if(bpm<n.bpmRange[0]){dist=n.bpmRange[0]-bpm}else{dist=bpm-n.bpmRange[1]}score+=Math.max(0,40-dist*3)}}
+if(energy>=n.energyRange[0]&&energy<=n.energyRange[1]){score+=30}else{var eDist=0;if(energy<n.energyRange[0]){eDist=n.energyRange[0]-energy}else{eDist=energy-n.energyRange[1]}score+=Math.max(0,30-eDist*6)}
 if(estilo){var words=estilo.split(/[ ,\s]+/);for(var j=0;j<words.length;j++){for(var kw=0;kw<n.keywords.length;kw++){if(words[j]&&n.keywords[kw].indexOf(words[j])!==-1){score+=10}}}}
 scores[k]=score}
 var bestKey="";var bestScore=-1;
 for(var k2 in scores){if(scores[k2]>bestScore){bestScore=scores[k2];bestKey=k2}}
 var conf=Math.min(100,Math.round(bestScore));
 var reason=[];
-if(bpm>0&&bpm>=niches[bestKey].bpmRange[0]&&bpm<=niches[bestKey].bpmRange[1])reason.push("BPM "+bpm);
-if(energy>=niches[bestKey].energyRange[0]&&energy<=niches[bestKey].energyRange[1])reason.push("Energia "+(energy<=3?"Baja":energy<=6?"Media":"Alta"));
-if(estilo)reason.push("Estilo");
+if(bpm>0&&bpm>=niches[bestKey].bpmRange[0]&&bpm<=niches[bestKey].bpmRange[1]){reason.push("BPM "+bpm)}
+if(energy>=niches[bestKey].energyRange[0]&&energy<=niches[bestKey].energyRange[1]){reason.push("Energia "+(energy<=3?"Baja":energy<=6?"Media":"Alta"))}
+if(estilo){reason.push("Estilo")}
 setNiche(bestKey,conf,reason.join(" + "))}
+
 function setNiche(key,conf,reason){
 currentNiche=key;var n=niches[key];
 document.getElementById("detectName").textContent=n.name;
@@ -271,13 +281,20 @@ document.getElementById("playlistHint").textContent="Agrega este beat a la playl
 var arts=suggestArtists[key]||[];
 var s1=document.getElementById("suggest1");var a1=document.getElementById("artista1").value;
 s1.innerHTML="";
-for(var i=0;i<arts.length;i++){if(arts[i].toLowerCase()!==a1.toLowerCase()){var sp=document.createElement("span");sp.className="suggested-artist";sp.textContent="+ "+arts[i];sp.setAttribute("onclick","fillArtist('"+arts[i].replace(/'/g,"\\'") +"')");s1.appendChild(sp);if(s1.children.length>=4)break}}
+for(var i=0;i<arts.length;i++){if(arts[i].toLowerCase()!==a1.toLowerCase()){var sp=document.createElement("span");sp.className="suggested-artist";sp.textContent="+ "+arts[i];sp.setAttribute("onclick","fillArtist('"+arts[i].replace(/'/g,"\\'")+"')");s1.appendChild(sp);if(s1.children.length>=4){break}}}
 if(document.getElementById("bpm").value){generarTodo()}}
+
 function fillArtist(name){document.getElementById("artista1").value=name;generarTodo()}
 function forceNicheChange(){detectarNicho()}
+
 function generarTodo(){
-if(!currentNiche){detectarNicho();if(!currentNiche)return}
-var bpm=document.getElementById("bpm").value||"?";var energy=parseInt(document.getElementById("energy").value);var estilo=document.getElementById("estilo").value;var notas=document.getElementById("notas").value;var a1=document.getElementById("artista1").value.trim();var niche=niches[currentNiche];
+if(!currentNiche){var force=document.getElementById("forceNiche").value;if(force){setNiche(force,100,"Manual")}else{detectarNicho()}if(!currentNiche){return}}
+var bpm=document.getElementById("bpm").value||"?";
+var energy=parseInt(document.getElementById("energy").value);
+var estilo=document.getElementById("estilo").value;
+var notas=document.getElementById("notas").value;
+var a1=document.getElementById("artista1").value.trim();
+var niche=niches[currentNiche];
 var secs=["sec-names","sec-titles","sec-playlist","sec-desc","sec-tags","sec-pinned","sec-prompt"];
 for(var s=0;s<secs.length;s++){document.getElementById(secs[s]).style.display=""}
 document.getElementById("placeholder").style.display="none";
@@ -291,12 +308,13 @@ generarDescripcion(bpm,energy,estilo,notas,a1,niche);
 generarTags(bpm,estilo,notas,a1,niche);
 generarPinned(bpm,a1,niche);
 generarPrompt(niche)}
+
 function generarDescripcion(bpm,energy,estilo,notas,a1,niche){
 var energyWord=energy<=3?"Low":energy<=6?"Medium":"High";
-var extraDesc="";if(estilo)extraDesc=". Vibe: "+estilo;if(notas)extraDesc+=". "+notas;
+var extraDesc="";if(estilo){extraDesc=". Vibe: "+estilo}if(notas){extraDesc+=". "+notas}
 var desc="\u{1F3B5} "+selectedName+"\n\n";
 desc+="\u{1F4CB} Beat Info:\n";desc+="\u2022 Channel: Beats BFYT\n";desc+="\u2022 BPM: "+bpm+"\n";desc+="\u2022 Energy: "+energyWord+"\n";desc+="\u2022 Micro-niche: "+niche.name+"\n";desc+="\u2022 Playlist: "+niche.playlist+"\n";desc+="\u2022 Style: "+(estilo||niche.descVibe)+"\n";
-if(a1)desc+="\u2022 Artist: "+a1+"\n";
+if(a1){desc+="\u2022 Artist: "+a1+"\n"}
 desc+="\n"+selectedName+" is a "+niche.name.toLowerCase()+" beat with "+niche.descVibe+extraDesc+".\n\n";
 desc+="\u{1F513} FREE DOWNLOAD for non-profit use only. Credit \"Prod. by Beats BFYT\" in your title.\n";
 desc+="Purchase a license for commercial use, Spotify, Apple Music, or monetization.\n\n";
@@ -304,6 +322,7 @@ desc+="\u{1F6D2} Purchase a license & download instantly:\nhttps://beats-bfyt-sh
 desc+="\u{1F4BF} License Tiers:\n";desc+="\u2022 Basic: $14.99 (MP3, Non-profit use)\n";desc+="\u2022 Standard: $29.99 (MP3 + WAV, Commercial use)\n";desc+="\u2022 Premium: $54.99 (MP3 + WAV + STEMS, Full commercial use)\n\n";
 desc+="\u{1F4F1} Follow:\nInstagram: @beatsfreeyoutube_\nTikTok: @beatsfreeyoutube_";
 document.getElementById("out-desc").textContent=desc}
+
 function generarTags(bpm,estilo,notas,a1,niche){
 var tags=[];for(var i=0;i<niche.baseTags.length;i++){tags.push(niche.baseTags[i])}
 if(a1){tags.push(a1.toLowerCase()+" type beat");tags.push(a1.toLowerCase()+" beat")}
@@ -311,10 +330,11 @@ tags.push(selectedName.toLowerCase());tags.push(selectedName.toLowerCase().repla
 if(bpm&&bpm!=="?"){tags.push(bpm+" bpm beat");tags.push(bpm+" bpm trap beat")}
 if(estilo){var estWords=estilo.split(/[ ,\s]+/);for(var j=0;j<estWords.length&&j<2;j++){if(estWords[j].length>2){tags.push(estWords[j].toLowerCase()+" type beat")}}}
 tags.push("beats bfyt");tags.push("type beat 2025");tags.push("trap beat");tags.push("dark trap beat");tags.push("trap instrumental");tags.push("free type beat");tags.push("premium trap production");tags.push(niche.name.toLowerCase()+" instrumental");tags.push(niche.name.toLowerCase()+" type beat 2025");
-if(a1)tags.push(a1.toLowerCase()+" type beat 2025");
+if(a1){tags.push(a1.toLowerCase()+" type beat 2025")}
 var tagStr=tags.join(", ");var countEl=document.getElementById("tagCount");
 if(tagStr.length<=500){document.getElementById("out-tags").textContent=tagStr;countEl.textContent=tagStr.length+" / 500 caracteres";countEl.className="tag-count"}
-else{var cut=tagStr.substring(0,500);var lastComma=cut.lastIndexOf(",");if(lastComma>400)cut=cut.substring(0,lastComma);document.getElementById("out-tags").textContent=cut;countEl.textContent=cut.length+" / 500 caracteres (recortado)";countEl.className="tag-count over"}}
+else{var cut=tagStr.substring(0,500);var lastComma=cut.lastIndexOf(",");if(lastComma>400){cut=cut.substring(0,lastComma)}document.getElementById("out-tags").textContent=cut;countEl.textContent=cut.length+" / 500 caracteres (recortado)";countEl.className="tag-count over"}}
+
 function generarPinned(bpm,a1,niche){
 var pinned="\u{1F3B5} "+selectedName+" | "+niche.name+(a1?" | "+a1:"")+" | "+bpm+" BPM\n";
 pinned+="\u{1F513} FREE DOWNLOAD for non-profit use \u2014 credit \"Prod. by Beats BFYT\"\n\n";
@@ -322,23 +342,37 @@ pinned+="\u{1F6D2} Purchase a license:\n";pinned+="\u2022 Basic $14.99 (MP3)\n";
 pinned+="\u{1F517} Shop: https://beats-bfyt-shop.fourthwall.com\n\n";
 pinned+="\u{1F4F1} Instagram: @beatsfreeyoutube_ | TikTok: @beatsfreeyoutube_";
 document.getElementById("out-pinned").textContent=pinned}
+
 function generarPrompt(niche){
 var t=niche.thumb;var beatName=selectedName.toUpperCase();
 var prompt="Raw photo, shot on 35mm film camera, breathtakingly beautiful curvy Latina woman with voluptuous hourglass figure, fit and thick, transmitting pure trap flow, boss energy, and street luxury elegance. ";
 prompt+=t.hair+". Striking facial features, fierce confident gaze, "+t.makeup+". ";
 prompt+="She is sitting in luxury car at night wearing "+t.outfit+". "+t.pose+". ";
-prompt+="Heavy diamond Cuban link chain with \""+beatName+"\" text pendant clearly visible between her fingers as her hand rests on the chain, long acrylic nails with chrome finish, iced-out diamond rings on her fingers, iced-out rose gold watch. ";
+prompt+='Heavy diamond Cuban link chain with "'+beatName+'" text pendant clearly visible between her fingers as her hand rests on the chain, long acrylic nails with chrome finish, iced-out diamond rings on her fingers, iced-out rose gold watch. ';
 prompt+="Lighting: "+t.lighting+". "+t.bg+". Color palette: "+t.colors+". ";
 prompt+="Cinematic lighting highlighting her hand on the chain, her curves, facial contours, and jewelry sparkle. Professional trap music video aesthetic, sensual luxurious vibe, high contrast, shallow depth of field, NO TEXT OVERLAY, NO LETTERS except chain pendant --ar 1:1 --style raw_photo --quality 2";
 document.getElementById("out-prompt").textContent=prompt}
+
 function renderNombres(){
 var html="";for(var i=0;i<currentNames.length;i++){var active=i===0?" active":"";html+='<div class="name-opt'+active+'" onclick="selectNombre('+i+')"><div class="nm">'+currentNames[i]+'</div></div>'}
 document.getElementById("nameOptions").innerHTML=html}
+
 function selectNombre(idx){selectedName=currentNames[idx];var opts=document.querySelectorAll("#nameOptions .name-opt");for(var i=0;i<opts.length;i++){opts[i].classList.toggle("active",i===idx)}generarTodo()}
+
 function regenerarNombres(){currentNames=generarNombres(3);selectedName=currentNames[0];renderNombres();generarTodo()}
-function copiar(id){var texto=document.getElementById(id).textContent;navigator.clipboard.writeText(texto).then(function(){var btns=document.querySelectorAll(".copy-btn");for(var i=0;i<btns.length;i++){if(btns[i].getAttribute("onclick")==="copiar('"+id+'")"){var orig=btns[i].textContent;btns[i].textContent="\u2705 Copiado!";btns[i].classList.add("copied");(function(b,o){setTimeout(function(){b.textContent=o;b.classList.remove("copied")},1500)})(btns[i],orig)}}})}
-function copiarTitulo(){navigator.clipboard.writeText(currentTitulo).then(function(){var btn=event.target;var orig=btn.textContent;btn.textContent="\u2705 Copiado!";btn.classList.add("copied");setTimeout(function(){btn.textContent=orig;btn.classList.remove("copied")},1500)})}
-updateEnergy();
-</script>
+
+function copiar(id){
+var texto=document.getElementById(id).textContent;
+var expected="copiar('"+id+"')";
+navigator.clipboard.writeText(texto).then(function(){
+var btns=document.querySelectorAll(".copy-btn");
+for(var i=0;i<btns.length;i++){if(btns[i].getAttribute("onclick")===expected){var orig=btns[i].textContent;btns[i].textContent="\u2705 Copiado!";btns[i].classList.add("copied");(function(b,o){setTimeout(function(){b.textContent=o;b.classList.remove("copied")},1500)})(btns[i],orig)}}})}
+
+function copiarTitulo(){
+navigator.clipboard.writeText(currentTitulo).then(function(){
+var btn=event.target;var orig=btn.textContent;btn.textContent="\u2705 Copiado!";btn.classList.add("copied");
+setTimeout(function(){btn.textContent=orig;btn.classList.remove("copiado")},1500)})}
+
+updateEnergy();</script>
 </body>
 </html>
