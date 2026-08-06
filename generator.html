@@ -83,6 +83,9 @@
         .placeholder-msg .ph-icon{font-size:3rem;margin-bottom:.8rem;opacity:.4}
         .tag-count{font-size:.7rem;color:var(--muted);margin-top:.3rem}
         .tag-count.over{color:var(--red)}
+        .playlist-box{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(56,189,248,.06));border:1px solid rgba(139,92,246,.25);border-radius:10px;padding:1rem;margin-top:.5rem}
+        .playlist-name{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--primary2)}
+        .playlist-hint{font-size:.78rem;color:var(--muted);margin-top:.3rem}
     </style>
 </head>
 <body>
@@ -131,6 +134,11 @@
                             <option value="melodic">Dark Melodic</option>
                         </select>
                     </div>
+                </div>
+                <div class="playlist-box" id="playlistBox" style="display:none">
+                    <div class="detect-label">Agregar a esta Playlist</div>
+                    <div class="playlist-name" id="playlistName">--</div>
+                    <div class="playlist-hint" id="playlistHint"></div>
                 </div>
                 <div class="form-group" style="margin-top:1rem">
                     <label>Artista</label>
@@ -226,12 +234,12 @@ function updateEnergy(){var val=parseInt(document.getElementById("energy").value
 function detectarNicho(){
 var bpm=parseInt(document.getElementById("bpm").value)||0;var energy=parseInt(document.getElementById("energy").value);var estilo=(document.getElementById("estilo").value||"").toLowerCase();var force=document.getElementById("forceNiche").value;
 if(force){setNiche(force,100,"Manual");return}
-if(bpm===0&&!estilo){document.getElementById("detectName").textContent="--";document.getElementById("detectConf").textContent="Ingresa BPM o estilo";document.getElementById("suggest1").innerHTML="";currentNiche=null;return}
+if(bpm===0&&!estilo){document.getElementById("detectName").textContent="--";document.getElementById("detectConf").textContent="Ingresa BPM o estilo";document.getElementById("suggest1").innerHTML="";document.getElementById("playlistBox").style.display="none";currentNiche=null;return}
 var scores={};var keys=Object.keys(niches);
 for(var i=0;i<keys.length;i++){var k=keys[i];var n=niches[k];var score=0;
 if(bpm>0){if(bpm>=n.bpmRange[0]&&bpm<=n.bpmRange[1]){score+=40}else{var dist=0;if(bpm<n.bpmRange[0])dist=n.bpmRange[0]-bpm;else dist=bpm-n.bpmRange[1];score+=Math.max(0,40-dist*3)}}
-if(energy>=n.energyRange[0]&&energy<=n.energyRange[1]){score+=30}else{var eDist=0;if(energy<n.energyRange[0])eDist=n.energyRange[0]-energy;else eDist=energy-n.energyRange[1];score+=Math.max(0,30-eDist*6)}
-if(estilo){var words=estilo.split(/[,\s]+/);for(var j=0;j<words.length;j++){for(var kw=0;kw<n.keywords.length;kw++){if(words[j]&&n.keywords[kw].indexOf(words[j])!==-1){score+=10}}}}
+if(energy>=n.energyRange[0]&&energy<=n.energyRange[1]){score+=30}else{var eDist=0;if(energy<n.energyRange[0])eDist=n.energyRange[0]-energy;else eDist=energy-n.energyRange[1];score+=Math.max(0,30-eDist*6)}}
+if(estilo){var words=estilo.split(/[ ,\s]+/);for(var j=0;j<words.length;j++){for(var kw=0;kw<n.keywords.length;kw++){if(words[j]&&n.keywords[kw].indexOf(words[j])!==-1){score+=10}}}}
 scores[k]=score}
 var bestKey="";var bestScore=-1;
 for(var k2 in scores){if(scores[k2]>bestScore){bestScore=scores[k2];bestKey=k2}}
@@ -245,10 +253,13 @@ function setNiche(key,conf,reason){
 currentNiche=key;var n=niches[key];
 document.getElementById("detectName").textContent=n.name;
 document.getElementById("detectConf").textContent=conf+"% "+(reason?"("+reason+")":"");
+document.getElementById("playlistBox").style.display="";
+document.getElementById("playlistName").textContent=n.playlist;
+document.getElementById("playlistHint").textContent="Agrega este beat a la playlist \""+n.playlist+"\" en YouTube Studio";
 var arts=suggestArtists[key]||[];
 var s1=document.getElementById("suggest1");var a1=document.getElementById("artista1").value;
 s1.innerHTML="";
-for(var i=0;i<arts.length;i++){if(arts[i].toLowerCase()!==a1.toLowerCase()){var sp=document.createElement("span");sp.className="suggested-artist";sp.textContent="+ "+arts[i];sp.setAttribute("onclick","fillArtist('"+arts[i].replace(/'/g,"\\'")+"')");s1.appendChild(sp);if(s1.children.length>=4)break}}
+for(var i=0;i<arts.length;i++){if(arts[i].toLowerCase()!==a1.toLowerCase()){var sp=document.createElement("span");sp.className="suggested-artist";sp.textContent="+ "+arts[i];sp.setAttribute("onclick","fillArtist('"+arts[i].replace(/'/g,"\\'") +"')");s1.appendChild(sp);if(s1.children.length>=4)break}}
 if(document.getElementById("bpm").value){generarTodo()}}
 function fillArtist(name){document.getElementById("artista1").value=name;generarTodo()}
 function forceNicheChange(){detectarNicho()}
@@ -271,7 +282,7 @@ function generarDescripcion(bpm,energy,estilo,notas,a1,niche){
 var energyWord=energy<=3?"Low":energy<=6?"Medium":"High";
 var extraDesc="";if(estilo)extraDesc=". Vibe: "+estilo;if(notas)extraDesc+=". "+notas;
 var desc="\u{1F3B5} "+selectedName+"\n\n";
-desc+="\u{1F4CB} Beat Info:\n";desc+="\u2022 Channel: Beats BFYT\n";desc+="\u2022 BPM: "+bpm+"\n";desc+="\u2022 Energy: "+energyWord+"\n";desc+="\u2022 Micro-niche: "+niche.name+"\n";desc+="\u2022 Style: "+(estilo||niche.descVibe)+"\n";
+desc+="\u{1F4CB} Beat Info:\n";desc+="\u2022 Channel: Beats BFYT\n";desc+="\u2022 BPM: "+bpm+"\n";desc+="\u2022 Energy: "+energyWord+"\n";desc+="\u2022 Micro-niche: "+niche.name+"\n";desc+="\u2022 Playlist: "+niche.playlist+"\n";desc+="\u2022 Style: "+(estilo||niche.descVibe)+"\n";
 if(a1)desc+="\u2022 Artist: "+a1+"\n";
 desc+="\n"+selectedName+" is a "+niche.name.toLowerCase()+" beat with "+niche.descVibe+extraDesc+".\n\n";
 desc+="\u{1F513} FREE DOWNLOAD for non-profit use only. Credit \"Prod. by Beats BFYT\" in your title.\n";
@@ -285,14 +296,14 @@ var tags=[];for(var i=0;i<niche.baseTags.length;i++){tags.push(niche.baseTags[i]
 if(a1){tags.push(a1.toLowerCase()+" type beat");tags.push(a1.toLowerCase()+" beat")}
 tags.push(selectedName.toLowerCase());tags.push(selectedName.toLowerCase().replace(/ /g,"")+" beat");
 if(bpm&&bpm!=="?"){tags.push(bpm+" bpm beat");tags.push(bpm+" bpm trap beat")}
-if(estilo){var estWords=estilo.split(/[,\s]+/);for(var j=0;j<estWords.length&&j<2;j++){if(estWords[j].length>2){tags.push(estWords[j].toLowerCase()+" type beat")}}}
+if(estilo){var estWords=estilo.split(/[ ,\s]+/);for(var j=0;j<estWords.length&&j<2;j++){if(estWords[j].length>2){tags.push(estWords[j].toLowerCase()+" type beat")}}}
 tags.push("beats bfyt");tags.push("type beat 2025");tags.push("trap beat");tags.push("dark trap beat");tags.push("trap instrumental");tags.push("free type beat");tags.push("premium trap production");tags.push(niche.name.toLowerCase()+" instrumental");tags.push(niche.name.toLowerCase()+" type beat 2025");
 if(a1)tags.push(a1.toLowerCase()+" type beat 2025");
 var tagStr=tags.join(", ");var countEl=document.getElementById("tagCount");
 if(tagStr.length<=500){document.getElementById("out-tags").textContent=tagStr;countEl.textContent=tagStr.length+" / 500 caracteres";countEl.className="tag-count"}
 else{var cut=tagStr.substring(0,500);var lastComma=cut.lastIndexOf(",");if(lastComma>400)cut=cut.substring(0,lastComma);document.getElementById("out-tags").textContent=cut;countEl.textContent=cut.length+" / 500 caracteres (recortado)";countEl.className="tag-count over"}}
 function generarPinned(bpm,a1,niche){
-var pinned="\u{1F3B5} "+selectedName+" | "+niche.name+(a1?" | "+a1:"")+" | "+bpm+" BPM\n\n";
+var pinned="\u{1F3B5} "+selectedName+" | "+niche.name+(a1?" | "+a1:"")+" | "+bpm+" BPM\n";
 pinned+="\u{1F513} FREE DOWNLOAD for non-profit use \u2014 credit \"Prod. by Beats BFYT\"\n\n";
 pinned+="\u{1F6D2} Purchase a license:\n";pinned+="\u2022 Basic $14.99 (MP3)\n";pinned+="\u2022 Standard $29.99 (MP3 + WAV)\n";pinned+="\u2022 Premium $54.99 (MP3 + WAV + STEMS)\n\n";
 pinned+="\u{1F517} Shop: https://beats-bfyt-shop.fourthwall.com\n\n";
