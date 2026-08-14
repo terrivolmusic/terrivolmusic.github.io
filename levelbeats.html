@@ -1,163 +1,296 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0514">
-<title>TERRIVOL MUSIC | Sala de Audición Privada</title>
+<meta name="theme-color" content="#06060a">
+<title>TERRIVOL MUSIC — Le Voyage</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;800&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0a0514; --bg2:#1a0b2e;
-  --cyan:#06B6D4; --magenta:#7C3AED; --pink:#d946ef;
-  --text:#e9e6f7; --muted:#8b86a3;
+  --bg:#06060a; --line:rgba(255,255,255,.08);
+  --ice:#67e8f9; --gold:#c9a96a;
+  --text:#f2f2f5; --muted:#6b6b78; --dim:#3d3d47;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;min-height:100vh}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
 #stars{position:fixed;inset:0;z-index:0}
 .nebula{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(ellipse 60% 40% at 20% 10%,rgba(124,58,237,.18),transparent),
-             radial-gradient(ellipse 50% 35% at 85% 70%,rgba(6,182,212,.12),transparent),
-             radial-gradient(ellipse 40% 30% at 60% 30%,rgba(217,70,239,.08),transparent);}
-.wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:48px 20px 80px}
+  background:radial-gradient(ellipse 55% 40% at 15% 0%,rgba(30,40,90,.25),transparent),
+             radial-gradient(ellipse 45% 35% at 90% 80%,rgba(6,182,212,.07),transparent);}
+.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:44px 22px 90px}
+
+/* GATE */
+#gate{position:fixed;inset:0;z-index:10;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .9s,visibility .9s}
+#gate.off{opacity:0;visibility:hidden}
+.gate-inner{text-align:center;padding:20px}
+.gate-logo{font-family:'Unbounded';font-weight:800;letter-spacing:.35em;font-size:14px}
+.gate-line{width:1px;height:56px;background:linear-gradient(180deg,transparent,var(--gold),transparent);margin:28px auto}
+.gate-sub{font-size:10px;letter-spacing:.5em;color:var(--muted);margin-bottom:38px}
+#enterBtn{font-family:'Unbounded';font-size:11px;letter-spacing:.4em;padding:16px 46px;background:transparent;border:1px solid var(--gold);color:var(--gold);cursor:pointer;transition:.35s}
+#enterBtn:hover{background:var(--gold);color:var(--bg);box-shadow:0 0 44px rgba(201,169,106,.35)}
+.gate-note{margin-top:30px;font-size:9px;letter-spacing:.45em;color:var(--dim)}
 
 /* HEADER */
-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:64px}
-.logo{font-family:'Unbounded';font-weight:900;font-size:15px;letter-spacing:2px}
-.logo span{background:linear-gradient(90deg,var(--cyan),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.badge{font-size:10px;letter-spacing:3px;border:1px solid rgba(6,182,212,.4);color:var(--cyan);padding:6px 14px;border-radius:100px;text-transform:uppercase}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px}
+.logo{font-family:'Unbounded';font-weight:800;font-size:13px;letter-spacing:.25em}
+.logo span{color:var(--ice)}
+.badge{font-size:9px;letter-spacing:.35em;color:var(--gold);border:1px solid rgba(201,169,106,.35);padding:7px 16px}
+
+/* TICKER */
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin-bottom:60px}
+.ticker-inner{display:flex;gap:56px;white-space:nowrap;animation:tick 28s linear infinite;font-size:9px;letter-spacing:.4em;color:var(--dim)}
+@keyframes tick{to{transform:translateX(-50%)}}
 
 /* HERO */
-.hero{text-align:center;margin-bottom:56px}
-.hero h1{font-family:'Unbounded';font-weight:900;font-size:clamp(28px,7vw,48px);line-height:1.1;margin-bottom:16px}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--cyan),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:15px;max-width:420px;margin:0 auto 20px}
-.headphones{display:inline-block;font-size:12px;letter-spacing:2px;color:var(--pink);border:1px solid rgba(217,70,239,.35);padding:8px 18px;border-radius:100px}
+.kicker{font-size:10px;letter-spacing:.45em;color:var(--gold);margin-bottom:18px}
+.hero h1{font-family:'Unbounded';font-weight:800;font-size:clamp(24px,6vw,42px);line-height:1.15;text-transform:uppercase;margin-bottom:22px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#fff,var(--ice));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:14px;font-weight:300;max-width:500px;line-height:1.8;margin-bottom:26px}
+.hero p b{color:var(--text);font-weight:500}
+.hp{display:inline-block;font-size:10px;letter-spacing:.3em;color:var(--ice);border:1px solid rgba(103,232,249,.3);padding:9px 18px;margin-bottom:14px}
+.network{font-size:9px;letter-spacing:.3em;color:var(--dim);line-height:2}
+
+/* SECTION */
+.section{display:flex;align-items:center;gap:18px;margin:70px 0 26px}
+.section h2{font-family:'Unbounded';font-weight:500;font-size:12px;letter-spacing:.4em;color:var(--gold)}
+.section .rule{flex:1;height:1px;background:var(--line)}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);margin-top:70px}
+.stat{padding:24px 10px;text-align:center;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat b{display:block;font-family:'Unbounded';font-weight:800;font-size:clamp(16px,4vw,24px);color:var(--gold);margin-bottom:8px}
+.stat span{font-size:8px;letter-spacing:.3em;color:var(--dim)}
 
 /* BEAT CARDS */
-.beat{background:rgba(26,11,46,.55);backdrop-filter:blur(14px);border:1px solid rgba(124,58,237,.25);border-radius:18px;padding:20px;margin-bottom:16px;display:flex;align-items:center;gap:18px;transition:.3s;position:relative;overflow:hidden}
-.beat:hover{border-color:rgba(6,182,212,.5);transform:translateY(-2px);box-shadow:0 8px 32px rgba(6,182,212,.12)}
-.beat .num{position:absolute;top:12px;right:16px;font-family:'Unbounded';font-size:11px;color:rgba(139,134,163,.4)}
-.play{width:56px;height:56px;min-width:56px;border-radius:50%;border:1px solid rgba(6,182,212,.5);background:radial-gradient(circle,rgba(6,182,212,.15),transparent);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.3s}
-.play:hover{box-shadow:0 0 24px rgba(6,182,212,.4)}
-.play svg{width:20px;height:20px;fill:var(--cyan)}
+.beat{background:rgba(255,255,255,.02);border:1px solid var(--line);padding:22px;margin-bottom:12px;display:flex;align-items:center;gap:20px;position:relative;overflow:hidden;transition:.35s}
+.beat:hover{border-color:rgba(103,232,249,.35)}
+.beat.playing{border-color:rgba(201,169,106,.5)}
+.ch{font-family:'Unbounded';font-weight:800;font-size:20px;color:var(--dim);min-width:44px}
+.beat.playing .ch{color:var(--gold)}
+.play{width:52px;height:52px;min-width:52px;border:1px solid var(--line);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.3s}
+.play:hover{border-color:var(--ice);box-shadow:0 0 22px rgba(103,232,249,.25)}
+.play svg{width:16px;height:16px;fill:var(--ice)}
 .info{flex:1}
-.info h3{font-family:'Unbounded';font-size:16px;font-weight:700;margin-bottom:6px}
+.info h3{font-family:'Unbounded';font-weight:500;font-size:15px;letter-spacing:.12em;margin-bottom:8px;text-transform:uppercase}
 .tags{display:flex;gap:8px;flex-wrap:wrap}
-.tag{font-size:10px;letter-spacing:1px;color:var(--muted);border:1px solid rgba(139,134,163,.3);padding:3px 10px;border-radius:100px}
-.tag.hot{color:var(--pink);border-color:rgba(217,70,239,.4)}
-/* EQUALIZER */
-.eq{display:flex;gap:3px;align-items:flex-end;height:24px}
-.eq span{width:3px;background:linear-gradient(180deg,var(--pink),var(--cyan));height:4px;border-radius:2px}
-.beat.playing .eq span{animation:eq .8s ease-in-out infinite}
-.eq span:nth-child(2){animation-delay:.1s}.eq span:nth-child(3){animation-delay:.2s}
-.eq span:nth-child(4){animation-delay:.3s}.eq span:nth-child(5){animation-delay:.15s}
-@keyframes eq{0%,100%{height:4px}50%{height:22px}}
-/* PROGRESS */
-.progress{position:absolute;bottom:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--cyan),var(--pink))}
+.tag{font-size:9px;letter-spacing:.15em;color:var(--muted);border:1px solid var(--line);padding:4px 10px}
+.tag.city{color:var(--gold);border-color:rgba(201,169,106,.35)}
+.tag.one{color:var(--ice);border-color:rgba(103,232,249,.35)}
+.viz{width:120px;height:34px}
+.acquire{font-size:9px;letter-spacing:.3em;color:var(--text);text-decoration:none;border:1px solid var(--line);padding:12px 20px;transition:.3s;white-space:nowrap}
+.acquire:hover{border-color:var(--gold);color:var(--gold)}
+.progress{position:absolute;bottom:0;left:0;height:1px;width:0%;background:linear-gradient(90deg,var(--ice),var(--gold))}
+.note{font-size:10px;letter-spacing:.2em;color:var(--dim);text-align:center;margin-top:26px;line-height:2}
+
+/* ARCHIVES */
+.archive{background:rgba(255,255,255,.02);border:1px solid var(--line);padding:20px 22px;margin-bottom:12px;display:flex;align-items:center;gap:18px}
+.archive .lock{width:52px;height:52px;min-width:52px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--dim)}
+.archive h3{font-family:'Unbounded';font-weight:500;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.demande{font-size:9px;letter-spacing:.3em;color:var(--gold);border:1px solid rgba(201,169,106,.35);padding:12px 20px;text-decoration:none;white-space:nowrap;transition:.3s}
+.demande:hover{background:var(--gold);color:var(--bg)}
+
 /* CTA */
-.cta{margin-top:64px;text-align:center}
-.cta h2{font-family:'Unbounded';font-size:clamp(18px,5vw,26px);margin-bottom:12px}
-.cta p{color:var(--muted);font-size:14px;margin-bottom:28px}
-.btn{display:inline-block;font-family:'Unbounded';font-size:13px;font-weight:700;letter-spacing:1px;text-decoration:none;color:#fff;padding:16px 36px;border-radius:100px;background:linear-gradient(90deg,var(--magenta),var(--pink));box-shadow:0 0 32px rgba(217,70,239,.35);transition:.3s}
-.btn:hover{transform:scale(1.04);box-shadow:0 0 48px rgba(217,70,239,.5)}
-footer{margin-top:72px;text-align:center;font-size:11px;color:var(--muted);letter-spacing:2px}
+.cta{margin-top:80px;border-top:1px solid var(--line);padding-top:60px}
+.cta h2{font-family:'Unbounded';font-weight:800;font-size:clamp(20px,5vw,30px);text-transform:uppercase;margin-bottom:14px}
+.cta p{color:var(--muted);font-size:14px;font-weight:300;line-height:1.8;max-width:500px;margin-bottom:32px}
+.btn{display:inline-block;font-family:'Unbounded';font-size:11px;letter-spacing:.35em;text-decoration:none;color:var(--gold);border:1px solid var(--gold);padding:18px 44px;transition:.35s}
+.btn:hover{background:var(--gold);color:var(--bg);box-shadow:0 0 44px rgba(201,169,106,.35)}
+.cta-alt{margin-top:22px;font-size:10px;letter-spacing:.2em;color:var(--dim)}
+.cta-alt a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--dim)}
+footer{margin-top:90px;text-align:center;font-size:9px;letter-spacing:.4em;color:var(--dim)}
+@media(max-width:620px){.viz{display:none}.beat{flex-wrap:wrap}.acquire{width:100%;text-align:center}.ch{min-width:34px}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.archive{flex-wrap:wrap}.demande{width:100%;text-align:center}}
 </style>
 </head>
 <body>
 <canvas id="stars"></canvas>
 <div class="nebula"></div>
-<div class="wrap">
 
+<div id="gate">
+  <div class="gate-inner">
+    <div class="gate-logo">TERRIVOL MUSIC</div>
+    <div class="gate-line"></div>
+    <div class="gate-sub">SALON D'ÉCOUTE PRIVÉ</div>
+    <button id="enterBtn">ENTRER</button>
+    <div class="gate-note">SUR INVITATION UNIQUEMENT</div>
+  </div>
+</div>
+
+<div class="wrap">
   <header>
     <div class="logo">TERRIVOL <span>MUSIC</span></div>
-    <div class="badge">Sala Privada</div>
+    <div class="badge">COLLECTION PRIVÉE · MMXXVI</div>
   </header>
 
+  <div class="ticker"><div class="ticker-inner" id="tick"></div></div>
+
   <section class="hero">
-    <h1>MAQUETAS <em>EXCLUSIVAS</em></h1>
-    <p>Producción de élite. Sonido oscuro, pesado y cinematográfico, curado para tu estilo.</p>
-    <div class="headphones">🎧 ESCUCHA CON AUDÍFONOS</div>
+    <div class="kicker">8 PIÈCES · 8 VILLES · 100% ORIGINALES</div>
+    <h1>LE VOYAGE. <em>AUCUNE COPIE.</em></h1>
+    <p>Une collection exclusive co-produite avec notre réseau de producteurs à travers le monde. <b>Huit pièces uniques, 100% originales.</b> Une seule acquisition par beat : une fois placé, il est retiré à jamais. Porter ces pièces, c'est porter l'excellence.</p>
+    <div class="hp">◉ ÉCOUTE RECOMMANDÉE AU CASQUE</div>
+    <div class="network">PARIS · LONDRES · ATLANTA · BERLIN · TOKYO · MONACO · LAGOS · BOGOTÁ</div>
   </section>
 
+  <div class="stats">
+    <div class="stat"><b>+200</b><span>PIÈCES AU CATALOGUE</span></div>
+    <div class="stat"><b>12</b><span>PRODUCTEURS</span></div>
+    <div class="stat"><b>4</b><span>CONTINENTS</span></div>
+    <div class="stat"><b>100%</b><span>ORIGINAL</span></div>
+  </div>
+
+  <div class="section"><h2>LE VOYAGE</h2><div class="rule"></div></div>
   <div id="beats"></div>
+  <div class="note">CHAQUE PIÈCE INCLUT : MASTER WAV + STEMS + CONTRAT D'ACQUISITION EXCLUSIVE</div>
+
+  <div class="section"><h2>LES ARCHIVES</h2><div class="rule"></div></div>
+
+  <div class="archive">
+    <div class="lock"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+    <div class="info">
+      <h3>Collection Drill — Vol. II</h3>
+      <div class="tags"><span class="tag">12 PIÈCES</span><span class="tag city">PARIS · LONDRES</span></div>
+    </div>
+    <a class="demande" href="#" target="_blank">SUR DEMANDE</a>
+  </div>
+
+  <div class="archive">
+    <div class="lock"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+    <div class="info">
+      <h3>Collection Trap — Noire</h3>
+      <div class="tags"><span class="tag">16 PIÈCES</span><span class="tag city">ATLANTA · BERLIN</span></div>
+    </div>
+    <a class="demande" href="#" target="_blank">SUR DEMANDE</a>
+  </div>
+
+  <div class="archive">
+    <div class="lock"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+    <div class="info">
+      <h3>Collection Cinéma — B.O. Originales</h3>
+      <div class="tags"><span class="tag">9 PIÈCES</span><span class="tag city">TOKYO · MONACO</span></div>
+    </div>
+    <a class="demande" href="#" target="_blank">SUR DEMANDE</a>
+  </div>
+
+  <div class="note">LE CATALOGUE COMPLET EST RÉSERVÉ AUX ARTISTES EN NÉGOCIATION ACTIVE.</div>
 
   <section class="cta">
-    <h2>¿ALGUNA TE VOLÓ LA CABEZA?</h2>
-    <p>Hablemos de licencias, packs o un beat 100% a tu medida.</p>
-    <a class="btn" id="ctaMain" href="#" target="_blank">HABLAR CON SEBASTIÁN</a>
+    <div class="kicker">ACQUISITION</div>
+    <h2>PRÊT À OPÉRER AU PLUS HAUT NIVEAU ?</h2>
+    <p>Ces beats ne sont pas pour tout le monde. Ils sont pour les artistes qui traitent leur musique comme un héritage. Négociation directe, sans intermédiaire.</p>
+    <a class="btn" id="ctaMain" target="_blank" href="#">NOUS ÉCRIRE</a>
+    <div class="cta-alt">WHATSAPP — <a id="waLink" target="_blank" href="#">LIGNE DIRECTE</a></div>
   </section>
 
-  <footer>© 2026 TERRIVOL MUSIC ENT</footer>
+  <footer>TERRIVOL MUSIC ENT · MONDE ENTIER · MMXXVI</footer>
 </div>
 
 <script>
-// ⚙️ CONFIGURACIÓN — EDITA AQUÍ
-const WHATSAPP = "573000000000"; // 👈 TU NÚMERO CON CÓDIGO DE PAÍS
+// ⚙️ CONFIG
+const IG_USER = "terrivolmusic";   // 👈 TU USUARIO DE INSTAGRAM
+const WA_NUM  = "573000000000";    // 👈 TU WHATSAPP
 const BEATS = [
-  { title:"PARIS NIGHTS",  bpm:142, key:"F#m", style:"Drill / Strav", src:"audio/paris-nights.mp3" },
-  { title:"DARK ALLEY",    bpm:140, key:"Am",  style:"Drill Oscuro",  src:"audio/dark-alley.mp3" },
-  { title:"VOODOO",        bpm:144, key:"Cm",  style:"Strav Vibe",    src:"audio/voodoo.mp3" },
-  { title:"GHOST",         bpm:138, key:"Gm",  style:"Trap / Drill",  src:"audio/ghost.mp3" },
-  { title:"SEINE RIVER",   bpm:141, key:"Dm",  style:"Drill Francés", src:"audio/seine-river.mp3" },
-  { title:"MIDNIGHT CODE", bpm:145, key:"Em",  style:"Drill / UK",    src:"audio/midnight-code.mp3" },
+ { file:"DU%20DE.mp3",     name:"CARBONE",      city:"PARIS",   bpm:142, key:"F#m", style:"DRILL" },
+ { file:"FL.mp3",          name:"VELOURS NOIR", city:"LONDRES", bpm:140, key:"Am",  style:"UK DRILL" },
+ { file:"FM.mp3",          name:"VANTABLACK",   city:"ATLANTA", bpm:138, key:"Cm",  style:"TRAP" },
+ { file:"LIL%20P.mp3",     name:"PHANTÔME",     city:"BERLIN",  bpm:144, key:"Gm",  style:"DRILL" },
+ { file:"LOWWWWWWS.mp3",   name:"GRAVITÉ",      city:"TOKYO",   bpm:141, key:"Dm",  style:"DRILL SOMBRE" },
+ { file:"PLAZA.mp3",       name:"RIVIERA",      city:"MONACO",  bpm:145, key:"Em",  style:"CINÉMATIQUE" },
+ { file:"REY.mp3",         name:"COURONNE",     city:"LAGOS",   bpm:143, key:"Bm",  style:"AFRO DRILL" },
+ { file:"YOUNG.mp3",       name:"L'HÉRITIER",   city:"BOGOTÁ",  bpm:140, key:"Fm",  style:"DRILL" },
 ];
+
+// Ticker
+const t = "COLLECTION EXCLUSIVE ◆ 8 PIÈCES UNIQUES ◆ PRODUCTEURS DU MONDE ENTIER ◆ CATALOGUE COMPLET SUR DEMANDE ◆ 100% ORIGINAL ◆ ";
+document.getElementById("tick").innerHTML = `<span>${t}</span><span>${t}</span>`;
 
 // Render beats
 const cont = document.getElementById("beats");
 BEATS.forEach((b,i)=>{
-  const msg = encodeURIComponent(`Hola Sebastián 🎧 Acabo de escuchar la sala privada y me interesa el beat "${b.title}". Hablemos.`);
   cont.innerHTML += `
   <div class="beat" data-i="${i}">
-    <span class="num">0${i+1}</span>
-    <button class="play" onclick="toggle(${i})">
+    <div class="ch">0${i+1}</div>
+    <button class="play">
       <svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       <svg class="ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
     </button>
     <div class="info">
-      <h3>${b.title}</h3>
+      <h3>${b.name}</h3>
       <div class="tags">
-        <span class="tag hot">${b.style}</span>
+        <span class="tag city">${b.city}</span>
+        <span class="tag">${b.style}</span>
         <span class="tag">${b.bpm} BPM</span>
         <span class="tag">${b.key}</span>
+        <span class="tag one">1 / 1</span>
       </div>
     </div>
-    <div class="eq"><span></span><span></span><span></span><span></span><span></span></div>
+    <canvas class="viz" width="120" height="34"></canvas>
+    <a class="acquire" href="https://ig.me/m/${IG_USER}" target="_blank">ACQUÉRIR</a>
     <div class="progress"></div>
   </div>`;
 });
 
-// Player (un solo audio a la vez)
-let audio = null, current = null;
+// Links archives + CTA
+document.querySelectorAll(".demande").forEach(a=> a.href = `https://ig.me/m/${IG_USER}`);
+document.getElementById("ctaMain").href = `https://ig.me/m/${IG_USER}`;
+document.getElementById("waLink").href  = `https://wa.me/${WA_NUM}`;
+
+// Gate + audio engine
+let audio = new Audio(), ctx=null, analyser=null, dataArr=null, current=null;
+document.getElementById("enterBtn").onclick = ()=>{
+  document.getElementById("gate").classList.add("off");
+  ctx = new (window.AudioContext||window.webkitAudioContext)();
+  analyser = ctx.createAnalyser(); analyser.fftSize=64; analyser.smoothingTimeConstant=.82;
+  const src = ctx.createMediaElementSource(audio);
+  src.connect(analyser); analyser.connect(ctx.destination);
+  dataArr = new Uint8Array(analyser.frequencyBinCount);
+};
+document.querySelectorAll(".play").forEach(btn=> btn.onclick = ()=> toggle(+btn.closest(".beat").dataset.i));
+
 function toggle(i){
   const card = document.querySelector(`.beat[data-i="${i}"]`);
-  if(current === i && audio && !audio.paused){ audio.pause(); return; }
-  if(audio){ audio.pause(); document.querySelectorAll(".beat").forEach(c=>reset(c)); }
-  audio = new Audio(BEATS[i].src);
-  current = i;
-  card.classList.add("playing");
+  if(current===i && !audio.paused){ audio.pause(); return; }
+  if(ctx.state==="suspended") ctx.resume();
+  if(current!==null) reset(document.querySelector(`.beat[data-i="${current}"]`));
+  if(current!==i || !audio.src.includes(BEATS[i].file)){ audio.src = BEATS[i].file; }
+  current = i; card.classList.add("playing");
   card.querySelector(".ic-play").style.display="none";
   card.querySelector(".ic-pause").style.display="block";
   audio.play();
-  audio.ontimeupdate = ()=>{ card.querySelector(".progress").style.width = (audio.currentTime/audio.duration*100)+"%"; };
+  audio.ontimeupdate = ()=> card.querySelector(".progress").style.width = (audio.currentTime/audio.duration*100)+"%";
   audio.onended = ()=> reset(card);
 }
 function reset(c){
+  if(!c) return;
   c.classList.remove("playing");
   c.querySelector(".ic-play").style.display="block";
   c.querySelector(".ic-pause").style.display="none";
   c.querySelector(".progress").style.width="0%";
+  c.querySelector(".viz").getContext("2d").clearRect(0,0,120,34);
 }
 
-// CTA WhatsApp
-document.getElementById("ctaMain").href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola Sebastián 🎧 Ya escuché la sala privada. Hablemos.")}`;
+// Visualizer
+(function loop(){
+  requestAnimationFrame(loop);
+  if(!analyser || current===null || audio.paused) return;
+  analyser.getByteFrequencyData(dataArr);
+  const c = document.querySelector(`.beat[data-i="${current}"] .viz`);
+  const g = c.getContext("2d"); g.clearRect(0,0,120,34);
+  const bars=18, w=120/bars;
+  for(let i=0;i<bars;i++){
+    const v=dataArr[i]/255, h=Math.max(2,v*34);
+    g.fillStyle=`rgba(103,232,249,${.2+v*.8})`;
+    g.fillRect(i*w+1,34-h,w-2,h);
+  }
+})();
 
-// Starfield
-const cv=document.getElementById("stars"),cx=cv.getContext("2d");
-let S=[];function rs(){cv.width=innerWidth;cv.height=innerHeight;S=Array.from({length:120},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.4+.3,a:Math.random(),s:Math.random()*.02+.005}));}
+// Stars
+const cv=document.getElementById("stars"),cx=cv.getContext("2d");let S=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight;S=Array.from({length:110},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.2+.2,a:Math.random()*6.28,s:Math.random()*.015+.004}));}
 rs();addEventListener("resize",rs);
-(function draw(){cx.clearRect(0,0,cv.width,cv.height);S.forEach(st=>{st.a+=st.s;cx.globalAlpha=Math.abs(Math.sin(st.a));cx.fillStyle="#cfc8ff";cx.beginPath();cx.arc(st.x,st.y,st.r,0,7);cx.fill();});requestAnimationFrame(draw);})();
+(function d(){cx.clearRect(0,0,cv.width,cv.height);S.forEach(st=>{st.a+=st.s;cx.globalAlpha=Math.abs(Math.sin(st.a))*.7;cx.fillStyle="#dfe6ff";cx.beginPath();cx.arc(st.x,st.y,st.r,0,7);cx.fill();});requestAnimationFrame(d);})();
 </script>
 </body>
 </html>
