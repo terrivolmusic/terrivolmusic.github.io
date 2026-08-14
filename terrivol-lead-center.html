@@ -1,911 +1,514 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terrivol Lead Center PRO</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { font-family: 'Inter', system-ui, sans-serif; }
-        .chip.active { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: white; border-color: transparent; }
-        .fade-in { animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .step-card { transition: all 0.2s ease; }
-        .step-card:hover { border-color: rgb(139 92 246 / 0.5); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terrivol Lead Center PRO</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  body{font-family:'Inter',system-ui,sans-serif}
+  .chip.active{background:linear-gradient(135deg,#8b5cf6,#ec4899);color:white;border-color:transparent}
+  .fade-in{animation:fadeIn .3s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .step-card{transition:all .2s ease}
+  .step-card:hover{border-color:rgb(139 92 246 / .5)}
+</style>
 </head>
 <body class="bg-gray-950 text-gray-200 min-h-screen">
 
-    <header class="bg-gradient-to-r from-gray-900 via-purple-950 to-gray-900 border-b border-gray-800 px-6 py-5">
-        <div class="max-w-7xl mx-auto">
-            <h1 class="text-2xl font-bold text-white flex items-center gap-3">
-                <i class="fa-solid fa-crosshairs text-pink-400"></i>
-                Terrivol Lead Center <span class="text-xs bg-pink-600 px-2 py-0.5 rounded">PRO</span>
-            </h1>
-            <p class="text-xs text-gray-400 mt-1">Captación inteligente de clientes para producción y music business</p>
-        </div>
-    </header>
+<header class="bg-gradient-to-r from-gray-900 via-purple-950 to-gray-900 border-b border-gray-800 px-6 py-5">
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-2xl font-bold text-white flex items-center gap-3">
+      <i class="fa-solid fa-crosshairs text-pink-400"></i>
+      Terrivol Lead Center <span class="text-xs bg-pink-600 px-2 py-0.5 rounded">PRO</span>
+    </h1>
+    <p class="text-xs text-gray-400 mt-1">Captación inteligente de clientes para producción y music business · Worldwide</p>
+  </div>
+</header>
 
-    <div class="max-w-7xl mx-auto p-6 space-y-6">
+<div class="max-w-7xl mx-auto p-6 space-y-6">
 
-        <!-- PASO 1: CONFIGURAR BÚSQUEDA -->
-        <div class="bg-gray-900 rounded-xl border border-gray-800 p-6 step-card">
-            <h2 class="text-sm font-semibold text-pink-400 uppercase mb-4 flex items-center gap-2">
-                <span class="bg-pink-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">1</span>
-                Configurar Búsqueda
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                <!-- TIPO DE CLIENTE -->
-                <div>
-                    <label class="block text-xs text-gray-400 mb-2">👤 Tipo de Cliente</label>
-                    <div id="tipos-cliente" class="flex flex-wrap gap-2"></div>
-                </div>
-
-                <!-- OBJETIVO DE NEGOCIO -->
-                <div>
-                    <label class="block text-xs text-gray-400 mb-2">🎯 Objetivo de Contacto</label>
-                    <div id="objetivos" class="flex flex-wrap gap-2"></div>
-                </div>
-
-                <!-- GÉNERO MUSICAL -->
-                <div>
-                    <label class="block text-xs text-gray-400 mb-2">🎵 Género Musical</label>
-                    <div id="generos" class="flex flex-wrap gap-2"></div>
-                </div>
-
-                <!-- REGIÓN -->
-                <div>
-                    <label class="block text-xs text-gray-400 mb-2"> Región</label>
-                    <select id="region-select" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
-                        <option value="global">🌍 Global (todos los idiomas)</option>
-                        <option value="latam-norte">🇲🇽 México / Centroamérica</option>
-                        <option value="latam-caribe">🇨🇴 Colombia / Venezuela / Caribe</option>
-                        <option value="latam-sur">🇦🇷 Argentina / Chile / Uruguay</option>
-                        <option value="brasil">🇧🇷 Brasil</option>
-                        <option value="usa">🇺 USA / Canadá</option>
-                        <option value="uk">🇬🇧 UK / Irlanda</option>
-                        <option value="europa-norte">🇩🇪 Alemania / Holanda / Escandinavia</option>
-                        <option value="europa-sur">🇪🇸 España / Francia / Italia / Portugal</option>
-                        <option value="africa">🌍 África (Nigeria, Sudáfrica, etc.)</option>
-                        <option value="asia">🇯🇵 Japón / Corea / India</option>
-                        <option value="oceania">🇦 Australia / Nueva Zelanda</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- RANGO DE SEGUIDORES -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                <div>
-                    <label class="block text-xs text-gray-400 mb-2">👥 Seguidores mínimos</label>
-                    <input type="number" id="min-seguidores" value="1000" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-2">👥 Seguidores máximos</label>
-                    <input type="number" id="max-seguidores" value="100000" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-2">🎯 Tipo de artista</label>
-                    <select id="tipo-artista-select" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
-                        <option value="independiente">Independiente</option>
-                        <option value="con-sello">Con sello</option>
-                        <option value="mixto">Mixto</option>
-                    </select>
-                </div>
-            </div>
-
-            <button onclick="generarEstrategiaBusqueda()" class="mt-6 w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-bold py-3 rounded-lg transition">
-                <i class="fa-brands fa-instagram mr-2"></i> Generar Estrategia de Búsqueda en Instagram
-            </button>
-
-            <!-- OUTPUT: HASHTAGS -->
-            <div id="estrategia-output" class="mt-4 hidden">
-                <div class="bg-gray-800 rounded-lg p-4">
-                    <p class="text-xs text-gray-400 mb-3">👇 Hashtags para buscar perfiles REALES (clic para abrir Instagram):</p>
-                    <div id="hashtags-links" class="flex flex-wrap gap-2"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PASO 2: PEGAR PERFILES -->
-        <div class="bg-gray-900 rounded-xl border border-gray-800 p-6 step-card">
-            <h2 class="text-sm font-semibold text-blue-400 uppercase mb-4 flex items-center gap-2">
-                <span class="bg-blue-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">2</span>
-                Pegar Perfiles Encontrados
-            </h2>
-            <p class="text-xs text-gray-500 mb-4">Pega los usernames de Instagram. Opcionalmente, agrega info extra para personalizar aún más los mensajes.</p>
-
-            <div class="space-y-3">
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Usernames (uno por línea, con o sin @)</label>
-                    <textarea id="input-usernames" rows="5" placeholder="@trapking_mx&#10;@beatsbyjames&#10;@dj_hans_berlin&#10;@manager_music_co" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 resize-none font-mono"></textarea>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-1">Vibe del perfil</label>
-                        <select id="vibe-select" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
-                            <option value="mixto"> Mixto (variar)</option>
-                            <option value="underground">🔥 Underground / Raw</option>
-                            <option value="mainstream">⭐ Mainstream / Comercial</option>
-                            <option value="indie">🎸 Indie / Alternativo</option>
-                            <option value="experimental"> Experimental / Avant-garde</option>
-                            <option value="profesional">💼 Muy profesional / Corporativo</option>
-                            <option value="casual">😎 Casual / Cercano</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-1">Nivel del artista</label>
-                        <select id="nivel-select" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
-                            <option value="mixto">🎲 Mixto</option>
-                            <option value="emergente">🌱 Emergente (1K-10K)</option>
-                            <option value="mid">📈 Mid-tier (10K-100K)</option>
-                            <option value="establecido"> Establecido (100K+)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-1">Idioma del mensaje</label>
-                        <select id="idioma-select" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
-                            <option value="auto">🌍 Auto-detectar por username/región</option>
-                            <option value="es">🇪🇸 Español</option>
-                            <option value="en">🇺🇸 English</option>
-                            <option value="pt">🇧🇷 Português</option>
-                            <option value="fr">🇫🇷 Français</option>
-                            <option value="de">🇩🇪 Deutsch</option>
-                            <option value="it">🇮🇹 Italiano</option>
-                            <option value="ja">🇯🇵 日本語</option>
-                            <option value="ko">🇷 한국어</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Bio opcional (para personalizar aún más - pega la bio de IG si quieres)</label>
-                    <textarea id="input-bio" rows="2" placeholder="Opcional: pega la bio del perfil para que el mensaje mencione algo específico..." class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 resize-none"></textarea>
-                </div>
-
-                <button onclick="generarMensajes()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition">
-                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> GENERAR MENSAJES ULTRA-PERSONALIZADOS
-                </button>
-            </div>
-        </div>
-
-        <!-- PASO 3: RESULTADOS -->
-        <div class="bg-gray-900 rounded-xl border border-gray-800 p-6 step-card">
-            <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
-                <h2 class="text-sm font-semibold text-green-400 uppercase flex items-center gap-2">
-                    <span class="bg-green-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">3</span>
-                    Mensajes Listos para Enviar
-                    <span id="contador" class="bg-purple-600 text-white text-xs px-2 py-1 rounded-full">0</span>
-                </h2>
-                <div class="flex gap-2">
-                    <button onclick="copiarTodo()" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded text-xs transition flex items-center gap-1">
-                        <i class="fa-solid fa-copy"></i> Copiar Todo
-                    </button>
-                    <button onclick="exportarCSV()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1.5 rounded text-xs transition flex items-center gap-1">
-                        <i class="fa-solid fa-file-csv"></i> CSV
-                    </button>
-                </div>
-            </div>
-
-            <div id="resultados" class="space-y-3">
-                <div class="text-center py-16 text-gray-500">
-                    <i class="fa-solid fa-wand-magic-sparkles text-5xl mb-3 text-gray-700"></i>
-                    <p class="text-sm">Configura, busca y genera mensajes personalizados</p>
-                </div>
-            </div>
-        </div>
-
+  <!-- PASO 1 -->
+  <div class="bg-gray-900 rounded-xl border border-gray-800 p-6 step-card">
+    <h2 class="text-sm font-semibold text-pink-400 uppercase mb-4 flex items-center gap-2">
+      <span class="bg-pink-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">1</span>
+      Configurar Búsqueda
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label class="block text-xs text-gray-400 mb-2">👤 Tipo de Cliente</label>
+        <div id="tipos-cliente" class="flex flex-wrap gap-2"></div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-2">🎯 Objetivo de Contacto</label>
+        <div id="objetivos" class="flex flex-wrap gap-2"></div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-2">🎵 Género Musical</label>
+        <div id="generos" class="flex flex-wrap gap-2"></div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-2">🌍 Región</label>
+        <select id="region-select" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+          <option value="global">🌍 Global (todo el mundo)</option>
+          <option value="latam-norte">🇲 México / Centroamérica / Caribe</option>
+          <option value="latam-caribe">🇨🇴 Colombia / Venezuela / Caribe</option>
+          <option value="latam-sur">🇦 Argentina / Chile / Uruguay / Perú</option>
+          <option value="brasil">🇧🇷 Brasil</option>
+          <option value="usa">🇺🇸 USA / Canadá</option>
+          <option value="uk">🇬🇧 UK / Irlanda</option>
+          <option value="europa-norte">🇩🇪 Alemania / Holanda / Escandinavia</option>
+          <option value="europa-sur">🇪🇸 España / Francia / Italia / Portugal</option>
+          <option value="africa">🌍 África (Nigeria, Sudáfrica, Ghana, Kenia)</option>
+          <option value="asia">🇯🇵 Japón / Corea / India / Filipinas</option>
+          <option value="oceania">🇦🇺 Australia / Nueva Zelanda</option>
+        </select>
+      </div>
     </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+      <div>
+        <label class="block text-xs text-gray-400 mb-2">👥 Seguidores mínimos</label>
+        <input type="number" id="min-seguidores" value="1000" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-2">👥 Seguidores máximos</label>
+        <input type="number" id="max-seguidores" value="100000" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-2">🎯 Tipo de artista</label>
+        <select id="tipo-artista-select" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+          <option value="independiente">Independiente</option>
+          <option value="con-sello">Con sello</option>
+          <option value="mixto">Mixto</option>
+        </select>
+      </div>
+    </div>
+    <button onclick="generarEstrategiaBusqueda()" class="mt-6 w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-bold py-3 rounded-lg transition">
+      <i class="fa-brands fa-instagram mr-2"></i> Generar Estrategia de Búsqueda en Instagram
+    </button>
+    <div id="estrategia-output" class="mt-4 hidden">
+      <div class="bg-gray-800 rounded-lg p-4">
+        <p class="text-xs text-gray-400 mb-3">👇 Hashtags REALES de la escena (clic para abrir Instagram):</p>
+        <div id="hashtags-links" class="flex flex-wrap gap-2"></div>
+        <p class="text-xs text-gray-400 mt-4 mb-3">🔎 Búsquedas por palabra clave (encuentra perfiles directo):</p>
+        <div id="keywords-links" class="flex flex-wrap gap-2"></div>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        // ============================================
-        // 🧠 CONFIGURACIÓN BASE
-        // ============================================
-        const TIPOS_CLIENTE = {
-            "artista": { label: "🎤 Artista / Cantante", icon: "fa-microphone" },
-            "productor": { label: "🎹 Productor / Beatmaker", icon: "fa-headphones" },
-            "dj": { label: "🎧 DJ / Remixer", icon: "fa-record-vinyl" },
-            "manager": { label: "💼 Manager", icon: "fa-briefcase" },
-            "sello": { label: " Sello Discográfico", icon: "fa-building" },
-            "ar": { label: " A&R", icon: "fa-magnifying-glass" },
-            "ingeniero": { label: "🎚️ Ingeniero de Mezcla/Master", icon: "fa-sliders" },
-            "songwriter": { label: "✍️ Songwriter / Topliner", icon: "fa-pen" },
-            "promotor": { label: " Promotor / Eventos", icon: "fa-bullhorn" },
-            "sync": { label: "🎬 Sync / Licensing", icon: "fa-film" },
-            "publicista": { label: "📢 Publicista / PR", icon: "fa-newspaper" }
-        };
+  <!-- PASO 2 -->
+  <div class="bg-gray-900 rounded-xl border border-gray-800 p-6 step-card">
+    <h2 class="text-sm font-semibold text-blue-400 uppercase mb-4 flex items-center gap-2">
+      <span class="bg-blue-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">2</span>
+      Pegar Perfiles Encontrados
+    </h2>
+    <p class="text-xs text-gray-500 mb-4">Pega los usernames de Instagram. Opcionalmente, agrega info extra para personalizar aún más los mensajes.</p>
+    <div class="space-y-3">
+      <div>
+        <label class="block text-xs text-gray-400 mb-1">Usernames (uno por línea, con o sin @)</label>
+        <textarea id="input-usernames" rows="5" placeholder="@trapking_mx&#10;@beatsbyjames&#10;@dj_hans_berlin&#10;@manager_music_co" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 resize-none font-mono"></textarea>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div>
+          <label class="block text-xs text-gray-400 mb-1">Vibe del perfil</label>
+          <select id="vibe-select" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+            <option value="mixto">🎲 Mixto (variar)</option>
+            <option value="underground">🔥 Underground / Raw</option>
+            <option value="mainstream">⭐ Mainstream / Comercial</option>
+            <option value="indie">🎸 Indie / Alternativo</option>
+            <option value="experimental">🧪 Experimental / Avant-garde</option>
+            <option value="profesional">💼 Muy profesional / Corporativo</option>
+            <option value="casual">😎 Casual / Cercano</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-400 mb-1">Nivel del artista</label>
+          <select id="nivel-select" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+            <option value="mixto">🎲 Mixto</option>
+            <option value="emergente">🌱 Emergente (1K-10K)</option>
+            <option value="mid">📈 Mid-tier (10K-100K)</option>
+            <option value="establecido">🏆 Establecido (100K+)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-400 mb-1">Idioma del mensaje</label>
+          <select id="idioma-select" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+            <option value="auto">🌍 Auto-detectar por username/región</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="pt">🇧 Português</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ko">🇰🇷 한국어</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-1">Bio opcional (para personalizar aún más)</label>
+        <textarea id="input-bio" rows="2" placeholder="Opcional: pega la bio del perfil para que el mensaje mencione algo específico..." class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 resize-none"></textarea>
+      </div>
+      <button onclick="generarMensajes()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition">
+        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> GENERAR MENSAJES ULTRA-PERSONALIZADOS
+      </button>
+    </div>
+  </div>
 
-        const OBJETIVOS = {
-            "produccion": { label: "🎵 Producción Musical", icon: "fa-music" },
-            "colaboracion": { label: "🤝 Colaboración Artística", icon: "fa-handshake" },
-            "negocio": { label: "💼 Propuesta de Negocio", icon: "fa-chart-line" },
-            "management": { label: "📋 Management / Representación", icon: "fa-user-tie" },
-            "distribucion": { label: "📦 Distribución Digital", icon: "fa-box" },
-            "sync": { label: "🎬 Sync / Licencias", icon: "fa-film" },
-            "booking": { label: "🎫 Booking / Shows", icon: "fa-ticket" },
-            "networking": { label: "🌐 Networking General", icon: "fa-network-wired" }
-        };
+  <!-- PASO 3 -->
+  <div class="bg-gray-900 rounded-xl border border-gray-800 p-6 step-card">
+    <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
+      <h2 class="text-sm font-semibold text-green-400 uppercase flex items-center gap-2">
+        <span class="bg-green-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">3</span>
+        Mensajes Listos para Enviar
+        <span id="contador" class="bg-purple-600 text-white text-xs px-2 py-1 rounded-full">0</span>
+      </h2>
+      <div class="flex gap-2">
+        <button onclick="copiarTodo()" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded text-xs transition flex items-center gap-1"><i class="fa-solid fa-copy"></i> Copiar Todo</button>
+        <button onclick="exportarCSV()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1.5 rounded text-xs transition flex items-center gap-1"><i class="fa-solid fa-file-csv"></i> CSV</button>
+      </div>
+    </div>
+    <div id="resultados" class="space-y-3">
+      <div class="text-center py-16 text-gray-500">
+        <i class="fa-solid fa-wand-magic-sparkles text-5xl mb-3 text-gray-700"></i>
+        <p class="text-sm">Configura, busca y genera mensajes personalizados</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-        // HASHTAGS POR GÉNERO Y REGIÓN (COHERENCIA REGIONAL)
-        const GENEROS_HASHTAGS = {
-            "trap": {
-                es: ["traplatino","trapmx","trapcolombia","trapargentina","trapchile","trapvenezuela","trapcaribe","traplatam","trapurbano","trapenespañol","trapperreo","traplatinoamerica","trapmusica","trapbeats","trapproducer","traplatinooficial"],
-                en: ["trapproducer","trapbeats","trapmusic","808mafia","darktrap","trapsoul","trapnation","trapking","trapbeatsforsale","traplife"],
-                pt: ["trapbr","trapbrasil","trapportugues","traplusofono","trapportugal","traprio","trapsaopaulo"],
-                fr: ["trapfr","trapfrance","trapfrancais","trapparis","traplyon"],
-                de: ["trapde","trapgermany","trapdeutsch","trapberlin","trapmunich"],
-                it: ["trapit","trapitalia","trapitaliano","trapmilano","traproma"],
-                ja: ["trapjapan","trapjp","traptokyo","trapjapanese"],
-                ko: ["trapkorea","trapkr","trapkpop","trapseoul"]
-            },
-            "hiphop": {
-                es: ["hiphoplatino","hiphopmx","hiphopcolombia","hiphopargentina","hiphopchile","hiphopvenezuela","hiphopcaribe","hiphopenespañol","raplatino","rapmx","rapcolombia","rapargentina","rapchile","rapvenezuela","rapcaribe","rapenespañol"],
-                en: ["hiphopproducer","boombap","hiphopbeats","beatmaker","undergroundhiphop","rapbeats","hiphophead","hiphoplife","hiphopculture","hiphopmusic"],
-                pt: ["hiphopbr","hiphopbrasil","rapbr","rapbrasil","hiphopportugues","rapportugues"],
-                fr: ["hiphopfr","hiphopfrance","rapfr","rapfrancais","hiphopfrancais"],
-                de: ["hiphopde","hiphopgermany","rapde","rapgermany","hiphopdeutsch"],
-                it: ["hiphopit","hiphopitalia","rapit","rapitaliano","hiphopitaliano"],
-                ja: ["hiphopjapan","hiphopjp","rapjapan","rapjp"],
-                ko: ["hiphopkorea","hiphopkr","rapkorea","rapkr","hiphopkpop"]
-            },
-            "reggaeton": {
-                es: ["reggaeton","reggaetonmx","reggaetoncolombia","reggaetonargentina","reggaetonchile","reggaetonvenezuela","reggaetoncaribe","reggaetonlatino","reggaetonlatam","reggaetonenespañol","perreo","perreolatino","perreomx","perreocolombia","perreoargentina","perreocaribe","dembow","dembowmx","dembowcolombia","dembowcaribe","urbano","urbanolatino","urbanomx","urbanocolombia","urbanoargentina","urbanocaribe"],
-                en: ["reggaeton","reggaetonmusic","reggaetonbeats","reggaetonproducer","perreo","perreomusic","dembow","dembowmusic","latinurban","latintrap"],
-                pt: ["reggaetonbr","reggaetonbrasil","funkbr","funkbrasil","bailefunk"],
-                fr: ["reggaetonfr","reggaetonfrance"],
-                de: ["reggaetonde","reggaetongermany"],
-                it: ["reggaetonit","reggaetonitalia"],
-                ja: ["reggaetonjapan","reggaetonjp"],
-                ko: ["reggaetonkorea","reggaetonkr"]
-            },
-            "electronica": {
-                es: ["electronicalatina","electronicamx","electronicacolombia","electronicaargentina","electronicachile","electronicavenezuela","electronicacaribe","djlatino","djmx","djcolombia","djargentina","djchile","djvenezuela","djcaribe","productorlatino","productormx","productorcolombia","productorargentina","productorchile","productorvenezuela","productorcaribe"],
-                en: ["edmproducer","technoproducer","housemusic","djproducer","edmlife","techno","houseproducer","abletonlive","flstudio","electronicmusic","djlife","djset","djmix","edm","edmfamily","edmmusic","technomusic","housemusic","deephouse","techhouse"],
-                pt: ["electronicabr","electronicabrasil","djbr","djbrasil","funkbr","funkbrasil","bailefunk","technobr","technobrasil"],
-                fr: ["electronicfr","electronicfrance","djfr","djfrance","technofr","technofrance","housefr","housefrance"],
-                de: ["electronicde","electronicgermany","djde","djgermany","technode","technoberlin","technogermany","housede","housegermany"],
-                it: ["electronicit","electronicitalia","djit","djitalia","technoit","technoitalia","houseit","houseitalia"],
-                ja: ["electronicjapan","electronicjp","dj japan","dj jp","technojapan","technojp","housejapan","housejp"],
-                ko: ["electronickorea","electronic kr","dj korea","dj kr","techno korea","techno kr","house korea","house kr"]
-            },
-            "rnb": {
-                es: ["rnblatino","rnbmx","rnbcolombia","rnbargentina","rnbchile","rnbvenezuela","rnbcaribe","rnbenespañol","soul latino","soul mx","soul colombia","soul argentina","soul chile","soul venezuela","soul caribe","neosoul latino","neosoul mx","neosoul colombia","neosoul argentina","neosoul chile","neosoul venezuela","neosoul caribe"],
-                en: ["rnbproducer","rnbmusic","soulmusic","rnbartist","rnbvibes","neosoul","rnb","rnbmusic","rnbartist","rnbvibes","soul","soulmusic","soulartist","soulvibes","alternativernb","alternativesoul","rnbproducer","rnbbeatmaker","rnbbeats","rnbproduction"],
-                pt: ["rnbbr","rnbbrasil","soulbr","soulbrasil","neosoulbr","neosoulbrasil"],
-                fr: ["rnbfr","rnbfrance","soulfr","soulfrance","neosoulfr","neosoulfrance"],
-                de: ["rnbde","rnbgermany","soulde","soulgermany","neosoulde","neosoulgermany"],
-                it: ["rnbit","rnbitalia","soulit","soulitalia","neosoulit","neosoulitalia"],
-                ja: ["rnbjapan","rnbjp","souljapan","souljp","neosouljapan","neosouljp"],
-                ko: ["rnbkorea","rnbkr","soulkorea","soulkr","neosoulkorea","neosoulkr"]
-            },
-            "lofi": {
-                es: ["lofilatino","lofimx","loficcolombia","lofiargentina","lofichile","lofivenezuela","loficaribe","chillbeatslatino","chillbeatsmx","chillbeatscolombia","chillbeatsargentina","chillbeatschile","chillbeatsvenezuela","chillbeatscaribe","lofiproducerlatino","lofiproducermx","lofiproducercolombia","lofiproducerargentina","lofiproducerchile","lofiproducer venezuela","lofiproducer caribe"],
-                en: ["lofi","lofiproducer","lofihiphop","chillbeats","lofibeats","studybeats","chillhop","lofimusic","lofiartist","lofibeats","lofiproducer","lofihiphop","chillbeats","studybeats","chillhop","lofibeats","lofimusic","lofiartist","lofibeats","lofiproducer"],
-                pt: ["lofibr","lofibrasil","chillbeatsbr","chillbeatsbrasil","lofiproducerbr","lofiproducerbrasil"],
-                fr: ["lofifr","lofifrance","chillbeatsfr","chillbeatsfrance","lofiproducerfr","lofiproducerfrance"],
-                de: ["lofide","lofgermany","chillbeatsde","chillbeatsgermany","lofiproducerde","lofiproducergermany"],
-                it: ["lofit","lofitalia","chillbeatsit","chillbeatsitalia","lofiproducerit","lofiproduceritalia"],
-                ja: ["lofijapan","lofijp","chillbeatsjapan","chillbeatsjp","lofiproducerjapan","lofiproducerjp"],
-                ko: ["lofikorea","lofikr","chillbeatskorea","chillbeatskr","lofiproducerkorea","lofiproducerkr"]
-            },
-            "rock": {
-                es: ["rocklatino","rockmx","rockcolombia","rockargentina","rockchile","rockvenezuela","rockcaribe","indierocklatino","indierockmx","indierockcolombia","indierockargentina","indierockchile","indierockvenezuela","indierockcaribe","alternativerocklatino","alternativerockmx","alternativerockcolombia","alternativerockargentina","alternativerockchile","alternativerockvenezuela","alternativerockcaribe"],
-                en: ["rockproducer","indierock","rockband","alternativerock","indieartist","rockmusic","rockband","indierockband","alternativerockband","indierockmusic","alternativerockmusic","indierockartist","alternativerockartist","indierockproducer","alternativerockproducer"],
-                pt: ["rockbr","rockbrasil","indierockbr","indierockbrasil","alternativerockbr","alternativerockbrasil"],
-                fr: ["rockfr","rockfrance","indierockfr","indierockfrance","alternativerockfr","alternativerockfrance"],
-                de: ["rockde","rockgermany","indierockde","indierockgermany","alternativerockde","alternativerockgermany"],
-                it: ["rockit","rockitalia","indierockit","indierockitalia","alternativerockit","alternativerockitalia"],
-                ja: ["rockjapan","rockjp","indierockjapan","indierockjp","alternativerockjapan","alternativerockjp"],
-                ko: ["rockkorea","rockkr","indierockkorea","indierockkr","alternativerockkorea","alternativerockkr"]
-            },
-            "afrobeat": {
-                es: ["afrobeatlatino","afrobeatmx","afrobeatcolombia","afrobeatargentina","afrobeatchile","afrobeatvenezuela","afrobeatcaribe","afropoplatino","afropopmx","afropopcolombia","afropopargentina","afropopchile","afropopvenezuela","afropopcaribe","afrohouselatino","afrohousemx","afrohousecolombia","afrohouseargentina","afrohousechile","afrohousevenezuela","afrohousecaribe"],
-                en: ["afrobeats","afrobeatproducer","afropop","afroartist","afrobeatmusic","afrohouse","afrobeatsmusic","afrobeatsartist","afrobeatsproducer","afropopmusic","afropopartist","afropopproducer","afrohousemusic","afrohouseartist","afrohouseproducer"],
-                pt: ["afrobeatbr","afrobeatbrasil","afropopbr","afropopbrasil","afrohousebr","afrohousebrasil"],
-                fr: ["afrobeatfr","afrobeatfrance","afropopfr","afropopfrance","afrohousefr","afrohousefrance"],
-                de: ["afrobeatde","afrobeatgermany","afropopde","afropopgermany","afrohousede","afrohousegermany"],
-                it: ["afrobeatit","afrobeatitalia","afropopit","afropopitalia","afrohouseit","afrohouseitalia"],
-                ja: ["afrobeatjapan","afrobeatjp","afropopjapan","afropopjp","afrohousejapan","afrohousejp"],
-                ko: ["afrobeatkorea","afrobeatkr","afropopkorea","afropopkr","afrohousekorea","afrohousekr"]
-            },
-            "latin": {
-                es: ["latinmusic","latinmusiclatino","latinmusicmx","latinmusiccolombia","latinmusicargentina","latinmusicchile","latinmusicvenezuela","latinmusiccaribe","latinproducer","latinproducerlatino","latinproducermx","latinproducercolombia","latinproducerargentina","latinproducerchile","latinproducervenezuela","latinproducercaribe","salsa","salsalatina","salsamx","salsacolombia","salsaargentina","salsachile","salsavenezuela","salsacaribe","bachata","bachatalatina","bachatamx","bachatacolombia","bachataargentina","bachatachile","bachatavenezuela","bachatacaribe","cumbia","cumbialatina","cumbiamx","cumbiacolombia","cumbiaargentina","cumbiachile","cumbiavenezuela","cumbiacaribe"],
-                en: ["latinmusic","latinproducer","latinartist","latinsinger","latinsongwriter","latincomposer","latinbeatmaker","latinproducer","latinmusicproducer","latinmusicartist","latinmusicsinger","latinmusicsongwriter","latinmusiccomposer","latinmusicbeatmaker"],
-                pt: ["latinmusicbr","latinmusicbrasil","latinproducerbr","latinproducerbrasil","latinartistbr","latinartistbrasil"],
-                fr: ["latinmusicfr","latinmusicfrance","latinproducerfr","latinproducerfrance","latinartistfr","latinartistfrance"],
-                de: ["latinmusicde","latinmusicgermany","latinproducerde","latinproducergermany","latinartistde","latinartistgermany"],
-                it: ["latinmusicit","latinmusicitalia","latinproducerit","latinproduceritalia","latinartistit","latinartistitalia"],
-                ja: ["latinmusicjapan","latinmusicjp","latinproducerjapan","latinproducerjp","latinartistjapan","latinartistjp"],
-                ko: ["latinmusickorea","latinmusickr","latinproducerkorea","latinproducerkr","latinartistkorea","latinartistkr"]
-            },
-            "pop": {
-                es: ["poplatino","popmx","popcolombia","popargentina","popchile","popvenezuela","popcaribe","indiepoplatino","indiepopmx","indiepopcolombia","indiepopargentina","indiepopchile","indiepopvenezuela","indiepopcaribe","popartistlatino","popartistmx","popartistcolombia","popartistargentina","popartistchile","popartistvenezuela","popartistcaribe"],
-                en: ["popproducer","popmusic","popartist","songwriter","indiepop","popmusic","popartist","popsinger","popsongwriter","popcomposer","popproducer","popbeatmaker","popmusicproducer","popmusicartist","popmusicsinger","popmusicsongwriter","popmusiccomposer","popmusicbeatmaker"],
-                pt: ["popbr","popbrasil","indiepopbr","indiepopbrasil","popartistbr","popartistbrasil"],
-                fr: ["popfr","popfrance","indiepopfr","indiepopfrance","popartistfr","popartistfrance"],
-                de: ["popde","popgermany","indiepopde","indiepopgermany","popartistde","popartistgermany"],
-                it: ["popit","popitalia","indiepopit","indiepopitalia","popartistit","popartistitalia"],
-                ja: ["popjapan","popjp","indiepopjapan","indiepopjp","popartistjapan","popartistjp"],
-                ko: ["popkorea","popkr","indiepopkorea","indiepopkr","popartistkorea","popartistkr"]
-            },
-            "metal": {
-                es: ["metallatino","metalmx","metalcolombia","metalargentina","metalchile","metalvenezuela","metalcaribe","heavymetallatino","heavymetalmx","heavymetalcolombia","heavymetalargentina","heavymetalchile","heavymetalvenezuela","heavymetalcaribe","metalcorelatino","metalcoremx","metalcorecolombia","metalcoreargentina","metalcorechile","metalcorevenezuela","metalcorecaribe"],
-                en: ["metalproducer","metalband","heavymetal","metalcore","deathmetal","metal","heavymetalband","metalcoreband","deathmetalband","metalproducer","metalband","heavymetalproducer","metalcoreproducer","deathmetalproducer"],
-                pt: ["metalbr","metalbrasil","heavymetalbr","heavymetalbrasil","metalcorebr","metalcorebrasil"],
-                fr: ["metalfr","metalfrance","heavymetalfr","heavymetalfrance","metalcorefr","metalcorefrance"],
-                de: ["metalde","metalgermany","heavymetalde","heavymetalgermany","metalcorede","metalcoregermany"],
-                it: ["metalit","metalitalia","heavymetalit","heavymetalitalia","metalcoreit","metalcoreitalia"],
-                ja: ["metaljapan","metaljp","heavymetaljapan","heavymetaljp","metalcorejapan","metalcorejp"],
-                ko: ["metalkorea","metalkr","heavymetalkorea","heavymetalkr","metalcorekorea","metalcorekr"]
-            },
-            "jazz": {
-                es: ["jazzlatino","jazzmx","jazzcolombia","jazzargentina","jazzchile","jazzvenezuela","jazzcaribe","smoothjazzlatino","smoothjazzmx","smoothjazzcolombia","smoothjazzargentina","smoothjazzchile","smoothjazzvenezuela","smoothjazzcaribe","jazzfusionlatino","jazzfusionmx","jazzfusioncolombia","jazzfusionargentina","jazzfusionchile","jazzfusionvenezuela","jazzfusioncaribe"],
-                en: ["jazzproducer","jazzmusic","jazzartist","smoothjazz","jazzfusion","jazz","jazzmusic","jazzartist","jazzmusician","jazzcomposer","jazzproducer","jazzbeatmaker","jazzmusicproducer","jazzmusicartist","jazzmusicsinger","jazzmusicsongwriter","jazzmusiccomposer","jazzmusicbeatmaker"],
-                pt: ["jazzbr","jazzbrasil","smoothjazzbr","smoothjazzbrasil","jazzfusionbr","jazzfusionbrasil"],
-                fr: ["jazzfr","jazzfrance","smoothjazzfr","smoothjazzfrance","jazzfusionfr","jazzfusionfrance"],
-                de: ["jazzde","jazzgermany","smoothjazzde","smoothjazzgermany","jazzfusionde","jazzfusiongermany"],
-                it: ["jazzit","jazzitalia","smoothjazzit","smoothjazzitalia","jazzfusionit","jazzfusionitalia"],
-                ja: ["jazzjapan","jazzjp","smoothjazzjapan","smoothjazzjp","jazzfusionjapan","jazzfusionjp"],
-                ko: ["jazzkorea","jazzkr","smoothjazzkorea","smoothjazzkr","jazzfusionkorea","jazzfusionkr"]
-            }
-        };
+<script>
+// ============ CONFIG BASE ============
+const TIPOS_CLIENTE = {
+  artista:{label:"🎤 Artista / Cantante"}, productor:{label:"🎹 Productor / Beatmaker"}, dj:{label:"🎧 DJ / Remixer"},
+  manager:{label:"💼 Manager"}, sello:{label:"🏢 Sello Discográfico"}, ar:{label:"🔍 A&R"},
+  ingeniero:{label:"🎚️ Ingeniero de Mezcla/Master"}, songwriter:{label:"✍️ Songwriter / Topliner"},
+  promotor:{label:"🎪 Promotor / Eventos"}, sync:{label:"🎬 Sync / Licensing"}, publicista:{label:"📢 Publicista / PR"}
+};
+const OBJETIVOS = {
+  produccion:{label:"🎵 Producción Musical"}, colaboracion:{label:"🤝 Colaboración Artística"}, negocio:{label:"💼 Propuesta de Negocio"},
+  management:{label:"📋 Management / Representación"}, distribucion:{label:"📦 Distribución Digital"}, sync:{label:"🎬 Sync / Licencias"},
+  booking:{label:"🎫 Booking / Shows"}, networking:{label:"🌐 Networking General"}
+};
 
-        // HASHTAGS POR TIPO DE CLIENTE Y REGIÓN
-        const TIPOS_HASHTAGS = {
-            "artista": {
-                es: ["artistalatino","artistamx","artistacolombia","artistaargentina","artistachile","artistavenezuela","artistacaribe","cantantelatino","cantantemx","cantantecolombia","cantanteargentina","cantantechile","cantantevenezuela","cantantecaribe","rapperlatino","rappermx","rappercolombia","rapperargentina","rapperchile","rapper venezuela","rapper caribe","vocalistalatino","vocalistamx","vocalistacolombia","vocalistaargentina","vocalistachile","vocalistavenezuela","vocalistacaribe"],
-                en: ["artist","singer","rapper","vocalist","musician","performer","entertainer","recordingartist","indieartist","unsignedartist","independentartist","newartist","emergingartist","upcomingartist","risingartist"],
-                pt: ["artistabr","artistabrasil","cantantebr","cantantebrasil","rapperbr","rapperbrasil","vocalistabr","vocalistabrasil"],
-                fr: ["artistfr","artistfrance","chanteurfr","chanteurfrance","rappeurfr","rappeurfrance","vocalistfr","vocalistfrance"],
-                de: ["artistde","artistgermany","sängerde","sängergermany","rapperde","rappergermany","vocalistde","vocalistgermany"],
-                it: ["artistit","artistitalia","cantanteit","cantanteitalia","rapperit","rapperitalia","vocalistit","vocalistitalia"],
-                ja: ["artistjapan","artistjp","singerjapan","singerjp","rapperjapan","rapperjp","vocalistjapan","vocalistjp"],
-                ko: ["artistkorea","artistkr","singerkorea","singerkr","rapperkorea","rapperkr","vocalistkorea","vocalistkr"]
-            },
-            "productor": {
-                es: ["productorlatino","productormx","productorcolombia","productorargentina","productorchile","productorvenezuela","productorcaribe","beatmakerlatino","beatmakermx","beatmakercolombia","beatmakerargentina","beatmakerchile","beatmakervenezuela","beatmakercaribe","producerlatino","producermx","producercolombia","producerargentina","producerchile","producervenezuela","producercaribe"],
-                en: ["producer","beatmaker","musicproducer","beatproducer","recordproducer","audio producer","soundproducer","musicmaker","beatcreator","beatmaker","musicproducer","beatproducer","recordproducer","audioproducer","soundproducer","musicmaker","beatcreator"],
-                pt: ["produtorbr","produtorbrasil","beatmakerbr","beatmakerbrasil","producerbr","producerbrasil"],
-                fr: ["producteurfr","producteurfrance","beatmakerfr","beatmakerfrance","producerfr","producerfrance"],
-                de: ["produzentde","produzentgermany","beatmakerde","beatmakergermany","producerde","producergermany"],
-                it: ["produttoreit","produttoreitalia","beatmakerit","beatmakeritalia","producerit","produceritalia"],
-                ja: ["producerjapan","producerjp","beatmakerjapan","beatmakerjp","musicproducerjapan","musicproducerjp"],
-                ko: ["producerkorea","producerkr","beatmakerkorea","beatmakerkr","musicproducerkorea","musicproducerkr"]
-            },
-            "dj": {
-                es: ["djlatino","djmx","djcolombia","djargentina","djchile","djvenezuela","djcaribe","djsetlatino","djsetmx","djsetcolombia","djsetargentina","djsetchile","djsetvenezuela","djsetcaribe","djmixlatino","djmixmx","djmixcolombia","djmixargentina","djmixchile","djmixvenezuela","djmixcaribe"],
-                en: ["dj","djlife","djset","djmix","djmusic","djproducer","djturntablist","djcontroller","djsoftware","djgear","djsetup","djbooth","djclub","djfestival","djparty","djnight","djevent","djgig","djshow","djperformance"],
-                pt: ["djbr","djbrasil","djsetbr","djsetbrasil","djmixbr","djmixbrasil"],
-                fr: ["djfr","djfrance","djsetfr","djsetfrance","djmixfr","djmixfrance"],
-                de: ["djde","djgermany","djsetde","djsetgermany","djmixde","djmixgermany"],
-                it: ["djit","djitalia","djsetit","djsetitalia","djmixit","djmixitalia"],
-                ja: ["dj japan","dj jp","djsetjapan","djsetjp","djmixjapan","djmixjp"],
-                ko: ["dj korea","dj kr","djsetkorea","djsetkr","djmixkorea","djmixkr"]
-            },
-            "manager": {
-                es: ["managerlatino","managermx","managercolombia","managerargentina","managerchile","managervenezuela","managercaribe","artistmanagerlatino","artistmanagermx","artistmanagercolombia","artistmanagerargentina","artistmanagerchile","artistmanagervenezuela","artistmanagercaribe","musicmanagerlatino","musicmanagermx","musicmanagercolombia","musicmanagerargentina","musicmanagerchile","musicmanagervenezuela","musicmanagercaribe"],
-                en: ["manager","artistmanager","musicmanager","talentmanager","bandmanager","tourmanager","bookingmanager","eventmanager","promoter","agent","representative","management","managementcompany","managementfirm","managementagency"],
-                pt: ["managerbr","managerbrasil","artistmanagerbr","artistmanagerbrasil","musicmanagerbr","musicmanagerbrasil"],
-                fr: ["managerfr","managerfrance","artistmanagerfr","artistmanagerfrance","musicmanagerfr","musicmanagerfrance"],
-                de: ["managerde","managergermany","artistmanagerde","artistmanagergermany","musicmanagerde","musicmanagergermany"],
-                it: ["managerit","manageritalia","artistmanagerit","artistmanageritalia","musicmanagerit","musicmanageritalia"],
-                ja: ["managerjapan","managerjp","artistmanagerjapan","artistmanagerjp","musicmanagerjapan","musicmanagerjp"],
-                ko: ["managerkorea","managerkr","artistmanagerkorea","artistmanagerkr","musicmanagerkorea","musicmanagerkr"]
-            },
-            "sello": {
-                es: ["sellolatino","sellomx","sellocolombia","selloargentina","sellochile","sellovenezuela","sellocaribe","discograficalatino","discograficamx","discograficacolombia","discograficaargentina","discograficachile","discograficavenezuela","discograficacaribe","label latinoa","label mx","label colombia","label argentina","label chile","label venezuela","label caribe"],
-                en: ["recordlabel","label","indielabel","musiclabel","recordcompany","musiccompany","independentlabel","indierecordlabel","indiemusiclabel","recordlabelowner","labelowner","musiclabelowner","recordlabelceo","labelceo","musiclabelceo"],
-                pt: ["gravadorabr","gravadorabrasil","labelbr","labelbrasil","recordlabelbr","recordlabelbrasil"],
-                fr: ["labelfr","labelfrance","recordlabelfr","recordlabelfrance","indielabelfr","indielabelfrance"],
-                de: ["labelde","labelgermany","recordlabelde","recordlabelgermany","indielabelde","indielabelgermany"],
-                it: ["labelit","labelitalia","recordlabelit","recordlabelitalia","indielabelit","indielabelitalia"],
-                ja: ["labeljapan","labeljp","recordlabeljapan","recordlabeljp","indielabeljapan","indielabeljp"],
-                ko: ["labelkorea","labelkr","recordlabelkorea","recordlabelkr","indielabelkorea","indielabelkr"]
-            },
-            "ar": {
-                es: ["arlatino","armx","arcolombia","arargentina","archile","arvenezuela","arcaribe","aandrlatino","aandrmx","aandrcolombia","aandrargentina","aandrchile","aandrvenezuela","aandrcaribe","areplatino","arepmx","arepcolombia","arepargentina","arepchile","arepvenezuela","arepcaribe"],
-                en: ["aandr","arep","aandrs","areps","artistsandrepertoire","artistrelations","talentscout","talentacquisition","music scout","music talent","music discovery","music curation","music selection","music evaluation","music assessment"],
-                pt: ["arbr","arbrasil","aandrbr","aandrbrasil","arepbr","arepbrasil"],
-                fr: ["arfr","arfrance","aandrfr","aandrfrance","arepfr","arepfrance"],
-                de: ["arde","ardegermany","aandrde","aandrgermany","arepde","arepgermany"],
-                it: ["arit","aritalia","aandrit","aandritalia","arepit","arepitalia"],
-                ja: ["arjapan","arjp","aandrjapan","aandrjp","arepjapan","arepjp"],
-                ko: ["arkorea","arkr","aandrkorea","aandrkr","arepkorea","arepkr"]
-            },
-            "ingeniero": {
-                es: ["ingenierolatino","ingenieromx","ingenierocolombia","ingenieroargentina","ingenierochile","ingenierovenezuela","ingenierocaribe","mezclalatino","mezclamx","mezclacolombia","mezclaargentina","mezclachile","mezclavenezuela","mezclacaribe","masteringlatino","masteringmx","masteringcolombia","masteringargentina","masteringchile","masteringvenezuela","masteringcaribe"],
-                en: ["mixengineer","mastering","audioengineer","soundengineer","recordingengineer","mixingengineer","masteringengineer","audioengineer","soundengineer","recordingengineer","mixingengineer","masteringengineer","audioengineering","soundengineering","recordingengineering","mixingengineering","masteringengineering"],
-                pt: ["engenheirobr","engenheirobrasil","mixengineerbr","mixengineerbrasil","masteringbr","masteringbrasil"],
-                fr: ["ingenieurfr","ingenieurfrance","mixengineerfr","mixengineerfrance","masteringfr","masteringfrance"],
-                de: ["ingenieurde","ingenieurgermany","mixengineerde","mixengineergermany","masteringde","masteringgermany"],
-                it: ["ingegnereit","ingegnereitalia","mixengineerit","mixengineeritalia","masteringit","masteringitalia"],
-                ja: ["engineerjapan","engineerjp","mixengineerjapan","mixengineerjp","masteringjapan","masteringjp"],
-                ko: ["engineerkorea","engineerkr","mixengineerkorea","mixengineerkr","masteringkorea","masteringkr"]
-            },
-            "songwriter": {
-                es: ["songwriterlatino","songwritermx","songwritercolombia","songwriterargentina","songwriterchile","songwritervenezuela","songwritercaribe","compositorlatino","compositormx","compositorcolombia","compositorargentina","compositorchile","compositorvenezuela","compositorcaribe","toplinerlatino","toplinermx","toplinercolombia","toplinerargentina","toplinerchile","toplinervenezuela","toplinercaribe"],
-                en: ["songwriter","topliner","composer","lyricist","melodywriter","songwriting","songwriter","topliner","composer","lyricist","melodywriter","songwriting","songwriter","topliner","composer","lyricist","melodywriter","songwriting"],
-                pt: ["compositorbr","compositorbrasil","songwriterbr","songwriterbrasil","toplinerbr","toplinerbrasil"],
-                fr: ["compositeurfr","compositeurfrance","songwriterfr","songwriterfrance","toplinerfr","toplinerfrance"],
-                de: ["komponistde","komponistgermany","songwriterde","songwritergermany","toplinerde","toplinergermany"],
-                it: ["compositoreit","compositoreitalia","songwriterit","songwriteritalia","toplinerit","toplineritalia"],
-                ja: ["songwriterjapan","songwriterjp","composerjapan","composerjp","toplinerjapan","toplinerjp"],
-                ko: ["songwriterkorea","songwriterkr","composerkorea","composerkr","toplinerkorea","toplinerkr"]
-            },
-            "promotor": {
-                es: ["promotorlatino","promotormx","promotorcolombia","promotorargentina","promotorchile","promotorvenezuela","promotorcaribe","eventolatino","eventomx","eventocolombia","eventoargentina","eventochile","eventovenezuela","eventocaribe","bookinglatino","bookingmx","bookingcolombia","bookingargentina","bookingchile","bookingvenezuela","bookingcaribe"],
-                en: ["promoter","events","booking","eventpromoter","musicpromoter","concertpromoter","festivalpromoter","clubpromoter","nightlifepromoter","entertainmentpromoter","bookingagent","bookingmanager","eventmanager","eventcoordinator","eventplanner"],
-                pt: ["promotorbr","promotorbrasil","eventobr","eventobrasil","bookingbr","bookingbrasil"],
-                fr: ["promoteurfr","promoteurfrance","eventfr","eventfrance","bookingfr","bookingfrance"],
-                de: ["promotorde","promotorgermany","eventde","eventgermany","bookingde","bookinggermany"],
-                it: ["promotoreit","promotoreitalia","eventoit","eventoitalia","bookingit","bookingitalia"],
-                ja: ["promoterjapan","promoterjp","eventjapan","eventjp","bookingjapan","bookingjp"],
-                ko: ["promoterkorea","promoterkr","eventkorea","eventkr","bookingkorea","bookingkr"]
-            },
-            "sync": {
-                es: ["synclatino","syncmx","synccolombia","syncargentina","syncchile","syncvenezuela","synccaribe","licensinglatino","licensingmx","licensingcolombia","licensingargentina","licensingchile","licensingvenezuela","licensingcaribe","musiclicensinglatino","musiclicensingmx","musiclicensingcolombia","musiclicensingargentina","musiclicensingchile","musiclicensingvenezuela","musiclicensingcaribe"],
-                en: ["synclicensing","musiclicensing","sync","licensing","musiclicensing","synclicensing","syncagent","licensingagent","musiclicensingagent","synclicensingagent","musiclicensingmanager","synclicensingmanager","musiclicensingcoordinator","synclicensingcoordinator","musiclicensingdirector","synclicensingdirector"],
-                pt: ["syncbr","syncbrasil","licensingbr","licensingbrasil","musiclicensingbr","musiclicensingbrasil"],
-                fr: ["syncfr","syncfrance","licensingfr","licensingfrance","musiclicensingfr","musiclicensingfrance"],
-                de: ["syncde","syncgermany","licensingde","licensinggermany","musiclicensingde","musiclicensinggermany"],
-                it: ["syncit","syncitalia","licensingit","licensingitalia","musiclicensingit","musiclicensingitalia"],
-                ja: ["syncjapan","syncjp","licensingjapan","licensingjp","musiclicensingjapan","musiclicensingjp"],
-                ko: ["synckorea","synckr","licensingkorea","licensingkr","musiclicensingkorea","musiclicensingkr"]
-            },
-            "publicista": {
-                es: ["publicistalatino","publicistamx","publicistacolombia","publicistaargentina","publicistachile","publicistavenezuela","publicistacaribe","prlatino","prmx","prcolombia","prargentina","prchile","prvenezuela","prcaribe","prensarlatino","prensamx","prensacolombia","prensaargentina","prensachile","prensavenezuela","prensacaribe"],
-                en: ["publicist","musicpr","pr","press","publicrelations","musicpublicist","musicpr","musicpress","musicpublicrelations","prmanager","prmanager","prcoordinator","prdirector","prspecialist","prconsultant"],
-                pt: ["publicistabr","publicistabrasil","prbr","prbrasil","pressbr","pressbrasil"],
-                fr: ["publicistfr","publicistfrance","prfr","prfrance","pressfr","pressfrance"],
-                de: ["publicistade","publicistagermany","prde","prgermany","pressde","pressgermany"],
-                it: ["publicistait","publicistaitalia","prit","prit","pressit","pressitalia"],
-                ja: ["publicistjapan","publicistjp","prjapan","prjp","pressjapan","pressjp"],
-                ko: ["publicistkorea","publicistkr","prkorea","prkr","presskorea","presskr"]
-            }
-        };
+// ============ 🌍 MERCADOS (país → idioma + escena REAL) ============
+const MERCADOS = {
+  us:{lang:'en',nombre:'USA',extra:['unsignedartist','independentartist','risingartist','atlantarapper','chicagodrill','nycrapper','larapper','recordingartist']},
+  ca:{lang:'en',nombre:'Canada',extra:['torontorapper','canadianartist','canadianhiphop','torontoproducer']},
+  mx:{lang:'es',nombre:'Mexico',extra:['artistamx','cantantemx','productormx','beatmakermx','djmx','musicomx']},
+  gt:{lang:'es',nombre:'Centroamerica',extra:['artistacentroamericano','musicocentroamericano']},
+  co:{lang:'es',nombre:'Colombia',extra:['artistacolombia','cantantecolombia','productorcolombia','beatmakercolombia','musicocolombia']},
+  ve:{lang:'es',nombre:'Venezuela',extra:['artistavenezuela','cantantevenezuela','musicovenezolano']},
+  ar:{lang:'es',nombre:'Argentina',extra:['artistaargentina','cantanteargentina','productorargentino','musicoargentino']},
+  cl:{lang:'es',nombre:'Chile',extra:['artistachile','cantantechile','musicochileno']},
+  pe:{lang:'es',nombre:'Peru',extra:['artistaperu','cantanteperuano','musicoperuano']},
+  uy:{lang:'es',nombre:'Uruguay',extra:['artistauruguayo','musicouruguayo']},
+  pr:{lang:'es',nombre:'Puerto Rico',extra:['artistaurbano','dembow','reggaetonero']},
+  do:{lang:'es',nombre:'Rep. Dominicana',extra:['dembow','artistadembow','musicourbano']},
+  br:{lang:'pt',nombre:'Brasil',extra:['artistabr','cantorbr','produtorbr','beatmakerbr','mcbrasil']},
+  uk:{lang:'en',nombre:'UK',extra:['ukdrill','ukrapper','ukproducer','londonrapper','grimeuk','ukhiphop']},
+  ie:{lang:'en',nombre:'Ireland',extra:['irishartist','irishrapper']},
+  fr:{lang:'fr',nombre:'France',extra:['rappeurfrancais','artistefrancais','producteurfrancais','beatmakerfrance','parisrap']},
+  es:{lang:'es',nombre:'Espana',extra:['rapperespanol','productorespanol','trapspain','artistaurbano','musicourbano']},
+  it:{lang:'it',nombre:'Italia',extra:['rapperitaliano','artistaitaliano','produttoreitaliano','beatmakeritalia']},
+  pt:{lang:'pt',nombre:'Portugal',extra:['artistaportugues','rapperportugues','produtorportugal']},
+  de:{lang:'de',nombre:'Alemania',extra:['deutscherrapper','berlinrapper','musikproduzent','beatmakerde']},
+  nl:{lang:'en',nombre:'Holanda',extra:['dutchrap','nederlandsehiphop','dutchproducer','amsterdamartist']},
+  se:{lang:'en',nombre:'Suecia',extra:['swedishartist','svenskhiphop','stockholmproducer']},
+  dk:{lang:'en',nombre:'Dinamarca',extra:['danishartist','nordicartist']},
+  no:{lang:'en',nombre:'Noruega',extra:['norwegianartist','nordicartist']},
+  ng:{lang:'en',nombre:'Nigeria',extra:['lagosartist','nigerianartist','afrobeatsartist','altescene']},
+  za:{lang:'en',nombre:'Sudafrica',extra:['southafricanartist','amapianoproducer','capetownartist']},
+  gh:{lang:'en',nombre:'Ghana',extra:['accraartist','ghanamusic']},
+  ke:{lang:'en',nombre:'Kenia',extra:['kenyanartist','nairobiartist']},
+  jp:{lang:'ja',nombre:'Japon',extra:['japaneseartist','tokyoproducer','jpopartist','osakarapper']},
+  kr:{lang:'ko',nombre:'Corea',extra:['seoulartist','koreanproducer','krapper','krnb']},
+  in:{lang:'en',nombre:'India',extra:['desihiphop','indianrapper','mumbaiproducer','delhibeatmaker']},
+  ph:{lang:'en',nombre:'Filipinas',extra:['opmartist','pinoyrapper','manilaproducer']},
+  au:{lang:'en',nombre:'Australia',extra:['aussiehiphop','australianartist','sydneyproducer','melbournerapper']},
+  nz:{lang:'en',nombre:'Nueva Zelanda',extra:['nzartist','aotearoamusic']}
+};
+const REGION_MERCADOS = {
+  global:Object.keys(MERCADOS),
+  'latam-norte':['mx','gt','pr','do'],
+  'latam-caribe':['co','ve','pr','do'],
+  'latam-sur':['ar','cl','pe','uy'],
+  brasil:['br'], usa:['us','ca'], uk:['uk','ie'],
+  'europa-norte':['de','nl','se','dk','no'],
+  'europa-sur':['es','fr','it','pt'],
+  africa:['ng','za','gh','ke'],
+  asia:['jp','kr','in','ph'],
+  oceania:['au','nz']
+};
 
-        // ============================================
-        // 🌍 MAPEO DE REGIONES A IDIOMAS
-        // ============================================
-        const REGION_IDIOMA = {
-            "global": "auto",
-            "latam-norte": "es",
-            "latam-sur": "es",
-            "latam-caribe": "es",
-            "brasil": "pt",
-            "usa": "en",
-            "uk": "en",
-            "europa-norte": "de",
-            "europa-sur": "es",
-            "africa": "en",
-            "asia": "auto",
-            "oceania": "en"
-        };
+// ============ 🎵 TAGS REALES POR GÉNERO E IDIOMA ============
+const GENERO_BASE = {
+  trap:{en:['trapproducer','trapbeats','trapmusic','darktrap','trapsoul','trapbeatsforsale'],es:['traplatino','trapmx','trapcolombia','trapargentina','trapchile','trapvenezuela','trapurbano'],pt:['trapbrasil','trapbr','trapportugues'],fr:['trapfrance','trapfr','drillfrance'],de:['trapdeutschland','germanrap','berlindrill'],it:['trapitalia','trapit','drillitalia'],ja:['trapjapan','jrap'],ko:['ktrap','kdrill','khiphop']},
+  hiphop:{en:['hiphopproducer','boombap','undergroundhiphop','rapbeats','hiphopartist'],es:['hiphoplatino','raplatino','rapmx','rapcolombia','rapargentina','rapchile'],pt:['hiphopbr','rapbrasil','rapbr'],fr:['rapfr','rapfrancais','hiphopfr'],de:['rapdeutsch','deutschrap','hiphopde'],it:['rapitalia','hiphopitalia','rapitaliano'],ja:['jhiphop','hiphopjapan'],ko:['khiphop','hiphopkorea']},
+  reggaeton:{en:['reggaetonbeats','latinurban','latintrap','perreo','dembow'],es:['reggaeton','reggaetonlatino','reggaetonmx','reggaetoncolombia','perreo','dembow','urbanolatino'],pt:['reggaetonbrasil','funkbr','bailefunk'],fr:['reggaetonfr'],de:['reggaetonde'],it:['reggaetonit']},
+  electronica:{en:['edmproducer','technoproducer','houseproducer','djproducer','techhouse','deephouse'],es:['djlatino','electronicalatina','djmx','djcolombia','djargentina'],pt:['djbrasil','technobrasil','electronicabr'],fr:['djfrance','technofrance','frenchtouch'],de:['technoberlin','technogermany','djgermany'],it:['djitalia','technoitalia']},
+  rnb:{en:['rnbproducer','rnbbeats','neosoul','alternativernb','soulmusic'],es:['rnblatino','rnbenspanol','neosoullatino'],pt:['rnbbrasil','soulbrasil'],fr:['rnbfrance','soulfrance'],de:['rnbgermany'],it:['rnbitalia']},
+  lofi:{en:['lofiproducer','lofihiphop','chillhop','lofibeats','studybeats'],es:['lofilatino','chillbeatslatino'],pt:['lofibrasil'],fr:['lofifrance'],de:['lofigermany'],it:['lofiitalia']},
+  rock:{en:['indierock','rockband','alternativerock','indieartist'],es:['rocklatino','rockmx','rockcolombia','rockargentina','indierocklatino'],pt:['rockbrasil','indierockbr'],fr:['rockfrancais','indierockfr'],de:['indierockde'],it:['rockitalia','indierockit']},
+  afrobeat:{en:['afrobeats','afrobeatproducer','afropop','afrohouse','amapiano'],es:['afrobeatlatino'],pt:['afrobeatbrasil','afrohousebr'],fr:['afrobeatfrance','afrohousefr'],de:['afrobeatgermany'],it:['afrobeatitalia']},
+  latin:{en:['latinproducer','latinartist','latinsinger','latinsongwriter'],es:['latinmusic','salsa','bachata','cumbia','artistalatino','cantantelatino'],pt:['musicabrasileira','mpb'],fr:['latinpop'],de:['latinpop'],it:['latinpop']},
+  pop:{en:['popproducer','popartist','indiepop','popsongwriter'],es:['poplatino','popmx','popcolombia','popargentina','indiepoplatino'],pt:['popbrasil','indiepopbr'],fr:['popfrancaise','indiepopfr'],de:['indiepopde'],it:['popitalia','indiepopit']},
+  metal:{en:['metalcore','metalband','heavymetal','deathmetal'],es:['metallatino','metalargentina','metalcolombia'],pt:['metalbrasil'],fr:['metalfrance'],de:['germanmetal','metalde'],it:['metalitalia']},
+  jazz:{en:['jazzproducer','jazzfusion','smoothjazz','jazzmusician'],es:['jazzlatino','latinjazz','jazzmx','jazzcolombia'],pt:['jazzbrasil'],fr:['jazzfrance','jazzmanouche'],de:['jazzgermany'],it:['jazzitalia']}
+};
 
-        // ============================================
-        // 💬 MENSAJES ULTRA-PERSONALIZADOS
-        // ============================================
-        const MENSAJES = {
-            es: {
-                artista_produccion: {
-                    underground: "¡Qué onda! 👋 Vi tu perfil y me voló tu rollo {genero}, se nota que tienes una identidad súper marcada. Estoy produciendo unos proyectos y creo que tu sonido encajaría perfecto con lo que estamos armando.\n\n¿Te late que platemos? Me encantaría escuchar más de tu rollo.\n\n🎵 ¡Saludos!",
-                    mainstream: "¡Hola! 👋 He seguido tu trabajo en {genero} y la verdad me impresiona mucho tu nivel. Estoy produciendo varios proyectos de alto impacto y creo que tu estilo podría sumar muchísimo.\n\n¿Tienes un momento para conversar esta semana? Me encantaría explorar una colaboración.\n\n🎵 Saludos!",
-                    indie: "¡Hola!  Vi tu perfil y me encantó tu propuesta en {genero}, tienes un sonido muy auténtico. Estoy produciendo unos proyectos y creo que tu vibra encajaría perfecto.\n\n¿Te interesaría platicar? Me encantaría escuchar más de tu música.\n\n🎵 Abrazo!",
-                    experimental: "¡Qué onda! 👋 Vi tu perfil y me fascinó lo que haces en {genero}, se nota que rompes moldes. Estoy produciendo proyectos con un enfoque diferente y creo que tu sonido podría aportar algo único.\n\n¿Te late explorar algo juntos?\n\n Saludos!",
-                    profesional: "¡Hola! 👋 He revisado tu perfil y me parece muy profesional tu trabajo en {genero}. Estoy desarrollando proyectos de producción y creo que tu perfil encaja con lo que buscamos.\n\n¿Tendrías disponibilidad para una llamada esta semana?\n\n🎵 Saludos cordiales!",
-                    casual: "¡Hola! 👋 Vi tu perfil y me gustó mucho tu rollo en {genero}. Estoy armando unos proyectos y creo que tu sonido podría encajar bien.\n\n¿Te late que platemos?\n\n ¡Saludos!"
-                },
-                artista_colaboracion: {
-                    underground: "¡Qué onda! 👋 Vi tu perfil y me voló tu rollo {genero}. Estoy armando unos collabs y creo que tu estilo encajaría perfecto.\n\n¿Te late explorar algo juntos? Me encantaría escuchar tu sonido.\n\n🎵 ¡Saludos!",
-                    mainstream: "¡Hola! 👋 He seguido tu trabajo en {genero} y la verdad me impresiona mucho. Estoy armando colaboraciones con artistas de nivel y creo que tu perfil sería un match increíble.\n\n¿Tienes un momento para conversar?\n\n Saludos!",
-                    indie: "¡Hola! 👋 Vi tu perfil y me encantó tu propuesta en {genero}. Estoy buscando artistas con sonido auténtico para unos collabs.\n\n¿Te interesaría platicar?\n\n🎵 Abrazo!",
-                    experimental: "¡Qué onda! 👋 Me fascinó lo que haces en {genero}, se nota que rompes moldes. Estoy armando collabs con artistas que piensan diferente.\n\n¿Te late explorar algo?\n\n🎵 Saludos!",
-                    profesional: "¡Hola! 👋 He revisado tu perfil y me parece muy interesante tu trabajo en {genero}. Estoy desarrollando colaboraciones estratégicas y creo que tu perfil encaja.\n\n¿Tendrías disponibilidad para una llamada?\n\n Saludos cordiales!",
-                    casual: "¡Hola! 👋 Vi tu perfil y me gustó mucho tu rollo en {genero}. Estoy armando unos collabs y creo que tu sonido podría encajar.\n\n¿Te late que platemos?\n\n🎵 ¡Saludos!"
-                },
-                artista_negocio: {
-                    underground: "¡Qué onda! 👋 Vi tu perfil y me voló tu rollo {genero}. Tengo una propuesta de negocio que creo te puede interesar relacionada con tu música.\n\n¿Te late que platemos?\n\n💼 ¡Saludos!",
-                    mainstream: "¡Hola! 👋 He seguido tu trabajo en {genero} y la verdad me impresiona mucho. Tengo una propuesta de negocio que creo puede potenciar tu carrera.\n\n¿Tienes un momento para conversar esta semana?\n\n💼 Saludos!",
-                    indie: "¡Hola! 👋 Vi tu perfil y me encantó tu propuesta en {genero}. Tengo una propuesta de negocio que creo puede ayudarte a crecer.\n\n¿Te interesaría platicar?\n\n💼 Abrazo!",
-                    experimental: "¡Qué onda! 👋 Me fascinó lo que haces en {genero}. Tengo una propuesta de negocio para artistas con un enfoque diferente.\n\n¿Te late explorar?\n\n💼 Saludos!",
-                    profesional: "¡Hola! 👋 He revisado tu perfil y me parece muy profesional tu trabajo en {genero}. Tengo una propuesta de negocio que creo puede interesarte.\n\n¿Tendrías disponibilidad para una llamada?\n\n💼 Saludos cordiales!",
-                    casual: "¡Hola! 👋 Vi tu perfil y me gustó mucho tu rollo en {genero}. Tengo una propuesta de negocio que creo te puede interesar.\n\n¿Te late que platemos?\n\n ¡Saludos!"
-                },
-                manager: "¡Hola! 👋 Vi que manejas talento en la escena {genero}. Estoy buscando representación para unos artistas/productores con los que trabajo y creo que tu perfil encaja.\n\n¿Tienes un momento para conversar?\n\n💼 Saludos!",
-                sello: "¡Hola! 👋 He seguido el trabajo de su sello en {genero} y me parece excelente. Tengo material de artistas/productores que creo encajaría perfecto con su línea editorial.\n\n¿A quién podría enviar una demo o propuesta?\n\n Saludos!",
-                ar: "¡Hola! 👋 Vi que estás en A&R y te mueves en la escena {genero}. Tengo unos artistas/productores con proyectos muy interesantes que creo podrían encajar con lo que buscan.\n\n¿Tienes un momento para que te los presente?\n\n Saludos!",
-                ingeniero: "¡Qué onda! 👋 Vi tu perfil y me impresiona tu trabajo como ingeniero en {genero}. Estoy buscando a alguien de confianza para mezclar/masterizar unos proyectos.\n\n¿Tienes disponibilidad y me podrías pasar tus tarifas?\n\n🎚️ ¡Saludos!",
-                songwriter: "¡Hola! 👋 Vi tu perfil y me encantó tu trabajo como songwriter en {genero}. Estoy buscando topliners/compositores para unos proyectos de artistas.\n\n¿Te interesaría platicar?\n\n✍️ Saludos!",
-                promotor: "¡Hola! 👋 Vi que organizas eventos en la escena {genero}. Tengo artistas/productores que creo encajarían perfecto en tu línea de programación.\n\n¿Tienes un momento para conversar sobre posibles bookings?\n\n Saludos!",
-                sync: "¡Hola! 👋 Vi tu perfil y me parece muy interesante tu trabajo en sync/licencias para {genero}. Tengo catálogo de artistas/productores que creo podría encajar en proyectos audiovisuales.\n\n¿Tienes un momento para conversar?\n\n🎬 Saludos!",
-                publicista: "¡Hola! 👋 Vi tu perfil y me parece muy interesante tu trabajo en PR para {genero}. Estoy buscando apoyo de prensa para unos lanzamientos.\n\n¿Tienes un momento para conversar?\n\n📢 Saludos!"
-            },
-            en: {
-                artista_produccion: {
-                    underground: "Yo! 👋 Checked your profile and your {genero} sound is fire, you got a crazy identity. I'm producing some projects and think your vibe would fit perfectly.\n\nWanna link up? Would love to hear more of your stuff.\n\n Cheers!",
-                    mainstream: "Hey! 👋 Been following your work in {genero} and honestly impressed with your level. I'm producing several high-impact projects and think your style could add a lot.\n\nGot a moment to chat this week? Would love to explore a collab.\n\n🎵 Best!",
-                    indie: "Hey! 👋 Saw your profile and loved your {genero} proposal, you got a really authentic sound. I'm producing some projects and think your vibe would fit perfectly.\n\nInterested in chatting? Would love to hear more of your music.\n\n🎵 Cheers!",
-                    experimental: "Yo! 👋 Saw your profile and fascinated by what you do in {genero}, you clearly break molds. I'm producing projects with a different approach and think your sound could bring something unique.\n\nDown to explore something together?\n\n🎵 Cheers!",
-                    profesional: "Hello! 👋 Reviewed your profile and your work in {genero} seems very professional. I'm developing production projects and think your profile fits what we're looking for.\n\nWould you be available for a call this week?\n\n🎵 Best regards!",
-                    casual: "Hey! 👋 Saw your profile and really liked your {genero} vibe. I'm putting together some projects and think your sound could fit well.\n\nWanna chat?\n\n Cheers!"
-                },
-                artista_colaboracion: {
-                    underground: "Yo! 👋 Checked your profile and your {genero} sound is fire. I'm putting together some collabs and think your style would fit perfectly.\n\nDown to explore something together? Would love to hear your sound.\n\n🎵 Cheers!",
-                    mainstream: "Hey! 👋 Been following your work in {genero} and honestly impressed. I'm putting together collabs with top-tier artists and think your profile would be an incredible match.\n\nGot a moment to chat?\n\n🎵 Best!",
-                    indie: "Hey! 👋 Saw your profile and loved your {genero} proposal. Looking for artists with authentic sound for some collabs.\n\nInterested in chatting?\n\n🎵 Cheers!",
-                    experimental: "Yo! 👋 Fascinated by what you do in {genero}, you clearly break molds. Putting together collabs with artists who think differently.\n\nDown to explore something?\n\n🎵 Cheers!",
-                    profesional: "Hello! 👋 Reviewed your profile and your work in {genero} seems very interesting. Developing strategic collaborations and think your profile fits.\n\nWould you be available for a call?\n\n🎵 Best regards!",
-                    casual: "Hey! 👋 Saw your profile and really liked your {genero} vibe. Putting together some collabs and think your sound could fit.\n\nWanna chat?\n\n🎵 Cheers!"
-                },
-                artista_negocio: {
-                    underground: "Yo! 👋 Checked your profile and your {genero} sound is fire. Got a business proposal I think you'd be interested in related to your music.\n\nWanna chat?\n\n💼 Cheers!",
-                    mainstream: "Hey! 👋 Been following your work in {genero} and honestly impressed. Got a business proposal I think could boost your career.\n\nGot a moment to chat this week?\n\n💼 Best!",
-                    indie: "Hey! 👋 Saw your profile and loved your {genero} proposal. Got a business proposal I think could help you grow.\n\nInterested in chatting?\n\n💼 Cheers!",
-                    experimental: "Yo! 👋 Fascinated by what you do in {genero}. Got a business proposal for artists with a different approach.\n\nDown to explore?\n\n💼 Cheers!",
-                    profesional: "Hello! 👋 Reviewed your profile and your work in {genero} seems very professional. Got a business proposal I think might interest you.\n\nWould you be available for a call?\n\n💼 Best regards!",
-                    casual: "Hey! 👋 Saw your profile and really liked your {genero} vibe. Got a business proposal I think you'd be interested in.\n\nWanna chat?\n\n💼 Cheers!"
-                },
-                manager: "Hey! 👋 Saw you manage talent in the {genero} scene. I'm looking for representation for some artists/producers I work with and think your profile fits.\n\nGot a moment to chat?\n\n💼 Best!",
-                sello: "Hello! 👋 Been following your label's work in {genero} and it seems excellent. I have material from artists/producers I think would fit perfectly with your editorial line.\n\nWho could I send a demo or proposal to?\n\n🎵 Best!",
-                ar: "Hey! 👋 Saw you're in A&R and moving in the {genero} scene. I have some artists/producers with very interesting projects I think could fit what you're looking for.\n\nGot a moment for me to present them?\n\n🔍 Best!",
-                ingeniero: "Yo! 👋 Checked your profile and impressed with your work as an engineer in {genero}. Looking for someone reliable to mix/master some projects.\n\nDo you have availability and could you send me your rates?\n\n🎚️ Cheers!",
-                songwriter: "Hey! 👋 Saw your profile and loved your work as a songwriter in {genero}. Looking for topliners/composers for some artist projects.\n\nInterested in chatting?\n\n✍️ Best!",
-                promotor: "Hey! 👋 Saw you organize events in the {genero} scene. I have artists/producers I think would fit perfectly in your programming line.\n\nGot a moment to chat about possible bookings?\n\n🎫 Best!",
-                sync: "Hey! 👋 Saw your profile and your work in sync/licensing for {genero} seems very interesting. I have a catalog of artists/producers I think could fit in audiovisual projects.\n\nGot a moment to chat?\n\n🎬 Best!",
-                publicista: "Hey! 👋 Saw your profile and your PR work for {genero} seems very interesting. Looking for press support for some releases.\n\nGot a moment to chat?\n\n📢 Best!"
-            },
-            pt: {
-                artista_produccion: {
-                    underground: "E aí! 👋 Vi seu perfil e curti muito seu rolê {genero}, dá pra ver que você tem uma identidade muito marcada. Tô produzindo uns projetos e acho que seu som encaixaria perfeito no que estamos montando.\n\nBora papo? Adoraria ouvir mais do seu som.\n\n🎵 Abraço!",
-                    mainstream: "Oi! 👋 Tenho acompanhado seu trabalho em {genero} e sinceramente me impressiono muito com seu nível. Tô produzindo vários projetos de alto impacto e acho que seu estilo poderia somar muito.\n\nTem um momento pra conversar essa semana? Adoraria explorar uma collab.\n\n🎵 Abraço!",
-                    indie: "Oi! 👋 Vi seu perfil e adorei sua proposta em {genero}, você tem um som muito autêntico. Tô produzindo uns projetos e acho que sua vibe encaixaria perfeito.\n\nTe interessaria papo? Adoraria ouvir mais da sua música.\n\n🎵 Abraço!",
-                    experimental: "E aí! 👋 Vi seu perfil e me fascinou o que você faz em {genero}, dá pra ver que você quebra moldes. Tô produzindo projetos com uma abordagem diferente e acho que seu som poderia trazer algo único.\n\nBora explorar algo juntos?\n\n🎵 Abraço!",
-                    profesional: "Olá! 👋 Revisei seu perfil e seu trabalho em {genero} me parece muito profissional. Estou desenvolvendo projetos de produção e acho que seu perfil se encaixa no que buscamos.\n\nVocê teria disponibilidade para uma chamada essa semana?\n\n🎵 Saudações!",
-                    casual: "Oi! 👋 Vi seu perfil e curti muito seu rolê em {genero}. Tô montando uns projetos e acho que seu som poderia encaixar bem.\n\nBora papo?\n\n🎵 Abraço!"
-                },
-                artista_colaboracion: {
-                    underground: "E aí! 👋 Vi seu perfil e curti muito seu rolê {genero}. Tô montando umas collabs e acho que seu estilo encaixaria perfeito.\n\nBora explorar algo juntos? Adoraria ouvir seu som.\n\n🎵 Abraço!",
-                    mainstream: "Oi! 👋 Tenho acompanhado seu trabalho em {genero} e sinceramente me impressiono. Tô montando collabs com artistas de nível e acho que seu perfil seria um match incrível.\n\nTem um momento pra conversar?\n\n🎵 Abraço!",
-                    indie: "Oi! 👋 Vi seu perfil e adorei sua proposta em {genero}. Tô procurando artistas com som autêntico pra umas collabs.\n\nTe interessaria papo?\n\n🎵 Abraço!",
-                    experimental: "E aí! 👋 Me fascinou o que você faz em {genero}, dá pra ver que você quebra moldes. Tô montando collabs com artistas que pensam diferente.\n\nBora explorar algo?\n\n🎵 Abraço!",
-                    profesional: "Olá! 👋 Revisei seu perfil e seu trabalho em {genero} me parece muito interessante. Desenvolvendo colaborações estratégicas e acho que seu perfil se encaixa.\n\nVocê teria disponibilidade para uma chamada?\n\n🎵 Saudações!",
-                    casual: "Oi! 👋 Vi seu perfil e curti muito seu rolê em {genero}. Tô montando umas collabs e acho que seu som poderia encaixar.\n\nBora papo?\n\n🎵 Abraço!"
-                },
-                artista_negocio: {
-                    underground: "E aí! 👋 Vi seu perfil e curti muito seu rolê {genero}. Tenho uma proposta de negócio que acho que pode te interessar relacionada à sua música.\n\nBora papo?\n\n💼 Abraço!",
-                    mainstream: "Oi! 👋 Tenho acompanhado seu trabalho em {genero} e sinceramente me impressiono. Tenho uma proposta de negócio que acho que pode impulsionar sua carreira.\n\nTem um momento pra conversar essa semana?\n\n💼 Abraço!",
-                    indie: "Oi! 👋 Vi seu perfil e adorei sua proposta em {genero}. Tenho uma proposta de negócio que acho que pode te ajudar a crescer.\n\nTe interessaria papo?\n\n💼 Abraço!",
-                    experimental: "E aí! 👋 Me fascinou o que você faz em {genero}. Tenho uma proposta de negócio pra artistas com uma abordagem diferente.\n\nBora explorar?\n\n💼 Abraço!",
-                    profesional: "Olá! 👋 Revisei seu perfil e seu trabalho em {genero} me parece muito profissional. Tenho uma proposta de negócio que acho que pode te interessar.\n\nVocê teria disponibilidade para uma chamada?\n\n💼 Saudações!",
-                    casual: "Oi! 👋 Vi seu perfil e curti muito seu rolê em {genero}. Tenho uma proposta de negócio que acho que pode te interessar.\n\nBora papo?\n\n💼 Abraço!"
-                },
-                manager: "Oi! 👋 Vi que você gerencia talentos na cena {genero}. Tô procurando representação pra uns artistas/produtores com quem trabalho e acho que seu perfil se encaixa.\n\nTem um momento pra conversar?\n\n💼 Abraço!",
-                sello: "Olá! 👋 Tenho acompanhado o trabalho da sua gravadora em {genero} e me parece excelente. Tenho material de artistas/produtores que acho que encaixaria perfeito na linha editorial de vocês.\n\nPra quem poderia enviar uma demo ou proposta?\n\n🎵 Saudações!",
-                ar: "Oi! 👋 Vi que você tá em A&R e se move na cena {genero}. Tenho uns artistas/produtores com projetos muito interessantes que acho que poderiam encaixar no que vocês buscam.\n\nTem um momento pra eu apresentar?\n\n🔍 Saudações!",
-                ingeniero: "E aí! 👋 Vi seu perfil e me impressiona seu trabalho como engenheiro em {genero}. Tô procurando alguém de confiança pra mixar/masterizar uns projetos.\n\nVocê tem disponibilidade e poderia me passar suas tarifas?\n\n🎚️ Abraço!",
-                songwriter: "Oi! 👋 Vi seu perfil e adorei seu trabalho como compositor em {genero}. Tô procurando topliners/compositores pra uns projetos de artistas.\n\nTe interessaria papo?\n\n✍️ Saudações!",
-                promotor: "Oi! 👋 Vi que você organiza eventos na cena {genero}. Tenho artistas/produtores que acho que encaixariam perfeito na sua linha de programação.\n\nTem um momento pra conversar sobre possíveis bookings?\n\n🎫 Saudações!",
-                sync: "Oi! 👋 Vi seu perfil e seu trabalho em sync/licenciamento pra {genero} me parece muito interessante. Tenho catálogo de artistas/produtores que acho que poderia encaixar em projetos audiovisuais.\n\nTem um momento pra conversar?\n\n🎬 Saudações!",
-                publicista: "Oi! 👋 Vi seu perfil e seu trabalho de PR pra {genero} me parece muito interessante. Tô procurando apoio de imprensa pra uns lançamentos.\n\nTem um momento pra conversar?\n\n📢 Saudações!"
-            }
-        };
+// ============ 👤 TAGS REALES POR TIPO E IDIOMA ============
+const TIPO_BASE = {
+  artista:{en:['unsignedartist','independentartist','risingartist','newartist','recordingartist','indieartist'],es:['artistaindependiente','cantante','vocalista','artistaemergente','musicourbano'],pt:['artistaindependente','cantor','artista','musico'],fr:['artistefrancais','chanteur','rappeur'],de:['rapperde','artistde'],it:['cantanteitaliano','artistaitaliano','rapperitaliano'],ja:['jpopartist','japaneseartist'],ko:['kartist','kpopartist']},
+  productor:{en:['musicproducer','beatmaker','recordproducer','beatproducer'],es:['productormusical','beatmakerlatino','productor'],pt:['produtormusical','beatmakerbr'],fr:['producteurmusical','beatmakerfr'],de:['musikproduzent','produzent'],it:['produttore','musicproduceritalia'],ja:['tokyoproducer'],ko:['koreanproducer','kproducer']},
+  dj:{en:['dj','djproducer','djset','djlife'],es:['djlatino','djsetlatino'],pt:['djbrasil'],fr:['djfrance'],de:['djgermany'],it:['djitalia']},
+  manager:{en:['artistmanager','musicmanager','talentmanager'],es:['managermusical','representanteartistas'],pt:['managerbrasil','empresariomusical'],fr:['managermusical'],de:['musikmanager'],it:['managermusicale']},
+  sello:{en:['recordlabel','indielabel','independentlabel','labelowner'],es:['sellodiscografico','discograficaindependiente'],pt:['gravadoraindependente'],fr:['labelindependant'],de:['indielabelde'],it:['etichettaindipendente']},
+  ar:{en:['aandr','talentscout','artistsandrepertoire'],es:['talentoscouter'],pt:['aandrbr'],fr:['aandrfr'],de:['aandrde'],it:['aandrit']},
+  ingeniero:{en:['mixengineer','masteringengineer','audioengineer','soundengineer'],es:['ingenierodemezcla','ingenierodesonido','mezclaymastering'],pt:['engenheirodesom'],fr:['ingenieurduson'],de:['tontechniker'],it:['fonico']},
+  songwriter:{en:['songwriter','topliner','composer','lyricist'],es:['compositor','cantautor','toplinerlatino'],pt:['compositor','cantautorbr'],fr:['compositeur','auteurcompositeur'],de:['komponist'],it:['cantautore','autore']},
+  promotor:{en:['eventpromoter','bookingagent','concertpromoter','festivalpromoter'],es:['promotormusical','bookinglatino'],pt:['promotorbrasil','bookingbr'],fr:['promoteurmusical'],de:['veranstalter'],it:['promotermusicale']},
+  sync:{en:['synclicensing','musiclicensing','syncagent','musicsupervisor'],es:['sincronizacionmusical','licensingmusical'],pt:['licenciamentomusical'],fr:['syncmusic'],de:['syncgermany'],it:['syncitalia']},
+  publicista:{en:['musicpublicist','musicpr','pragency'],es:['publicistamusical','prensamusical'],pt:['assessoriadeimprensa'],fr:['attachedepresse'],de:['musikpr'],it:['ufficiostampa']}
+};
 
-        // ============================================
-        // 🎯 ESTADO
-        // ============================================
-        let tiposSeleccionados = new Set();
-        let objetivosSeleccionados = new Set();
-        let generosSeleccionados = new Set();
-        let mensajesGenerados = [];
+const REGION_IDIOMA = {
+  global:'auto','latam-norte':'es','latam-caribe':'es','latam-sur':'es',brasil:'pt',usa:'en',uk:'en',
+  'europa-norte':'auto','europa-sur':'auto',africa:'en',asia:'auto',oceania:'en'
+};
 
-        // ============================================
-        // 🚀 INIT
-        // ============================================
-        function init() {
-            renderChips('tipos-cliente', TIPOS_CLIENTE, tiposSeleccionados);
-            renderChips('objetivos', OBJETIVOS, objetivosSeleccionados);
-            renderChips('generos', GENEROS_HASHTAGS, generosSeleccionados, true);
-        }
+// ============ 💬 MOTOR DE MENSAJES (6 idiomas) ============
+const PARTES = {
+  es:{
+    opener:{underground:"¡Qué onda! 👋 Vi tu perfil y me voló tu rollo {genero}, se nota que tienes una identidad súper marcada.",mainstream:"¡Hola! 👋 He seguido tu trabajo en {genero} y la verdad me impresiona tu nivel.",indie:"¡Hola! 👋 Vi tu perfil y me encantó tu propuesta en {genero}, tienes un sonido muy auténtico.",experimental:"¡Qué onda! 👋 Me fascinó lo que haces en {genero}, se nota que rompes moldes.",profesional:"¡Hola! 👋 He revisado tu perfil y me parece muy profesional tu trabajo en {genero}.",casual:"¡Hola! 👋 Vi tu perfil y me gustó mucho tu rollo en {genero}."},
+    cuerpo:{produccion:"Estoy produciendo unos proyectos y creo que tu sonido encajaría perfecto con lo que estamos armando. ¿Te late que platemos? Me encantaría escuchar más de tu música.",colaboracion:"Estoy armando unos collabs y creo que tu estilo encajaría perfecto. ¿Te late explorar algo juntos?",negocio:"Tengo una propuesta de negocio que creo te puede interesar, relacionada con tu música. ¿Te late que platemos?",management:"Estoy buscando representación para unos artistas y creo que tu perfil encaja. ¿Tienes un momento para conversar?",distribucion:"Estoy ayudando a artistas con distribución y regalías, y creo que puedo sumar a tu proyecto. ¿Platicamos?",sync:"Tengo catálogo para proyectos audiovisuales y creo que tu sonido encajaría. ¿Conversamos?",booking:"Estoy armando shows y creo que tu propuesta encajaría en varias plazas. ¿Conversamos?",networking:"Me encanta conectar con gente de la escena y creo que podemos sumar entre nosotros. ¿Platicamos?"},
+    closer:{underground:"🎵 ¡Saludos!",mainstream:"🎵 ¡Saludos!",indie:"🎵 Abrazo!",experimental:"🎵 Saludos!",profesional:"🎵 Saludos cordiales!",casual:"🎵 ¡Saludos!"}
+  },
+  en:{
+    opener:{underground:"Yo! 👋 Checked your profile and your {genero} sound is fire, you got a real identity.",mainstream:"Hey! 👋 Been following your work in {genero} and honestly impressed with your level.",indie:"Hey! 👋 Saw your profile and loved your {genero} vibe, super authentic sound.",experimental:"Yo! 👋 Fascinated by what you do in {genero}, you clearly break molds.",profesional:"Hello! 👋 Reviewed your profile and your work in {genero} seems very professional.",casual:"Hey! 👋 Saw your profile and really liked your {genero} vibe."},
+    cuerpo:{produccion:"I'm producing some projects and I think your sound would fit perfectly with what we're building. Wanna link up? Would love to hear more of your music.",colaboracion:"I'm putting together some collabs and I think your style would fit perfectly. Down to explore something together?",negocio:"I have a business proposal I think you'd be interested in, related to your music. Wanna chat?",management:"I'm looking for representation for some artists and I think your profile fits. Got a moment to chat?",distribucion:"I'm helping artists with distribution and royalties, and I think I can add value to your project. Shall we talk?",sync:"I have a catalog for audiovisual projects and I think your sound would fit. Can we talk?",booking:"I'm putting together shows and I think your proposal would fit several markets. Can we talk?",networking:"I love connecting with people from the scene and I think we can add value to each other. Wanna chat?"},
+    closer:{underground:"🎵 Cheers!",mainstream:"🎵 Best!",indie:"🎵 Cheers!",experimental:"🎵 Cheers!",profesional:"🎵 Best regards!",casual:"🎵 Cheers!"}
+  },
+  pt:{
+    opener:{underground:"E aí! 👋 Vi seu perfil e curti muito seu rolê {genero}, dá pra ver que você tem identidade própria.",mainstream:"Oi! 👋 Tenho acompanhado seu trabalho em {genero} e me impressiono com seu nível.",indie:"Oi! 👋 Vi seu perfil e adorei sua proposta em {genero}, som muito autêntico.",experimental:"E aí! 👋 Me fascinou o que você faz em {genero}, dá pra ver que quebra moldes.",profesional:"Olá! 👋 Revisei seu perfil e seu trabalho em {genero} me parece muito profissional.",casual:"Oi! 👋 Vi seu perfil e curti muito seu rolê em {genero}."},
+    corpo:{produccion:"Tô produzindo uns projetos e acho que seu som encaixaria perfeito no que estamos montando. Bora papo? Adoraria ouvir mais do seu som.",colaboracion:"Tô montando umas collabs e acho que seu estilo encaixaria perfeito. Bora explorar algo juntos?",negocio:"Tenho uma proposta de negócio que acho que pode te interessar, relacionada à sua música. Bora papo?",management:"Tô procurando representação pra uns artistas e acho que seu perfil encaixa. Tem um momento pra conversar?",distribucion:"Tô ajudando artistas com distribuição e royalties, e acho que posso somar no seu projeto. Bora conversar?",sync:"Tenho catálogo pra projetos audiovisuais e acho que seu som encaixaria. Podemos conversar?",booking:"Tô montando shows e acho que sua proposta encaixaria em várias praças. Podemos conversar?",networking:"Adoro conectar com gente da cena e acho que podemos somar juntos. Bora papo?"},
+    closer:{underground:"🎵 Abraço!",mainstream:"🎵 Abraço!",indie:"🎵 Abraço!",experimental:"🎵 Abraço!",profesional:"🎵 Saudações!",casual:"🎵 Abraço!"}
+  },
+  fr:{
+    opener:{underground:"Yo ! 👋 J'ai vu ton profil et ton son {genero} m'a claqué, vraie identité propre.",mainstream:"Salut ! 👋 Je suis ton travail en {genero} et ton niveau m'impressionne.",indie:"Salut ! 👋 J'ai vu ton profil et j'adore ta proposition {genero}, son très authentique.",experimental:"Yo ! 👋 Fasciné par ce que tu fais en {genero}, tu casses les codes.",profesional:"Bonjour ! 👋 J'ai regardé ton profil et ton travail en {genero} me semble très pro.",casual:"Salut ! 👋 J'ai vu ton profil et j'aime beaucoup ton vibe {genero}."},
+    cuerpo:{produccion:"Je produis des projets et je pense que ton son collerait parfaitement. On en parle ? J'aimerais écouter plus de ta musique.",colaboracion:"Je monte des collabs et ton style collerait parfaitement. Partant pour explorer quelque chose ?",negocio:"J'ai une proposition business qui pourrait t'intéresser, liée à ta musique. On en parle ?",management:"Je cherche une représentation pour des artistes et ton profil correspond. Un moment pour échanger ?",distribucion:"J'aide les artistes avec distribution et royalties, et je peux apporter de la valeur à ton projet. On discute ?",sync:"J'ai un catalogue pour des projets audiovisuels et ton son collerait. On peut en parler ?",booking:"Je monte des shows et ta proposition collerait sur plusieurs marchés. On peut en parler ?",networking:"J'adore connecter avec la scène et on pourrait s'apporter mutuellement. On discute ?"},
+    closer:{underground:"🎵 À plus !",mainstream:"🎵 À plus !",indie:"🎵 Peace !",experimental:"🎵 À plus !",profesional:"🎵 Cordialement !",casual:"🎵 À plus !"}
+  },
+  de:{
+    opener:{underground:"Yo! 👋 Dein {genero}-Sound hat mich geflasht, echte eigene Identität.",mainstream:"Hey! 👋 Verfolge deine Arbeit in {genero} und bin echt beeindruckt.",indie:"Hey! 👋 Dein Profil und dein {genero}-Sound sind super authentisch.",experimental:"Yo! 👋 Was du in {genero} machst, bricht eindeutig Regeln.",profesional:"Hallo! 👋 Dein Profil wirkt sehr professionell in {genero}.",casual:"Hey! 👋 Mag deinen {genero}-Vibe sehr."},
+    cuerpo:{produccion:"Ich produziere gerade Projekte und dein Sound würde perfekt passen. Lust zu quatschen? Würde gern mehr hören.",colaboracion:"Ich baue gerade Collabs und dein Stil würde perfekt passen. Lust, etwas zu explorieren?",negocio:"Ich habe einen Business-Vorschlag, der für deine Musik interessant sein könnte. Lust zu sprechen?",management:"Ich suche Representation für einige Artists und dein Profil passt. Hast du Zeit für ein Gespräch?",distribucion:"Ich helfe Artists bei Distribution und Royalties und könnte deinem Projekt Mehrwert bringen. Sprechen wir?",sync:"Ich habe einen Katalog für audiovisuelle Projekte und dein Sound würde passen. Können wir sprechen?",booking:"Ich stelle Shows zusammen und dein Konzept würde in mehrere Märkte passen. Können wir sprechen?",networking:"Ich liebe es, Leute aus der Szene zu connecten. Wir können uns gegenseitig pushen. Quatschen?"},
+    closer:{underground:"🎵 Grüße!",mainstream:"🎵 Grüße!",indie:"🎵 Peace!",experimental:"🎵 Grüße!",profesional:"🎵 Beste Grüße!",casual:"🎵 Grüße!"}
+  },
+  it:{
+    opener:{underground:"Yo! 👋 Ho visto il tuo profilo e il tuo sound {genero} mi ha colpito, identità vera.",mainstream:"Ciao! 👋 Seguo il tuo lavoro in {genero} e sono impressionato dal tuo livello.",indie:"Ciao! 👋 Ho visto il tuo profilo e amo la tua proposta {genero}, sound autentico.",experimental:"Yo! 👋 Affascinato da quello che fai in {genero}, rompi gli schemi.",profesional:"Ciao! 👋 Il tuo profilo mi sembra molto professionale in {genero}.",casual:"Ciao! 👋 Mi piace molto il tuo vibe {genero}."},
+    cuerpo:{produccion:"Sto producendo dei progetti e il tuo sound ci starebbe perfetto. Ti va di parlarne? Ascolterei volentieri altra tua musica.",colaboracion:"Sto mettendo su delle collab e il tuo stile ci starebbe perfetto. Ti va di esplorare qualcosa?",negocio:"Ho una proposta business che potrebbe interessarti, legata alla tua musica. Ti va di parlarne?",management:"Cerco rappresentanza per alcuni artisti e il tuo profilo ci sta. Hai un momento per parlarne?",distribucion:"Aiuto gli artisti con distribuzione e royalties, e posso portare valore al tuo progetto. Parliamo?",sync:"Ho un catalogo per progetti audiovisivi e il tuo sound ci starebbe. Possiamo parlarne?",booking:"Sto organizzando show e la tua proposta ci starebbe in più mercati. Possiamo parlarne?",networking:"Adoro connettere con la scena e potremmo darci una mano a vicenda. Parliamo?"},
+    closer:{underground:"🎵 Un abbraccio!",mainstream:"🎵 Un abbraccio!",indie:"🎵 Abbraccio!",experimental:"🎵 Un abbraccio!",profesional:"🎵 Cordiali saluti!",casual:"🎵 Un abbraccio!"}
+  }
+};
 
-        function renderChips(containerId, data, stateSet, isGenero = false) {
-            const container = document.getElementById(containerId);
-            Object.keys(data).forEach(key => {
-                const chip = document.createElement('button');
-                chip.className = 'chip px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-800 hover:bg-gray-700 transition';
-                chip.textContent = isGenero ? key.charAt(0).toUpperCase() + key.slice(1) : data[key].label;
-                chip.dataset.key = key;
-                chip.onclick = () => {
-                    if (stateSet.has(key)) {
-                        stateSet.delete(key);
-                        chip.classList.remove('active');
-                    } else {
-                        stateSet.add(key);
-                        chip.classList.add('active');
-                    }
-                };
-                container.appendChild(chip);
-            });
-        }
+const TIPO_MSG = {
+  es:{manager:"¡Hola! 👋 Vi que manejas talento en la escena {genero}. Estoy buscando representación para unos artistas y creo que tu perfil encaja. ¿Tienes un momento para conversar? 💼",sello:"¡Hola! 👋 He seguido el trabajo de su sello en {genero} y me parece excelente. Tengo material que encajaría con su línea editorial. ¿A quién podría enviar una demo? 🎵",ar:"¡Hola! 👋 Vi que estás en A&R y te mueves en la escena {genero}. Tengo unos proyectos que podrían encajar con lo que buscan. ¿Te los presento? 🔍",ingeniero:"¡Qué onda! 👋 Me impresiona tu trabajo como ingeniero en {genero}. Busco alguien de confianza para mezclar/masterizar unos proyectos. ¿Me pasas tus tarifas? 🎚️",songwriter:"¡Hola! 👋 Me encantó tu trabajo como songwriter en {genero}. Busco topliners/compositores para unos proyectos. ¿Te interesaría platicar? ✍️",promotor:"¡Hola! 👋 Vi que organizas eventos en la escena {genero}. Tengo artistas que encajarían en tu programación. ¿Conversamos sobre bookings? 🎫",sync:"¡Hola! 👋 Me interesa tu trabajo en sync/licencias para {genero}. Tengo catálogo que podría encajar en proyectos audiovisuales. ¿Conversamos? 🎬",publicista:"¡Hola! 👋 Me interesa tu trabajo en PR para {genero}. Busco apoyo de prensa para unos lanzamientos. ¿Conversamos? 📢"},
+  en:{manager:"Hey! 👋 Saw you manage talent in the {genero} scene. I'm looking for representation for some artists I work with and think your profile fits. Got a moment to chat? 💼",sello:"Hello! 👋 Been following your label's work in {genero} and it seems excellent. I have material that would fit your editorial line. Who could I send a demo to? 🎵",ar:"Hey! 👋 Saw you're in A&R and moving in the {genero} scene. I have some projects that could fit what you're looking for. Can I present them? 🔍",ingeniero:"Yo! 👋 Impressed with your work as an engineer in {genero}. Looking for someone reliable to mix/master some projects. Can you send me your rates? 🎚️",songwriter:"Hey! 👋 Loved your work as a songwriter in {genero}. Looking for topliners/composers for some projects. Interested in chatting? ✍️",promotor:"Hey! 👋 Saw you organize events in the {genero} scene. I have artists that would fit your programming. Can we talk about bookings? 🎫",sync:"Hey! 👋 Your work in sync/licensing for {genero} seems very interesting. I have a catalog that could fit audiovisual projects. Can we talk? 🎬",publicista:"Hey! 👋 Your PR work for {genero} seems very interesting. Looking for press support for some releases. Can we talk? 📢"},
+  pt:{manager:"Oi! 👋 Vi que você gerencia talentos na cena {genero}. Tô procurando representação pra uns artistas e acho que seu perfil encaixa. Tem um momento pra conversar? 💼",sello:"Olá! 👋 Tenho acompanhado o trabalho da sua gravadora em {genero} e me parece excelente. Tenho material que encaixaria na linha editorial de vocês. Pra quem poderia enviar uma demo? 🎵",ar:"Oi! 👋 Vi que você tá em A&R e se move na cena {genero}. Tenho uns projetos que poderiam encaixar no que vocês buscam. Posso apresentar? 🔍",ingeniero:"E aí! 👋 Me impressiona seu trabalho como engenheiro em {genero}. Tô procurando alguém de confiança pra mixar/masterizar uns projetos. Me passa suas tarifas? 🎚️",songwriter:"Oi! 👋 Adorei seu trabalho como compositor em {genero}. Tô procurando topliners/compositores pra uns projetos. Te interessa papo? ✍️",promotor:"Oi! 👋 Vi que você organiza eventos na cena {genero}. Tenho artistas que encaixariam na sua programação. Podemos conversar sobre bookings? 🎫",sync:"Oi! 👋 Seu trabalho em sync/licenciamento pra {genero} me parece interessante. Tenho catálogo que poderia encaixar em projetos audiovisuais. Podemos conversar? 🎬",publicista:"Oi! 👋 Seu trabalho de PR pra {genero} me parece interessante. Tô procurando apoio de imprensa pra uns lançamentos. Podemos conversar? 📢"}
+};
 
-        // ============================================
-        // PASO 1: ESTRATEGIA DE BÚSQUEDA
-        // ============================================
-        function generarEstrategiaBusqueda() {
-            if (generosSeleccionados.size === 0) {
-                alert('Selecciona al menos un género musical');
-                return;
-            }
+// ============ ESTADO ============
+let tiposSeleccionados=new Set(), objetivosSeleccionados=new Set(), generosSeleccionados=new Set(), mensajesGenerados=[];
 
-            const region = document.getElementById('region-select').value;
-            const regionLang = REGION_IDIOMA[region] || 'auto';
+function init(){
+  renderChips('tipos-cliente',TIPOS_CLIENTE,tiposSeleccionados);
+  renderChips('objetivos',OBJETIVOS,objetivosSeleccionados);
+  renderChips('generos',GENERO_BASE,generosSeleccionados,true);
+}
+function renderChips(containerId,data,stateSet,isGenero=false){
+  const c=document.getElementById(containerId);
+  Object.keys(data).forEach(key=>{
+    const chip=document.createElement('button');
+    chip.className='chip px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-800 hover:bg-gray-700 transition';
+    chip.textContent=isGenero?key.charAt(0).toUpperCase()+key.slice(1):data[key].label;
+    chip.dataset.key=key;
+    chip.onclick=()=>{ if(stateSet.has(key)){stateSet.delete(key);chip.classList.remove('active');}else{stateSet.add(key);chip.classList.add('active');} };
+    c.appendChild(chip);
+  });
+}
 
-            const output = document.getElementById('estrategia-output');
-            const links = document.getElementById('hashtags-links');
-            links.innerHTML = '';
-            output.classList.remove('hidden');
+// ============ PASO 1: ESTRATEGIA ============
+function generarEstrategiaBusqueda(){
+  if(generosSeleccionados.size===0){alert('Selecciona al menos un género musical');return;}
+  const region=document.getElementById('region-select').value;
+  const mercados=REGION_MERCADOS[region]||REGION_MERCADOS.global;
+  const tags=new Set(), kws=new Set();
+  const tipos=tiposSeleccionados.size>0?Array.from(tiposSeleccionados):['artista'];
+  mercados.forEach(mk=>{
+    const M=MERCADOS[mk]; if(!M)return;
+    (M.extra||[]).forEach(t=>tags.add(t));
+    generosSeleccionados.forEach(g=>{ ((GENERO_BASE[g]||{})[M.lang]||[]).slice(0,5).forEach(t=>tags.add(t)); });
+    tipos.forEach(tp=>{ ((TIPO_BASE[tp]||{})[M.lang]||[]).slice(0,4).forEach(t=>tags.add(t)); });
+    generosSeleccionados.forEach(g=>{
+      kws.add(g+' producer '+M.nombre); kws.add(g+' artist '+M.nombre); kws.add(g+' rapper '+M.nombre);
+    });
+  });
+  const output=document.getElementById('estrategia-output');
+  const links=document.getElementById('hashtags-links');
+  const kwBox=document.getElementById('keywords-links');
+  links.innerHTML=''; kwBox.innerHTML='';
+  output.classList.remove('hidden');
+  Array.from(tags).slice(0,48).forEach(tag=>{
+    const clean=tag.replace(/\s/g,'');
+    links.innerHTML+=`<a href="https://www.instagram.com/explore/tags/${clean}/" target="_blank" class="bg-pink-900/40 hover:bg-pink-800/60 text-pink-300 text-xs px-3 py-1.5 rounded-full transition flex items-center gap-1"><i class="fa-brands fa-instagram text-xs"></i> #${clean}</a>`;
+  });
+  Array.from(kws).slice(0,24).forEach(k=>{
+    kwBox.innerHTML+=`<a href="https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(k)}" target="_blank" class="bg-blue-900/40 hover:bg-blue-800/60 text-blue-300 text-xs px-3 py-1.5 rounded-full transition flex items-center gap-1">🔎 ${k}</a>`;
+  });
+}
 
-            // Generar hashtags según tipos, géneros y región
-            const hashtagsSet = new Set();
-            
-            generosSeleccionados.forEach(g => {
-                const lang = regionLang === 'auto' ? 'en' : regionLang;
-                const tags = GENEROS_HASHTAGS[g]?.[lang] || GENEROS_HASHTAGS[g].en || [];
-                tags.slice(0, 10).forEach(tag => hashtagsSet.add(tag));
-            });
+// ============ AUTO-DETECCIÓN DE IDIOMA ============
+function detectarIdioma(username,region){
+  const u=username.toLowerCase();
+  if(/paris|lyon|marseille|france|french|rappeur|chanteur/.test(u))return 'fr';
+  if(/berlin|munich|hamburg|deutsch|german|koln/.test(u))return 'de';
+  if(/roma|milano|napoli|italia|italian|firenze/.test(u))return 'it';
+  if(/brasil|brazil|sao|rio|portug|mcbr/.test(u))return 'pt';
+  if(/tokyo|osaka|japan/.test(u))return 'ja';
+  if(/seoul|korea|kr_/.test(u))return 'ko';
+  if(/mx|col|argentina|chile|venez|peru|ecuador|latino|latam|espana|spain|ñ/.test(u))return 'es';
+  const rl=REGION_IDIOMA[region];
+  if(rl&&rl!=='auto')return rl;
+  return 'en';
+}
 
-            tiposSeleccionados.forEach(t => {
-                const lang = regionLang === 'auto' ? 'en' : regionLang;
-                const tags = TIPOS_HASHTAGS[t]?.[lang] || TIPOS_HASHTAGS[t].en || [];
-                tags.slice(0, 10).forEach(tag => hashtagsSet.add(tag));
-            });
+// ============ PASO 2: MENSAJES ============
+function generarMensajes(){
+  const raw=document.getElementById('input-usernames').value.trim();
+  if(!raw){alert('Pega al menos un username de Instagram');return;}
+  const usernames=raw.split(/[\n,;]+/).map(u=>u.trim().replace(/^@/,'')).filter(u=>u.length>0);
+  if(usernames.length===0){alert('No se encontraron usernames válidos');return;}
+  const region=document.getElementById('region-select').value;
+  const vibe=document.getElementById('vibe-select').value;
+  const nivel=document.getElementById('nivel-select').value;
+  const idiomaPref=document.getElementById('idioma-select').value;
+  const bio=document.getElementById('input-bio').value.trim();
+  const tipoArtista=document.getElementById('tipo-artista-select').value;
+  const tipos=tiposSeleccionados.size>0?Array.from(tiposSeleccionados):['artista'];
+  const objetivos=objetivosSeleccionados.size>0?Array.from(objetivosSeleccionados):['produccion'];
+  const generos=generosSeleccionados.size>0?Array.from(generosSeleccionados):['trap'];
+  const vibes=['underground','mainstream','indie','experimental','profesional','casual'];
+  const niveles=['emergente','mid','establecido'];
+  mensajesGenerados=[];
+  usernames.forEach((username,idx)=>{
+    const idioma=idiomaPref==='auto'?detectarIdioma(username,region):idiomaPref;
+    const tipo=tipos[idx%tipos.length], objetivo=objetivos[idx%objetivos.length], genero=generos[idx%generos.length];
+    const vibeUsado=vibe==='mixto'?vibes[idx%vibes.length]:vibe;
+    const nivelUsado=nivel==='mixto'?niveles[idx%niveles.length]:nivel;
+    const mensaje=generarMensajePersonalizado(idioma,tipo,objetivo,genero,vibeUsado,bio,tipoArtista);
+    mensajesGenerados.push({username,idioma,tipo,objetivo,genero,vibe:vibeUsado,nivel:nivelUsado,tipoArtista,mensaje});
+  });
+  renderResultados();
+}
 
-            Array.from(hashtagsSet).forEach(tag => {
-                const cleanTag = tag.replace(/\s/g, '');
-                const url = `https://www.instagram.com/explore/tags/${cleanTag}/`;
-                links.innerHTML += `
-                    <a href="${url}" target="_blank" class="bg-pink-900/40 hover:bg-pink-800/60 text-pink-300 text-xs px-3 py-1.5 rounded-full transition flex items-center gap-1">
-                        <i class="fa-brands fa-instagram text-xs"></i> #${cleanTag}
-                    </a>
-                `;
-            });
-        }
+function generarMensajePersonalizado(idioma,tipo,objetivo,genero,vibe,bio,tipoArtista){
+  const L=PARTES[idioma]||PARTES.en;
+  const G=genero.charAt(0).toUpperCase()+genero.slice(1);
+  let msg;
+  if(tipo==='artista'){
+    const opener=(L.opener&&L.opener[vibe])||PARTES.en.opener[vibe];
+    const cuerpo=(L.cuerpo&&L.cuerpo[objetivo])||(L.corpo&&L.corpo[objetivo])||PARTES.en.cuerpo[objetivo]||PARTES.en.cuerpo.produccion;
+    const closer=(L.closer&&L.closer[vibe])||PARTES.en.closer[vibe];
+    msg=opener.replace(/{genero}/g,G)+'\n\n'+cuerpo+'\n\n'+closer;
+    if(tipoArtista==='independiente'){
+      msg+= idioma==='es'?'\n\nMe encanta que seas independiente, eso demuestra mucha autenticidad.':(idioma==='pt'?'\n\nAdoro que você seja independente, isso mostra muita autenticidade.':(idioma==='fr'?'\n\nJ\'adore que tu sois indépendant, ça montre une vraie authenticité.':'\n\nLove that you\'re independent, that shows real authenticity.'));
+    } else if(tipoArtista==='con-sello'){
+      msg+= idioma==='es'?'\n\nVi que trabajas con un sello, me parece genial.':(idioma==='pt'?'\n\nVi que você trabalha com um selo, achei genial.':'\n\nSaw you work with a label, that\'s great.');
+    }
+  } else {
+    const T=TIPO_MSG[idioma]||TIPO_MSG.en;
+    msg=(T[tipo]||TIPO_MSG.en[tipo]||TIPO_MSG.en.manager).replace(/{genero}/g,G);
+  }
+  if(bio){
+    const b=bio.slice(0,80)+(bio.length>80?'...':'');
+    msg+= idioma==='es'?`\n\nPD: Vi que ${b}, me pareció muy interesante.`:(idioma==='pt'?`\n\nPS: Vi que ${b}, achei muito interessante.`:(idioma==='fr'?`\n\nPS: J'ai vu que ${b}, très intéressant.`:`\n\nPS: Saw that ${b}, really interesting.`));
+  }
+  return msg;
+}
 
-        // ============================================
-        // 🌍 AUTO-DETECCIÓN DE IDIOMA
-        // ============================================
-        function detectarIdioma(username, region) {
-            const regionLang = REGION_IDIOMA[region];
-            if (regionLang && regionLang !== "auto") return regionLang;
+// ============ PASO 3: RENDER ============
+function renderResultados(){
+  const container=document.getElementById('resultados');
+  document.getElementById('contador').textContent=mensajesGenerados.length;
+  const idiomaLabels={es:'🇪 ES',en:'🇺🇸 EN',pt:'🇧🇷 PT',fr:'🇫🇷 FR',de:'🇩🇪 DE',it:'🇮🇹 IT',ja:'🇯🇵 JA',ko:'🇰🇷 KO'};
+  const tipoLabels={artista:'🎤 Artista',productor:'🎹 Productor',dj:'🎧 DJ',manager:'💼 Manager',sello:'🏢 Sello',ar:'🔍 A&R',ingeniero:'🎚️ Ingeniero',songwriter:'✍️ Songwriter',promotor:'🎪 Promotor',sync:'🎬 Sync',publicista:'📢 PR'};
+  const objetivoLabels={produccion:'🎵 Producción',colaboracion:'🤝 Collab',negocio:'💼 Negocio',management:'📋 Management',distribucion:'📦 Distribución',sync:'🎬 Sync',booking:'🎫 Booking',networking:'🌐 Networking'};
+  container.innerHTML=mensajesGenerados.map((item,idx)=>{
+    const igUrl=`https://www.instagram.com/${item.username}/`;
+    const dmUrl=`https://ig.me/m/${item.username}`;
+    return `
+    <div class="bg-gray-800 rounded-lg border border-gray-700 fade-in hover:border-purple-500 transition">
+      <div class="p-4 border-b border-gray-700 flex items-center justify-between flex-wrap gap-2">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm">${item.username.charAt(0).toUpperCase()}</div>
+          <div>
+            <a href="${igUrl}" target="_blank" class="font-semibold text-white hover:text-pink-400 transition">@${item.username}</a>
+            <div class="flex gap-2 mt-0.5 flex-wrap">
+              <span class="text-xs text-gray-400">${tipoLabels[item.tipo]||item.tipo}</span><span class="text-xs text-gray-500">•</span>
+              <span class="text-xs text-gray-400">${objetivoLabels[item.objetivo]||item.objetivo}</span><span class="text-xs text-gray-500">•</span>
+              <span class="text-xs text-gray-400">${item.genero}</span><span class="text-xs text-gray-500">•</span>
+              <span class="text-xs text-gray-400">${idiomaLabels[item.idioma]||item.idioma}</span>
+            </div>
+          </div>
+        </div>
+        <a href="${dmUrl}" target="_blank" class="bg-pink-600 hover:bg-pink-700 text-white text-xs px-2 py-1 rounded transition" title="Abrir DM en Instagram"><i class="fa-brands fa-instagram"></i> DM</a>
+      </div>
+      <div class="p-4">
+        <div class="flex justify-between items-center mb-2">
+          <div class="flex gap-2 flex-wrap">
+            <span class="text-xs bg-purple-900/40 text-purple-300 px-2 py-0.5 rounded">${item.vibe}</span>
+            <span class="text-xs bg-blue-900/40 text-blue-300 px-2 py-0.5 rounded">${item.nivel}</span>
+            <span class="text-xs bg-green-900/40 text-green-300 px-2 py-0.5 rounded">${item.tipoArtista}</span>
+          </div>
+          <button onclick="copiarMsg(this,${idx})" class="text-xs bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded transition"><i class="fa-solid fa-copy"></i> Copiar</button>
+        </div>
+        <div id="msg-${idx}" class="text-sm text-gray-200 bg-gray-900 border border-gray-700 rounded-lg p-3 whitespace-pre-wrap leading-relaxed">${item.mensaje}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
 
-            const u = username.toLowerCase();
-            if (/mx|col|ar|cl|es|lat|ven|per|ecu|cr|uy|py|bo|gt|hn|sv|ni|pa|cu|rd|pr|spain|latino|hispano|ñ/.test(u)) return 'es';
-            if (/br|bra|sao|rio|portug|brazil|sp_br/.test(u)) return 'pt';
-            if (/fr|paris|lyon|marseille|france|french/.test(u)) return 'fr';
-            if (/de|berlin|munich|hamburg|german|deutsch|köln|frankfurt/.test(u)) return 'de';
-            if (/it|roma|milano|napoli|italian|italy|firenze/.test(u)) return 'it';
-            if (/jp|tokyo|osaka|japan|japanese|日本/.test(u)) return 'ja';
-            if (/kr|seoul|korea|korean|한국/.test(u)) return 'ko';
-            return 'en';
-        }
-
-        // ============================================
-        // PASO 2: GENERAR MENSAJES ULTRA-PERSONALIZADOS
-        // ============================================
-        function generarMensajes() {
-            const raw = document.getElementById('input-usernames').value.trim();
-            if (!raw) {
-                alert('Pega al menos un username de Instagram');
-                return;
-            }
-
-            const usernames = raw.split(/[\n,;]+/)
-                .map(u => u.trim().replace(/^@/, ''))
-                .filter(u => u.length > 0);
-
-            if (usernames.length === 0) {
-                alert('No se encontraron usernames válidos');
-                return;
-            }
-
-            const region = document.getElementById('region-select').value;
-            const vibe = document.getElementById('vibe-select').value;
-            const nivel = document.getElementById('nivel-select').value;
-            const idiomaPref = document.getElementById('idioma-select').value;
-            const bio = document.getElementById('input-bio').value.trim();
-            const tipoArtista = document.getElementById('tipo-artista-select').value;
-
-            // Si no hay tipos u objetivos seleccionados, usar defaults
-            const tipos = tiposSeleccionados.size > 0 ? Array.from(tiposSeleccionados) : ['artista'];
-            const objetivos = objetivosSeleccionados.size > 0 ? Array.from(objetivosSeleccionados) : ['produccion'];
-            const generos = generosSeleccionados.size > 0 ? Array.from(generosSeleccionados) : ['trap'];
-
-            const vibes = ['underground', 'mainstream', 'indie', 'experimental', 'profesional', 'casual'];
-            const niveles = ['emergente', 'mid', 'establecido'];
-
-            mensajesGenerados = [];
-
-            usernames.forEach((username, idx) => {
-                const idioma = idiomaPref === 'auto' ? detectarIdioma(username, region) : idiomaPref;
-                const tipo = tipos[idx % tipos.length];
-                const objetivo = objetivos[idx % objetivos.length];
-                const genero = generos[idx % generos.length];
-                const vibeUsado = vibe === 'mixto' ? vibes[idx % vibes.length] : vibe;
-                const nivelUsado = nivel === 'mixto' ? niveles[idx % niveles.length] : nivel;
-
-                const mensaje = generarMensajePersonalizado(idioma, tipo, objetivo, genero, vibeUsado, nivelUsado, bio, username, tipoArtista);
-
-                mensajesGenerados.push({
-                    username,
-                    idioma,
-                    tipo,
-                    objetivo,
-                    genero,
-                    vibe: vibeUsado,
-                    nivel: nivelUsado,
-                    tipoArtista,
-                    mensaje
-                });
-            });
-
-            renderResultados();
-        }
-
-        function generarMensajePersonalizado(idioma, tipo, objetivo, genero, vibe, nivel, bio, username, tipoArtista) {
-            // Para artistas, usar plantilla específica según objetivo y vibe
-            if (tipo === 'artista') {
-                const key = `artista_${objetivo}`;
-                const plantilla = MENSAJES[idioma]?.[key]?.[vibe] || MENSAJES.en.artista_produccion.underground;
-                let mensaje = plantilla.replace(/{genero}/g, genero.charAt(0).toUpperCase() + genero.slice(1));
-                
-                // Agregar mención de tipo de artista
-                if (tipoArtista === 'independiente') {
-                    mensaje += `\n\nMe encanta que seas independiente, eso demuestra mucha autenticidad.`;
-                } else if (tipoArtista === 'con-sello') {
-                    mensaje += `\n\nVi que trabajas con un sello, me parece genial.`;
-                }
-                
-                // Si hay bio, agregar mención personalizada
-                if (bio) {
-                    mensaje += `\n\nPD: Vi que ${bio.slice(0, 80)}${bio.length > 80 ? '...' : ''}, me pareció muy interesante.`;
-                }
-                
-                return mensaje;
-            }
-
-            // Para otros tipos de cliente, usar plantilla específica
-            const plantilla = MENSAJES[idioma]?.[tipo] || MENSAJES.en[tipo] || MENSAJES.en.manager;
-            let mensaje = plantilla.replace(/{genero}/g, genero.charAt(0).toUpperCase() + genero.slice(1));
-            
-            if (bio) {
-                mensaje += `\n\nPD: Vi que ${bio.slice(0, 80)}${bio.length > 80 ? '...' : ''}, me pareció muy interesante.`;
-            }
-            
-            return mensaje;
-        }
-
-        // ============================================
-        // 📊 RENDERIZADO
-        // ============================================
-        function renderResultados() {
-            const container = document.getElementById('resultados');
-            document.getElementById('contador').textContent = mensajesGenerados.length;
-
-            const idiomaLabels = {
-                es: '🇪🇸 ES', en: '🇺🇸 EN', pt: '🇧🇷 PT', fr: '🇫🇷 FR',
-                de: '🇩🇪 DE', it: '🇮🇹 IT', ja: '🇯🇵 JA', ko: '🇰🇷 KO'
-            };
-
-            const tipoLabels = {
-                artista: '🎤 Artista', productor: ' Productor', dj: '🎧 DJ',
-                manager: '💼 Manager', sello: '🏢 Sello', ar: '🔍 A&R',
-                ingeniero: '🎚️ Ingeniero', songwriter: '✍️ Songwriter',
-                promotor: ' Promotor', sync: '🎬 Sync', publicista: '📢 PR'
-            };
-
-            const objetivoLabels = {
-                produccion: '🎵 Producción', colaboracion: ' Collab',
-                negocio: '💼 Negocio', management: '📋 Management',
-                distribucion: '📦 Distribución', sync: '🎬 Sync',
-                booking: '🎫 Booking', networking: ' Networking'
-            };
-
-            container.innerHTML = mensajesGenerados.map((item, idx) => {
-                const igUrl = `https://www.instagram.com/${item.username}/`;
-                const dmUrl = `https://ig.me/m/${item.username}`;
-
-                return `
-                    <div class="bg-gray-800 rounded-lg border border-gray-700 fade-in hover:border-purple-500 transition">
-                        <div class="p-4 border-b border-gray-700 flex items-center justify-between flex-wrap gap-2">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm">
-                                    ${item.username.charAt(0).toUpperCase()}
-                                </div>
-                                <div>
-                                    <a href="${igUrl}" target="_blank" class="font-semibold text-white hover:text-pink-400 transition">@${item.username}</a>
-                                    <div class="flex gap-2 mt-0.5 flex-wrap">
-                                        <span class="text-xs text-gray-400">${tipoLabels[item.tipo] || item.tipo}</span>
-                                        <span class="text-xs text-gray-500">•</span>
-                                        <span class="text-xs text-gray-400">${objetivoLabels[item.objetivo] || item.objetivo}</span>
-                                        <span class="text-xs text-gray-500">•</span>
-                                        <span class="text-xs text-gray-400">${item.genero}</span>
-                                        <span class="text-xs text-gray-500">•</span>
-                                        <span class="text-xs text-gray-400">${idiomaLabels[item.idioma] || item.idioma}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex gap-1">
-                                <a href="${dmUrl}" target="_blank" class="bg-pink-600 hover:bg-pink-700 text-white text-xs px-2 py-1 rounded transition" title="Abrir DM en Instagram">
-                                    <i class="fa-brands fa-instagram"></i> DM
-                                </a>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <div class="flex justify-between items-center mb-2">
-                                <div class="flex gap-2 flex-wrap">
-                                    <span class="text-xs bg-purple-900/40 text-purple-300 px-2 py-0.5 rounded">${item.vibe}</span>
-                                    <span class="text-xs bg-blue-900/40 text-blue-300 px-2 py-0.5 rounded">${item.nivel}</span>
-                                    <span class="text-xs bg-green-900/40 text-green-300 px-2 py-0.5 rounded">${item.tipoArtista}</span>
-                                </div>
-                                <button onclick="copiarMsg(this, ${idx})" class="text-xs bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded transition">
-                                    <i class="fa-solid fa-copy"></i> Copiar
-                                </button>
-                            </div>
-                            <div id="msg-${idx}" class="text-sm text-gray-200 bg-gray-900 border border-gray-700 rounded-lg p-3 whitespace-pre-wrap leading-relaxed">${item.mensaje}</div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // ============================================
-        // 🛠️ UTILIDADES
-        // ============================================
-        function copiarMsg(btn, idx) {
-            const msg = document.getElementById(`msg-${idx}`).innerText;
-            navigator.clipboard.writeText(msg);
-            const original = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Copiado!';
-            btn.classList.replace('bg-green-600', 'bg-blue-600');
-            setTimeout(() => {
-                btn.innerHTML = original;
-                btn.classList.replace('bg-blue-600', 'bg-green-600');
-            }, 1500);
-        }
-
-        function copiarTodo() {
-            if (mensajesGenerados.length === 0) {
-                alert('Primero genera los mensajes');
-                return;
-            }
-            const todo = mensajesGenerados.map((item, idx) => 
-                `=== LEAD ${idx+1}: @${item.username} (${item.tipo} / ${item.objetivo} / ${item.genero}) ===\n${item.mensaje}`
-            ).join('\n\n---\n\n');
-            navigator.clipboard.writeText(todo);
-            alert(`✅ ${mensajesGenerados.length} mensajes copiados`);
-        }
-
-        function exportarCSV() {
-            if (mensajesGenerados.length === 0) {
-                alert('Primero genera los mensajes');
-                return;
-            }
-            let csv = 'Username,Tipo,Objetivo,Genero,Idioma,Vibe,Nivel,TipoArtista,Mensaje\n';
-            mensajesGenerados.forEach(item => {
-                const msg = item.mensaje.replace(/"/g, '""').replace(/\n/g, ' ');
-                csv += `"${item.username}","${item.tipo}","${item.objetivo}","${item.genero}","${item.idioma}","${item.vibe}","${item.nivel}","${item.tipoArtista}","${msg}"\n`;
-            });
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `terrivol-leads-pro-${new Date().toISOString().split('T')[0]}.csv`;
-            a.click();
-        }
-
-        init();
-    </script>
+// ============ UTILIDADES ============
+function copiarMsg(btn,idx){
+  const msg=document.getElementById(`msg-${idx}`).innerText;
+  navigator.clipboard.writeText(msg);
+  const original=btn.innerHTML;
+  btn.innerHTML='<i class="fa-solid fa-check"></i> ¡Copiado!';
+  btn.classList.replace('bg-green-600','bg-blue-600');
+  setTimeout(()=>{btn.innerHTML=original;btn.classList.replace('bg-blue-600','bg-green-600');},1500);
+}
+function copiarTodo(){
+  if(mensajesGenerados.length===0){alert('Primero genera los mensajes');return;}
+  const todo=mensajesGenerados.map((item,idx)=>`=== LEAD ${idx+1}: @${item.username} (${item.tipo} / ${item.objetivo} / ${item.genero}) ===\n${item.mensaje}`).join('\n\n---\n\n');
+  navigator.clipboard.writeText(todo);
+  alert(`✅ ${mensajesGenerados.length} mensajes copiados`);
+}
+function exportarCSV(){
+  if(mensajesGenerados.length===0){alert('Primero genera los mensajes');return;}
+  let csv='Username,Tipo,Objetivo,Genero,Idioma,Vibe,Nivel,TipoArtista,Mensaje\n';
+  mensajesGenerados.forEach(item=>{
+    const msg=item.mensaje.replace(/"/g,'""').replace(/\n/g,' ');
+    csv+=`"${item.username}","${item.tipo}","${item.objetivo}","${item.genero}","${item.idioma}","${item.vibe}","${item.nivel}","${item.tipoArtista}","${msg}"\n`;
+  });
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=`terrivol-leads-pro-${new Date().toISOString().split('T')[0]}.csv`;
+  a.click();
+}
+init();
+</script>
 </body>
 </html>
