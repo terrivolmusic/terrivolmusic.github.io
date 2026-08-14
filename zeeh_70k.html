@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#06060a">
-<title>TERRIVOL MUSIC — Le Voyage</title>
+<title>TERRIVOL MUSIC — The Voyage</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;800&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#06060a; --line:rgba(255,255,255,.08);
-  --ice:#67e8f9; --gold:#c9a96a;
+  --ice:#67e8f9; --violet:#7c3aed; --gold:#c9a96a;
   --text:#f2f2f5; --muted:#6b6b78; --dim:#3d3d47;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
 #stars{position:fixed;inset:0;z-index:0}
 .nebula{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(ellipse 55% 40% at 15% 0%,rgba(30,40,90,.25),transparent),
-             radial-gradient(ellipse 45% 35% at 90% 80%,rgba(6,182,212,.07),transparent);}
+  background:radial-gradient(ellipse 55% 40% at 15% 0%,rgba(124,58,237,.16),transparent),
+             radial-gradient(ellipse 45% 35% at 90% 80%,rgba(6,182,212,.10),transparent),
+             radial-gradient(ellipse 35% 25% at 60% 40%,rgba(201,169,106,.05),transparent);}
 .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:44px 22px 90px}
 
 /* GATE */
@@ -26,6 +27,7 @@ body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-ser
 #gate.off{opacity:0;visibility:hidden}
 .gate-inner{text-align:center;padding:20px}
 .gate-logo{font-family:'Unbounded';font-weight:800;letter-spacing:.35em;font-size:14px}
+.gate-logo span{color:var(--ice)}
 .gate-line{width:1px;height:56px;background:linear-gradient(180deg,transparent,var(--gold),transparent);margin:28px auto}
 .gate-sub{font-size:10px;letter-spacing:.5em;color:var(--muted);margin-bottom:38px}
 #enterBtn{font-family:'Unbounded';font-size:11px;letter-spacing:.4em;padding:16px 46px;background:transparent;border:1px solid var(--gold);color:var(--gold);cursor:pointer;transition:.35s}
@@ -44,13 +46,20 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 @keyframes tick{to{transform:translateX(-50%)}}
 
 /* HERO */
+.hero{position:relative;margin-bottom:60px}
 .kicker{font-size:10px;letter-spacing:.45em;color:var(--gold);margin-bottom:18px}
 .hero h1{font-family:'Unbounded';font-weight:800;font-size:clamp(24px,6vw,42px);line-height:1.15;text-transform:uppercase;margin-bottom:22px}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,#fff,var(--ice));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--ice),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero p{color:var(--muted);font-size:14px;font-weight:300;max-width:500px;line-height:1.8;margin-bottom:26px}
 .hero p b{color:var(--text);font-weight:500}
 .hp{display:inline-block;font-size:10px;letter-spacing:.3em;color:var(--ice);border:1px solid rgba(103,232,249,.3);padding:9px 18px;margin-bottom:14px}
 .network{font-size:9px;letter-spacing:.3em;color:var(--dim);line-height:2}
+.planet{position:absolute;top:-10px;right:0;width:110px;height:110px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,var(--violet),#12081f 70%);
+  box-shadow:0 0 70px rgba(124,58,237,.45), inset -14px -14px 30px rgba(0,0,0,.6);
+  animation:float 7s ease-in-out infinite}
+.planet::after{content:"";position:absolute;inset:-16px -34px;border:1px solid rgba(103,232,249,.35);border-radius:50%;transform:rotate(-16deg) scaleY(.32)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 
 /* SECTION */
 .section{display:flex;align-items:center;gap:18px;margin:70px 0 26px}
@@ -58,7 +67,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 .section .rule{flex:1;height:1px;background:var(--line)}
 
 /* STATS */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);margin-top:70px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}
 .stat{padding:24px 10px;text-align:center;border-right:1px solid var(--line)}
 .stat:last-child{border-right:none}
 .stat b{display:block;font-family:'Unbounded';font-weight:800;font-size:clamp(16px,4vw,24px);color:var(--gold);margin-bottom:8px}
@@ -85,6 +94,13 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 .progress{position:absolute;bottom:0;left:0;height:1px;width:0%;background:linear-gradient(90deg,var(--ice),var(--gold))}
 .note{font-size:10px;letter-spacing:.2em;color:var(--dim);text-align:center;margin-top:26px;line-height:2}
 
+/* WHAT YOU GET */
+.gets{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.get{border:1px solid var(--line);padding:20px;background:rgba(255,255,255,.02)}
+.get .n{font-family:'Unbounded';font-size:9px;color:var(--gold);letter-spacing:.2em}
+.get b{display:block;font-family:'Unbounded';font-weight:500;font-size:11px;letter-spacing:.2em;color:var(--ice);margin:10px 0 8px}
+.get span{font-size:11px;color:var(--muted);line-height:1.7;font-weight:300}
+
 /* ARCHIVES */
 .archive{background:rgba(255,255,255,.02);border:1px solid var(--line);padding:20px 22px;margin-bottom:12px;display:flex;align-items:center;gap:18px}
 .archive .lock{width:52px;height:52px;min-width:52px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--dim)}
@@ -101,7 +117,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 .cta-alt{margin-top:22px;font-size:10px;letter-spacing:.2em;color:var(--dim)}
 .cta-alt a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--dim)}
 footer{margin-top:90px;text-align:center;font-size:9px;letter-spacing:.4em;color:var(--dim)}
-@media(max-width:620px){.viz{display:none}.beat{flex-wrap:wrap}.acquire{width:100%;text-align:center}.ch{min-width:34px}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.archive{flex-wrap:wrap}.demande{width:100%;text-align:center}}
+@media(max-width:680px){.planet{display:none}.viz{display:none}.beat{flex-wrap:wrap}.acquire{width:100%;text-align:center}.ch{min-width:34px}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.gets{grid-template-columns:1fr}.archive{flex-wrap:wrap}.demande{width:100%;text-align:center}}
 </style>
 </head>
 <body>
@@ -110,81 +126,78 @@ footer{margin-top:90px;text-align:center;font-size:9px;letter-spacing:.4em;color
 
 <div id="gate">
   <div class="gate-inner">
-    <div class="gate-logo">TERRIVOL MUSIC</div>
+    <div class="gate-logo">TERRIVOL <span>MUSIC</span></div>
     <div class="gate-line"></div>
-    <div class="gate-sub">SALON D'ÉCOUTE PRIVÉ</div>
-    <button id="enterBtn">ENTRER</button>
-    <div class="gate-note">SUR INVITATION UNIQUEMENT</div>
+    <div class="gate-sub">PRIVATE LISTENING ROOM</div>
+    <button id="enterBtn">ENTER</button>
+    <div class="gate-note">BY INVITATION ONLY</div>
   </div>
 </div>
 
 <div class="wrap">
   <header>
     <div class="logo">TERRIVOL <span>MUSIC</span></div>
-    <div class="badge">COLLECTION PRIVÉE · MMXXVI</div>
+    <div class="badge">EXCLUSIVE DROP · MMXXVI</div>
   </header>
 
   <div class="ticker"><div class="ticker-inner" id="tick"></div></div>
 
   <section class="hero">
-    <div class="kicker">8 PIÈCES · 8 VILLES · 100% ORIGINALES</div>
-    <h1>LE VOYAGE. <em>AUCUNE COPIE.</em></h1>
-    <p>Une collection exclusive co-produite avec notre réseau de producteurs à travers le monde. <b>Huit pièces uniques, 100% originales.</b> Une seule acquisition par beat : une fois placé, il est retiré à jamais. Porter ces pièces, c'est porter l'excellence.</p>
-    <div class="hp">◉ ÉCOUTE RECOMMANDÉE AU CASQUE</div>
-    <div class="network">PARIS · LONDRES · ATLANTA · BERLIN · TOKYO · MONACO · LAGOS · BOGOTÁ</div>
+    <div class="planet"></div>
+    <div class="kicker">8 PIECES · 8 CITIES · WORLDWIDE PRODUCERS</div>
+    <h1>ONE PLANET. EIGHT WEAPONS. <em>ZERO COPIES.</em></h1>
+    <p>Co-produced with our network of producers across 4 continents. <b>Eight 100% original pieces, mixed loud and mastered heavy.</b> One acquisition per beat — once it's placed, it's gone forever. Move with these, and you move with the elite.</p>
+    <div class="hp">◉ BEST EXPERIENCED WITH HEADPHONES</div>
+    <div class="network">PARIS · LONDON · ATLANTA · BERLIN · TOKYO · MONACO · LAGOS · BOGOTÁ</div>
   </section>
 
   <div class="stats">
-    <div class="stat"><b>+200</b><span>PIÈCES AU CATALOGUE</span></div>
-    <div class="stat"><b>12</b><span>PRODUCTEURS</span></div>
+    <div class="stat"><b>+200</b><span>PIECES IN CATALOG</span></div>
+    <div class="stat"><b>12</b><span>PRODUCERS</span></div>
     <div class="stat"><b>4</b><span>CONTINENTS</span></div>
     <div class="stat"><b>100%</b><span>ORIGINAL</span></div>
   </div>
 
-  <div class="section"><h2>LE VOYAGE</h2><div class="rule"></div></div>
+  <div class="section"><h2>THE VOYAGE</h2><div class="rule"></div></div>
   <div id="beats"></div>
-  <div class="note">CHAQUE PIÈCE INCLUT : MASTER WAV + STEMS + CONTRAT D'ACQUISITION EXCLUSIVE</div>
 
-  <div class="section"><h2>LES ARCHIVES</h2><div class="rule"></div></div>
+  <div class="section"><h2>WHAT YOU GET</h2><div class="rule"></div></div>
+  <div class="gets">
+    <div class="get"><span class="n">01</span><b>SIGNED CONTRACT</b><span>Every beat ships with a signed exclusive agreement. Full paperwork, zero ambiguity.</span></div>
+    <div class="get"><span class="n">02</span><b>FULL STEMS</b><span>All tracks separated and labeled. Your engineer gets everything ready to mix.</span></div>
+    <div class="get"><span class="n">03</span><b>MASTERED WAV</b><span>Industry-standard master included. Ready for Spotify, Apple Music and radio.</span></div>
+    <div class="get"><span class="n">04</span><b>WORLDWIDE RELEASE</b><span>Cleared for global distribution. Your record, your rights, your royalties.</span></div>
+  </div>
+  <div class="note">EVERY PIECE INCLUDES : MASTERED WAV + FULL STEMS + SIGNED EXCLUSIVE CONTRACT</div>
+
+  <div class="section"><h2>THE ARCHIVES</h2><div class="rule"></div></div>
 
   <div class="archive">
     <div class="lock"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
-    <div class="info">
-      <h3>Collection Drill — Vol. II</h3>
-      <div class="tags"><span class="tag">12 PIÈCES</span><span class="tag city">PARIS · LONDRES</span></div>
-    </div>
-    <a class="demande" href="#" target="_blank">SUR DEMANDE</a>
+    <div class="info"><h3>Drill Collection — Vol. II</h3><div class="tags"><span class="tag">12 PIECES</span><span class="tag city">PARIS · LONDON</span></div></div>
+    <a class="demande" href="#" target="_blank">ON REQUEST</a>
   </div>
-
   <div class="archive">
     <div class="lock"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
-    <div class="info">
-      <h3>Collection Trap — Noire</h3>
-      <div class="tags"><span class="tag">16 PIÈCES</span><span class="tag city">ATLANTA · BERLIN</span></div>
-    </div>
-    <a class="demande" href="#" target="_blank">SUR DEMANDE</a>
+    <div class="info"><h3>Trap Collection — Noir</h3><div class="tags"><span class="tag">16 PIECES</span><span class="tag city">ATLANTA · BERLIN</span></div></div>
+    <a class="demande" href="#" target="_blank">ON REQUEST</a>
   </div>
-
   <div class="archive">
     <div class="lock"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
-    <div class="info">
-      <h3>Collection Cinéma — B.O. Originales</h3>
-      <div class="tags"><span class="tag">9 PIÈCES</span><span class="tag city">TOKYO · MONACO</span></div>
-    </div>
-    <a class="demande" href="#" target="_blank">SUR DEMANDE</a>
+    <div class="info"><h3>Cinema Collection — Original Scores</h3><div class="tags"><span class="tag">9 PIECES</span><span class="tag city">TOKYO · MONACO</span></div></div>
+    <a class="demande" href="#" target="_blank">ON REQUEST</a>
   </div>
-
-  <div class="note">LE CATALOGUE COMPLET EST RÉSERVÉ AUX ARTISTES EN NÉGOCIATION ACTIVE.</div>
+  <div class="note">FULL CATALOG RESERVED FOR ARTISTS IN ACTIVE NEGOTIATION.</div>
 
   <section class="cta">
     <div class="kicker">ACQUISITION</div>
-    <h2>PRÊT À OPÉRER AU PLUS HAUT NIVEAU ?</h2>
-    <p>Ces beats ne sont pas pour tout le monde. Ils sont pour les artistes qui traitent leur musique comme un héritage. Négociation directe, sans intermédiaire.</p>
-    <a class="btn" id="ctaMain" target="_blank" href="#">NOUS ÉCRIRE</a>
-    <div class="cta-alt">WHATSAPP — <a id="waLink" target="_blank" href="#">LIGNE DIRECTE</a></div>
+    <h2>READY TO MOVE AT THE HIGHEST LEVEL?</h2>
+    <p>These pieces aren't for everybody. They're for artists building a legacy. Direct deal, no middlemen, full paperwork.</p>
+    <a class="btn" id="ctaMain" target="_blank" href="#">START THE CONVERSATION</a>
+    <div class="cta-alt">WHATSAPP — <a id="waLink" target="_blank" href="#">DIRECT LINE</a></div>
   </section>
 
-  <footer>TERRIVOL MUSIC ENT · MONDE ENTIER · MMXXVI</footer>
+  <footer>TERRIVOL MUSIC ENT · WORLDWIDE · MMXXVI</footer>
 </div>
 
 <script>
@@ -192,18 +205,18 @@ footer{margin-top:90px;text-align:center;font-size:9px;letter-spacing:.4em;color
 const IG_USER = "terrivolmusic";   // 👈 TU USUARIO DE INSTAGRAM
 const WA_NUM  = "573000000000";    // 👈 TU WHATSAPP
 const BEATS = [
- { file:"DU%20DE.mp3",     name:"CARBONE",      city:"PARIS",   bpm:142, key:"F#m", style:"DRILL" },
- { file:"FL.mp3",          name:"VELOURS NOIR", city:"LONDRES", bpm:140, key:"Am",  style:"UK DRILL" },
- { file:"FM.mp3",          name:"VANTABLACK",   city:"ATLANTA", bpm:138, key:"Cm",  style:"TRAP" },
- { file:"LIL%20P.mp3",     name:"PHANTÔME",     city:"BERLIN",  bpm:144, key:"Gm",  style:"DRILL" },
- { file:"LOWWWWWWS.mp3",   name:"GRAVITÉ",      city:"TOKYO",   bpm:141, key:"Dm",  style:"DRILL SOMBRE" },
- { file:"PLAZA.mp3",       name:"RIVIERA",      city:"MONACO",  bpm:145, key:"Em",  style:"CINÉMATIQUE" },
- { file:"REY.mp3",         name:"COURONNE",     city:"LAGOS",   bpm:143, key:"Bm",  style:"AFRO DRILL" },
- { file:"YOUNG.mp3",       name:"L'HÉRITIER",   city:"BOGOTÁ",  bpm:140, key:"Fm",  style:"DRILL" },
+ { file:"/img/DU%20DE.mp3",   name:"CARBONE",      city:"PARIS",   bpm:142, key:"F#m", style:"DRILL" },
+ { file:"/img/FL.mp3",        name:"VELOURS NOIR", city:"LONDON",  bpm:140, key:"Am",  style:"UK DRILL" },
+ { file:"/img/FM.mp3",        name:"VANTABLACK",   city:"ATLANTA", bpm:138, key:"Cm",  style:"TRAP" },
+ { file:"/img/LIL%20P.mp3",   name:"PHANTÔME",     city:"BERLIN",  bpm:144, key:"Gm",  style:"DRILL" },
+ { file:"/img/LOWWWWWWS.mp3", name:"GRAVITÉ",      city:"TOKYO",   bpm:141, key:"Dm",  style:"DARK DRILL" },
+ { file:"/img/PLAZA.mp3",     name:"RIVIERA",      city:"MONACO",  bpm:145, key:"Em",  style:"CINEMATIC" },
+ { file:"/img/REY.mp3",       name:"COURONNE",     city:"LAGOS",   bpm:143, key:"Bm",  style:"AFRO DRILL" },
+ { file:"/img/YOUNG.mp3",     name:"L'HÉRITIER",   city:"BOGOTÁ",  bpm:140, key:"Fm",  style:"DRILL" },
 ];
 
 // Ticker
-const t = "COLLECTION EXCLUSIVE ◆ 8 PIÈCES UNIQUES ◆ PRODUCTEURS DU MONDE ENTIER ◆ CATALOGUE COMPLET SUR DEMANDE ◆ 100% ORIGINAL ◆ ";
+const t = "EXCLUSIVE COLLECTION ◆ 8 UNIQUE PIECES ◆ PRODUCERS WORLDWIDE ◆ FULL STEMS + CONTRACT ◆ FULL CATALOG ON REQUEST ◆ 100% ORIGINAL ◆ ";
 document.getElementById("tick").innerHTML = `<span>${t}</span><span>${t}</span>`;
 
 // Render beats
@@ -227,12 +240,12 @@ BEATS.forEach((b,i)=>{
       </div>
     </div>
     <canvas class="viz" width="120" height="34"></canvas>
-    <a class="acquire" href="https://ig.me/m/${IG_USER}" target="_blank">ACQUÉRIR</a>
+    <a class="acquire" href="https://ig.me/m/${IG_USER}" target="_blank">ACQUIRE</a>
     <div class="progress"></div>
   </div>`;
 });
 
-// Links archives + CTA
+// Links
 document.querySelectorAll(".demande").forEach(a=> a.href = `https://ig.me/m/${IG_USER}`);
 document.getElementById("ctaMain").href = `https://ig.me/m/${IG_USER}`;
 document.getElementById("waLink").href  = `https://wa.me/${WA_NUM}`;
