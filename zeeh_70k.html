@@ -22,18 +22,6 @@ body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-ser
              radial-gradient(ellipse 35% 25% at 60% 40%,rgba(201,169,106,.05),transparent);}
 .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:44px 22px 90px}
 
-/* GATE */
-#gate{position:fixed;inset:0;z-index:10;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .9s,visibility .9s}
-#gate.off{opacity:0;visibility:hidden}
-.gate-inner{text-align:center;padding:20px}
-.gate-logo{font-family:'Unbounded';font-weight:800;letter-spacing:.35em;font-size:14px}
-.gate-logo span{color:var(--ice)}
-.gate-line{width:1px;height:56px;background:linear-gradient(180deg,transparent,var(--gold),transparent);margin:28px auto}
-.gate-sub{font-size:10px;letter-spacing:.5em;color:var(--muted);margin-bottom:38px}
-#enterBtn{font-family:'Unbounded';font-size:11px;letter-spacing:.4em;padding:16px 46px;background:transparent;border:1px solid var(--gold);color:var(--gold);cursor:pointer;transition:.35s}
-#enterBtn:hover{background:var(--gold);color:var(--bg);box-shadow:0 0 44px rgba(201,169,106,.35)}
-.gate-note{margin-top:30px;font-size:9px;letter-spacing:.45em;color:var(--dim)}
-
 /* HEADER */
 header{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px}
 .logo{font-family:'Unbounded';font-weight:800;font-size:13px;letter-spacing:.25em}
@@ -123,16 +111,6 @@ footer{margin-top:90px;text-align:center;font-size:9px;letter-spacing:.4em;color
 <body>
 <canvas id="stars"></canvas>
 <div class="nebula"></div>
-
-<div id="gate">
-  <div class="gate-inner">
-    <div class="gate-logo">TERRIVOL <span>MUSIC</span></div>
-    <div class="gate-line"></div>
-    <div class="gate-sub">PRIVATE LISTENING ROOM</div>
-    <button id="enterBtn">ENTER</button>
-    <div class="gate-note">BY INVITATION ONLY</div>
-  </div>
-</div>
 
 <div class="wrap">
   <header>
@@ -250,21 +228,22 @@ document.querySelectorAll(".demande").forEach(a=> a.href = `https://ig.me/m/${IG
 document.getElementById("ctaMain").href = `https://ig.me/m/${IG_USER}`;
 document.getElementById("waLink").href  = `https://wa.me/${WA_NUM}`;
 
-// Gate + audio engine
+// Audio engine (init en primer click)
 let audio = new Audio(), ctx=null, analyser=null, dataArr=null, current=null;
-document.getElementById("enterBtn").onclick = ()=>{
-  document.getElementById("gate").classList.add("off");
+function ensureCtx(){
+  if(ctx) return;
   ctx = new (window.AudioContext||window.webkitAudioContext)();
   analyser = ctx.createAnalyser(); analyser.fftSize=64; analyser.smoothingTimeConstant=.82;
   const src = ctx.createMediaElementSource(audio);
   src.connect(analyser); analyser.connect(ctx.destination);
   dataArr = new Uint8Array(analyser.frequencyBinCount);
-};
+}
 document.querySelectorAll(".play").forEach(btn=> btn.onclick = ()=> toggle(+btn.closest(".beat").dataset.i));
 
 function toggle(i){
   const card = document.querySelector(`.beat[data-i="${i}"]`);
   if(current===i && !audio.paused){ audio.pause(); return; }
+  ensureCtx();
   if(ctx.state==="suspended") ctx.resume();
   if(current!==null) reset(document.querySelector(`.beat[data-i="${current}"]`));
   if(current!==i || !audio.src.includes(BEATS[i].file)){ audio.src = BEATS[i].file; }
