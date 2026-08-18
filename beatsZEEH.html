@@ -56,7 +56,6 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 #playAll:hover{background:var(--ice);color:var(--bg);box-shadow:0 0 44px rgba(125,243,255,.4)}
 .session-note{margin-top:12px;font-size:9px;letter-spacing:.3em;color:var(--dim)}
 
-/* BEAT ROWS — ultra simples, play gigante */
 .beat{background:rgba(255,255,255,.02);border:1px solid var(--line);padding:18px 20px;margin-bottom:10px;display:flex;align-items:center;gap:18px;position:relative;overflow:hidden;transition:.3s}
 .beat:hover{border-color:rgba(125,243,255,.4);background:rgba(125,243,255,.03)}
 .beat.playing{border-color:var(--ice);background:rgba(125,243,255,.05)}
@@ -142,27 +141,27 @@ const IG_USER = "terrivolmusic";
 const WA_NUM  = "573102123844";
 const PREVIEW_SECONDS = 90;
 
-// 19 piezas — solo nombre + play, cero ruido
+// 19 piezas — los 3 conflictivos llevan variantes automáticas (fallback)
 const BEATS = [
- { file:"/img/AFFFF%20DU%20BRA.mp3",     name:"AFFFF DU BRA" },
- { file:"/img/BLOK.mp3",                 name:"BLOK" },
- { file:"/img/CAPO.mp3",                 name:"CAPO" },
- { file:"/img/CONSUOUL.mp3",             name:"CONSUOUL" },
- { file:"/img/fIII.mp3",                 name:"F III" },
- { file:"/img/GALX.mp3",                 name:"GALX" },
- { file:"/img/GANGS.mp3",                name:"GANGS" },
- { file:"/img/GOD.mp3",                  name:"GOD" },
- { file:"/img/GUESH.mp3",                name:"GUESH" },
- { file:"/img/KOWWWWWWWWW.mp3",          name:"KOW" },
- { file:"/img/LIRI.mp3",                 name:"LIRI" },
- { file:"/img/LUCI%20AO.mp3",            name:"LUCIAO" },
- { file:"/img/MATATA.mp3",               name:"MATATA" },
- { file:"/img/MICHI.mp3",                name:"MICHI" },
- { file:"/img/MY%20HAUSE.mp3",           name:"MY HAUSE" },
- { file:"/img/RAMA.mp3",                 name:"RAMA" },
+ { file:"/img/AFFFF%20DU%20BRA.mp3", name:"AFFFF DU BRA" },
+ { file:"/img/BLOK.mp3",             name:"BLOK" },
+ { file:"/img/CAPO.mp3",             name:"CAPO" },
+ { file:"/img/CONSUOUL.mp3",         name:"CONSUOUL" },
+ { file:["/img/fIII.mp3","/img/flll.mp3","/img/FIII.mp3","/img/Flll.mp3","/img/fIll.mp3"], name:"F III" },
+ { file:"/img/GALX.mp3",             name:"GALX" },
+ { file:"/img/GANGS.mp3",            name:"GANGS" },
+ { file:"/img/GOD.mp3",              name:"GOD" },
+ { file:"/img/GUESH.mp3",            name:"GUESH" },
+ { file:["/img/KOWWWWWWWWW.mp3","/img/KOWWWWWWWW.mp3","/img/KOWWWWWWW.mp3","/img/KOWWWWWWWWWW.mp3","/img/KOWWWWWWWWWWW.mp3","/img/KOWWWWWW.mp3"], name:"KOW" },
+ { file:"/img/LIRI.mp3",             name:"LIRI" },
+ { file:"/img/LUCI%20AO.mp3",        name:"LUCIAO" },
+ { file:"/img/MATATA.mp3",           name:"MATATA" },
+ { file:"/img/MICHI.mp3",            name:"MICHI" },
+ { file:["/img/MY-HAUSE.mp3","/img/MY%20HAUSE.mp3","/img/MY-HAUS.mp3","/img/MY%20HAUS.mp3"], name:"MY HAUSE" },
+ { file:"/img/RAMA.mp3",             name:"RAMA" },
  { file:"/img/Skyny%20ny%20Paris%202018.mp3", name:"SKYNY PARIS" },
- { file:"/img/SOUSEN.mp3",               name:"SOUSEN" },
- { file:"/img/soy%20la%20voz.mp3",       name:"SOY LA VOZ" },
+ { file:"/img/SOUSEN.mp3",           name:"SOUSEN" },
+ { file:"/img/soy%20la%20voz.mp3",   name:"SOY LA VOZ" },
 ];
 
 const t = "COLLECTION VOL. II ◆ 19 PIÈCES ◆ 100% ORIGINAL ◆ QUALITÉ MAXIMALE ◆ 500+ EN STOCK ◆ UNE ACQUISITION = UNE SEULE FOIS ◆ ";
@@ -197,7 +196,7 @@ document.addEventListener("keydown", e=>{
 });
 document.addEventListener("dragstart", e=>e.preventDefault());
 
-// Audio engine + session auto-next
+// Audio engine + fallback de nombres + session auto-next
 let audio = new Audio(), ctx=null, analyser=null, dataArr=null, current=null;
 function ensureCtx(){
   if(ctx) return;
@@ -206,6 +205,14 @@ function ensureCtx(){
   const src = ctx.createMediaElementSource(audio);
   src.connect(analyser); analyser.connect(ctx.destination);
   dataArr = new Uint8Array(analyser.frequencyBinCount);
+}
+function filesOf(b){ if(!Array.isArray(b.file)) b.file=[b.file]; if(b._fi==null) b._fi=0; return b.file; }
+function setSrc(b){
+  const f = filesOf(b);
+  audio.src = f[b._fi];
+  audio.onerror = ()=>{
+    if(b._fi < f.length-1){ b._fi++; setSrc(b); audio.play().catch(()=>{}); }
+  };
 }
 document.getElementById("playAll").onclick = ()=> toggle(0);
 document.querySelectorAll(".play").forEach(btn=> btn.onclick = ()=> toggle(+btn.closest(".beat").dataset.i));
@@ -217,8 +224,8 @@ function toggle(i){
   if(ctx.state==="suspended") ctx.resume();
   if(current!==null && current!==i) reset(document.querySelector(`.beat[data-i="${current}"]`));
   const b = BEATS[i];
-  if(!audio.src.includes(b.file)){ audio.src = b.file; }
-  audio.currentTime = 0;
+  if(current!==i || !audio.src){ setSrc(b); }
+  try{ audio.currentTime = 0; }catch(e){}
   card.classList.remove("ended");
   current = i; card.classList.add("playing");
   card.querySelector(".ic-play").style.display="none";
