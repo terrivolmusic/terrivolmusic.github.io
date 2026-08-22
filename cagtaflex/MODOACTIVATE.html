@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="MODO ACTIVATE — CAGTA FLEX | Boom Bap Hardcore Prod. FULLNES. Descarga oficial del track en alta calidad. Terrivol Music.">
+<meta name="description" content="MODO ACTIVATE — CAGTA FLEX | Boom Bap Hardcore Prod. FULLNES. Descarga oficial en alta calidad. Terrivol Music. LA VOIX DE L'UNIVERS — Bogotá D.C.">
 <title>MODO ACTIVATE | CAGTA FLEX — Descarga Oficial</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,47 +11,66 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
- --fire:#ff2b00; --ember:#ff8a00; --teal:#00e5ff;
- --bg:#060606; --card:#101014; --txt:#fff; --txt2:#9aa0a6; --border:rgba(255,255,255,.08);
+ --fire:#ff2b00;--ember:#ff8a00;--teal:#00e5ff;
+ --bg:#050506;--panel:#0c0d10;--txt:#f2f2f2;--txt2:#8f959c;--line:rgba(255,255,255,.09);
+ --cut:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));
 }
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden}
-#embers{position:fixed;inset:0;z-index:-2}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;
+ background:linear-gradient(90deg,rgba(0,229,255,.05) 0%,transparent 35%,transparent 65%,rgba(255,43,0,.06) 100%),var(--bg);}
+#embers{position:fixed;inset:0;z-index:-3}
+.grid-left{position:fixed;top:0;left:0;bottom:0;width:42vw;z-index:-2;pointer-events:none;
+ background:repeating-linear-gradient(90deg,rgba(0,229,255,.06) 0 1px,transparent 1px 70px),
+ repeating-linear-gradient(0deg,rgba(0,229,255,.06) 0 1px,transparent 1px 70px);
+ -webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 90%);mask-image:linear-gradient(90deg,#000 0%,transparent 90%);}
 .scanlines{position:fixed;inset:0;z-index:-1;pointer-events:none;
- background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(0,0,0,.25) 3px 4px),
- radial-gradient(ellipse at 20% 40%,rgba(0,229,255,.08),transparent 55%),
- radial-gradient(ellipse at 80% 60%,rgba(255,43,0,.1),transparent 55%);}
-.container{max-width:1200px;margin:0 auto;padding:30px 20px}
-header{display:flex;justify-content:space-between;align-items:center;padding:15px 0;margin-bottom:50px}
-.logo{font-family:'Anton';font-size:1.3rem;letter-spacing:2px}
+ background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(0,0,0,.22) 3px 4px);}
+.grain{position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+ animation:grain 1.2s steps(4) infinite;}
+@keyframes grain{0%{background-position:0 0}25%{background-position:60px 40px}50%{background-position:-40px 70px}75%{background-position:30px -50px}100%{background-position:0 0}}
+.container{max-width:1200px;margin:0 auto;padding:28px 20px;position:relative;z-index:1}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 0;margin-bottom:26px}
+.logo{font-family:'Anton';font-size:1.25rem;letter-spacing:3px}
 .logo span{color:var(--fire)}
-.nav-links{display:flex;gap:25px}
-.nav-links a{color:var(--txt2);text-decoration:none;font-size:.85rem;font-family:'Share Tech Mono'}
+.nav-links{display:flex;gap:24px}
+.nav-links a{color:var(--txt2);text-decoration:none;font-family:'Share Tech Mono';font-size:.8rem;letter-spacing:1px;transition:.3s}
 .nav-links a:hover{color:var(--teal)}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin-bottom:70px}
-@media(max-width:900px){.hero{grid-template-columns:1fr}}
-.cover-wrap{position:relative;max-width:560px;margin:0 auto;aspect-ratio:1;border-radius:14px;overflow:hidden;
- box-shadow:0 30px 90px rgba(255,43,0,.35),0 0 60px rgba(0,229,255,.12);animation:float 6s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-.cover-wrap img{width:100%;height:100%;object-fit:cover}
-.cover-wrap::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,.35);border-radius:14px;pointer-events:none}
-.hud-tag{position:absolute;top:12px;left:12px;font-family:'Share Tech Mono';font-size:.7rem;color:var(--teal);
- background:rgba(0,0,0,.6);padding:4px 10px;border:1px solid rgba(0,229,255,.4);letter-spacing:1px}
-.hud-line{font-family:'Share Tech Mono';color:var(--teal);font-size:.85rem;letter-spacing:2px;margin-bottom:14px;animation:blink 3s steps(2) infinite}
-@keyframes blink{50%{opacity:.55}}
-h1{font-family:'Anton';font-size:clamp(3rem,8vw,5.5rem);line-height:.95;letter-spacing:1px;
- text-shadow:0 0 30px rgba(255,43,0,.55);margin-bottom:8px}
-.artist{font-family:'Share Tech Mono';color:var(--txt2);font-size:1rem;margin-bottom:22px}
-.artist b{color:var(--ember)}
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:50px;background:rgba(0,0,0,.4)}
+.ticker-track{display:flex;width:max-content;animation:tick 26s linear infinite}
+.ticker-track span{font-family:'Share Tech Mono';font-size:.75rem;letter-spacing:3px;color:var(--txt2);padding:9px 0;white-space:nowrap}
+.ticker-track b{color:var(--ember);font-weight:400}
+.ticker-track i{color:var(--teal);font-style:normal}
+@keyframes tick{to{transform:translateX(-50%)}}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center;margin-bottom:80px}
+@media(max-width:920px){.hero{grid-template-columns:1fr}}
+.cover-wrap{position:relative;max-width:560px;margin:0 auto;aspect-ratio:1;
+ box-shadow:0 40px 100px rgba(255,43,0,.28),0 0 70px rgba(0,229,255,.1);animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.cover-wrap img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.05)}
+.cover-wrap::before,.cover-wrap::after{content:'';position:absolute;width:34px;height:34px;pointer-events:none}
+.cover-wrap::before{top:-8px;left:-8px;border-top:2px solid var(--teal);border-left:2px solid var(--teal)}
+.cover-wrap::after{bottom:-8px;right:-8px;border-bottom:2px solid var(--fire);border-right:2px solid var(--fire)}
+.hud-tag{position:absolute;top:12px;left:12px;font-family:'Share Tech Mono';font-size:.68rem;letter-spacing:2px;color:var(--teal);
+ background:rgba(0,0,0,.72);padding:5px 10px;border:1px solid rgba(0,229,255,.4)}
+.hud-rec{position:absolute;top:12px;right:12px;font-family:'Share Tech Mono';font-size:.68rem;letter-spacing:2px;color:var(--fire);
+ background:rgba(0,0,0,.72);padding:5px 10px;border:1px solid rgba(255,43,0,.4);animation:blink 1.4s steps(2) infinite}
+@keyframes blink{50%{opacity:.35}}
+.hud-line{font-family:'Share Tech Mono';color:var(--teal);font-size:.85rem;letter-spacing:2px;margin-bottom:16px;min-height:1.2em}
+.hud-line::after{content:'▮';animation:blink 1s steps(2) infinite}
+h1{font-family:'Anton';font-size:clamp(3.2rem,8vw,5.8rem);line-height:.92;letter-spacing:1px;
+ text-shadow:-8px 0 30px rgba(0,229,255,.35),8px 0 30px rgba(255,43,0,.45);margin-bottom:10px}
+.artist{font-family:'Share Tech Mono';color:var(--txt2);margin-bottom:22px;letter-spacing:1px}
+.artist b{color:var(--ember);font-weight:400}
 .meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
-.meta span{font-family:'Share Tech Mono';font-size:.75rem;padding:6px 14px;border-radius:20px;
- border:1px solid rgba(255,43,0,.45);color:var(--ember);background:rgba(255,43,0,.08)}
-.meta span.t{border-color:rgba(0,229,255,.45);color:var(--teal);background:rgba(0,229,255,.07)}
-.desc{color:var(--txt2);line-height:1.7;margin-bottom:26px}
-.audio-player{background:linear-gradient(135deg,rgba(16,16,20,.95),rgba(6,6,6,.95));padding:28px;border-radius:16px;
- border:1px solid rgba(255,43,0,.35);margin-bottom:26px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.visualizer{display:flex;align-items:flex-end;justify-content:center;gap:4px;height:56px;margin-bottom:20px}
-.visualizer-bar{width:6px;border-radius:3px;background:linear-gradient(180deg,var(--ember),var(--fire));animation:vis 1s ease-in-out infinite}
-.visualizer-bar:nth-child(odd){background:linear-gradient(180deg,var(--teal),#007a8a)}
+.meta span{font-family:'Share Tech Mono';font-size:.72rem;letter-spacing:1px;padding:7px 14px;
+ border:1px solid rgba(255,43,0,.5);color:var(--ember);background:rgba(255,43,0,.07);clip-path:var(--cut)}
+.meta span.t{border-color:rgba(0,229,255,.5);color:var(--teal);background:rgba(0,229,255,.06)}
+.desc{color:var(--txt2);line-height:1.75;margin-bottom:26px;border-left:2px solid var(--fire);padding-left:16px}
+.audio-player{background:linear-gradient(135deg,rgba(12,13,16,.96),rgba(5,5,6,.96));padding:26px;border:1px solid rgba(255,43,0,.35);
+ clip-path:var(--cut);margin-bottom:26px;box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.visualizer{display:flex;align-items:flex-end;justify-content:center;gap:4px;height:54px;margin-bottom:20px}
+.visualizer-bar{width:5px;border-radius:2px;background:linear-gradient(180deg,var(--ember),var(--fire));animation:vis 1s ease-in-out infinite}
+.visualizer-bar:nth-child(odd){background:linear-gradient(180deg,var(--teal),#00606b)}
 .visualizer-bar:nth-child(1){height:20%}.visualizer-bar:nth-child(2){height:60%;animation-delay:.1s}
 .visualizer-bar:nth-child(3){height:40%;animation-delay:.2s}.visualizer-bar:nth-child(4){height:80%;animation-delay:.3s}
 .visualizer-bar:nth-child(5){height:30%;animation-delay:.4s}.visualizer-bar:nth-child(6){height:70%;animation-delay:.5s}
@@ -60,47 +79,49 @@ h1{font-family:'Anton';font-size:clamp(3rem,8vw,5.5rem);line-height:.95;letter-s
 @keyframes vis{0%,100%{transform:scaleY(.4);opacity:.5}50%{transform:scaleY(1);opacity:1}}
 .visualizer.paused .visualizer-bar{animation-play-state:paused;transform:scaleY(.25);opacity:.3}
 .player-controls{display:flex;align-items:center;gap:18px}
-.play-btn{width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;flex-shrink:0;
- background:linear-gradient(135deg,var(--fire),var(--ember));display:flex;align-items:center;justify-content:center;
- box-shadow:0 10px 30px rgba(255,43,0,.45);transition:.3s}
-.play-btn:hover{transform:scale(1.12)}
+.play-btn{width:58px;height:58px;border:none;cursor:pointer;flex-shrink:0;clip-path:var(--cut);
+ background:linear-gradient(135deg,var(--fire),var(--ember));display:flex;align-items:center;justify-content:center;transition:.3s}
+.play-btn:hover{transform:scale(1.1);box-shadow:0 0 40px rgba(255,43,0,.6)}
 .play-btn svg{width:22px;height:22px;fill:#fff;margin-left:3px}
 .progress-container{flex:1}
-.progress-bar{height:8px;background:rgba(255,255,255,.1);border-radius:10px;cursor:pointer;overflow:hidden}
-.progress{height:100%;width:0%;background:linear-gradient(90deg,var(--fire),var(--ember));border-radius:10px}
-.time-display{display:flex;justify-content:space-between;font-family:'Share Tech Mono';font-size:.8rem;color:var(--ember);margin-top:8px}
-.cta-big{display:block;text-align:center;text-decoration:none;text-transform:uppercase;letter-spacing:2px;
- font-family:'Anton';font-size:1.5rem;color:#fff;padding:22px;border-radius:14px;
- background:linear-gradient(135deg,var(--fire),var(--ember));box-shadow:0 15px 50px rgba(255,43,0,.5);
- animation:ctaPulse 2s ease-in-out infinite;transition:.3s;position:relative;overflow:hidden}
-.cta-big:hover{transform:translateY(-4px) scale(1.02)}
-@keyframes ctaPulse{0%,100%{box-shadow:0 15px 50px rgba(255,43,0,.5)}50%{box-shadow:0 15px 70px rgba(255,138,0,.8)}}
-.cta-note{text-align:center;color:var(--txt2);font-size:.85rem;margin-top:14px;font-family:'Share Tech Mono'}
-.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-bottom:70px}
-.why-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;text-align:center;transition:.3s}
+.progress-bar{height:7px;background:rgba(255,255,255,.1);cursor:pointer;overflow:hidden}
+.progress{height:100%;width:0%;background:linear-gradient(90deg,var(--fire),var(--ember))}
+.time-display{display:flex;justify-content:space-between;font-family:'Share Tech Mono';font-size:.78rem;color:var(--ember);margin-top:8px}
+.cta-big{display:block;text-align:center;text-decoration:none;text-transform:uppercase;letter-spacing:3px;
+ font-family:'Anton';font-size:1.45rem;color:#fff;padding:22px;clip-path:var(--cut);
+ background:linear-gradient(135deg,var(--fire),var(--ember));animation:ctaPulse 2.2s ease-in-out infinite;transition:.3s}
+.cta-big:hover{transform:translateY(-4px);filter:brightness(1.15)}
+@keyframes ctaPulse{0%,100%{box-shadow:0 12px 50px rgba(255,43,0,.45)}50%{box-shadow:0 12px 80px rgba(255,138,0,.75)}}
+.cta-note{text-align:center;color:var(--txt2);font-size:.8rem;margin-top:14px;font-family:'Share Tech Mono';letter-spacing:1px}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-bottom:80px}
+.why-card{background:var(--panel);border:1px solid var(--line);padding:30px 26px;clip-path:var(--cut);transition:.3s}
 .why-card:hover{border-color:var(--teal);transform:translateY(-6px)}
-.why-card h3{font-family:'Anton';letter-spacing:1px;margin-bottom:10px;color:var(--teal)}
-.why-card p{color:var(--txt2);font-size:.9rem;line-height:1.6}
-.details{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px;margin-bottom:60px}
-.details h2,.why h2{font-family:'Anton';text-align:center;font-size:1.6rem;letter-spacing:2px;margin-bottom:30px}
+.why-card h3{font-family:'Anton';letter-spacing:2px;margin-bottom:12px;color:var(--teal);font-size:1.05rem}
+.why-card:nth-child(2) h3{color:var(--ember)}
+.why-card p{color:var(--txt2);font-size:.9rem;line-height:1.65}
+.details{background:var(--panel);border:1px solid var(--line);padding:44px 38px;clip-path:var(--cut);margin-bottom:70px}
+.details h2{font-family:'Anton';text-align:center;font-size:1.5rem;letter-spacing:3px;margin-bottom:34px}
 .details h2 span{color:var(--fire)}
-.d-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:25px}
-.d-item .l{font-family:'Share Tech Mono';font-size:.75rem;color:var(--txt2);text-transform:uppercase;letter-spacing:1px}
-.d-item .v{font-weight:700;margin-top:6px}
-footer{text-align:center;padding:35px 0;border-top:1px solid var(--border);color:var(--txt2);font-size:.85rem}
-footer .social{display:flex;justify-content:center;gap:22px;margin-bottom:16px}
-footer a{color:var(--txt2);text-decoration:none;font-family:'Share Tech Mono'}
+.d-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:26px}
+.d-item .l{font-family:'Share Tech Mono';font-size:.7rem;color:var(--txt2);text-transform:uppercase;letter-spacing:2px}
+.d-item .v{font-weight:700;margin-top:6px;font-size:.95rem}
+footer{text-align:center;padding:36px 0;border-top:1px solid var(--line);color:var(--txt2);font-size:.85rem}
+footer .social{display:flex;justify-content:center;gap:22px;margin-bottom:16px;flex-wrap:wrap}
+footer a{color:var(--txt2);text-decoration:none;font-family:'Share Tech Mono';font-size:.8rem;letter-spacing:1px}
 footer a:hover{color:var(--fire)}
-.sticky-cta{position:fixed;left:0;right:0;bottom:0;padding:12px 16px;background:rgba(6,6,6,.92);backdrop-filter:blur(10px);
- border-top:1px solid rgba(255,43,0,.4);transform:translateY(100%);transition:.4s;z-index:50}
+.seal{font-family:'Share Tech Mono';letter-spacing:3px;color:var(--teal);margin-bottom:8px}
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;padding:12px 16px;background:rgba(5,5,6,.94);backdrop-filter:blur(10px);
+ border-top:1px solid rgba(255,43,0,.45);transform:translateY(100%);transition:.4s;z-index:50}
 .sticky-cta.show{transform:translateY(0)}
-.sticky-cta a{display:block;text-align:center;text-decoration:none;color:#fff;font-family:'Anton';letter-spacing:2px;
- font-size:1.1rem;padding:14px;border-radius:10px;background:linear-gradient(135deg,var(--fire),var(--ember))}
+.sticky-cta a{display:block;text-align:center;text-decoration:none;color:#fff;font-family:'Anton';letter-spacing:3px;
+ font-size:1.05rem;padding:14px;clip-path:var(--cut);background:linear-gradient(135deg,var(--fire),var(--ember))}
 </style>
 </head>
 <body>
 <canvas id="embers"></canvas>
+<div class="grid-left"></div>
 <div class="scanlines"></div>
+<div class="grain"></div>
 
 <div class="container">
 <header>
@@ -112,21 +133,26 @@ footer a:hover{color:var(--fire)}
  </nav>
 </header>
 
+<div class="ticker"><div class="ticker-track">
+ <span>&nbsp;MODO ACTIVATE <b>✦</b> PROD. FULLNES <i>✦</i> BOOM BAP HARDCORE <b>✦</b> TERRIVOL MUSIC <i>✦</i> LA VOIX DE L'UNIVERS — BOGOTÁ D.C. <b>✦</b> 20 AÑOS DE SKILLS <i>✦</i> ERA YUNGG FLEX <b>✦</b>&nbsp;</span>
+ <span>&nbsp;MODO ACTIVATE <b>✦</b> PROD. FULLNES <i>✦</i> BOOM BAP HARDCORE <b>✦</b> TERRIVOL MUSIC <i>✦</i> LA VOIX DE L'UNIVERS — BOGOTÁ D.C. <b>✦</b> 20 AÑOS DE SKILLS <i>✦</i> ERA YUNGG FLEX <b>✦</b>&nbsp;</span>
+</div></div>
+
 <section class="hero">
  <div class="cover-wrap">
-  <!-- ⚠️ CAMBIA ESTAS 2 RUTAS POR TUS ARCHIVOS REALES -->
-  <img src="img/MODO_ACTIVATE_cover.jpg" alt="MODO ACTIVATE — Cagta Flex Cover Art">
-  <div class="hud-tag">SCOUTER: ONLINE ▮▮▮▮</div>
+  <img src="../img/MODO_ACTIVATE_cover.jpg" alt="MODO ACTIVATE — Cagta Flex Cover Art">
+  <div class="hud-tag">SCOUTER: ONLINE ▮▮▮</div>
+  <div class="hud-rec">● REC</div>
  </div>
  <div>
-  <div class="hud-line">// SEÑAL DETECTADA — BTA D.C.</div>
+  <div class="hud-line" id="hudline" data-text="// SEÑAL DETECTADA — NIVEL: 20 AÑOS DE SKILLS"></div>
   <h1>MODO ACTIVATE</h1>
   <div class="artist">CAGTA FLEX <b>× PROD. FULLNES</b></div>
   <div class="meta">
    <span>BOOM BAP HARDCORE</span><span class="t">VIOLÍN + FLAUTAS</span>
-   <span>20 AÑOS DE SKILLS</span><span class="t">BOGOTÁ D.C.</span>
+   <span>ERA YUNGG FLEX</span><span class="t">BOGOTÁ D.C.</span>
   </div>
-  <p class="desc">El scouter detectó el fuego. Boom bap puro con sample de violín y flautas, barras de ego trip y flow de 20 años en el game. La ciudad en llamas, el modo activado. Llévate el track oficial en alta calidad y apoya el Hip-Hop independiente directo del artista.</p>
+  <p class="desc">El scouter detectó el fuego. Boom bap puro y técnico sobre un sample épico de violín y flautas. Barras de ego trip, flow de dos décadas en el game y la ciudad en llamas de fondo. Llévate el master oficial en alta calidad y apoya el Hip-Hop independiente directo del laboratorio Terrivol Music.</p>
 
   <div class="audio-player">
    <div class="visualizer paused" id="visualizer">
@@ -143,20 +169,19 @@ footer a:hover{color:var(--fire)}
     </div>
    </div>
    <audio id="audioPlayer" preload="metadata">
-    <!-- ⚠️ RUTA DE TU PREVIEW -->
-    <source src="img/MODO_ACTIVATE_preview.mp3" type="audio/mpeg">
+    <source src="../img/MODO_ACTIVATE_preview.mp3" type="audio/mpeg">
    </audio>
   </div>
 
-  <a class="cta-big" href="https://cagta-flex-shop.fourthwall.com/products/cagta-flex-modo-activate-official-track-audio" target="_blank">⬇ DESCARGAR AHORA — $9.99</a>
-  <p class="cta-note">DESCARGA INSTANTÁNEA · AUDIO OFICIAL ALTA CALIDAD · APOYO DIRECTO AL ARTISTA</p>
+  <a class="cta-big" href="https://cagta-flex-shop.fourthwall.com/products/cagta-flex-modo-activate-official-track-audio" target="_blank">⬇ DESCARGAR MASTER OFICIAL — $9.99</a>
+  <p class="cta-note">DESCARGA INSTANTÁNEA · WAV + MP3 ALTA CALIDAD · APOYO DIRECTO AL ARTISTA</p>
  </div>
 </section>
 
 <section class="why">
- <div class="why-card"><h3>MASTER OFICIAL</h3><p>El track tal cual salió del laboratorio Terrivol Music. Calidad de estudio, sin compresiones raras.</p></div>
- <div class="why-card"><h3>AL INSTANTE</h3><p>Pagas y lo descargas en segundos. Tuyo para siempre, en tu celular o computadora.</p></div>
- <div class="why-card"><h3>APOYO REAL</h3><p>Cada descarga sostiene 20 años de cultura Hip-Hop independiente desde Suba, Bogotá D.C.</p></div>
+ <div class="why-card"><h3>MASTER SIN COMPRESIÓN</h3><p>El track tal cual salió del laboratorio: graves reales, sample nítido y mezcla intacta. Cero compresión de streaming.</p></div>
+ <div class="why-card"><h3>AL INSTANTE</h3><p>Pagas y descargas en segundos. Tuyo para siempre: celular, carro, estudio o tarima.</p></div>
+ <div class="why-card"><h3>APOYO REAL AL GAME</h3><p>Cada descarga sostiene 20 años de cultura Hip-Hop independiente desde Suba, Bogotá D.C. Sin intermediarios.</p></div>
 </section>
 
 <section class="details">
@@ -166,8 +191,10 @@ footer a:hover{color:var(--fire)}
   <div class="d-item"><div class="l">Producción</div><div class="v">FULLNES</div></div>
   <div class="d-item"><div class="l">Género</div><div class="v">Boom Bap Hardcore</div></div>
   <div class="d-item"><div class="l">Samples</div><div class="v">Violín + Flautas</div></div>
+  <div class="d-item"><div class="l">Era</div><div class="v">YUNGG FLEX</div></div>
   <div class="d-item"><div class="l">Sello</div><div class="v">Terrivol Music</div></div>
   <div class="d-item"><div class="l">Publishing</div><div class="v">Sony Music Pub. / BMI</div></div>
+  <div class="d-item"><div class="l">Formato</div><div class="v">WAV + MP3 + Artwork</div></div>
  </div>
 </section>
 
@@ -176,10 +203,12 @@ footer a:hover{color:var(--fire)}
   <a href="https://youtube.com/@cagtaflex" target="_blank">YOUTUBE</a>
   <a href="https://instagram.com/cagtaflex" target="_blank">INSTAGRAM</a>
   <a href="https://facebook.com/CAGTAFLEX" target="_blank">FACEBOOK</a>
+  <a href="https://youtube.com/@beatsfreeyoutube_" target="_blank">BEATS BFYT</a>
   <a href="https://www.terrivolmusic.com" target="_blank">TERRIVOLMUSIC.COM</a>
  </div>
- <p>LA VOIX DE L'UNIVERS — BOGOTÁ D.C.</p>
- <p style="margin-top:8px">© 2026 Terrivol Music. Todos los derechos reservados.</p>
+ <div class="seal">LA VOIX DE L'UNIVERS — BOGOTÁ D.C.</div>
+ <p>BOOKING: contacto@terrivolmusic.com · +57 310 223 844</p>
+ <p style="margin-top:8px">© 2026 Terrivol Music ENT. Todos los derechos reservados.</p>
 </footer>
 </div>
 
@@ -188,17 +217,23 @@ footer a:hover{color:var(--fire)}
 </div>
 
 <script>
-// BRASAS SUBIENDO (fuego del scouter)
+// BRASAS + CHISPAS TEAL (dualidad de la carátula)
 const c=document.getElementById('embers'),x=c.getContext('2d');
 c.width=innerWidth;c.height=innerHeight;
-const P=[];for(let i=0;i<90;i++)P.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2+.5,s:Math.random()*1+.3,o:Math.random(),t:Math.random()<.85?'fire':'teal'});
+const P=[];for(let i=0;i<110;i++){const teal=Math.random()<.4;
+ P.push({x:teal?Math.random()*c.width*.45:c.width*.55+Math.random()*c.width*.45,y:Math.random()*c.height,
+ r:Math.random()*1.8+.4,s:Math.random()*.9+.25,o:Math.random(),t:teal});}
 function draw(){x.clearRect(0,0,c.width,c.height);
- P.forEach(p=>{p.y-=p.s;p.o=Math.random()*.6+.3;if(p.y<-5){p.y=c.height+5;p.x=Math.random()*c.width}
-  x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);
-  x.fillStyle=p.t==='fire'?`rgba(255,${90+Math.floor(p.o*80)},0,${p.o})`:`rgba(0,229,255,${p.o*.7})`;x.fill()});
+ P.forEach(p=>{p.y-=p.s;p.o=Math.random()*.6+.3;if(p.y<-5){p.y=c.height+5;p.x=p.t?Math.random()*c.width*.45:c.width*.55+Math.random()*c.width*.45}
+ x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);
+ x.fillStyle=p.t?`rgba(0,229,255,${p.o*.6})`:`rgba(255,${80+Math.floor(p.o*90)},0,${p.o})`;x.fill()});
  requestAnimationFrame(draw)}
 draw();
 addEventListener('resize',()=>{c.width=innerWidth;c.height=innerHeight});
+
+// LÍNEA HUD TYPEADA
+const hl=document.getElementById('hudline'),txt=hl.dataset.text;let i=0;
+(function type(){if(i<=txt.length){hl.textContent=txt.slice(0,i);i++;setTimeout(type,45)}})();
 
 // PLAYER
 const audio=document.getElementById('audioPlayer'),playIcon=document.getElementById('playIcon'),
@@ -211,7 +246,7 @@ audio.addEventListener('loadedmetadata',()=>durationEl.textContent=fmt(audio.dur
 function seek(e){audio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*audio.duration}
 function fmt(s){if(isNaN(s))return'0:00';return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0')}
 
-// CTA FIJO AL HACER SCROLL
+// CTA FIJO
 addEventListener('scroll',()=>{document.getElementById('stickyCta').classList.toggle('show',scrollY>450)});
 </script>
 </body>
