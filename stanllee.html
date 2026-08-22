@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05060a">
+<title>TERRIVOL MUSIC — New Demos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;800&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05060a; --line:rgba(255,255,255,.09);
+  --ice:#7df3ff; --violet:#a78bfa; --gold:#e0b97f;
+  --text:#ffffff; --muted:#b4b1c4; --dim:#7d7a90;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+#stars{position:fixed;inset:0;z-index:0}
+.nebula{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 55% 40% at 15% 0%,rgba(139,92,246,.12),transparent),
+             radial-gradient(ellipse 45% 35% at 90% 80%,rgba(6,182,212,.08),transparent),
+             radial-gradient(ellipse 35% 25% at 60% 40%,rgba(224,185,127,.05),transparent);}
+.wrap{position:relative;z-index:1;max-width:740px;margin:0 auto;padding:44px 22px 90px}
+
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px}
+.logo{font-family:'Unbounded';font-weight:800;font-size:13px;letter-spacing:.25em;color:#fff}
+.logo span{color:var(--ice)}
+.badge{font-size:9px;letter-spacing:.35em;color:var(--gold);border:1px solid rgba(224,185,127,.4);padding:7px 16px}
+
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin-bottom:60px}
+.ticker-inner{display:flex;gap:56px;white-space:nowrap;animation:tick 30s linear infinite;font-size:9px;letter-spacing:.4em;color:var(--dim)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+.hero{position:relative;margin-bottom:56px}
+.for{display:inline-block;font-size:10px;letter-spacing:.35em;color:var(--gold);border:1px solid rgba(224,185,127,.45);padding:10px 20px;margin-bottom:22px}
+.for b{color:#fff}
+.kicker{font-size:10px;letter-spacing:.45em;color:var(--ice);margin-bottom:18px}
+.hero h1{font-family:'Unbounded';font-weight:800;font-size:clamp(24px,6vw,40px);line-height:1.2;text-transform:uppercase;margin-bottom:22px;color:#fff}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--ice),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:14px;font-weight:300;max-width:520px;line-height:1.9;margin-bottom:24px}
+.hero p b{color:#fff;font-weight:500}
+.hp{display:inline-block;font-size:10px;letter-spacing:.3em;color:var(--ice);border:1px solid rgba(125,243,255,.35);padding:9px 18px;margin-bottom:16px}
+.styles{display:flex;gap:8px;flex-wrap:wrap}
+.style-tag{font-size:9px;letter-spacing:.2em;color:var(--muted);border:1px solid var(--line);padding:5px 12px;border-radius:100px}
+.style-tag.hot{color:var(--gold);border-color:rgba(224,185,127,.4)}
+.orb{position:absolute;top:-10px;right:0;width:100px;height:100px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,var(--violet),#0b0618 70%);
+  box-shadow:0 0 70px rgba(139,92,246,.4), inset -12px -12px 26px rgba(0,0,0,.6);
+  animation:float 8s ease-in-out infinite}
+.orb::after{content:"";position:absolute;inset:-14px -30px;border:1px solid rgba(125,243,255,.35);border-radius:50%;transform:rotate(-16deg) scaleY(.32)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+.section{display:flex;align-items:center;gap:18px;margin:66px 0 24px}
+.section h2{font-family:'Unbounded';font-weight:500;font-size:12px;letter-spacing:.4em;color:var(--gold)}
+.section .rule{flex:1;height:1px;background:var(--line)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}
+.stat{padding:22px 8px;text-align:center;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat b{display:block;font-family:'Unbounded';font-weight:800;font-size:clamp(15px,4vw,24px);color:var(--ice);margin-bottom:8px}
+.stat .g{color:var(--gold)}
+.stat span{font-size:8px;letter-spacing:.3em;color:var(--dim)}
+
+.playall-wrap{text-align:center;margin:36px 0 24px}
+#playAll{font-family:'Unbounded';font-size:11px;letter-spacing:.3em;color:var(--ice);background:transparent;border:1px solid var(--ice);padding:16px 40px;cursor:pointer;transition:.35s}
+#playAll:hover{background:var(--ice);color:var(--bg);box-shadow:0 0 36px rgba(125,243,255,.35)}
+.session-note{margin-top:12px;font-size:9px;letter-spacing:.3em;color:var(--dim)}
+
+.beat{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:12px;display:flex;align-items:center;gap:18px;position:relative;overflow:hidden;transition:.3s}
+.beat:hover{border-color:rgba(125,243,255,.35)}
+.beat.playing{border-color:rgba(224,185,127,.55)}
+.beat.ended{border-color:rgba(224,185,127,.4)}
+.ch{font-family:'Unbounded';font-weight:800;font-size:14px;color:var(--dim);min-width:32px}
+.beat.playing .ch{color:var(--gold)}
+.play{width:58px;height:58px;min-width:58px;border-radius:50%;border:1px solid rgba(125,243,255,.45);background:radial-gradient(circle,rgba(125,243,255,.10),transparent);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.3s}
+.play:hover{box-shadow:0 0 26px rgba(125,243,255,.35);border-color:var(--ice)}
+.play svg{width:19px;height:19px;fill:var(--ice)}
+.info{flex:1}
+.info h3{font-family:'Unbounded';font-weight:500;font-size:15px;letter-spacing:.12em;margin-bottom:7px;text-transform:uppercase;color:#fff}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-size:9px;letter-spacing:.15em;color:#c6c2d6;border:1px solid rgba(255,255,255,.14);padding:4px 10px;border-radius:100px}
+.tag.city{color:var(--gold);border-color:rgba(224,185,127,.4)}
+.tag.one{color:var(--ice);border-color:rgba(125,243,255,.35)}
+.viz{width:100px;height:30px}
+.acquire{font-size:9px;letter-spacing:.3em;color:#fff;text-decoration:none;border:1px solid var(--line);padding:12px 20px;border-radius:100px;transition:.3s;white-space:nowrap}
+.acquire:hover{border-color:var(--gold);color:var(--gold)}
+.beat.ended .acquire{border-color:var(--gold);color:var(--gold)}
+.progress{position:absolute;bottom:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--ice),var(--gold))}
+.pnote{display:none;position:absolute;bottom:10px;right:16px;font-size:8px;letter-spacing:.25em;color:var(--gold)}
+.beat.ended .pnote{display:block}
+.note{font-size:10px;letter-spacing:.2em;color:var(--dim);text-align:center;margin-top:26px;line-height:2}
+
+.more{border:1px solid rgba(224,185,127,.35);border-radius:16px;background:linear-gradient(180deg,rgba(224,185,127,.06),transparent);padding:34px 26px;text-align:center}
+.more .tag-top{font-size:9px;letter-spacing:.5em;color:var(--gold);margin-bottom:16px}
+.more h3{font-family:'Unbounded';font-weight:800;font-size:clamp(18px,5vw,26px);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;color:#fff}
+.more h3 em{font-style:normal;background:linear-gradient(90deg,var(--ice),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.more .num{font-family:'Unbounded';font-weight:800;font-size:clamp(40px,10vw,64px);background:linear-gradient(180deg,var(--ice),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:14px}
+.more p{color:var(--muted);font-size:13px;font-weight:300;line-height:1.9;max-width:470px;margin:0 auto 24px}
+.more .btn-more{display:inline-block;font-family:'Unbounded';font-size:10px;letter-spacing:.35em;text-decoration:none;color:var(--gold);border:1px solid var(--gold);padding:14px 32px;border-radius:100px;transition:.35s}
+.more .btn-more:hover{background:var(--gold);color:var(--bg)}
+
+.gets{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.get{border:1px solid var(--line);border-radius:14px;padding:20px;background:rgba(255,255,255,.02)}
+.get .n{font-family:'Unbounded';font-size:9px;color:var(--gold);letter-spacing:.2em}
+.get b{display:block;font-family:'Unbounded';font-weight:500;font-size:11px;letter-spacing:.2em;color:var(--ice);margin:10px 0 8px}
+.get span{font-size:11px;color:var(--muted);line-height:1.7;font-weight:300}
+
+.cta{margin-top:76px;border-top:1px solid var(--line);padding-top:56px;text-align:center}
+.cta h2{font-family:'Unbounded';font-weight:800;font-size:clamp(20px,5vw,28px);text-transform:uppercase;margin-bottom:14px;color:#fff}
+.cta p{color:var(--muted);font-size:14px;font-weight:300;line-height:1.9;max-width:500px;margin:0 auto 30px}
+.btn{display:inline-block;font-family:'Unbounded';font-size:11px;letter-spacing:.35em;text-decoration:none;color:var(--gold);border:1px solid var(--gold);padding:18px 44px;border-radius:100px;transition:.35s}
+.btn:hover{background:var(--gold);color:var(--bg);box-shadow:0 0 40px rgba(224,185,127,.35)}
+.cta-alt{margin-top:22px;font-size:10px;letter-spacing:.2em;color:var(--dim)}
+.cta-alt a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--dim)}
+footer{margin-top:80px;text-align:center;font-size:9px;letter-spacing:.4em;color:var(--dim)}
+@media(max-width:660px){.orb{display:none}.viz{display:none}.beat{flex-wrap:wrap}.acquire{width:100%;text-align:center}.ch{min-width:26px}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.gets{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div class="nebula"></div>
+
+<div class="wrap">
+  <header>
+    <div class="logo">TERRIVOL <span>MUSIC</span></div>
+    <div class="badge">PRIVATE SESSION · MMXXVI</div>
+  </header>
+
+  <div class="ticker"><div class="ticker-inner" id="tick"></div></div>
+
+  <section class="hero">
+    <div class="orb"></div>
+    <div class="for">PREPARED FOR <b id="leadName"></b></div>
+    <div class="kicker">15 NEW DEMOS · TRAP · RAP · LATIN · WORLDWIDE</div>
+    <h1>NEW SOUND. <em>SAME VISION.</em></h1>
+    <p>Welcome back. We put together <b>15 fresh demos</b> across trap, rap and Latin — a little of everything, all <b>100% original</b>. You already know how we work. Listen at your pace, and when something speaks to you, <b>we build from there</b>.</p>
+    <div class="hp">◉ LISTEN AT YOUR PACE</div>
+    <div class="styles">
+      <span class="style-tag hot">TRAP</span>
+      <span class="style-tag hot">RAP</span>
+      <span class="style-tag">DRILL</span>
+      <span class="style-tag">LATIN</span>
+      <span class="style-tag">CINEMATIC</span>
+      <span class="style-tag">AFRO</span>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><b>15</b><span>NEW DEMOS</span></div>
+    <div class="stat"><b class="g">500+</b><span>IN THE VAULT</span></div>
+    <div class="stat"><b>100%</b><span>ORIGINAL</span></div>
+    <div class="stat"><b class="g">1/1</b><span>EXCLUSIVE</span></div>
+  </div>
+
+  <div class="section"><h2>THE DEMOS</h2><div class="rule"></div></div>
+  <div class="playall-wrap">
+    <button id="playAll">▶ PLAY THE SESSION</button>
+    <div class="session-note">🔁 SIT BACK — EACH DEMO FLOWS INTO THE NEXT</div>
+  </div>
+  <div id="beats"></div>
+  <div class="note">PREVIEWS PROTECTED · 1:30 · FULL VERSIONS ONLY UNDER ACQUISITION</div>
+
+  <div class="section"><h2>THERE'S ALWAYS MORE</h2><div class="rule"></div></div>
+  <div class="more">
+    <div class="tag-top">THE VAULT</div>
+    <div class="num">500+</div>
+    <h3>THIS IS JUST <em>THE SURFACE</em></h3>
+    <p>Behind these 15 demos there are <b>500+ original beats</b> waiting. And if none of them is exactly what you hear in your head, <b>we build it from zero</b> — custom, exclusive, yours. That's what we do.</p>
+    <a class="btn-more" href="#" id="vaultBtn">OPEN THE VAULT</a>
+  </div>
+
+  <div class="section"><h2>WHAT YOU GET</h2><div class="rule"></div></div>
+  <div class="gets">
+    <div class="get"><span class="n">01</span><b>SIGNED CONTRACT</b><span>Every beat ships with a signed exclusive agreement. Clean paperwork, zero ambiguity.</span></div>
+    <div class="get"><span class="n">02</span><b>FULL STEMS</b><span>All tracks separated and labeled. Your engineer gets everything ready to work.</span></div>
+    <div class="get"><span class="n">03</span><b>MASTERED WAV</b><span>Industry-standard master included. Ready for every platform and radio.</span></div>
+    <div class="get"><span class="n">04</span><b>WORLDWIDE RELEASE</b><span>Cleared for global distribution. Your record, your rights, your royalties.</span></div>
+  </div>
+
+  <section class="cta">
+    <div class="kicker">NEXT MOVE</div>
+    <h2>LET'S MAKE THE NEXT ONE TOGETHER.</h2>
+    <p>You already know the level. Pick a demo, or tell us what you hear in your head — and we build it. No pressure, no rush. When you're ready, we're here.</p>
+    <a class="btn" id="ctaMain" target="_blank" href="#">START THE CONVERSATION</a>
+    <div class="cta-alt">WHATSAPP — <a id="waLink" target="_blank" href="#">DIRECT LINE</a></div>
+  </section>
+
+  <footer>TERRIVOL MUSIC ENT · WORLDWIDE · MMXXVI</footer>
+</div>
+
+<script>
+// ⚙️ CONFIG
+const IG_USER = "terrivolmusic";
+const WA_NUM  = "573102123844";
+const LEAD_NAME = "STANLLEE";
+const PREVIEW_SECONDS = 90;
+
+// 15 demos — trap, rap, latino, un poco de todo
+const BEATS = [
+ { file:"/img/DU%20DE.mp3",              name:"CARBONE",      city:"PARIS",        style:"DRILL" },
+ { file:"/img/FL.mp3",                   name:"VELOURS NOIR", city:"LONDON",       style:"UK DRILL" },
+ { file:"/img/FM.mp3",                   name:"VANTABLACK",   city:"ATLANTA",      style:"TRAP" },
+ { file:"/img/LIL%20P.mp3",              name:"PHANTÔME",     city:"BERLIN",       style:"DRILL" },
+ { file:"/img/LOWWWWWWS.mp3",            name:"GRAVITÉ",      city:"TOKYO",        style:"DARK TRAP" },
+ { file:"/img/PLAZA.mp3",                name:"RIVIERA",      city:"MONACO",       style:"CINEMATIC" },
+ { file:"/img/REY.mp3",                  name:"COURONNE",     city:"LAGOS",        style:"AFRO" },
+ { file:"/img/YOUNG.mp3",                name:"L'HÉRITIER",   city:"BOGOTÁ",       style:"RAP" },
+ { file:"/img/Febrero%2001%20Goold.mp3", name:"AURUM",        city:"MIAMI",        style:"LATIN TRAP" },
+ { file:"/img/flows%20mas%20flows.mp3",  name:"CADENCIA",     city:"SAN JUAN",     style:"RAP FLOW" },
+ { file:"/img/GALX.mp3",                 name:"GALAXIE",      city:"MEDELLÍN",     style:"LATIN TRAP" },
+ { file:"/img/Guitarra%20Hot.mp3",       name:"BRASA",        city:"CDMX",         style:"GUITAR TRAP" },
+ { file:"/img/salsa%20azceasina.mp3",    name:"SALSA NOIR",   city:"CALI",         style:"SALSA URBANA" },
+ { file:"/img/salsitaa%20%21%21.mp3",    name:"AZÚCAR",       city:"LA HABANA",    style:"SALSA TRAP" },
+ { file:"/img/soy%20la%20voz.mp3",       name:"LA VOZ",       city:"BUENOS AIRES", style:"VOCAL TRAP" },
+];
+
+document.getElementById("leadName").textContent = LEAD_NAME;
+
+const t = "NEW DEMOS ◆ 15 PIECES ◆ TRAP · RAP · LATIN ◆ 500+ IN THE VAULT ◆ 100% ORIGINAL ◆ LET'S BUILD THE NEXT ONE ◆ ";
+document.getElementById("tick").innerHTML = `<span>${t}</span><span>${t}</span>`;
+
+const cont = document.getElementById("beats");
+BEATS.forEach((b,i)=>{
+  const n = String(i+1).padStart(2,'0');
+  cont.innerHTML += `
+  <div class="beat" data-i="${i}">
+    <div class="ch">${n}</div>
+    <button class="play">
+      <svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </button>
+    <div class="info">
+      <h3>${b.name}</h3>
+      <div class="tags">
+        <span class="tag city">${b.city}</span>
+        <span class="tag">${b.style}</span>
+        <span class="tag one">1 / 1</span>
+        <span class="tag one">1:30</span>
+      </div>
+    </div>
+    <canvas class="viz" width="100" height="30"></canvas>
+    <a class="acquire" href="https://ig.me/m/${IG_USER}" target="_blank">THIS ONE</a>
+    <div class="pnote">PREVIEW DONE — TELL US 🎯</div>
+    <div class="progress"></div>
+  </div>`;
+});
+
+document.getElementById("ctaMain").href = `https://ig.me/m/${IG_USER}`;
+document.getElementById("vaultBtn").href = `https://wa.me/${WA_NUM}`;
+document.getElementById("waLink").href  = `https://wa.me/${WA_NUM}`;
+
+// Anti-rip ligero
+document.addEventListener("contextmenu", e=>e.preventDefault());
+document.addEventListener("keydown", e=>{
+  if(e.key==="F12"||(e.ctrlKey&&["s","u","c"].includes(e.key.toLowerCase()))) e.preventDefault();
+});
+document.addEventListener("dragstart", e=>e.preventDefault());
+
+// Audio engine — desde 0, corte 1:30, sesión opcional
+let audio = new Audio(), ctx=null, analyser=null, dataArr=null, current=null, session=false;
+function ensureCtx(){
+  if(ctx) return;
+  ctx = new (window.AudioContext||window.webkitAudioContext)();
+  analyser = ctx.createAnalyser(); analyser.fftSize=64; analyser.smoothingTimeConstant=.82;
+  const src = ctx.createMediaElementSource(audio);
+  src.connect(analyser); analyser.connect(ctx.destination);
+  dataArr = new Uint8Array(analyser.frequencyBinCount);
+}
+document.getElementById("playAll").onclick = ()=>{ session = true; toggle(0); };
+document.querySelectorAll(".play").forEach(btn=> btn.onclick = ()=>{ session = false; toggle(+btn.closest(".beat").dataset.i); });
+
+function toggle(i){
+  const card = document.querySelector(`.beat[data-i="${i}"]`);
+  if(current===i && !audio.paused){ audio.pause(); return; }
+  ensureCtx();
+  if(ctx.state==="suspended") ctx.resume();
+  if(current!==null && current!==i) reset(document.querySelector(`.beat[data-i="${current}"]`));
+  const b = BEATS[i];
+  if(!audio.src.includes(b.file)){ audio.src = b.file; }
+  audio.currentTime = 0;
+  card.classList.remove("ended");
+  current = i; card.classList.add("playing");
+  card.querySelector(".ic-play").style.display="none";
+  card.querySelector(".ic-pause").style.display="block";
+  audio.play();
+  audio.ontimeupdate = ()=>{
+    const el = audio.currentTime;
+    card.querySelector(".progress").style.width = Math.min(100, el/PREVIEW_SECONDS*100)+"%";
+    if(el >= PREVIEW_SECONDS) endPreview(card);
+  };
+  audio.onended = ()=>{ reset(card); if(session) autoNext(); };
+}
+function autoNext(){
+  if(current===null) return;
+  const n = current+1;
+  if(n < BEATS.length) toggle(n);
+}
+function endPreview(card){
+  audio.pause();
+  card.classList.remove("playing");
+  card.classList.add("ended");
+  card.querySelector(".ic-play").style.display="block";
+  card.querySelector(".ic-pause").style.display="none";
+  card.querySelector(".progress").style.width="100%";
+  card.querySelector(".viz").getContext("2d").clearRect(0,0,100,30);
+  if(session) autoNext();
+}
+function reset(c){
+  if(!c) return;
+  c.classList.remove("playing","ended");
+  c.querySelector(".ic-play").style.display="block";
+  c.querySelector(".ic-pause").style.display="none";
+  c.querySelector(".progress").style.width="0%";
+  c.querySelector(".viz").getContext("2d").clearRect(0,0,100,30);
+}
+
+(function loop(){
+  requestAnimationFrame(loop);
+  if(!analyser || current===null || audio.paused) return;
+  analyser.getByteFrequencyData(dataArr);
+  const c = document.querySelector(`.beat[data-i="${current}"] .viz`);
+  const g = c.getContext("2d"); g.clearRect(0,0,100,30);
+  const bars=16, w=100/bars;
+  for(let i=0;i<bars;i++){
+    const v=dataArr[i]/255, h=Math.max(2,v*30);
+    g.fillStyle=`rgba(125,243,255,${.25+v*.75})`;
+    g.fillRect(i*w+1,30-h,w-2,h);
+  }
+})();
+
+const cv=document.getElementById("stars"),cx=cv.getContext("2d");let S=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight;S=Array.from({length:120},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.2+.2,a:Math.random()*6.28,s:Math.random()*.015+.004}));}
+rs();addEventListener("resize",rs);
+(function d(){cx.clearRect(0,0,cv.width,cv.height);S.forEach(st=>{st.a+=st.s;cx.globalAlpha=Math.abs(Math.sin(st.a))*.7;cx.fillStyle="#eef4ff";cx.beginPath();cx.arc(st.x,st.y,st.r,0,7);cx.fill();});requestAnimationFrame(d);})();
+</script>
+</body>
+</html>
