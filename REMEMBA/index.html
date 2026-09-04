@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REMEMBA · Urban Latino Clothing</title>
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Estilos (ruta relativa) -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="header">
+        <div class="container header__inner">
+            <div class="logo">
+                <a href="../REMEMBA/index.html" style="text-decoration:none;color:#fff;">
+                    <h1>REMEMBA</h1>
+                    <span class="tagline">urban latino clothing</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#coleccion">Colección</a></li>
+                    <li><a href="#music">Música</a></li>
+                    <li><a href="#alianzas">Alianzas</a></li>
+                    <li><a href="../artistas.html">Artistas</a></li> <!-- Enlace a Terrivol -->
+                </ul>
+            </nav>
+            <div class="header__actions">
+                <a href="#" class="cart-icon" id="cartToggle">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="hero__overlay"></div>
+        <div class="container hero__content">
+            <h2>STREETWEAR <br /> <span>GLOBAL</span></h2>
+            <p>Beats · Cultura · Flow</p>
+            <a href="#coleccion" class="btn-primary">Explorar colección</a>
+        </div>
+    </section>
+
+    <!-- ========== COLECCIÓN ========== -->
+    <section id="coleccion" class="coleccion">
+        <div class="container">
+            <h2 class="section-title">Colección <span>Drop #1</span></h2>
+            <div class="product-grid" id="productGrid">
+                <!-- Los productos se inyectan con JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MÚSICA / TERRIVOL MUSIC ========== -->
+    <section id="music" class="music-section">
+        <div class="container">
+            <h2 class="section-title">Alianza <span>Terrivol Music</span></h2>
+            <div class="music-grid">
+                <div class="music-card">
+                    <i class="fas fa-headphones"></i>
+                    <h3>Playlist Oficial</h3>
+                    <p>El sonido de la calle. Hip-hop, beats latinos y flow underground.</p>
+                    <a href="#" class="btn-secondary">Escuchar</a>
+                </div>
+                <div class="music-card">
+                    <i class="fas fa-microphone-alt"></i>
+                    <h3>Artistas REMEMBA</h3>
+                    <p>Talento emergente que viste nuestra ropa y mueve la cultura.</p>
+                    <a href="../artistas.html" class="btn-secondary">Ver artistas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ALIANZAS ========== -->
+    <section id="alianzas" class="alianzas">
+        <div class="container">
+            <h2 class="section-title">Alianzas <span>Globales</span></h2>
+            <div class="alianzas-grid">
+                <div class="alianza-item">🏆 Terrivol Music</div>
+                <div class="alianza-item">📦 Eprolo Dropshipping</div>
+                <div class="alianza-item">🎨 Cagta Flex</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CARRITO (Sidebar) ========== -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Tu bolsa</h3>
+            <button id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Aún no hay productos</p>
+        </div>
+        <div class="cart-footer">
+            <p><strong>Total:</strong> <span id="cartTotal">$0.00</span></p>
+            <button class="btn-primary btn-block">Proceder al pago</button>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 REMEMBA · Urban Latino Clothing · Hecho con <i class="fas fa-heart"></i> desde la calle</p>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="js/main.js"></script>
+</body>
+</html>
