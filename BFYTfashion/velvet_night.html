@@ -62,7 +62,6 @@ td:first-child{font-family:'Montserrat';font-weight:600;color:var(--cyan)}
 .card h3{font-size:14px;letter-spacing:.2em;margin-bottom:14px}
 .card p{font-size:13px;color:var(--muted);line-height:1.8}
 .secure{margin-top:26px;text-align:center;font-size:11px;letter-spacing:.3em;color:var(--muted)}
-/* ORDER PANEL */
 .order{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;border:1px solid var(--line);background:linear-gradient(140deg,rgba(123,44,191,.12),rgba(0,245,255,.05));padding:60px}
 .steps{list-style:none;margin-top:26px}
 .steps li{padding:14px 0;border-bottom:1px solid var(--line);font-size:13px;color:#d8d8de;letter-spacing:.08em}
@@ -96,7 +95,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 </nav>
 
 <header class="hero">
-  <img class="bg" src="img/Model_posing_on_spiral_staircase_2K_202609041336.jpg" alt="Velvet Night editorial">
+  <img class="bg" data-img="Model_posing_on_spiral_staircase_2K_202609041336" alt="Velvet Night editorial">
   <div class="inner">
     <div class="eyebrow">BFYT WORLD — DROP 001 — LIMITED 50 UNITS</div>
     <h1>Velvet<br>Night</h1>
@@ -124,7 +123,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
         <li>High-waisted sculpting fit</li>
       </ul>
     </div>
-    <div class="frame"><img src="img/Professional_YouTube_thumbnail_photo_of_202606191801.jpg" alt="BFYT campaign"></div>
+    <div class="frame"><img data-img="Professional_YouTube_thumbnail_photo_of_202606191801" alt="BFYT campaign"></div>
   </div>
 </section>
 
@@ -132,12 +131,12 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="kicker reveal">THE CAMPAIGN</div>
   <h2 class="reveal">Shot in the dark.</h2>
   <div class="grid reveal">
-    <figure><img src="img/Female_model_posing_in_denim_2K_202609041319.jpg" alt="Studio full body"></figure>
-    <figure><img src="img/Female_model_sitting_on_stool_2K_202609041346.jpg" alt="Sitting pose"></figure>
-    <figure><img src="img/Female_model_walking_city_street_2K_202609041327.jpg" alt="Street"></figure>
-    <figure><img src="img/17888297352626.jpg" alt="Lifestyle interior"></figure>
-    <figure><img src="img/Denim_skirt_on_invisible_mannequin_2K_202609041323.jpg" alt="Product mannequin"></figure>
-    <figure><img src="img/Denim_skirt_on_hanger_2K_202609041344.jpg" alt="Product hanger"></figure>
+    <figure><img data-img="Female_model_posing_in_denim_2K_202609041319" alt="Studio full body"></figure>
+    <figure><img data-img="Female_model_sitting_on_stool_2K_202609041346" alt="Sitting pose"></figure>
+    <figure><img data-img="Female_model_walking_city_street_2K_202609041327" alt="Street"></figure>
+    <figure><img data-img="17888297352626" alt="Lifestyle interior"></figure>
+    <figure><img data-img="Denim_skirt_on_invisible_mannequin_2K_202609041323" alt="Product mannequin"></figure>
+    <figure><img data-img="Denim_skirt_on_hanger_2K_202609041344" alt="Product hanger"></figure>
   </div>
 </section>
 
@@ -173,10 +172,10 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
     <div>
       <div class="kicker">STEP 1 OF 2</div>
       <h2>Reserve your size</h2>
-      <p style="color:#c9c9d2;line-height:1.8">Leave your details and we lock your unit for 30 minutes. You complete shipping address & payment securely at checkout.</p>
+      <p style="color:#c9c9d2;line-height:1.8">Your shipping details are locked here. Checkout is payment-only — 30 seconds.</p>
       <ul class="steps">
-        <li><b>01</b> Your data → we hold your size</li>
-        <li><b>02</b> Secure payment at checkout (Lemon Squeezy)</li>
+        <li><b>01</b> Your data + shipping → we lock your size</li>
+        <li><b>02</b> Payment-only secure checkout (Lemon Squeezy)</li>
         <li><b>03</b> Tracking number in 2–3 business days</li>
       </ul>
     </div>
@@ -193,6 +192,16 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
           <option>Colombia</option><option>Spain</option><option>United Kingdom</option>
           <option>Other</option>
         </select>
+        <label>SHIPPING ADDRESS</label>
+        <input type="text" name="address" required placeholder="Street, number, apt">
+        <div class="row2">
+          <div><label>CITY</label>
+            <input type="text" name="city" required placeholder="City">
+          </div>
+          <div><label>ZIP CODE</label>
+            <input type="text" name="zip" required placeholder="00000">
+          </div>
+        </div>
         <div class="row2">
           <div><label>SIZE</label>
             <select name="size" required>
@@ -207,7 +216,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
       </form>
       <div id="order-ok">
         <div class="lock">SIZE LOCKED ✓</div>
-        <p>Your unit is held for 30 minutes.<br>Complete shipping & payment now.</p>
+        <p>Your unit and shipping are locked.<br>Complete payment now — 30 seconds.</p>
         <a class="btn checkout-link" href="#">Complete Payment — $69.99</a>
       </div>
     </div>
@@ -225,7 +234,22 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 <script>
 // ===== CONFIG ÚNICA =====
 const CHECKOUT_URL = "https://terrivolmusicentertainment.lemonsqueezy.com/products/REEMPLAZA-POR-TU-PRODUCT-URL";
-const FORMSPREE_ID = "TU_ID_FORMSPREE"; // deja vacío "" si aún no lo tienes: el flujo igual redirige al checkout
+const FORMSPREE_ID = ""; // pega tu ID de Formspree cuando lo tengas
+const IMG_BASE = "/img/"; // carpeta de imágenes desde la raíz del sitio
+
+// ===== CARGADOR ANTI-FALLAS: prueba .jpg → .jpeg → .png → .webp =====
+const EXT = [".jpg",".jpeg",".png",".webp"];
+document.querySelectorAll("img[data-img]").forEach(img=>{
+  let i = 0;
+  const tryNext = ()=>{
+    if(i >= EXT.length){ img.style.opacity = .15; return; }
+    img.src = IMG_BASE + img.dataset.img + EXT[i++];
+  };
+  img.onerror = tryNext;
+  tryNext();
+});
+
+// Botones de checkout
 document.querySelectorAll(".checkout-link").forEach(a=>a.href=CHECKOUT_URL);
 
 // Countdown escasez 7 días
@@ -235,16 +259,16 @@ setInterval(()=>{let d=Math.max(0,end-Date.now());
 const dd=Math.floor(d/864e5),hh=Math.floor(d%864e5/36e5),mm=Math.floor(d%36e5/6e4),ss=Math.floor(d%6e4/1e3);
 document.getElementById("cd").textContent=`${dd}D ${hh}H ${mm}M ${ss}S`;},1000);
 
-// Reveal scroll
+// Reveal on scroll
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("on")),{threshold:.15});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 
-// Lightbox
+// Lightbox galería
 const lb=document.getElementById("lb");
 document.querySelectorAll(".grid img").forEach(i=>i.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=i.src;});
 lb.onclick=()=>lb.style.display="none";
 
-// Formulario reserva → lead + checkout
+// Formulario reserva (datos de envío) → lead + checkout
 document.getElementById("order-form").onsubmit=async e=>{
   e.preventDefault();
   const f=e.target;
