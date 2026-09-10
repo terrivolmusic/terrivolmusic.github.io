@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELVET NIGHT — DROP 001 | BFYT WORLD</title>
+<meta name="description" content="Asymmetrical fringed denim skirt. BFYT World DROP 001. Limited 50 units. Reserve your size.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0F;--purple:#7B2CBF;--cyan:#00F5FF;--txt:#F5F5F7;--muted:#9A9AA5;--line:rgba(255,255,255,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden}
+h1,h2,h3{font-family:'Montserrat',sans-serif;text-transform:uppercase}
+img{display:block;width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.05;z-index:99;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E")}
+nav{position:fixed;top:0;width:100%;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;backdrop-filter:blur(14px);background:rgba(10,10,15,.55);border-bottom:1px solid var(--line)}
+.logo{font-family:'Montserrat';font-weight:800;letter-spacing:.25em;font-size:14px}
+.logo span{color:var(--cyan)}
+nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero img.bg{position:absolute;inset:0;height:100%;object-fit:cover;filter:brightness(.45) contrast(1.1)}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(123,44,191,.35),transparent 60%),linear-gradient(to top,var(--bg) 2%,transparent 40%)}
+.hero .inner{position:relative;z-index:2;padding:120px 24px 80px}
+.eyebrow{font-size:11px;letter-spacing:.45em;color:var(--cyan);margin-bottom:22px}
+.hero h1{font-size:clamp(52px,10vw,120px);font-weight:800;letter-spacing:.06em;line-height:.95;text-shadow:0 0 60px rgba(123,44,191,.6)}
+.hero p.sub{margin:20px auto 0;max-width:520px;color:#d8d8de;font-size:16px}
+.price-line{margin:34px 0 10px;font-family:'Montserrat';font-weight:600;font-size:26px}
+.price-line s{color:var(--muted);font-weight:300;font-size:18px;margin-right:14px}
+.price-line em{font-style:normal;color:var(--cyan)}
+.scarcity{font-size:11px;letter-spacing:.3em;color:var(--muted);margin-bottom:34px}
+.scarcity b{color:var(--txt)}
+.btn{display:inline-block;background:var(--txt);color:#000;font-family:'Montserrat';font-weight:600;font-size:13px;letter-spacing:.25em;text-transform:uppercase;padding:18px 44px;border:none;cursor:pointer;transition:.3s}
+.btn:hover{box-shadow:0 0 40px rgba(0,245,255,.45);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line);margin-left:14px}
+.btn.ghost:hover{border-color:var(--cyan)}
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;white-space:nowrap}
+.marquee div{display:inline-block;animation:mq 22s linear infinite;font-family:'Montserrat';font-size:12px;letter-spacing:.4em;color:var(--muted)}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+section{padding:110px 0}
+.kicker{font-size:11px;letter-spacing:.45em;color:#b06cf0;margin-bottom:16px}
+h2{font-size:clamp(30px,5vw,52px);font-weight:800;letter-spacing:.05em;margin-bottom:28px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.two p{color:#c9c9d2;line-height:1.9;margin-bottom:18px}
+.specs{list-style:none;margin-top:26px}
+.specs li{padding:12px 0;border-bottom:1px solid var(--line);font-size:13px;letter-spacing:.12em;color:#d8d8de}
+.specs li::before{content:"— ";color:var(--cyan)}
+.frame{position:relative}
+.frame::before{content:"";position:absolute;inset:-14px;border:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid figure{overflow:hidden;cursor:pointer;aspect-ratio:3/4}
+.grid img{height:100%;object-fit:cover;transition:.6s}
+.grid figure:hover img{transform:scale(1.05);filter:brightness(1.1)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:14px 10px;text-align:center;border-bottom:1px solid var(--line);letter-spacing:.08em}
+th{font-family:'Montserrat';font-size:11px;letter-spacing:.3em;color:var(--muted)}
+td:first-child{font-family:'Montserrat';font-weight:600;color:var(--cyan)}
+.note{margin-top:18px;font-size:12px;color:var(--muted);letter-spacing:.08em}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{border:1px solid var(--line);background:rgba(255,255,255,.02);padding:36px 28px}
+.card h3{font-size:14px;letter-spacing:.2em;margin-bottom:14px}
+.card p{font-size:13px;color:var(--muted);line-height:1.8}
+.secure{margin-top:26px;text-align:center;font-size:11px;letter-spacing:.3em;color:var(--muted)}
+/* ORDER PANEL */
+.order{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;border:1px solid var(--line);background:linear-gradient(140deg,rgba(123,44,191,.12),rgba(0,245,255,.05));padding:60px}
+.steps{list-style:none;margin-top:26px}
+.steps li{padding:14px 0;border-bottom:1px solid var(--line);font-size:13px;color:#d8d8de;letter-spacing:.08em}
+.steps b{color:var(--cyan);font-family:'Montserrat';margin-right:10px}
+form.of{display:flex;flex-direction:column;gap:12px}
+form.of label{font-size:10px;letter-spacing:.3em;color:var(--muted);margin-top:8px}
+form.of input,form.of select{background:rgba(0,0,0,.45);border:1px solid var(--line);color:var(--txt);padding:15px 16px;font-family:'Inter';font-size:14px;outline:none;width:100%}
+form.of input:focus,form.of select:focus{border-color:var(--cyan)}
+form.of select option{background:#0A0A0F}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#order-ok{display:none;text-align:center;padding:40px 0}
+#order-ok .lock{font-family:'Montserrat';font-weight:800;font-size:26px;letter-spacing:.15em;color:var(--cyan);text-shadow:0 0 30px rgba(0,245,255,.5);margin-bottom:14px}
+#order-ok p{color:var(--muted);font-size:13px;margin-bottom:26px}
+.sticky{position:fixed;bottom:0;width:100%;z-index:60;display:none;justify-content:space-between;align-items:center;padding:14px 20px;backdrop-filter:blur(14px);background:rgba(10,10,15,.8);border-top:1px solid var(--line)}
+.sticky .p{font-family:'Montserrat';font-weight:600}
+.sticky .btn{padding:14px 26px}
+footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;color:var(--muted);border-top:1px solid var(--line)}
+#lb{position:fixed;inset:0;background:rgba(5,5,8,.94);z-index:100;display:none;align-items:center;justify-content:center;padding:4vh}
+#lb img{max-height:92vh;width:auto;max-width:92vw}
+.reveal{opacity:0;transform:translateY(28px);transition:.9s ease}
+.reveal.on{opacity:1;transform:none}
+@media(max-width:900px){.two,.cards,.order{grid-template-columns:1fr}.order{padding:36px 24px}.grid{grid-template-columns:repeat(2,1fr)}.sticky{display:flex}.btn.ghost{margin:14px 0 0}}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<nav>
+  <div class="logo">BFYT<span> WORLD</span></div>
+  <div class="tag">DROP 001 — LIVE</div>
+</nav>
+
+<header class="hero">
+  <img class="bg" src="img/Model_posing_on_spiral_staircase_2K_202609041336.jpg" alt="Velvet Night editorial">
+  <div class="inner">
+    <div class="eyebrow">BFYT WORLD — DROP 001 — LIMITED 50 UNITS</div>
+    <h1>Velvet<br>Night</h1>
+    <p class="sub">Asymmetrical raw-edge denim with hand-finished fringe. High-low dramatic flow engineered for the night.</p>
+    <div class="price-line"><s>$99.00</s> <em>$69.99</em></div>
+    <div class="scarcity">DROP PRICE ENDS IN <b id="cd">--:--:--:--</b></div>
+    <a class="btn" href="#order">Reserve Your Size</a>
+    <a class="btn ghost checkout-link" href="#">Buy Direct</a>
+  </div>
+</header>
+
+<div class="marquee"><div>BFYT WORLD — WHERE SOUND DRESSES — VELVET NIGHT — DROP 001 — LIMITED 50 —&nbsp;BFYT WORLD — WHERE SOUND DRESSES — VELVET NIGHT — DROP 001 — LIMITED 50 —&nbsp;</div></div>
+
+<section class="wrap">
+  <div class="two reveal">
+    <div>
+      <div class="kicker">THE PIECE</div>
+      <h2>Not a skirt.<br>A statement.</h2>
+      <p>Cut for nights that feel like another dimension. High-low dramatic flow, distressed raw-edge fringe and a silhouette that moves before you do.</p>
+      <p>Street-luxury denim, controlled texture, zero compromises. Fifty units. One drop. No restock.</p>
+      <ul class="specs">
+        <li>Asymmetrical split high-low hem</li>
+        <li>Raw-edge fringe, hand-finished</li>
+        <li>Mid-length · solid blue denim blend</li>
+        <li>High-waisted sculpting fit</li>
+      </ul>
+    </div>
+    <div class="frame"><img src="img/Professional_YouTube_thumbnail_photo_of_202606191801.jpg" alt="BFYT campaign"></div>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <div class="kicker reveal">THE CAMPAIGN</div>
+  <h2 class="reveal">Shot in the dark.</h2>
+  <div class="grid reveal">
+    <figure><img src="img/Female_model_posing_in_denim_2K_202609041319.jpg" alt="Studio full body"></figure>
+    <figure><img src="img/Female_model_sitting_on_stool_2K_202609041346.jpg" alt="Sitting pose"></figure>
+    <figure><img src="img/Female_model_walking_city_street_2K_202609041327.jpg" alt="Street"></figure>
+    <figure><img src="img/17888297352626.jpg" alt="Lifestyle interior"></figure>
+    <figure><img src="img/Denim_skirt_on_invisible_mannequin_2K_202609041323.jpg" alt="Product mannequin"></figure>
+    <figure><img src="img/Denim_skirt_on_hanger_2K_202609041344.jpg" alt="Product hanger"></figure>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <div class="kicker reveal">FIND YOUR FIT</div>
+  <h2 class="reveal">Size guide</h2>
+  <div class="reveal">
+  <table>
+    <tr><th>SIZE</th><th>WAIST</th><th>HIP</th><th>LENGTH</th></tr>
+    <tr><td>S</td><td>72 cm / 28.3"</td><td>92 cm / 36.2"</td><td>103 cm / 40.5"</td></tr>
+    <tr><td>M</td><td>76 cm / 29.9"</td><td>96 cm / 37.8"</td><td>104 cm / 40.9"</td></tr>
+    <tr><td>L</td><td>80 cm / 31.5"</td><td>100 cm / 39.4"</td><td>105 cm / 41.3"</td></tr>
+    <tr><td>XL</td><td>84 cm / 33.1"</td><td>104 cm / 41.0"</td><td>106 cm / 41.7"</td></tr>
+    <tr><td>XXL</td><td>88 cm / 34.7"</td><td>108 cm / 42.5"</td><td>107 cm / 42.1"</td></tr>
+  </table>
+  <p class="note">HIGH-WAISTED ASYMMETRIC FIT · BETWEEN SIZES? SIZE UP FOR RELAXED DRAPE.</p>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <div class="kicker reveal">SHIPPING & TRUST</div>
+  <h2 class="reveal">Zero guesses.</h2>
+  <div class="cards reveal">
+    <div class="card"><h3>Processing</h3><p>2–3 business days with fulfillment tracking from dispatch.</p></div>
+    <div class="card"><h3>Tracked Delivery</h3><p>10–15 days worldwide. Tracking number sent to your email.</p></div>
+    <div class="card"><h3>Returns</h3><p>7-day unconditional returns. If it's not the one, send it back.</p></div>
+  </div>
+  <p class="secure">SECURE CHECKOUT POWERED BY LEMON SQUEEZY · WORLDWIDE SHIPPING</p>
+</section>
+
+<section class="wrap" style="padding-top:0" id="order">
+  <div class="order reveal">
+    <div>
+      <div class="kicker">STEP 1 OF 2</div>
+      <h2>Reserve your size</h2>
+      <p style="color:#c9c9d2;line-height:1.8">Leave your details and we lock your unit for 30 minutes. You complete shipping address & payment securely at checkout.</p>
+      <ul class="steps">
+        <li><b>01</b> Your data → we hold your size</li>
+        <li><b>02</b> Secure payment at checkout (Lemon Squeezy)</li>
+        <li><b>03</b> Tracking number in 2–3 business days</li>
+      </ul>
+    </div>
+    <div>
+      <form class="of" id="order-form">
+        <label>FULL NAME</label>
+        <input type="text" name="name" required placeholder="Your name">
+        <label>EMAIL</label>
+        <input type="email" name="email" required placeholder="your@email.com">
+        <label>COUNTRY</label>
+        <select name="country" required>
+          <option value="">Select…</option>
+          <option>United States</option><option>Canada</option><option>Mexico</option>
+          <option>Colombia</option><option>Spain</option><option>United Kingdom</option>
+          <option>Other</option>
+        </select>
+        <div class="row2">
+          <div><label>SIZE</label>
+            <select name="size" required>
+              <option value="">…</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+            </select>
+          </div>
+          <div><label>QTY</label>
+            <select name="qty"><option>1</option><option>2</option><option>3</option></select>
+          </div>
+        </div>
+        <button class="btn" type="submit" style="margin-top:18px">Continue to Payment</button>
+      </form>
+      <div id="order-ok">
+        <div class="lock">SIZE LOCKED ✓</div>
+        <p>Your unit is held for 30 minutes.<br>Complete shipping & payment now.</p>
+        <a class="btn checkout-link" href="#">Complete Payment — $69.99</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sticky">
+  <div class="p">VELVET NIGHT — $69.99</div>
+  <a class="btn" href="#order">Reserve</a>
+</div>
+
+<footer>© 2026 BFYT WORLD — TERRIVOL MUSIC ENT · WHERE SOUND DRESSES</footer>
+<div id="lb"><img src="" alt=""></div>
+
+<script>
+// ===== CONFIG ÚNICA =====
+const CHECKOUT_URL = "https://terrivolmusicentertainment.lemonsqueezy.com/products/REEMPLAZA-POR-TU-PRODUCT-URL";
+const FORMSPREE_ID = "TU_ID_FORMSPREE"; // deja vacío "" si aún no lo tienes: el flujo igual redirige al checkout
+document.querySelectorAll(".checkout-link").forEach(a=>a.href=CHECKOUT_URL);
+
+// Countdown escasez 7 días
+let end=localStorage.getItem("bfytDropEnd");
+if(!end){end=Date.now()+7*24*3600*1000;localStorage.setItem("bfytDropEnd",end);}
+setInterval(()=>{let d=Math.max(0,end-Date.now());
+const dd=Math.floor(d/864e5),hh=Math.floor(d%864e5/36e5),mm=Math.floor(d%36e5/6e4),ss=Math.floor(d%6e4/1e3);
+document.getElementById("cd").textContent=`${dd}D ${hh}H ${mm}M ${ss}S`;},1000);
+
+// Reveal scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("on")),{threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+// Lightbox
+const lb=document.getElementById("lb");
+document.querySelectorAll(".grid img").forEach(i=>i.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=i.src;});
+lb.onclick=()=>lb.style.display="none";
+
+// Formulario reserva → lead + checkout
+document.getElementById("order-form").onsubmit=async e=>{
+  e.preventDefault();
+  const f=e.target;
+  if(FORMSPREE_ID){
+    try{await fetch("https://formspree.io/f/"+FORMSPREE_ID,{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}});}catch(err){}
+  }
+  f.style.display="none";
+  document.getElementById("order-ok").style.display="block";
+};
+</script>
+</body>
+</html>
