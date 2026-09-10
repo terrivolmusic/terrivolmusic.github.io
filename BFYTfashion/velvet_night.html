@@ -34,6 +34,8 @@ nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
 .btn{display:inline-block;background:var(--txt);color:#000;font-family:'Montserrat';font-weight:600;font-size:13px;letter-spacing:.25em;text-transform:uppercase;padding:18px 44px;border:none;cursor:pointer;transition:.3s}
 .btn:hover{box-shadow:0 0 40px rgba(0,245,255,.45);transform:translateY(-2px)}
 .btn:disabled{opacity:.5;cursor:wait;transform:none}
+.btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--cyan)}
 .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;white-space:nowrap}
 .marquee div{display:inline-block;animation:mq 22s linear infinite;font-family:'Montserrat';font-size:12px;letter-spacing:.4em;color:var(--muted)}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -220,6 +222,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
         <div class="lock">SIZE LOCKED ✓</div>
         <p>Your unit and shipping are locked.<br>Redirecting to secure payment…</p>
         <a class="btn checkout-link" href="#">Complete Payment — $69.99</a>
+        <button type="button" id="reset-form" class="btn ghost" style="margin-top:18px; border:1px solid var(--cyan); color:var(--cyan); background:transparent; width:100%; font-size:11px; letter-spacing:.2em;">+ ADD ANOTHER / DIFFERENT ADDRESS</button>
       </div>
     </div>
   </div>
@@ -238,8 +241,9 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 const CHECKOUT_URL = "https://terrivolmusicentertainment.lemonsqueezy.com/checkout/buy/960e100a-9209-46dd-aa45-758b55ef936f";
 const FORMSPREE_ID = "mqpknlqn";
 const IMG_BASE = "/img/";
+let redirectTimer = null;
 
-// ===== IMÁGENES ANTI-FALLAS =====
+// ===== IMÁGENES ANTI-FALLAS: prueba .jpg .jpeg .png .webp =====
 const EXT = [".jpg",".jpeg",".png",".webp"];
 document.querySelectorAll("img[data-img]").forEach(img=>{
   let i = 0;
@@ -275,7 +279,7 @@ document.getElementById("order-form").onsubmit=async e=>{
   e.preventDefault();
   const f=e.target;
   const errBox=document.getElementById("form-err");
-  const btn=f.querySelector("button");
+  const btn=f.querySelector("button[type='submit']");
   errBox.style.display="none";
 
   if(!f.checkValidity()){
@@ -291,7 +295,7 @@ document.getElementById("order-form").onsubmit=async e=>{
     if(res.ok){
       f.style.display="none";
       document.getElementById("order-ok").style.display="block";
-      setTimeout(()=>{ window.location.href = CHECKOUT_URL; }, 2500);
+      redirectTimer=setTimeout(()=>{ window.location.href=CHECKOUT_URL; },2500);
     }else{
       const data=await res.json().catch(()=>null);
       const msgs=(data&&data.errors||[]).map(er=>er.message).join(" · ");
@@ -304,6 +308,28 @@ document.getElementById("order-form").onsubmit=async e=>{
   }
   btn.disabled=false; btn.textContent="Continue to Payment";
 };
+
+// ===== NUEVO FORMULARIO (OTRO PAÍS / REGALO / CORRECCIÓN) =====
+const resetForm = () => {
+  if(redirectTimer){ clearTimeout(redirectTimer); redirectTimer=null; }
+  const f=document.getElementById("order-form");
+  document.getElementById("order-ok").style.display="none";
+  document.getElementById("form-err").style.display="none";
+  f.reset();
+  f.style.display="flex";
+};
+
+document.getElementById("reset-form").onclick = () => {
+  resetForm();
+  document.getElementById("order").scrollIntoView({behavior:"smooth"});
+};
+
+document.querySelectorAll('a[href="#order"]').forEach(link=>{
+  link.addEventListener("click", ()=>{
+    const f=document.getElementById("order-form");
+    if(f.style.display==="none"){ resetForm(); }
+  });
+});
 </script>
 </body>
 </html>
