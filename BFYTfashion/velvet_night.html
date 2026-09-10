@@ -34,8 +34,6 @@ nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
 .btn{display:inline-block;background:var(--txt);color:#000;font-family:'Montserrat';font-weight:600;font-size:13px;letter-spacing:.25em;text-transform:uppercase;padding:18px 44px;border:none;cursor:pointer;transition:.3s}
 .btn:hover{box-shadow:0 0 40px rgba(0,245,255,.45);transform:translateY(-2px)}
 .btn:disabled{opacity:.5;cursor:wait;transform:none}
-.btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line);margin-left:14px}
-.btn.ghost:hover{border-color:var(--cyan)}
 .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;white-space:nowrap}
 .marquee div{display:inline-block;animation:mq 22s linear infinite;font-family:'Montserrat';font-size:12px;letter-spacing:.4em;color:var(--muted)}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -85,7 +83,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 #lb img{max-height:92vh;width:auto;max-width:92vw}
 .reveal{opacity:0;transform:translateY(28px);transition:.9s ease}
 .reveal.on{opacity:1;transform:none}
-@media(max-width:900px){.two,.cards,.order{grid-template-columns:1fr}.order{padding:36px 24px}.grid{grid-template-columns:repeat(2,1fr)}.sticky{display:flex}.btn.ghost{margin:14px 0 0}}
+@media(max-width:900px){.two,.cards,.order{grid-template-columns:1fr}.order{padding:36px 24px}.grid{grid-template-columns:repeat(2,1fr)}.sticky{display:flex}}
 </style>
 </head>
 <body>
@@ -105,7 +103,6 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
     <div class="price-line"><s>$99.00</s> <em>$69.99</em></div>
     <div class="scarcity">DROP PRICE ENDS IN <b id="cd">--:--:--:--</b></div>
     <a class="btn" href="#order">Reserve Your Size</a>
-    <a class="btn ghost checkout-link" href="#">Buy Direct</a>
   </div>
 </header>
 
@@ -134,4 +131,179 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <h2 class="reveal">Shot in the dark.</h2>
   <div class="grid reveal">
     <figure><img data-img="Female_model_posing_in_denim_2K_202609041319" alt="Studio full body"></figure>
-    <figure><img data-img="Female_model_sitting_on_stool_2K_202609041346" alt="Sitting pose"></figure
+    <figure><img data-img="Female_model_sitting_on_stool_2K_202609041346" alt="Sitting pose"></figure>
+    <figure><img data-img="Female_model_walking_city_street_2K_202609041327" alt="Street"></figure>
+    <figure><img data-img="17888297352626" alt="Lifestyle interior"></figure>
+    <figure><img data-img="Denim_skirt_on_invisible_mannequin_2K_202609041323" alt="Product mannequin"></figure>
+    <figure><img data-img="Denim_skirt_on_hanger_2K_202609041344" alt="Product hanger"></figure>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <div class="kicker reveal">FIND YOUR FIT</div>
+  <h2 class="reveal">Size guide</h2>
+  <div class="reveal">
+  <table>
+    <tr><th>SIZE</th><th>WAIST</th><th>HIP</th><th>LENGTH</th></tr>
+    <tr><td>S</td><td>72 cm / 28.3"</td><td>92 cm / 36.2"</td><td>103 cm / 40.5"</td></tr>
+    <tr><td>M</td><td>76 cm / 29.9"</td><td>96 cm / 37.8"</td><td>104 cm / 40.9"</td></tr>
+    <tr><td>L</td><td>80 cm / 31.5"</td><td>100 cm / 39.4"</td><td>105 cm / 41.3"</td></tr>
+    <tr><td>XL</td><td>84 cm / 33.1"</td><td>104 cm / 41.0"</td><td>106 cm / 41.7"</td></tr>
+    <tr><td>XXL</td><td>88 cm / 34.7"</td><td>108 cm / 42.5"</td><td>107 cm / 42.1"</td></tr>
+  </table>
+  <p class="note">HIGH-WAISTED ASYMMETRIC FIT · BETWEEN SIZES? SIZE UP FOR RELAXED DRAPE.</p>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <div class="kicker reveal">SHIPPING & TRUST</div>
+  <h2 class="reveal">Zero guesses.</h2>
+  <div class="cards reveal">
+    <div class="card"><h3>Processing</h3><p>2–3 business days with fulfillment tracking from dispatch.</p></div>
+    <div class="card"><h3>Tracked Delivery</h3><p>10–15 days worldwide. Tracking number sent to your email.</p></div>
+    <div class="card"><h3>Returns</h3><p>7-day unconditional returns. If it's not the one, send it back.</p></div>
+  </div>
+  <p class="secure">SECURE CHECKOUT POWERED BY LEMON SQUEEZY · WORLDWIDE SHIPPING</p>
+</section>
+
+<section class="wrap" style="padding-top:0" id="order">
+  <div class="order reveal">
+    <div>
+      <div class="kicker">STEP 1 OF 2</div>
+      <h2>Reserve your size</h2>
+      <p style="color:#c9c9d2;line-height:1.8">Lock your unit and shipping here. You'll be redirected to secure payment automatically.</p>
+      <ul class="steps">
+        <li><b>01</b> Your data + shipping → we lock your size</li>
+        <li><b>02</b> Auto-redirect to secure payment (Lemon Squeezy)</li>
+        <li><b>03</b> Tracking number in 2–3 business days</li>
+      </ul>
+    </div>
+    <div>
+      <form class="of" id="order-form" novalidate>
+        <label>FULL NAME</label>
+        <input type="text" name="name" required maxlength="80" placeholder="Your name">
+        <label>EMAIL</label>
+        <input type="email" name="email" required placeholder="your@email.com">
+        <label>COUNTRY</label>
+        <select name="country" required>
+          <option value="">Select…</option>
+          <option>United States</option><option>Canada</option><option>Mexico</option>
+          <option>Colombia</option><option>Spain</option><option>United Kingdom</option>
+          <option>Other</option>
+        </select>
+        <label>SHIPPING ADDRESS</label>
+        <input type="text" name="address" required maxlength="120" placeholder="Street, number, apt">
+        <div class="row2">
+          <div><label>CITY</label>
+            <input type="text" name="city" required placeholder="City">
+          </div>
+          <div><label>ZIP CODE</label>
+            <input type="text" name="zip" required maxlength="10" placeholder="00000">
+          </div>
+        </div>
+        <div class="row2">
+          <div><label>SIZE</label>
+            <select name="size" required>
+              <option value="">…</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+            </select>
+          </div>
+          <div><label>QTY</label>
+            <select name="qty" required>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            </select>
+          </div>
+        </div>
+        <div id="form-err"></div>
+        <button class="btn" type="submit" style="margin-top:18px">Continue to Payment</button>
+      </form>
+      <div id="order-ok">
+        <div class="lock">SIZE LOCKED ✓</div>
+        <p>Your unit and shipping are locked.<br>Redirecting to secure payment…</p>
+        <a class="btn checkout-link" href="#">Complete Payment — $69.99</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sticky">
+  <div class="p">VELVET NIGHT — $69.99</div>
+  <a class="btn" href="#order">Reserve</a>
+</div>
+
+<footer>© 2026 BFYT WORLD — TERRIVOL MUSIC ENT · WHERE SOUND DRESSES</footer>
+<div id="lb"><img src="" alt=""></div>
+
+<script>
+// ===== CONFIG =====
+const CHECKOUT_URL = "https://terrivolmusicentertainment.lemonsqueezy.com/checkout/buy/960e100a-9209-46dd-aa45-758b55ef936f";
+const FORMSPREE_ID = "mqpknlqn";
+const IMG_BASE = "/img/";
+
+// ===== IMÁGENES ANTI-FALLAS =====
+const EXT = [".jpg",".jpeg",".png",".webp"];
+document.querySelectorAll("img[data-img]").forEach(img=>{
+  let i = 0;
+  const tryNext = ()=>{
+    if(i >= EXT.length){ img.style.opacity = .15; return; }
+    img.src = IMG_BASE + img.dataset.img + EXT[i++];
+  };
+  img.onerror = tryNext;
+  tryNext();
+});
+
+// Botón de pago manual (respaldo)
+document.querySelectorAll(".checkout-link").forEach(a=>a.href=CHECKOUT_URL);
+
+// Countdown escasez 7 días
+let end=localStorage.getItem("bfytDropEnd");
+if(!end){end=Date.now()+7*24*3600*1000;localStorage.setItem("bfytDropEnd",end);}
+setInterval(()=>{let d=Math.max(0,end-Date.now());
+const dd=Math.floor(d/864e5),hh=Math.floor(d%864e5/36e5),mm=Math.floor(d%36e5/6e4),ss=Math.floor(d%6e4/1e3);
+document.getElementById("cd").textContent=`${dd}D ${hh}H ${mm}M ${ss}S`;},1000);
+
+// Reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("on")),{threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+// Lightbox galería
+const lb=document.getElementById("lb");
+document.querySelectorAll(".grid img").forEach(i=>i.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=i.src;});
+lb.onclick=()=>lb.style.display="none";
+
+// ===== FORMULARIO → FORMSPREE → AUTO-REDIRECT AL PAGO =====
+document.getElementById("order-form").onsubmit=async e=>{
+  e.preventDefault();
+  const f=e.target;
+  const errBox=document.getElementById("form-err");
+  const btn=f.querySelector("button");
+  errBox.style.display="none";
+
+  if(!f.checkValidity()){
+    errBox.textContent="Complete all fields correctly before continuing.";
+    errBox.style.display="block"; return;
+  }
+
+  btn.disabled=true; btn.textContent="LOCKING…";
+  try{
+    const res=await fetch("https://formspree.io/f/"+FORMSPREE_ID,{
+      method:"POST", body:new FormData(f), headers:{Accept:"application/json"}
+    });
+    if(res.ok){
+      f.style.display="none";
+      document.getElementById("order-ok").style.display="block";
+      setTimeout(()=>{ window.location.href = CHECKOUT_URL; }, 2500);
+    }else{
+      const data=await res.json().catch(()=>null);
+      const msgs=(data&&data.errors||[]).map(er=>er.message).join(" · ");
+      errBox.textContent=msgs||"Validation error. Check your data.";
+      errBox.style.display="block";
+    }
+  }catch(err){
+    errBox.textContent="Connection error. Try again in a few seconds.";
+    errBox.style.display="block";
+  }
+  btn.disabled=false; btn.textContent="Continue to Payment";
+};
+</script>
+</body>
+</html>
