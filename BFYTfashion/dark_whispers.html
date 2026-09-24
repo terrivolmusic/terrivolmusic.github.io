@@ -38,14 +38,8 @@ nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
 .scarcity b{color:var(--txt)}
 .lbl{font-size:10px;letter-spacing:.3em;color:var(--muted);margin:0 0 10px}
 .lbl a{color:var(--cyan)}
-.sz{display:flex;gap:10px;margin-bottom:8px}
-.sz button{width:54px;height:54px;border:1px solid var(--line);background:transparent;color:var(--txt);font-family:'Montserrat';font-weight:600;font-size:14px;cursor:pointer;transition:.25s}
-.sz button:hover{border-color:var(--muted)}
-.sz button.on{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 22px rgba(0,245,255,.22)}
-.sz.err button{border-color:var(--err);animation:shk .3s 2}
-@keyframes shk{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
-.qtyrow{display:flex;align-items:center;gap:14px;margin:14px 0 24px}
-.qtyrow select{background:rgba(0,0,0,.45);border:1px solid var(--line);color:var(--txt);padding:12px 16px;font-family:'Inter';font-size:14px;outline:none}
+.sizenote{font-size:12px;color:var(--muted);letter-spacing:.08em;line-height:1.7;margin-bottom:24px;border:1px solid var(--line);padding:14px 16px;background:rgba(255,255,255,.02)}
+.sizenote b{color:var(--txt)}
 .btn{display:inline-block;background:var(--txt);color:#000;font-family:'Montserrat';font-weight:600;font-size:13px;letter-spacing:.25em;text-transform:uppercase;padding:19px 44px;border:none;cursor:pointer;transition:.3s;width:100%}
 .btn:hover{box-shadow:0 0 40px rgba(0,245,255,.45);transform:translateY(-2px)}
 .secure{margin:12px 0 22px;text-align:center;font-size:10px;letter-spacing:.25em;color:var(--muted)}
@@ -92,6 +86,13 @@ summary{cursor:pointer;font-family:'Montserrat';font-size:13px;letter-spacing:.1
 summary::after{content:"+";float:right;color:var(--cyan)}
 details[open] summary::after{content:"–"}
 details p{margin-top:14px;color:var(--muted);font-size:13px;line-height:1.9}
+.listbox{border:1px solid var(--line);background:linear-gradient(140deg,rgba(0,245,255,.06),rgba(123,44,191,.12));padding:48px;text-align:center}
+.listbox p{color:#c9c9d2;font-size:13px;line-height:1.8}
+.listform{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.listform input{background:rgba(0,0,0,.45);border:1px solid var(--line);color:var(--txt);padding:16px 18px;font-family:'Inter';font-size:14px;outline:none;min-width:260px}
+.listform input:focus{border-color:var(--cyan)}
+.listform .btn{width:auto;padding:16px 34px;margin:0}
+.listok{margin-top:18px;color:var(--cyan);font-family:'Montserrat';letter-spacing:.2em;font-size:12px}
 .sticky{position:fixed;bottom:0;width:100%;z-index:60;display:none;justify-content:space-between;align-items:center;gap:14px;padding:14px 20px;backdrop-filter:blur(14px);background:rgba(10,10,15,.85);border-top:1px solid var(--line)}
 .sticky .p{font-family:'Montserrat';font-weight:600;font-size:14px}
 .sticky .btn{width:auto;padding:14px 26px}
@@ -131,14 +132,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
     <div class="price-line"><s>$99.00</s> <em>$69.99</em></div>
     <div class="ship-note"><b>FREE WORLDWIDE SHIPPING</b> · TRACKED · 10–15 DAYS</div>
     <div class="scarcity">DROP PRICE ENDS IN <b id="cd">--:--:--:--</b></div>
-    <div class="lbl">SIZE · <a href="#guide">SIZE GUIDE</a></div>
-    <div class="sz" id="sz">
-      <button data-s="S">S</button><button data-s="M">M</button><button data-s="L">L</button><button data-s="XL">XL</button>
-    </div>
-    <div class="qtyrow">
-      <div class="lbl" style="margin:0">QTY</div>
-      <select id="qty"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
-    </div>
+    <div class="sizenote"><b>SIZES S–XL.</b> You'll confirm your size at secure checkout — it stays locked to your order. <a href="#guide" style="color:var(--cyan)">Check the size guide</a> before you buy.</div>
     <button class="btn" id="buyBtn">Buy Now — $69.99</button>
     <div class="secure">SECURE CHECKOUT POWERED BY PAYHIP</div>
     <ul class="trust">
@@ -247,10 +241,24 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="kicker reveal">FAQ</div>
   <h2 class="reveal">Before you ask.</h2>
   <div class="reveal">
-    <details><summary>How do I choose my size?</summary><p>Use the size guide above. The milk-silk blend has comfort stretch (that's why measurements are ranges). Between sizes? Take your usual size for a fitted look.</p></details>
+    <details><summary>How do I choose my size?</summary><p>Use the size guide above. The milk-silk blend has comfort stretch (that's why measurements are ranges). Between sizes? Take your usual size for a fitted look. You confirm your size at checkout.</p></details>
     <details><summary>Do you ship to my country?</summary><p>Yes — worldwide, free, tracked. Delivery estimate 10–15 days after processing (2–3 business days). Your tracking number arrives by email.</p></details>
     <details><summary>What if it doesn't fit?</summary><p>7-day unconditional returns from delivery. Email us and we send the return instructions. No interrogation.</p></details>
     <details><summary>Is payment secure?</summary><p>Payments run on Payhip with encrypted processing (cards, PayPal and local methods depending on region). We never see or store your card data.</p></details>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <div class="listbox reveal">
+    <div class="kicker">THE DROP LIST</div>
+    <h2 style="margin-bottom:12px">First access. Always.</h2>
+    <p>Early access to DROP 003 + members-only pricing.<br>No spam — one email per drop.</p>
+    <form id="list-form" class="listform">
+      <input type="email" name="email" required placeholder="your@email.com">
+      <input type="hidden" name="product" value="DROP LIST — DARK WHISPERS">
+      <button class="btn" type="submit">Join</button>
+    </form>
+    <div id="list-ok" class="listok" style="display:none">YOU'RE IN ✓ WATCH YOUR INBOX FOR DROP 003</div>
   </div>
 </section>
 
@@ -263,6 +271,11 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 <div id="lb"><img src="" alt=""></div>
 
 <script>
+// LINK ÚNICO DE PAGO (Payhip)
+const PAYHIP="https://payhip.com/b/LKtZ1";
+document.getElementById("buyBtn").onclick=()=>{window.location.href=PAYHIP;};
+document.getElementById("buyBtn2").onclick=()=>{window.location.href=PAYHIP;};
+
 // LOADER UNIVERSAL
 const IMG_BASE="/img/";
 const EXT=[".jpg",".JPG",".jpeg",".JPEG",".png",".PNG",".webp",".WEBP",".avif",".AVIF",".jfif",".JFIF",".gif",".GIF"];
@@ -291,25 +304,6 @@ main.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=main.src;};
 document.querySelectorAll(".cgrid img,.ugc img").forEach(i=>i.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=i.src;});
 lb.onclick=()=>lb.style.display="none";
 
-// Talla + cantidad + compra
-let SIZE="";
-const szBox=document.getElementById("sz");
-szBox.querySelectorAll("button").forEach(b=>b.onclick=()=>{
-  szBox.querySelectorAll("button").forEach(x=>x.classList.remove("on"));
-  b.classList.add("on"); SIZE=b.dataset.s; szBox.classList.remove("err"); go(true);
-});
-const qty=document.getElementById("qty");
-qty.onchange=()=>go(true);
-function go(onlyUpdate){
-  const link="dark.whispers.checkout.html?p=dw&size="+(SIZE||"")+"&qty="+qty.value;
-  if(onlyUpdate){document.getElementById("buyBtn").dataset.link=link;return;}
-  if(!SIZE){szBox.classList.add("err");szBox.scrollIntoView({behavior:"smooth",block:"center"});return;}
-  window.location.href=link;
-}
-go(true);
-document.getElementById("buyBtn").onclick=()=>go(false);
-document.getElementById("buyBtn2").onclick=()=>go(false);
-
 // Videos (THE FILM + muro UGC) con fallback a foto
 document.querySelectorAll(".films figure, .ugc figure").forEach(fig=>{
   const video=fig.querySelector("video"); if(!video) return;
@@ -335,6 +329,18 @@ document.querySelectorAll(".films figure, .ugc figure").forEach(fig=>{
     v.replaceWith(img); loadImg(img);
   });
 })();
+
+// DROP LIST (Formspree) — captura de emails
+document.getElementById("list-form").onsubmit=async e=>{
+  e.preventDefault();
+  const f=e.target, btn=f.querySelector("button");
+  btn.disabled=true; btn.textContent="JOINING…";
+  try{
+    const res=await fetch("https://formspree.io/f/xnpnvrpe",{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}});
+    if(res.ok){ f.style.display="none"; document.getElementById("list-ok").style.display="block"; }
+    else { btn.disabled=false; btn.textContent="Join"; }
+  }catch(err){ btn.disabled=false; btn.textContent="Join"; }
+};
 
 // Countdown 7 días
 let end=localStorage.getItem("bfytDWEnd");
