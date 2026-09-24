@@ -59,8 +59,8 @@ section{padding:100px 0}
 .kicker{font-size:11px;letter-spacing:.45em;color:#b06cf0;margin-bottom:16px}
 h2{font-size:clamp(28px,4.6vw,48px);font-weight:800;letter-spacing:.05em;margin-bottom:26px}
 .films{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.films figure{aspect-ratio:9/16;overflow:hidden;background:#000;position:relative;cursor:pointer}
-.films video,.films img{width:100%;height:100%;object-fit:cover}
+.films figure,.ugc figure{aspect-ratio:9/16;overflow:hidden;background:#000;position:relative;cursor:pointer}
+.films video,.films img,.ugc video,.ugc img{width:100%;height:100%;object-fit:cover}
 .films figure::after{content:"TAP TO PLAY";position:absolute;bottom:12px;left:12px;font-family:'Montserrat';font-size:9px;letter-spacing:.3em;color:var(--cyan);opacity:.85}
 .films figure.playing::after{content:""}
 .camp .hero{margin-bottom:14px}
@@ -74,11 +74,10 @@ h2{font-size:clamp(28px,4.6vw,48px);font-weight:800;letter-spacing:.05em;margin-
 .specs li{padding:11px 0;border-bottom:1px solid var(--line);font-size:13px;letter-spacing:.12em;color:#d8d8de}
 .specs li::before{content:"— ";color:var(--cyan)}
 .sound{border:1px solid var(--line);background:linear-gradient(140deg,rgba(123,44,191,.14),rgba(0,245,255,.05));padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;align-items:center}
-.sound img{aspect-ratio:1;object-fit:cover}
+.sound video,.sound img{aspect-ratio:1;object-fit:cover}
 .sound p{color:#c9c9d2;line-height:1.9;margin:14px 0 26px}
 .sound .btn{width:auto;padding:16px 36px}
 .ugc{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.ugc img{aspect-ratio:9/16;object-fit:cover}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:14px 10px;text-align:center;border-bottom:1px solid var(--line);letter-spacing:.08em}
 th{font-family:'Montserrat';font-size:11px;letter-spacing:.3em;color:var(--muted)}
@@ -118,9 +117,9 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
     <div class="thumbs">
       <img class="on" data-img="Model_in_leopard_print_dress_2K_202609051414" alt="Editorial">
       <img data-img="Leopard_print_dress_on_mannequin_2K_202609071748" alt="Product">
-      <img data-img="Leopard_print_dress_detail_shot_2K_202609051357" alt="Detail">
+      <img data-img="Leopard_print_dress_displayed_in…_2K_202609071757" alt="Display">
       <img data-img="Vestido_sobre_cama_blanca_2K_202609071829" alt="Flat lay">
-      <img data-img="Gemini_Generated_Image_3g811z3g811z3g81" alt="UGC mirror">
+      <img data-img="Gemini_Generated_Image_3g81lz3g81lz3g81" alt="UGC mirror">
       <img data-img="Model_walking_on_wet_street_2K_202609051412" alt="Night street">
     </div>
   </div>
@@ -157,16 +156,16 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="kicker reveal">THE FILM</div>
   <h2 class="reveal">Moves at 122 BPM.</h2>
   <div class="films reveal">
-    <figure data-fallback="Model_showing_dress_on_TikTok_202609051621"><video muted loop playsinline preload="metadata"><source src="/img/Video_tiktok_shop_viral_202609071940.mp4" type="video/mp4"></video></figure>
-    <figure data-fallback="Viral_dress_video_presentation_202609051625"><video muted loop playsinline preload="metadata"><source src="/img/Viral_dress_video_presentation_202609051625.mp4" type="video/mp4"></video></figure>
-    <figure data-fallback="Fashion_model_walking_POV_202609051518"><video muted loop playsinline preload="metadata"><source src="/img/Fashion_model_walking_POV_202609051518.mp4" type="video/mp4"></video></figure>
+    <figure data-fallback="Gemini_Generated_Image_3g81lz3g81lz3g81"><video muted loop playsinline preload="metadata"><source src="/img/Video_tiktok_shop_viral_202609071940.mp4" type="video/mp4"></video></figure>
+    <figure data-fallback="Woman_touching_dress_on_bed_2K_202609051621"><video muted loop playsinline preload="metadata"><source src="/img/Viral_dress_video_presentation_202609051625.mp4" type="video/mp4"></video></figure>
+    <figure data-fallback="Model_walking_on_wet_street_2K_202609051412"><video muted loop playsinline preload="metadata"><source src="/img/Fashion_model_walking_POV_202609051518.mp4" type="video/mp4"></video></figure>
   </div>
 </section>
 
 <section class="wrap camp" style="padding-top:0">
   <div class="kicker reveal">THE CAMPAIGN</div>
   <h2 class="reveal">Some dresses whisper.<br>This one commands.</h2>
-  <div class="hero reveal"><img data-img="pomellii_photoshoot_image_4k_0907" alt="Runway DARK WHISPERS"></div>
+  <div class="hero reveal"><img data-img="pomelli_photoshoot_image_4k_0907" alt="Runway DARK WHISPERS"></div>
   <div class="cgrid reveal">
     <img data-img="Model_walking_on_wet_street_2K_202609051412" alt="Night walk">
     <img data-img="Woman_sitting_on_car_hood_2K_202609051411" alt="Neon hood">
@@ -177,7 +176,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 
 <section class="wrap" style="padding-top:0">
   <div class="sound reveal">
-    <img data-img="Image_to_video_09_06_0223" alt="DARK WHISPERS chain">
+    <video id="snd" muted loop playsinline preload="metadata" src="/img/Image to video_09_06_0223.mp4"></video>
     <div>
       <div class="kicker">THE SOUNDTRACK</div>
       <h2 style="margin-bottom:0">Wear the drop.<br>Hear the drop.</h2>
@@ -202,7 +201,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
       </ul>
     </div>
     <div>
-      <img data-img="Viral_dress_video_presentation_202609051625" alt="Fabric detail" style="margin-bottom:14px">
+      <img data-img="Woman_touching_dress_on_bed_2K_202609051621" alt="Fabric detail" style="margin-bottom:14px">
       <img data-img="Convertir_foto_en_producto_empacado_2K_202609071829" alt="Packed order">
     </div>
   </div>
@@ -212,10 +211,10 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="kicker reveal">REAL FITS</div>
   <h2 class="reveal">The mirror doesn't lie.</h2>
   <div class="ugc reveal">
-    <img data-img="Gemini_Generated_Image_3g811z3g811z3g81" alt="Mirror selfie">
-    <img data-img="Model_showing_dress_on_TikTok_202609051621" alt="UGC living room">
-    <img data-img="Fashion_model_walking_POV_202609051518" alt="POV walk">
-    <img data-img="Woman_touching_dress_on_bed_2K_202609051621" alt="Hands on fabric">
+    <figure data-fallback="Gemini_Generated_Image_3g81lz3g81lz3g81"><video muted loop playsinline preload="metadata"><source src="/img/Model_showing_dress_on_TikTok_202609051621.mp4" type="video/mp4"></video></figure>
+    <figure><img data-img="Gemini_Generated_Image_3g81lz3g81lz3g81" alt="Mirror selfie"></figure>
+    <figure data-fallback="Model_walking_on_wet_street_2K_202609051412"><video muted loop playsinline preload="metadata"><source src="/img/Fashion_model_walking_POV_202609051518.mp4" type="video/mp4"></video></figure>
+    <figure><img data-img="Woman_sitting_on_car_hood_2K_202609051411" alt="Neon hood"></figure>
   </div>
 </section>
 
@@ -264,7 +263,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 <div id="lb"><img src="" alt=""></div>
 
 <script>
-// LOADER UNIVERSAL: acepta jpg/JPG/jpeg/JPEG/png/PNG/webp/WEBP/avif/jfif/gif + reintento en minúsculas
+// LOADER UNIVERSAL
 const IMG_BASE="/img/";
 const EXT=[".jpg",".JPG",".jpeg",".JPEG",".png",".PNG",".webp",".WEBP",".avif",".AVIF",".jfif",".JFIF",".gif",".GIF"];
 const EXT2=[".jpg",".png",".webp"];
@@ -311,10 +310,13 @@ go(true);
 document.getElementById("buyBtn").onclick=()=>go(false);
 document.getElementById("buyBtn2").onclick=()=>go(false);
 
-// Videos con fallback a foto
-document.querySelectorAll(".films figure").forEach(fig=>{
-  const video=fig.querySelector("video"), source=video.querySelector("source");
-  source.addEventListener("error",()=>{
+// Videos (THE FILM + muro UGC) con fallback a foto
+document.querySelectorAll(".films figure, .ugc figure").forEach(fig=>{
+  const video=fig.querySelector("video"); if(!video) return;
+  const source=video.querySelector("source");
+  const errTarget=source||video;
+  errTarget.addEventListener("error",()=>{
+    if(!fig.dataset.fallback) return;
     const img=document.createElement("img");
     img.dataset.img=fig.dataset.fallback; img.alt="BFYT film";
     video.replaceWith(img); loadImg(img);
@@ -322,6 +324,17 @@ document.querySelectorAll(".films figure").forEach(fig=>{
   video.addEventListener("click",()=>{ if(video.paused){video.play();fig.classList.add("playing");} else {video.pause();fig.classList.remove("playing");} });
   new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){video.play().catch(()=>{});} else {video.pause();} }),{threshold:.4}).observe(fig);
 });
+
+// Soundtrack: cadena en movimiento
+(function(){
+  const v=document.getElementById("snd"); if(!v) return;
+  new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){v.play().catch(()=>{});} else {v.pause();} }),{threshold:.4}).observe(v);
+  v.addEventListener("error",()=>{
+    const img=document.createElement("img");
+    img.dataset.img="Model_in_leopard_print_dress_2K_202609051414"; img.alt="DARK WHISPERS chain";
+    v.replaceWith(img); loadImg(img);
+  });
+})();
 
 // Countdown 7 días
 let end=localStorage.getItem("bfytDWEnd");
