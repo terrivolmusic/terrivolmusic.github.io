@@ -86,7 +86,7 @@ footer{padding:40px 24px;text-align:center;font-size:10px;letter-spacing:.25em;c
       <input type="hidden" name="order_total" id="h-total">
       <div id="form-err"></div>
       <button class="btn" type="submit">Continue to Secure Payment</button>
-      <p style="font-size:10px;color:var(--muted);letter-spacing:.15em;text-align:center;margin-top:12px">YOU'LL BE REDIRECTED TO LEMON SQUEEZY (SECURE PAYMENT)</p>
+      <p style="font-size:10px;color:var(--muted);letter-spacing:.15em;text-align:center;margin-top:12px">YOU'LL BE REDIRECTED TO PAYHIP (SECURE PAYMENT)</p>
     </form>
 
     <div id="ok">
@@ -107,7 +107,7 @@ footer{padding:40px 24px;text-align:center;font-size:10px;letter-spacing:.25em;c
       ✓ PROCESSING 2–3 BUSINESS DAYS<br>
       ✓ TRACKED DELIVERY 10–15 DAYS<br>
       ✓ 7-DAY UNCONDITIONAL RETURNS<br>
-      ✓ SECURE CHECKOUT · LEMON SQUEEZY
+      ✓ SECURE CHECKOUT · PAYHIP
     </div>
   </aside>
 </div>
@@ -115,6 +115,7 @@ footer{padding:40px 24px;text-align:center;font-size:10px;letter-spacing:.25em;c
 <footer>© 2026 BFYT WORLD — TERRIVOL MUSIC ENT · WHERE SOUND DRESSES</footer>
 
 <script>
+// ============ CONFIG ============
 const PRODUCTS = {
   dw: {
     name:  "DARK WHISPERS — Leopard Midi Dress",
@@ -123,7 +124,7 @@ const PRODUCTS = {
     img:   "Model_in_leopard_print_dress_2K_202609051414",
     page:  "dark_whispers.html",
     form:  "xnpnvrpe",
-    checkout: "https://terrivolmusicentertainment.lemonsqueezy.com/checkout/buy/3d320123-19a5-42ae-86bd-b97173c68b46"
+    checkout: "https://payhip.com/b/LKtZ1"
   },
   vn: {
     name:  "VELVET NIGHT — Asymmetric Denim Skirt",
@@ -136,6 +137,10 @@ const PRODUCTS = {
   }
 };
 const IMG_BASE = "/img/";
+const EXT=[".jpg",".JPG",".jpeg",".JPEG",".png",".PNG",".webp",".WEBP",".avif",".AVIF",".jfif",".JFIF",".gif",".GIF"];
+const EXT2=[".jpg",".png",".webp"];
+const PH="data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><rect width="600" height="800" fill="#0A0A0F"/><circle cx="300" cy="400" r="180" fill="none" stroke="#7B2CBF" stroke-opacity=".35" stroke-width="2"/><text x="300" y="408" fill="#F5F5F7" font-family="Arial" font-size="26" letter-spacing="8" text-anchor="middle" font-weight="700">BFYT</text></svg>');
+// =================================
 
 const params = new URLSearchParams(location.search);
 const key = PRODUCTS[params.get("p")] ? params.get("p") : "dw";
@@ -150,8 +155,16 @@ if(["1","2","3"].includes(params.get("qty"))) qtySel.value = params.get("qty");
 document.getElementById("h-product").value = P.name;
 document.getElementById("sum-name").textContent = P.name;
 
-(function(){const img=document.getElementById("sum-img");const EXT=[".jpg",".jpeg",".png",".webp"];let i=0;
-const t=()=>{if(i>=EXT.length)return;img.src=IMG_BASE+P.img+EXT[i++];};img.onerror=t;t();})();
+// Resumen con loader universal
+(function(){
+  const img=document.getElementById("sum-img");
+  const bases=[P.img, P.img.toLowerCase()];
+  const queue=[];
+  bases.forEach((b,bi)=>{ (bi===0?EXT:EXT2).forEach(e=>queue.push(b+e)); });
+  let i=0;
+  const next=()=>{ if(i<queue.length){ img.src=IMG_BASE+queue[i++]; } else { img.src=PH; console.warn("[BFYT] asset missing:", P.img); } };
+  img.onerror=next; next();
+})();
 
 const COUNTRIES=["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo (Democratic Republic)","Congo (Republic)","Costa Rica","Croatia","Cuba","Cyprus","Czechia","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Ivory Coast","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
 const cSel=document.getElementById("country");
