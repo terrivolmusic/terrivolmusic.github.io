@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHECKOUT — BFYT WORLD</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0F;--cyan:#00F5FF;--txt:#F5F5F7;--muted:#9A9AA5;--line:rgba(255,255,255,.08);--err:#ff4d6d}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-weight:300}
+a{color:inherit;text-decoration:none}
+h1,h2{font-family:'Montserrat',sans-serif;text-transform:uppercase}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;border-bottom:1px solid var(--line)}
+.logo{font-family:'Montserrat';font-weight:800;letter-spacing:.25em;font-size:14px}
+.logo span{color:var(--cyan)}
+.back{font-size:10px;letter-spacing:.3em;color:var(--muted)}
+.steps{display:flex;gap:26px;justify-content:center;padding:26px 16px;font-family:'Montserrat';font-size:10px;letter-spacing:.25em;color:var(--muted)}
+.steps b{color:var(--cyan)}
+.main{max-width:1100px;margin:0 auto;padding:30px 24px 90px;display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:start}
+form.co{display:flex;flex-direction:column;gap:12px}
+form.co label{font-size:10px;letter-spacing:.3em;color:var(--muted);margin-top:10px}
+form.co input,form.co select{background:rgba(0,0,0,.45);border:1px solid var(--line);color:var(--txt);padding:15px 16px;font-family:'Inter';font-size:14px;outline:none;width:100%}
+form.co input:focus,form.co select:focus{border-color:var(--cyan)}
+form.co select option{background:#0A0A0F}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{color:var(--muted);font-weight:300;letter-spacing:.1em}
+#form-err{display:none;border:1px solid var(--err);color:#ff8fa3;background:rgba(255,77,109,.08);padding:13px 16px;font-size:12px;margin-top:14px}
+.btn{display:inline-block;background:var(--txt);color:#000;font-family:'Montserrat';font-weight:600;font-size:13px;letter-spacing:.25em;text-transform:uppercase;padding:18px 44px;border:none;cursor:pointer;transition:.3s;width:100%;margin-top:20px}
+.btn:hover{box-shadow:0 0 40px rgba(0,245,255,.45)}
+.btn:disabled{opacity:.5;cursor:wait}
+.sum{border:1px solid var(--line);background:rgba(255,255,255,.02);padding:30px;position:sticky;top:20px}
+.sum img{width:110px;aspect-ratio:3/4;object-fit:cover;margin-bottom:18px}
+.sum h2{font-size:15px;letter-spacing:.15em;margin-bottom:6px}
+.sum .meta{font-size:12px;color:var(--muted);letter-spacing:.1em;margin-bottom:20px}
+.line{display:flex;justify-content:space-between;font-size:13px;padding:9px 0;border-bottom:1px solid var(--line);color:#d8d8de}
+.line.total{border:none;font-family:'Montserrat';font-weight:600;font-size:17px;color:var(--txt);padding-top:16px}
+.line .free{color:var(--cyan)}
+.trust{margin-top:20px;font-size:11px;color:var(--muted);line-height:2;letter-spacing:.08em}
+#ok{display:none;text-align:center;padding:60px 20px}
+#ok .lock{font-family:'Montserrat';font-weight:800;font-size:30px;letter-spacing:.15em;color:var(--cyan);text-shadow:0 0 30px rgba(0,245,255,.5);margin-bottom:16px}
+#ok p{color:var(--muted);margin-bottom:26px}
+footer{padding:40px 24px;text-align:center;font-size:10px;letter-spacing:.25em;color:var(--muted);border-top:1px solid var(--line)}
+@media(max-width:900px){.main{grid-template-columns:1fr}.sum{position:static;order:-1}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" id="back-home" href="dark_whispers.html">BFYT<span> WORLD</span></a>
+  <div class="back">SECURE CHECKOUT</div>
+</nav>
+
+<div class="steps">
+  <div><b>01</b> SHIPPING — YOU ARE HERE</div>
+  <div>02 PAYMENT</div>
+  <div>03 CONFIRMATION</div>
+</div>
+
+<div class="main">
+  <div>
+    <form class="co" id="order-form" novalidate>
+      <label>FULL NAME *</label>
+      <input type="text" name="name" required maxlength="80" placeholder="Your full name">
+      <label>EMAIL *</label>
+      <input type="email" name="email" required placeholder="your@email.com">
+      <label>PHONE / WHATSAPP <span class="opt">(optional)</span></label>
+      <input type="tel" name="phone" maxlength="25" placeholder="+1 000 000 0000">
+      <label>COUNTRY *</label>
+      <select name="country" id="country" required><option value="">Select your country…</option></select>
+      <label>SHIPPING ADDRESS *</label>
+      <input type="text" name="address" required maxlength="120" placeholder="Street, number">
+      <label>APT / SUITE / FLOOR <span class="opt">(optional)</span></label>
+      <input type="text" name="address2" maxlength="60" placeholder="Apt, suite, floor">
+      <div class="row2">
+        <div><label>CITY *</label><input type="text" name="city" required placeholder="City"></div>
+        <div><label>STATE / PROVINCE <span class="opt">(optional)</span></label><input type="text" name="state" maxlength="60" placeholder="State"></div>
+      </div>
+      <div class="row2">
+        <div><label>ZIP CODE *</label><input type="text" name="zip" required maxlength="10" placeholder="00000"></div>
+        <div><label>SIZE *</label><select name="size" id="size" required></select></div>
+      </div>
+      <label>QUANTITY *</label>
+      <select name="qty" id="qty" required><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
+      <input type="hidden" name="product" id="h-product">
+      <input type="hidden" name="order_total" id="h-total">
+      <div id="form-err"></div>
+      <button class="btn" type="submit">Continue to Secure Payment</button>
+      <p style="font-size:10px;color:var(--muted);letter-spacing:.15em;text-align:center;margin-top:12px">YOU'LL BE REDIRECTED TO LEMON SQUEEZY (SECURE PAYMENT)</p>
+    </form>
+
+    <div id="ok">
+      <div class="lock">SIZE LOCKED ✓</div>
+      <p>Your unit and shipping are locked.<br>Redirecting to secure payment…</p>
+      <a class="btn" id="pay-now" href="#" style="width:auto;padding:18px 40px">Complete Payment</a>
+    </div>
+  </div>
+
+  <aside class="sum">
+    <img id="sum-img" src="" alt="Product">
+    <h2 id="sum-name">—</h2>
+    <div class="meta">DROP 002 · <span id="sum-size">SIZE —</span> · QTY <span id="sum-qty">1</span></div>
+    <div class="line"><span>Subtotal</span><span id="sum-sub">$69.99</span></div>
+    <div class="line"><span>Shipping</span><span class="free">FREE WORLDWIDE</span></div>
+    <div class="line total"><span>Total</span><span id="sum-total">$69.99</span></div>
+    <div class="trust">
+      ✓ PROCESSING 2–3 BUSINESS DAYS<br>
+      ✓ TRACKED DELIVERY 10–15 DAYS<br>
+      ✓ 7-DAY UNCONDITIONAL RETURNS<br>
+      ✓ SECURE CHECKOUT · LEMON SQUEEZY
+    </div>
+  </aside>
+</div>
+
+<footer>© 2026 BFYT WORLD — TERRIVOL MUSIC ENT · WHERE SOUND DRESSES</footer>
+
+<script>
+const PRODUCTS = {
+  dw: {
+    name:  "DARK WHISPERS — Leopard Midi Dress",
+    price: 69.99,
+    sizes: ["S","M","L","XL"],
+    img:   "Model_in_leopard_print_dress_2K_202609051414",
+    page:  "dark_whispers.html",
+    form:  "xnpnvrpe",
+    checkout: "https://terrivolmusicentertainment.lemonsqueezy.com/checkout/buy/3d320123-19a5-42ae-86bd-b97173c68b46"
+  },
+  vn: {
+    name:  "VELVET NIGHT — Asymmetric Denim Skirt",
+    price: 69.99,
+    sizes: ["S","M","L","XL","XXL"],
+    img:   "Denim_skirt_on_invisible_mannequin_2K_202609041323",
+    page:  "velvet_night.html",
+    form:  "mqpknlqn",
+    checkout: "https://terrivolmusicentertainment.lemonsqueezy.com/checkout/buy/960e100a-9209-46dd-aa45-758b55ef936f"
+  }
+};
+const IMG_BASE = "/img/";
+
+const params = new URLSearchParams(location.search);
+const key = PRODUCTS[params.get("p")] ? params.get("p") : "dw";
+const P = PRODUCTS[key];
+document.getElementById("back-home").href = P.page;
+
+const sizeSel = document.getElementById("size");
+sizeSel.innerHTML = '<option value="">…</option>' + P.sizes.map(s=>`<option>${s}</option>`).join("");
+if(P.sizes.includes(params.get("size"))) sizeSel.value = params.get("size");
+const qtySel = document.getElementById("qty");
+if(["1","2","3"].includes(params.get("qty"))) qtySel.value = params.get("qty");
+document.getElementById("h-product").value = P.name;
+document.getElementById("sum-name").textContent = P.name;
+
+(function(){const img=document.getElementById("sum-img");const EXT=[".jpg",".jpeg",".png",".webp"];let i=0;
+const t=()=>{if(i>=EXT.length)return;img.src=IMG_BASE+P.img+EXT[i++];};img.onerror=t;t();})();
+
+const COUNTRIES=["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo (Democratic Republic)","Congo (Republic)","Costa Rica","Croatia","Cuba","Cyprus","Czechia","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Ivory Coast","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
+const cSel=document.getElementById("country");
+COUNTRIES.forEach(c=>{const o=document.createElement("option");o.textContent=c;o.value=c;cSel.appendChild(o);});
+
+function upd(){
+  const n=parseInt(qtySel.value)||1;
+  document.getElementById("sum-qty").textContent=n;
+  document.getElementById("sum-size").textContent="SIZE "+(sizeSel.value||"—");
+  const t="$"+(P.price*n).toFixed(2);
+  document.getElementById("sum-sub").textContent=t;
+  document.getElementById("sum-total").textContent=t;
+  document.getElementById("h-total").textContent=t;
+}
+qtySel.onchange=upd; sizeSel.onchange=upd; upd();
+
+document.getElementById("order-form").onsubmit=async e=>{
+  e.preventDefault();
+  const f=e.target, errBox=document.getElementById("form-err"), btn=f.querySelector("button[type='submit']");
+  errBox.style.display="none";
+  if(!f.checkValidity()){errBox.textContent="Complete all required fields (*) before continuing.";errBox.style.display="block";window.scrollTo({top:0,behavior:"smooth"});return;}
+  btn.disabled=true; btn.textContent="LOCKING…";
+  try{
+    const res=await fetch("https://formspree.io/f/"+P.form,{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}});
+    if(res.ok){
+      f.style.display="none";
+      document.getElementById("ok").style.display="block";
+      const pay=document.getElementById("pay-now");
+      pay.href=P.checkout;
+      setTimeout(()=>{window.location.href=P.checkout;},2500);
+    }else{
+      const data=await res.json().catch(()=>null);
+      errBox.textContent=((data&&data.errors)||[]).map(er=>er.message).join(" · ")||"Validation error.";
+      errBox.style.display="block";
+    }
+  }catch(err){errBox.textContent="Connection error. Try again.";errBox.style.display="block";}
+  btn.disabled=false; btn.textContent="Continue to Secure Payment";
+};
+</script>
+</body>
+</html>
