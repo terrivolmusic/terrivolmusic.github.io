@@ -302,7 +302,7 @@ szBox.querySelectorAll("button").forEach(b=>b.onclick=()=>{
 const qty=document.getElementById("qty");
 qty.onchange=()=>go(true);
 function go(onlyUpdate){
-  const link="checkout.html?p=dw&size="+(SIZE||"")+"&qty="+qty.value;
+  const link="dark.whispers.checkout.html?p=dw&size="+(SIZE||"")+"&qty="+qty.value;
   if(onlyUpdate){document.getElementById("buyBtn").dataset.link=link;return;}
   if(!SIZE){szBox.classList.add("err");szBox.scrollIntoView({behavior:"smooth",block:"center"});return;}
   window.location.href=link;
