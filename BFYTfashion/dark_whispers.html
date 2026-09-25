@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <meta name="theme-color" content="#0A0A0F">
-<title>VELVET NIGHT — Asymmetric Fringed Denim Skirt | BFYT WORLD DROP 001</title>
-<meta name="description" content="Asymmetric raw-edge denim skirt with fringed split panels. DROP 001. Free worldwide shipping.">
+<title>DARK WHISPERS — Leopard Midi Dress | BFYT WORLD DROP 002</title>
+<meta name="description" content="Asymmetric leopard-print midi dress with crossed straps and open back. DROP 002. Free worldwide shipping.">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0A0A0F;--purple:#7B2CBF;--cyan:#00F5FF;--txt:#F5F5F7;--muted:#9A9AA5;--line:rgba(255,255,255,.08);--err:#ff4d6d}
@@ -38,6 +38,8 @@ nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
 .ship-note b{color:var(--txt)}
 .scarcity{font-size:11px;letter-spacing:.3em;color:var(--muted);margin-bottom:26px}
 .scarcity b{color:var(--txt)}
+.lbl{font-size:10px;letter-spacing:.3em;color:var(--muted);margin:0 0 10px}
+.lbl a{color:var(--cyan)}
 .sizenote{font-size:12px;color:var(--muted);letter-spacing:.08em;line-height:1.7;margin-bottom:24px;border:1px solid var(--line);padding:14px 16px;background:rgba(255,255,255,.02)}
 .sizenote b{color:var(--txt)}
 .btn{display:inline-flex;align-items:center;justify-content:center;background:var(--txt);color:#000;font-family:'Montserrat';font-weight:600;font-size:13px;letter-spacing:.25em;text-transform:uppercase;padding:19px 44px;border:none;cursor:pointer;transition:.3s;width:100%;min-height:56px;text-align:center}
@@ -53,14 +55,13 @@ nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
 section{padding:100px 0}
 .kicker{font-size:11px;letter-spacing:.45em;color:#b06cf0;margin-bottom:16px}
 h2{font-size:clamp(28px,4.6vw,48px);font-weight:800;letter-spacing:.05em;margin-bottom:26px}
-/* FILMS: imagen siempre visible + video encima solo si puede reproducir */
 .films{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.films figure{aspect-ratio:9/16;overflow:hidden;background:#050508;position:relative;cursor:pointer;border:1px solid var(--line)}
-.films figure>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.films figure>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
-.films figure.playing>video{opacity:1}
-.films figure.hasvid::after{content:"▶ TAP TO PLAY";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Montserrat';font-size:10px;letter-spacing:.3em;color:var(--txt);background:rgba(0,0,0,.65);padding:10px 18px;border:1px solid var(--cyan);z-index:3;pointer-events:none;transition:.3s}
-.films figure.playing::after{opacity:0}
+.films figure,.ugc figure{aspect-ratio:9/16;overflow:hidden;background:#000;position:relative;cursor:pointer;border:1px solid var(--line)}
+.films video,.films img,.ugc video,.ugc img{width:100%;height:100%;object-fit:cover}
+figure.hasvid::before{content:"";position:absolute;inset:0;background:rgba(10,10,15,.3);z-index:2;transition:.3s;pointer-events:none}
+figure.hasvid.playing::before{background:transparent}
+figure.hasvid::after{content:"▶ TAP TO PLAY";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Montserrat';font-size:11px;letter-spacing:.3em;color:var(--txt);background:rgba(0,0,0,.6);padding:12px 20px;border:1px solid var(--cyan);z-index:3;pointer-events:none;transition:.3s}
+figure.hasvid.playing::after{opacity:0}
 .camp .hero{margin-bottom:14px}
 .camp .hero img{aspect-ratio:16/10;object-fit:cover}
 .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -72,12 +73,10 @@ h2{font-size:clamp(28px,4.6vw,48px);font-weight:800;letter-spacing:.05em;margin-
 .specs li{padding:11px 0;border-bottom:1px solid var(--line);font-size:13px;letter-spacing:.12em;color:#d8d8de}
 .specs li::before{content:"— ";color:var(--cyan)}
 .sound{border:1px solid var(--line);background:linear-gradient(140deg,rgba(123,44,191,.14),rgba(0,245,255,.05));padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;align-items:center}
-.sound img{aspect-ratio:1;object-fit:cover;border:1px solid var(--line)}
+.sound video,.sound img{aspect-ratio:1;object-fit:cover}
 .sound p{color:#c9c9d2;line-height:1.9;margin:14px 0 26px}
 .sound .btn{width:auto;padding:16px 36px}
 .ugc{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.ugc figure{aspect-ratio:9/16;overflow:hidden;position:relative;border:1px solid var(--line);cursor:pointer;background:#050508}
-.ugc figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:14px 10px;text-align:center;border-bottom:1px solid var(--line);letter-spacing:.08em}
 th{font-family:'Montserrat';font-size:11px;letter-spacing:.3em;color:var(--muted)}
@@ -107,14 +106,23 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 #lb img{max-height:92vh;width:auto;max-width:92vw}
 .reveal{opacity:0;transform:translateY(28px);transition:.9s ease}
 .reveal.on{opacity:1;transform:none}
-@media(max-width:1024px){.pdp{gap:40px;padding:40px 0 70px}section{padding:80px 0}.sound{padding:40px;gap:32px}}
+
+/* ========== TABLET ========== */
+@media(max-width:1024px){
+  .pdp{gap:40px;padding:40px 0 70px}
+  section{padding:80px 0}
+  .sound{padding:40px;gap:32px}
+}
+
+/* ========== MÓVIL ========== */
 @media(max-width:768px){
   .wrap{padding:0 16px}
   nav{padding:14px 16px}
   .logo{font-size:12px;letter-spacing:.2em}
   nav .tag{font-size:9px;letter-spacing:.25em}
   .pdp{grid-template-columns:1fr;gap:28px;padding:24px 0 100px}
-  .thumbs{gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+  #main{aspect-ratio:3/4}
+  .thumbs{grid-template-columns:repeat(6,1fr);gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
   .thumbs::-webkit-scrollbar{display:none}
   .thumbs img{flex:0 0 auto}
   .buy h1{font-size:clamp(24px,7vw,32px)}
@@ -128,23 +136,29 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   .kicker{font-size:10px;margin-bottom:12px}
   h2{font-size:clamp(22px,6vw,32px);margin-bottom:20px}
   .films{grid-template-columns:1fr 1fr;gap:10px}
-  .films figure.hasvid::after{font-size:8px;padding:8px 12px;letter-spacing:.2em}
+  figure.hasvid::after{font-size:9px;padding:8px 14px;letter-spacing:.25em}
   .cgrid{grid-template-columns:1fr 1fr;gap:10px}
+  .camp .hero{margin-bottom:10px}
   .manifesto{font-size:14px;line-height:1.8}
   .sound{grid-template-columns:1fr;padding:28px 20px;gap:24px;text-align:center}
-  .sound img{max-width:300px;margin:0 auto}
+  .sound img,.sound video{max-width:280px;margin:0 auto}
   .sound .btn{width:100%}
   .two{grid-template-columns:1fr;gap:28px}
   .ugc{grid-template-columns:1fr 1fr;gap:10px}
   table{font-size:12px}
   th,td{padding:10px 6px}
   th{font-size:10px;letter-spacing:.2em}
+  .note{font-size:11px}
   .cards{grid-template-columns:1fr;gap:10px}
   .card{padding:24px 20px}
+  .card h3{font-size:13px}
+  .card p{font-size:12px}
   details{padding:14px 0}
   summary{font-size:12px}
   details p{font-size:12px}
   .listbox{padding:32px 20px}
+  .listbox h2{font-size:22px}
+  .listbox p{font-size:12px}
   .listform{flex-direction:column;gap:10px}
   .listform input{min-width:100%;width:100%}
   .listform .btn{width:100%}
@@ -153,12 +167,15 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   .sticky .btn{padding:12px 20px;font-size:11px;min-height:48px}
   footer{padding:40px 16px;font-size:10px}
 }
+
+/* ========== MÓVIL MUY PEQUEÑO ========== */
 @media(max-width:380px){
   .wrap{padding:0 12px}
   nav{padding:12px}
   .buy h1{font-size:22px}
   .price-line{font-size:22px}
   .btn{padding:14px 16px;font-size:11px;letter-spacing:.15em}
+  .thumbs{gap:4px}
   .films{grid-template-columns:1fr}
   .cgrid{grid-template-columns:1fr}
   .sticky .p{font-size:12px}
@@ -170,73 +187,73 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 
 <nav>
   <div class="logo">BFYT<span> WORLD</span></div>
-  <div class="tag">DROP 001 — LIVE</div>
+  <div class="tag">DROP 002 — LIVE</div>
 </nav>
 
 <div class="wrap pdp">
   <div>
-    <img id="main" data-img="Model_posing_on_spiral_staircase_2K_202609041336" alt="VELVET NIGHT asymmetric fringed denim skirt">
+    <img id="main" data-img="Model_in_leopard_print_dress_2K_202609051414" alt="DARK WHISPERS leopard midi dress">
     <div class="thumbs">
-      <img class="on" data-img="Model_posing_on_spiral_staircase_2K_202609041336" alt="Campaign">
-      <img data-img="Denim_skirt_on_invisible_mannequin_2K_202609041323" alt="Product">
-      <img data-img="Denim_skirt_on_hanger_2K_202609041344" alt="Hanger">
-      <img data-img="Female_model_walking_city_street_2K_202609041327" alt="Street">
-      <img data-img="17888297352626" alt="UGC">
-      <img data-img="Female_model_sitting_on_stool_2K_202609041346" alt="Studio">
+      <img class="on" data-img="Model_in_leopard_print_dress_2K_202609051414" alt="Editorial">
+      <img data-img="Leopard_print_dress_on_mannequin_2K_202609071748" alt="Product">
+      <img data-img="Leopard_print_dress_displayed_in…_2K_202609071757" alt="Display">
+      <img data-img="Vestido_sobre_cama_blanca_2K_202609071829" alt="Flat lay">
+      <img data-img="Gemini_Generated_Image_3g81lz3g81lz3g81" alt="UGC mirror">
+      <img data-img="Model_walking_on_wet_street_2K_202609051412" alt="Night street">
     </div>
   </div>
 
   <div class="buy">
-    <div class="crumbs">BFYT WORLD / DROP 001 / <b>VELVET NIGHT</b></div>
-    <h1>Velvet Night<br>Asymmetric Fringed Denim Skirt</h1>
-    <div class="sku">SKU BFYT-D001-DNM · <em>♫ OFFICIAL SOUNDTRACK: "VELVET NIGHT" — WATCH IT BELOW</em></div>
-    <div class="price-line"><s>$110.00</s> <em>$74.99</em></div>
+    <div class="crumbs">BFYT WORLD / DROP 002 / <b>DARK WHISPERS</b></div>
+    <h1>Dark Whispers<br>Leopard Midi Dress</h1>
+    <div class="sku">SKU BFYT-D002-LEO · <em>♫ OFFICIAL SOUNDTRACK: "DARK WHISPERS" — WATCH IT BELOW</em></div>
+    <div class="price-line"><s>$99.00</s> <em>$69.99</em></div>
     <div class="ship-note"><b>FREE WORLDWIDE SHIPPING</b> · TRACKED · 10–15 DAYS</div>
     <div class="scarcity">DROP PRICE ENDS IN <b id="cd">--:--:--:--</b></div>
-    <div class="sizenote"><b>SIZES S–XXL.</b> You'll confirm your size at secure checkout — it stays locked to your order. <a href="#guide" style="color:var(--cyan)">Check the size guide</a> before you buy.</div>
-    <button class="btn" id="buyBtn">Buy Now — $74.99</button>
+    <div class="sizenote"><b>SIZES S–XL.</b> You'll confirm your size at secure checkout — it stays locked to your order. <a href="#guide" style="color:var(--cyan)">Check the size guide</a> before you buy.</div>
+    <button class="btn" id="buyBtn">Buy Now — $69.99</button>
     <div class="secure">SECURE CHECKOUT POWERED BY PAYHIP</div>
     <ul class="trust">
       <li>PROCESSING 2–3 BUSINESS DAYS</li>
       <li>TRACKED DELIVERY 10–15 DAYS WORLDWIDE</li>
       <li>7-DAY UNCONDITIONAL RETURNS</li>
-      <li>STRUCTURED DENIM-LOOK DRAPE</li>
+      <li>MILK-SILK BLEND WITH COMFORT STRETCH</li>
     </ul>
   </div>
 </div>
 
-<div class="marquee"><div>BFYT WORLD — WHERE SOUND DRESSES — VELVET NIGHT — DROP 001 — FREE WORLDWIDE SHIPPING —&nbsp;BFYT WORLD — WHERE SOUND DRESSES — VELVET NIGHT — DROP 001 — FREE WORLDWIDE SHIPPING —&nbsp;</div></div>
+<div class="marquee"><div>BFYT WORLD — WHERE SOUND DRESSES — DARK WHISPERS — DROP 002 — FREE WORLDWIDE SHIPPING —&nbsp;BFYT WORLD — WHERE SOUND DRESSES — DARK WHISPERS — DROP 002 — FREE WORLDWIDE SHIPPING —&nbsp;</div></div>
 
 <section class="wrap">
   <div class="kicker reveal">THE FILM</div>
-  <h2 class="reveal">Fringe that moves in two tempos.</h2>
+  <h2 class="reveal">Moves at 122 BPM.</h2>
   <div class="films reveal">
-    <figure data-video="/img/TikTok_shop_skirt_video_202609072006.mp4"><img data-img="Female_model_walking_city_street_2K_202609041327" alt="Street film"><video muted loop playsinline preload="metadata" src="/img/TikTok_shop_skirt_video_202609072006.mp4"></video></figure>
-    <figure data-video="/img/TikTok_shop_video_202609071950.mp4"><img data-img="Female_model_sitting_on_stool_2K_202609041346" alt="Studio film"><video muted loop playsinline preload="metadata" src="/img/TikTok_shop_video_202609071950.mp4"></video></figure>
-    <figure data-video="/img/Viral_TikTok_video_model_202609041459.mp4"><img data-img="Female_model_posing_in_denim_2K_202609041319" alt="Denim film"><video muted loop playsinline preload="metadata" src="/img/Viral_TikTok_video_model_202609041459.mp4"></video></figure>
+    <figure data-fallback="Gemini_Generated_Image_3g81lz3g81lz3g81"><video muted loop playsinline preload="metadata"><source src="/img/Video_tiktok_shop_viral_202609071940.mp4" type="video/mp4"></video></figure>
+    <figure data-fallback="Woman_touching_dress_on_bed_2K_202609051621"><video muted loop playsinline preload="metadata"><source src="/img/Viral_dress_video_presentation_202609051625.mp4" type="video/mp4"></video></figure>
+    <figure data-fallback="Model_walking_on_wet_street_2K_202609051412"><video muted loop playsinline preload="metadata"><source src="/img/Fashion_model_walking_POV_202609051518.mp4" type="video/mp4"></video></figure>
   </div>
 </section>
 
 <section class="wrap camp" style="padding-top:0">
   <div class="kicker reveal">THE CAMPAIGN</div>
-  <h2 class="reveal">One skirt.<br>Whole outfit.</h2>
-  <div class="hero reveal"><img data-img="Model_posing_on_spiral_staircase_2K_202609041336" alt="Spiral staircase campaign"></div>
+  <h2 class="reveal">Some dresses whisper.<br>This one commands.</h2>
+  <div class="hero reveal"><img data-img="pomelli_photoshoot_image_4k_0907" alt="Runway DARK WHISPERS"></div>
   <div class="cgrid reveal">
-    <img data-img="Female_model_walking_city_street_2K_202609041327" alt="Street editorial">
-    <img data-img="Female_model_sitting_on_stool_2K_202609041346" alt="Studio seated">
-    <img data-img="Female_model_posing_in_denim_2K_202609041319" alt="Studio full">
+    <img data-img="Model_walking_on_wet_street_2K_202609051412" alt="Night walk">
+    <img data-img="Woman_sitting_on_car_hood_2K_202609051411" alt="Neon hood">
+    <img data-img="Model_in_leopard_print_dress_2K_202609051414" alt="Editorial neon">
   </div>
-  <p class="manifesto reveal">Raw-edge fringe. High split. An asymmetric hem that cuts like a waveform — two lengths, one silhouette. Engineered in structured denim-look drape so every fringe holds its line from the first step to the last.</p>
+  <p class="manifesto reveal">Crossed straps. Open back. A midi pencil cut that moves half a second before you do. Cut to the rhythm of futuristic trap and finished in a milk-silk blend with comfort stretch — engineered for rooms where the bass lives.</p>
 </section>
 
 <section class="wrap" style="padding-top:0">
   <div class="sound reveal">
-    <img data-img="Professional_YouTube_thumbnail_photo_of_202606191801" alt="VELVET NIGHT official beat cover">
+    <video id="snd" muted loop playsinline preload="metadata" src="/img/Image to video_09_06_0223.mp4"></video>
     <div>
       <div class="kicker">THE SOUNDTRACK</div>
       <h2 style="margin-bottom:0">Wear the drop.<br>Hear the drop.</h2>
-      <p>Every BFYT WORLD piece is designed to an official beat. VELVET NIGHT was cut to the BFYT frequency — dark, elegant, cinematic. Different world, same pulse.</p>
-      <a class="btn" href="https://youtu.be/6Y6lplXlfKs" target="_blank">Watch the official video</a>
+      <p>Every BFYT WORLD piece is designed to an official beat. This one was cut to "DARK WHISPERS" — futuristic trap at 122 BPM by Beats BFYT. Different world, same frequency.</p>
+      <a class="btn" href="https://youtu.be/-qxtNeObOWI" target="_blank">Watch the official video</a>
     </div>
   </div>
 </section>
@@ -246,30 +263,30 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
     <div>
       <div class="kicker">QUALITY & WHAT ARRIVES</div>
       <h2>Not fast fashion.</h2>
-      <p>Structured denim-look polyester fiber with real weight (820g): the drape holds the asymmetric cut and the fringe stays sharp wear after wear.</p>
+      <p>Milk-silk blend with polyester lining and comfort stretch. Collage-stitching craft, crossed strap construction and a mid-waist pencil cut that holds its shape.</p>
       <ul class="specs">
-        <li>Denim-look polyester fiber · structured drape</li>
-        <li>Asymmetric raw-edge hem · fringed split panels</li>
-        <li>Mid-length cut · structured waistband</li>
-        <li>Distressed light-wash finish</li>
+        <li>Milk-silk blend 71–80% · polyester lining</li>
+        <li>Comfort stretch — true to size</li>
+        <li>Crossed straps · open back · pull-over</li>
+        <li>Midi pencil length · mid-waist</li>
         <li>Ships folded, protected, tracked</li>
       </ul>
     </div>
     <div>
-      <img data-img="Denim_skirt_on_hanger_2K_202609041344" alt="Fringe detail" style="margin-bottom:14px">
-      <img data-img="Gemini_Generated_Image_esz03gesz03gesz0" data-alt="Female_model_sitting_on_stool_2K_202609041346" alt="Packed order">
+      <img data-img="Woman_touching_dress_on_bed_2K_202609051621" alt="Fabric detail" style="margin-bottom:14px">
+      <img data-img="Convertir_foto_en_producto_empacado_2K_202609071829" alt="Packed order">
     </div>
   </div>
 </section>
 
 <section class="wrap" style="padding-top:0">
   <div class="kicker reveal">REAL FITS</div>
-  <h2 class="reveal">The street already approved it.</h2>
+  <h2 class="reveal">The mirror doesn't lie.</h2>
   <div class="ugc reveal">
-    <figure><img data-img="17888297352626" alt="UGC interior"></figure>
-    <figure><img data-img="Female_model_walking_city_street_2K_202609041327" alt="Street"></figure>
-    <figure><img data-img="Female_model_sitting_on_stool_2K_202609041346" alt="Studio"></figure>
-    <figure><img data-img="Female_model_posing_in_denim_2K_202609041319" alt="Full body"></figure>
+    <figure data-fallback="Gemini_Generated_Image_3g81lz3g81lz3g81"><video muted loop playsinline preload="metadata"><source src="/img/Model_showing_dress_on_TikTok_202609051621.mp4" type="video/mp4"></video></figure>
+    <figure><img data-img="Gemini_Generated_Image_3g81lz3g81lz3g81" alt="Mirror selfie"></figure>
+    <figure data-fallback="Model_walking_on_wet_street_2K_202609051412"><video muted loop playsinline preload="metadata"><source src="/img/Fashion_model_walking_POV_202609051518.mp4" type="video/mp4"></video></figure>
+    <figure><img data-img="Woman_sitting_on_car_hood_2K_202609051411" alt="Neon hood"></figure>
   </div>
 </section>
 
@@ -278,14 +295,13 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <h2 class="reveal">Size guide (cm)</h2>
   <div class="reveal">
   <table>
-    <tr><th>SIZE</th><th>WAIST</th><th>HIP</th><th>LENGTH</th></tr>
-    <tr><td>S</td><td>72</td><td>92</td><td>103</td></tr>
-    <tr><td>M</td><td>76</td><td>96</td><td>104</td></tr>
-    <tr><td>L</td><td>80</td><td>100</td><td>105</td></tr>
-    <tr><td>XL</td><td>84</td><td>104</td><td>106</td></tr>
-    <tr><td>XXL</td><td>88</td><td>108</td><td>107</td></tr>
+    <tr><th>SIZE</th><th>BUST</th><th>WAIST</th><th>HIPS</th><th>LENGTH</th></tr>
+    <tr><td>S</td><td>70–86</td><td>62–72</td><td>78–92</td><td>114</td></tr>
+    <tr><td>M</td><td>74–90</td><td>66–76</td><td>82–96</td><td>116</td></tr>
+    <tr><td>L</td><td>78–94</td><td>70–80</td><td>86–100</td><td>118</td></tr>
+    <tr><td>XL</td><td>94–98</td><td>80–84</td><td>92–104</td><td>120</td></tr>
   </table>
-  <p class="note">STRUCTURED WAISTBAND — NO STRETCH · BETWEEN SIZES? SIZE UP FOR A RELAXED DRAPE · CARE: HAND WASH COLD, HANG DRY.</p>
+  <p class="note">RANGES = COMFORT STRETCH · BETWEEN SIZES? TAKE YOUR USUAL SIZE · CARE: HAND WASH COLD, HANG DRY.</p>
   </div>
 </section>
 
@@ -303,7 +319,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="kicker reveal">FAQ</div>
   <h2 class="reveal">Before you ask.</h2>
   <div class="reveal">
-    <details><summary>How do I choose my size?</summary><p>Use the size guide above (waist / hip / length in cm). This denim-look fabric is structured — no stretch. Between sizes? Size up for a relaxed drape. You confirm your size at checkout.</p></details>
+    <details><summary>How do I choose my size?</summary><p>Use the size guide above. The milk-silk blend has comfort stretch (that's why measurements are ranges). Between sizes? Take your usual size for a fitted look. You confirm your size at checkout.</p></details>
     <details><summary>Do you ship to my country?</summary><p>Yes — worldwide, free, tracked. Delivery estimate 10–15 days after processing (2–3 business days). Your tracking number arrives by email.</p></details>
     <details><summary>What if it doesn't fit?</summary><p>7-day unconditional returns from delivery. Email us and we send the return instructions. No interrogation.</p></details>
     <details><summary>Is payment secure?</summary><p>Payments run on Payhip with encrypted processing (cards, PayPal and local methods depending on region). We never see or store your card data.</p></details>
@@ -317,7 +333,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
     <p>Early access to the next drop + members-only pricing.<br>No spam — one email per drop.</p>
     <form id="list-form" class="listform">
       <input type="email" name="email" required placeholder="your@email.com">
-      <input type="hidden" name="product" value="DROP LIST — VELVET NIGHT">
+      <input type="hidden" name="product" value="DROP LIST — DARK WHISPERS">
       <button class="btn" type="submit">Join</button>
     </form>
     <div id="list-ok" class="listok" style="display:none">YOU'RE IN ✓ WATCH YOUR INBOX FOR THE NEXT DROP</div>
@@ -325,7 +341,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 </section>
 
 <div class="sticky">
-  <div class="p">VELVET NIGHT — $74.99</div>
+  <div class="p">DARK WHISPERS — $69.99</div>
   <button class="btn" id="buyBtn2">Buy</button>
 </div>
 
@@ -334,23 +350,28 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 
 <script>
 // LINK ÚNICO DE PAGO (Payhip)
-const PAYHIP="https://payhip.com/b/f9LjB";
+const PAYHIP="https://payhip.com/b/LKtZ1";
 document.getElementById("buyBtn").onclick=()=>{window.location.href=PAYHIP;};
 document.getElementById("buyBtn2").onclick=()=>{window.location.href=PAYHIP;};
 
-// LOADER UNIVERSAL con respaldo data-alt
+// LOADER UNIVERSAL (jpg/JPEG/png/webp/avif/jfif/gif + mayúsculas + minúsculas)
 const IMG_BASE="/img/";
 const EXT=[".jpg",".JPG",".jpeg",".JPEG",".png",".PNG",".webp",".WEBP",".avif",".AVIF",".jfif",".JFIF",".gif",".GIF"];
 const EXT2=[".jpg",".png",".webp",".jfif"];
 const PH="data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><rect width="600" height="800" fill="#0A0A0F"/><circle cx="300" cy="400" r="180" fill="none" stroke="#7B2CBF" stroke-opacity=".35" stroke-width="2"/><circle cx="300" cy="400" r="120" fill="none" stroke="#00F5FF" stroke-opacity=".25" stroke-width="1"/><text x="300" y="392" fill="#F5F5F7" font-family="Arial" font-size="26" letter-spacing="8" text-anchor="middle" font-weight="700">BFYT</text><text x="300" y="428" fill="#9A9AA5" font-family="Arial" font-size="14" letter-spacing="4" text-anchor="middle">WORLD</text></svg>');
-function loadImg(img){
-  const lists=[[img.dataset.img,EXT],[img.dataset.img,EXT2]];
-  if(img.dataset.alt){lists.push([img.dataset.alt,EXT],[img.dataset.alt,EXT2]);}
+
+function loadImg(img, callback){
+  const bases=[img.dataset.img, img.dataset.img.toLowerCase()];
   const queue=[];
-  lists.forEach(([b,ex])=>{ if(!b)return; queue.push(b+ex[0]); ex.forEach(e=>queue.push(b+e)); });
+  bases.forEach((b,bi)=>{ (bi===0?EXT:EXT2).forEach(e=>queue.push(b+e)); });
   let i=0;
-  const next=()=>{ if(i<queue.length){ img.src=IMG_BASE+queue[i++]; } else { img.src=PH; console.warn("[BFYT] asset missing:", img.dataset.img); } };
-  img.onerror=next; next();
+  const next=()=>{
+    if(i<queue.length){ img.src=IMG_BASE+queue[i++]; }
+    else { img.src=PH; console.warn("[BFYT] asset missing:", img.dataset.img); if(callback) callback(null); }
+  };
+  img.onload=()=>{ if(callback) callback(img.src); };
+  img.onerror=next;
+  next();
 }
 document.querySelectorAll("img[data-img]").forEach(img=>loadImg(img));
 
@@ -369,24 +390,49 @@ main.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=main.src;};
 document.querySelectorAll(".cgrid img,.ugc img").forEach(i=>i.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=i.src;});
 lb.onclick=()=>lb.style.display="none";
 
-// FILMS A PRUEBA DE MÓVIL: foto siempre visible, video encima solo si reproduce
-document.querySelectorAll(".films figure").forEach(fig=>{
+// VIDEOS CON VISTA PREVIA (poster dinámico + tap play + autoplay en viewport)
+document.querySelectorAll(".films figure, .ugc figure").forEach(fig=>{
   const video=fig.querySelector("video");
-  const img=fig.querySelector("img");
   if(!video) return;
-  video.addEventListener("canplay",()=>fig.classList.add("hasvid"));
-  video.addEventListener("error",()=>{fig.classList.remove("hasvid");fig.classList.remove("playing");});
+  fig.classList.add("hasvid");
+  const fallbackName=fig.dataset.fallback;
+  if(fallbackName){
+    const tempImg=new Image();
+    tempImg.dataset.img=fallbackName;
+    loadImg(tempImg,(src)=>{ if(src){ video.poster=src; } });
+  }
+  const source=video.querySelector("source");
+  const errTarget=source||video;
+  errTarget.addEventListener("error",()=>{
+    if(!fallbackName) return;
+    const img=document.createElement("img");
+    img.dataset.img=fallbackName; img.alt="BFYT film";
+    video.replaceWith(img); loadImg(img);
+    fig.classList.remove("hasvid");
+  });
   fig.addEventListener("click",(e)=>{
     e.stopPropagation();
-    if(!fig.classList.contains("hasvid")){ lb.style.display="flex"; lb.firstElementChild.src=img.src; return; }
-    if(video.paused){ video.play().then(()=>fig.classList.add("playing")).catch(()=>fig.classList.remove("hasvid")); }
+    if(video.paused){ video.play().then(()=>fig.classList.add("playing")).catch(()=>{}); }
     else { video.pause(); fig.classList.remove("playing"); }
   });
   new IntersectionObserver(es=>es.forEach(e=>{
-    if(e.isIntersecting && fig.classList.contains("hasvid")){ video.play().then(()=>fig.classList.add("playing")).catch(()=>{}); }
+    if(e.isIntersecting){ video.play().then(()=>fig.classList.add("playing")).catch(()=>{}); }
     else { video.pause(); fig.classList.remove("playing"); }
   }),{threshold:.5}).observe(fig);
 });
+
+// Soundtrack: cadena en movimiento
+(function(){
+  const v=document.getElementById("snd"); if(!v) return;
+  new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){ v.play().catch(()=>{}); } else { v.pause(); }
+  }),{threshold:.4}).observe(v);
+  v.addEventListener("error",()=>{
+    const img=document.createElement("img");
+    img.dataset.img="Model_in_leopard_print_dress_2K_202609051414"; img.alt="DARK WHISPERS chain";
+    v.replaceWith(img); loadImg(img);
+  });
+})();
 
 // DROP LIST (Formspree)
 document.getElementById("list-form").onsubmit=async e=>{
@@ -400,16 +446,16 @@ document.getElementById("list-form").onsubmit=async e=>{
   }catch(err){ btn.disabled=false; btn.textContent="Join"; }
 };
 
-// Countdown 7 días
-let end=localStorage.getItem("bfytVNEnd");
-if(!end){end=Date.now()+7*24*3600*1000;localStorage.setItem("bfytVNEnd",end);}
+// Countdown 7 días (independiente del DROP 001)
+let end=localStorage.getItem("bfytDWEnd");
+if(!end){end=Date.now()+7*24*3600*1000;localStorage.setItem("bfytDWEnd",end);}
 setInterval(()=>{
   let d=Math.max(0,end-Date.now());
   const dd=Math.floor(d/864e5),hh=Math.floor(d%864e5/36e5),mm=Math.floor(d%36e5/6e4),ss=Math.floor(d%6e4/1e3);
   document.getElementById("cd").textContent=`${dd}D ${hh}H ${mm}M ${ss}S`;
 },1000);
 
-// Reveal
+// Reveal on scroll
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("on")),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 </script>
