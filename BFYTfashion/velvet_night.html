@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VELVET NIGHT — DROP 001 | BFYT WORLD</title>
-<meta name="description" content="Asymmetrical fringed denim skirt. BFYT World DROP 001. Limited 50 units. Reserve your size.">
+<title>VELVET NIGHT — Asymmetric Fringed Denim Skirt | BFYT WORLD DROP 001</title>
+<meta name="description" content="Asymmetric raw-edge denim skirt with fringed split panels. DROP 001. Free worldwide shipping.">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0A0A0F;--purple:#7B2CBF;--cyan:#00F5FF;--txt:#F5F5F7;--muted:#9A9AA5;--line:rgba(255,255,255,.08);--err:#ff4d6d}
@@ -15,77 +15,93 @@ img{display:block;width:100%}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
 .grain{position:fixed;inset:0;pointer-events:none;opacity:.05;z-index:99;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E")}
-nav{position:fixed;top:0;width:100%;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;backdrop-filter:blur(14px);background:rgba(10,10,15,.55);border-bottom:1px solid var(--line)}
+nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;backdrop-filter:blur(14px);background:rgba(10,10,15,.7);border-bottom:1px solid var(--line)}
 .logo{font-family:'Montserrat';font-weight:800;letter-spacing:.25em;font-size:14px}
 .logo span{color:var(--cyan)}
 nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.hero img.bg{position:absolute;inset:0;height:100%;object-fit:cover;filter:brightness(.45) contrast(1.1)}
-.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(123,44,191,.35),transparent 60%),linear-gradient(to top,var(--bg) 2%,transparent 40%)}
-.hero .inner{position:relative;z-index:2;padding:120px 24px 80px}
-.eyebrow{font-size:11px;letter-spacing:.45em;color:var(--cyan);margin-bottom:22px}
-.hero h1{font-size:clamp(52px,10vw,120px);font-weight:800;letter-spacing:.06em;line-height:.95;text-shadow:0 0 60px rgba(123,44,191,.6)}
-.hero p.sub{margin:20px auto 0;max-width:520px;color:#d8d8de;font-size:16px}
-.price-line{margin:34px 0 10px;font-family:'Montserrat';font-weight:600;font-size:26px}
-.price-line s{color:var(--muted);font-weight:300;font-size:18px;margin-right:14px}
+.pdp{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;padding:50px 0 90px;align-items:start}
+#main{aspect-ratio:3/4;object-fit:cover;cursor:zoom-in}
+.thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:10px}
+.thumbs img{aspect-ratio:3/4;object-fit:cover;cursor:pointer;opacity:.55;border:1px solid transparent;transition:.3s}
+.thumbs img.on,.thumbs img:hover{opacity:1;border-color:var(--cyan)}
+.crumbs{font-size:10px;letter-spacing:.25em;color:var(--muted);margin-bottom:14px}
+.crumbs b{color:var(--cyan)}
+.buy h1{font-size:clamp(26px,3.4vw,40px);font-weight:800;letter-spacing:.04em;line-height:1.1}
+.sku{font-size:10px;letter-spacing:.3em;color:var(--muted);margin:10px 0 18px}
+.sku em{font-style:normal;color:#b06cf0}
+.price-line{font-family:'Montserrat';font-weight:600;font-size:30px;margin-bottom:6px}
+.price-line s{color:var(--muted);font-weight:300;font-size:19px;margin-right:14px}
 .price-line em{font-style:normal;color:var(--cyan)}
-.scarcity{font-size:11px;letter-spacing:.3em;color:var(--muted);margin-bottom:34px}
+.ship-note{font-size:11px;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
+.ship-note b{color:var(--txt)}
+.scarcity{font-size:11px;letter-spacing:.3em;color:var(--muted);margin-bottom:26px}
 .scarcity b{color:var(--txt)}
-.btn{display:inline-block;background:var(--txt);color:#000;font-family:'Montserrat';font-weight:600;font-size:13px;letter-spacing:.25em;text-transform:uppercase;padding:18px 44px;border:none;cursor:pointer;transition:.3s}
+.lbl{font-size:10px;letter-spacing:.3em;color:var(--muted);margin:0 0 10px}
+.lbl a{color:var(--cyan)}
+.sizenote{font-size:12px;color:var(--muted);letter-spacing:.08em;line-height:1.7;margin-bottom:24px;border:1px solid var(--line);padding:14px 16px;background:rgba(255,255,255,.02)}
+.sizenote b{color:var(--txt)}
+.btn{display:inline-block;background:var(--txt);color:#000;font-family:'Montserrat';font-weight:600;font-size:13px;letter-spacing:.25em;text-transform:uppercase;padding:19px 44px;border:none;cursor:pointer;transition:.3s;width:100%}
 .btn:hover{box-shadow:0 0 40px rgba(0,245,255,.45);transform:translateY(-2px)}
-.btn:disabled{opacity:.5;cursor:wait;transform:none}
-.btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
-.btn.ghost:hover{border-color:var(--cyan)}
+.secure{margin:12px 0 22px;text-align:center;font-size:10px;letter-spacing:.25em;color:var(--muted)}
+.trust{list-style:none;border-top:1px solid var(--line)}
+.trust li{padding:11px 0;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.12em;color:#d8d8de}
+.trust li::before{content:"✓ ";color:var(--cyan)}
 .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;white-space:nowrap}
 .marquee div{display:inline-block;animation:mq 22s linear infinite;font-family:'Montserrat';font-size:12px;letter-spacing:.4em;color:var(--muted)}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-section{padding:110px 0}
+section{padding:100px 0}
 .kicker{font-size:11px;letter-spacing:.45em;color:#b06cf0;margin-bottom:16px}
-h2{font-size:clamp(30px,5vw,52px);font-weight:800;letter-spacing:.05em;margin-bottom:28px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.two p{color:#c9c9d2;line-height:1.9;margin-bottom:18px}
-.specs{list-style:none;margin-top:26px}
-.specs li{padding:12px 0;border-bottom:1px solid var(--line);font-size:13px;letter-spacing:.12em;color:#d8d8de}
+h2{font-size:clamp(28px,4.6vw,48px);font-weight:800;letter-spacing:.05em;margin-bottom:26px}
+.films{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.films figure,.ugc figure{aspect-ratio:9/16;overflow:hidden;background:#000;position:relative;cursor:pointer}
+.films video,.films img,.ugc video,.ugc img{width:100%;height:100%;object-fit:cover}
+.films figure::after{content:"TAP TO PLAY";position:absolute;bottom:12px;left:12px;font-family:'Montserrat';font-size:9px;letter-spacing:.3em;color:var(--cyan);opacity:.85}
+.films figure.playing::after{content:""}
+.camp .hero{margin-bottom:14px}
+.camp .hero img{aspect-ratio:16/10;object-fit:cover}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cgrid img{aspect-ratio:3/4;object-fit:cover}
+.manifesto{max-width:640px;color:#c9c9d2;line-height:1.9;margin-top:26px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.two p{color:#c9c9d2;line-height:1.9;margin-bottom:16px}
+.specs{list-style:none;margin-top:20px}
+.specs li{padding:11px 0;border-bottom:1px solid var(--line);font-size:13px;letter-spacing:.12em;color:#d8d8de}
 .specs li::before{content:"— ";color:var(--cyan)}
-.frame{position:relative}
-.frame::before{content:"";position:absolute;inset:-14px;border:1px solid var(--line)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.grid figure{overflow:hidden;cursor:pointer;aspect-ratio:3/4}
-.grid img{height:100%;object-fit:cover;transition:.6s}
-.grid figure:hover img{transform:scale(1.05);filter:brightness(1.1)}
+.sound{border:1px solid var(--line);background:linear-gradient(140deg,rgba(123,44,191,.14),rgba(0,245,255,.05));padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;align-items:center}
+.sound video,.sound img{aspect-ratio:1;object-fit:cover}
+.sound p{color:#c9c9d2;line-height:1.9;margin:14px 0 26px}
+.sound .btn{width:auto;padding:16px 36px}
+.ugc{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:14px 10px;text-align:center;border-bottom:1px solid var(--line);letter-spacing:.08em}
 th{font-family:'Montserrat';font-size:11px;letter-spacing:.3em;color:var(--muted)}
 td:first-child{font-family:'Montserrat';font-weight:600;color:var(--cyan)}
-.note{margin-top:18px;font-size:12px;color:var(--muted);letter-spacing:.08em}
+.note{margin-top:16px;font-size:12px;color:var(--muted);letter-spacing:.08em}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.card{border:1px solid var(--line);background:rgba(255,255,255,.02);padding:36px 28px}
-.card h3{font-size:14px;letter-spacing:.2em;margin-bottom:14px}
+.card{border:1px solid var(--line);background:rgba(255,255,255,.02);padding:34px 26px}
+.card h3{font-size:14px;letter-spacing:.2em;margin-bottom:12px}
 .card p{font-size:13px;color:var(--muted);line-height:1.8}
-.secure{margin-top:26px;text-align:center;font-size:11px;letter-spacing:.3em;color:var(--muted)}
-.order{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;border:1px solid var(--line);background:linear-gradient(140deg,rgba(123,44,191,.12),rgba(0,245,255,.05));padding:60px}
-.steps{list-style:none;margin-top:26px}
-.steps li{padding:14px 0;border-bottom:1px solid var(--line);font-size:13px;color:#d8d8de;letter-spacing:.08em}
-.steps b{color:var(--cyan);font-family:'Montserrat';margin-right:10px}
-form.of{display:flex;flex-direction:column;gap:12px}
-form.of label{font-size:10px;letter-spacing:.3em;color:var(--muted);margin-top:8px}
-form.of input,form.of select{background:rgba(0,0,0,.45);border:1px solid var(--line);color:var(--txt);padding:15px 16px;font-family:'Inter';font-size:14px;outline:none;width:100%}
-form.of input:focus,form.of select:focus{border-color:var(--cyan)}
-form.of select option{background:#0A0A0F}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-#form-err{display:none;border:1px solid var(--err);color:#ff8fa3;background:rgba(255,77,109,.08);padding:13px 16px;font-size:12px;letter-spacing:.05em;margin-top:14px}
-#order-ok{display:none;text-align:center;padding:40px 0}
-#order-ok .lock{font-family:'Montserrat';font-weight:800;font-size:26px;letter-spacing:.15em;color:var(--cyan);text-shadow:0 0 30px rgba(0,245,255,.5);margin-bottom:14px}
-#order-ok p{color:var(--muted);font-size:13px;margin-bottom:26px}
-.sticky{position:fixed;bottom:0;width:100%;z-index:60;display:none;justify-content:space-between;align-items:center;padding:14px 20px;backdrop-filter:blur(14px);background:rgba(10,10,15,.8);border-top:1px solid var(--line)}
-.sticky .p{font-family:'Montserrat';font-weight:600}
-.sticky .btn{padding:14px 26px}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-family:'Montserrat';font-size:13px;letter-spacing:.15em;text-transform:uppercase;list-style:none}
+summary::after{content:"+";float:right;color:var(--cyan)}
+details[open] summary::after{content:"–"}
+details p{margin-top:14px;color:var(--muted);font-size:13px;line-height:1.9}
+.listbox{border:1px solid var(--line);background:linear-gradient(140deg,rgba(0,245,255,.06),rgba(123,44,191,.12));padding:48px;text-align:center}
+.listbox p{color:#c9c9d2;font-size:13px;line-height:1.8}
+.listform{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.listform input{background:rgba(0,0,0,.45);border:1px solid var(--line);color:var(--txt);padding:16px 18px;font-family:'Inter';font-size:14px;outline:none;min-width:260px}
+.listform input:focus{border-color:var(--cyan)}
+.listform .btn{width:auto;padding:16px 34px;margin:0}
+.listok{margin-top:18px;color:var(--cyan);font-family:'Montserrat';letter-spacing:.2em;font-size:12px}
+.sticky{position:fixed;bottom:0;width:100%;z-index:60;display:none;justify-content:space-between;align-items:center;gap:14px;padding:14px 20px;backdrop-filter:blur(14px);background:rgba(10,10,15,.85);border-top:1px solid var(--line)}
+.sticky .p{font-family:'Montserrat';font-weight:600;font-size:14px}
+.sticky .btn{width:auto;padding:14px 26px}
 footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;color:var(--muted);border-top:1px solid var(--line)}
 #lb{position:fixed;inset:0;background:rgba(5,5,8,.94);z-index:100;display:none;align-items:center;justify-content:center;padding:4vh}
 #lb img{max-height:92vh;width:auto;max-width:92vw}
 .reveal{opacity:0;transform:translateY(28px);transition:.9s ease}
 .reveal.on{opacity:1;transform:none}
-@media(max-width:900px){.two,.cards,.order{grid-template-columns:1fr}.order{padding:36px 24px}.grid{grid-template-columns:repeat(2,1fr)}.sticky{display:flex}}
+@media(max-width:900px){.pdp,.two,.sound{grid-template-columns:1fr}.cgrid,.films{grid-template-columns:1fr 1fr}.ugc{grid-template-columns:1fr 1fr}.sticky{display:flex}}
 </style>
 </head>
 <body>
@@ -96,64 +112,119 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="tag">DROP 001 — LIVE</div>
 </nav>
 
-<header class="hero">
-  <img class="bg" data-img="Model_posing_on_spiral_staircase_2K_202609041336" alt="Velvet Night editorial">
-  <div class="inner">
-    <div class="eyebrow">BFYT WORLD — DROP 001 — LIMITED 50 UNITS</div>
-    <h1>Velvet<br>Night</h1>
-    <p class="sub">Asymmetrical raw-edge denim with hand-finished fringe. High-low dramatic flow engineered for the night.</p>
-    <div class="price-line"><s>$99.00</s> <em>$69.99</em></div>
-    <div class="scarcity">DROP PRICE ENDS IN <b id="cd">--:--:--:--</b></div>
-    <a class="btn" href="#order">Reserve Your Size</a>
+<div class="wrap pdp">
+  <div>
+    <img id="main" data-img="Model_posing_on_spiral_staircase_2K_202609041336" alt="VELVET NIGHT asymmetric fringed denim skirt">
+    <div class="thumbs">
+      <img class="on" data-img="Model_posing_on_spiral_staircase_2K_202609041336" alt="Campaign">
+      <img data-img="Denim_skirt_on_invisible_mannequin_2K_202609041323" alt="Product">
+      <img data-img="Denim_skirt_on_hanger_2K_202609041344" alt="Hanger">
+      <img data-img="Female_model_walking_city_street_2K_202609041327" alt="Street">
+      <img data-img="pomelli_photoshoot_image_4k_0912" alt="UGC mirror">
+      <img data-img="Female_model_sitting_on_stool_2K_202609041346" alt="Studio">
+    </div>
   </div>
-</header>
 
-<div class="marquee"><div>BFYT WORLD — WHERE SOUND DRESSES — VELVET NIGHT — DROP 001 — LIMITED 50 —&nbsp;BFYT WORLD — WHERE SOUND DRESSES — VELVET NIGHT — DROP 001 — LIMITED 50 —&nbsp;</div></div>
+  <div class="buy">
+    <div class="crumbs">BFYT WORLD / DROP 001 / <b>VELVET NIGHT</b></div>
+    <h1>Velvet Night<br>Asymmetric Fringed Denim Skirt</h1>
+    <div class="sku">SKU BFYT-D001-DNM · <em>♫ OFFICIAL SOUNDTRACK: "VELVET NIGHT" — WATCH IT BELOW</em></div>
+    <div class="price-line"><s>$110.00</s> <em>$74.99</em></div>
+    <div class="ship-note"><b>FREE WORLDWIDE SHIPPING</b> · TRACKED · 10–15 DAYS</div>
+    <div class="scarcity">DROP PRICE ENDS IN <b id="cd">--:--:--:--</b></div>
+    <div class="sizenote"><b>SIZES S–XXL.</b> You'll confirm your size at secure checkout — it stays locked to your order. <a href="#guide" style="color:var(--cyan)">Check the size guide</a> before you buy.</div>
+    <button class="btn" id="buyBtn">Buy Now — $74.99</button>
+    <div class="secure">SECURE CHECKOUT POWERED BY PAYHIP</div>
+    <ul class="trust">
+      <li>PROCESSING 2–3 BUSINESS DAYS</li>
+      <li>TRACKED DELIVERY 10–15 DAYS WORLDWIDE</li>
+      <li>7-DAY UNCONDITIONAL RETURNS</li>
+      <li>STRUCTURED DENIM-LOOK DRAPE</li>
+    </ul>
+  </div>
+</div>
+
+<div class="marquee"><div>BFYT WORLD — WHERE SOUND DRESSES — VELVET NIGHT — DROP 001 — FREE WORLDWIDE SHIPPING —&nbsp;BFYT WORLD — WHERE SOUND DRESSES — VELVET NIGHT — DROP 001 — FREE WORLDWIDE SHIPPING —&nbsp;</div></div>
 
 <section class="wrap">
+  <div class="kicker reveal">THE FILM</div>
+  <h2 class="reveal">Fringe that moves in two tempos.</h2>
+  <div class="films reveal">
+    <figure data-fallback="Female_model_walking_city_street_2K_202609041327"><video muted loop playsinline preload="metadata"><source src="/img/TikTok_shop_skirt_video_202609072006.mp4" type="video/mp4"></video></figure>
+    <figure data-fallback="Female_model_sitting_on_stool_2K_202609041346"><video muted loop playsinline preload="metadata"><source src="/img/TikTok_shop_video_202609071950.mp4" type="video/mp4"></video></figure>
+    <figure data-fallback="Female_model_posing_in_denim_2K_202609041319"><video muted loop playsinline preload="metadata"><source src="/img/Viral_TikTok_video_model_202609041459.mp4" type="video/mp4"></video></figure>
+  </div>
+</section>
+
+<section class="wrap camp" style="padding-top:0">
+  <div class="kicker reveal">THE CAMPAIGN</div>
+  <h2 class="reveal">One skirt.<br>Whole outfit.</h2>
+  <div class="hero reveal"><img data-img="Model_posing_on_spiral_staircase_2K_202609041336" alt="Spiral staircase campaign"></div>
+  <div class="cgrid reveal">
+    <img data-img="Female_model_walking_city_street_2K_202609041327" alt="Street editorial">
+    <img data-img="Female_model_sitting_on_stool_2K_202609041346" alt="Studio seated">
+    <img data-img="Female_model_posing_in_denim_2K_202609041319" alt="Studio full">
+  </div>
+  <p class="manifesto reveal">Raw-edge fringe. High split. An asymmetric hem that cuts like a waveform — two lengths, one silhouette. Engineered in structured denim-look drape so every fringe holds its line from the first step to the last.</p>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <div class="sound reveal">
+    <img data-img="Reference to video_09_08_0028" alt="Fringe detail">
+    <div>
+      <div class="kicker">THE SOUNDTRACK</div>
+      <h2 style="margin-bottom:0">Wear the drop.<br>Hear the drop.</h2>
+      <p>Every BFYT WORLD piece is designed to an official beat. VELVET NIGHT was cut to the BFYT frequency — dark, elegant, cinematic. Different world, same pulse.</p>
+      <a class="btn" href="https://youtu.be/6Y6lplXlfKs" target="_blank">Watch the official video</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:0">
   <div class="two reveal">
     <div>
-      <div class="kicker">THE PIECE</div>
-      <h2>Not a skirt.<br>A statement.</h2>
-      <p>Cut for nights that feel like another dimension. High-low dramatic flow, distressed raw-edge fringe and a silhouette that moves before you do.</p>
-      <p>Street-luxury denim, controlled texture, zero compromises. Fifty units. One drop. No restock.</p>
+      <div class="kicker">QUALITY & WHAT ARRIVES</div>
+      <h2>Not fast fashion.</h2>
+      <p>Structured denim-look polyester fiber with real weight (820g): the drape holds the asymmetric cut and the fringe stays sharp wear after wear.</p>
       <ul class="specs">
-        <li>Asymmetrical split high-low hem</li>
-        <li>Raw-edge fringe, hand-finished</li>
-        <li>Mid-length · solid blue denim blend</li>
-        <li>High-waisted sculpting fit</li>
+        <li>Denim-look polyester fiber · structured drape</li>
+        <li>Asymmetric raw-edge hem · fringed split panels</li>
+        <li>Mid-length cut · structured waistband</li>
+        <li>Distressed light-wash finish</li>
+        <li>Ships folded, protected, tracked</li>
       </ul>
     </div>
-    <div class="frame"><img data-img="Professional_YouTube_thumbnail_photo_of_202606191801" alt="BFYT campaign"></div>
+    <div>
+      <img data-img="Reference to video_09_08_0028" alt="Fringe detail" style="margin-bottom:14px">
+      <img data-img="Gemini_Generated_Image_esz03gesz03gesz0" alt="Packed order">
+    </div>
   </div>
 </section>
 
 <section class="wrap" style="padding-top:0">
-  <div class="kicker reveal">THE CAMPAIGN</div>
-  <h2 class="reveal">Shot in the dark.</h2>
-  <div class="grid reveal">
-    <figure><img data-img="Female_model_posing_in_denim_2K_202609041319" alt="Studio full body"></figure>
-    <figure><img data-img="Female_model_sitting_on_stool_2K_202609041346" alt="Sitting pose"></figure>
+  <div class="kicker reveal">REAL FITS</div>
+  <h2 class="reveal">The street already approved it.</h2>
+  <div class="ugc reveal">
+    <figure><img data-img="pomelli_photoshoot_image_4k_0912" alt="Mirror selfie"></figure>
     <figure><img data-img="Female_model_walking_city_street_2K_202609041327" alt="Street"></figure>
-    <figure><img data-img="17888297352626" alt="Lifestyle interior"></figure>
-    <figure><img data-img="Denim_skirt_on_invisible_mannequin_2K_202609041323" alt="Product mannequin"></figure>
-    <figure><img data-img="Denim_skirt_on_hanger_2K_202609041344" alt="Product hanger"></figure>
+    <figure><img data-img="Female_model_sitting_on_stool_2K_202609041346" alt="Studio"></figure>
+    <figure><img data-img="Female_model_posing_in_denim_2K_202609041319" alt="Full body"></figure>
   </div>
 </section>
 
-<section class="wrap" style="padding-top:0">
+<section class="wrap" style="padding-top:0" id="guide">
   <div class="kicker reveal">FIND YOUR FIT</div>
-  <h2 class="reveal">Size guide</h2>
+  <h2 class="reveal">Size guide (cm)</h2>
   <div class="reveal">
   <table>
     <tr><th>SIZE</th><th>WAIST</th><th>HIP</th><th>LENGTH</th></tr>
-    <tr><td>S</td><td>72 cm / 28.3"</td><td>92 cm / 36.2"</td><td>103 cm / 40.5"</td></tr>
-    <tr><td>M</td><td>76 cm / 29.9"</td><td>96 cm / 37.8"</td><td>104 cm / 40.9"</td></tr>
-    <tr><td>L</td><td>80 cm / 31.5"</td><td>100 cm / 39.4"</td><td>105 cm / 41.3"</td></tr>
-    <tr><td>XL</td><td>84 cm / 33.1"</td><td>104 cm / 41.0"</td><td>106 cm / 41.7"</td></tr>
-    <tr><td>XXL</td><td>88 cm / 34.7"</td><td>108 cm / 42.5"</td><td>107 cm / 42.1"</td></tr>
+    <tr><td>S</td><td>72</td><td>92</td><td>103</td></tr>
+    <tr><td>M</td><td>76</td><td>96</td><td>104</td></tr>
+    <tr><td>L</td><td>80</td><td>100</td><td>105</td></tr>
+    <tr><td>XL</td><td>84</td><td>104</td><td>106</td></tr>
+    <tr><td>XXL</td><td>88</td><td>108</td><td>107</td></tr>
   </table>
-  <p class="note">HIGH-WAISTED ASYMMETRIC FIT · BETWEEN SIZES? SIZE UP FOR RELAXED DRAPE.</p>
+  <p class="note">STRUCTURED WAISTBAND — NO STRETCH · BETWEEN SIZES? SIZE UP FOR A RELAXED DRAPE · CARE: HAND WASH COLD, HANG DRY.</p>
   </div>
 </section>
 
@@ -161,175 +232,116 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="kicker reveal">SHIPPING & TRUST</div>
   <h2 class="reveal">Zero guesses.</h2>
   <div class="cards reveal">
-    <div class="card"><h3>Processing</h3><p>2–3 business days with fulfillment tracking from dispatch.</p></div>
+    <div class="card"><h3>Processing</h3><p>2–3 business days before dispatch with fulfillment tracking.</p></div>
     <div class="card"><h3>Tracked Delivery</h3><p>10–15 days worldwide. Tracking number sent to your email.</p></div>
     <div class="card"><h3>Returns</h3><p>7-day unconditional returns. If it's not the one, send it back.</p></div>
   </div>
-  <p class="secure">SECURE CHECKOUT POWERED BY LEMON SQUEEZY · WORLDWIDE SHIPPING</p>
 </section>
 
-<section class="wrap" style="padding-top:0" id="order">
-  <div class="order reveal">
-    <div>
-      <div class="kicker">STEP 1 OF 2</div>
-      <h2>Reserve your size</h2>
-      <p style="color:#c9c9d2;line-height:1.8">Lock your unit and shipping here. You'll be redirected to secure payment automatically.</p>
-      <ul class="steps">
-        <li><b>01</b> Your data + shipping → we lock your size</li>
-        <li><b>02</b> Auto-redirect to secure payment (Lemon Squeezy)</li>
-        <li><b>03</b> Tracking number in 2–3 business days</li>
-      </ul>
-    </div>
-    <div>
-      <form class="of" id="order-form" novalidate>
-        <label>FULL NAME</label>
-        <input type="text" name="name" required maxlength="80" placeholder="Your name">
-        <label>EMAIL</label>
-        <input type="email" name="email" required placeholder="your@email.com">
-        <label>COUNTRY</label>
-        <select name="country" required>
-          <option value="">Select…</option>
-          <option>United States</option><option>Canada</option><option>Mexico</option>
-          <option>Colombia</option><option>Spain</option><option>United Kingdom</option>
-          <option>Other</option>
-        </select>
-        <label>SHIPPING ADDRESS</label>
-        <input type="text" name="address" required maxlength="120" placeholder="Street, number, apt">
-        <div class="row2">
-          <div><label>CITY</label>
-            <input type="text" name="city" required placeholder="City">
-          </div>
-          <div><label>ZIP CODE</label>
-            <input type="text" name="zip" required maxlength="10" placeholder="00000">
-          </div>
-        </div>
-        <div class="row2">
-          <div><label>SIZE</label>
-            <select name="size" required>
-              <option value="">…</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
-            </select>
-          </div>
-          <div><label>QTY</label>
-            <select name="qty" required>
-              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
-            </select>
-          </div>
-        </div>
-        <div id="form-err"></div>
-        <button class="btn" type="submit" style="margin-top:18px">Continue to Payment</button>
-      </form>
-      <div id="order-ok">
-        <div class="lock">SIZE LOCKED ✓</div>
-        <p>Your unit and shipping are locked.<br>Redirecting to secure payment…</p>
-        <a class="btn checkout-link" href="#">Complete Payment — $69.99</a>
-        <button type="button" id="reset-form" class="btn ghost" style="margin-top:18px; border:1px solid var(--cyan); color:var(--cyan); background:transparent; width:100%; font-size:11px; letter-spacing:.2em;">+ ADD ANOTHER / DIFFERENT ADDRESS</button>
-      </div>
-    </div>
+<section class="wrap" style="padding-top:0">
+  <div class="kicker reveal">FAQ</div>
+  <h2 class="reveal">Before you ask.</h2>
+  <div class="reveal">
+    <details><summary>How do I choose my size?</summary><p>Use the size guide above (waist / hip / length in cm). This denim-look fabric is structured — no stretch. Between sizes? Size up for a relaxed drape. You confirm your size at checkout.</p></details>
+    <details><summary>Do you ship to my country?</summary><p>Yes — worldwide, free, tracked. Delivery estimate 10–15 days after processing (2–3 business days). Your tracking number arrives by email.</p></details>
+    <details><summary>What if it doesn't fit?</summary><p>7-day unconditional returns from delivery. Email us and we send the return instructions. No interrogation.</p></details>
+    <details><summary>Is payment secure?</summary><p>Payments run on Payhip with encrypted processing (cards, PayPal and local methods depending on region). We never see or store your card data.</p></details>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <div class="listbox reveal">
+    <div class="kicker">THE DROP LIST</div>
+    <h2 style="margin-bottom:12px">First access. Always.</h2>
+    <p>Early access to the next drop + members-only pricing.<br>No spam — one email per drop.</p>
+    <form id="list-form" class="listform">
+      <input type="email" name="email" required placeholder="your@email.com">
+      <input type="hidden" name="product" value="DROP LIST — VELVET NIGHT">
+      <button class="btn" type="submit">Join</button>
+    </form>
+    <div id="list-ok" class="listok" style="display:none">YOU'RE IN ✓ WATCH YOUR INBOX FOR THE NEXT DROP</div>
   </div>
 </section>
 
 <div class="sticky">
-  <div class="p">VELVET NIGHT — $69.99</div>
-  <a class="btn" href="#order">Reserve</a>
+  <div class="p">VELVET NIGHT — $74.99</div>
+  <button class="btn" id="buyBtn2">Buy</button>
 </div>
 
 <footer>© 2026 BFYT WORLD — TERRIVOL MUSIC ENT · WHERE SOUND DRESSES</footer>
 <div id="lb"><img src="" alt=""></div>
 
 <script>
-// ===== CONFIG =====
-const CHECKOUT_URL = "https://terrivolmusicentertainment.lemonsqueezy.com/checkout/buy/960e100a-9209-46dd-aa45-758b55ef936f";
-const FORMSPREE_ID = "mqpknlqn";
-const IMG_BASE = "/img/";
-let redirectTimer = null;
+// LINK ÚNICO DE PAGO (Payhip)
+const PAYHIP="https://payhip.com/b/f9LjB";
+document.getElementById("buyBtn").onclick=()=>{window.location.href=PAYHIP;};
+document.getElementById("buyBtn2").onclick=()=>{window.location.href=PAYHIP;};
 
-// ===== IMÁGENES ANTI-FALLAS: prueba .jpg .jpeg .png .webp =====
-const EXT = [".jpg",".jpeg",".png",".webp"];
-document.querySelectorAll("img[data-img]").forEach(img=>{
-  let i = 0;
-  const tryNext = ()=>{
-    if(i >= EXT.length){ img.style.opacity = .15; return; }
-    img.src = IMG_BASE + img.dataset.img + EXT[i++];
-  };
-  img.onerror = tryNext;
-  tryNext();
+// LOADER UNIVERSAL (jpg/JPEG/png/webp/avif/jfif/gif + mayúsculas + minúsculas)
+const IMG_BASE="/img/";
+const EXT=[".jpg",".JPG",".jpeg",".JPEG",".png",".PNG",".webp",".WEBP",".avif",".AVIF",".jfif",".JFIF",".gif",".GIF"];
+const EXT2=[".jpg",".png",".webp",".jfif"];
+const PH="data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><rect width="600" height="800" fill="#0A0A0F"/><circle cx="300" cy="400" r="180" fill="none" stroke="#7B2CBF" stroke-opacity=".35" stroke-width="2"/><circle cx="300" cy="400" r="120" fill="none" stroke="#00F5FF" stroke-opacity=".25" stroke-width="1"/><text x="300" y="392" fill="#F5F5F7" font-family="Arial" font-size="26" letter-spacing="8" text-anchor="middle" font-weight="700">BFYT</text><text x="300" y="428" fill="#9A9AA5" font-family="Arial" font-size="14" letter-spacing="4" text-anchor="middle">WORLD</text></svg>');
+function loadImg(img){
+  const bases=[img.dataset.img, img.dataset.img.toLowerCase()];
+  const queue=[];
+  bases.forEach((b,bi)=>{ (bi===0?EXT:EXT2).forEach(e=>queue.push(b+e)); });
+  let i=0;
+  const next=()=>{ if(i<queue.length){ img.src=IMG_BASE+queue[i++]; } else { img.src=PH; console.warn("[BFYT] asset missing:", img.dataset.img); } };
+  img.onerror=next; next();
+}
+document.querySelectorAll("img[data-img]").forEach(loadImg);
+
+// Galería
+const main=document.getElementById("main");
+document.querySelectorAll(".thumbs img").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll(".thumbs img").forEach(x=>x.classList.remove("on"));
+  t.classList.add("on"); main.dataset.img=t.dataset.img; loadImg(main);
 });
 
-// Botón de pago manual (respaldo)
-document.querySelectorAll(".checkout-link").forEach(a=>a.href=CHECKOUT_URL);
+// Lightbox
+const lb=document.getElementById("lb");
+main.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=main.src;};
+document.querySelectorAll(".cgrid img,.ugc img").forEach(i=>i.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=i.src;});
+lb.onclick=()=>lb.style.display="none";
 
-// Countdown escasez 7 días
-let end=localStorage.getItem("bfytDropEnd");
-if(!end){end=Date.now()+7*24*3600*1000;localStorage.setItem("bfytDropEnd",end);}
+// Videos con fallback a foto
+document.querySelectorAll(".films figure, .ugc figure").forEach(fig=>{
+  const video=fig.querySelector("video"); if(!video) return;
+  const source=video.querySelector("source");
+  const errTarget=source||video;
+  errTarget.addEventListener("error",()=>{
+    if(!fig.dataset.fallback) return;
+    const img=document.createElement("img");
+    img.dataset.img=fig.dataset.fallback; img.alt="BFYT film";
+    video.replaceWith(img); loadImg(img);
+  });
+  video.addEventListener("click",()=>{ if(video.paused){video.play();fig.classList.add("playing");} else {video.pause();fig.classList.remove("playing");} });
+  new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){video.play().catch(()=>{});} else {video.pause();} }),{threshold:.4}).observe(fig);
+});
+
+// DROP LIST (Formspree)
+document.getElementById("list-form").onsubmit=async e=>{
+  e.preventDefault();
+  const f=e.target, btn=f.querySelector("button");
+  btn.disabled=true; btn.textContent="JOINING…";
+  try{
+    const res=await fetch("https://formspree.io/f/xnpnvrpe",{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}});
+    if(res.ok){ f.style.display="none"; document.getElementById("list-ok").style.display="block"; }
+    else { btn.disabled=false; btn.textContent="Join"; }
+  }catch(err){ btn.disabled=false; btn.textContent="Join"; }
+};
+
+// Countdown 7 días (independiente del DROP 002)
+let end=localStorage.getItem("bfytVNEnd");
+if(!end){end=Date.now()+7*24*3600*1000;localStorage.setItem("bfytVNEnd",end);}
 setInterval(()=>{let d=Math.max(0,end-Date.now());
 const dd=Math.floor(d/864e5),hh=Math.floor(d%864e5/36e5),mm=Math.floor(d%36e5/6e4),ss=Math.floor(d%6e4/1e3);
 document.getElementById("cd").textContent=`${dd}D ${hh}H ${mm}M ${ss}S`;},1000);
 
-// Reveal on scroll
-const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("on")),{threshold:.15});
+// Reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("on")),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
-
-// Lightbox galería
-const lb=document.getElementById("lb");
-document.querySelectorAll(".grid img").forEach(i=>i.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=i.src;});
-lb.onclick=()=>lb.style.display="none";
-
-// ===== FORMULARIO → FORMSPREE → AUTO-REDIRECT AL PAGO =====
-document.getElementById("order-form").onsubmit=async e=>{
-  e.preventDefault();
-  const f=e.target;
-  const errBox=document.getElementById("form-err");
-  const btn=f.querySelector("button[type='submit']");
-  errBox.style.display="none";
-
-  if(!f.checkValidity()){
-    errBox.textContent="Complete all fields correctly before continuing.";
-    errBox.style.display="block"; return;
-  }
-
-  btn.disabled=true; btn.textContent="LOCKING…";
-  try{
-    const res=await fetch("https://formspree.io/f/"+FORMSPREE_ID,{
-      method:"POST", body:new FormData(f), headers:{Accept:"application/json"}
-    });
-    if(res.ok){
-      f.style.display="none";
-      document.getElementById("order-ok").style.display="block";
-      redirectTimer=setTimeout(()=>{ window.location.href=CHECKOUT_URL; },2500);
-    }else{
-      const data=await res.json().catch(()=>null);
-      const msgs=(data&&data.errors||[]).map(er=>er.message).join(" · ");
-      errBox.textContent=msgs||"Validation error. Check your data.";
-      errBox.style.display="block";
-    }
-  }catch(err){
-    errBox.textContent="Connection error. Try again in a few seconds.";
-    errBox.style.display="block";
-  }
-  btn.disabled=false; btn.textContent="Continue to Payment";
-};
-
-// ===== NUEVO FORMULARIO (OTRO PAÍS / REGALO / CORRECCIÓN) =====
-const resetForm = () => {
-  if(redirectTimer){ clearTimeout(redirectTimer); redirectTimer=null; }
-  const f=document.getElementById("order-form");
-  document.getElementById("order-ok").style.display="none";
-  document.getElementById("form-err").style.display="none";
-  f.reset();
-  f.style.display="flex";
-};
-
-document.getElementById("reset-form").onclick = () => {
-  resetForm();
-  document.getElementById("order").scrollIntoView({behavior:"smooth"});
-};
-
-document.querySelectorAll('a[href="#order"]').forEach(link=>{
-  link.addEventListener("click", ()=>{
-    const f=document.getElementById("order-form");
-    if(f.style.display==="none"){ resetForm(); }
-  });
-});
 </script>
 </body>
 </html>
