@@ -30,7 +30,6 @@
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             position: relative;
-            /* REMOVIMOS EL DISPLAY FLEX GLOBAL QUE ROMPIA TODO */
         }
 
         /* --- CANVAS BACKGROUND ANIMATION (PARTÍCULAS NEÓN) --- */
@@ -42,7 +41,7 @@
             opacity: 0.8; 
         }
 
-        /* --- CONTENEDOR PRINCIPAL (AHORA USA MARGIN AUTO PARA CENTRAR) --- */
+        /* --- CONTENEDOR PRINCIPAL --- */
         .container {
             width: 100%;
             max-width: 900px; 
@@ -114,7 +113,7 @@
             display: block;
         }
 
-        /* --- VIDEO PLAYER (AUTOPLAY) --- */
+        /* --- VIDEO PLAYER (AUTOPLAY + DESBLOQUEO AUDIO) --- */
         .video-wrapper {
             position: relative;
             width: 100%;
@@ -131,6 +130,39 @@
             width: 100%;
             height: 100%;
             border: none;
+        }
+
+        /* BOTÓN ACTIVAR SONIDO (Overlay) */
+        .audio-unlock-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            color: white;
+            border: 1px solid var(--gold);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .audio-unlock-btn:hover {
+            background: var(--gold);
+            color: black;
+            transform: translateY(-2px);
+        }
+
+        .audio-unlock-btn.hidden {
+            display: none;
         }
 
         /* --- TARJETA DE VENTA (CTA MAIN) --- */
@@ -438,6 +470,14 @@
             .booking-section { padding: 1.5rem; }
             .contact-info { gap: 1rem; }
             .subscribe-form { flex-direction: column; }
+            
+            /* Ajuste móvil para botón de sonido */
+            .audio-unlock-btn {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -459,15 +499,21 @@
         <img src="/img/Muchas%20Gracias%20Cover%20ART-upscaled.png" alt="Cover Oficial Muchas Gracias">
     </div>
 
-    <!-- VIDEO AUTOPLAY -->
+    <!-- VIDEO AUTOPLAY + SISTEMA DESBLOQUEO AUDIO -->
     <div class="video-wrapper">
-        <iframe 
-            src="https://www.youtube.com/embed/hAcsXgzk4WQ?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1" 
+        <!-- ID del video extraído de tu link: hAcsXgzk4WQ -->
+        <iframe id="yt-player" 
+            src="https://www.youtube.com/embed/hAcsXgzk4WQ?enablejsapi=1&origin=https://terrivolmusic.github.io" 
             title="Cagta Flex - Muchas Gracias Official Visualizer" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin" 
             allowfullscreen>
         </iframe>
+        
+        <!-- BOTÓN PARA ACTIVAR SONIDO MANUALMENTE -->
+        <button class="audio-unlock-btn" id="unlockBtn">
+            🔊 Activar Sonido
+        </button>
     </div>
 
     <!-- TARJETA DE VENTA PRINCIPAL ($9.99 AUDIO OFICIAL) -->
@@ -612,17 +658,43 @@
     initParticles();
     animate();
 
-    // Script ligero para mejorar UX de autoplay
-    document.addEventListener('DOMContentLoaded', () => {
-        const videoFrame = document.querySelector('iframe');
-        window.addEventListener('click', () => {
-            if(videoFrame && videoFrame.contentWindow) {
-                try {
-                    // Intentar reactivar play si fue bloqueado
-                } catch(e) {}
-            }
-        }, { once: true });
+    // SCRIPT PARA CONTROLAR EL AUDIO DE YOUTUBE API
+    const unlockBtn = document.getElementById('unlockBtn');
+    const ytPlayerFrame = document.getElementById('yt-player');
+
+    // Función auxiliar para enviar comandos postMessage al iframe de YouTube
+    function sendCommandToYouTube(command) {
+        if (!ytPlayerFrame || !ytPlayerFrame.contentWindow) return;
+        ytPlayerFrame.contentWindow.postMessage(JSON.stringify({
+            event: 'command',
+            func: command.name,
+            args: command.args || []
+        }), '*');
+    }
+
+    // Al cargar la página, intentamos reproducir MUTED (silenciado)
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            // Comando Play (se ejecutará silenciado debido a políticas del navegador)
+            sendCommandToYouTube({ name: 'playVideo' });
+            // Comando Mute (garantiza que inicie sin sonido hasta interacción humana)
+            sendCommandToYouTube({ name: 'mute' });
+        }, 1000); // Pequeño delay para asegurar carga del player
     });
+
+    // Evento Click en el botón "Activar Sonido"
+    unlockBtn.addEventListener('click', () => {
+        // Desmutear el video (esto requiere interacción directa del usuario, cumpliendo normativa)
+        sendCommandToYouTube({ name: 'unMute' });
+        // Asegurar que esté reproduciendo
+        sendCommandToYouTube({ name: 'playVideo' });
+        
+        // Ocultar el botón tras activarlo
+        unlockBtn.classList.add('hidden');
+        
+        console.log("Audio activado manualmente por el usuario.");
+    });
+
 </script>
 
 </body>
