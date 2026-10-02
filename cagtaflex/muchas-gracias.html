@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAGTA FLEX - MUCHAS GRACIAS | Official Release</title>
+    <meta name="description" content="Descarga el audio oficial 'MUCHAS GRACIAS' de Cagta Flex. Calidad estudio WAV+MP3. Visualizador disponible. Terrivol Music.">
+    
+    <!-- Fuentes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --purple-main: #7B2CBF;
+            --purple-dark: #2d0b4e;
+            --neon-pink: #FF00FF;
+            --gold: #ffd700;
+            --bg-black: #050508;
+            --text-white: #ffffff;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            /* Fondo degradado radial sutil tipo nebulosa */
+            background-image: radial-gradient(circle at 50% -20%, var(--purple-dark) 0%, transparent 60%),
+                              radial-gradient(circle at 50% 120%, #1a0b2e 0%, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        /* --- HEADER / HERO --- */
+        header {
+            text-align: center;
+            animation: fadeInDown 1s ease-out forwards;
+        }
+
+        h1.brand-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            background: linear-gradient(to bottom right, #fff, var(--purple-main));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(123, 44, 191, 0.4));
+            margin-bottom: 0.5rem;
+        }
+
+        p.track-name {
+            font-size: 1.2rem;
+            color: #ccc;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- VIDEO PLAYER (AUTOPLAY) --- */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 
+                        inset 0 0 0 1px var(--glass-border);
+            background: #000;
+            animation: scaleUp 1s ease-out 0.2s backwards;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Overlay decorativo sutil sobre el video si quieres */
+        .video-overlay-text {
+            position: absolute;
+            top: 10px; left: 15px;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+            pointer-events: none;
+            z-index: 10;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* --- TARJETA DE VENTA (CTA MAIN) --- */
+        .sales-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(123,44,191,0.1));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-top: 2px solid var(--gold); /* Línea dorada superior premium */
+            border-radius: 24px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 550px;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: floatCard 6s infinite ease-in-out;
+        }
+
+        .sales-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(123, 44, 191, 0.3);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .badge-official {
+            background: var(--purple-main);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(123, 44, 191, 0.4);
+        }
+
+        .price-display {
+            font-family: 'Anton', sans-serif;
+            font-size: 3.5rem;
+            color: var(--gold);
+            line-height: 1;
+            margin: 0.5rem 0;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            text-align: left;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .check-icon {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .btn-buy-now {
+            display: block;
+            width: 100%;
+            background: linear-gradient(90deg, var(--purple-main), #9d4edd);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 1.2rem;
+            border-radius: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(123, 44, 191, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-buy-now::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-buy-now:hover::after {
+            left: 100%;
+        }
+
+        .btn-buy-now:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 35px rgba(123, 44, 191, 0.6);
+        }
+
+        .secure-note {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 0.8rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* --- STREAMING SECTION --- */
+        .streaming-section {
+            width: 100%;
+            max-width: 800px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        
+        .streaming-section:hover { opacity: 1; }
+
+        .section-label {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            color: var(--purple-main);
+            margin-bottom: 1rem;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .spotify-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* --- BOOKING & CONTACTO (REF MUCHO FENDY) --- */
+        .booking-section {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .booking-header {
+            font-family: 'Anton', sans-serif;
+            font-size: 2rem;
+            text-transform: uppercase;
+            color: var(--text-white);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .booking-subheader {
+            font-size: 1rem;
+            color: #aaa;
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item:hover {
+            color: var(--purple-main);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--purple-main);
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white !important;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5);
+            background: #1ebe5d;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: auto;
+            padding: 3rem 1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            width: 100%;
+        }
+
+        .footer-brand {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.2rem;
+            color: var(--purple-main);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ANIMATIONS KEYFRAMES */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        @keyframes floatCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* RESPONSIVE MOBILE TWEAKS */
+        @media (max-width: 600px) {
+            .features-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+            .sales-card { padding: 1.5rem; }
+            .price-display { font-size: 2.8rem; }
+            h1.brand-title { font-size: 2.2rem; }
+            .booking-section { padding: 1.5rem; }
+            .contact-info { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- HEADER -->
+    <header>
+        <h1 class="brand-title">CAGTA FLEX</h1>
+        <p class="track-name">MUCHAS GRACIAS • OFFICIAL RELEASE</p>
+    </header>
+
+    <!-- VIDEO AUTOPLAY (Sumando vistas automáticamente) -->
+    <div class="video-wrapper">
+        <span class="video-overlay-text">▶ PLAYING NOW...</span>
+        <!-- Autoplay activado. Muted implícito por políticas browser, pero visible inmediato -->
+        <iframe 
+            src="https://www.youtube.com/embed/hAcsXgzk4WQ?autoplay=1&rel=0&modestbranding=1&playsinline=1" 
+            title="Cagta Flex - Muchas Gracias Official Visualizer" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- TARJETA DE VENTA PRINCIPAL ($9.99 AUDIO OFICIAL) -->
+    <div class="sales-card">
+        <span class="badge-official">Audio Oficial Lossless</span>
+        
+        <div class="price-display">$9.99<span style="font-size:1rem; vertical-align:top;">USD</span></div>
+        
+        <p style="color:#aaa; font-size:0.9rem; margin-bottom:1rem;">Soporte directo al artista independiente.<br>Sin intermediarios. Calidad de estudio pura.</p>
+
+        <div class="features-grid">
+            <div class="feature-item"><span class="check-icon">✓</span> Archivo WAV Masterizado</div>
+            <div class="feature-item"><span class="check-icon">✓</span> MP3 Alta Fidelidad (320kbps)</div>
+            <div class="feature-item"><span class="check-icon">✓</span> Entrega Instantánea</div>
+            <div class="feature-item"><span class="check-icon">✓</span> Licencia Personal Uso</div>
+        </div>
+
+        <!-- LINK DIRECTO A FOURTHWALL PRODUCTO -->
+        <a href="https://cagta-flex-shop.fourthwall.com/products/muchas-gracias-official-audio-pack-wav-mp3" target="_blank" class="btn-buy-now">
+            Comprar Audio Ahora ⚡
+        </a>
+        
+        <div class="secure-note">
+            🔒 Pago Seguro vía Fourthwall • Soporte Terrivol Music
+        </div>
+    </div>
+
+    <!-- SPOTIFY EMBED INTEGRADO -->
+    <section class="streaming-section">
+        <h2 class="section-label">Escucha en Streaming</h2>
+        <div class="spotify-container">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/0dcLIc7oWBpMa6zgQQUJDK?utm_source=generator&si=4722be0254f840a8" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- SECCIÓN BOOKING & CONTACTO (ESTILO MUCHO FENDY) -->
+    <section class="booking-section">
+        <h2 class="booking-header">Booking & Contacto</h2>
+        <p class="booking-subheader">Para booking de shows, colaboraciones, producción musical o cualquier consulta, no dudes en contactarnos. Estamos listos para llevar tu proyecto al siguiente nivel.</p>
+        
+        <div class="contact-info">
+            <a href="mailto:contacto@terrivolmusic.com" class="contact-item">
+                <span class="contact-icon">📧</span>
+                contacto@terrivolmusic.com
+            </a>
+            
+            <a href="https://wa.me/57310223844" target="_blank" class="whatsapp-btn">
+                💬 Escríbenos por WhatsApp (+57 310 223 8444)
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<!-- FOOTER CON DATOS DEL BROCHURE PARA BOOKING PRO -->
+<footer>
+    <p class="footer-brand">TERRIVOL MUSIC ENT.</p>
+    <p>© 2026 • Bogotá, Colombia</p>
+    <p>+20 Años de Carrera • 380 Canciones Registradas (Sony Music Publishing)</p>
+    <p style="margin-top:10px; font-size:0.7rem; opacity:0.5;">Desarrollado estratégicamente para escalar carrera global.</p>
+</footer>
+
+<script>
+    // Script ligero para mejorar UX de autoplay si el navegador bloquea sonido inicial
+    document.addEventListener('DOMContentLoaded', () => {
+        const videoFrame = document.querySelector('iframe');
+        
+        // Intentar forzar play si hay interacción mínima (scroll/click)
+        window.addEventListener('click', () => {
+            if(videoFrame && videoFrame.contentWindow) {
+                try {
+                    // Reenviar mensaje de play (depende del player YT interno)
+                    // Nota: El atributo autoplay=1 suele bastar en Chrome/Safari modernos si es muted o tras interacción previa
+                } catch(e) {}
+            }
+        }, { once: true });
+    });
+</script>
+
+</body>
+</html>
