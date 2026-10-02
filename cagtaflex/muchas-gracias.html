@@ -38,7 +38,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
             pointer-events: none;
-            opacity: 0.8; /* Más visible ahora */
+            opacity: 0.8; 
         }
 
         /* --- CONTENEDOR PRINCIPAL --- */
@@ -58,19 +58,19 @@
         header {
             text-align: center;
             animation: fadeInDown 1s ease-out forwards;
-            margin-top: 2rem; /* Menos margen superior para centrar mejor */
+            margin-top: 2rem; 
         }
 
         h1.brand-title {
             font-family: 'Anton', sans-serif;
-            font-size: clamp(3rem, 8vw, 5rem); /* Título MÁS GRANDE */
+            font-size: clamp(3rem, 8vw, 5rem); 
             line-height: 1;
             text-transform: uppercase;
             letter-spacing: -1px;
             background: linear-gradient(to bottom right, #fff, var(--purple-light), var(--neon-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.6)); /* Brillo intenso */
+            filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.6)); 
             margin-bottom: 0.5rem;
         }
 
@@ -82,18 +82,21 @@
             text-transform: uppercase;
         }
 
-        /* --- PORTADA OFICIAL (HERO IMAGE) - CORREGIDA --- */
+        /* --- PORTADA OFICIAL (HERO IMAGE) - FIX DEFINITIVO --- */
         .album-cover-hero {
             width: 100%;
-            max-width: 500px; /* Un poco más grande */
-            aspect-ratio: 1 / 1; /* FUERZA CUADRADO PERFECTO */
+            max-width: 500px; 
+            aspect-ratio: 1 / 1; 
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 0 40px rgba(123, 44, 191, 0.4), 
                         inset 0 0 0 1px rgba(255,255,255,0.1);
             transition: transform 0.5s ease, box-shadow 0.5s ease;
             animation: floatCard 6s infinite ease-in-out;
-            background: #111; /* Color de respaldo si carga lento */
+            background: #111; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .album-cover-hero:hover {
@@ -104,7 +107,7 @@
         .album-cover-hero img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* CAMBIO CLAVE: Contain muestra toda la imagen sin cortar */
+            object-fit: contain; /* Asegura que se vea toda la imagen sin cortes */
             object-position: center;
         }
 
@@ -448,10 +451,9 @@
         <p class="track-name">MUCHAS GRACIAS • OFFICIAL RELEASE</p>
     </header>
 
-    <!-- PORTADA OFICIAL GRANDE (AHORA CON OBJECT-FIT CONTAIN) -->
+    <!-- PORTADA OFICIAL GRANDE (RUTA CODIFICADA SEGURAMENTE) -->
     <div class="album-cover-hero">
-        <!-- IMPORTANTE: Verifica que esta ruta coincida exactamente con tu estructura de carpetas en GitHub -->
-        <img src="../img/Muchas Gracias Cover ART-upscaled.png" alt="Cover Oficial Muchas Gracias">
+        <img src="/img/Muchas%20Gracias%20Cover%20ART-upscaled.png" alt="Cover Oficial Muchas Gracias">
     </div>
 
     <!-- VIDEO AUTOPLAY -->
@@ -552,7 +554,7 @@
         constructor() {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
-            this.size = Math.random() * 4 + 1; // Partículas un poco más grandes
+            this.size = Math.random() * 4 + 1; 
             this.speedX = Math.random() * 0.8 - 0.4;
             this.speedY = Math.random() * 0.8 - 0.4;
             // Colores Neón Aleatorios (Morado, Rosa, Azul Eléctrico)
@@ -573,18 +575,18 @@
         
         draw() {
             ctx.fillStyle = this.color;
-            ctx.shadowBlur = 10; // Efecto de brillo/glow
+            ctx.shadowBlur = 10; 
             ctx.shadowColor = this.color;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
-            ctx.shadowBlur = 0; // Resetear para rendimiento
+            ctx.shadowBlur = 0; 
         }
     }
     
     function initParticles() {
         particles = [];
-        for (let i = 0; i < 150; i++) { // Más partículas para llenar el espacio
+        for (let i = 0; i < 150; i++) { 
             particles.push(new Particle());
         }
     }
