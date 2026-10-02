@@ -29,13 +29,16 @@
             color: var(--text-white);
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
-            /* Fondo degradado radial sutil tipo nebulosa */
-            background-image: radial-gradient(circle at 50% -20%, var(--purple-dark) 0%, transparent 60%),
-                              radial-gradient(circle at 50% 120%, #1a0b2e 0%, transparent 50%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position: relative;
+        }
+
+        /* --- CANVAS BACKGROUND ANIMATION (NUBES VIVAS) --- */
+        #cloud-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.6;
         }
 
         /* --- CONTENEDOR PRINCIPAL --- */
@@ -47,12 +50,15 @@
             flex-direction: column;
             align-items: center;
             gap: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         /* --- HEADER / HERO --- */
         header {
             text-align: center;
             animation: fadeInDown 1s ease-out forwards;
+            margin-top: 4rem;
         }
 
         h1.brand-title {
@@ -76,6 +82,30 @@
             text-transform: uppercase;
         }
 
+        /* --- PORTADA OFICIAL (HERO IMAGE) --- */
+        .album-cover-hero {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1 / 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(123, 44, 191, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            animation: floatCard 6s infinite ease-in-out;
+        }
+
+        .album-cover-hero:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 30px 80px rgba(123, 44, 191, 0.7);
+        }
+
+        .album-cover-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         /* --- VIDEO PLAYER (AUTOPLAY) --- */
         .video-wrapper {
             position: relative;
@@ -93,18 +123,6 @@
             width: 100%;
             height: 100%;
             border: none;
-        }
-
-        /* Overlay decorativo sutil sobre el video si quieres */
-        .video-overlay-text {
-            position: absolute;
-            top: 10px; left: 15px;
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.6);
-            pointer-events: none;
-            z-index: 10;
-            font-weight: 600;
-            letter-spacing: 1px;
         }
 
         /* --- TARJETA DE VENTA (CTA MAIN) --- */
@@ -248,7 +266,75 @@
             border: 1px solid var(--glass-border);
         }
 
-        /* --- BOOKING & CONTACTO (REF MUCHO FENDY) --- */
+        /* --- SUSCRIPCIÓN A LA FAMILIA --- */
+        .subscribe-section {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .subscribe-header {
+            font-family: 'Anton', sans-serif;
+            font-size: 2rem;
+            text-transform: uppercase;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .subscribe-subheader {
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 1.5rem;
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .subscribe-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .subscribe-input:focus {
+            border-color: var(--purple-main);
+            box-shadow: 0 0 15px rgba(123, 44, 191, 0.3);
+        }
+
+        .subscribe-btn {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .subscribe-btn:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* --- BOOKING & CONTACTO PRO --- */
         .booking-section {
             width: 100%;
             max-width: 800px;
@@ -266,14 +352,6 @@
             color: var(--text-white);
             margin-bottom: 1rem;
             text-align: center;
-        }
-
-        .booking-subheader {
-            font-size: 1rem;
-            color: #aaa;
-            text-align: center;
-            margin-bottom: 2rem;
-            line-height: 1.6;
         }
 
         .contact-info {
@@ -351,10 +429,14 @@
             h1.brand-title { font-size: 2.2rem; }
             .booking-section { padding: 1.5rem; }
             .contact-info { gap: 1rem; }
+            .subscribe-form { flex-direction: column; }
         }
     </style>
 </head>
 <body>
+
+<!-- CANVAS PARA ANIMACIÓN DE NUBES/PARTÍCULAS -->
+<canvas id="cloud-canvas"></canvas>
 
 <div class="container">
     
@@ -364,12 +446,15 @@
         <p class="track-name">MUCHAS GRACIAS • OFFICIAL RELEASE</p>
     </header>
 
+    <!-- PORTADA OFICIAL GRANDE -->
+    <div class="album-cover-hero">
+        <img src="../img/Muchas Gracias Cover ART-upscaled.png" alt="Cover Oficial Muchas Gracias">
+    </div>
+
     <!-- VIDEO AUTOPLAY (Sumando vistas automáticamente) -->
     <div class="video-wrapper">
-        <span class="video-overlay-text">▶ PLAYING NOW...</span>
-        <!-- Autoplay activado. Muted implícito por políticas browser, pero visible inmediato -->
         <iframe 
-            src="https://www.youtube.com/embed/hAcsXgzk4WQ?autoplay=1&rel=0&modestbranding=1&playsinline=1" 
+            src="https://www.youtube.com/embed/hAcsXgzk4WQ?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1" 
             title="Cagta Flex - Muchas Gracias Official Visualizer" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin" 
@@ -410,15 +495,24 @@
         </div>
     </section>
 
+    <!-- SUSCRIPCIÓN A LA FAMILIA -->
+    <section class="subscribe-section">
+        <h2 class="subscribe-header">Únete a La Familia</h2>
+        <p class="subscribe-subheader">Recibe drops exclusivos, adelantos y contenido detrás de cámaras directamente en tu correo.</p>
+        <form action="https://formspree.io/f/mqegnekp" method="POST" class="subscribe-form">
+            <input type="email" name="email" placeholder="tu@email.com" required class="subscribe-input">
+            <button type="submit" class="subscribe-btn">Suscribirme 👑</button>
+        </form>
+    </section>
+
     <!-- SECCIÓN BOOKING & CONTACTO (ESTILO MUCHO FENDY) -->
     <section class="booking-section">
         <h2 class="booking-header">Booking & Contacto</h2>
-        <p class="booking-subheader">Para booking de shows, colaboraciones, producción musical o cualquier consulta, no dudes en contactarnos. Estamos listos para llevar tu proyecto al siguiente nivel.</p>
         
         <div class="contact-info">
-            <a href="mailto:contacto@terrivolmusic.com" class="contact-item">
+            <a href="mailto:terrivolmusiclove@gmail.com" class="contact-item">
                 <span class="contact-icon">📧</span>
-                contacto@terrivolmusic.com
+                terrivolmusiclove@gmail.com
             </a>
             
             <a href="https://wa.me/57310223844" target="_blank" class="whatsapp-btn">
@@ -438,6 +532,73 @@
 </footer>
 
 <script>
+    // SCRIPT PARA ANIMACIÓN DE NUBES/PARTÍCULAS EN CANVAS
+    const canvas = document.getElementById('cloud-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    let width, height;
+    let particles = [];
+    
+    function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+    
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.size = Math.random() * 3 + 1;
+            this.speedX = Math.random() * 0.5 - 0.25;
+            this.speedY = Math.random() * 0.5 - 0.25;
+            this.color = `rgba(${Math.floor(Math.random()*50)+100}, ${Math.floor(Math.random()*50)}, ${Math.floor(Math.random()*100)+150}, 0.5)`; // Tonos morados/blues
+        }
+        
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            
+            if (this.x > width) this.x = 0;
+            if (this.x < 0) this.x = width;
+            if (this.y > height) this.y = 0;
+            if (this.y < 0) this.y = height;
+        }
+        
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+    
+    function initParticles() {
+        particles = [];
+        for (let i = 0; i < 100; i++) {
+            particles.push(new Particle());
+        }
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animate);
+    }
+    
+    window.addEventListener('resize', () => {
+        resize();
+        initParticles();
+    });
+    
+    resize();
+    initParticles();
+    animate();
+
     // Script ligero para mejorar UX de autoplay si el navegador bloquea sonido inicial
     document.addEventListener('DOMContentLoaded', () => {
         const videoFrame = document.querySelector('iframe');
