@@ -30,8 +30,7 @@
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             position: relative;
-            display: flex;
-            justify-content: center; /* CENTRA TODO HORIZONTALMENTE */
+            /* REMOVIMOS EL DISPLAY FLEX GLOBAL QUE ROMPIA TODO */
         }
 
         /* --- CANVAS BACKGROUND ANIMATION (PARTÍCULAS NEÓN) --- */
@@ -43,10 +42,11 @@
             opacity: 0.8; 
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
+        /* --- CONTENEDOR PRINCIPAL (AHORA USA MARGIN AUTO PARA CENTRAR) --- */
         .container {
             width: 100%;
-            max-width: 900px; /* Reducido ligeramente para mejor lectura */
+            max-width: 900px; 
+            margin: 0 auto; /* CENTRA HORIZONTALMENTE DE FORMA SEGURA */
             padding: 2rem 1rem;
             display: flex;
             flex-direction: column;
@@ -61,6 +61,7 @@
             text-align: center;
             animation: fadeInDown 1s ease-out forwards;
             margin-top: 2rem; 
+            width: 100%;
         }
 
         h1.brand-title {
