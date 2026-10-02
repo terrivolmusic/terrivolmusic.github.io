@@ -71,7 +71,7 @@ h2{font-size:clamp(28px,4.6vw,48px);font-weight:800;letter-spacing:.05em;margin-
 .specs li{padding:11px 0;border-bottom:1px solid var(--line);font-size:13px;letter-spacing:.12em;color:#d8d8de}
 .specs li::before{content:"— ";color:var(--rose)}
 .sound{border:1px solid var(--line);background:linear-gradient(140deg,rgba(232,180,160,.10),rgba(123,44,191,.12));padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;align-items:center}
-.sound img{aspect-ratio:3/4;object-fit:cover;border:1px solid var(--line)}
+.sound img{aspect-ratio:1;object-fit:cover;border:1px solid var(--line)}
 .sound p{color:#c9c9d2;line-height:1.9;margin:14px 0 26px}
 .sound .btn{width:auto;padding:16px 36px}
 .ugc{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -181,11 +181,11 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
     <div class="crumbs">BFYT ICED / DROP 001 / <b>BURGUNDY PROTOCOL</b></div>
     <h1>Burgundy Protocol<br>Iced Rose Gold Watch</h1>
     <div class="sku">SKU BFYT-ICED-001-RGW · <em>♫ OFFICIAL SOUNDTRACK: "BURGUNDY PROTOCOL" — WATCH IT BELOW</em></div>
-    <div class="price-line"><s>$89.00</s> <em>$49.99</em></div>
+    <div class="price-line"><s>$149.00</s> <em>$89.00</em></div>
     <div class="ship-note"><b>FREE WORLDWIDE SHIPPING</b> · TRACKED · 10–15 DAYS</div>
     <div class="scarcity">DROP PRICE ENDS IN <b id="cd">--:--:--:--</b></div>
     <div class="sizenote"><b>ONE SIZE — STANDARD FIT 16–20 CM.</b> Removable links + adjustment tool included in the box. <a href="#guide" style="color:var(--rose)">Fit & care details</a> below.</div>
-    <button class="btn" id="buyBtn">Buy Now — $49.99</button>
+    <button class="btn" id="buyBtn">Buy Now — $89.00</button>
     <div class="secure">SECURE CHECKOUT POWERED BY PAYHIP</div>
     <ul class="trust">
       <li>PROCESSING 2–3 BUSINESS DAYS</li>
@@ -222,7 +222,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 
 <section class="wrap" style="padding-top:0">
   <div class="sound reveal">
-    <img data-img="Watch_advertising_poster_design_2K_202609031752" alt="TICK TOCK official poster">
+    <img data-img="Professional_promotional_shot_of_a_202605131644" alt="Rose gold watch on black marble">
     <div>
       <div class="kicker">THE SOUNDTRACK</div>
       <h2 style="margin-bottom:0">Wear the drop.<br>Hear the drop.</h2>
@@ -311,7 +311,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 </section>
 
 <div class="sticky">
-  <div class="p">BURGUNDY PROTOCOL — $49.99</div>
+  <div class="p">BURGUNDY PROTOCOL — $89.00</div>
   <button class="btn" id="buyBtn2">Buy</button>
 </div>
 
@@ -324,7 +324,8 @@ const PAYHIP="https://payhip.com/b/zMdek";
 document.getElementById("buyBtn").onclick=()=>{window.location.href=PAYHIP;};
 document.getElementById("buyBtn2").onclick=()=>{window.location.href=PAYHIP;};
 
-// LOADER UNIVERSAL ANTI-DUPLICADOS (base, base (1), base (2) + todas las extensiones + minúsculas)
+// LOADER UNIVERSAL ANTI-DUPLICADOS + ANTI-FORMATO
+// Prueba: base, base (1), base (2) × 14 extensiones (.jpg .jpeg .png .webp .jfif .avif .gif + mayúsculas) + minúsculas + data-alt
 const IMG_BASE="/img/";
 const EXT=[".jpg",".jpeg",".png",".webp",".JPG",".JPEG",".PNG",".WEBP",".jfif",".JFIF",".avif",".AVIF",".gif",".GIF"];
 const PH="data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><rect width="600" height="800" fill="#0A0A0F"/><circle cx="300" cy="400" r="180" fill="none" stroke="#7B2CBF" stroke-opacity=".35" stroke-width="2"/><circle cx="300" cy="400" r="120" fill="none" stroke="#E8B4A0" stroke-opacity=".3" stroke-width="1"/><text x="300" y="392" fill="#F5F5F7" font-family="Arial" font-size="26" letter-spacing="8" text-anchor="middle" font-weight="700">BFYT</text><text x="300" y="428" fill="#9A9AA5" font-family="Arial" font-size="14" letter-spacing="4" text-anchor="middle">ICED</text></svg>');
@@ -363,7 +364,7 @@ main.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=main.src;};
 document.querySelectorAll(".cgrid img,.ugc img").forEach(i=>i.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=i.src;});
 lb.onclick=()=>lb.style.display="none";
 
-// FILMS A PRUEBA DE TODO: foto siempre visible + video con probe de extensión (.mp4/.mov/.webm)
+// FILMS A PRUEBA DE TODO: foto siempre visible + probe de extensión de video (.mp4/.mov/.webm)
 const EXTV=[".mp4",".mov",".webm",".MP4",".MOV"];
 document.querySelectorAll(".films figure").forEach(fig=>{
   const video=fig.querySelector("video");
