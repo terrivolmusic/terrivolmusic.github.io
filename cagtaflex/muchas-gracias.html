@@ -84,10 +84,11 @@
             text-transform: uppercase;
         }
 
-        /* --- PORTADA OFICIAL (HERO IMAGE) - AJUSTE NATURAL --- */
+        /* --- PORTADA OFICIAL (HERO IMAGE) - CUADRADO PERFECTO FORZADO --- */
         .album-cover-hero {
             width: 100%;
-            max-width: 600px; /* Permite imágenes más grandes si son rectangulares */
+            max-width: 500px; /* Tamaño fijo para controlar proporción */
+            aspect-ratio: 1 / 1; /* FUERZA CUADRADO PERFECTO */
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 0 40px rgba(123, 44, 191, 0.4), 
@@ -95,9 +96,8 @@
             transition: transform 0.5s ease, box-shadow 0.5s ease;
             animation: floatCard 6s infinite ease-in-out;
             background: #111; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: grid; /* Usa Grid para centrar perfectamente */
+            place-items: center; /* Centra horizontal Y verticalmente */
         }
 
         .album-cover-hero:hover {
@@ -107,8 +107,9 @@
 
         .album-cover-hero img {
             width: 100%;
-            height: auto; /* ALTURA AUTOMÁTICA PARA MANTENER PROPORCIÓN REAL */
-            object-fit: cover; /* Cambiado a cover por seguridad, pero con height:auto respeta el ratio */
+            height: 100%;
+            object-fit: cover; /* Recorta bordes si es necesario para llenar el cuadro */
+            object-position: center;
             display: block;
         }
 
@@ -452,9 +453,8 @@
         <p class="track-name">MUCHAS GRACIAS • OFFICIAL RELEASE</p>
     </header>
 
-    <!-- PORTADA OFICIAL GRANDE (RUTA ABSOLUTA CORREGIDA) -->
+    <!-- PORTADA OFICIAL GRANDE (CUADRADO PERFECTO FORZADO CON GRID) -->
     <div class="album-cover-hero">
-        <!-- RUTA ABSOLUTA DESDE LA RAÍZ DEL REPOSITORIO GITHUB -->
         <img src="/img/Muchas%20Gracias%20Cover%20ART-upscaled.png" alt="Cover Oficial Muchas Gracias">
     </div>
 
