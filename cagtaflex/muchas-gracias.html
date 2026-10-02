@@ -30,6 +30,8 @@
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             position: relative;
+            display: flex;
+            justify-content: center; /* CENTRA TODO HORIZONTALMENTE */
         }
 
         /* --- CANVAS BACKGROUND ANIMATION (PARTÍCULAS NEÓN) --- */
@@ -44,11 +46,11 @@
         /* --- CONTENEDOR PRINCIPAL --- */
         .container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 900px; /* Reducido ligeramente para mejor lectura */
             padding: 2rem 1rem;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; /* Centra los hijos internamente */
             gap: 3rem;
             position: relative;
             z-index: 1;
@@ -82,11 +84,10 @@
             text-transform: uppercase;
         }
 
-        /* --- PORTADA OFICIAL (HERO IMAGE) - FIX DEFINITIVO --- */
+        /* --- PORTADA OFICIAL (HERO IMAGE) - AJUSTE NATURAL --- */
         .album-cover-hero {
             width: 100%;
-            max-width: 500px; 
-            aspect-ratio: 1 / 1; 
+            max-width: 600px; /* Permite imágenes más grandes si son rectangulares */
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 0 40px rgba(123, 44, 191, 0.4), 
@@ -106,9 +107,9 @@
 
         .album-cover-hero img {
             width: 100%;
-            height: 100%;
-            object-fit: contain; /* Asegura que se vea toda la imagen sin cortes */
-            object-position: center;
+            height: auto; /* ALTURA AUTOMÁTICA PARA MANTENER PROPORCIÓN REAL */
+            object-fit: cover; /* Cambiado a cover por seguridad, pero con height:auto respeta el ratio */
+            display: block;
         }
 
         /* --- VIDEO PLAYER (AUTOPLAY) --- */
@@ -451,7 +452,7 @@
         <p class="track-name">MUCHAS GRACIAS • OFFICIAL RELEASE</p>
     </header>
 
-    <!-- PORTADA OFICIAL GRANDE (RUTA CODIFICADA SEGURAMENTE) -->
+    <!-- PORTADA OFICIAL GRANDE (AHORA RESPETA SU FORMA REAL) -->
     <div class="album-cover-hero">
         <img src="/img/Muchas%20Gracias%20Cover%20ART-upscaled.png" alt="Cover Oficial Muchas Gracias">
     </div>
@@ -623,4 +624,4 @@
 </script>
 
 </body>
-</html>
+</html>  
