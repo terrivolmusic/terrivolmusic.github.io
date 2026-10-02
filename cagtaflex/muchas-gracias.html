@@ -14,10 +14,10 @@
     <style>
         :root {
             --purple-main: #7B2CBF;
-            --purple-dark: #2d0b4e;
+            --purple-light: #9d4edd;
             --neon-pink: #FF00FF;
             --gold: #ffd700;
-            --bg-black: #050508;
+            --bg-black: #050508; /* Negro profundo */
             --text-white: #ffffff;
             --glass-border: rgba(255, 255, 255, 0.1);
         }
@@ -32,13 +32,13 @@
             position: relative;
         }
 
-        /* --- CANVAS BACKGROUND ANIMATION (NUBES VIVAS) --- */
+        /* --- CANVAS BACKGROUND ANIMATION (PARTÍCULAS NEÓN) --- */
         #cloud-canvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 0.8; /* Más visible ahora */
         }
 
         /* --- CONTENEDOR PRINCIPAL --- */
@@ -58,19 +58,19 @@
         header {
             text-align: center;
             animation: fadeInDown 1s ease-out forwards;
-            margin-top: 4rem;
+            margin-top: 2rem; /* Menos margen superior para centrar mejor */
         }
 
         h1.brand-title {
             font-family: 'Anton', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(3rem, 8vw, 5rem); /* Título MÁS GRANDE */
             line-height: 1;
             text-transform: uppercase;
             letter-spacing: -1px;
-            background: linear-gradient(to bottom right, #fff, var(--purple-main));
+            background: linear-gradient(to bottom right, #fff, var(--purple-light), var(--neon-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(123, 44, 191, 0.4));
+            filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.6)); /* Brillo intenso */
             margin-bottom: 0.5rem;
         }
 
@@ -82,28 +82,30 @@
             text-transform: uppercase;
         }
 
-        /* --- PORTADA OFICIAL (HERO IMAGE) --- */
+        /* --- PORTADA OFICIAL (HERO IMAGE) - CORREGIDA --- */
         .album-cover-hero {
             width: 100%;
-            max-width: 400px;
-            aspect-ratio: 1 / 1;
+            max-width: 500px; /* Un poco más grande */
+            aspect-ratio: 1 / 1; /* FUERZA CUADRADO PERFECTO */
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(123, 44, 191, 0.5);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(123, 44, 191, 0.4), 
+                        inset 0 0 0 1px rgba(255,255,255,0.1);
             transition: transform 0.5s ease, box-shadow 0.5s ease;
             animation: floatCard 6s infinite ease-in-out;
+            background: #111; /* Color de respaldo si carga lento */
         }
 
         .album-cover-hero:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 30px 80px rgba(123, 44, 191, 0.7);
+            transform: scale(1.03);
+            box-shadow: 0 0 60px rgba(157, 78, 221, 0.6);
         }
 
         .album-cover-hero img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* CAMBIO CLAVE: Contain muestra toda la imagen sin cortar */
+            object-position: center;
         }
 
         /* --- VIDEO PLAYER (AUTOPLAY) --- */
@@ -131,7 +133,7 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
-            border-top: 2px solid var(--gold); /* Línea dorada superior premium */
+            border-top: 2px solid var(--gold); 
             border-radius: 24px;
             padding: 2.5rem;
             width: 100%;
@@ -426,7 +428,7 @@
             .features-grid { grid-template-columns: 1fr; gap: 0.5rem; }
             .sales-card { padding: 1.5rem; }
             .price-display { font-size: 2.8rem; }
-            h1.brand-title { font-size: 2.2rem; }
+            h1.brand-title { font-size: 2.5rem; }
             .booking-section { padding: 1.5rem; }
             .contact-info { gap: 1rem; }
             .subscribe-form { flex-direction: column; }
@@ -435,7 +437,7 @@
 </head>
 <body>
 
-<!-- CANVAS PARA ANIMACIÓN DE NUBES/PARTÍCULAS -->
+<!-- CANVAS PARA ANIMACIÓN DE PARTÍCULAS -->
 <canvas id="cloud-canvas"></canvas>
 
 <div class="container">
@@ -446,12 +448,13 @@
         <p class="track-name">MUCHAS GRACIAS • OFFICIAL RELEASE</p>
     </header>
 
-    <!-- PORTADA OFICIAL GRANDE -->
+    <!-- PORTADA OFICIAL GRANDE (AHORA CON OBJECT-FIT CONTAIN) -->
     <div class="album-cover-hero">
+        <!-- IMPORTANTE: Verifica que esta ruta coincida exactamente con tu estructura de carpetas en GitHub -->
         <img src="../img/Muchas Gracias Cover ART-upscaled.png" alt="Cover Oficial Muchas Gracias">
     </div>
 
-    <!-- VIDEO AUTOPLAY (Sumando vistas automáticamente) -->
+    <!-- VIDEO AUTOPLAY -->
     <div class="video-wrapper">
         <iframe 
             src="https://www.youtube.com/embed/hAcsXgzk4WQ?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1" 
@@ -477,7 +480,6 @@
             <div class="feature-item"><span class="check-icon">✓</span> Licencia Personal Uso</div>
         </div>
 
-        <!-- LINK DIRECTO A FOURTHWALL PRODUCTO -->
         <a href="https://cagta-flex-shop.fourthwall.com/products/muchas-gracias-official-audio-pack-wav-mp3" target="_blank" class="btn-buy-now">
             Comprar Audio Ahora ⚡
         </a>
@@ -505,7 +507,7 @@
         </form>
     </section>
 
-    <!-- SECCIÓN BOOKING & CONTACTO (ESTILO MUCHO FENDY) -->
+    <!-- SECCIÓN BOOKING & CONTACTO -->
     <section class="booking-section">
         <h2 class="booking-header">Booking & Contacto</h2>
         
@@ -523,7 +525,7 @@
 
 </div>
 
-<!-- FOOTER CON DATOS DEL BROCHURE PARA BOOKING PRO -->
+<!-- FOOTER -->
 <footer>
     <p class="footer-brand">TERRIVOL MUSIC ENT.</p>
     <p>© 2026 • Bogotá, Colombia</p>
@@ -532,7 +534,7 @@
 </footer>
 
 <script>
-    // SCRIPT PARA ANIMACIÓN DE NUBES/PARTÍCULAS EN CANVAS
+    // SCRIPT PARA ANIMACIÓN DE PARTÍCULAS NEÓN (MEJORADO)
     const canvas = document.getElementById('cloud-canvas');
     const ctx = canvas.getContext('2d');
     
@@ -550,10 +552,13 @@
         constructor() {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
-            this.size = Math.random() * 3 + 1;
-            this.speedX = Math.random() * 0.5 - 0.25;
-            this.speedY = Math.random() * 0.5 - 0.25;
-            this.color = `rgba(${Math.floor(Math.random()*50)+100}, ${Math.floor(Math.random()*50)}, ${Math.floor(Math.random()*100)+150}, 0.5)`; // Tonos morados/blues
+            this.size = Math.random() * 4 + 1; // Partículas un poco más grandes
+            this.speedX = Math.random() * 0.8 - 0.4;
+            this.speedY = Math.random() * 0.8 - 0.4;
+            // Colores Neón Aleatorios (Morado, Rosa, Azul Eléctrico)
+            const colors = ['rgba(157, 78, 221,', 'rgba(255, 0, 255,', 'rgba(75, 0, 130,'];
+            const baseColor = colors[Math.floor(Math.random() * colors.length)];
+            this.color = `${baseColor}${Math.random() * 0.5 + 0.2})`; 
         }
         
         update() {
@@ -568,15 +573,18 @@
         
         draw() {
             ctx.fillStyle = this.color;
+            ctx.shadowBlur = 10; // Efecto de brillo/glow
+            ctx.shadowColor = this.color;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
+            ctx.shadowBlur = 0; // Resetear para rendimiento
         }
     }
     
     function initParticles() {
         particles = [];
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 150; i++) { // Más partículas para llenar el espacio
             particles.push(new Particle());
         }
     }
@@ -599,16 +607,13 @@
     initParticles();
     animate();
 
-    // Script ligero para mejorar UX de autoplay si el navegador bloquea sonido inicial
+    // Script ligero para mejorar UX de autoplay
     document.addEventListener('DOMContentLoaded', () => {
         const videoFrame = document.querySelector('iframe');
-        
-        // Intentar forzar play si hay interacción mínima (scroll/click)
         window.addEventListener('click', () => {
             if(videoFrame && videoFrame.contentWindow) {
                 try {
-                    // Reenviar mensaje de play (depende del player YT interno)
-                    // Nota: El atributo autoplay=1 suele bastar en Chrome/Safari modernos si es muted o tras interacción previa
+                    // Intentar reactivar play si fue bloqueado
                 } catch(e) {}
             }
         }, { once: true });
