@@ -9,26 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#060607;--panel:#0e0e11;--panel2:#141418;--text:#f4f4f5;--muted:#8b8b94;
+    --bg:#060607;--text:#f4f4f5;--muted:#8b8b94;
     --accent:#e11d2e;--accent2:#ff3b48;--border:rgba(255,255,255,.07);--glow:rgba(225,29,46,.45);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{
-    background:
-      radial-gradient(120% 80% at 50% -10%,rgba(225,29,46,.16),transparent 55%),
-      radial-gradient(80% 60% at 100% 100%,rgba(225,29,46,.06),transparent 60%),
-      linear-gradient(180deg,#0a0a0c 0%,#050506 100%);
-    color:var(--text);font-family:Inter,system-ui,sans-serif;min-height:100vh;overflow-x:hidden;
-  }
-  /* grano de película */
-  body::after{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.045;mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  .wrap{width:min(94vw,860px);margin:0 auto;padding:64px 0 60px;position:relative;z-index:1}
+  body{background:linear-gradient(180deg,#0a0a0c 0%,#040405 100%);color:var(--text);
+       font-family:Inter,system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
+  /* fondo vivo de arena */
+  #bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:.55;pointer-events:none}
+  /* viñeta + grano encima del fondo, debajo del contenido */
+  body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% -10%,rgba(225,29,46,.14),transparent 55%),
+               radial-gradient(100% 100% at 50% 120%,rgba(0,0,0,.7),transparent 60%)}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{width:min(94vw,860px);margin:0 auto;padding:64px 0 60px;position:relative;z-index:3}
 
-  /* HEADER */
   .kicker{display:flex;align-items:center;gap:12px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
   .kicker .live{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--glow);animation:pulse 2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 var(--glow)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
@@ -41,14 +38,11 @@
         border:1px solid var(--border);background:rgba(255,255,255,.02);padding:8px 12px;border-radius:8px}
   .stat b{color:var(--text);font-weight:500}
 
-  /* TRACKS */
   .tracks{display:grid;gap:14px;margin-top:42px}
-  .track{
-    background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+  .track{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
     border:1px solid var(--border);border-radius:20px;padding:18px 20px;position:relative;overflow:hidden;
-    opacity:0;transform:translateY(14px);animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards;
-    transition:border-color .25s,background .25s,box-shadow .25s;
-  }
+    backdrop-filter:blur(2px);opacity:0;transform:translateY(14px);animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards;
+    transition:border-color .25s,background .25s,box-shadow .25s}
   .track:nth-child(1){animation-delay:.05s}.track:nth-child(2){animation-delay:.12s}
   .track:nth-child(3){animation-delay:.19s}.track:nth-child(4){animation-delay:.26s}.track:nth-child(5){animation-delay:.33s}
   @keyframes rise{to{opacity:1;transform:none}}
@@ -66,17 +60,13 @@
   @keyframes beat{0%,100%{box-shadow:0 0 0 0 var(--glow)}50%{box-shadow:0 0 0 12px transparent}}
   .info{min-width:0}
   .title{font-weight:700;font-size:16px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .specs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .chip{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
-        border:1px solid var(--border);padding:4px 8px;border-radius:6px}
-  .chip.role{color:var(--accent2);border-color:rgba(225,29,46,.3);background:rgba(225,29,46,.06)}
+  .meta{margin-top:7px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
   .num{font-family:Anton,sans-serif;font-size:30px;line-height:1;color:rgba(255,255,255,.12);letter-spacing:.02em}
   .track.active .num{color:rgba(225,29,46,.5)}
 
-  /* detalle que se revela al sonar */
   .detail{max-height:0;opacity:0;overflow:hidden;transition:max-height .4s ease,opacity .3s ease,margin .4s}
-  .track.active .detail{max-height:120px;opacity:1;margin-top:16px}
-  .viz{width:100%;height:46px;display:block;border-radius:8px}
+  .track.active .detail{max-height:140px;opacity:1;margin-top:16px}
+  .viz{width:100%;height:64px;display:block;border-radius:8px}
   .bar{display:flex;align-items:center;gap:12px;margin-top:10px}
   .prog{flex:1;height:4px;background:rgba(255,255,255,.08);border-radius:99px;cursor:pointer;position:relative}
   .prog i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}
@@ -86,14 +76,15 @@
   footer{margin-top:50px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
          font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
   footer b{color:var(--text);font-weight:500}
-  @media(max-width:640px){.row{grid-template-columns:50px 1fr}.num{display:none}.play{width:50px;height:50px}.title{font-size:14px}}
+  @media(max-width:640px){.row{grid-template-columns:50px 1fr}.num{display:none}.play{width:50px;height:50px}.title{font-size:14px}#bg{opacity:.4}}
 </style>
 </head>
 <body>
+<canvas id="bg"></canvas>
 <main class="wrap">
   <div class="kicker"><span class="live"></span> Terrivol Music // Audition Pack 2026</div>
   <h1>FMS <span>Beats</span></h1>
-  <p class="sub">Selección de producción para freestyle competitivo. Presiona play y escucha el espectro responder en tiempo real: energía, espacio vocal y golpe listos para directo, streaming y cypher.</p>
+  <p class="sub">Selección de producción para freestyle competitivo. Presiona play: la arena responde en tiempo real al golpe, al espacio vocal y a la energía de cada ronda.</p>
   <div class="stats">
     <span class="stat"><b>05</b> beats</span>
     <span class="stat">formato <b>MP3</b></span>
@@ -101,13 +92,11 @@
     <span class="stat">espacio vocal <b>limpio</b></span>
   </div>
 
-  <!-- ⚠️ EDITA bpm / key / role reales de cada beat antes de enviar -->
   <section class="tracks" id="tracks">
     <article class="track" data-src="/img/FMS%201%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3">
       <div class="row">
         <button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        <div class="info"><div class="title">FMS 1 Prod. Fullnes (Terrivol Music)</div>
-          <div class="specs"><span class="chip role">Opener</span><span class="chip">140 BPM</span><span class="chip">C# min</span><span class="chip">Dark</span></div></div>
+        <div class="info"><div class="title">FMS 1 Prod. Fullnes (Terrivol Music)</div><div class="meta">Prod. Fullnes · Terrivol Music</div></div>
         <div class="num">01</div>
       </div>
       <div class="detail"><canvas class="viz"></canvas><div class="bar"><div class="prog"><i></i></div><div class="time">0:00 / 0:00</div></div></div>
@@ -117,8 +106,7 @@
     <article class="track" data-src="/img/FMS%202%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3">
       <div class="row">
         <button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        <div class="info"><div class="title">FMS 2 Prod. Fullnes (Terrivol Music)</div>
-          <div class="specs"><span class="chip role">Punchline</span><span class="chip">142 BPM</span><span class="chip">A min</span><span class="chip">Minimal</span></div></div>
+        <div class="info"><div class="title">FMS 2 Prod. Fullnes (Terrivol Music)</div><div class="meta">Prod. Fullnes · Terrivol Music</div></div>
         <div class="num">02</div>
       </div>
       <div class="detail"><canvas class="viz"></canvas><div class="bar"><div class="prog"><i></i></div><div class="time">0:00 / 0:00</div></div></div>
@@ -128,8 +116,7 @@
     <article class="track" data-src="/img/FMS%203%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3">
       <div class="row">
         <button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        <div class="info"><div class="title">FMS 3 Prod. Fullnes (Terrivol Music)</div>
-          <div class="specs"><span class="chip role">Cypher</span><span class="chip">92 BPM</span><span class="chip">F min</span><span class="chip">Boom Bap</span></div></div>
+        <div class="info"><div class="title">FMS 3 Prod. Fullnes (Terrivol Music)</div><div class="meta">Prod. Fullnes · Terrivol Music</div></div>
         <div class="num">03</div>
       </div>
       <div class="detail"><canvas class="viz"></canvas><div class="bar"><div class="prog"><i></i></div><div class="time">0:00 / 0:00</div></div></div>
@@ -139,8 +126,7 @@
     <article class="track" data-src="/img/FMS%204%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3">
       <div class="row">
         <button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        <div class="info"><div class="title">FMS 4 Prod. Fullnes (Terrivol Music)</div>
-          <div class="specs"><span class="chip role">Melódico</span><span class="chip">130 BPM</span><span class="chip">G min</span><span class="chip">Cinematic</span></div></div>
+        <div class="info"><div class="title">FMS 4 Prod. Fullnes (Terrivol Music)</div><div class="meta">Prod. Fullnes · Terrivol Music</div></div>
         <div class="num">04</div>
       </div>
       <div class="detail"><canvas class="viz"></canvas><div class="bar"><div class="prog"><i></i></div><div class="time">0:00 / 0:00</div></div></div>
@@ -150,8 +136,7 @@
     <article class="track" data-src="/img/FMS%205%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3">
       <div class="row">
         <button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        <div class="info"><div class="title">FMS 5 Prod. Fullnes (Terrivol Music)</div>
-          <div class="specs"><span class="chip role">Wildcard</span><span class="chip">126 BPM</span><span class="chip">D min</span><span class="chip">Futuristic</span></div></div>
+        <div class="info"><div class="title">FMS 5 Prod. Fullnes (Terrivol Music)</div><div class="meta">Prod. Fullnes · Terrivol Music</div></div>
         <div class="num">05</div>
       </div>
       <div class="detail"><canvas class="viz"></canvas><div class="bar"><div class="prog"><i></i></div><div class="time">0:00 / 0:00</div></div></div>
@@ -166,38 +151,107 @@
 const PLAY='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
 const PAUSE='<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>';
 const fmt=s=>{s=Math.max(0,s|0);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
-let ctx=null, rafId=null, current=null;
+const DPR=Math.min(devicePixelRatio||1,2);
+
+/* ---- estado ---- */
+let ctx=null, active=null, energy=0, bass=0;
 const tracks=[...document.querySelectorAll('.track')].map(t=>{
   const audio=t.querySelector('audio'); audio.src=t.dataset.src;
   return {el:t,audio,btn:t.querySelector('.play'),viz:t.querySelector('.viz'),
-          prog:t.querySelector('.prog'),fill:t.querySelector('.prog i'),time:t.querySelector('.time'),analyser:null,src:null};
+          prog:t.querySelector('.prog'),fill:t.querySelector('.prog i'),time:t.querySelector('.time'),
+          analyser:null,src:null,data:null};
 });
 function ensureCtx(o){
   if(!ctx) ctx=new (window.AudioContext||window.webkitAudioContext)();
   if(ctx.state==='suspended') ctx.resume();
-  if(!o.src){ o.src=ctx.createMediaElementSource(o.audio); o.analyser=ctx.createAnalyser(); o.analyser.fftSize=128; o.analyser.smoothingTimeConstant=.82;
-              o.src.connect(o.analyser); o.analyser.connect(ctx.destination); }
+  if(!o.src){ o.src=ctx.createMediaElementSource(o.audio); o.analyser=ctx.createAnalyser();
+    o.analyser.fftSize=256; o.analyser.smoothingTimeConstant=.8; o.data=new Uint8Array(o.analyser.frequencyBinCount);
+    o.src.connect(o.analyser); o.analyser.connect(ctx.destination); }
 }
-function draw(o){
-  const c=o.viz, x=c.getContext('2d'), dpr=devicePixelRatio||1;
-  const W=c.clientWidth, H=c.clientHeight;
-  if(c.width!==W*dpr){c.width=W*dpr;c.height=H*dpr;} x.setTransform(dpr,0,0,dpr,0,0);
-  const bins=o.analyser.frequencyBinCount, data=new Uint8Array(bins), n=40, gap=2, bw=(W-(n-1)*gap)/n;
-  const g=x.createLinearGradient(0,H,0,0); g.addColorStop(0,'#7a0d18'); g.addColorStop(.5,'#e11d2e'); g.addColorStop(1,'#ff5a64');
-  function frame(){
-    o.analyser.getByteFrequencyData(data); x.clearRect(0,0,W,H);
-    for(let i=0;i<n;i++){ const v=data[Math.floor(i*bins/n/1.4)]/255, h=Math.max(2,v*H);
-      x.fillStyle=g; x.beginPath(); x.roundRect(i*(bw+gap),H-h,bw,h,2); x.fill(); }
-    rafId=requestAnimationFrame(frame);
+
+/* ---- fondo: arena (multitud + spotlight + polvo) ---- */
+const bg=document.getElementById('bg'), bx=bg.getContext('2d');
+let BW=0,BH=0, heads=[], dust=[];
+function sizeBG(){ BW=bg.width=innerWidth*DPR; BH=bg.height=innerHeight*DPR; bx.setTransform(DPR,0,0,DPR,0,0);
+  const W=innerWidth,H=innerHeight;
+  heads=[]; const n=Math.max(26,Math.floor(W/26));
+  for(let i=0;i<n;i++){ const x=(i+.5)/n*W + (Math.random()-.5)*10;
+    heads.push({x, base:H*0.86+Math.random()*H*0.1, r:8+Math.random()*7, ph:Math.random()*6.28, sp:.6+Math.random()*.9, arms:Math.random()<.45}); }
+  dust=[]; for(let i=0;i<46;i++) dust.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+.4,s:Math.random()*.3+.05,o:Math.random()*.5+.1});
+}
+addEventListener('resize',sizeBG); sizeBG();
+function drawBG(t){
+  const W=innerWidth,H=innerHeight; bx.clearRect(0,0,W,H);
+  // spotlight que barre, intensidad ligada al grave
+  const sx=(.5+.42*Math.sin(t*0.00022))*W, sy=H*0.18, rad=H*(0.55+bass*0.5);
+  let g=bx.createRadialGradient(sx,sy,0,sx,sy,rad);
+  g.addColorStop(0,`rgba(225,29,46,${0.10+bass*0.22})`); g.addColorStop(.5,`rgba(225,29,46,${0.03+bass*0.06})`); g.addColorStop(1,'rgba(225,29,46,0)');
+  bx.fillStyle=g; bx.fillRect(0,0,W,H);
+  // polvo
+  for(const d of dust){ d.y-=d.s*(1+bass*2); if(d.y<-4){d.y=H+4;d.x=Math.random()*W;}
+    bx.globalAlpha=d.o*(0.4+bass*0.6); bx.fillStyle='#ffd9dc'; bx.beginPath(); bx.arc(d.x,d.y,d.r,0,6.28); bx.fill(); }
+  bx.globalAlpha=1;
+  // multitud: siluetas con cabezas + brazos que se alzan con el golpe
+  const lift=bass; bx.fillStyle='rgba(4,4,6,0.92)';
+  bx.beginPath(); bx.rect(0,H*0.9,W,H*0.1); bx.fill(); // suelo
+  for(const h of heads){
+    const bob=Math.sin(t*0.001*h.sp+h.ph)*(2+lift*5);
+    const hy=h.base-bob;
+    bx.beginPath(); bx.arc(h.x,hy,h.r,0,6.28); bx.fill(); // cabeza
+    bx.fillRect(h.x-h.r*0.9,hy+h.r*0.6,h.r*1.8,H-hy);     // torso
+    if(h.arms){ // brazos arriba, más altos con el grave
+      const ah=h.r*(1.4+lift*1.6);
+      bx.lineWidth=h.r*0.5; bx.lineCap='round'; bx.strokeStyle='rgba(4,4,6,0.92)';
+      bx.beginPath(); bx.moveTo(h.x-h.r*0.6,hy+h.r); bx.lineTo(h.x-h.r*1.3,hy-ah); bx.stroke();
+      bx.beginPath(); bx.moveTo(h.x+h.r*0.6,hy+h.r); bx.lineTo(h.x+h.r*1.3,hy-ah); bx.stroke();
+    }
   }
-  frame();
 }
+
+/* ---- viz del track activo: reverb espejada + pulso + barras ---- */
+function drawViz(o){
+  const c=o.viz,x=c.getContext('2d'),W=c.clientWidth,H=c.clientHeight;
+  if(c.width!==W*DPR||c.height!==H*DPR){c.width=W*DPR;c.height=H*DPR;} x.setTransform(DPR,0,0,DPR,0,0);
+  x.clearRect(0,0,W,H);
+  o.analyser.getByteFrequencyData(o.data);
+  const bins=o.data.length, n=44, gap=2, bw=(W-(n-1)*gap)/n, mid=H*0.62;
+  // pulso radial de grave detrás
+  const rg=x.createRadialGradient(W/2,mid,0,W/2,mid,W*0.5);
+  rg.addColorStop(0,`rgba(225,29,46,${0.10+bass*0.25})`); rg.addColorStop(1,'rgba(225,29,46,0)');
+  x.fillStyle=rg; x.fillRect(0,0,W,H);
+  // reverberación espejada (debajo de la línea base)
+  for(let i=0;i<n;i++){ const v=o.data[Math.floor(i*bins/n/1.3)]/255, hh=Math.max(1,v*mid*0.9);
+    x.globalAlpha=0.18+v*0.25; x.fillStyle='#e11d2e';
+    x.beginPath(); x.roundRect(i*(bw+gap),mid,bw,hh*0.7,2); x.fill(); }
+  x.globalAlpha=1;
+  // línea base
+  x.strokeStyle='rgba(255,255,255,0.06)'; x.lineWidth=1; x.beginPath(); x.moveTo(0,mid); x.lineTo(W,mid); x.stroke();
+  // barras reales (hacia arriba)
+  const g=x.createLinearGradient(0,mid,0,0); g.addColorStop(0,'#7a0d18'); g.addColorStop(.5,'#e11d2e'); g.addColorStop(1,'#ff6b74');
+  for(let i=0;i<n;i++){ const v=o.data[Math.floor(i*bins/n/1.3)]/255, hh=Math.max(2,v*mid*0.95);
+    x.fillStyle=g; x.shadowColor='rgba(225,29,46,0.5)'; x.shadowBlur=6*v;
+    x.beginPath(); x.roundRect(i*(bw+gap),mid-hh,bw,hh,2); x.fill(); }
+  x.shadowBlur=0;
+}
+
+/* ---- loop maestro único ---- */
+function frame(t){
+  if(active){ active.analyser.getByteFrequencyData(active.data);
+    let b=0; for(let i=0;i<8;i++) b+=active.data[i]; bass=Math.min(1,(b/8)/255*1.6);
+    let e=0; for(let i=0;i<active.data.length;i++) e+=active.data[i]; energy=e/active.data.length/255;
+    drawViz(active);
+  } else { bass*=0.92; energy*=0.92; }
+  drawBG(t);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+/* ---- interacción ---- */
 function setActive(o){
   tracks.forEach(t=>{ if(t!==o){ t.audio.pause(); t.el.classList.remove('active'); t.btn.innerHTML=PLAY; t.fill.style.width='0'; }});
-  o.el.classList.add('active'); o.btn.innerHTML=PAUSE; current=o;
-  cancelAnimationFrame(rafId); ensureCtx(o); draw(o);
+  o.el.classList.add('active'); o.btn.innerHTML=PAUSE; active=o; ensureCtx(o);
 }
-function clearActive(){ cancelAnimationFrame(rafId); if(current){current.el.classList.remove('active');current.btn.innerHTML=PLAY;current.fill.style.width='0';} current=null; }
+function clearActive(){ if(active){active.el.classList.remove('active');active.btn.innerHTML=PLAY;active.fill.style.width='0';} active=null; bass=0; }
 tracks.forEach(o=>{
   o.btn.onclick=()=>{ if(o.audio.paused){ if(ctx&&ctx.state==='suspended')ctx.resume(); o.audio.play(); setActive(o);} else {o.audio.pause(); clearActive();} };
   o.audio.ontimeupdate=()=>{ const d=o.audio.duration||0; o.fill.style.width=(o.audio.currentTime/d*100)+'%'; o.time.textContent=fmt(o.audio.currentTime)+' / '+fmt(d); };
