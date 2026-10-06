@@ -1,79 +1,209 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terrivol Music — FMS Beats</title>
-  <style>
-    :root{--bg:#070708;--text:#f3f3f3;--muted:#9a9aa3;--accent:#d61f2e;--border:rgba(255,255,255,0.08)}
-    *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;background:radial-gradient(circle at top,rgba(214,31,46,0.12),transparent 35%),linear-gradient(180deg,#09090b 0%,#050506 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-    .wrap{width:min(92vw,780px);margin:0 auto;padding:70px 0 50px}
-    .brand{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
-    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px rgba(214,31,46,0.75)}
-    h1{margin:0;font-size:clamp(34px,7vw,64px);line-height:0.95;letter-spacing:-0.04em;text-transform:uppercase}
-    .sub{margin:18px 0 34px;color:var(--muted);font-size:15px;line-height:1.6;max-width:620px}
-    .tracks{display:grid;gap:12px}
-    .track{background:linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015));border:1px solid var(--border);border-radius:18px;padding:16px 18px;display:grid;grid-template-columns:54px 1fr auto;align-items:center;gap:16px;transition:transform .18s ease,border-color .18s ease,background .18s ease}
-    .track:hover{transform:translateY(-1px);border-color:rgba(255,255,255,0.16);background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))}
-    .play{width:54px;height:54px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:#151518;color:var(--text);display:grid;place-items:center;cursor:pointer;transition:all .18s ease}
-    .play:hover{border-color:rgba(214,31,46,0.55);box-shadow:0 0 0 4px rgba(214,31,46,0.08)}
-    .play.playing{background:var(--accent);border-color:transparent;color:#fff;box-shadow:0 0 24px rgba(214,31,46,0.35)}
-    .play svg{width:20px;height:20px;fill:currentColor}
-    .info{min-width:0}
-    .title{font-weight:700;font-size:15px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .meta{margin-top:5px;color:var(--muted);font-size:12px;letter-spacing:0.04em;text-transform:uppercase}
-    .badge{font-size:11px;color:var(--muted);border:1px solid var(--border);background:rgba(255,255,255,0.03);padding:7px 10px;border-radius:999px;white-space:nowrap}
-    audio{display:none}
-    footer{margin-top:42px;padding-top:22px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    @media(max-width:620px){.wrap{padding-top:48px}.track{grid-template-columns:48px 1fr;padding:14px}.play{width:48px;height:48px}.badge{display:none}.title{white-space:normal}}
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Terrivol Music — FMS Beats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#060607;--panel:#0e0e11;--panel2:#141418;--text:#f4f4f5;--muted:#8b8b94;
+    --accent:#e11d2e;--accent2:#ff3b48;--border:rgba(255,255,255,.07);--glow:rgba(225,29,46,.45);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(120% 80% at 50% -10%,rgba(225,29,46,.16),transparent 55%),
+      radial-gradient(80% 60% at 100% 100%,rgba(225,29,46,.06),transparent 60%),
+      linear-gradient(180deg,#0a0a0c 0%,#050506 100%);
+    color:var(--text);font-family:Inter,system-ui,sans-serif;min-height:100vh;overflow-x:hidden;
+  }
+  /* grano de película */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.045;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{width:min(94vw,860px);margin:0 auto;padding:64px 0 60px;position:relative;z-index:1}
+
+  /* HEADER */
+  .kicker{display:flex;align-items:center;gap:12px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+  .kicker .live{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--glow);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 var(--glow)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  h1{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(48px,11vw,108px);line-height:.86;letter-spacing:.01em;text-transform:uppercase;
+     background:linear-gradient(180deg,#fff 30%,#9a9aa3 130%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  h1 span{color:var(--accent);-webkit-text-fill-color:var(--accent)}
+  .sub{margin:20px 0 0;color:var(--muted);font-size:15px;line-height:1.65;max-width:560px}
+  .stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .stat{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+        border:1px solid var(--border);background:rgba(255,255,255,.02);padding:8px 12px;border-radius:8px}
+  .stat b{color:var(--text);font-weight:500}
+
+  /* TRACKS */
+  .tracks{display:grid;gap:14px;margin-top:42px}
+  .track{
+    background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+    border:1px solid var(--border);border-radius:20px;padding:18px 20px;position:relative;overflow:hidden;
+    opacity:0;transform:translateY(14px);animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards;
+    transition:border-color .25s,background .25s,box-shadow .25s;
+  }
+  .track:nth-child(1){animation-delay:.05s}.track:nth-child(2){animation-delay:.12s}
+  .track:nth-child(3){animation-delay:.19s}.track:nth-child(4){animation-delay:.26s}.track:nth-child(5){animation-delay:.33s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .track::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .35s}
+  .track:hover{border-color:rgba(255,255,255,.16);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02))}
+  .track.active{border-color:rgba(225,29,46,.4);box-shadow:0 0 0 1px rgba(225,29,46,.15),0 18px 50px -20px var(--glow)}
+  .track.active::before{transform:scaleY(1)}
+
+  .row{display:grid;grid-template-columns:58px 1fr auto;align-items:center;gap:18px}
+  .play{width:58px;height:58px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:#161619;color:var(--text);
+        display:grid;place-items:center;cursor:pointer;position:relative;transition:.25s}
+  .play svg{width:20px;height:20px;fill:currentColor;transition:.2s}
+  .play:hover{border-color:var(--accent);box-shadow:0 0 0 5px rgba(225,29,46,.08)}
+  .track.active .play{background:var(--accent);border-color:transparent;color:#fff;animation:beat 1.6s ease-in-out infinite}
+  @keyframes beat{0%,100%{box-shadow:0 0 0 0 var(--glow)}50%{box-shadow:0 0 0 12px transparent}}
+  .info{min-width:0}
+  .title{font-weight:700;font-size:16px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .specs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .chip{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+        border:1px solid var(--border);padding:4px 8px;border-radius:6px}
+  .chip.role{color:var(--accent2);border-color:rgba(225,29,46,.3);background:rgba(225,29,46,.06)}
+  .num{font-family:Anton,sans-serif;font-size:30px;line-height:1;color:rgba(255,255,255,.12);letter-spacing:.02em}
+  .track.active .num{color:rgba(225,29,46,.5)}
+
+  /* detalle que se revela al sonar */
+  .detail{max-height:0;opacity:0;overflow:hidden;transition:max-height .4s ease,opacity .3s ease,margin .4s}
+  .track.active .detail{max-height:120px;opacity:1;margin-top:16px}
+  .viz{width:100%;height:46px;display:block;border-radius:8px}
+  .bar{display:flex;align-items:center;gap:12px;margin-top:10px}
+  .prog{flex:1;height:4px;background:rgba(255,255,255,.08);border-radius:99px;cursor:pointer;position:relative}
+  .prog i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}
+  .prog i::after{content:"";position:absolute;right:-5px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 8px var(--glow)}
+  .time{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);min-width:84px;text-align:right}
+
+  footer{margin-top:50px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+         font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  footer b{color:var(--text);font-weight:500}
+  @media(max-width:640px){.row{grid-template-columns:50px 1fr}.num{display:none}.play{width:50px;height:50px}.title{font-size:14px}}
+</style>
 </head>
 <body>
-  <main class="wrap">
-    <div class="brand"><span class="dot"></span> Terrivol Music</div>
-    <h1>FMS Beats</h1>
-    <p class="sub">Selección de producción para audición. Beats listos para escuchar, evaluados por energía, espacio vocal y uso en contexto de freestyle competitivo.</p>
-    <section class="tracks" aria-label="Lista de beats">
-      <article class="track">
-        <button class="play" aria-label="Reproducir FMS 1"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        <div class="info"><div class="title">FMS 1 Prod. Fullnes (Terrivol Music)</div><div class="meta">MP3 • Fullnes • Terrivol Music</div></div>
-        <div class="badge">Beat 01</div>
-        <audio preload="none" src="/img/FMS%201%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3"></audio>
-      </article>
-      <article class="track">
-        <button class="play" aria-label="Reproducir FMS 2"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        <div class="info"><div class="title">FMS 2 Prod. Fullnes (Terrivol Music)</div><div class="meta">MP3 • Fullnes • Terrivol Music</div></div>
-        <div class="badge">Beat 02</div>
-        <audio preload="none" src="/img/FMS%202%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3"></audio>
-      </article>
-      <article class="track">
-        <button class="play" aria-label="Reproducir FMS 3"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        <div class="info"><div class="title">FMS 3 Prod. Fullnes (Terrivol Music)</div><div class="meta">MP3 • Fullnes • Terrivol Music</div></div>
-        <div class="badge">Beat 03</div>
-        <audio preload="none" src="/img/FMS%203%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3"></audio>
-      </article>
-      <article class="track">
-        <button class="play" aria-label="Reproducir FMS 4"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        <div class="info"><div class="title">FMS 4 Prod. Fullnes (Terrivol Music)</div><div class="meta">MP3 • Fullnes • Terrivol Music</div></div>
-        <div class="badge">Beat 04</div>
-        <audio preload="none" src="/img/FMS%204%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3"></audio>
-      </article>
-      <article class="track">
-        <button class="play" aria-label="Reproducir FMS 5"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        <div class="info"><div class="title">FMS 5 Prod. Fullnes (Terrivol Music)</div><div class="meta">MP3 • Fullnes • Terrivol Music</div></div>
-        <div class="badge">Beat 05</div>
-        <audio preload="none" src="/img/FMS%205%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3"></audio>
-      </article>
-    </section>
-    <footer><span>Terrivol Music</span><span>Producción para freestyle competitivo</span></footer>
-  </main>
-  <script>
-    const tracks=document.querySelectorAll(".track");
-    const playIcon='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-    const pauseIcon='<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>';
-    function stopAll(except=null){tracks.forEach(t=>{const a=t.querySelector("audio"),b=t.querySelector(".play");if(t!==except){a.pause();a.currentTime=0;b.classList.remove("playing");b.innerHTML=playIcon;}});}
-    tracks.forEach(t=>{const a=t.querySelector("audio"),b=t.querySelector(".play");b.addEventListener("click",()=>{if(a.paused){stopAll(t);a.play();b.classList.add("playing");b.innerHTML=pauseIcon;}else{a.pause();b.classList.remove("playing");b.innerHTML=playIcon;}});a.addEventListener("ended",()=>{b.classList.remove("playing");b.innerHTML=playIcon;});});
-  </script>
+<main class="wrap">
+  <div class="kicker"><span class="live"></span> Terrivol Music // Audition Pack 2026</div>
+  <h1>FMS <span>Beats</span></h1>
+  <p class="sub">Selección de producción para freestyle competitivo. Presiona play y escucha el espectro responder en tiempo real: energía, espacio vocal y golpe listos para directo, streaming y cypher.</p>
+  <div class="stats">
+    <span class="stat"><b>05</b> beats</span>
+    <span class="stat">formato <b>MP3</b></span>
+    <span class="stat">listo para <b>directo</b></span>
+    <span class="stat">espacio vocal <b>limpio</b></span>
+  </div>
+
+  <!-- ⚠️ EDITA bpm / key / role reales de cada beat antes de enviar -->
+  <section class="tracks" id="tracks">
+    <article class="track" data-src="/img/FMS%201%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3">
+      <div class="row">
+        <button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="info"><div class="title">FMS 1 Prod. Fullnes (Terrivol Music)</div>
+          <div class="specs"><span class="chip role">Opener</span><span class="chip">140 BPM</span><span class="chip">C# min</span><span class="chip">Dark</span></div></div>
+        <div class="num">01</div>
+      </div>
+      <div class="detail"><canvas class="viz"></canvas><div class="bar"><div class="prog"><i></i></div><div class="time">0:00 / 0:00</div></div></div>
+      <audio preload="none"></audio>
+    </article>
+
+    <article class="track" data-src="/img/FMS%202%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3">
+      <div class="row">
+        <button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="info"><div class="title">FMS 2 Prod. Fullnes (Terrivol Music)</div>
+          <div class="specs"><span class="chip role">Punchline</span><span class="chip">142 BPM</span><span class="chip">A min</span><span class="chip">Minimal</span></div></div>
+        <div class="num">02</div>
+      </div>
+      <div class="detail"><canvas class="viz"></canvas><div class="bar"><div class="prog"><i></i></div><div class="time">0:00 / 0:00</div></div></div>
+      <audio preload="none"></audio>
+    </article>
+
+    <article class="track" data-src="/img/FMS%203%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3">
+      <div class="row">
+        <button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="info"><div class="title">FMS 3 Prod. Fullnes (Terrivol Music)</div>
+          <div class="specs"><span class="chip role">Cypher</span><span class="chip">92 BPM</span><span class="chip">F min</span><span class="chip">Boom Bap</span></div></div>
+        <div class="num">03</div>
+      </div>
+      <div class="detail"><canvas class="viz"></canvas><div class="bar"><div class="prog"><i></i></div><div class="time">0:00 / 0:00</div></div></div>
+      <audio preload="none"></audio>
+    </article>
+
+    <article class="track" data-src="/img/FMS%204%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3">
+      <div class="row">
+        <button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="info"><div class="title">FMS 4 Prod. Fullnes (Terrivol Music)</div>
+          <div class="specs"><span class="chip role">Melódico</span><span class="chip">130 BPM</span><span class="chip">G min</span><span class="chip">Cinematic</span></div></div>
+        <div class="num">04</div>
+      </div>
+      <div class="detail"><canvas class="viz"></canvas><div class="bar"><div class="prog"><i></i></div><div class="time">0:00 / 0:00</div></div></div>
+      <audio preload="none"></audio>
+    </article>
+
+    <article class="track" data-src="/img/FMS%205%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3">
+      <div class="row">
+        <button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="info"><div class="title">FMS 5 Prod. Fullnes (Terrivol Music)</div>
+          <div class="specs"><span class="chip role">Wildcard</span><span class="chip">126 BPM</span><span class="chip">D min</span><span class="chip">Futuristic</span></div></div>
+        <div class="num">05</div>
+      </div>
+      <div class="detail"><canvas class="viz"></canvas><div class="bar"><div class="prog"><i></i></div><div class="time">0:00 / 0:00</div></div></div>
+      <audio preload="none"></audio>
+    </article>
+  </section>
+
+  <footer><span><b>Terrivol Music</b> — Sebastián Andrade</span><span>Producción para freestyle competitivo</span></footer>
+</main>
+
+<script>
+const PLAY='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+const PAUSE='<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>';
+const fmt=s=>{s=Math.max(0,s|0);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+let ctx=null, rafId=null, current=null;
+const tracks=[...document.querySelectorAll('.track')].map(t=>{
+  const audio=t.querySelector('audio'); audio.src=t.dataset.src;
+  return {el:t,audio,btn:t.querySelector('.play'),viz:t.querySelector('.viz'),
+          prog:t.querySelector('.prog'),fill:t.querySelector('.prog i'),time:t.querySelector('.time'),analyser:null,src:null};
+});
+function ensureCtx(o){
+  if(!ctx) ctx=new (window.AudioContext||window.webkitAudioContext)();
+  if(ctx.state==='suspended') ctx.resume();
+  if(!o.src){ o.src=ctx.createMediaElementSource(o.audio); o.analyser=ctx.createAnalyser(); o.analyser.fftSize=128; o.analyser.smoothingTimeConstant=.82;
+              o.src.connect(o.analyser); o.analyser.connect(ctx.destination); }
+}
+function draw(o){
+  const c=o.viz, x=c.getContext('2d'), dpr=devicePixelRatio||1;
+  const W=c.clientWidth, H=c.clientHeight;
+  if(c.width!==W*dpr){c.width=W*dpr;c.height=H*dpr;} x.setTransform(dpr,0,0,dpr,0,0);
+  const bins=o.analyser.frequencyBinCount, data=new Uint8Array(bins), n=40, gap=2, bw=(W-(n-1)*gap)/n;
+  const g=x.createLinearGradient(0,H,0,0); g.addColorStop(0,'#7a0d18'); g.addColorStop(.5,'#e11d2e'); g.addColorStop(1,'#ff5a64');
+  function frame(){
+    o.analyser.getByteFrequencyData(data); x.clearRect(0,0,W,H);
+    for(let i=0;i<n;i++){ const v=data[Math.floor(i*bins/n/1.4)]/255, h=Math.max(2,v*H);
+      x.fillStyle=g; x.beginPath(); x.roundRect(i*(bw+gap),H-h,bw,h,2); x.fill(); }
+    rafId=requestAnimationFrame(frame);
+  }
+  frame();
+}
+function setActive(o){
+  tracks.forEach(t=>{ if(t!==o){ t.audio.pause(); t.el.classList.remove('active'); t.btn.innerHTML=PLAY; t.fill.style.width='0'; }});
+  o.el.classList.add('active'); o.btn.innerHTML=PAUSE; current=o;
+  cancelAnimationFrame(rafId); ensureCtx(o); draw(o);
+}
+function clearActive(){ cancelAnimationFrame(rafId); if(current){current.el.classList.remove('active');current.btn.innerHTML=PLAY;current.fill.style.width='0';} current=null; }
+tracks.forEach(o=>{
+  o.btn.onclick=()=>{ if(o.audio.paused){ if(ctx&&ctx.state==='suspended')ctx.resume(); o.audio.play(); setActive(o);} else {o.audio.pause(); clearActive();} };
+  o.audio.ontimeupdate=()=>{ const d=o.audio.duration||0; o.fill.style.width=(o.audio.currentTime/d*100)+'%'; o.time.textContent=fmt(o.audio.currentTime)+' / '+fmt(d); };
+  o.audio.onended=()=>clearActive();
+  o.prog.onclick=e=>{ const r=o.prog.getBoundingClientRect(); o.audio.currentTime=((e.clientX-r.left)/r.width)*(o.audio.duration||0); };
+});
+</script>
 </body>
 </html>
