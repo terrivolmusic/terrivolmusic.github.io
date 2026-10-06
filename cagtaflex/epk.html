@@ -16,6 +16,7 @@
     --bg:#07070c; --bg2:#0d0d16; --panel:#12121d; --line:#23232f;
     --cyan:#00e5d4; --mag:#ff2ea6; --txt:#f3f3f8; --mut:#9a9aac; --dim:#6a6a7c;
     --maxw:1180px; --r:14px;
+    --grad:linear-gradient(135deg,#0e2a28 0%,#1a0e22 55%,#2a0e20 100%);
     --display:'Anton',Impact,sans-serif; --body:'Inter',system-ui,-apple-system,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -31,6 +32,11 @@
   .sec-sub{color:var(--mut);font-size:15px;max-width:62ch;margin-bottom:30px}
   section{padding:84px 0;position:relative}
   .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  /* contenedor de foto: gradiente de marca como respaldo visual */
+  .ph{position:relative;overflow:hidden;background:var(--grad)}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .ph::after{content:'CAGTA FLEX';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);letter-spacing:4px;color:rgba(255,255,255,.06);font-size:clamp(20px,4vw,40px);pointer-events:none}
+  .ph.img-ok::after{display:none}
 
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:14px 22px;transition:.3s;border-bottom:1px solid transparent}
@@ -63,7 +69,8 @@
   /* HERO */
   .hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 60px}
   .hero-bg{position:absolute;inset:0;background:radial-gradient(120% 90% at 78% 30%,rgba(0,229,212,.18),transparent 55%),radial-gradient(90% 80% at 15% 80%,rgba(255,46,166,.16),transparent 55%),linear-gradient(180deg,#07070c,#0b0b14)}
-  .hero-img{position:absolute;right:-4%;top:0;height:100%;width:58%;object-fit:cover;object-position:30% 35%;filter:saturate(1.1) contrast(1.05);-webkit-mask-image:linear-gradient(90deg,transparent,#000 38%);mask-image:linear-gradient(90deg,transparent,#000 38%);will-change:transform}
+  .hero-imgwrap{position:absolute;right:-4%;top:0;height:100%;width:58%;background:var(--grad);-webkit-mask-image:linear-gradient(90deg,transparent,#000 38%);mask-image:linear-gradient(90deg,transparent,#000 38%)}
+  .hero-imgwrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 35%;filter:saturate(1.1) contrast(1.05);will-change:transform}
   .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(80% 70% at 30% 40%,#000,transparent);mask-image:radial-gradient(80% 70% at 30% 40%,#000,transparent)}
   .cursor-glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:2;background:radial-gradient(circle,rgba(0,229,212,.10),transparent 62%);transform:translate(-50%,-50%);opacity:0;transition:opacity .4s;mix-blend-mode:screen}
   .hero .wrap{position:relative;z-index:3;width:100%}
@@ -89,7 +96,7 @@
   .scroll-hint .bar{width:1px;height:34px;background:linear-gradient(var(--cyan),transparent);animation:sd 1.8s infinite}
   @keyframes sd{0%{opacity:0;transform:scaleY(.2)}50%{opacity:1}100%{opacity:0;transform:scaleY(1) translateY(8px)}}
   @keyframes blink{50%{opacity:.3}}
-  @media(max-width:920px){.hero-img{width:95%;right:-35%;opacity:.45}.hero-inner{max-width:100%}.cursor-glow{display:none}}
+  @media(max-width:920px){.hero-imgwrap{width:95%;right:-35%;opacity:.5}.hero-inner{max-width:100%}.cursor-glow{display:none}}
 
   /* STATS */
   .stats{background:linear-gradient(180deg,var(--bg2),var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:46px 0}
@@ -105,9 +112,8 @@
   .artist-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:46px;align-items:center}
   .bio{font-size:16px;color:#dcdce6;line-height:1.85;text-align:justify}
   .bio b{color:var(--txt)} .bio .cy{font-weight:700}
-  .artist-photo{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5;background:linear-gradient(135deg,#0c2a28,#2a0c20)}
-  .artist-photo img{width:100%;height:100%;object-fit:cover}
-  .artist-photo .frame{position:absolute;inset:0;border:1px solid rgba(0,229,212,.3);border-radius:var(--r);pointer-events:none}
+  .artist-photo{border-radius:var(--r);border:1px solid var(--line);aspect-ratio:4/5}
+  .artist-photo .frame{position:absolute;inset:0;border:1px solid rgba(0,229,212,.3);border-radius:var(--r);pointer-events:none;z-index:2}
   .socials{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .soc{display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:13px;transition:.2s}
   .soc:hover{border-color:var(--cyan);transform:translateX(3px)}
@@ -132,7 +138,8 @@
   .vmeta .d{font-size:12.5px;color:var(--mut);margin-top:3px}
   .vmeta .d b{color:var(--mag)}
   .kfc-card{margin-top:18px;background:linear-gradient(135deg,rgba(255,46,166,.1),rgba(0,229,212,.06));border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-  .kfc-card video{width:240px;max-width:42%;border-radius:10px;border:1px solid var(--line);background:#000}
+  .kfc-video{width:240px;max-width:42%;aspect-ratio:16/9;border-radius:10px;border:1px solid var(--line);background:var(--grad);overflow:hidden;position:relative;flex:none}
+  .kfc-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
   .kfc-card .kt{flex:1;min-width:240px}
   .kfc-card .kt h4{font-family:var(--display);font-size:22px;letter-spacing:1px;text-transform:uppercase}
   .kfc-card .kt p{color:var(--mut);font-size:14px;margin-top:6px}
@@ -140,7 +147,7 @@
   .cat-links .lbl{color:var(--dim);font-size:12px;letter-spacing:1px;text-transform:uppercase}
   .cat-links a{font-size:12.5px;border:1px solid var(--line);border-radius:30px;padding:8px 15px;color:var(--mut);transition:.2s}
   .cat-links a:hover{border-color:var(--cyan);color:var(--cyan)}
-  @media(max-width:920px){.vid-grid{grid-template-columns:1fr}.kfc-card video{width:100%;max-width:100%}}
+  @media(max-width:920px){.vid-grid{grid-template-columns:1fr}.kfc-video{width:100%;max-width:100%}}
 
   /* MUSIC */
   .tracks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:34px}
@@ -162,9 +169,8 @@
   @media(max-width:920px){.tracks{grid-template-columns:1fr}.disco{grid-template-columns:repeat(2,1fr)}}
 
   /* LIVE */
-  .live-band{border-radius:var(--r);overflow:hidden;position:relative;margin-bottom:30px;border:1px solid var(--line);aspect-ratio:21/7;background:linear-gradient(135deg,#1a0a14,#0a1a18)}
-  .live-band img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
-  .live-band .cap{position:absolute;bottom:0;left:0;right:0;padding:30px 22px 14px;background:linear-gradient(transparent,rgba(7,7,12,.92));font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--mag);font-weight:700}
+  .live-band{border-radius:var(--r);overflow:hidden;position:relative;margin-bottom:30px;border:1px solid var(--line);aspect-ratio:21/7}
+  .live-band .cap{position:absolute;bottom:0;left:0;right:0;padding:30px 22px 14px;background:linear-gradient(transparent,rgba(7,7,12,.92));font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--mag);font-weight:700;z-index:2}
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
   .panel h4{font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
@@ -182,7 +188,7 @@
   /* SHOW */
   .exp{background:linear-gradient(135deg,rgba(255,46,166,.1),rgba(0,229,212,.07));border:1px solid var(--line);border-radius:var(--r);padding:26px 28px;display:grid;grid-template-columns:1fr 200px;gap:24px;align-items:center;margin-bottom:24px}
   .exp p{font-size:15.5px;line-height:1.7;color:#e7e7ef}
-  .exp img{border-radius:10px;aspect-ratio:3/4;object-fit:cover;border:1px solid var(--line)}
+  .exp-photo{border-radius:10px;aspect-ratio:3/4;border:1px solid var(--line)}
   .stageplot{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin:18px 0}
   .stageplot h4{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
   .stageplot svg{width:100%;height:auto;display:block}
@@ -195,7 +201,7 @@
   .rider{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   .rider .r{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:13.5px;color:#dcdce6}
   .rider .r b{color:var(--cyan);display:block;margin-bottom:3px;font-size:12px;letter-spacing:1px;text-transform:uppercase}
-  @media(max-width:920px){.exp{grid-template-columns:1fr}.exp img{max-width:200px}.fmt,.rider{grid-template-columns:1fr}}
+  @media(max-width:920px){.exp{grid-template-columns:1fr}.exp-photo{max-width:200px}.fmt,.rider{grid-template-columns:1fr}}
 
   /* VALUE */
   .quote{font-family:var(--display);font-size:clamp(22px,3.4vw,34px);line-height:1.25;text-transform:uppercase;letter-spacing:.5px;max-width:26ch;margin:0 auto 30px;text-align:center}
@@ -263,7 +269,7 @@
   @media print{
     @page{size:A4;margin:0}
     *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    nav,.mobile-menu,.fab,.scroll-hint,.toast,.hero-img,.hero-grid,.cursor-glow,.dyn-badge,.vid-grid,.kfc-card,.cat-links,.form,.calc,.now .dot,.burger{display:none!important}
+    nav,.mobile-menu,.fab,.scroll-hint,.toast,.hero-imgwrap,.hero-grid,.cursor-glow,.dyn-badge,.vid-grid,.kfc-card,.cat-links,.form,.calc,.now .dot,.burger{display:none!important}
     body{background:var(--bg)}
     section{padding:12mm 0;page-break-inside:avoid}
     .hero{min-height:auto;padding:16mm 0}
@@ -310,7 +316,9 @@
 <header class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <img class="hero-img" id="heroImg" src="img/hero.jpg" alt="Cagta Flex" onerror="this.style.display='none'">
+  <div class="hero-imgwrap ph" id="heroWrap">
+    <img id="heroImg" src="/img/hero.jpg" alt="Cagta Flex" onload="this.parentNode.classList.add('img-ok')" onerror="this.style.display='none'">
+  </div>
   <div class="cursor-glow" id="cursorGlow"></div>
   <div class="wrap">
     <div class="hero-inner reveal">
@@ -366,8 +374,8 @@
         </div>
         <div class="audience" data-i18n="audience"></div>
       </div>
-      <div class="artist-photo reveal">
-        <img src="img/artist.jpg" alt="Cagta Flex retrato" onerror="this.style.display='none'">
+      <div class="artist-photo ph reveal">
+        <img src="/img/artist.jpg" alt="Cagta Flex retrato" onload="this.parentNode.classList.add('img-ok')" onerror="this.style.display='none'">
         <div class="frame"></div>
       </div>
     </div>
@@ -395,7 +403,11 @@
       </div>
     </div>
     <div class="kfc-card reveal">
-      <video controls preload="metadata" poster="img/live.jpg"><source src="img/kfc.mp4" type="video/mp4"></video>
+      <div class="kfc-video ph">
+        <video controls preload="metadata" poster="/img/live.jpg" onerror="this.parentNode.classList.remove('img-ok')">
+          <source src="/img/kfc.mp4" type="video/mp4">
+        </video>
+      </div>
       <div class="kt">
         <div class="eyebrow" data-i18n="kfce">Caso de marca</div>
         <h4>Comercial KFC</h4>
@@ -447,7 +459,10 @@
 <section id="vivo">
   <div class="wrap">
     <div class="reveal"><div class="eyebrow" data-i18n="k4">04 — Escenario</div><h2 class="sec" data-i18n="h_vivo"></h2></div>
-    <div class="live-band reveal"><img src="img/live.jpg" alt="Cagta Flex en vivo" onerror="this.style.display='none'"><div class="cap" data-i18n="livecap"></div></div>
+    <div class="live-band ph reveal">
+      <img src="/img/live.jpg" alt="Cagta Flex en vivo" onload="this.parentNode.classList.add('img-ok')" onerror="this.style.display='none'">
+      <div class="cap" data-i18n="livecap"></div>
+    </div>
     <div class="two-col">
       <div class="panel reveal">
         <h4 class="cy" data-i18n="hitos">Hitos</h4>
@@ -478,7 +493,9 @@
     <div class="reveal"><div class="eyebrow" data-i18n="k5">05 — La experiencia</div><h2 class="sec" data-i18n="h_show"></h2></div>
     <div class="exp reveal">
       <p data-i18n="exp"></p>
-      <img src="img/crouch.jpg" alt="Cagta Flex MPC en vivo" onerror="this.style.display='none'">
+      <div class="exp-photo ph">
+        <img src="/img/crouch.jpg" alt="Cagta Flex MPC en vivo" onload="this.parentNode.classList.add('img-ok')" onerror="this.style.display='none'">
+      </div>
     </div>
     <div class="two-col">
       <div class="panel reveal"><h4 class="cy" data-i18n="formh">Formación en escena</h4>
@@ -491,33 +508,23 @@
     <div class="stageplot reveal">
       <h4 data-i18n="sph">Stage plot · rider visual</h4>
       <svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stage plot">
-        <defs>
-          <linearGradient id="stk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0e2a28"/><stop offset="1" stop-color="#2a0e20"/></linearGradient>
-        </defs>
-        <!-- floor -->
+        <defs><linearGradient id="stk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0e2a28"/><stop offset="1" stop-color="#2a0e20"/></linearGradient></defs>
         <rect x="40" y="40" width="680" height="240" rx="14" fill="url(#stk)" stroke="#23232f"/>
         <text x="380" y="300" text-anchor="middle" fill="#6a6a7c" font-family="Inter,sans-serif" font-size="12" letter-spacing="2">PÚBLICO / FRONT OF HOUSE ▲</text>
-        <!-- tarima 4x4 -->
         <rect x="250" y="70" width="260" height="150" rx="8" fill="none" stroke="#00e5d4" stroke-dasharray="6 5"/>
         <text x="380" y="62" text-anchor="middle" fill="#00e5d4" font-family="Inter,sans-serif" font-size="12" letter-spacing="2">TARIMA 4×4 m</text>
-        <!-- MC + MPC -->
         <circle cx="330" cy="150" r="26" fill="#ff2ea6" opacity=".18" stroke="#ff2ea6"/>
         <text x="330" y="154" text-anchor="middle" fill="#fff" font-family="Inter,sans-serif" font-size="11" font-weight="700">MC</text>
         <rect x="372" y="132" width="46" height="36" rx="5" fill="#00e5d4" opacity=".18" stroke="#00e5d4"/>
         <text x="395" y="154" text-anchor="middle" fill="#00e5d4" font-family="Inter,sans-serif" font-size="9" font-weight="700">MPC</text>
-        <!-- DJ -->
         <rect x="440" y="128" width="56" height="44" rx="6" fill="#00e5d4" opacity=".12" stroke="#00e5d4"/>
         <text x="468" y="154" text-anchor="middle" fill="#00e5d4" font-family="Inter,sans-serif" font-size="10" font-weight="700">DJ</text>
-        <!-- mics -->
         <circle cx="300" cy="190" r="5" fill="#ff2ea6"/><text x="300" y="210" text-anchor="middle" fill="#9a9aac" font-family="Inter,sans-serif" font-size="9">MIC 1</text>
         <circle cx="420" cy="190" r="5" fill="#ff2ea6"/><text x="420" y="210" text-anchor="middle" fill="#9a9aac" font-family="Inter,sans-serif" font-size="9">MIC 2</text>
-        <!-- monitores -->
         <rect x="262" y="186" width="22" height="14" rx="3" fill="#23232f" stroke="#6a6a7c"/><text x="273" y="214" text-anchor="middle" fill="#6a6a7c" font-family="Inter,sans-serif" font-size="8">MON</text>
         <rect x="476" y="186" width="22" height="14" rx="3" fill="#23232f" stroke="#6a6a7c"/><text x="487" y="214" text-anchor="middle" fill="#6a6a7c" font-family="Inter,sans-serif" font-size="8">MON</text>
-        <!-- pantalla -->
         <rect x="120" y="80" width="90" height="60" rx="6" fill="none" stroke="#9a9aac" stroke-dasharray="4 4"/><text x="165" y="114" text-anchor="middle" fill="#9a9aac" font-family="Inter,sans-serif" font-size="10">PANTALLA</text><text x="165" y="128" text-anchor="middle" fill="#6a6a7c" font-family="Inter,sans-serif" font-size="8">(opcional)</text>
         <rect x="550" y="80" width="90" height="60" rx="6" fill="none" stroke="#9a9aac" stroke-dasharray="4 4"/><text x="595" y="114" text-anchor="middle" fill="#9a9aac" font-family="Inter,sans-serif" font-size="10">PANTALLA</text><text x="595" y="128" text-anchor="middle" fill="#6a6a7c" font-family="Inter,sans-serif" font-size="8">(opcional)</text>
-        <!-- FOH -->
         <rect x="330" y="240" width="100" height="26" rx="5" fill="#12121d" stroke="#00e5d4"/><text x="380" y="257" text-anchor="middle" fill="#00e5d4" font-family="Inter,sans-serif" font-size="10" font-weight="700">MEZCLA / FOH</text>
       </svg>
     </div>
@@ -652,9 +659,8 @@
 const CONFIG = {
   whatsapp:  "573102123844",   // booking principal
   whatsapp2: "573142807283",   // alterno
-  monthlyListeners: 0,         // 👈 PON TU Nº DE OYENTES MENSUALES DE SPOTIFY (0 = muestra "—")
-  // 👇 TARIFAS EN COP — EDITA CON TUS NÚMEROS REALES (min, max)
-  tarifas: {
+  monthlyListeners: 0,         // 👈 Nº de oyentes mensuales de Spotify (0 = muestra "—")
+  tarifas: {                   // 👈 TUS rangos reales en COP (min, max)
     beat:  {min:1500000, max:3000000},
     dj:    {min:2000000, max:4000000},
     fest:  {min:3000000, max:6000000},
@@ -665,7 +671,7 @@ const CONFIG = {
 };
 
 /* =========================================================
-   🌐  DICCIONARIO ES / EN  ({BRAND} = nombre del promotor)
+   🌐  DICCIONARIO ES / EN  ({BRAND} = "tu evento" universal)
    ========================================================= */
 const T = {
   nav_artista:{es:"Artista",en:"Artist"}, nav_videos:{es:"Videos",en:"Videos"},
@@ -768,22 +774,24 @@ const T = {
   var promoter = (params.get('para')||params.get('promoter')||'').replace(/\+/g,' ').trim();
   var lang = 'es';
 
-  function brand(){ return promoter || (lang==='es' ? 'tu marca' : 'your brand'); }
+  // UNIVERSAL: sin parámetro dice "tu evento" (sirve para festival, bar, marca, uni, alcaldía)
+  function brand(){ return promoter || (lang==='es' ? 'tu evento' : 'your event'); }
   function fill(s){ return s.split('{BRAND}').join(brand()); }
   function fmtCOP(n){ return '$ ' + n.toLocaleString('es-CO'); }
 
-  // WhatsApp links
   var waMsg = encodeURIComponent(lang==='es'
     ? 'Hola Cagta Flex, vi su EPK y quiero cotizar un show.'
     : 'Hi Cagta Flex, I saw your EPK and want to book a show.');
-  ['navWa','heroWa','fabWa','waMain'].forEach(function(id){ var e=document.getElementById(id); if(e) e.href='https://wa.me/'+CONFIG.whatsapp+'?text='+waMsg; });
-  var waAlt=document.getElementById('waAlt'); if(waAlt) waAlt.href='https://wa.me/'+CONFIG.whatsapp2;
+  function setWa(){
+    var m=encodeURIComponent(lang==='es'?'Hola Cagta Flex, vi su EPK y quiero cotizar un show.':'Hi Cagta Flex, I saw your EPK and want to book a show.');
+    ['navWa','heroWa','fabWa','waMain'].forEach(function(id){ var e=document.getElementById(id); if(e) e.href='https://wa.me/'+CONFIG.whatsapp+'?text='+m; });
+    var waAlt=document.getElementById('waAlt'); if(waAlt) waAlt.href='https://wa.me/'+CONFIG.whatsapp2;
+  }
+  setWa();
 
-  // Dynamic badge
   var badge=document.getElementById('dynBadge'), btxt=document.getElementById('dynBadgeTxt');
   if(promoter){ badge.classList.add('show'); btxt.textContent=(lang==='es'?'⚡ Preparado para ':'⚡ Prepared for ')+promoter; }
 
-  // Apply i18n
   function applyLang(l){
     lang=l; document.documentElement.lang=l;
     document.querySelectorAll('[data-i18n]').forEach(function(el){
@@ -796,30 +804,23 @@ const T = {
     document.getElementById('langEn').classList.toggle('on',l==='en');
     if(promoter){ badge.classList.add('show'); btxt.textContent=(l==='es'?'⚡ Preparado para ':'⚡ Prepared for ')+promoter; }
     document.title = (promoter? promoter+' × ' : '') + 'CAGTA FLEX — EPK 2026 | Terrivol Music';
-    // refresh wa message language
-    var m=encodeURIComponent(l==='es'?'Hola Cagta Flex, vi su EPK y quiero cotizar un show.':'Hi Cagta Flex, I saw your EPK and want to book a show.');
-    ['navWa','heroWa','fabWa','waMain'].forEach(function(id){ var e=document.getElementById(id); if(e) e.href='https://wa.me/'+CONFIG.whatsapp+'?text='+m; });
-    renderCalc();
+    setWa(); renderCalc();
   }
   document.getElementById('langEs').onclick=function(){applyLang('es');};
   document.getElementById('langEn').onclick=function(){applyLang('en');};
 
-  // Monthly listeners
   var ml=document.getElementById('mlNum');
   if(CONFIG.monthlyListeners>0){ ml.setAttribute('data-count',CONFIG.monthlyListeners); ml.textContent='0'; }
   else { ml.removeAttribute('data-count'); ml.textContent='—'; }
 
-  // Nav scroll + burger
   var nav=document.getElementById('nav'), mm=document.getElementById('mobileMenu');
   window.addEventListener('scroll',function(){ nav.classList.toggle('scrolled',window.scrollY>40); });
   document.getElementById('burger').onclick=function(){ mm.classList.toggle('open'); };
   mm.querySelectorAll('a').forEach(function(a){ a.onclick=function(){ mm.classList.remove('open'); }; });
 
-  // Reveal
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:0.12});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
-  // Count-up
   var cio=new IntersectionObserver(function(es){ es.forEach(function(e){
     if(!e.isIntersecting) return; var el=e.target, t=parseInt(el.getAttribute('data-count'),10), suf=el.getAttribute('data-suffix')||'';
     if(isNaN(t)){ return; }
@@ -832,14 +833,12 @@ const T = {
   }); },{threshold:0.5});
   document.querySelectorAll('.num[data-count]').forEach(function(el){ cio.observe(el); });
 
-  // Video facade
   document.querySelectorAll('.thumb[data-id]').forEach(function(t){
     t.addEventListener('click',function(){ var id=t.getAttribute('data-id');
       t.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>';
     });
   });
 
-  // Cursor glow + parallax
   var glow=document.getElementById('cursorGlow'), heroImg=document.getElementById('heroImg');
   if(!reduce && window.matchMedia('(hover:hover) and (pointer:fine)').matches){
     window.addEventListener('mousemove',function(e){ glow.style.opacity='1'; glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
@@ -849,7 +848,6 @@ const T = {
     requestAnimationFrame(function(){ var y=window.scrollY; if(heroImg&&y<window.innerHeight) heroImg.style.transform='translateY('+(y*0.12)+'px)'; ticking=false; });
   });
 
-  // Calculator
   var prEls=document.querySelectorAll('[data-pr]');
   function paintPrices(){ prEls.forEach(function(s){ var k=s.getAttribute('data-pr'), t=CONFIG.tarifas[k]; if(t) s.textContent=fmtCOP(t.min)+'+'; }); }
   function renderCalc(){
@@ -874,7 +872,6 @@ const T = {
     window.open('https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(lines.join('\n')),'_blank');
   };
 
-  // Booking form -> WhatsApp
   var form=document.getElementById('bookForm'), toast=document.getElementById('toast');
   form.addEventListener('submit',function(ev){ ev.preventDefault();
     var g=function(n){var e=form.elements[n];return e?e.value.trim():'';};
