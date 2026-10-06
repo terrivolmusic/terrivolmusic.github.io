@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terrivol Music — FMS Beats</title>
+  <style>
+    :root{--bg:#070708;--text:#f3f3f3;--muted:#9a9aa3;--accent:#d61f2e;--border:rgba(255,255,255,0.08)}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:radial-gradient(circle at top,rgba(214,31,46,0.12),transparent 35%),linear-gradient(180deg,#09090b 0%,#050506 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+    .wrap{width:min(92vw,780px);margin:0 auto;padding:70px 0 50px}
+    .brand{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px rgba(214,31,46,0.75)}
+    h1{margin:0;font-size:clamp(34px,7vw,64px);line-height:0.95;letter-spacing:-0.04em;text-transform:uppercase}
+    .sub{margin:18px 0 34px;color:var(--muted);font-size:15px;line-height:1.6;max-width:620px}
+    .tracks{display:grid;gap:12px}
+    .track{background:linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015));border:1px solid var(--border);border-radius:18px;padding:16px 18px;display:grid;grid-template-columns:54px 1fr auto;align-items:center;gap:16px;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+    .track:hover{transform:translateY(-1px);border-color:rgba(255,255,255,0.16);background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))}
+    .play{width:54px;height:54px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:#151518;color:var(--text);display:grid;place-items:center;cursor:pointer;transition:all .18s ease}
+    .play:hover{border-color:rgba(214,31,46,0.55);box-shadow:0 0 0 4px rgba(214,31,46,0.08)}
+    .play.playing{background:var(--accent);border-color:transparent;color:#fff;box-shadow:0 0 24px rgba(214,31,46,0.35)}
+    .play svg{width:20px;height:20px;fill:currentColor}
+    .info{min-width:0}
+    .title{font-weight:700;font-size:15px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .meta{margin-top:5px;color:var(--muted);font-size:12px;letter-spacing:0.04em;text-transform:uppercase}
+    .badge{font-size:11px;color:var(--muted);border:1px solid var(--border);background:rgba(255,255,255,0.03);padding:7px 10px;border-radius:999px;white-space:nowrap}
+    audio{display:none}
+    footer{margin-top:42px;padding-top:22px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    @media(max-width:620px){.wrap{padding-top:48px}.track{grid-template-columns:48px 1fr;padding:14px}.play{width:48px;height:48px}.badge{display:none}.title{white-space:normal}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="brand"><span class="dot"></span> Terrivol Music</div>
+    <h1>FMS Beats</h1>
+    <p class="sub">Selección de producción para audición. Beats listos para escuchar, evaluados por energía, espacio vocal y uso en contexto de freestyle competitivo.</p>
+    <section class="tracks" aria-label="Lista de beats">
+      <article class="track">
+        <button class="play" aria-label="Reproducir FMS 1"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="info"><div class="title">FMS 1 Prod. Fullnes (Terrivol Music)</div><div class="meta">MP3 • Fullnes • Terrivol Music</div></div>
+        <div class="badge">Beat 01</div>
+        <audio preload="none" src="/img/FMS%201%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3"></audio>
+      </article>
+      <article class="track">
+        <button class="play" aria-label="Reproducir FMS 2"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="info"><div class="title">FMS 2 Prod. Fullnes (Terrivol Music)</div><div class="meta">MP3 • Fullnes • Terrivol Music</div></div>
+        <div class="badge">Beat 02</div>
+        <audio preload="none" src="/img/FMS%202%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3"></audio>
+      </article>
+      <article class="track">
+        <button class="play" aria-label="Reproducir FMS 3"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="info"><div class="title">FMS 3 Prod. Fullnes (Terrivol Music)</div><div class="meta">MP3 • Fullnes • Terrivol Music</div></div>
+        <div class="badge">Beat 03</div>
+        <audio preload="none" src="/img/FMS%203%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3"></audio>
+      </article>
+      <article class="track">
+        <button class="play" aria-label="Reproducir FMS 4"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="info"><div class="title">FMS 4 Prod. Fullnes (Terrivol Music)</div><div class="meta">MP3 • Fullnes • Terrivol Music</div></div>
+        <div class="badge">Beat 04</div>
+        <audio preload="none" src="/img/FMS%204%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3"></audio>
+      </article>
+      <article class="track">
+        <button class="play" aria-label="Reproducir FMS 5"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="info"><div class="title">FMS 5 Prod. Fullnes (Terrivol Music)</div><div class="meta">MP3 • Fullnes • Terrivol Music</div></div>
+        <div class="badge">Beat 05</div>
+        <audio preload="none" src="/img/FMS%205%20Prod.%20Fullnes%20%28Terrivol%20Music%29.mp3"></audio>
+      </article>
+    </section>
+    <footer><span>Terrivol Music</span><span>Producción para freestyle competitivo</span></footer>
+  </main>
+  <script>
+    const tracks=document.querySelectorAll(".track");
+    const playIcon='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    const pauseIcon='<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>';
+    function stopAll(except=null){tracks.forEach(t=>{const a=t.querySelector("audio"),b=t.querySelector(".play");if(t!==except){a.pause();a.currentTime=0;b.classList.remove("playing");b.innerHTML=playIcon;}});}
+    tracks.forEach(t=>{const a=t.querySelector("audio"),b=t.querySelector(".play");b.addEventListener("click",()=>{if(a.paused){stopAll(t);a.play();b.classList.add("playing");b.innerHTML=pauseIcon;}else{a.pause();b.classList.remove("playing");b.innerHTML=playIcon;}});a.addEventListener("ended",()=>{b.classList.remove("playing");b.innerHTML=playIcon;});});
+  </script>
+</body>
+</html>
