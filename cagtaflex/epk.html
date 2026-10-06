@@ -34,8 +34,8 @@
   .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
   /* contenedor de foto: gradiente de marca como respaldo visual */
   .ph{position:relative;overflow:hidden;background:var(--grad)}
-  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .ph::after{content:'CAGTA FLEX';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);letter-spacing:4px;color:rgba(255,255,255,.06);font-size:clamp(20px,4vw,40px);pointer-events:none}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+  .ph::after{content:'CAGTA FLEX';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);letter-spacing:4px;color:rgba(255,255,255,.06);font-size:clamp(20px,4vw,40px);pointer-events:none;z-index:0}
   .ph.img-ok::after{display:none}
 
   /* NAV */
@@ -70,7 +70,7 @@
   .hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 60px}
   .hero-bg{position:absolute;inset:0;background:radial-gradient(120% 90% at 78% 30%,rgba(0,229,212,.18),transparent 55%),radial-gradient(90% 80% at 15% 80%,rgba(255,46,166,.16),transparent 55%),linear-gradient(180deg,#07070c,#0b0b14)}
   .hero-imgwrap{position:absolute;right:-4%;top:0;height:100%;width:58%;background:var(--grad);-webkit-mask-image:linear-gradient(90deg,transparent,#000 38%);mask-image:linear-gradient(90deg,transparent,#000 38%)}
-  .hero-imgwrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 35%;filter:saturate(1.1) contrast(1.05);will-change:transform}
+  .hero-imgwrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 35%;filter:saturate(1.1) contrast(1.05);will-change:transform;z-index:1}
   .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(80% 70% at 30% 40%,#000,transparent);mask-image:radial-gradient(80% 70% at 30% 40%,#000,transparent)}
   .cursor-glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:2;background:radial-gradient(circle,rgba(0,229,212,.10),transparent 62%);transform:translate(-50%,-50%);opacity:0;transition:opacity .4s;mix-blend-mode:screen}
   .hero .wrap{position:relative;z-index:3;width:100%}
@@ -139,7 +139,7 @@
   .vmeta .d b{color:var(--mag)}
   .kfc-card{margin-top:18px;background:linear-gradient(135deg,rgba(255,46,166,.1),rgba(0,229,212,.06));border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
   .kfc-video{width:240px;max-width:42%;aspect-ratio:16/9;border-radius:10px;border:1px solid var(--line);background:var(--grad);overflow:hidden;position:relative;flex:none}
-  .kfc-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+  .kfc-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;z-index:1}
   .kfc-card .kt{flex:1;min-width:240px}
   .kfc-card .kt h4{font-family:var(--display);font-size:22px;letter-spacing:1px;text-transform:uppercase}
   .kfc-card .kt p{color:var(--mut);font-size:14px;margin-top:6px}
@@ -469,7 +469,7 @@
         <ul class="list">
           <li data-i18n="hi1">🏆 <b>Ganador Suba Al Ruedo 2014</b></li>
           <li data-i18n="hi2">🎤 Hip Hop al Parque 2014</li>
-          <li data-i18n="hi3">🇪🇨 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)</li>
+          <li data-i18n="hi3">🇪 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)</li>
           <li data-i18n="hi4">🚌 Tour Tribu Nómada 2018 (Colombia)</li>
           <li data-i18n="hi5">🤝 Colaboración con marca: <b>KFC</b></li>
         </ul>
@@ -774,7 +774,6 @@ const T = {
   var promoter = (params.get('para')||params.get('promoter')||'').replace(/\+/g,' ').trim();
   var lang = 'es';
 
-  // UNIVERSAL: sin parámetro dice "tu evento" (sirve para festival, bar, marca, uni, alcaldía)
   function brand(){ return promoter || (lang==='es' ? 'tu evento' : 'your event'); }
   function fill(s){ return s.split('{BRAND}').join(brand()); }
   function fmtCOP(n){ return '$ ' + n.toLocaleString('es-CO'); }
