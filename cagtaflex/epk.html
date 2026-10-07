@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CAGTA FLEX — EPK 2026 | Terrivol Music · Booking</title>
+<title>CAGTA FLEX — EPK 2026 | Terrivol Music · Booking Exclusivo</title>
 <meta name="description" content="Electronic Press Kit oficial de Cagta Flex (Terrivol Music, Bogotá). Rap, boom bap, trap y beatmaking en vivo. 20+ años, 380 canciones en Sony Music Publishing.">
 <meta property="og:title" content="CAGTA FLEX — EPK 2026 | Terrivol Music">
-<meta property="og:description" content="El único show de hip-hop donde el beat nace en escena. Booking & management.">
+<meta property="og:description" content="El único show de hip-hop donde el beat nace en escena. Booking & management exclusivo.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -231,10 +231,6 @@
   .opt{display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--line);border-radius:9px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13.5px;transition:.2s}
   .opt:hover{border-color:var(--cyan)}
   .opt input{accent-color:var(--mag);width:16px;height:16px;flex:none}
-  .opt .pr{margin-left:auto;color:var(--dim);font-size:12px;white-space:nowrap}
-  .calc-out{margin-top:14px;background:rgba(0,229,212,.07);border:1px solid var(--cyan);border-radius:12px;padding:16px 18px;text-align:center}
-  .calc-out .rng{font-family:var(--display);font-size:24px;color:var(--cyan);letter-spacing:1px}
-  .calc-out .cap{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
   .contact-side .cc{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;margin-bottom:14px}
   .contact-side .cc h4{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
   .cline{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:14px}
@@ -298,7 +294,7 @@
     <div class="lang-pill" role="group" aria-label="Idioma">
       <button id="langEs" class="on">ES</button><button id="langEn">EN</button>
     </div>
-    <button class="btn btn-ghost" onclick="window.print()" data-i18n="btn_pdf">⬇ PDF</button>
+    <button class="btn btn-ghost" onclick="generatePDF()" data-i18n="btn_pdf">⬇ Descargar PDF</button>
     <a class="btn btn-mg" id="navWa" href="#" target="_blank" rel="noopener" data-i18n="btn_booking">Booking</a>
     <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
   </div>
@@ -317,7 +313,7 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-imgwrap ph" id="heroWrap">
-    <img id="heroImg" src="/img/hero.jpg" alt="Cagta Flex" onload="this.parentNode.classList.add('img-ok')" onerror="this.style.display='none'">
+    <img id="heroImg" src="/img/youtube.jpg" alt="Cagta Flex" onload="this.parentNode.classList.add('img-ok')" onerror="this.style.display='none'">
   </div>
   <div class="cursor-glow" id="cursorGlow"></div>
   <div class="wrap">
@@ -336,7 +332,7 @@
       <div class="hero-cta">
         <a class="btn btn-cy" id="heroWa" href="#" target="_blank" rel="noopener" data-i18n="btn_agendar">📱 Agendar show</a>
         <a class="btn btn-ghost" href="#show-videos" data-i18n="btn_ver">▶ Ver el show</a>
-        <button class="btn btn-ghost" onclick="window.print()" data-i18n="btn_pdf2">⬇ Descargar EPK (PDF)</button>
+        <button class="btn btn-ghost" onclick="generatePDF()" data-i18n="btn_pdf2">⬇ Descargar EPK (PDF)</button>
       </div>
     </div>
   </div>
@@ -368,14 +364,14 @@
           <a class="soc" href="https://instagram.com/cagtaflex" target="_blank" rel="noopener"><span class="h">📷 Instagram</span><span class="v">@cagtaflex · 5.2K+</span></a>
           <a class="soc" href="https://facebook.com/CagtaFlex" target="_blank" rel="noopener"><span class="h">👍 Facebook</span><span class="v">/CagtaFlex · 2.5K</span></a>
           <a class="soc" href="https://youtube.com/@CagtaFlex" target="_blank" rel="noopener"><span class="h">▶ YouTube</span><span class="v">4.11K · 186 videos</span></a>
-          <a class="soc" href="https://soundcloud.com/" target="_blank" rel="noopener"><span class="h">🎧 SoundCloud</span><span class="v">1.4K followers</span></a>
-          <a class="soc" href="https://open.spotify.com/artist/7HrWMVAud2UeybVThK36KX" target="_blank" rel="noopener"><span class="h">🎵 Spotify</span><span class="v">Cagta Flex</span></a>
+          <a class="soc" href="https://www.tiktok.com/@cagtaflex" target="_blank" rel="noopener"><span class="h">🎵 TikTok</span><span class="v">@cagtaflex</span></a>
+          <a class="soc" href="https://open.spotify.com/artist/7HrWMVAud2UeybVThK36KX" target="_blank" rel="noopener"><span class="h">🎧 Spotify</span><span class="v">Cagta Flex</span></a>
           <a class="soc" href="https://youtube.com/@beatsfreeyoutube_" target="_blank" rel="noopener"><span class="h">🥁 Beats BFYT</span><span class="v">+14K subs</span></a>
         </div>
         <div class="audience" data-i18n="audience"></div>
       </div>
       <div class="artist-photo ph reveal">
-        <img src="/img/artist.jpg" alt="Cagta Flex retrato" onload="this.parentNode.classList.add('img-ok')" onerror="this.style.display='none'">
+        <img src="/img/cagta-flex-1.jpg" alt="Cagta Flex retrato" onload="this.parentNode.classList.add('img-ok')" onerror="this.style.display='none'">
         <div class="frame"></div>
       </div>
     </div>
@@ -405,7 +401,7 @@
     <div class="kfc-card reveal">
       <div class="kfc-video ph">
         <video controls preload="metadata" poster="/img/live.jpg" onerror="this.parentNode.classList.remove('img-ok')">
-          <source src="/img/kfc.mp4" type="video/mp4">
+          <source src="/img/Comercial%20KFC.mp4" type="video/mp4">
         </video>
       </div>
       <div class="kt">
@@ -494,7 +490,7 @@
     <div class="exp reveal">
       <p data-i18n="exp"></p>
       <div class="exp-photo ph">
-        <img src="/img/crouch.jpg" alt="Cagta Flex MPC en vivo" onload="this.parentNode.classList.add('img-ok')" onerror="this.style.display='none'">
+        <img src="/img/Foto 9 On.jpg" alt="Cagta Flex MPC en vivo" onload="this.parentNode.classList.add('img-ok')" onerror="this.style.display='none'">
       </div>
     </div>
     <div class="two-col">
@@ -574,28 +570,12 @@
 <!-- BOOKING -->
 <section id="booking">
   <div class="wrap">
-    <div class="reveal"><div class="eyebrow" data-i18n="k7">07 — Contratación</div><h2 class="sec" data-i18n="h_book"></h2><p class="sec-sub" data-i18n="book_sub"></p></div>
+    <div class="reveal"><div class="eyebrow" data-i18n="k7">07 — Contratación Exclusiva</div><h2 class="sec" data-i18n="h_book"></h2><p class="sec-sub" data-i18n="book_sub"></p></div>
     <div class="book-grid">
       <div class="reveal">
-        <div class="calc" style="margin-bottom:18px">
-          <h3 data-i18n="calch">Arma tu paquete</h3>
-          <div class="fh" data-i18n="calchd">Elige formato + extras y te damos un estimado al instante.</div>
-          <div class="field"><label data-i18n="cfmt">Formato</label>
-            <label class="opt"><input type="radio" name="fmt" value="beat" checked><span data-i18n="cfmt1">Beatmaking en vivo (45–60 min)</span><span class="pr" data-pr="beat"></span></label>
-            <label class="opt"><input type="radio" name="fmt" value="dj"><span data-i18n="cfmt2">Show + DJ (60–90 min)</span><span class="pr" data-pr="dj"></span></label>
-            <label class="opt"><input type="radio" name="fmt" value="fest"><span data-i18n="cfmt3">Festival full</span><span class="pr" data-pr="fest"></span></label>
-          </div>
-          <div class="field"><label data-i18n="cext">Extras</label>
-            <label class="opt"><input type="checkbox" name="ext" value="taller"><span data-i18n="cext1">🎤 Taller de rap post-show</span><span class="pr" data-pr="taller"></span></label>
-            <label class="opt"><input type="checkbox" name="ext" value="video"><span data-i18n="cext2">🎬 Video profesional del evento</span><span class="pr" data-pr="video"></span></label>
-            <label class="opt"><input type="checkbox" name="ext" value="meet"><span data-i18n="cext3">✍️ Meet &amp; greet con firma</span><span class="pr" data-pr="meet"></span></label>
-          </div>
-          <div class="calc-out"><div class="rng" id="calcRng">—</div><div class="cap" data-i18n="calccap">Estimado · sujeto a confirmación</div></div>
-          <button class="btn btn-cy" id="calcWa" data-i18n="calcbtn">📱 Cotizar este paquete por WhatsApp</button>
-        </div>
         <form class="form" id="bookForm">
-          <h3 data-i18n="formh2">Solicita tu cotización</h3>
-          <div class="fh" data-i18n="formhd">Respondemos en 24–48h · Bogotá y gira nacional/internacional</div>
+          <h3 data-i18n="formh2">Solicita tu cotización privada</h3>
+          <div class="fh" data-i18n="formhd">Respondemos en 24–48h · Presupuesto confidencial · Bogotá y gira nacional/internacional</div>
           <div class="row2">
             <div class="field"><label data-i18n="fl1">Nombre</label><input type="text" name="nombre" required data-i18n-ph="fp1" placeholder="Tu nombre"></div>
             <div class="field"><label data-i18n="fl2">Organización / Venue</label><input type="text" name="org" data-i18n-ph="fp2" placeholder="Empresa, festival, club…"></div>
@@ -604,8 +584,18 @@
             <div class="field"><label data-i18n="fl3">Ciudad</label><input type="text" name="ciudad" required data-i18n-ph="fp3" placeholder="Bogotá, Quito…"></div>
             <div class="field"><label data-i18n="fl4">Fecha tentativa</label><input type="date" name="fecha"></div>
           </div>
-          <div class="field"><label data-i18n="fl5">Mensaje</label><textarea name="msg" data-i18n-ph="fp5" placeholder="Cuéntanos del evento, público esperado, qué necesitas…"></textarea></div>
-          <button type="submit" class="btn btn-cy" data-i18n="formbtn">📱 Enviar por WhatsApp</button>
+          <div class="field"><label data-i18n="fl5">Tipo de evento</label>
+            <select name="tipo">
+              <option value="">Selecciona...</option>
+              <option>Festival / Evento cultural</option>
+              <option>Corporativo / After office</option>
+              <option>Club / Venue nocturno</option>
+              <option>Universidad / Institucional</option>
+              <option>Otro (detallar abajo)</option>
+            </select>
+          </div>
+          <div class="field"><label data-i18n="fl6">Mensaje</label><textarea name="msg" data-i18n-ph="fp6" placeholder="Cuéntanos del evento, público esperado, qué necesitas…"></textarea></div>
+          <button type="submit" class="btn btn-cy" data-i18n="formbtn">📱 Enviar solicitud por WhatsApp</button>
         </form>
       </div>
       <div class="contact-side reveal">
@@ -613,14 +603,14 @@
           <div class="cline"><span class="k">📩 Email</span><a class="v" href="mailto:terrivolmusiclove@gmail.com">terrivolmusiclove@gmail.com</a></div>
           <div class="cline"><span class="k">🌐 Web</span><a class="v" href="https://terrivolmusic.github.io" target="_blank" rel="noopener">terrivolmusic.github.io</a></div>
           <div class="cline"><span class="k">🛍 Tienda</span><a class="v" href="https://cagta-flex-shop.fourthwall.com" target="_blank" rel="noopener">Fourthwall Shop</a></div>
-          <div class="wa-duo"><a class="btn btn-cy" id="waMain" href="#" target="_blank" rel="noopener">📱 Booking</a><a class="btn btn-ghost" id="waAlt" href="#" target="_blank" rel="noopener">💬 Alterno</a></div>
+          <div class="wa-duo"><a class="btn btn-cy" id="waMain" href="#" target="_blank" rel="noopener">📱 Booking Principal</a><a class="btn btn-ghost" id="waAlt" href="#" target="_blank" rel="noopener">💬 Alterno</a></div>
         </div>
         <div class="cc"><h4 data-i18n="rdh">Redes &amp; streaming</h4>
           <div class="cline"><span class="k">📷 Instagram</span><a class="v" href="https://instagram.com/cagtaflex" target="_blank" rel="noopener">@cagtaflex</a></div>
           <div class="cline"><span class="k">▶ YouTube</span><a class="v" href="https://youtube.com/@CagtaFlex" target="_blank" rel="noopener">@CagtaFlex</a></div>
           <div class="cline"><span class="k">👍 Facebook</span><a class="v" href="https://facebook.com/CagtaFlex" target="_blank" rel="noopener">/CagtaFlex</a></div>
-          <div class="cline"><span class="k">🎵 Spotify</span><a class="v" href="https://open.spotify.com/artist/7HrWMVAud2UeybVThK36KX" target="_blank" rel="noopener">Cagta Flex</a></div>
-          <div class="cline"><span class="k">🎧 SoundCloud</span><a class="v" href="https://soundcloud.com/" target="_blank" rel="noopener">Cagta Flex</a></div>
+          <div class="cline"><span class="k">🎵 TikTok</span><a class="v" href="https://www.tiktok.com/@cagtaflex" target="_blank" rel="noopener">@cagtaflex</a></div>
+          <div class="cline"><span class="k">🎧 Spotify</span><a class="v" href="https://open.spotify.com/artist/7HrWMVAud2UeybVThK36KX" target="_blank" rel="noopener">Cagta Flex</a></div>
         </div>
         <div class="cc" style="text-align:center"><div class="chips" style="justify-content:center">
           <span class="chip" data-i18n="loc1">Bogotá · Colombia</span><span class="chip mg" data-i18n="loc2">Disponible para gira</span><span class="chip" data-i18n="loc3">COL · ECU · LATAM · Europa</span>
@@ -639,8 +629,8 @@
       <a href="https://instagram.com/cagtaflex" target="_blank" rel="noopener">Instagram</a>
       <a href="https://youtube.com/@CagtaFlex" target="_blank" rel="noopener">YouTube</a>
       <a href="https://facebook.com/CagtaFlex" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.tiktok.com/@cagtaflex" target="_blank" rel="noopener">TikTok</a>
       <a href="https://open.spotify.com/artist/7HrWMVAud2UeybVThK36KX" target="_blank" rel="noopener">Spotify</a>
-      <a href="https://soundcloud.com/" target="_blank" rel="noopener">SoundCloud</a>
       <a href="https://cagta-flex-shop.fourthwall.com" target="_blank" rel="noopener" data-i18n="ft_shop">Tienda</a>
       <a href="https://terrivolmusic.github.io" target="_blank" rel="noopener" data-i18n="ft_web">Web</a>
     </div>
@@ -659,15 +649,7 @@
 const CONFIG = {
   whatsapp:  "573102123844",   // booking principal
   whatsapp2: "573142807283",   // alterno
-  monthlyListeners: 0,         // 👈 Nº de oyentes mensuales de Spotify (0 = muestra "—")
-  tarifas: {                   // 👈 TUS rangos reales en COP (min, max)
-    beat:  {min:1500000, max:3000000},
-    dj:    {min:2000000, max:4000000},
-    fest:  {min:3000000, max:6000000},
-    taller:{min:300000,  max:700000},
-    video: {min:400000,  max:900000},
-    meet:  {min:150000,  max:400000}
-  }
+  monthlyListeners: 0          // 👈 Nº de oyentes mensuales de Spotify (0 = muestra "—")
 };
 
 /* =========================================================
@@ -677,7 +659,7 @@ const T = {
   nav_artista:{es:"Artista",en:"Artist"}, nav_videos:{es:"Videos",en:"Videos"},
   nav_musica:{es:"Música",en:"Music"}, nav_vivo:{es:"En vivo",en:"Live"},
   nav_show:{es:"El Show",en:"The Show"}, nav_booking:{es:"Booking",en:"Booking"},
-  btn_pdf:{es:"⬇ PDF",en:"⬇ PDF"}, btn_booking:{es:"Booking",en:"Booking"},
+  btn_pdf:{es:"⬇ Descargar PDF",en:"⬇ Download PDF"}, btn_booking:{es:"Booking",en:"Booking"},
   hero_eyebrow:{es:"Electronic Press Kit · Terrivol Music · Bogotá, Colombia",en:"Electronic Press Kit · Terrivol Music · Bogotá, Colombia"},
   hero_tag:{es:"« La Voix de l'Univers » — Hip-Hop · Boom Bap · Trap · Beatmaking en Vivo",en:"« La Voix de l'Univers » — Hip-Hop · Boom Bap · Trap · Live Beatmaking"},
   hero_pitch:{es:'<b class="cy">EL DIFERENCIAL:</b> el único show de hip-hop donde el beat nace en escena. El público elige los samples y Cagta Flex produce el tema en vivo — un track único por evento que luego rueda en redes como contenido para <b class="mg">{BRAND}</b>.',en:'<b class="cy">THE DIFFERENTIAL:</b> the only hip-hop show where the beat is born on stage. The crowd picks the samples and Cagta Flex produces the track live — a one-of-a-kind song per event that then travels on social media as content for <b class="mg">{BRAND}</b>.'},
@@ -749,17 +731,13 @@ const T = {
   sp2:{es:"Contenido audiovisual profesional co-creado en tu evento",en:"Professional audiovisual content co-created at your event"},
   sp3:{es:"Audiencia joven urbana (núcleo 25–34) con alto engagement en Reels (73,6% del consumo)",en:"Young urban audience (core 25–34) with high Reels engagement (73.6% of consumption)"},
   sp4:{es:"Historial de colaboración con marcas (KFC) y comunidad activa en 3 países",en:"Track record of brand collaboration (KFC) and active community in 3 countries"},
-  k7:{es:"07 — Contratación",en:"07 — Booking"}, h_book:{es:'<span class="cy">BOOKING</span> <span class="mg">&amp; MANAGEMENT</span>',en:'<span class="cy">BOOKING</span> <span class="mg">&amp; MANAGEMENT</span>'},
-  book_sub:{es:"Cuéntanos tu evento y te respondemos con propuesta en menos de 48h. El formulario arma tu mensaje de WhatsApp automáticamente.",en:"Tell us about your event and we reply with a proposal in under 48h. The form builds your WhatsApp message automatically."},
-  calch:{es:"Arma tu paquete",en:"Build your package"}, calchd:{es:"Elige formato + extras y te damos un estimado al instante.",en:"Pick format + extras and get an instant estimate."},
-  cfmt:{es:"Formato",en:"Format"}, cfmt1:{es:"Beatmaking en vivo (45–60 min)",en:"Live beatmaking (45–60 min)"}, cfmt2:{es:"Show + DJ (60–90 min)",en:"Show + DJ (60–90 min)"}, cfmt3:{es:"Festival full",en:"Full festival"},
-  cext:{es:"Extras",en:"Extras"}, cext1:{es:"🎤 Taller de rap post-show",en:"🎤 Post-show rap workshop"}, cext2:{es:"🎬 Video profesional del evento",en:"🎬 Professional event video"}, cext3:{es:"✍️ Meet & greet con firma",en:"✍️ Meet & greet with signing"},
-  calccap:{es:"Estimado · sujeto a confirmación",en:"Estimate · subject to confirmation"}, calcbtn:{es:"📱 Cotizar este paquete por WhatsApp",en:"📱 Quote this package on WhatsApp"},
-  formh2:{es:"Solicita tu cotización",en:"Request a quote"}, formhd:{es:"Respondemos en 24–48h · Bogotá y gira nacional/internacional",en:"We reply in 24–48h · Bogotá & national/international tours"},
+  k7:{es:"07 — Contratación Exclusiva",en:"07 — Exclusive Booking"}, h_book:{es:'<span class="cy">BOOKING</span> <span class="mg">&amp; MANAGEMENT PRIVADO</span>',en:'<span class="cy">PRIVATE</span> <span class="mg">BOOKING &amp; MANAGEMENT</span>'},
+  book_sub:{es:"Cuéntanos tu evento y te respondemos con propuesta confidencial en menos de 48h. El formulario arma tu mensaje de WhatsApp automáticamente.",en:"Tell us about your event and we reply with a confidential proposal in under 48h. The form builds your WhatsApp message automatically."},
+  formh2:{es:"Solicita tu cotización privada",en:"Request a private quote"}, formhd:{es:"Respondemos en 24–48h · Presupuesto confidencial · Bogotá y gira nacional/internacional",en:"We reply in 24–48h · Confidential budget · Bogotá & national/international tours"},
   fl1:{es:"Nombre",en:"Name"}, fp1:{es:"Tu nombre",en:"Your name"}, fl2:{es:"Organización / Venue",en:"Organization / Venue"}, fp2:{es:"Empresa, festival, club…",en:"Company, festival, club…"},
   fl3:{es:"Ciudad",en:"City"}, fp3:{es:"Bogotá, Quito…",en:"Bogotá, Quito…"}, fl4:{es:"Fecha tentativa",en:"Tentative date"},
-  fl5:{es:"Mensaje",en:"Message"}, fp5:{es:"Cuéntanos del evento, público esperado, qué necesitas…",en:"Tell us about the event, expected audience, what you need…"},
-  formbtn:{es:"📱 Enviar por WhatsApp",en:"📱 Send on WhatsApp"},
+  fl5:{es:"Tipo de evento",en:"Event type"}, fl6:{es:"Mensaje",en:"Message"}, fp6:{es:"Cuéntanos del evento, público esperado, qué necesitas…",en:"Tell us about the event, expected audience, what you need…"},
+  formbtn:{es:"📱 Enviar solicitud por WhatsApp",en:"📱 Send request on WhatsApp"},
   cdh:{es:"Contacto directo",en:"Direct contact"}, rdh:{es:"Redes & streaming",en:"Socials & streaming"},
   loc1:{es:"Bogotá · Colombia",en:"Bogotá · Colombia"}, loc2:{es:"Disponible para gira",en:"Available for touring"}, loc3:{es:"COL · ECU · LATAM · Europa",en:"COL · ECU · LATAM · Europe"},
   ftag:{es:"« La Voix de l'Univers » · Terrivol Music",en:"« La Voix de l'Univers » · Terrivol Music"},
@@ -776,7 +754,6 @@ const T = {
 
   function brand(){ return promoter || (lang==='es' ? 'tu evento' : 'your event'); }
   function fill(s){ return s.split('{BRAND}').join(brand()); }
-  function fmtCOP(n){ return '$ ' + n.toLocaleString('es-CO'); }
 
   var waMsg = encodeURIComponent(lang==='es'
     ? 'Hola Cagta Flex, vi su EPK y quiero cotizar un show.'
@@ -803,7 +780,7 @@ const T = {
     document.getElementById('langEn').classList.toggle('on',l==='en');
     if(promoter){ badge.classList.add('show'); btxt.textContent=(l==='es'?'⚡ Preparado para ':'⚡ Prepared for ')+promoter; }
     document.title = (promoter? promoter+' × ' : '') + 'CAGTA FLEX — EPK 2026 | Terrivol Music';
-    setWa(); renderCalc();
+    setWa();
   }
   document.getElementById('langEs').onclick=function(){applyLang('es');};
   document.getElementById('langEn').onclick=function(){applyLang('en');};
@@ -847,37 +824,14 @@ const T = {
     requestAnimationFrame(function(){ var y=window.scrollY; if(heroImg&&y<window.innerHeight) heroImg.style.transform='translateY('+(y*0.12)+'px)'; ticking=false; });
   });
 
-  var prEls=document.querySelectorAll('[data-pr]');
-  function paintPrices(){ prEls.forEach(function(s){ var k=s.getAttribute('data-pr'), t=CONFIG.tarifas[k]; if(t) s.textContent=fmtCOP(t.min)+'+'; }); }
-  function renderCalc(){
-    var fmt=document.querySelector('input[name=fmt]:checked').value;
-    var base=CONFIG.tarifas[fmt]; var mn=base.min, mx=base.max;
-    document.querySelectorAll('input[name=ext]:checked').forEach(function(c){ var t=CONFIG.tarifas[c.value]; mn+=t.min; mx+=t.max; });
-    document.getElementById('calcRng').textContent=fmtCOP(mn)+' – '+fmtCOP(mx)+' COP';
-  }
-  document.querySelectorAll('input[name=fmt],input[name=ext]').forEach(function(i){ i.addEventListener('change',renderCalc); });
-  paintPrices(); renderCalc();
-
-  document.getElementById('calcWa').onclick=function(){
-    var fmt=document.querySelector('input[name=fmt]:checked');
-    var exts=[]; document.querySelectorAll('input[name=ext]:checked').forEach(function(c){ exts.push(c.parentElement.querySelector('span').textContent.trim()); });
-    var rng=document.getElementById('calcRng').textContent;
-    var L=lang==='es';
-    var lines=['*SOLICITUD DE COTIZACIÓN — CAGTA FLEX (EPK)*','',
-      (L?'Formato: ':'Format: ')+fmt.parentElement.querySelector('span').textContent.trim(),
-      (L?'Extras: ':'Extras: ')+(exts.length?exts.join(', '):(L?'ninguno':'none')),
-      (L?'Estimado: ':'Estimate: ')+rng,'',
-      (L?'Me interesa. ¿Disponibilidad?':'Interested. Availability?')];
-    window.open('https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(lines.join('\n')),'_blank');
-  };
-
   var form=document.getElementById('bookForm'), toast=document.getElementById('toast');
   form.addEventListener('submit',function(ev){ ev.preventDefault();
     var g=function(n){var e=form.elements[n];return e?e.value.trim():'';};
     var L=lang==='es';
-    var lines=['*SOLICITUD DE COTIZACIÓN — CAGTA FLEX (EPK)*','',
+    var lines=['*SOLICITUD DE COTIZACIÓN EXCLUSIVA — CAGTA FLEX (EPK)*','',
       (L?'Nombre: ':'Name: ')+g('nombre'), (L?'Organización: ':'Organization: ')+(g('org')||'—'),
       (L?'Ciudad: ':'City: ')+g('ciudad'), (L?'Fecha: ':'Date: ')+(g('fecha')||(L?'por definir':'TBD')),
+      (L?'Tipo de evento: ':'Event type: ')+(g('tipo')||(L?'No especificado':'Not specified')),
       '', (L?'Mensaje: ':'Message: ')+(g('msg')||'—')];
     toast.textContent=L?'✅ Mensaje listo — abriendo WhatsApp…':'✅ Message ready — opening WhatsApp…';
     toast.classList.add('show');
@@ -887,6 +841,375 @@ const T = {
 
   applyLang('es');
 })();
+
+// GENERADOR DE PDF PROFESIONAL
+function generatePDF() {
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const pageWidth = 210;
+  const margin = 15;
+  
+  // Página 1: Portada
+  doc.setFillColor(7, 7, 12);
+  doc.rect(0, 0, pageWidth, 297, 'F');
+  
+  // Título gigante
+  doc.setFontSize(48);
+  doc.setTextColor(0, 229, 212);
+  doc.text('CAGTA', margin, 80);
+  doc.setTextColor(255, 46, 166);
+  doc.text('FLEX', margin, 100);
+  
+  // Subtítulo
+  doc.setFontSize(14);
+  doc.setTextColor(243, 243, 248);
+  doc.text('« La Voix de l\'Univers »', margin, 120);
+  doc.text('Hip-Hop · Boom Bap · Trap · Beatmaking en Vivo', margin, 130);
+  
+  // Pitch box
+  doc.setFillColor(18, 18, 29);
+  doc.roundedRect(margin, 145, pageWidth - 2*margin, 35, 3, 3, 'F');
+  doc.setFontSize(10);
+  doc.setTextColor(0, 229, 212);
+  doc.text('EL DIFERENCIAL:', margin + 5, 155);
+  doc.setTextColor(243, 243, 248);
+  doc.text('El único show de hip-hop donde el beat nace en escena.', margin + 5, 162);
+  doc.text('Un track único por evento que rueda en redes como contenido para TU marca.', margin + 5, 169);
+  
+  // Chips
+  doc.setFontSize(9);
+  let chipX = margin;
+  const chips = [
+    { text: '20+ años de tarima', color: [0, 229, 212] },
+    { text: '380 canciones · Sony Music Publishing', color: [255, 46, 166] },
+    { text: '+20K comunidad', color: [0, 229, 212] },
+    { text: 'Show internacional', color: [255, 46, 166] }
+  ];
+  chips.forEach(chip => {
+    const width = doc.getTextWidth(chip.text) + 8;
+    doc.setDrawColor(...chip.color);
+    doc.roundedRect(chipX, 190, width, 8, 4, 4, 'S');
+    doc.setTextColor(...chip.color);
+    doc.text(chip.text, chipX + 4, 195.5);
+    chipX += width + 5;
+  });
+  
+  // Contacto
+  doc.setFontSize(10);
+  doc.setTextColor(154, 154, 172);
+  doc.text('BOOKING & MANAGEMENT', margin, 215);
+  doc.setTextColor(0, 229, 212);
+  doc.text('terrivolmusiclove@gmail.com', margin, 222);
+  doc.setTextColor(243, 243, 248);
+  doc.text('WhatsApp: +57 310 212 3844', margin, 229);
+  doc.text('Web: terrivolmusic.github.io', margin, 236);
+  
+  // Footer
+  doc.setFontSize(8);
+  doc.setTextColor(106, 106, 124);
+  doc.text('© 2026 Terrivol Music SAS · Jesus King Records', margin, 285);
+  
+  // Página 2: Estadísticas
+  doc.addPage();
+  doc.setFillColor(13, 13, 22);
+  doc.rect(0, 0, pageWidth, 297, 'F');
+  
+  doc.setFontSize(24);
+  doc.setTextColor(0, 229, 212);
+  doc.text('ESTADÍSTICAS CLAVE', margin, 30);
+  
+  const stats = [
+    { num: '20+', lbl: 'Años de carrera' },
+    { num: '380', lbl: 'Canciones · Sony Music Publishing + BMI' },
+    { num: '8', lbl: 'Producciones discográficas' },
+    { num: '4.11K+', lbl: 'Suscriptores YouTube' },
+    { num: '+20K', lbl: 'Comunidad total en redes' },
+    { num: '3', lbl: 'Países en escena · COL · ECU' }
+  ];
+  
+  let statY = 50;
+  stats.forEach(stat => {
+    doc.setFontSize(28);
+    doc.setTextColor(0, 229, 212);
+    doc.text(stat.num, margin, statY);
+    
+    doc.setFontSize(10);
+    doc.setTextColor(154, 154, 172);
+    doc.text(stat.lbl, margin + 30, statY - 2);
+    
+    statY += 18;
+  });
+  
+  // Redes sociales
+  doc.setFontSize(14);
+  doc.setTextColor(255, 46, 166);
+  doc.text('REDES SOCIALES', margin, statY + 10);
+  
+  doc.setFontSize(10);
+  doc.setTextColor(243, 243, 248);
+  const socials = [
+    '📷 Instagram: @cagtaflex · 5.2K+',
+    '👍 Facebook: /CagtaFlex · 2.5K',
+    '▶ YouTube: @CagtaFlex · 4.11K · 186 videos',
+    '🎵 TikTok: @cagtaflex',
+    '🎧 Spotify: Cagta Flex',
+    '🥁 Beats BFYT: +14K subs'
+  ];
+  socials.forEach((s, i) => {
+    doc.text(s, margin, statY + 25 + (i * 8));
+  });
+  
+  // Audiencia
+  doc.setFontSize(10);
+  doc.setTextColor(154, 154, 172);
+  doc.text('AUDIENCIA IG:', margin, statY + 80);
+  doc.text('Núcleo 25–34 años (53,8%) · 63,3% Colombia · 51,9% Bogotá', margin, statY + 88);
+  doc.text('Reels = 73,6% del consumo', margin, statY + 96);
+  
+  // Página 3: Biografía
+  doc.addPage();
+  doc.setFillColor(7, 7, 12);
+  doc.rect(0, 0, pageWidth, 297, 'F');
+  
+  doc.setFontSize(24);
+  doc.setTextColor(0, 229, 212);
+  doc.text('EL ARTISTA', margin, 30);
+  
+  doc.setFontSize(11);
+  doc.setTextColor(220, 220, 230);
+  const bioLines = [
+    'Cagta Flex (Sebastián Andrade, Bogotá) es rapero, productor y fundador del sello',
+    'Terrivol Music, con más de 20 años de carrera en el hip-hop latino. Ganador de',
+    'Suba Al Ruedo 2014 y parte de la alineación de Hip Hop al Parque 2014, ha pasado por',
+    'festivales en Colombia y Ecuador (Ibarra Fest, Tour Tribu Nómada). Registra',
+    '380 canciones en Sony Music Publishing y ocho producciones discográficas, entre ellas',
+    'su álbum «YUNGG FLEX». Su show convierte el escenario en un estudio: crea beats en',
+    'vivo mientras el público elige los samples, dando como resultado un tema único por',
+    'evento. Con colaboraciones con marcas como KFC y una comunidad de +20K seguidores,',
+    'combina raíz boom bap con sonido fresco. Actualmente promociona los sencillos «POP UP»,',
+    '«EL MEJOR» y «MUCHO FENDY». No es solo un artista: es una experiencia.'
+  ];
+  
+  let bioY = 45;
+  bioLines.forEach(line => {
+    doc.text(line, margin, bioY);
+    bioY += 8;
+  });
+  
+  // Página 4: Trayectoria en Vivo
+  doc.addPage();
+  doc.setFillColor(13, 13, 22);
+  doc.rect(0, 0, pageWidth, 297, 'F');
+  
+  doc.setFontSize(24);
+  doc.setTextColor(0, 229, 212);
+  doc.text('TRAYECTORIA EN VIVO', margin, 30);
+  
+  doc.setFontSize(12);
+  doc.setTextColor(255, 46, 166);
+  doc.text('HITOS PRINCIPALES', margin, 45);
+  
+  doc.setFontSize(10);
+  doc.setTextColor(243, 243, 248);
+  const hits = [
+    '🏆 Ganador Suba Al Ruedo 2014',
+    '🎤 Hip Hop al Parque 2014',
+    '🇪🇨 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)',
+    '🚌 Tour Tribu Nómada 2018 (Colombia)',
+    '🤝 Colaboración con marca: KFC'
+  ];
+  
+  let hitY = 55;
+  hits.forEach(hit => {
+    doc.text(hit, margin, hitY);
+    hitY += 8;
+  });
+  
+  doc.setFontSize(12);
+  doc.setTextColor(255, 46, 166);
+  doc.text('FESTIVALES Y EVENTOS', margin, hitY + 10);
+  
+  doc.setFontSize(9);
+  doc.setTextColor(154, 154, 172);
+  const fests = [
+    'Golpe Urbano 2012 · Almas Sin Armas 2016 · Bubaseta 2017 · Back to The Game 2018',
+    'Underground Rhymes Vol.1–4 · Querap 2019 · Aerophone Boogaloop 2020 · Serenata Rap 2020',
+    'Grito a la Memoria 2021 · This is Real 2021 · LatinoLife UK 2021 · Hip Bosa 2021',
+    'Skills Rumble 2021 · DC BASHMAN LA 2023'
+  ];
+  
+  let festY = hitY + 25;
+  fests.forEach(fest => {
+    doc.text(fest, margin, festY);
+    festY += 8;
+  });
+  
+  // Página 5: El Show
+  doc.addPage();
+  doc.setFillColor(7, 7, 12);
+  doc.rect(0, 0, pageWidth, 297, 'F');
+  
+  doc.setFontSize(24);
+  doc.setTextColor(0, 229, 212);
+  doc.text('EL SHOW · BEATMAKING EN VIVO', margin, 30);
+  
+  doc.setFontSize(11);
+  doc.setTextColor(220, 220, 230);
+  const showLines = [
+    'LA EXPERIENCIA: Cagta Flex sube a la tarima con su MPC y convierte el concierto en un',
+    'estudio abierto. El público elige los samples, él construye el beat frente a todos y lo',
+    'rapea en vivo. Cada evento termina con un tema único e irrepetible — contenido',
+    'espontáneo que luego se publica en las redes de Terrivol Music (+20K alcance)',
+    'mencionando al evento y sus aliados.'
+  ];
+  
+  let showY = 45;
+  showLines.forEach(line => {
+    doc.text(line, margin, showY);
+    showY += 8;
+  });
+  
+  doc.setFontSize(12);
+  doc.setTextColor(255, 46, 166);
+  doc.text('FORMATOS DISPONIBLES', margin, showY + 10);
+  
+  doc.setFontSize(10);
+  doc.setTextColor(243, 243, 248);
+  const formats = [
+    '• Versión club: remixes de clásicos hip-hop / urbano',
+    '• Versión festival: clásicos + freestyle con bandas en vivo',
+    '• Duración: 45–60 min (beatmaking) · 60–90 min (show + DJ)'
+  ];
+  
+  let fmtY = showY + 25;
+  formats.forEach(fmt => {
+    doc.text(fmt, margin, fmtY);
+    fmtY += 8;
+  });
+  
+  doc.setFontSize(12);
+  doc.setTextColor(255, 46, 166);
+  doc.text('RIDÉR TÉCNICO RESUMIDO', margin, fmtY + 10);
+  
+  doc.setFontSize(10);
+  doc.setTextColor(243, 243, 248);
+  const rider = [
+    '🎚 Audio: 2 micrófonos inalámbricos · consola para DJ · monitores',
+    '🖥 Visuals: Pantalla para proyecciones (opcional)',
+    '📐 Espacio: Tarima mínima 4×4 m · ridér completo bajo solicitud'
+  ];
+  
+  let ridY = fmtY + 25;
+  rider.forEach(r => {
+    doc.text(r, margin, ridY);
+    ridY += 8;
+  });
+  
+  // Página 6: Propuesta de Valor
+  doc.addPage();
+  doc.setFillColor(13, 13, 22);
+  doc.rect(0, 0, pageWidth, 297, 'F');
+  
+  doc.setFontSize(24);
+  doc.setTextColor(0, 229, 212);
+  doc.text('PROPUESTA DE VALOR', margin, 30);
+  
+  doc.setFontSize(14);
+  doc.setTextColor(255, 46, 166);
+  doc.text('"El único show de hip-hop donde el beat nace en escena: un track único por evento', margin, 45);
+  doc.text('que rueda en redes como contenido para TU marca."', margin, 55);
+  
+  doc.setFontSize(12);
+  doc.setTextColor(0, 229, 212);
+  doc.text('CONTENIDO ÚNICO', margin, 75);
+  doc.setFontSize(10);
+  doc.setTextColor(243, 243, 248);
+  doc.text('El tema creado en tu evento se publica en redes (+20K alcance) con mención a tu marca.', margin, 85);
+  
+  doc.setFontSize(12);
+  doc.setTextColor(0, 229, 212);
+  doc.text('PROMO INTEGRAL', margin, 105);
+  doc.setFontSize(10);
+  doc.setTextColor(243, 243, 248);
+  doc.text('Promoción pre/post evento en todos los canales de Terrivol Music.', margin, 115);
+  
+  doc.setFontSize(12);
+  doc.setTextColor(0, 229, 212);
+  doc.text('20+ AÑOS DE TARIMA', margin, 135);
+  doc.setFontSize(10);
+  doc.setTextColor(243, 243, 248);
+  doc.text('Se adapta a cualquier audiencia, purista o comercial.', margin, 145);
+  
+  doc.setFontSize(12);
+  doc.setTextColor(255, 46, 166);
+  doc.text('PARA PATROCINADORES', margin, 165);
+  doc.setFontSize(10);
+  doc.setTextColor(243, 243, 248);
+  const sponsors = [
+    '• Integración de marca en el beatmaking en vivo (naming del sample, mentions, logos en proyección)',
+    '• Contenido audiovisual profesional co-creado en tu evento',
+    '• Audiencia joven urbana (núcleo 25–34) con alto engagement en Reels (73,6% del consumo)',
+    '• Historial de colaboración con marcas (KFC) y comunidad activa en 3 países'
+  ];
+  
+  let sponY = 175;
+  sponsors.forEach(s => {
+    doc.text(s, margin, sponY);
+    sponY += 8;
+  });
+  
+  // Página 7: Contacto Final
+  doc.addPage();
+  doc.setFillColor(7, 7, 12);
+  doc.rect(0, 0, pageWidth, 297, 'F');
+  
+  doc.setFontSize(24);
+  doc.setTextColor(0, 229, 212);
+  doc.text('BOOKING & MANAGEMENT PRIVADO', margin, 30);
+  
+  doc.setFontSize(14);
+  doc.setTextColor(255, 46, 166);
+  doc.text('CONTACTO DIRECTO', margin, 50);
+  
+  doc.setFontSize(12);
+  doc.setTextColor(243, 243, 248);
+  doc.text('📩 Email: terrivolmusiclove@gmail.com', margin, 65);
+  doc.text('📱 WhatsApp Principal: +57 310 212 3844', margin, 75);
+  doc.text('📱 WhatsApp Alterno: +57 314 280 7283', margin, 85);
+  doc.text('🌐 Web: terrivolmusic.github.io', margin, 95);
+  doc.text('🛍 Tienda: cagta-flex-shop.fourthwall.com', margin, 105);
+  
+  doc.setFontSize(14);
+  doc.setTextColor(255, 46, 166);
+  doc.text('REDES & STREAMING', margin, 125);
+  
+  doc.setFontSize(12);
+  doc.setTextColor(243, 243, 248);
+  doc.text('📷 Instagram: @cagtaflex', margin, 140);
+  doc.text('▶ YouTube: @CagtaFlex', margin, 150);
+  doc.text('👍 Facebook: /CagtaFlex', margin, 160);
+  doc.text('🎵 TikTok: @cagtaflex', margin, 170);
+  doc.text('🎧 Spotify: Cagta Flex', margin, 180);
+  
+  doc.setFontSize(14);
+  doc.setTextColor(0, 229, 212);
+  doc.text('UBICACIÓN & DISPONIBILIDAD', margin, 200);
+  
+  doc.setFontSize(12);
+  doc.setTextColor(243, 243, 248);
+  doc.text('📍 Base: Bogotá · Colombia', margin, 215);
+  doc.text('🌍 Disponible para gira: COL · ECU · LATAM · Europa', margin, 225);
+  
+  // Footer
+  doc.setFontSize(8);
+  doc.setTextColor(106, 106, 124);
+  doc.text('© 2026 Terrivol Music SAS · Jesus King Records · Todos los derechos reservados', margin, 285);
+  
+  // Guardar PDF
+  doc.save('Cagta-Flex-EPK-2026.pdf');
+}
 </script>
+
+<!-- Librería jsPDF para generar PDFs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 </html>
