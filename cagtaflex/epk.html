@@ -2,11 +2,12 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>CAGTA FLEX — EPK 2026 | Terrivol Music · Booking Exclusivo</title>
 <meta name="description" content="Electronic Press Kit oficial de Cagta Flex (Terrivol Music, Bogotá). Rap, boom bap, trap y beatmaking en vivo. 20+ años, 380 canciones en Sony Music Publishing.">
 <meta property="og:title" content="CAGTA FLEX — EPK 2026 | Terrivol Music">
 <meta property="og:description" content="El único show de hip-hop donde el beat nace en escena. Booking & management exclusivo.">
+<meta property="og:image" content="/img/youtube.jpg">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,360 +21,417 @@
     --display:'Anton',Impact,sans-serif; --body:'Inter',system-ui,-apple-system,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{font-family:var(--body);background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  img{max-width:100%;display:block}
+  img{max-width:100%;height:auto;display:block}
   a{color:inherit;text-decoration:none}
   ::selection{background:var(--mag);color:#fff}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
-  .eyebrow{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--mag);font-weight:700}
-  .cy{color:var(--cyan)} .mg{color:var(--mag)}
-  h2.sec{font-family:var(--display);font-size:clamp(34px,6vw,62px);line-height:.95;letter-spacing:1px;text-transform:uppercase;margin:0 0 8px}
-  .sec-sub{color:var(--mut);font-size:15px;max-width:62ch;margin-bottom:30px}
-  section{padding:84px 0;position:relative}
-  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;width:100%}
   
+  /* UTILITIES */
+  .eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--mag);font-weight:700;margin-bottom:8px;display:block}
+  .cy{color:var(--cyan)} .mg{color:var(--mag)}
+  h2.sec{font-family:var(--display);font-size:clamp(32px,5vw,56px);line-height:.95;letter-spacing:1px;text-transform:uppercase;margin:0 0 12px}
+  .sec-sub{color:var(--mut);font-size:14px;max-width:62ch;margin-bottom:24px;line-height:1.5}
+  section{padding:60px 0;position:relative}
+  @media(min-width:768px){section{padding:84px 0}}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:0}
+
   /* CONTAINER DE FOTO CON EFECTO KEN BURNS */
   .ph{position:relative;overflow:hidden;background:var(--grad)}
-  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:transform 10s ease-out;}
-  .ph:hover img{transform:scale(1.08);} /* Zoom suave al hover */
-  .ph::after{content:'CAGTA FLEX';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);letter-spacing:4px;color:rgba(255,255,255,.06);font-size:clamp(20px,4vw,40px);pointer-events:none;z-index:0}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:transform 8s ease-out;}
+  .ph:hover img{transform:scale(1.05);} 
+  .ph::after{content:'CAGTA FLEX';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);letter-spacing:4px;color:rgba(255,255,255,.04);font-size:clamp(18px,3vw,32px);pointer-events:none;z-index:0}
   .ph.img-ok::after{display:none}
 
   /* NAV */
-  nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:14px 22px;transition:.3s;border-bottom:1px solid transparent}
-  nav.scrolled{background:rgba(7,7,12,.82);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
-  .brand{font-family:var(--display);font-size:20px;letter-spacing:2px}
+  nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;transition:.3s;border-bottom:1px solid transparent;background:rgba(7,7,12,.95);backdrop-filter:blur(10px)}
+  nav.scrolled{border-bottom-color:var(--line)}
+  .brand{font-family:var(--display);font-size:18px;letter-spacing:1px}
   .brand b{color:var(--cyan)} .brand i{color:var(--mag);font-style:normal}
-  .nav-links{display:flex;gap:24px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;color:var(--mut)}
-  .nav-links a:hover{color:var(--cyan)}
-  .nav-right{display:flex;gap:10px;align-items:center}
-  .lang-pill{display:flex;border:1px solid var(--line);border-radius:30px;overflow:hidden}
-  .lang-pill button{background:transparent;border:0;color:var(--mut);font:700 11px/1 var(--body);letter-spacing:1px;padding:8px 11px;cursor:pointer;transition:.2s}
+  .nav-links{display:none} /* Oculto en mobile por defecto */
+  .nav-right{display:flex;gap:8px;align-items:center}
+  .lang-pill{display:flex;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--panel)}
+  .lang-pill button{background:transparent;border:0;color:var(--mut);font:700 10px/1 var(--body);letter-spacing:.5px;padding:6px 10px;cursor:pointer;transition:.2s}
   .lang-pill button.on{background:var(--cyan);color:#04110f}
-  .burger{display:none;flex-direction:column;gap:5px;background:transparent;border:0;cursor:pointer;padding:6px}
-  .burger span{width:24px;height:2px;background:var(--txt);transition:.25s}
-  @media(max-width:920px){.nav-links{display:none}.burger{display:flex}}
-  .mobile-menu{position:fixed;top:60px;left:0;right:0;z-index:79;background:rgba(7,7,12,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);display:flex;flex-direction:column;padding:18px 22px;gap:4px;transform:translateY(-130%);transition:.35s;pointer-events:none}
+  .burger{display:flex;flex-direction:column;gap:4px;background:transparent;border:0;cursor:pointer;padding:6px}
+  .burger span{width:20px;height:2px;background:var(--txt);transition:.25s}
+  @media(min-width:920px){
+    nav{padding:14px 22px;background:transparent;backdrop-filter:none}
+    nav.scrolled{background:rgba(7,7,12,.82);backdrop-filter:blur(14px)}
+    .nav-links{display:flex;gap:20px;font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:600;color:var(--mut)}
+    .nav-links a:hover{color:var(--cyan)}
+    .burger{display:none}
+    .lang-pill button{padding:8px 12px;font-size:11px}
+  }
+  .mobile-menu{position:fixed;top:56px;left:0;right:0;z-index:79;background:rgba(7,7,12,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);display:flex;flex-direction:column;padding:16px 20px;gap:4px;transform:translateY(-120%);transition:.3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
   .mobile-menu.open{transform:none;pointer-events:auto}
-  .mobile-menu a{padding:12px 0;font-size:15px;letter-spacing:1px;text-transform:uppercase;font-weight:700;border-bottom:1px solid rgba(255,255,255,.05)}
+  .mobile-menu a{padding:14px 0;font-size:16px;letter-spacing:1px;text-transform:uppercase;font-weight:700;border-bottom:1px solid rgba(255,255,255,.05);color:var(--txt)}
   .mobile-menu a:last-child{border-bottom:0}
 
   /* BUTTONS */
-  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:13.5px;letter-spacing:1px;text-transform:uppercase;padding:13px 22px;border-radius:50px;border:1px solid var(--line);background:var(--panel);color:var(--txt);cursor:pointer;transition:.25s;white-space:nowrap}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:12px;letter-spacing:.5px;text-transform:uppercase;padding:12px 18px;border-radius:50px;border:1px solid var(--line);background:var(--panel);color:var(--txt);cursor:pointer;transition:.25s;white-space:nowrap;width:fit-content}
   .btn:hover{transform:translateY(-2px)}
   .btn-cy{background:var(--cyan);color:#04110f;border-color:var(--cyan)}
-  .btn-cy:hover{box-shadow:0 8px 30px rgba(0,229,212,.35)}
+  .btn-cy:hover{box-shadow:0 6px 20px rgba(0,229,212,.3)}
   .btn-mg{background:var(--mag);color:#fff;border-color:var(--mag)}
-  .btn-mg:hover{box-shadow:0 8px 30px rgba(255,46,166,.4)}
+  .btn-mg:hover{box-shadow:0 6px 20px rgba(255,46,166,.3)}
   .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+  .btn-full{width:100%}
 
-  /* HERO */
-  .hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 60px}
-  .hero-bg{position:absolute;inset:0;background:radial-gradient(120% 90% at 78% 30%,rgba(0,229,212,.18),transparent 55%),radial-gradient(90% 80% at 15% 80%,rgba(255,46,166,.16),transparent 55%),linear-gradient(180deg,#07070c,#0b0b14)}
-  .hero-imgwrap{position:absolute;right:-4%;top:0;height:100%;width:58%;background:var(--grad);-webkit-mask-image:linear-gradient(90deg,transparent,#000 38%);mask-image:linear-gradient(90deg,transparent,#000 38%)}
-  .hero-imgwrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 35%;filter:saturate(1.1) contrast(1.05);will-change:transform;z-index:1}
-  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(80% 70% at 30% 40%,#000,transparent);mask-image:radial-gradient(80% 70% at 30% 40%,#000,transparent)}
-  .cursor-glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:2;background:radial-gradient(circle,rgba(0,229,212,.10),transparent 62%);transform:translate(-50%,-50%);opacity:0;transition:opacity .4s;mix-blend-mode:screen}
-  .hero .wrap{position:relative;z-index:3;width:100%}
-  .hero-inner{max-width:660px}
-  .dyn-badge{display:none;align-items:center;gap:8px;background:rgba(255,46,166,.12);border:1px solid var(--mag);color:var(--mag);font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;padding:7px 14px;border-radius:30px;margin-bottom:16px;width:fit-content}
+  /* HERO - REDISEÑO MOBILE-FIRST */
+  .hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;padding:80px 0 40px;width:100%}
+  /* Fondo oscuro sólido para asegurar legibilidad si la imagen falla o carga lento */
+  .hero-bg-solid{position:absolute;inset:0;background:#07070c;z-index:0}
+  /* La imagen ahora cubre TODO el fondo en móvil, con overlay degradado */
+  .hero-img-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:1;opacity:.6;filter:brightness(0.7) contrast(1.1)}
+  /* Overlay para que el texto brille sobre la foto */
+  .hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom, rgba(7,7,12,0.3) 0%, rgba(7,7,12,0.8) 60%, #07070c 100%)}
+  /* Grid decorativo sutil */
+  .hero-grid-deco{position:absolute;inset:0;z-index:2;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(circle at center, black 40%, transparent 100%);-webkit-mask-image:radial-gradient(circle at center, black 40%, transparent 100%)}
+  
+  .hero .wrap{position:relative;z-index:3;width:100%;text-align:left}
+  .hero-inner{max-width:100%}
+  
+  .dyn-badge{display:none;align-items:center;gap:6px;background:rgba(255,46,166,.15);border:1px solid var(--mag);color:var(--mag);font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;padding:6px 12px;border-radius:20px;margin-bottom:12px;width:fit-content}
   .dyn-badge.show{display:inline-flex}
-  .dyn-badge .d{width:7px;height:7px;border-radius:50%;background:var(--mag);box-shadow:0 0 10px var(--mag);animation:blink 1.4s infinite}
-  .glitch{font-family:var(--display);font-size:clamp(60px,12vw,150px);line-height:.82;letter-spacing:2px;text-transform:uppercase;position:relative;display:inline-block}
+  .dyn-badge .d{width:6px;height:6px;border-radius:50%;background:var(--mag);box-shadow:0 0 8px var(--mag);animation:blink 1.4s infinite}
+  
+  .glitch{font-family:var(--display);font-size:clamp(48px,14vw,90px);line-height:.85;letter-spacing:1px;text-transform:uppercase;position:relative;display:inline-block;margin-bottom:12px}
   .glitch span{display:block}
   .glitch .l1{color:var(--txt)} .glitch .l2{color:var(--cyan)}
-  .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden;opacity:.85;mix-blend-mode:screen}
-  .glitch::before{color:var(--mag);animation:g1 3.2s infinite steps(2)}
-  .glitch::after{color:var(--cyan);animation:g2 2.6s infinite steps(2)}
-  @keyframes g1{0%,92%,100%{clip-path:inset(0 0 100% 0);transform:none}93%{clip-path:inset(20% 0 40% 0);transform:translateX(3px)}96%{clip-path:inset(60% 0 10% 0);transform:translateX(-3px)}}
-  @keyframes g2{0%,90%,100%{clip-path:inset(0 0 100% 0)}91%{clip-path:inset(40% 0 30% 0);transform:translateX(-4px)}95%{clip-path:inset(10% 0 70% 0);transform:translateX(4px)}}
-  .hero-tag{font-size:clamp(15px,2.4vw,20px);color:var(--cyan);letter-spacing:2px;font-style:italic;margin:18px 0 6px;font-weight:600}
-  .hero-pitch{background:rgba(0,229,212,.06);border-left:3px solid var(--cyan);padding:16px 18px;border-radius:0 10px 10px 0;font-size:15px;line-height:1.65;color:#dfeef0;margin:20px 0 24px;max-width:580px}
-  .chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px}
-  .chip{border:1.5px solid var(--cyan);color:var(--cyan);border-radius:30px;padding:6px 15px;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
-  .chip.mg{border-color:var(--mag);color:var(--mag)}
-  .hero-cta{display:flex;flex-wrap:wrap;gap:12px}
-  .scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;color:var(--dim);font-size:11px;letter-spacing:3px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
-  .scroll-hint .bar{width:1px;height:34px;background:linear-gradient(var(--cyan),transparent);animation:sd 1.8s infinite}
+  /* Efecto glitch simplificado para performance móvil */
+  .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden;opacity:.6;mix-blend-mode:screen;pointer-events:none}
+  .glitch::before{color:var(--mag);animation:g1 4s infinite steps(2)}
+  .glitch::after{color:var(--cyan);animation:g2 3.5s infinite steps(2)}
+  @keyframes g1{0%,94%,100%{clip-path:inset(0 0 100% 0)}95%{clip-path:inset(20% 0 40% 0);transform:translateX(2px)}}
+  @keyframes g2{0%,92%,100%{clip-path:inset(0 0 100% 0)}93%{clip-path:inset(40% 0 30% 0);transform:translateX(-2px)}}
+  
+  .hero-tag{font-size:clamp(14px,3.5vw,18px);color:var(--cyan);letter-spacing:1px;font-style:italic;margin:12px 0 16px;font-weight:600;line-height:1.4}
+  .hero-pitch{background:rgba(0,229,212,.08);border-left:3px solid var(--cyan);padding:14px 16px;border-radius:0 8px 8px 0;font-size:14px;line-height:1.6;color:#e0f7fa;margin:0 0 20px;max-width:100%;backdrop-filter:blur(4px)}
+  .hero-pitch b{color:var(--cyan);font-weight:700}
+  
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .chip{border:1px solid var(--cyan);color:var(--cyan);border-radius:20px;padding:5px 12px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;background:rgba(0,229,212,.05)}
+  .chip.mg{border-color:var(--mag);color:var(--mag);background:rgba(255,46,166,.05)}
+  
+  .hero-cta{display:flex;flex-direction:column;gap:10px;width:100%}
+  @media(min-width:600px){.hero-cta{flex-direction:row;flex-wrap:wrap}}
+  
+  .scroll-hint{display:none} /* Ocultamos hint en mobile para limpiar UI */
+  @media(min-width:920px){
+    .hero{padding:120px 0 60px}
+    .hero-img-bg{opacity:.4;object-position:right center}
+    .hero-overlay{background:linear-gradient(to right, rgba(7,7,12,0.95) 30%, rgba(7,7,12,0.4) 100%)}
+    .hero .wrap{text-align:left}
+    .hero-inner{max-width:600px}
+    .glitch{font-size:clamp(60px,10vw,120px)}
+    .scroll-hint{display:flex;position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;color:var(--dim);font-size:10px;letter-spacing:2px;text-transform:uppercase;flex-direction:column;align-items:center;gap:6px}
+    .scroll-hint .bar{width:1px;height:30px;background:linear-gradient(var(--cyan),transparent);animation:sd 1.8s infinite}
+  }
   @keyframes sd{0%{opacity:0;transform:scaleY(.2)}50%{opacity:1}100%{opacity:0;transform:scaleY(1) translateY(8px)}}
   @keyframes blink{50%{opacity:.3}}
-  @media(max-width:920px){.hero-imgwrap{width:95%;right:-35%;opacity:.5}.hero-inner{max-width:100%}.cursor-glow{display:none}}
 
-  /* STATS GRID - AHORA 5 COLUMNAS LIMPIAS */
-  .stats{background:linear-gradient(180deg,var(--bg2),var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:46px 0}
-  .stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
-  .stat{text-align:center}
-  .stat .num{font-family:var(--display);font-size:clamp(28px,4vw,46px);color:var(--cyan);line-height:1}
+  /* STATS GRID */
+  .stats{background:linear-gradient(180deg,var(--bg2),var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0}
+  .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(min-width:600px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:920px){.stats-grid{grid-template-columns:repeat(5,1fr);gap:18px}.stats{padding:46px 0}}
+  .stat{text-align:center;padding:10px 0}
+  .stat .num{font-family:var(--display);font-size:clamp(24px,5vw,36px);color:var(--cyan);line-height:1;margin-bottom:4px}
   .stat:nth-child(even) .num{color:var(--mag)}
-  .stat .lbl{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:1px;margin-top:8px;line-height:1.4}
-  @media(max-width:920px){.stats-grid{grid-template-columns:repeat(3,1fr);gap:26px 14px}}
-  @media(max-width:480px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+  .stat .lbl{font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;line-height:1.3}
+  @media(min-width:920px){.stat .num{font-size:clamp(28px,4vw,46px)}.stat .lbl{font-size:10px}}
 
-  /* ARTIST */
-  .artist-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:46px;align-items:center}
-  .bio{font-size:16px;color:#dcdce6;line-height:1.85;text-align:justify}
+  /* ARTIST SECTION */
+  .artist-grid{display:grid;grid-template-columns:1fr;gap:30px;align-items:start}
+  @media(min-width:920px){.artist-grid{grid-template-columns:1.1fr .9fr;gap:46px;align-items:center}}
+  .bio{font-size:15px;color:#dcdce6;line-height:1.7;text-align:justify}
   .bio b{color:var(--txt)} .bio .cy{font-weight:700}
-  .artist-photo{border-radius:var(--r);border:1px solid var(--line);aspect-ratio:4/5}
+  .artist-photo{border-radius:var(--r);border:1px solid var(--line);aspect-ratio:4/5;order:-1} /* Foto arriba en mobile */
+  @media(min-width:920px){.artist-photo{order:0}}
   .artist-photo .frame{position:absolute;inset:0;border:1px solid rgba(0,229,212,.3);border-radius:var(--r);pointer-events:none;z-index:2}
-  .socials{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .soc{display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:13px;transition:.2s}
+  .socials{margin-top:20px;display:grid;grid-template-columns:1fr;gap:8px}
+  @media(min-width:600px){.socials{grid-template-columns:1fr 1fr}}
+  .soc{display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;transition:.2s}
   .soc:hover{border-color:var(--cyan);transform:translateX(3px)}
   .soc .h{color:var(--mut)} .soc .v{font-weight:700;color:var(--cyan)}
-  .audience{margin-top:14px;font-size:12.5px;color:var(--dim);line-height:1.7;border-left:2px solid var(--mag);padding-left:12px}
-  @media(max-width:920px){.artist-grid{grid-template-columns:1fr}.artist-photo{max-width:420px}}
+  .audience{margin-top:16px;font-size:11px;color:var(--dim);line-height:1.6;border-left:2px solid var(--mag);padding-left:12px}
 
-  /* VIDEOS */
-  .vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  /* VIDEOS SECTION */
+  .vid-grid{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:768px){.vid-grid{grid-template-columns:repeat(3,1fr);gap:18px}}
   .vcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:.25s}
   .vcard:hover{border-color:var(--cyan);transform:translateY(-4px)}
   .thumb{position:relative;aspect-ratio:16/9;cursor:pointer;background:#000;overflow:hidden}
   .thumb img{width:100%;height:100%;object-fit:cover;transition:.4s}
   .vcard:hover .thumb img{transform:scale(1.06)}
-  .thumb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-  .thumb .play i{width:62px;height:62px;border-radius:50%;background:rgba(255,46,166,.92);display:flex;align-items:center;justify-content:center;font-style:normal;color:#fff;font-size:22px;animation:pulse 2.2s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,46,166,.5)}70%{box-shadow:0 0 0 18px rgba(255,46,166,0)}100%{box-shadow:0 0 0 0 rgba(255,46,166,0)}}
-  .thumb .badge{position:absolute;top:10px;left:10px;background:rgba(7,7,12,.8);border:1px solid var(--cyan);color:var(--cyan);font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:4px 9px;border-radius:20px;font-weight:700;z-index:2}
+  .thumb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+  .thumb .play i{width:50px;height:50px;border-radius:50%;background:rgba(255,46,166,.9);display:flex;align-items:center;justify-content:center;font-style:normal;color:#fff;font-size:18px;box-shadow:0 4px 15px rgba(0,0,0,.5)}
+  .thumb .badge{position:absolute;top:8px;left:8px;background:rgba(7,7,12,.85);border:1px solid var(--cyan);color:var(--cyan);font-size:9px;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:12px;font-weight:700;z-index:2}
   .thumb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .vmeta{padding:14px 16px}
-  .vmeta .t{font-weight:700;font-size:15px}
-  .vmeta .d{font-size:12.5px;color:var(--mut);margin-top:3px}
+  .vmeta .t{font-weight:700;font-size:15px;margin-bottom:4px}
+  .vmeta .d{font-size:12px;color:var(--mut);line-height:1.4}
   .vmeta .d b{color:var(--mag)}
-  .kfc-card{margin-top:18px;background:linear-gradient(135deg,rgba(255,46,166,.1),rgba(0,229,212,.06));border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-  .kfc-video{width:240px;max-width:42%;aspect-ratio:16/9;border-radius:10px;border:1px solid var(--line);background:var(--grad);overflow:hidden;position:relative;flex:none}
-  .kfc-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;z-index:1}
-  .kfc-card .kt{flex:1;min-width:240px}
-  .kfc-card .kt h4{font-family:var(--display);font-size:22px;letter-spacing:1px;text-transform:uppercase}
-  .kfc-card .kt p{color:var(--mut);font-size:14px;margin-top:6px}
-  .cat-links{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-  .cat-links .lbl{color:var(--dim);font-size:12px;letter-spacing:1px;text-transform:uppercase}
-  .cat-links a{font-size:12.5px;border:1px solid var(--line);border-radius:30px;padding:8px 15px;color:var(--mut);transition:.2s}
-  .cat-links a:hover{border-color:var(--cyan);color:var(--cyan)}
-  @media(max-width:920px){.vid-grid{grid-template-columns:1fr}.kfc-video{width:100%;max-width:100%}}
+  
+  .kfc-card{margin-top:20px;background:linear-gradient(135deg,rgba(255,46,166,.08),rgba(0,229,212,.05));border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:16px}
+  @media(min-width:768px){.kfc-card{flex-direction:row;align-items:center;gap:24px}}
+  .kfc-video{width:100%;aspect-ratio:16/9;border-radius:10px;border:1px solid var(--line);background:#000;overflow:hidden;position:relative;flex-shrink:0}
+  @media(min-width:768px){.kfc-video{width:280px}}
+  .kfc-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+  .kfc-card .kt{flex:1}
+  .kfc-card .kt h4{font-family:var(--display);font-size:20px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;color:var(--txt)}
+  .kfc-card .kt p{color:var(--mut);font-size:13px;line-height:1.6}
+  .cat-links{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+  .cat-links .lbl{color:var(--dim);font-size:11px;letter-spacing:1px;text-transform:uppercase;width:100%;text-align:center;margin-bottom:4px}
+  .cat-links a{font-size:11px;border:1px solid var(--line);border-radius:20px;padding:8px 14px;color:var(--mut);transition:.2s;background:var(--panel)}
+  .cat-links a:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,212,.05)}
 
-  /* MUSIC / SPOTIFY EMBEDS SECTION */
+  /* MUSIC / SPOTIFY SECTION */
   .spotify-section{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .tracks-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:34px}
-  .track-item{display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 16px;transition:.2s;cursor:pointer}
-  .track-item:hover{border-color:var(--mag);transform:translateX(4px)}
-  .track-item .tn{font-weight:600;font-size:14.5px}
-  .track-item .ty{color:var(--dim);font-size:12px;margin-left:8px}
-  .track-item .tv{color:var(--cyan);font-weight:800;font-size:15px;white-space:nowrap}
+  .tracks-list{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:30px}
+  @media(min-width:600px){.tracks-list{grid-template-columns:1fr 1fr;gap:10px}}
+  .track-item{display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;transition:.2s;cursor:pointer}
+  .track-item:hover{border-color:var(--mag);transform:translateX(4px);background:rgba(255,46,166,.05)}
+  .track-item .tn{font-weight:600;font-size:13px;display:flex;align-items:center;gap:6px}
+  .track-item .ty{color:var(--dim);font-size:10px;font-weight:400}
+  .track-item .tv{color:var(--cyan);font-weight:800;font-size:13px;white-space:nowrap}
   
-  /* NUEVO DISEÑO PARA DISCOGRAFÍA INTERACTIVA */
-  .disco-interact{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:20px}
+  .disco-interact{display:grid;grid-template-columns:1fr;gap:16px;margin-top:20px}
+  @media(min-width:600px){.disco-interact{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}}
   .album-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:.3s;display:flex;flex-direction:column}
-  .album-card:hover{border-color:var(--cyan);box-shadow:0 10px 30px rgba(0,229,212,.1);transform:translateY(-5px)}
-  .album-header{padding:15px 18px;background:rgba(0,229,212,.05);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-  .album-title{font-weight:800;font-size:15px;color:var(--txt)}
-  .album-year{font-size:11px;color:var(--mag);text-transform:uppercase;letter-spacing:1px;font-weight:700}
-  .player-container{padding:10px;background:#000;min-height:150px;display:flex;align-items:center;justify-content:center}
-  .player-container iframe{border-radius:8px !important;}
+  .album-card:hover{border-color:var(--cyan);box-shadow:0 8px 25px rgba(0,229,212,.1);transform:translateY(-3px)}
+  .album-header{padding:12px 16px;background:rgba(0,229,212,.05);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  .album-title{font-weight:800;font-size:14px;color:var(--txt);text-transform:uppercase;letter-spacing:.5px}
+  .album-year{font-size:10px;color:var(--mag);text-transform:uppercase;letter-spacing:1px;font-weight:700}
+  .player-container{padding:8px;background:#000;min-height:120px;display:flex;align-items:center;justify-content:center}
+  .player-container iframe{border-radius:8px !important;width:100% !important;height:352px !important} /* Altura estándar Spotify */
   
-  .now-playing-banner{margin-top:22px;background:linear-gradient(90deg,rgba(0,229,212,.1),rgba(255,46,166,.1));border:1px solid var(--cyan);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:14px}
-  .now-playing-banner .dot{width:9px;height:9px;border-radius:50%;background:var(--mag);box-shadow:0 0 12px var(--mag);animation:blink 1.4s infinite;flex:none}
+  .now-playing-banner{margin-top:24px;background:linear-gradient(90deg,rgba(0,229,212,.1),rgba(255,46,166,.1));border:1px solid var(--cyan);border-radius:12px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;font-size:13px;line-height:1.5}
+  .now-playing-banner .dot{width:8px;height:8px;border-radius:50%;background:var(--mag);box-shadow:0 0 10px var(--mag);animation:blink 1.4s infinite;flex:none;margin-top:5px}
   .now-playing-banner b{color:var(--cyan)}
-  @media(max-width:920px){.tracks-list{grid-template-columns:1fr}}
 
-  /* LIVE */
-  .live-band{border-radius:var(--r);overflow:hidden;position:relative;margin-bottom:30px;border:1px solid var(--line);aspect-ratio:21/7}
-  .live-band .cap{position:absolute;bottom:0;left:0;right:0;padding:30px 22px 14px;background:linear-gradient(transparent,rgba(7,7,12,.92));font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--mag);font-weight:700;z-index:2}
-  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
-  .panel h4{font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
-  .panel h4.cy{color:var(--cyan)} .panel h4.mg{color:var(--mag)}
+  /* LIVE SECTION */
+  .live-band{border-radius:var(--r);overflow:hidden;position:relative;margin-bottom:24px;border:1px solid var(--line);aspect-ratio:16/9}
+  @media(min-width:768px){.live-band{aspect-ratio:21/7}}
+  .live-band .cap{position:absolute;bottom:0;left:0;right:0;padding:20px 16px 12px;background:linear-gradient(transparent,rgba(7,7,12,.95));font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mag);font-weight:700;z-index:2;text-align:center}
+  .two-col{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:768px){.two-col{grid-template-columns:1fr 1fr;gap:18px}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+  .panel h4{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;color:var(--cyan)}
+  .panel h4.mg{color:var(--mag)}
   .list{list-style:none}
-  .list li{font-size:14px;padding:7px 0 7px 20px;position:relative;color:#dcdce6;border-bottom:1px solid rgba(255,255,255,.04)}
+  .list li{font-size:13px;padding:6px 0 6px 16px;position:relative;color:#dcdce6;border-bottom:1px solid rgba(255,255,255,.04);line-height:1.5}
   .list li:last-child{border-bottom:0}
-  .list li::before{content:'▸';position:absolute;left:0;color:var(--mag)}
+  .list li::before{content:'▸';position:absolute;left:0;color:var(--mag);font-size:10px;top:7px}
   .list li b{color:var(--txt)}
-  .fest{display:flex;flex-wrap:wrap;gap:8px}
-  .fest span{font-size:12.5px;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--mut)}
-  .fest span:hover{border-color:var(--cyan);color:var(--cyan)}
-  @media(max-width:920px){.two-col{grid-template-columns:1fr}}
+  .fest{display:flex;flex-wrap:wrap;gap:6px}
+  .fest span{font-size:11px;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:6px 10px;color:var(--mut);transition:.2s}
+  .fest span:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,212,.05)}
+  .msg-promoter{margin-top:16px;background:var(--panel);border-left:3px solid var(--mag);border-radius:0 var(--r) var(--r) 0;padding:16px 20px;font-size:13px;line-height:1.6;color:#dcdce6}
+  .msg-promoter b{color:var(--mag);display:block;margin-bottom:4px;font-size:11px;letter-spacing:1px;text-transform:uppercase}
 
   /* SHOW EXPERIENCE - MEJORADA VISUALMENTE */
-  .exp-hero{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);margin-bottom:24px;min-height:400px;display:flex;align-items:flex-end}
-  .exp-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4;filter:brightness(0.6) saturate(1.2);transition:transform 8s ease-out;}
+  .exp-hero{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);margin-bottom:24px;min-height:300px;display:flex;align-items:flex-end}
+  @media(min-width:768px){.exp-hero{min-height:400px}}
+  .exp-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;filter:brightness(0.6) saturate(1.2);transition:transform 8s ease-out;}
   .exp-hero:hover .exp-bg-img{transform:scale(1.05);}
-  .exp-overlay{position:relative;z-index:2;padding:30px;width:100%;background:linear-gradient(to top, rgba(7,7,12,0.95) 0%, rgba(7,7,12,0.6) 50%, transparent 100%);}
+  .exp-overlay{position:relative;z-index:2;padding:24px;width:100%;background:linear-gradient(to top, rgba(7,7,12,0.95) 0%, rgba(7,7,12,0.7) 50%, transparent 100%);}
   .exp-content{max-width:800px;}
-  .exp-content h3{font-family:var(--display);font-size:28px;text-transform:uppercase;margin-bottom:10px;color:var(--cyan);}
-  .exp-content p{font-size:16px;line-height:1.7;color:#e7e7ef;}
-  .exp-content strong{color:var(--mag);}
+  .exp-content h3{font-family:var(--display);font-size:24px;text-transform:uppercase;margin-bottom:10px;color:var(--cyan);letter-spacing:1px}
+  @media(min-width:768px){.exp-content h3{font-size:28px}}
+  .exp-content p{font-size:14px;line-height:1.7;color:#e7e7ef;}
+  @media(min-width:768px){.exp-content p{font-size:16px}}
+  .exp-content strong{color:var(--mag);font-weight:700}
   
-  .stageplot{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin:18px 0}
-  .stageplot h4{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+  .stageplot{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin:20px 0;display:none} /* Oculto en mobile para limpiar, visible en desktop */
+  @media(min-width:920px){.stageplot{display:block}}
+  .stageplot h4{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
   .stageplot svg{width:100%;height:auto;display:block}
-  .fmt{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
-  .fmt .f{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;transition:.25s}
-  .fmt .f:hover{border-color:var(--mag);transform:translateY(-3px)}
-  .fmt .f .ic{font-size:24px}
-  .fmt .f h5{margin:8px 0 4px;font-size:15px}
-  .fmt .f p{font-size:13px;color:var(--mut)}
-  .rider{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .rider .r{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:13.5px;color:#dcdce6}
-  .rider .r b{color:var(--cyan);display:block;margin-bottom:3px;font-size:12px;letter-spacing:1px;text-transform:uppercase}
-  @media(max-width:920px){.exp-hero{min-height:300px}.fmt,.rider{grid-template-columns:1fr}}
+  
+  .fmt{display:grid;grid-template-columns:1fr;gap:12px;margin:20px 0}
+  @media(min-width:600px){.fmt{grid-template-columns:repeat(3,1fr)}}
+  .fmt .f{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;transition:.25s}
+  .fmt .f:hover{border-color:var(--mag);transform:translateY(-3px);background:rgba(255,46,166,.03)}
+  .fmt .f .ic{font-size:20px;margin-bottom:8px;display:block}
+  .fmt .f h5{margin:0 0 6px;font-size:14px;color:var(--txt)}
+  .fmt .f p{font-size:12px;color:var(--mut);line-height:1.5}
+  
+  .rider{display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:600px){.rider{grid-template-columns:repeat(3,1fr)}}
+  .rider .r{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12px;color:#dcdce6;line-height:1.5}
+  .rider .r b{color:var(--cyan);display:block;margin-bottom:4px;font-size:10px;letter-spacing:1px;text-transform:uppercase}
 
-  /* VALUE */
-  .quote{font-family:var(--display);font-size:clamp(22px,3.4vw,34px);line-height:1.25;text-transform:uppercase;letter-spacing:.5px;max-width:26ch;margin:0 auto 30px;text-align:center}
+  /* VALUE SECTION */
+  .quote{font-family:var(--display);font-size:clamp(18px,4vw,28px);line-height:1.3;text-transform:uppercase;letter-spacing:.5px;max-width:30ch;margin:0 auto 30px;text-align:center;color:var(--txt)}
   .quote .cy{color:var(--cyan)} .quote .mg{color:var(--mag)}
-  .val-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
-  .val{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px 22px;text-align:center;transition:.25s}
-  .val:hover{border-color:var(--cyan);transform:translateY(-4px)}
-  .val .vt{font-family:var(--display);font-size:20px;letter-spacing:1px;color:var(--cyan);text-transform:uppercase}
+  .val-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:24px}
+  @media(min-width:768px){.val-grid{grid-template-columns:repeat(3,1fr)}}
+  .val{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px 20px;text-align:center;transition:.25s}
+  .val:hover{border-color:var(--cyan);transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,229,212,.08)}
+  .val .vt{font-family:var(--display);font-size:18px;letter-spacing:1px;color:var(--cyan);text-transform:uppercase;margin-bottom:10px}
   .val:nth-child(2) .vt{color:var(--mag)}
-  .val p{font-size:13.5px;color:var(--mut);margin-top:10px}
-  .sponsors{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px 28px}
-  .sponsors h4{color:var(--mag);font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
-  @media(max-width:920px){.val-grid{grid-template-columns:1fr}}
+  .val p{font-size:13px;color:var(--mut);line-height:1.6}
+  .sponsors{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px 20px}
+  .sponsors h4{color:var(--mag);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;text-align:center}
+  .sponsors ul{list-style:none;padding:0}
+  .sponsors li{font-size:13px;padding:8px 0 8px 20px;position:relative;color:#dcdce6;border-bottom:1px solid rgba(255,255,255,.04);line-height:1.5}
+  .sponsors li:last-child{border-bottom:0}
+  .sponsors li::before{content:'★';position:absolute;left:0;color:var(--cyan);font-size:10px;top:9px}
 
-  /* BOOKING */
-  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
-  .form,.calc{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:26px 28px}
-  .form h3,.calc h3{font-family:var(--display);font-size:26px;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
-  .fh{color:var(--mut);font-size:13.5px;margin-bottom:20px}
+  /* BOOKING SECTION */
+  .book-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:start}
+  @media(min-width:920px){.book-grid{grid-template-columns:1fr 1fr;gap:30px}}
+  .form,.calc{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px 20px}
+  .form h3,.calc h3{font-family:var(--display);font-size:22px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;color:var(--txt)}
+  .fh{color:var(--mut);font-size:12px;margin-bottom:20px;line-height:1.5}
   .field{margin-bottom:14px}
-  .field label{display:block;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;color:var(--mut);margin-bottom:6px;font-weight:600}
-  .field input,.field select,.field textarea{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:9px;padding:12px 14px;color:var(--txt);font-family:var(--body);font-size:14px;transition:.2s}
-  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,212,.12)}
-  .field textarea{resize:vertical;min-height:84px}
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .form .btn,.calc .btn{width:100%;justify-content:center;margin-top:6px}
-  .opt{display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--line);border-radius:9px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13.5px;transition:.2s}
-  .opt:hover{border-color:var(--cyan)}
-  .opt input{accent-color:var(--mag);width:16px;height:16px;flex:none}
-  .contact-side .cc{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;margin-bottom:14px}
-  .contact-side .cc h4{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
-  .cline{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:14px}
+  .field label{display:block;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--mut);margin-bottom:6px;font-weight:600}
+  .field input,.field select,.field textarea{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:var(--txt);font-family:var(--body);font-size:14px;transition:.2s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,229,212,.1)}
+  .field textarea{resize:vertical;min-height:80px}
+  .row2{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:600px){.row2{grid-template-columns:1fr 1fr}}
+  .form .btn,.calc .btn{width:100%;justify-content:center;margin-top:10px}
+  
+  .contact-side .cc{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:16px}
+  .contact-side .cc h4{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:8px}
+  .cline{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
   .cline:last-child{border-bottom:0}
-  .cline .k{color:var(--mut);flex:none} .cline .v{font-weight:700;text-align:right;word-break:break-word}
-  .cline a.v:hover{color:var(--cyan)}
-  .wa-duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
-  @media(max-width:920px){.book-grid{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
+  .cline .k{color:var(--mut);flex:none;font-size:12px} 
+  .cline .v{font-weight:700;text-align:right;word-break:break-word;color:var(--txt);font-size:13px}
+  .cline a.v:hover{color:var(--cyan);text-decoration:underline}
+  .wa-duo{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+  @media(min-width:400px){.wa-duo{grid-template-columns:1fr 1fr}}
+  .loc-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px}
 
   /* FOOTER */
-  footer{background:var(--bg2);border-top:1px solid var(--line);padding:50px 0 30px;text-align:center}
-  .foot-brand{font-family:var(--display);font-size:30px;letter-spacing:2px}
-  .foot-tag{color:var(--mut);font-size:13px;margin-top:6px}
-  .foot-socials{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:20px 0}
-  .foot-socials a{font-size:12.5px;border:1px solid var(--line);border-radius:30px;padding:8px 15px;color:var(--mut);transition:.2s}
-  .foot-socials a:hover{border-color:var(--mag);color:var(--mag)}
-  .foot-note{color:var(--dim);font-size:12px;letter-spacing:1px;margin-top:14px}
+  footer{background:var(--bg2);border-top:1px solid var(--line);padding:40px 0 24px;text-align:center}
+  .foot-brand{font-family:var(--display);font-size:24px;letter-spacing:2px;margin-bottom:8px}
+  .foot-tag{color:var(--mut);font-size:12px;margin-bottom:20px;font-style:italic}
+  .foot-socials{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:20px 0}
+  .foot-socials a{font-size:11px;border:1px solid var(--line);border-radius:20px;padding:8px 14px;color:var(--mut);transition:.2s;background:var(--panel)}
+  .foot-socials a:hover{border-color:var(--mag);color:var(--mag);background:rgba(255,46,166,.05)}
+  .foot-note{color:var(--dim);font-size:10px;letter-spacing:.5px;margin-top:20px;line-height:1.5}
 
   /* FAB + TOAST */
-  .fab{position:fixed;right:20px;bottom:20px;z-index:90;width:58px;height:58px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(37,211,102,.45);transition:.25s;animation:fp 2.4s infinite}
+  .fab{position:fixed;right:16px;bottom:16px;z-index:90;width:50px;height:50px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,.4);transition:.25s;animation:fp 2.4s infinite}
   .fab:hover{transform:scale(1.08)}
-  .fab svg{width:30px;height:30px;fill:#fff}
-  @keyframes fp{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
-  .toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(140px);background:var(--cyan);color:#04110f;font-weight:700;font-size:14px;padding:14px 22px;border-radius:50px;z-index:120;transition:.4s;box-shadow:0 10px 40px rgba(0,229,212,.4);max-width:90vw;text-align:center}
+  .fab svg{width:26px;height:26px;fill:#fff}
+  @keyframes fp{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 12px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(140px);background:var(--cyan);color:#04110f;font-weight:700;font-size:13px;padding:12px 20px;border-radius:50px;z-index:120;transition:.4s;box-shadow:0 8px 25px rgba(0,229,212,.3);max-width:90vw;text-align:center}
   .toast.show{transform:translateX(-50%) translateY(0)}
 
-  /* REVEAL */
-  .reveal{opacity:0;transform:translateY(28px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+  /* REVEAL ANIMATION */
+  .reveal{opacity:0;transform:translateY(20px);transition:.6s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
 
   /* ===== MODO IMPRESIÓN / PDF ===== */
   @media print{
     @page{ size:A4; margin:0; }
     *,*::before,*::after{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
-    body{ background:#07070c !important; color:#f3f3f8 !important; }
-    nav, .mobile-menu, .burger, .fab, .scroll-hint, .toast, .cursor-glow, .dyn-badge, .hero-grid, .lang-pill, .form, .calc, .cat-links, .stageplot svg text, .btn:not(.chip), button { display:none !important; }
+    body{ background:#07070c !important; color:#f3f3f8 !important; font-size:10pt; }
+    nav, .mobile-menu, .burger, .fab, .scroll-hint, .toast, .cursor-glow, .dyn-badge, .hero-grid-deco, .lang-pill, .form, .calc, .cat-links, .stageplot, .btn:not(.chip), button { display:none !important; }
     
-    /* Hero Print */
-    .hero{ min-height:auto !important; padding:18mm 0 12mm !important; page-break-after:always; }
-    .hero-bg{ position:absolute !important; inset:0 !important; z-index:0 !important; }
-    .hero-imgwrap{ width:45% !important; right:0 !important; opacity:.9 !important; mask-image:none !important; -webkit-mask-image:none !important; }
-    .hero-inner{ max-width:60% !important; position:relative; z-index:3; }
-    .glitch{ font-size:clamp(40px,7vw,72px) !important; animation:none !important; }
+    /* Hero Print Optimized */
+    .hero{ min-height:auto !important; padding:15mm 0 10mm !important; page-break-after:always; position:relative; overflow:hidden; }
+    .hero-bg-solid{ display:block !important; }
+    .hero-img-bg{ opacity:.3 !important; filter:none !important; object-position:center !important; }
+    .hero-overlay{ background:linear-gradient(to bottom, rgba(7,7,12,0.4) 0%, rgba(7,7,12,0.9) 100%) !important; }
+    .hero .wrap{ text-align:left !important; max-width:100% !important; }
+    .glitch{ font-size:40pt !important; animation:none !important; line-height:1 !important; }
     .glitch::before,.glitch::after{ display:none !important; }
-    .chips{ gap:6px !important; }
-    .chip{ font-size:9px !important; padding:4px 10px !important; }
+    .hero-tag{ font-size:12pt !important; margin:5mm 0 !important; }
+    .hero-pitch{ font-size:10pt !important; padding:4mm !important; border-left-width:2pt !important; }
+    .chips{ gap:2mm !important; }
+    .chip{ font-size:8pt !important; padding:1mm 3mm !important; border-width:0.5pt !important; }
     
     /* Stats Print */
-    .stats{ padding:8mm 0 !important; page-break-after:always; }
-    .stats-grid{ grid-template-columns:repeat(3,1fr) !important; gap:14px !important; }
-    .stat .num{ font-size:28px !important; }
-    .stat .lbl{ font-size:9px !important; }
+    .stats{ padding:5mm 0 !important; page-break-after:always; }
+    .stats-grid{ grid-template-columns:repeat(3,1fr) !important; gap:4mm !important; }
+    .stat .num{ font-size:18pt !important; }
+    .stat .lbl{ font-size:7pt !important; }
     
-    /* Sections Print */
-    section{ padding:10mm 0 !important; page-break-inside:avoid; }
+    /* Sections General Print */
+    section{ padding:8mm 0 !important; page-break-inside:avoid; }
     #artista, #show-videos, #musica, #vivo, #el-show, #valor, #booking{ page-break-before:always; }
     #artista:first-of-type, section:nth-of-type(1){ page-break-before:auto; }
     
-    h2.sec{ font-size:clamp(24px,4vw,36px) !important; }
-    .sec-sub{ font-size:11px !important; }
-    .bio{ font-size:10.5px !important; line-height:1.6 !important; }
+    h2.sec{ font-size:20pt !important; margin-bottom:3mm !important; }
+    .sec-sub{ font-size:9pt !important; margin-bottom:4mm !important; }
+    .bio{ font-size:9pt !important; line-height:1.4 !important; text-align:justify !important; }
     
     /* Videos Print */
     .thumb iframe{ display:none !important; }
-    .thumb img{ display:block !important; }
-    .vid-grid{ grid-template-columns:repeat(3,1fr) !important; gap:8px !important; }
-    .kfc-card{ flex-direction:column !important; }
+    .thumb img{ display:block !important; height:auto !important; width:100% !important; }
+    .vid-grid{ grid-template-columns:repeat(3,1fr) !important; gap:3mm !important; }
+    .kfc-card{ flex-direction:column !important; align-items:flex-start !important; }
     .kfc-video{ width:100% !important; max-width:100% !important; aspect-ratio:16/9 !important; }
     
     /* Tracks & Disco Print */
-    .tracks-list{ grid-template-columns:1fr 1fr !important; gap:6px !important; }
-    .track-item{ padding:8px 12px !important; font-size:11px !important; cursor:default !important; }
-    .disco-interact{ grid-template-columns:repeat(2,1fr) !important; gap:10px !important; }
-    .album-card{ break-inside:avoid; }
-    .album-header{ padding:10px 14px !important; }
-    .album-title{ font-size:13px !important; }
-    .album-year{ font-size:10px !important; }
-    .player-container{ min-height:120px !important; padding:6px !important; }
-    .player-container iframe{ height:120px !important; }
+    .tracks-list{ grid-template-columns:1fr 1fr !important; gap:2mm !important; }
+    .track-item{ padding:2mm 3mm !important; font-size:8pt !important; cursor:default !important; border:0.5pt solid var(--line) !important; }
+    .disco-interact{ grid-template-columns:repeat(2,1fr) !important; gap:3mm !important; }
+    .album-card{ break-inside:avoid; border:0.5pt solid var(--line) !important; }
+    .album-header{ padding:2mm 3mm !important; }
+    .album-title{ font-size:9pt !important; }
+    .album-year{ font-size:7pt !important; }
+    .player-container{ min-height:30mm !important; padding:1mm !important; }
+    .player-container iframe{ height:30mm !important; width:100% !important; } /* Forzar altura fija para print */
     
     /* Live Band Print */
-    .live-band{ aspect-ratio:21/6 !important; margin-bottom:16px !important; }
-    .two-col{ gap:10px !important; }
-    .panel{ padding:14px 16px !important; }
-    .list li{ font-size:11px !important; padding:5px 0 5px 16px !important; }
-    .fest span{ font-size:10px !important; padding:5px 9px !important; }
+    .live-band{ aspect-ratio:21/6 !important; margin-bottom:4mm !important; }
+    .two-col{ gap:3mm !important; }
+    .panel{ padding:3mm 4mm !important; border:0.5pt solid var(--line) !important; }
+    .panel h4{ font-size:8pt !important; margin-bottom:2mm !important; }
+    .list li{ font-size:8pt !important; padding:1mm 0 1mm 3mm !important; }
+    .fest span{ font-size:7pt !important; padding:1mm 2mm !important; }
+    .msg-promoter{ font-size:8pt !important; padding:3mm !important; }
     
     /* Show Experience Print */
-    .exp-hero{ min-height:250px !important; }
-    .exp-bg-img{ opacity:.3 !important; filter:none !important; }
-    .exp-overlay{ padding:20px !important; }
-    .exp-content h3{ font-size:22px !important; }
-    .exp-content p{ font-size:12px !important; }
-    .stageplot{ display:none !important; } /* El SVG no imprime bien, lo ocultamos */
-    .fmt{ grid-template-columns:repeat(3,1fr) !important; gap:8px !important; }
-    .fmt .f{ padding:12px !important; }
-    .fmt .f h5{ font-size:12px !important; }
-    .fmt .f p{ font-size:10px !important; }
-    .rider{ grid-template-columns:repeat(3,1fr) !important; gap:8px !important; }
-    .rider .r{ font-size:10.5px !important; padding:10px 12px !important; }
+    .exp-hero{ min-height:40mm !important; }
+    .exp-bg-img{ opacity:.2 !important; filter:none !important; }
+    .exp-overlay{ padding:4mm !important; background:rgba(7,7,12,0.8) !important; }
+    .exp-content h3{ font-size:14pt !important; }
+    .exp-content p{ font-size:9pt !important; }
+    .fmt{ grid-template-columns:repeat(3,1fr) !important; gap:2mm !important; }
+    .fmt .f{ padding:2mm !important; border:0.5pt solid var(--line) !important; }
+    .fmt .f h5{ font-size:8pt !important; }
+    .fmt .f p{ font-size:7pt !important; }
+    .rider{ grid-template-columns:repeat(3,1fr) !important; gap:2mm !important; }
+    .rider .r{ font-size:7pt !important; padding:2mm !important; border:0.5pt solid var(--line) !important; }
     
     /* Value Print */
-    .quote{ font-size:clamp(16px,2.4vw,22px) !important; max-width:32ch !important; }
-    .val-grid{ grid-template-columns:repeat(3,1fr) !important; gap:10px !important; }
-    .val{ padding:14px !important; }
-    .val .vt{ font-size:14px !important; }
-    .val p{ font-size:10px !important; }
-    .sponsors{ padding:16px 18px !important; }
+    .quote{ font-size:12pt !important; max-width:100% !important; margin-bottom:4mm !important; }
+    .val-grid{ grid-template-columns:repeat(3,1fr) !important; gap:2mm !important; }
+    .val{ padding:3mm !important; border:0.5pt solid var(--line) !important; }
+    .val .vt{ font-size:10pt !important; }
+    .val p{ font-size:7pt !important; }
+    .sponsors{ padding:3mm !important; border:0.5pt solid var(--line) !important; }
+    .sponsors li{ font-size:7pt !important; padding:1mm 0 1mm 3mm !important; }
     
     /* Booking Print */
     #booking .book-grid{ grid-template-columns:1fr !important; }
     .contact-side{ width:100% !important; }
-    .cc{ padding:14px 16px !important; }
-    .cline{ font-size:11px !important; padding:6px 0 !important; }
-    .wa-duo{ display:flex !important; gap:8px !important; }
-    .wa-duo .btn{ flex:1; justify-content:center; padding:8px 12px !important; font-size:10px !important; }
+    .cc{ padding:3mm !important; border:0.5pt solid var(--line) !important; margin-bottom:2mm !important; }
+    .cline{ font-size:8pt !important; padding:1mm 0 !important; }
+    .wa-duo{ display:flex !important; gap:2mm !important; }
+    .wa-duo .btn{ flex:1; justify-content:center; padding:1mm !important; font-size:7pt !important; border:0.5pt solid var(--line) !important; }
     
     /* Footer Print */
-    footer{ padding:14px 0 !important; }
-    .foot-brand{ font-size:20px !important; }
-    .foot-socials{ gap:6px !important; margin:10px 0 !important; }
-    .foot-socials a{ font-size:9px !important; padding:5px 10px !important; }
-    .foot-note{ font-size:8px !important; }
+    footer{ padding:4mm 0 !important; border-top:0.5pt solid var(--line) !important; }
+    .foot-brand{ font-size:14pt !important; }
+    .foot-socials{ gap:1mm !important; margin:2mm 0 !important; }
+    .foot-socials a{ font-size:7pt !important; padding:1mm 2mm !important; border:0.5pt solid var(--line) !important; }
+    .foot-note{ font-size:6pt !important; }
     
     /* Marca de agua sutil Terrivol en cada página */
     body::after{
       content:'TERRIVOL MUSIC · EPK 2026';
-      position:fixed; bottom:4mm; right:8mm;
-      font-family:'Inter',sans-serif; font-size:7px; letter-spacing:2px;
-      color:rgba(154,154,172,.4); pointer-events:none; z-index:999;
+      position:fixed; bottom:2mm; right:2mm;
+      font-family:'Inter',sans-serif; font-size:6pt; letter-spacing:1px;
+      color:rgba(154,154,172,.3); pointer-events:none; z-index:999;
     }
   }
 
@@ -399,8 +457,8 @@
     <div class="lang-pill" role="group" aria-label="Idioma">
       <button id="langEs" class="on">ES</button><button id="langEn">EN</button>
     </div>
-    <button class="btn btn-ghost" onclick="generatePDF()" data-i18n="btn_pdf">⬇ Descargar PDF</button>
-    <a class="btn btn-mg" id="navWa" href="#" target="_blank" rel="noopener" data-i18n="btn_booking">Booking</a>
+    <button class="btn btn-ghost" onclick="generatePDF()" data-i18n="btn_pdf_short">PDF</button>
+    <a class="btn btn-mg" id="navWa" href="#" target="_blank" rel="noopener" data-i18n="btn_booking_short">Book</a>
     <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -415,44 +473,44 @@
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-imgwrap ph" id="heroWrap">
-    <img id="heroImg" src="/img/youtube.jpg" alt="Cagta Flex" onload="this.parentNode.classList.add('img-ok')" onerror="this.style.display='none'">
-  </div>
-  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="hero-bg-solid"></div>
+  <!-- Imagen de fondo full-screen optimizada para mobile -->
+  <img class="hero-img-bg" src="/img/youtube.jpg" alt="Cagta Flex Background" onerror="this.style.display='none'">
+  <div class="hero-overlay"></div>
+  <div class="hero-grid-deco"></div>
+  
   <div class="wrap">
     <div class="hero-inner reveal">
       <div class="dyn-badge" id="dynBadge"><span class="d"></span><span id="dynBadgeTxt"></span></div>
-      <div class="eyebrow" data-i18n="hero_eyebrow">Electronic Press Kit · Terrivol Music · Bogotá, Colombia</div>
+      <div class="eyebrow" data-i18n="hero_eyebrow">PRESS KIT · TERRIVOL MUSIC · BOGOTÁ</div>
       <h1 class="glitch" data-text="CAGTA FLEX"><span class="l1">CAGTA</span><span class="l2">FLEX</span></h1>
-      <div class="hero-tag" data-i18n="hero_tag">« La Voix de l'Univers » — Hip-Hop · Boom Bap · Trap · Beatmaking en Vivo</div>
+      <div class="hero-tag" data-i18n="hero_tag">« La Voix de l'Univers » — Hip-Hop · Boom Bap · Trap · Live Beatmaking</div>
       <div class="hero-pitch" id="heroPitch" data-i18n="hero_pitch"></div>
       <div class="chips">
-        <span class="chip" data-i18n="chip1">20+ años de tarima</span>
-        <span class="chip mg" data-i18n="chip2">380 canciones · Sony Music Publishing</span>
-        <span class="chip" data-i18n="chip3">+20K comunidad</span>
-        <span class="chip mg" data-i18n="chip4">Show internacional</span>
+        <span class="chip" data-i18n="chip1">20+ Años Tarima</span>
+        <span class="chip mg" data-i18n="chip2">380 Canciones · Sony</span>
+        <span class="chip" data-i18n="chip3">+20K Comunidad</span>
+        <span class="chip mg" data-i18n="chip4">Show Internacional</span>
       </div>
       <div class="hero-cta">
-        <a class="btn btn-cy" id="heroWa" href="#" target="_blank" rel="noopener" data-i18n="btn_agendar">📱 Agendar show</a>
-        <a class="btn btn-ghost" href="#show-videos" data-i18n="btn_ver">▶ Ver el show</a>
-        <button class="btn btn-ghost" onclick="generatePDF()" data-i18n="btn_pdf2">⬇ Descargar EPK (PDF)</button>
+        <a class="btn btn-cy btn-full" id="heroWa" href="#" target="_blank" rel="noopener" data-i18n="btn_agendar">📱 AGENDAR SHOW</a>
+        <a class="btn btn-ghost btn-full" href="#show-videos" data-i18n="btn_ver">▶ VER EL SHOW</a>
+        <button class="btn btn-ghost btn-full" onclick="generatePDF()" data-i18n="btn_pdf_full">⬇ DESCARGAR EPK (PDF)</button>
       </div>
     </div>
   </div>
-  <div class="scroll-hint"><span data-i18n="scroll">Scroll</span><span class="bar"></span></div>
+  <div class="scroll-hint"><span data-i18n="scroll">SCROLL</span><span class="bar"></span></div>
 </header>
 
 <!-- STATS -->
 <div class="stats">
   <div class="wrap">
     <div class="stats-grid">
-      <div class="stat reveal"><div class="num" data-count="20" data-suffix="+">0</div><div class="lbl" data-i18n="st1">Años de carrera</div></div>
-      <div class="stat reveal"><div class="num" data-count="380">0</div><div class="lbl" data-i18n="st2">Canciones · Sony Music Publishing + BMI</div></div>
-      <div class="stat reveal"><div class="num" data-count="8">0</div><div class="lbl" data-i18n="st3">Producciones discográficas</div></div>
-      <div class="stat reveal"><div class="num" data-count="4110" data-suffix="+">0</div><div class="lbl" data-i18n="st4">Suscriptores YouTube</div></div>
-      <div class="stat reveal"><div class="num" data-count="3">0</div><div class="lbl" data-i18n="st6">Países en escena · COL · ECU</div></div>
+      <div class="stat reveal"><div class="num" data-count="20" data-suffix="+">0</div><div class="lbl" data-i18n="st1">Años Carrera</div></div>
+      <div class="stat reveal"><div class="num" data-count="380">0</div><div class="lbl" data-i18n="st2">Canciones Sony/BMI</div></div>
+      <div class="stat reveal"><div class="num" data-count="8">0</div><div class="lbl" data-i18n="st3">Producciones Discográficas</div></div>
+      <div class="stat reveal"><div class="num" data-count="4110" data-suffix="+">0</div><div class="lbl" data-i18n="st4">Subs YouTube</div></div>
+      <div class="stat reveal"><div class="num" data-count="3">0</div><div class="lbl" data-i18n="st6">Países Escena COL·ECU</div></div>
     </div>
   </div>
 </div>
@@ -460,17 +518,17 @@
 <!-- ARTISTA -->
 <section id="artista">
   <div class="wrap">
-    <div class="reveal"><div class="eyebrow" data-i18n="k1">01 — Perfil</div><h2 class="sec" data-i18n="h_artista"></h2></div>
+    <div class="reveal"><div class="eyebrow" data-i18n="k1">01 — PERFIL</div><h2 class="sec" data-i18n="h_artista"></h2></div>
     <div class="artist-grid">
       <div class="reveal">
         <p class="bio" data-i18n="bio"></p>
         <div class="socials">
-          <a class="soc" href="https://instagram.com/cagtaflex" target="_blank" rel="noopener"><span class="h">📷 Instagram</span><span class="v">@cagtaflex · 5.2K+</span></a>
-          <a class="soc" href="https://facebook.com/CagtaFlex" target="_blank" rel="noopener"><span class="h">👍 Facebook</span><span class="v">/CagtaFlex · 2.5K</span></a>
-          <a class="soc" href="https://youtube.com/@CagtaFlex" target="_blank" rel="noopener"><span class="h">▶ YouTube</span><span class="v">4.11K · 186 videos</span></a>
+          <a class="soc" href="https://instagram.com/cagtaflex" target="_blank" rel="noopener"><span class="h">📷 Instagram</span><span class="v">@cagtaflex</span></a>
+          <a class="soc" href="https://facebook.com/CagtaFlex" target="_blank" rel="noopener"><span class="h">👍 Facebook</span><span class="v">/CagtaFlex</span></a>
+          <a class="soc" href="https://youtube.com/@CagtaFlex" target="_blank" rel="noopener"><span class="h">▶ YouTube</span><span class="v">@CagtaFlex</span></a>
           <a class="soc" href="https://www.tiktok.com/@cagtaflex" target="_blank" rel="noopener"><span class="h">🎵 TikTok</span><span class="v">@cagtaflex</span></a>
           <a class="soc" href="https://open.spotify.com/artist/7HrWMVAud2UeybVThK36KX" target="_blank" rel="noopener"><span class="h">🎧 Spotify</span><span class="v">Cagta Flex</span></a>
-          <a class="soc" href="https://youtube.com/@beatsfreeyoutube_" target="_blank" rel="noopener"><span class="h">🥁 Beats BFYT</span><span class="v">+14K subs</span></a>
+          <a class="soc" href="https://youtube.com/@beatsfreeyoutube_" target="_blank" rel="noopener"><span class="h">🥁 Beats BFYT</span><span class="v">+14K Subs</span></a>
         </div>
         <div class="audience" data-i18n="audience"></div>
       </div>
@@ -487,7 +545,7 @@
 <!-- VIDEOS -->
 <section id="show-videos">
   <div class="wrap">
-    <div class="reveal"><div class="eyebrow" data-i18n="k2">02 — Míralo, no lo leas</div><h2 class="sec" data-i18n="h_videos"></h2><p class="sec-sub" data-i18n="videos_sub"></p></div>
+    <div class="reveal"><div class="eyebrow" data-i18n="k2">02 — MÍRALO, NO LO LEAS</div><h2 class="sec" data-i18n="h_videos"></h2><p class="sec-sub" data-i18n="videos_sub"></p></div>
     <div class="vid-grid">
       <div class="vcard reveal">
         <div class="thumb" data-id="fn6y0iDfBI0"><span class="badge" data-i18n="v1b">Trap · Comercial</span><img src="https://img.youtube.com/vi/fn6y0iDfBI0/hqdefault.jpg" alt="YMVV 109" loading="lazy"><div class="play"><i>▶</i></div></div>
@@ -498,7 +556,7 @@
         <div class="vmeta"><div class="t">Mucho Fendy</div><div class="d" data-i18n="v2d"></div></div>
       </div>
       <div class="vcard reveal">
-        <div class="thumb" data-id="hAcsXgzk4WQ"><span class="badge" data-i18n="v3b">Lo más reciente</span><img src="https://img.youtube.com/vi/hAcsXgzk4WQ/hqdefault.jpg" alt="Muchas Gracias" loading="lazy"><div class="play"><i>▶</i></div></div>
+        <div class="thumb" data-id="hAcsXgzk4WQ"><span class="badge" data-i18n="v3b">Lo Más Reciente</span><img src="https://img.youtube.com/vi/hAcsXgzk4WQ/hqdefault.jpg" alt="Muchas Gracias" loading="lazy"><div class="play"><i>▶</i></div></div>
         <div class="vmeta"><div class="t">Muchas Gracias</div><div class="d" data-i18n="v3d"></div></div>
       </div>
     </div>
@@ -509,13 +567,13 @@
         </video>
       </div>
       <div class="kt">
-        <div class="eyebrow" data-i18n="kfce">Caso de marca</div>
-        <h4>Comercial KFC</h4>
+        <div class="eyebrow" data-i18n="kfce">CASO DE MARCA</div>
+        <h4>COMERCIAL KFC</h4>
         <p data-i18n="kfcp"></p>
       </div>
     </div>
     <div class="cat-links reveal">
-      <span class="lbl" data-i18n="catlbl">Catálogo completo →</span>
+      <span class="lbl" data-i18n="catlbl">CATÁLOGO COMPLETO →</span>
       <a href="https://youtube.com/@CagtaFlex" target="_blank" rel="noopener">▶ Videoclips</a>
       <a href="https://open.spotify.com/artist/7HrWMVAud2UeybVThK36KX" target="_blank" rel="noopener">🎧 Spotify</a>
       <a href="https://youtube.com/@beatsfreeyoutube_" target="_blank" rel="noopener">🥁 Beats BFYT</a>
@@ -529,7 +587,7 @@
 <!-- MUSICA / SPOTIFY EMBEDS -->
 <section id="musica" class="spotify-section">
   <div class="wrap">
-    <div class="reveal"><div class="eyebrow" data-i18n="k3">03 — Catálogo</div><h2 class="sec" data-i18n="h_musica"></h2><p class="sec-sub" data-i18n="musica_sub"></p></div>
+    <div class="reveal"><div class="eyebrow" data-i18n="k3">03 — CATÁLOGO</div><h2 class="sec" data-i18n="h_musica"></h2><p class="sec-sub" data-i18n="musica_sub"></p></div>
     
     <!-- TRACKS DESTACADOS (LINKS A YOUTUBE) -->
     <div class="tracks-list reveal">
@@ -560,7 +618,7 @@
     </div>
 
     <!-- DISCOGRAFÍA INTERACTIVA CON SPOTIFY -->
-    <div class="reveal"><h2 class="sec" style="font-size:clamp(26px,4vw,40px)" data-i18n="h_disco"></h2></div>
+    <div class="reveal"><h2 class="sec" style="font-size:clamp(24px,4vw,36px)" data-i18n="h_disco"></h2></div>
     <div class="disco-interact reveal">
       
       <!-- YUNGG FLEX -->
@@ -657,7 +715,7 @@
 <!-- VIVO -->
 <section id="vivo">
   <div class="wrap">
-    <div class="reveal"><div class="eyebrow" data-i18n="k4">04 — Escenario</div><h2 class="sec" data-i18n="h_vivo"></h2></div>
+    <div class="reveal"><div class="eyebrow" data-i18n="k4">04 — ESCENARIO</div><h2 class="sec" data-i18n="h_vivo"></h2></div>
     <div class="live-band ph reveal">
       <img src="/img/475986741_1274083083624872_1575941453614743733_n.jpg" 
            alt="Cagta Flex en vivo" 
@@ -668,23 +726,23 @@
     </div>
     <div class="two-col">
       <div class="panel reveal">
-        <h4 class="cy" data-i18n="hitos">Hitos</h4>
+        <h4 class="cy" data-i18n="hitos">HITOS</h4>
         <ul class="list">
           <li data-i18n="hi1">🏆 <b>Ganador Suba Al Ruedo 2014</b></li>
           <li data-i18n="hi2">🎤 Hip Hop al Parque 2014</li>
-          <li data-i18n="hi3">🇪 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)</li>
+          <li data-i18n="hi3">🇪🇨 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)</li>
           <li data-i18n="hi4">🚌 Tour Tribu Nómada 2018 (Colombia)</li>
           <li data-i18n="hi5">🤝 Colaboración con marca: <b>KFC</b></li>
         </ul>
       </div>
       <div class="panel reveal">
-        <h4 class="mg" data-i18n="festh">Festivales y eventos</h4>
+        <h4 class="mg" data-i18n="festh">FESTIVALES Y EVENTOS</h4>
         <div class="fest">
           <span>Golpe Urbano 2012</span><span>Almas Sin Armas 2016</span><span>Bubaseta 2017</span><span>Back to The Game 2018</span><span>Underground Rhymes Vol.1–4</span><span>Querap 2019</span><span>Aerophone Boogaloop 2020</span><span>Serenata Rap 2020</span><span>Grito a la Memoria 2021</span><span>This is Real 2021</span><span>LatinoLife UK 2021</span><span>Hip Bosa 2021</span><span>Skills Rumble 2021</span><span>DC BASHMAN LA 2023</span>
         </div>
       </div>
     </div>
-    <div class="panel reveal" style="margin-top:18px;border-left:3px solid var(--mag)"><b class="mg" data-i18n="msglbl">MENSAJE AL PROMOTOR:</b> <span data-i18n="msgtxt"></span></div>
+    <div class="msg-promoter reveal"><b data-i18n="msglbl">MENSAJE AL PROMOTOR:</b> <span data-i18n="msgtxt"></span></div>
   </div>
 </section>
 
@@ -693,7 +751,7 @@
 <!-- EL SHOW -->
 <section id="el-show">
   <div class="wrap">
-    <div class="reveal"><div class="eyebrow" data-i18n="k5">05 — La experiencia</div><h2 class="sec" data-i18n="h_show"></h2></div>
+    <div class="reveal"><div class="eyebrow" data-i18n="k5">05 — LA EXPERIENCIA</div><h2 class="sec" data-i18n="h_show"></h2></div>
     
     <!-- NUEVA SECCIÓN VISUAL CINEMATOGRAFICA -->
     <div class="exp-hero reveal">
@@ -707,16 +765,16 @@
     </div>
 
     <div class="two-col">
-      <div class="panel reveal"><h4 class="cy" data-i18n="formh">Formación en escena</h4>
+      <div class="panel reveal"><h4 class="cy" data-i18n="formh">FORMACIÓN EN ESCENA</h4>
         <ul class="list"><li data-i18n="fm1">Cagta Flex — MC + Live MPC / SP en vivo</li><li data-i18n="fm2">DJ G.Promode (o DJ de la casa)</li><li data-i18n="fm3">2 personas en escena (+ técnico opcional)</li></ul>
       </div>
-      <div class="panel reveal"><h4 class="mg" data-i18n="seth">Formatos de setlist</h4>
+      <div class="panel reveal"><h4 class="mg" data-i18n="seth">FORMATOS DE SETLIST</h4>
         <ul class="list"><li data-i18n="se1"><b>Versión club:</b> remixes de clásicos hip-hop / urbano</li><li data-i18n="se2"><b>Versión festival:</b> clásicos + freestyle con bandas en vivo</li><li data-i18n="se3"><b>Duración:</b> 45–60 min (beatmaking) · 60–90 min (show + DJ)</li></ul>
       </div>
     </div>
     
     <div class="stageplot reveal">
-      <h4 data-i18n="sph">Stage plot · rider visual</h4>
+      <h4 data-i18n="sph">STAGE PLOT · RIDER VISUAL</h4>
       <svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stage plot">
         <defs><linearGradient id="stk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0e2a28"/><stop offset="1" stop-color="#2a0e20"/></linearGradient></defs>
         <rect x="40" y="40" width="680" height="240" rx="14" fill="url(#stk)" stroke="#23232f"/>
@@ -740,22 +798,22 @@
     </div>
     
     <div class="fmt reveal">
-      <div class="f"><div class="ic">💼</div><h5 data-i18n="f1t">Corporativos</h5><p data-i18n="f1p">After offices y eventos de marca. Formato club + video del evento para tu marketing.</p></div>
-      <div class="f"><div class="ic">🏛️</div><h5 data-i18n="f2t">Festivales</h5><p data-i18n="f2p">Show insignia con beatmaking en vivo. Conecta con puristas y público masivo.</p></div>
-      <div class="f"><div class="ic">🎓</div><h5 data-i18n="f3t">Institucional</h5><p data-i18n="f3p">Universidades y alcaldías: paquete show + taller de rap para comunidades.</p></div>
+      <div class="f"><div class="ic">💼</div><h5 data-i18n="f1t">CORPORATIVOS</h5><p data-i18n="f1p">After offices y eventos de marca. Formato club + video del evento para tu marketing.</p></div>
+      <div class="f"><div class="ic">🏛️</div><h5 data-i18n="f2t">FESTIVALES</h5><p data-i18n="f2p">Show insignia con beatmaking en vivo. Conecta con puristas y público masivo.</p></div>
+      <div class="f"><div class="ic">🎓</div><h5 data-i18n="f3t">INSTITUCIONAL</h5><p data-i18n="f3p">Universidades y alcaldías: paquete show + taller de rap para comunidades.</p></div>
     </div>
-    <div class="panel reveal"><h4 class="cy" data-i18n="riderh">Rider técnico (resumen)</h4>
+    <div class="panel reveal"><h4 class="cy" data-i18n="riderh">RIDER TÉCNICO (RESUMEN)</h4>
       <div class="rider">
-        <div class="r"><b data-i18n="ra">🎚 Audio</b><span data-i18n="rap">2 micrófonos inalámbricos · consola para DJ · monitores</span></div>
-        <div class="r"><b data-i18n="rv">🖥 Visuals</b><span data-i18n="rvp">Pantalla para proyecciones (opcional)</span></div>
-        <div class="r"><b data-i18n="rs">📐 Espacio</b><span data-i18n="rsp">Tarima mínima 4×4 m · rider completo bajo solicitud</span></div>
+        <div class="r"><b data-i18n="ra">🎚 AUDIO</b><span data-i18n="rap">2 micrófonos inalámbricos · consola para DJ · monitores</span></div>
+        <div class="r"><b data-i18n="rv">🖥 VISUALS</b><span data-i18n="rvp">Pantalla para proyecciones (opcional)</span></div>
+        <div class="r"><b data-i18n="rs">📐 ESPACIO</b><span data-i18n="rsp">Tarima mínima 4×4 m · rider completo bajo solicitud</span></div>
       </div>
     </div>
     <div class="two-col" style="margin-top:18px">
-      <div class="panel reveal"><h4 class="mg" data-i18n="segh">Segmentos de mercado</h4>
+      <div class="panel reveal"><h4 class="mg" data-i18n="segh">SEGMENTOS DE MERCADO</h4>
         <ul class="list"><li data-i18n="sg1">🏛️ Festivales y eventos culturales (show insignia)</li><li data-i18n="sg2">💼 Corporativos / after offices</li><li data-i18n="sg3">🎧 Venues y clubes de Bogotá (recurrencia local)</li><li data-i18n="sg4">🎓 Universidades / alcaldías (show + taller)</li><li data-i18n="sg5">🌎 Giras región andina — Ecuador como puerta comprobada</li></ul>
       </div>
-      <div class="panel reveal"><h4 class="cy" data-i18n="exh">Extras / add-ons</h4>
+      <div class="panel reveal"><h4 class="cy" data-i18n="exh">EXTRAS / ADD-ONS</h4>
         <ul class="list"><li data-i18n="ex1">🎤 Taller de rap post-show</li><li data-i18n="ex2">✍️ Meet &amp; greet con firma de posters</li><li data-i18n="ex3">🎬 Video profesional del evento (marketing del cliente)</li><li data-i18n="ex4">📱 Promoción pre/post evento en todos los canales Terrivol</li></ul>
       </div>
     </div>
@@ -767,15 +825,15 @@
 <!-- VALOR -->
 <section id="valor">
   <div class="wrap">
-    <div class="reveal"><div class="eyebrow" style="text-align:center;display:block" data-i18n="k6">06 — Por qué contratarme</div></div>
+    <div class="reveal"><div class="eyebrow" style="text-align:center;display:block" data-i18n="k6">06 — POR QUÉ CONTRATARME</div></div>
     <blockquote class="quote reveal" id="quote" data-i18n="quote"></blockquote>
     <div class="val-grid">
-      <div class="val reveal"><div class="vt" data-i18n="v1t">Contenido único</div><p data-i18n="v1p">El tema creado en tu evento se publica en redes (+20K alcance) con mención a tu marca.</p></div>
-      <div class="val reveal"><div class="vt" data-i18n="v2t">Promo integral</div><p data-i18n="v2p">Promoción pre/post evento en todos los canales de Terrivol Music.</p></div>
-      <div class="val reveal"><div class="vt" data-i18n="v3t">20+ años</div><p data-i18n="v3p">De tarima: se adapta a cualquier audiencia, purista o comercial.</p></div>
+      <div class="val reveal"><div class="vt" data-i18n="v1t">CONTENIDO ÚNICO</div><p data-i18n="v1p">El tema creado en tu evento se publica en redes (+20K alcance) con mención a tu marca.</p></div>
+      <div class="val reveal"><div class="vt" data-i18n="v2t">PROMO INTEGRAL</div><p data-i18n="v2p">Promoción pre/post evento en todos los canales de Terrivol Music.</p></div>
+      <div class="val reveal"><div class="vt" data-i18n="v3t">20+ AÑOS</div><p data-i18n="v3p">De tarima: se adapta a cualquier audiencia, purista o comercial.</p></div>
     </div>
-    <div class="sponsors reveal"><h4 data-i18n="sponh">Para patrocinadores</h4>
-      <ul class="list"><li data-i18n="sp1">Integración de marca en el beatmaking en vivo (naming del sample, mentions, logos en proyección)</li><li data-i18n="sp2">Contenido audiovisual profesional co-creado en tu evento</li><li data-i18n="sp3">Audiencia joven urbana (núcleo 25–34) con alto engagement en Reels (73,6% del consumo)</li><li data-i18n="sp4">Historial de colaboración con marcas (KFC) y comunidad activa en 3 países</li></ul>
+    <div class="sponsors reveal"><h4 data-i18n="sponh">PARA PATROCINADORES</h4>
+      <ul><li data-i18n="sp1">Integración de marca en el beatmaking en vivo (naming del sample, mentions, logos en proyección)</li><li data-i18n="sp2">Contenido audiovisual profesional co-creado en tu evento</li><li data-i18n="sp3">Audiencia joven urbana (núcleo 25–34) con alto engagement en Reels (73,6% del consumo)</li><li data-i18n="sp4">Historial de colaboración con marcas (KFC) y comunidad activa en 3 países</li></ul>
     </div>
   </div>
 </section>
@@ -785,7 +843,7 @@
 <!-- BOOKING -->
 <section id="booking">
   <div class="wrap">
-    <div class="reveal"><div class="eyebrow" data-i18n="k7">07 — Contratación Exclusiva</div><h2 class="sec" data-i18n="h_book"></h2><p class="sec-sub" data-i18n="book_sub"></p></div>
+    <div class="reveal"><div class="eyebrow" data-i18n="k7">07 — CONTRATACIÓN EXCLUSIVA</div><h2 class="sec" data-i18n="h_book"></h2><p class="sec-sub" data-i18n="book_sub"></p></div>
     <div class="book-grid">
       <div class="reveal">
         <form class="form" id="bookForm">
@@ -814,21 +872,21 @@
         </form>
       </div>
       <div class="contact-side reveal">
-        <div class="cc"><h4 data-i18n="cdh">Contacto directo</h4>
+        <div class="cc"><h4 data-i18n="cdh">CONTACTO DIRECTO</h4>
           <div class="cline"><span class="k">📩 Email</span><a class="v" href="mailto:terrivolmusiclove@gmail.com">terrivolmusiclove@gmail.com</a></div>
           <div class="cline"><span class="k">🌐 Web</span><a class="v" href="https://terrivolmusic.github.io" target="_blank" rel="noopener">terrivolmusic.github.io</a></div>
           <div class="cline"><span class="k">🛍 Tienda</span><a class="v" href="https://cagta-flex-shop.fourthwall.com" target="_blank" rel="noopener">Fourthwall Shop</a></div>
           <div class="wa-duo"><a class="btn btn-cy" id="waMain" href="#" target="_blank" rel="noopener">📱 Booking Principal</a><a class="btn btn-ghost" id="waAlt" href="#" target="_blank" rel="noopener">💬 Alterno</a></div>
         </div>
-        <div class="cc"><h4 data-i18n="rdh">Redes &amp; streaming</h4>
+        <div class="cc"><h4 data-i18n="rdh">REDES & STREAMING</h4>
           <div class="cline"><span class="k">📷 Instagram</span><a class="v" href="https://instagram.com/cagtaflex" target="_blank" rel="noopener">@cagtaflex</a></div>
           <div class="cline"><span class="k">▶ YouTube</span><a class="v" href="https://youtube.com/@CagtaFlex" target="_blank" rel="noopener">@CagtaFlex</a></div>
           <div class="cline"><span class="k">👍 Facebook</span><a class="v" href="https://facebook.com/CagtaFlex" target="_blank" rel="noopener">/CagtaFlex</a></div>
           <div class="cline"><span class="k">🎵 TikTok</span><a class="v" href="https://www.tiktok.com/@cagtaflex" target="_blank" rel="noopener">@cagtaflex</a></div>
           <div class="cline"><span class="k">🎧 Spotify</span><a class="v" href="https://open.spotify.com/artist/7HrWMVAud2UeybVThK36KX" target="_blank" rel="noopener">Cagta Flex</a></div>
         </div>
-        <div class="cc" style="text-align:center"><div class="chips" style="justify-content:center">
-          <span class="chip" data-i18n="loc1">Bogotá · Colombia</span><span class="chip mg" data-i18n="loc2">Disponible para gira</span><span class="chip" data-i18n="loc3">COL · ECU · LATAM · Europa</span>
+        <div class="cc" style="text-align:center"><div class="loc-chips">
+          <span class="chip" data-i18n="loc1">BOGOTÁ · COLOMBIA</span><span class="chip mg" data-i18n="loc2">DISPONIBLE PARA GIRA</span><span class="chip" data-i18n="loc3">COL · ECU · LATAM · EUROPA</span>
         </div></div>
       </div>
     </div>
@@ -873,87 +931,87 @@ const T = {
   nav_artista:{es:"Artista",en:"Artist"}, nav_videos:{es:"Videos",en:"Videos"},
   nav_musica:{es:"Música",en:"Music"}, nav_vivo:{es:"En vivo",en:"Live"},
   nav_show:{es:"El Show",en:"The Show"}, nav_booking:{es:"Booking",en:"Booking"},
-  btn_pdf:{es:"⬇ Descargar PDF",en:"⬇ Download PDF"}, btn_booking:{es:"Booking",en:"Booking"},
-  hero_eyebrow:{es:"Electronic Press Kit · Terrivol Music · Bogotá, Colombia",en:"Electronic Press Kit · Terrivol Music · Bogotá, Colombia"},
-  hero_tag:{es:"« La Voix de l'Univers » — Hip-Hop · Boom Bap · Trap · Beatmaking en Vivo",en:"« La Voix de l'Univers » — Hip-Hop · Boom Bap · Trap · Live Beatmaking"},
-  hero_pitch:{es:'<b class="cy">EL DIFERENCIAL:</b> el único show de hip-hop donde el beat nace en escena. El público elige los samples y Cagta Flex produce el tema en vivo — un track único por evento que luego rueda en redes como contenido para <b class="mg">{BRAND}</b>.',en:'<b class="cy">THE DIFFERENTIAL:</b> the only hip-hop show where the beat is born on stage. The crowd picks the samples and Cagta Flex produces the track live — a one-of-a-kind song per event that then travels on social media as content for <b class="mg">{BRAND}</b>.'},
-  chip1:{es:"20+ años de tarima",en:"20+ years on stage"}, chip2:{es:"380 canciones · Sony Music Publishing",en:"380 songs · Sony Music Publishing"},
-  chip3:{es:"+20K comunidad",en:"+20K community"}, chip4:{es:"Show internacional",en:"International show"},
-  btn_agendar:{es:"📱 Agendar show",en:"📱 Book the show"}, btn_ver:{es:"▶ Ver el show",en:"▶ Watch the show"},
-  btn_pdf2:{es:"⬇ Descargar EPK (PDF)",en:"⬇ Download EPK (PDF)"}, scroll:{es:"Scroll",en:"Scroll"},
-  st1:{es:"Años de carrera",en:"Years of career"}, st2:{es:"Canciones · Sony Music Publishing + BMI",en:"Songs · Sony Music Publishing + BMI"},
-  st3:{es:"Producciones discográficas",en:"Record productions"}, st4:{es:"Suscriptores YouTube",en:"YouTube subscribers"},
-  st6:{es:"Países en escena · COL · ECU",en:"Countries on stage · COL · ECU"},
-  k1:{es:"01 — Perfil",en:"01 — Profile"}, h_artista:{es:'<span class="cy">EL</span> <span class="mg">ARTISTA</span>',en:'<span class="cy">THE</span> <span class="mg">ARTIST</span>'},
+  btn_pdf_short:{es:"PDF",en:"PDF"}, btn_booking_short:{es:"Book",en:"Book"},
+  hero_eyebrow:{es:"PRESS KIT · TERRIVOL MUSIC · BOGOTÁ",en:"PRESS KIT · TERRIVOL MUSIC · BOGOTA"},
+  hero_tag:{es:"« La Voix de l'Univers » — Hip-Hop · Boom Bap · Trap · Live Beatmaking",en:"« La Voix de l'Univers » — Hip-Hop · Boom Bap · Trap · Live Beatmaking"},
+  hero_pitch:{es:'<b>EL DIFERENCIAL:</b> el único show de hip-hop donde el beat nace en escena. El público elige los samples y Cagta Flex produce el tema en vivo — un track único por evento que luego rueda en redes como contenido para <b>{BRAND}</b>.',en:'<b>THE DIFFERENTIAL:</b> the only hip-hop show where the beat is born on stage. The crowd picks the samples and Cagta Flex produces the track live — a one-of-a-kind song per event that then travels on social media as content for <b>{BRAND}</b>.'},
+  chip1:{es:"20+ Años Tarima",en:"20+ Years Stage"}, chip2:{es:"380 Canciones · Sony",en:"380 Songs · Sony"},
+  chip3:{es:"+20K Comunidad",en:"+20K Community"}, chip4:{es:"Show Internacional",en:"Intl Show"},
+  btn_agendar:{es:"📱 AGENDAR SHOW",en:"📱 BOOK SHOW"}, btn_ver:{es:"▶ VER EL SHOW",en:"▶ WATCH SHOW"},
+  btn_pdf_full:{es:"⬇ DESCARGAR EPK (PDF)",en:"⬇ DOWNLOAD EPK (PDF)"}, scroll:{es:"SCROLL",en:"SCROLL"},
+  st1:{es:"Años Carrera",en:"Years Career"}, st2:{es:"Canciones Sony/BMI",en:"Songs Sony/BMI"},
+  st3:{es:"Producciones Discográficas",en:"Discographic Prod."}, st4:{es:"Subs YouTube",en:"YT Subs"},
+  st6:{es:"Países Escena COL·ECU",en:"Countries COL·ECU"},
+  k1:{es:"01 — PERFIL",en:"01 — PROFILE"}, h_artista:{es:'<span class="cy">EL</span> <span class="mg">ARTISTA</span>',en:'<span class="cy">THE</span> <span class="mg">ARTIST</span>'},
   bio:{es:'<b class="cy">Cagta Flex</b> (Sebastián Andrade, Bogotá) es rapero, productor y fundador del sello <b>Terrivol Music</b>, con más de 20 años de carrera en el hip-hop latino. Ganador de <b>Suba Al Ruedo 2014</b> y parte de la alineación de <b>Hip Hop al Parque 2014</b>, ha pasado por festivales en Colombia y Ecuador (Ibarra Fest, Tour Tribu Nómada). Registra <b>380 canciones en Sony Music Publishing</b> y ocho producciones discográficas, entre ellas su álbum <b>«YUNGG FLEX»</b>. Su show convierte el escenario en un estudio: crea beats en vivo mientras el público elige los samples, dando como resultado un tema único por evento. Con colaboraciones con marcas como <b>KFC</b> y una comunidad de <b>+20K seguidores</b>, combina raíz boom bap con sonido fresco. Actualmente promociona los sencillos <b>«POP UP»</b>, <b>«EL MEJOR»</b> y <b>«MUCHO FENDY»</b>. <i>No es solo un artista: es una experiencia.</i>',en:'<b class="cy">Cagta Flex</b> (Sebastián Andrade, Bogotá) is a rapper, producer and founder of the label <b>Terrivol Music</b>, with over 20 years in Latin hip-hop. Winner of <b>Suba Al Ruedo 2014</b> and part of the <b>Hip Hop al Parque 2014</b> lineup, he has played festivals across Colombia and Ecuador (Ibarra Fest, Tour Tribu Nómada). He holds <b>380 songs registered with Sony Music Publishing</b> and eight record productions, including the album <b>“YUNGG FLEX”</b>. His show turns the stage into a studio: he builds beats live while the crowd picks the samples, resulting in a unique track per event. With brand collaborations such as <b>KFC</b> and a <b>+20K</b> community, he blends boom-bap roots with fresh sound. Currently promoting the singles <b>“POP UP”</b>, <b>“EL MEJOR”</b> and <b>“MUCHO FENDY”</b>. <i>Not just an artist: an experience.</i>'},
   audience:{es:"Audiencia IG: núcleo 25–34 años (53,8%) · 63,3% Colombia · 51,9% Bogotá · Reels = 73,6% del consumo.",en:"IG audience: core 25–34 (53.8%) · 63.3% Colombia · 51.9% Bogotá · Reels = 73.6% of consumption."},
-  k2:{es:"02 — Míralo, no lo leas",en:"02 — Watch it, don't read it"}, h_videos:{es:'<span class="mg">EL</span> <span class="cy">SHOW EN VIDEO</span>',en:'<span class="mg">THE</span> <span class="cy">SHOW ON VIDEO</span>'},
+  k2:{es:"02 — MÍRALO, NO LO LEAS",en:"02 — WATCH IT, DON'T READ IT"}, h_videos:{es:'<span class="mg">EL</span> <span class="cy">SHOW EN VIDEO</span>',en:'<span class="mg">THE</span> <span class="cy">SHOW ON VIDEO</span>'},
   videos_sub:{es:"Tres cortes que abren puertas: del trap comercial que llena discotecas al sonido fresco que conecta con marcas. Dale play.",en:"Three cuts that open doors: from club-filling commercial trap to fresh sound that connects with brands. Hit play."},
   v1b:{es:"Trap · Comercial",en:"Trap · Commercial"}, v1d:{es:'Trap moderno · <b>abre puertas comerciales</b> y de sync',en:'Modern trap · <b>opens commercial & sync doors</b>'},
   v2b:{es:"Hip-Hop · Club",en:"Hip-Hop · Club"}, v2d:{es:'Hip-hop para la <b>discoteca</b> · energía de pista',en:'Hip-hop for the <b>club floor</b> · dancefloor energy'},
-  v3b:{es:"Lo más reciente",en:"Latest release"}, v3d:{es:'El corte más nuevo · <b>frescos y activos</b> en 2026',en:'The newest cut · <b>fresh & active</b> in 2026'},
-  kfce:{es:"Caso de marca",en:"Brand case"}, kfcp:{es:'Producción audiovisual profesional para marca reconocida. Demuestra que Cagta Flex entrega en el terreno corporativo y publicitario, no solo en tarima. <b class="cy">Ideal para patrocinadores y activaciones de marca.</b>',en:'Professional audiovisual production for a recognized brand. Proof that Cagta Flex delivers in corporate and advertising territory, not just on stage. <b class="cy">Ideal for sponsors and brand activations.</b>'},
-  catlbl:{es:"Catálogo completo →",en:"Full catalog →"},
-  k3:{es:"03 — Catálogo",en:"03 — Catalog"}, h_musica:{es:'<span class="cy">MÚSICA</span> <span class="mg">DESTACADA</span>',en:'<span class="cy">FEATURED</span> <span class="mg">MUSIC</span>'},
+  v3b:{es:"Lo Más Reciente",en:"Latest Release"}, v3d:{es:'El corte más nuevo · <b>frescos y activos</b> en 2026',en:'The newest cut · <b>fresh & active</b> in 2026'},
+  kfce:{es:"CASO DE MARCA",en:"BRAND CASE"}, kfcp:{es:'Producción audiovisual profesional para marca reconocida. Demuestra que Cagta Flex entrega en el terreno corporativo y publicitario, no solo en tarima. <b>Ideal para patrocinadores y activaciones de marca.</b>',en:'Professional audiovisual production for a recognized brand. Proof that Cagta Flex delivers in corporate and advertising territory, not just on stage. <b>Ideal for sponsors and brand activations.</b>'},
+  catlbl:{es:"CATÁLOGO COMPLETO →",en:"FULL CATALOG →"},
+  k3:{es:"03 — CATÁLOGO",en:"03 — CATALOG"}, h_musica:{es:'<span class="cy">MÚSICA</span> <span class="mg">DESTACADA</span>',en:'<span class="cy">FEATURED</span> <span class="mg">MUSIC</span>'},
   musica_sub:{es:"Temas insignia con vistas verificadas en YouTube. Un catálogo que va del underground puro al sonido comercial.",en:"Flagship tracks with verified YouTube views. A catalog that ranges from pure underground to commercial sound."},
   h_disco:{es:'<span class="mg">DISCO</span><span class="cy">GRAFÍA</span>',en:'<span class="mg">DISCO</span><span class="cy">GRAPHY</span>'},
   now:{es:'<b>ACTUALIDAD 2026:</b> sencillos «POP UP», «EL MEJOR», «MUCHO FENDY» y «MUCHAS GRACIAS» · beatmaking en vivo en cada presentación.',en:'<b>NOW IN 2026:</b> singles “POP UP”, “EL MEJOR”, “MUCHO FENDY” and “MUCHAS GRACIAS” · live beatmaking at every show.'},
-  k4:{es:"04 — Escenario",en:"04 — Stage"}, h_vivo:{es:'<span class="cy">TRAYECTORIA</span> <span class="mg">EN VIVO</span>',en:'<span class="cy">LIVE</span> <span class="mg">TRACK RECORD</span>'},
-  livecap:{es:"Energía de tarima · show en vivo · público real",en:"Stage energy · live show · real crowd"},
-  hitos:{es:"Hitos",en:"Milestones"},
+  k4:{es:"04 — ESCENARIO",en:"04 — STAGE"}, h_vivo:{es:'<span class="cy">TRAYECTORIA</span> <span class="mg">EN VIVO</span>',en:'<span class="cy">LIVE</span> <span class="mg">TRACK RECORD</span>'},
+  livecap:{es:"ENERGÍA DE TARIMA · SHOW EN VIVO · PÚBLICO REAL",en:"STAGE ENERGY · LIVE SHOW · REAL CROWD"},
+  hitos:{es:"HITOS",en:"MILESTONES"},
   hi1:{es:'🏆 <b>Ganador Suba Al Ruedo 2014</b>',en:'🏆 <b>Suba Al Ruedo 2014 winner</b>'}, hi2:{es:"🎤 Hip Hop al Parque 2014",en:"🎤 Hip Hop al Parque 2014"},
-  hi3:{es:"🇪🇨 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)",en:"🇪🇨 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)"},
+  hi3:{es:"🇪 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)",en:"🇪 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)"},
   hi4:{es:"🚌 Tour Tribu Nómada 2018 (Colombia)",en:"🚌 Tour Tribu Nómada 2018 (Colombia)"},
   hi5:{es:'🤝 Colaboración con marca: <b>KFC</b>',en:'🤝 Brand collaboration: <b>KFC</b>'},
-  festh:{es:"Festivales y eventos",en:"Festivals & events"},
-  msglbl:{es:"MENSAJE AL PROMOTOR:",en:"MESSAGE TO THE PROMOTER:"},
+  festh:{es:"FESTIVALES Y EVENTOS",en:"FESTIVALS & EVENTS"},
+  msglbl:{es:"MENSAJE AL PROMOTOR:",en:"MESSAGE TO PROMOTER:"},
   msgtxt:{es:'«Flexible para ajustarse a sus necesidades» — club, festival, corporativo o institucional. Material audiovisual profesional de presentaciones disponible bajo solicitud.',en:'“Flexible to fit your needs” — club, festival, corporate or institutional. Professional live footage available on request.'},
-  k5:{es:"05 — La experiencia",en:"05 — The experience"}, h_show:{es:'<span class="mg">EL SHOW</span> <span class="cy">· BEATMAKING EN VIVO</span>',en:'<span class="mg">THE SHOW</span> <span class="cy">· LIVE BEATMAKING</span>'},
+  k5:{es:"05 — LA EXPERIENCIA",en:"05 — THE EXPERIENCE"}, h_show:{es:'<span class="mg">EL SHOW</span> <span class="cy">· BEATMAKING EN VIVO</span>',en:'<span class="mg">THE SHOW</span> <span class="cy">· LIVE BEATMAKING</span>'},
   exp_h3:{es:"LA EXPERIENCIA EN ESCENA",en:"THE STAGE EXPERIENCE"},
   exp_p:{es:'<strong>Cagta Flex sube a la tarima con su MPC</strong> y convierte el concierto en un estudio abierto. El público elige los samples, él construye el beat frente a todos y lo rapea en vivo. <strong>Cada evento termina con un tema único e irrepetible</strong> — contenido espontáneo que luego se publica en las redes de Terrivol Music (+20K alcance) mencionando al evento y sus aliados.',en:'<strong>Cagta Flex takes the stage with his MPC</strong> and turns the concert into an open studio. The crowd picks the samples, he builds the beat in front of everyone and raps it live. <strong>Every event ends with a unique, unrepeatable track</strong> — spontaneous content later posted on Terrivol Music socials (+20K reach) tagging the event and its partners.'},
-  formh:{es:"Formación en escena",en:"On-stage lineup"},
+  formh:{es:"FORMACIÓN EN ESCENA",en:"ON-STAGE LINEUP"},
   fm1:{es:"Cagta Flex — MC + Live MPC / SP en vivo",en:"Cagta Flex — MC + Live MPC / SP"}, fm2:{es:"DJ G.Promode (o DJ de la casa)",en:"DJ G.Promode (or house DJ)"}, fm3:{es:"2 personas en escena (+ técnico opcional)",en:"2 people on stage (+ optional tech)"},
-  seth:{es:"Formatos de setlist",en:"Setlist formats"},
+  seth:{es:"FORMATOS DE SETLIST",en:"SETLIST FORMATS"},
   se1:{es:'<b>Versión club:</b> remixes de clásicos hip-hop / urbano',en:'<b>Club version:</b> remixes of hip-hop / urban classics'},
   se2:{es:'<b>Versión festival:</b> clásicos + freestyle con bandas en vivo',en:'<b>Festival version:</b> classics + freestyle with live bands'},
   se3:{es:'<b>Duración:</b> 45–60 min (beatmaking) · 60–90 min (show + DJ)',en:'<b>Duration:</b> 45–60 min (beatmaking) · 60–90 min (show + DJ)'},
-  sph:{es:"Stage plot · rider visual",en:"Stage plot · visual rider"},
-  f1t:{es:"Corporativos",en:"Corporate"}, f1p:{es:"After offices y eventos de marca. Formato club + video del evento para tu marketing.",en:"After-offices and brand events. Club format + event video for your marketing."},
-  f2t:{es:"Festivales",en:"Festivals"}, f2p:{es:"Show insignia con beatmaking en vivo. Conecta con puristas y público masivo.",en:"Flagship show with live beatmaking. Connects with purists and mass audiences."},
-  f3t:{es:"Institucional",en:"Institutional"}, f3p:{es:"Universidades y alcaldías: paquete show + taller de rap para comunidades.",en:"Universities & city halls: show + rap workshop package for communities."},
-  riderh:{es:"Rider técnico (resumen)",en:"Technical rider (summary)"},
-  ra:{es:"🎚 Audio",en:"🎚 Audio"}, rap:{es:"2 micrófonos inalámbricos · consola para DJ · monitores",en:"2 wireless mics · DJ console · monitors"},
-  rv:{es:"🖥 Visuals",en:"🖥 Visuals"}, rvp:{es:"Pantalla para proyecciones (opcional)",en:"Projection screens (optional)"},
-  rs:{es:"📐 Espacio",en:"📐 Space"}, rsp:{es:"Tarima mínima 4×4 m · rider completo bajo solicitud",en:"Min. 4×4 m stage · full rider on request"},
-  segh:{es:"Segmentos de mercado",en:"Market segments"},
+  sph:{es:"STAGE PLOT · RIDER VISUAL",en:"STAGE PLOT · VISUAL RIDER"},
+  f1t:{es:"CORPORATIVOS",en:"CORPORATE"}, f1p:{es:"After offices y eventos de marca. Formato club + video del evento para tu marketing.",en:"After-offices and brand events. Club format + event video for your marketing."},
+  f2t:{es:"FESTIVALES",en:"FESTIVALS"}, f2p:{es:"Show insignia con beatmaking en vivo. Conecta con puristas y público masivo.",en:"Flagship show with live beatmaking. Connects with purists and mass audiences."},
+  f3t:{es:"INSTITUCIONAL",en:"INSTITUTIONAL"}, f3p:{es:"Universidades y alcaldías: paquete show + taller de rap para comunidades.",en:"Universities & city halls: show + rap workshop package for communities."},
+  riderh:{es:"RIDER TÉCNICO (RESUMEN)",en:"TECHNICAL RIDER (SUMMARY)"},
+  ra:{es:"🎚 AUDIO",en:"🎚 AUDIO"}, rap:{es:"2 micrófonos inalámbricos · consola para DJ · monitores",en:"2 wireless mics · DJ console · monitors"},
+  rv:{es:"🖥 VISUALS",en:"🖥 VISUALS"}, rvp:{es:"Pantalla para proyecciones (opcional)",en:"Projection screens (optional)"},
+  rs:{es:"📐 ESPACIO",en:"📐 SPACE"}, rsp:{es:"Tarima mínima 4×4 m · rider completo bajo solicitud",en:"Min. 4×4 m stage · full rider on request"},
+  segh:{es:"SEGMENTOS DE MERCADO",en:"MARKET SEGMENTS"},
   sg1:{es:"🏛️ Festivales y eventos culturales (show insignia)",en:"🏛️ Festivals & cultural events (flagship show)"},
   sg2:{es:"💼 Corporativos / after offices",en:"💼 Corporate / after-offices"},
   sg3:{es:"🎧 Venues y clubes de Bogotá (recurrencia local)",en:"🎧 Bogotá venues & clubs (local recurrence)"},
   sg4:{es:"🎓 Universidades / alcaldías (show + taller)",en:"🎓 Universities / city halls (show + workshop)"},
   sg5:{es:"🌎 Giras región andina — Ecuador como puerta comprobada",en:"🌎 Andean region tours — Ecuador as a proven gateway"},
-  exh:{es:"Extras / add-ons",en:"Extras / add-ons"},
+  exh:{es:"EXTRAS / ADD-ONS",en:"EXTRAS / ADD-ONS"},
   ex1:{es:"🎤 Taller de rap post-show",en:"🎤 Post-show rap workshop"}, ex2:{es:"✍️ Meet & greet con firma de posters",en:"✍️ Meet & greet with poster signing"},
   ex3:{es:"🎬 Video profesional del evento (marketing del cliente)",en:"🎬 Professional event video (client marketing)"},
   ex4:{es:"📱 Promoción pre/post evento en todos los canales Terrivol",en:"📱 Pre/post-event promo across all Terrivol channels"},
-  k6:{es:"06 — Por qué contratarme",en:"06 — Why book me"},
+  k6:{es:"06 — POR QUÉ CONTRATARME",en:"06 — WHY BOOK ME"},
   quote:{es:'«El único show de hip-hop donde el beat nace en escena: un track único por evento que rueda en redes como contenido para <span class="mg">{BRAND}</span>.»',en:'“The only hip-hop show where the beat is born on stage: a unique track per event that travels on social media as content for <span class="mg">{BRAND}</span>.”'},
-  v1t:{es:"Contenido único",en:"Unique content"}, v1p:{es:"El tema creado en tu evento se publica en redes (+20K alcance) con mención a tu marca.",en:"The track created at your event is posted on socials (+20K reach) tagging your brand."},
-  v2t:{es:"Promo integral",en:"Full promo"}, v2p:{es:"Promoción pre/post evento en todos los canales de Terrivol Music.",en:"Pre/post-event promotion across all Terrivol Music channels."},
-  v3t:{es:"20+ años",en:"20+ years"}, v3p:{es:"De tarima: se adapta a cualquier audiencia, purista o comercial.",en:"On stage: adapts to any audience, purist or commercial."},
-  sponh:{es:"Para patrocinadores",en:"For sponsors"},
+  v1t:{es:"CONTENIDO ÚNICO",en:"UNIQUE CONTENT"}, v1p:{es:"El tema creado en tu evento se publica en redes (+20K alcance) con mención a tu marca.",en:"The track created at your event is posted on socials (+20K reach) tagging your brand."},
+  v2t:{es:"PROMO INTEGRAL",en:"FULL PROMO"}, v2p:{es:"Promoción pre/post evento en todos los canales de Terrivol Music.",en:"Pre/post-event promotion across all Terrivol Music channels."},
+  v3t:{es:"20+ AÑOS",en:"20+ YEARS"}, v3p:{es:"De tarima: se adapta a cualquier audiencia, purista o comercial.",en:"On stage: adapts to any audience, purist or commercial."},
+  sponh:{es:"PARA PATROCINADORES",en:"FOR SPONSORS"},
   sp1:{es:"Integración de marca en el beatmaking en vivo (naming del sample, mentions, logos en proyección)",en:"Brand integration in live beatmaking (sample naming, mentions, logos on projection)"},
   sp2:{es:"Contenido audiovisual profesional co-creado en tu evento",en:"Professional audiovisual content co-created at your event"},
   sp3:{es:"Audiencia joven urbana (núcleo 25–34) con alto engagement en Reels (73,6% del consumo)",en:"Young urban audience (core 25–34) with high Reels engagement (73.6% of consumption)"},
   sp4:{es:"Historial de colaboración con marcas (KFC) y comunidad activa en 3 países",en:"Track record of brand collaboration (KFC) and active community in 3 countries"},
-  k7:{es:"07 — Contratación Exclusiva",en:"07 — Exclusive Booking"}, h_book:{es:'<span class="cy">BOOKING</span> <span class="mg">&amp; MANAGEMENT PRIVADO</span>',en:'<span class="cy">PRIVATE</span> <span class="mg">BOOKING &amp; MANAGEMENT</span>'},
+  k7:{es:"07 — CONTRATACIÓN EXCLUSIVA",en:"07 — EXCLUSIVE BOOKING"}, h_book:{es:'<span class="cy">BOOKING</span> <span class="mg">& MANAGEMENT PRIVADO</span>',en:'<span class="cy">PRIVATE</span> <span class="mg">BOOKING & MANAGEMENT</span>'},
   book_sub:{es:"Cuéntanos tu evento y te respondemos con propuesta confidencial en menos de 48h. El formulario arma tu mensaje de WhatsApp automáticamente.",en:"Tell us about your event and we reply with a confidential proposal in under 48h. The form builds your WhatsApp message automatically."},
   formh2:{es:"Solicita tu cotización privada",en:"Request a private quote"}, formhd:{es:"Respondemos en 24–48h · Presupuesto confidencial · Bogotá y gira nacional/internacional",en:"We reply in 24–48h · Confidential budget · Bogotá & national/international tours"},
   fl1:{es:"Nombre",en:"Name"}, fp1:{es:"Tu nombre",en:"Your name"}, fl2:{es:"Organización / Venue",en:"Organization / Venue"}, fp2:{es:"Empresa, festival, club…",en:"Company, festival, club…"},
   fl3:{es:"Ciudad",en:"City"}, fp3:{es:"Bogotá, Quito…",en:"Bogotá, Quito…"}, fl4:{es:"Fecha tentativa",en:"Tentative date"},
   fl5:{es:"Tipo de evento",en:"Event type"}, fl6:{es:"Mensaje",en:"Message"}, fp6:{es:"Cuéntanos del evento, público esperado, qué necesitas…",en:"Tell us about the event, expected audience, what you need…"},
   formbtn:{es:"📱 Enviar solicitud por WhatsApp",en:"📱 Send request on WhatsApp"},
-  cdh:{es:"Contacto directo",en:"Direct contact"}, rdh:{es:"Redes & streaming",en:"Socials & streaming"},
-  loc1:{es:"Bogotá · Colombia",en:"Bogotá · Colombia"}, loc2:{es:"Disponible para gira",en:"Available for touring"}, loc3:{es:"COL · ECU · LATAM · Europa",en:"COL · ECU · LATAM · Europe"},
+  cdh:{es:"CONTACTO DIRECTO",en:"DIRECT CONTACT"}, rdh:{es:"REDES & STREAMING",en:"SOCIALS & STREAMING"},
+  loc1:{es:"BOGOTÁ · COLOMBIA",en:"BOGOTA · COLOMBIA"}, loc2:{es:"DISPONIBLE PARA GIRA",en:"AVAILABLE FOR TOURING"}, loc3:{es:"COL · ECU · LATAM · EUROPA",en:"COL · ECU · LATAM · EUROPE"},
   ftag:{es:"« La Voix de l'Univers » · Terrivol Music",en:"« La Voix de l'Univers » · Terrivol Music"},
   ft_shop:{es:"Tienda",en:"Shop"}, ft_web:{es:"Web",en:"Web"},
   fnote:{es:"© 2026 Terrivol Music SAS · Jesus King Records · Todos los derechos reservados",en:"© 2026 Terrivol Music SAS · Jesus King Records · All rights reserved"}
@@ -1004,14 +1062,14 @@ const T = {
   document.getElementById('burger').onclick=function(){ mm.classList.toggle('open'); };
   mm.querySelectorAll('a').forEach(function(a){ a.onclick=function(){ mm.classList.remove('open'); }; });
 
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:0.12});
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
   var cio=new IntersectionObserver(function(es){ es.forEach(function(e){
     if(!e.isIntersecting) return; var el=e.target, t=parseInt(el.getAttribute('data-count'),10), suf=el.getAttribute('data-suffix')||'';
     if(isNaN(t)){ return; }
     if(reduce){ el.textContent=(t>=1000?t.toLocaleString('en-US'):t)+suf; cio.unobserve(el); return; }
-    var st=null,dur=1400;
+    var st=null,dur=1200;
     function step(ts){ if(!st)st=ts; var p=Math.min((ts-st)/dur,1), v=Math.floor(p*t);
       el.textContent=(t>=1000?v.toLocaleString('en-US'):v)+suf;
       if(p<1)requestAnimationFrame(step); else el.textContent=(t>=1000?t.toLocaleString('en-US'):t)+suf; }
@@ -1025,14 +1083,10 @@ const T = {
     });
   });
 
-  var glow=document.getElementById('cursorGlow'), heroImg=document.getElementById('heroImg');
-  if(!reduce && window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+  var glow=document.getElementById('cursorGlow');
+  if(glow && !reduce && window.matchMedia('(hover:hover) and (pointer:fine)').matches){
     window.addEventListener('mousemove',function(e){ glow.style.opacity='1'; glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
   }
-  var ticking=false;
-  window.addEventListener('scroll',function(){ if(ticking||reduce) return; ticking=true;
-    requestAnimationFrame(function(){ var y=window.scrollY; if(heroImg&&y<window.innerHeight) heroImg.style.transform='translateY('+(y*0.12)+'px)'; ticking=false; });
-  });
 
   var form=document.getElementById('bookForm'), toast=document.getElementById('toast');
   form.addEventListener('submit',function(ev){ ev.preventDefault();
@@ -1055,8 +1109,8 @@ const T = {
 // GENERADOR DE PDF — usa el motor nativo del navegador (calidad perfecta)
 function generatePDF() {
   const tip = document.createElement('div');
-  tip.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#00e5d4;color:#04110f;padding:14px 22px;border-radius:50px;font-weight:700;font-size:14px;z-index:9999;box-shadow:0 10px 40px rgba(0,229,212,.4);text-align:center;max-width:90vw';
-  tip.innerHTML = '📄 En el diálogo: elige <b>"Guardar como PDF"</b> y activa <b>"Gráficos de fondo"</b>';
+  tip.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#00e5d4;color:#04110f;padding:12px 20px;border-radius:50px;font-weight:700;font-size:13px;z-index:9999;box-shadow:0 8px 25px rgba(0,229,212,.3);text-align:center;max-width:90vw';
+  tip.innerHTML = '📄 Selecciona <b>"Guardar como PDF"</b> y activa <b>"Gráficos de fondo"</b>';
   document.body.appendChild(tip);
   
   document.body.classList.add('printing');
