@@ -151,7 +151,7 @@
 
   /* MUSIC */
   .tracks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:34px}
-  .track{display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 16px;transition:.2s}
+  .track{display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 16px;transition:.2s;cursor:pointer}
   .track:hover{border-color:var(--mag);transform:translateX(4px)}
   .track .tn{font-weight:600;font-size:14.5px}
   .track .ty{color:var(--dim);font-size:12px;margin-left:8px}
@@ -261,20 +261,120 @@
   .reveal{opacity:0;transform:translateY(28px);transition:.7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
 
-  /* PRINT / PDF */
+  /* ===== MODO IMPRESIÓN / PDF ===== */
   @media print{
-    @page{size:A4;margin:0}
-    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    nav,.mobile-menu,.fab,.scroll-hint,.toast,.hero-imgwrap,.hero-grid,.cursor-glow,.dyn-badge,.vid-grid,.kfc-card,.cat-links,.form,.calc,.now .dot,.burger{display:none!important}
-    body{background:var(--bg)}
-    section{padding:12mm 0;page-break-inside:avoid}
-    .hero{min-height:auto;padding:16mm 0}
-    .hero-bg{background:var(--bg)!important}
-    .wrap{max-width:100%}
-    .stats-grid{grid-template-columns:repeat(3,1fr)}
-    a{color:inherit}
+    @page{ size:A4; margin:0; }
+    
+    /* Fuerza colores de fondo reales (crítico para el look negro+cyan+magenta) */
+    *,*::before,*::after{
+      -webkit-print-color-adjust:exact !important;
+      print-color-adjust:exact !important;
+      color-adjust:exact !important;
+    }
+    
+    body{ background:#07070c !important; color:#f3f3f8 !important; }
+    
+    /* Oculta elementos interactivos/no imprimibles */
+    nav, .mobile-menu, .burger, .fab, .scroll-hint, .toast, 
+    .cursor-glow, .dyn-badge, .hero-grid, .lang-pill,
+    .form, .calc, .cat-links, .stageplot svg text,
+    .btn:not(.chip), button { display:none !important; }
+    
+    /* Hero simplificado para portada A4 */
+    .hero{ min-height:auto !important; padding:18mm 0 12mm !important; page-break-after:always; }
+    .hero-bg{ position:absolute !important; inset:0 !important; z-index:0 !important; }
+    .hero-imgwrap{ width:45% !important; right:0 !important; opacity:.9 !important; mask-image:none !important; -webkit-mask-image:none !important; }
+    .hero-inner{ max-width:60% !important; position:relative; z-index:3; }
+    .glitch{ font-size:clamp(40px,7vw,72px) !important; animation:none !important; }
+    .glitch::before,.glitch::after{ display:none !important; }
+    .chips{ gap:6px !important; }
+    .chip{ font-size:9px !important; padding:4px 10px !important; }
+    
+    /* Stats en grid compacto */
+    .stats{ padding:8mm 0 !important; page-break-after:always; }
+    .stats-grid{ grid-template-columns:repeat(3,1fr) !important; gap:14px !important; }
+    .stat .num{ font-size:28px !important; }
+    .stat .lbl{ font-size:9px !important; }
+    
+    /* Secciones con salto de página inteligente */
+    section{ padding:10mm 0 !important; page-break-inside:avoid; }
+    #artista, #show-videos, #musica, #vivo, #el-show, #valor, #booking{
+      page-break-before:always;
+    }
+    #artista:first-of-type, section:nth-of-type(1){ page-break-before:auto; }
+    
+    h2.sec{ font-size:clamp(24px,4vw,36px) !important; }
+    .sec-sub{ font-size:11px !important; }
+    .bio{ font-size:10.5px !important; line-height:1.6 !important; }
+    
+    /* Videos: muestra thumbnails estáticos (los iframes no existen en print) */
+    .thumb iframe{ display:none !important; }
+    .thumb img{ display:block !important; }
+    .vid-grid{ grid-template-columns:repeat(3,1fr) !important; gap:8px !important; }
+    .kfc-card{ flex-direction:column !important; }
+    .kfc-video{ width:100% !important; max-width:100% !important; aspect-ratio:16/9 !important; }
+    
+    /* Tracks más compactos */
+    .tracks{ grid-template-columns:1fr 1fr !important; gap:6px !important; }
+    .track{ padding:8px 12px !important; font-size:11px !important; cursor:default !important; }
+    .disco{ grid-template-columns:repeat(4,1fr) !important; gap:6px !important; }
+    .dcard{ padding:10px !important; }
+    .dcard .dt{ font-size:11px !important; }
+    .dcard .dy{ font-size:9px !important; }
+    
+    /* Live band adaptada */
+    .live-band{ aspect-ratio:21/6 !important; margin-bottom:16px !important; }
+    .two-col{ gap:10px !important; }
+    .panel{ padding:14px 16px !important; }
+    .list li{ font-size:11px !important; padding:5px 0 5px 16px !important; }
+    .fest span{ font-size:10px !important; padding:5px 9px !important; }
+    
+    /* Show experience */
+    .exp{ grid-template-columns:1fr 140px !important; gap:14px !important; padding:18px !important; }
+    .exp p{ font-size:11px !important; line-height:1.55 !important; }
+    .exp-photo{ aspect-ratio:3/4 !important; }
+    .fmt{ grid-template-columns:repeat(3,1fr) !important; gap:8px !important; }
+    .fmt .f{ padding:12px !important; }
+    .fmt .f h5{ font-size:12px !important; }
+    .fmt .f p{ font-size:10px !important; }
+    .rider{ grid-template-columns:repeat(3,1fr) !important; gap:8px !important; }
+    .rider .r{ font-size:10.5px !important; padding:10px 12px !important; }
+    
+    /* Valor */
+    .quote{ font-size:clamp(16px,2.4vw,22px) !important; max-width:32ch !important; }
+    .val-grid{ grid-template-columns:repeat(3,1fr) !important; gap:10px !important; }
+    .val{ padding:14px !important; }
+    .val .vt{ font-size:14px !important; }
+    .val p{ font-size:10px !important; }
+    .sponsors{ padding:16px 18px !important; }
+    
+    /* Booking sin formulario (solo contacto) */
+    #booking .book-grid{ grid-template-columns:1fr !important; }
+    .contact-side{ width:100% !important; }
+    .cc{ padding:14px 16px !important; }
+    .cline{ font-size:11px !important; padding:6px 0 !important; }
+    .wa-duo{ display:flex !important; gap:8px !important; }
+    .wa-duo .btn{ flex:1; justify-content:center; padding:8px 12px !important; font-size:10px !important; }
+    
+    /* Footer compacto */
+    footer{ padding:14px 0 !important; }
+    .foot-brand{ font-size:20px !important; }
+    .foot-socials{ gap:6px !important; margin:10px 0 !important; }
+    .foot-socials a{ font-size:9px !important; padding:5px 10px !important; }
+    .foot-note{ font-size:8px !important; }
+    
+    /* Marca de agua sutil Terrivol en cada página */
+    body::after{
+      content:'TERRIVOL MUSIC · EPK 2026';
+      position:fixed; bottom:4mm; right:8mm;
+      font-family:'Inter',sans-serif; font-size:7px; letter-spacing:2px;
+      color:rgba(154,154,172,.4); pointer-events:none; z-index:999;
+    }
   }
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+  /* Clase auxiliar para forzar render limpio durante la impresión */
+  body.printing *{ transition:none !important; animation:none !important; }
+  body.printing .reveal{ opacity:1 !important; transform:none !important; }
 </style>
 </head>
 <body>
@@ -401,7 +501,7 @@
     <div class="kfc-card reveal">
       <div class="kfc-video ph">
         <video controls preload="metadata" poster="/img/live.jpg" onerror="this.parentNode.classList.remove('img-ok')">
-          <source src="/img/Comercial%20KFC.mp4" type="video/mp4">
+          <source src="/img/Comercial%20KFC%20Pro.mp4" type="video/mp4">
         </video>
       </div>
       <div class="kt">
@@ -427,12 +527,31 @@
   <div class="wrap">
     <div class="reveal"><div class="eyebrow" data-i18n="k3">03 — Catálogo</div><h2 class="sec" data-i18n="h_musica"></h2><p class="sec-sub" data-i18n="musica_sub"></p></div>
     <div class="tracks reveal">
-      <div class="track"><span class="tn">🔥 A Quema Ropa <span class="ty">feat. JPF MC · 2012</span></span><span class="tv">58K</span></div>
-      <div class="track"><span class="tn">🙏 A Prueba de Fe <span class="ty">feat. IYhon Secuaz · 2014</span></span><span class="tv">41K</span></div>
-      <div class="track"><span class="tn">📄 El Papel y Yo <span class="ty">2014</span></span><span class="tv">36K</span></div>
-      <div class="track"><span class="tn">🌋 Magia Magma <span class="ty">2019</span></span><span class="tv">31K</span></div>
-      <div class="track"><span class="tn">💯 Siempre <span class="ty">2015</span></span><span class="tv">20K</span></div>
-      <div class="track"><span class="tn">🏆 BTA SHATTA <span class="ty">2025</span></span><span class="tv">15K</span></div>
+      <!-- TRACKS CLICKEABLES CON LOS IDS QUE ME PASASTE -->
+      <div class="track" onclick="window.open('https://youtu.be/CqGF5D5-lW0','_blank')">
+        <span class="tn">🔥 A Quema Ropa <span class="ty">feat. JPF MC · 2012</span></span>
+        <span class="tv">58K ▶</span>
+      </div>
+      <div class="track" onclick="window.open('https://youtu.be/Sou26QXv_Fs','_blank')">
+        <span class="tn">🙏 A Prueba de Fe <span class="ty">feat. IYhon Secuaz · 2014</span></span>
+        <span class="tv">41K ▶</span>
+      </div>
+      <div class="track" onclick="window.open('https://youtu.be/yFReFGshMXo','_blank')">
+        <span class="tn">📄 El Papel y Yo <span class="ty">2014</span></span>
+        <span class="tv">36K ▶</span>
+      </div>
+      <div class="track" onclick="window.open('https://youtu.be/fASVXZADvow','_blank')">
+        <span class="tn">🌋 Magia Magma <span class="ty">2019</span></span>
+        <span class="tv">31K ▶</span>
+      </div>
+      <div class="track" onclick="window.open('https://youtu.be/3cK_F0dkh3w','_blank')">
+        <span class="tn">💯 Siempre <span class="ty">2015</span></span>
+        <span class="tv">20K ▶</span>
+      </div>
+      <div class="track" onclick="window.open('https://youtu.be/zRM4Ru8fZBw','_blank')">
+        <span class="tn">🏆 BTA SHATTA <span class="ty">2025</span></span>
+        <span class="tv">15K ▶</span>
+      </div>
     </div>
     <div class="reveal"><h2 class="sec" style="font-size:clamp(26px,4vw,40px)" data-i18n="h_disco"></h2></div>
     <div class="disco reveal">
@@ -456,7 +575,12 @@
   <div class="wrap">
     <div class="reveal"><div class="eyebrow" data-i18n="k4">04 — Escenario</div><h2 class="sec" data-i18n="h_vivo"></h2></div>
     <div class="live-band ph reveal">
-      <img src="/img/live.jpg" alt="Cagta Flex en vivo" onload="this.parentNode.classList.add('img-ok')" onerror="this.style.display='none'">
+      <!-- FOTO LIVE NUEVA OPTIMIZADA PARA HORIZONTAL -->
+      <img src="/img/475986741_1274083083624872_1575941453614743733_n.jpg" 
+           alt="Cagta Flex en vivo" 
+           onload="this.parentNode.classList.add('img-ok')" 
+           onerror="this.style.display='none'"
+           style="object-fit:cover; object-position:center 40%;">
       <div class="cap" data-i18n="livecap"></div>
     </div>
     <div class="two-col">
@@ -465,7 +589,7 @@
         <ul class="list">
           <li data-i18n="hi1">🏆 <b>Ganador Suba Al Ruedo 2014</b></li>
           <li data-i18n="hi2">🎤 Hip Hop al Parque 2014</li>
-          <li data-i18n="hi3">🇪 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)</li>
+          <li data-i18n="hi3">🇪🇨 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)</li>
           <li data-i18n="hi4">🚌 Tour Tribu Nómada 2018 (Colombia)</li>
           <li data-i18n="hi5">🤝 Colaboración con marca: <b>KFC</b></li>
         </ul>
@@ -689,7 +813,7 @@ const T = {
   livecap:{es:"Energía de tarima · show en vivo · público real",en:"Stage energy · live show · real crowd"},
   hitos:{es:"Hitos",en:"Milestones"},
   hi1:{es:'🏆 <b>Ganador Suba Al Ruedo 2014</b>',en:'🏆 <b>Suba Al Ruedo 2014 winner</b>'}, hi2:{es:"🎤 Hip Hop al Parque 2014",en:"🎤 Hip Hop al Parque 2014"},
-  hi3:{es:"🇪🇨 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)",en:"🇪🇨 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)"},
+  hi3:{es:"🇪 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)",en:"🇪🇨 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)"},
   hi4:{es:"🚌 Tour Tribu Nómada 2018 (Colombia)",en:"🚌 Tour Tribu Nómada 2018 (Colombia)"},
   hi5:{es:'🤝 Colaboración con marca: <b>KFC</b>',en:'🤝 Brand collaboration: <b>KFC</b>'},
   festh:{es:"Festivales y eventos",en:"Festivals & events"},
@@ -842,374 +966,22 @@ const T = {
   applyLang('es');
 })();
 
-// GENERADOR DE PDF PROFESIONAL
+// GENERADOR DE PDF — usa el motor nativo del navegador (calidad perfecta)
 function generatePDF() {
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-  const pageWidth = 210;
-  const margin = 15;
+  const tip = document.createElement('div');
+  tip.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#00e5d4;color:#04110f;padding:14px 22px;border-radius:50px;font-weight:700;font-size:14px;z-index:9999;box-shadow:0 10px 40px rgba(0,229,212,.4);text-align:center;max-width:90vw';
+  tip.innerHTML = '📄 En el diálogo: elige <b>"Guardar como PDF"</b> y activa <b>"Gráficos de fondo"</b>';
+  document.body.appendChild(tip);
   
-  // Página 1: Portada
-  doc.setFillColor(7, 7, 12);
-  doc.rect(0, 0, pageWidth, 297, 'F');
-  
-  // Título gigante
-  doc.setFontSize(48);
-  doc.setTextColor(0, 229, 212);
-  doc.text('CAGTA', margin, 80);
-  doc.setTextColor(255, 46, 166);
-  doc.text('FLEX', margin, 100);
-  
-  // Subtítulo
-  doc.setFontSize(14);
-  doc.setTextColor(243, 243, 248);
-  doc.text('« La Voix de l\'Univers »', margin, 120);
-  doc.text('Hip-Hop · Boom Bap · Trap · Beatmaking en Vivo', margin, 130);
-  
-  // Pitch box
-  doc.setFillColor(18, 18, 29);
-  doc.roundedRect(margin, 145, pageWidth - 2*margin, 35, 3, 3, 'F');
-  doc.setFontSize(10);
-  doc.setTextColor(0, 229, 212);
-  doc.text('EL DIFERENCIAL:', margin + 5, 155);
-  doc.setTextColor(243, 243, 248);
-  doc.text('El único show de hip-hop donde el beat nace en escena.', margin + 5, 162);
-  doc.text('Un track único por evento que rueda en redes como contenido para TU marca.', margin + 5, 169);
-  
-  // Chips
-  doc.setFontSize(9);
-  let chipX = margin;
-  const chips = [
-    { text: '20+ años de tarima', color: [0, 229, 212] },
-    { text: '380 canciones · Sony Music Publishing', color: [255, 46, 166] },
-    { text: '+20K comunidad', color: [0, 229, 212] },
-    { text: 'Show internacional', color: [255, 46, 166] }
-  ];
-  chips.forEach(chip => {
-    const width = doc.getTextWidth(chip.text) + 8;
-    doc.setDrawColor(...chip.color);
-    doc.roundedRect(chipX, 190, width, 8, 4, 4, 'S');
-    doc.setTextColor(...chip.color);
-    doc.text(chip.text, chipX + 4, 195.5);
-    chipX += width + 5;
-  });
-  
-  // Contacto
-  doc.setFontSize(10);
-  doc.setTextColor(154, 154, 172);
-  doc.text('BOOKING & MANAGEMENT', margin, 215);
-  doc.setTextColor(0, 229, 212);
-  doc.text('terrivolmusiclove@gmail.com', margin, 222);
-  doc.setTextColor(243, 243, 248);
-  doc.text('WhatsApp: +57 310 212 3844', margin, 229);
-  doc.text('Web: terrivolmusic.github.io', margin, 236);
-  
-  // Footer
-  doc.setFontSize(8);
-  doc.setTextColor(106, 106, 124);
-  doc.text('© 2026 Terrivol Music SAS · Jesus King Records', margin, 285);
-  
-  // Página 2: Estadísticas
-  doc.addPage();
-  doc.setFillColor(13, 13, 22);
-  doc.rect(0, 0, pageWidth, 297, 'F');
-  
-  doc.setFontSize(24);
-  doc.setTextColor(0, 229, 212);
-  doc.text('ESTADÍSTICAS CLAVE', margin, 30);
-  
-  const stats = [
-    { num: '20+', lbl: 'Años de carrera' },
-    { num: '380', lbl: 'Canciones · Sony Music Publishing + BMI' },
-    { num: '8', lbl: 'Producciones discográficas' },
-    { num: '4.11K+', lbl: 'Suscriptores YouTube' },
-    { num: '+20K', lbl: 'Comunidad total en redes' },
-    { num: '3', lbl: 'Países en escena · COL · ECU' }
-  ];
-  
-  let statY = 50;
-  stats.forEach(stat => {
-    doc.setFontSize(28);
-    doc.setTextColor(0, 229, 212);
-    doc.text(stat.num, margin, statY);
-    
-    doc.setFontSize(10);
-    doc.setTextColor(154, 154, 172);
-    doc.text(stat.lbl, margin + 30, statY - 2);
-    
-    statY += 18;
-  });
-  
-  // Redes sociales
-  doc.setFontSize(14);
-  doc.setTextColor(255, 46, 166);
-  doc.text('REDES SOCIALES', margin, statY + 10);
-  
-  doc.setFontSize(10);
-  doc.setTextColor(243, 243, 248);
-  const socials = [
-    '📷 Instagram: @cagtaflex · 5.2K+',
-    '👍 Facebook: /CagtaFlex · 2.5K',
-    '▶ YouTube: @CagtaFlex · 4.11K · 186 videos',
-    '🎵 TikTok: @cagtaflex',
-    '🎧 Spotify: Cagta Flex',
-    '🥁 Beats BFYT: +14K subs'
-  ];
-  socials.forEach((s, i) => {
-    doc.text(s, margin, statY + 25 + (i * 8));
-  });
-  
-  // Audiencia
-  doc.setFontSize(10);
-  doc.setTextColor(154, 154, 172);
-  doc.text('AUDIENCIA IG:', margin, statY + 80);
-  doc.text('Núcleo 25–34 años (53,8%) · 63,3% Colombia · 51,9% Bogotá', margin, statY + 88);
-  doc.text('Reels = 73,6% del consumo', margin, statY + 96);
-  
-  // Página 3: Biografía
-  doc.addPage();
-  doc.setFillColor(7, 7, 12);
-  doc.rect(0, 0, pageWidth, 297, 'F');
-  
-  doc.setFontSize(24);
-  doc.setTextColor(0, 229, 212);
-  doc.text('EL ARTISTA', margin, 30);
-  
-  doc.setFontSize(11);
-  doc.setTextColor(220, 220, 230);
-  const bioLines = [
-    'Cagta Flex (Sebastián Andrade, Bogotá) es rapero, productor y fundador del sello',
-    'Terrivol Music, con más de 20 años de carrera en el hip-hop latino. Ganador de',
-    'Suba Al Ruedo 2014 y parte de la alineación de Hip Hop al Parque 2014, ha pasado por',
-    'festivales en Colombia y Ecuador (Ibarra Fest, Tour Tribu Nómada). Registra',
-    '380 canciones en Sony Music Publishing y ocho producciones discográficas, entre ellas',
-    'su álbum «YUNGG FLEX». Su show convierte el escenario en un estudio: crea beats en',
-    'vivo mientras el público elige los samples, dando como resultado un tema único por',
-    'evento. Con colaboraciones con marcas como KFC y una comunidad de +20K seguidores,',
-    'combina raíz boom bap con sonido fresco. Actualmente promociona los sencillos «POP UP»,',
-    '«EL MEJOR» y «MUCHO FENDY». No es solo un artista: es una experiencia.'
-  ];
-  
-  let bioY = 45;
-  bioLines.forEach(line => {
-    doc.text(line, margin, bioY);
-    bioY += 8;
-  });
-  
-  // Página 4: Trayectoria en Vivo
-  doc.addPage();
-  doc.setFillColor(13, 13, 22);
-  doc.rect(0, 0, pageWidth, 297, 'F');
-  
-  doc.setFontSize(24);
-  doc.setTextColor(0, 229, 212);
-  doc.text('TRAYECTORIA EN VIVO', margin, 30);
-  
-  doc.setFontSize(12);
-  doc.setTextColor(255, 46, 166);
-  doc.text('HITOS PRINCIPALES', margin, 45);
-  
-  doc.setFontSize(10);
-  doc.setTextColor(243, 243, 248);
-  const hits = [
-    '🏆 Ganador Suba Al Ruedo 2014',
-    '🎤 Hip Hop al Parque 2014',
-    '🇪🇨 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)',
-    '🚌 Tour Tribu Nómada 2018 (Colombia)',
-    '🤝 Colaboración con marca: KFC'
-  ];
-  
-  let hitY = 55;
-  hits.forEach(hit => {
-    doc.text(hit, margin, hitY);
-    hitY += 8;
-  });
-  
-  doc.setFontSize(12);
-  doc.setTextColor(255, 46, 166);
-  doc.text('FESTIVALES Y EVENTOS', margin, hitY + 10);
-  
-  doc.setFontSize(9);
-  doc.setTextColor(154, 154, 172);
-  const fests = [
-    'Golpe Urbano 2012 · Almas Sin Armas 2016 · Bubaseta 2017 · Back to The Game 2018',
-    'Underground Rhymes Vol.1–4 · Querap 2019 · Aerophone Boogaloop 2020 · Serenata Rap 2020',
-    'Grito a la Memoria 2021 · This is Real 2021 · LatinoLife UK 2021 · Hip Bosa 2021',
-    'Skills Rumble 2021 · DC BASHMAN LA 2023'
-  ];
-  
-  let festY = hitY + 25;
-  fests.forEach(fest => {
-    doc.text(fest, margin, festY);
-    festY += 8;
-  });
-  
-  // Página 5: El Show
-  doc.addPage();
-  doc.setFillColor(7, 7, 12);
-  doc.rect(0, 0, pageWidth, 297, 'F');
-  
-  doc.setFontSize(24);
-  doc.setTextColor(0, 229, 212);
-  doc.text('EL SHOW · BEATMAKING EN VIVO', margin, 30);
-  
-  doc.setFontSize(11);
-  doc.setTextColor(220, 220, 230);
-  const showLines = [
-    'LA EXPERIENCIA: Cagta Flex sube a la tarima con su MPC y convierte el concierto en un',
-    'estudio abierto. El público elige los samples, él construye el beat frente a todos y lo',
-    'rapea en vivo. Cada evento termina con un tema único e irrepetible — contenido',
-    'espontáneo que luego se publica en las redes de Terrivol Music (+20K alcance)',
-    'mencionando al evento y sus aliados.'
-  ];
-  
-  let showY = 45;
-  showLines.forEach(line => {
-    doc.text(line, margin, showY);
-    showY += 8;
-  });
-  
-  doc.setFontSize(12);
-  doc.setTextColor(255, 46, 166);
-  doc.text('FORMATOS DISPONIBLES', margin, showY + 10);
-  
-  doc.setFontSize(10);
-  doc.setTextColor(243, 243, 248);
-  const formats = [
-    '• Versión club: remixes de clásicos hip-hop / urbano',
-    '• Versión festival: clásicos + freestyle con bandas en vivo',
-    '• Duración: 45–60 min (beatmaking) · 60–90 min (show + DJ)'
-  ];
-  
-  let fmtY = showY + 25;
-  formats.forEach(fmt => {
-    doc.text(fmt, margin, fmtY);
-    fmtY += 8;
-  });
-  
-  doc.setFontSize(12);
-  doc.setTextColor(255, 46, 166);
-  doc.text('RIDÉR TÉCNICO RESUMIDO', margin, fmtY + 10);
-  
-  doc.setFontSize(10);
-  doc.setTextColor(243, 243, 248);
-  const rider = [
-    '🎚 Audio: 2 micrófonos inalámbricos · consola para DJ · monitores',
-    '🖥 Visuals: Pantalla para proyecciones (opcional)',
-    '📐 Espacio: Tarima mínima 4×4 m · ridér completo bajo solicitud'
-  ];
-  
-  let ridY = fmtY + 25;
-  rider.forEach(r => {
-    doc.text(r, margin, ridY);
-    ridY += 8;
-  });
-  
-  // Página 6: Propuesta de Valor
-  doc.addPage();
-  doc.setFillColor(13, 13, 22);
-  doc.rect(0, 0, pageWidth, 297, 'F');
-  
-  doc.setFontSize(24);
-  doc.setTextColor(0, 229, 212);
-  doc.text('PROPUESTA DE VALOR', margin, 30);
-  
-  doc.setFontSize(14);
-  doc.setTextColor(255, 46, 166);
-  doc.text('"El único show de hip-hop donde el beat nace en escena: un track único por evento', margin, 45);
-  doc.text('que rueda en redes como contenido para TU marca."', margin, 55);
-  
-  doc.setFontSize(12);
-  doc.setTextColor(0, 229, 212);
-  doc.text('CONTENIDO ÚNICO', margin, 75);
-  doc.setFontSize(10);
-  doc.setTextColor(243, 243, 248);
-  doc.text('El tema creado en tu evento se publica en redes (+20K alcance) con mención a tu marca.', margin, 85);
-  
-  doc.setFontSize(12);
-  doc.setTextColor(0, 229, 212);
-  doc.text('PROMO INTEGRAL', margin, 105);
-  doc.setFontSize(10);
-  doc.setTextColor(243, 243, 248);
-  doc.text('Promoción pre/post evento en todos los canales de Terrivol Music.', margin, 115);
-  
-  doc.setFontSize(12);
-  doc.setTextColor(0, 229, 212);
-  doc.text('20+ AÑOS DE TARIMA', margin, 135);
-  doc.setFontSize(10);
-  doc.setTextColor(243, 243, 248);
-  doc.text('Se adapta a cualquier audiencia, purista o comercial.', margin, 145);
-  
-  doc.setFontSize(12);
-  doc.setTextColor(255, 46, 166);
-  doc.text('PARA PATROCINADORES', margin, 165);
-  doc.setFontSize(10);
-  doc.setTextColor(243, 243, 248);
-  const sponsors = [
-    '• Integración de marca en el beatmaking en vivo (naming del sample, mentions, logos en proyección)',
-    '• Contenido audiovisual profesional co-creado en tu evento',
-    '• Audiencia joven urbana (núcleo 25–34) con alto engagement en Reels (73,6% del consumo)',
-    '• Historial de colaboración con marcas (KFC) y comunidad activa en 3 países'
-  ];
-  
-  let sponY = 175;
-  sponsors.forEach(s => {
-    doc.text(s, margin, sponY);
-    sponY += 8;
-  });
-  
-  // Página 7: Contacto Final
-  doc.addPage();
-  doc.setFillColor(7, 7, 12);
-  doc.rect(0, 0, pageWidth, 297, 'F');
-  
-  doc.setFontSize(24);
-  doc.setTextColor(0, 229, 212);
-  doc.text('BOOKING & MANAGEMENT PRIVADO', margin, 30);
-  
-  doc.setFontSize(14);
-  doc.setTextColor(255, 46, 166);
-  doc.text('CONTACTO DIRECTO', margin, 50);
-  
-  doc.setFontSize(12);
-  doc.setTextColor(243, 243, 248);
-  doc.text('📩 Email: terrivolmusiclove@gmail.com', margin, 65);
-  doc.text('📱 WhatsApp Principal: +57 310 212 3844', margin, 75);
-  doc.text('📱 WhatsApp Alterno: +57 314 280 7283', margin, 85);
-  doc.text('🌐 Web: terrivolmusic.github.io', margin, 95);
-  doc.text('🛍 Tienda: cagta-flex-shop.fourthwall.com', margin, 105);
-  
-  doc.setFontSize(14);
-  doc.setTextColor(255, 46, 166);
-  doc.text('REDES & STREAMING', margin, 125);
-  
-  doc.setFontSize(12);
-  doc.setTextColor(243, 243, 248);
-  doc.text('📷 Instagram: @cagtaflex', margin, 140);
-  doc.text('▶ YouTube: @CagtaFlex', margin, 150);
-  doc.text('👍 Facebook: /CagtaFlex', margin, 160);
-  doc.text('🎵 TikTok: @cagtaflex', margin, 170);
-  doc.text('🎧 Spotify: Cagta Flex', margin, 180);
-  
-  doc.setFontSize(14);
-  doc.setTextColor(0, 229, 212);
-  doc.text('UBICACIÓN & DISPONIBILIDAD', margin, 200);
-  
-  doc.setFontSize(12);
-  doc.setTextColor(243, 243, 248);
-  doc.text('📍 Base: Bogotá · Colombia', margin, 215);
-  doc.text('🌍 Disponible para gira: COL · ECU · LATAM · Europa', margin, 225);
-  
-  // Footer
-  doc.setFontSize(8);
-  doc.setTextColor(106, 106, 124);
-  doc.text('© 2026 Terrivol Music SAS · Jesus King Records · Todos los derechos reservados', margin, 285);
-  
-  // Guardar PDF
-  doc.save('Cagta-Flex-EPK-2026.pdf');
+  document.body.classList.add('printing');
+  setTimeout(function(){
+    window.print();
+    setTimeout(function(){ 
+      document.body.classList.remove('printing'); 
+      tip.remove();
+    }, 800);
+  }, 200);
 }
 </script>
-
-<!-- Librería jsPDF para generar PDFs -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 </html>
