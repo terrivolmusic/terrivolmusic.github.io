@@ -22,7 +22,7 @@ nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;
 .logo span{color:var(--rose)}
 nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
 .pdp{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;padding:50px 0 90px;align-items:start}
-#main{aspect-ratio:3/4;object-fit:cover;cursor:zoom-in;border:1px solid var(--line)}
+#main{aspect-ratio:3/4;object-fit:cover;cursor:pointer;border:1px solid var(--line)}
 .thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:10px}
 .thumbs img{aspect-ratio:3/4;object-fit:cover;cursor:pointer;opacity:.55;border:1px solid transparent;transition:.3s}
 .thumbs img.on,.thumbs img:hover{opacity:1;border-color:var(--rose)}
@@ -61,17 +61,18 @@ h2{font-size:clamp(28px,4.6vw,48px);font-weight:800;letter-spacing:.05em;margin-
 .films figure.hasvid::after{content:"▶ TAP TO PLAY";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Montserrat';font-size:10px;letter-spacing:.3em;color:var(--txt);background:rgba(0,0,0,.65);padding:10px 18px;border:1px solid var(--rose);z-index:3;pointer-events:none;transition:.3s}
 .films figure.playing::after{opacity:0}
 .camp .hero{margin-bottom:14px}
-.camp .hero img{aspect-ratio:16/10;object-fit:cover}
+.camp .hero img{aspect-ratio:16/10;object-fit:cover;cursor:pointer}
 .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.cgrid img{aspect-ratio:3/4;object-fit:cover}
+.cgrid img{aspect-ratio:3/4;object-fit:cover;cursor:pointer}
 .manifesto{max-width:640px;color:#c9c9d2;line-height:1.9;margin-top:26px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
 .two p{color:#c9c9d2;line-height:1.9;margin-bottom:16px}
+.two img{cursor:pointer}
 .specs{list-style:none;margin-top:20px}
 .specs li{padding:11px 0;border-bottom:1px solid var(--line);font-size:13px;letter-spacing:.12em;color:#d8d8de}
 .specs li::before{content:"— ";color:var(--rose)}
 .sound{border:1px solid var(--line);background:linear-gradient(140deg,rgba(232,180,160,.10),rgba(123,44,191,.12));padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;align-items:center}
-.sound img{aspect-ratio:1;object-fit:cover;border:1px solid var(--line)}
+.sound img{aspect-ratio:1;object-fit:cover;border:1px solid var(--line);cursor:pointer}
 .sound p{color:#c9c9d2;line-height:1.9;margin:14px 0 26px}
 .sound .btn{width:auto;padding:16px 36px}
 .ugc{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -97,7 +98,7 @@ details p{margin-top:14px;color:var(--muted);font-size:13px;line-height:1.9}
 .sticky .p{font-family:'Montserrat';font-weight:600;font-size:14px}
 .sticky .btn{width:auto;padding:14px 26px;min-height:48px}
 footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;color:var(--muted);border-top:1px solid var(--line);padding-bottom:calc(60px + env(safe-area-inset-bottom))}
-#lb{position:fixed;inset:0;background:rgba(5,5,8,.96);z-index:100;display:none;align-items:center;justify-content:center;padding:4vh}
+#lb{position:fixed;inset:0;background:rgba(5,5,8,.96);z-index:100;display:none;align-items:center;justify-content:center;padding:4vh;cursor:zoom-out}
 #lb img{max-height:92vh;width:auto;max-width:92vw}
 .reveal{opacity:0;transform:translateY(28px);transition:.9s ease}
 .reveal.on{opacity:1;transform:none}
@@ -166,14 +167,14 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 
 <div class="wrap pdp">
   <div>
-    <img id="main" data-img="Creative_reflection_shot__model_with_202605141541 (1)" alt="BURGUNDY PROTOCOL iced rose gold watch">
+    <img id="main" data-img="Creative_reflection_shot__model_with_202605141541" data-alt="Low_angle_shot_looking_up_202605141538" alt="BURGUNDY PROTOCOL iced rose gold watch">
     <div class="thumbs">
-      <img class="on" data-img="Creative_reflection_shot__model_with_202605141541 (1)" alt="Campaign">
-      <img data-img="Square_1_1_e-commerce_shot_Blend_202605131654 (1)" alt="Model holding watch">
-      <img data-img="foto_de_producto_2K_202609031739" alt="Product">
-      <img data-img="Extreme_macro_close-up_of_a_202605131641 (1)" alt="Dial macro">
-      <img data-img="Professional_luxury_product_photography_of_202605131640" alt="Halo">
-      <img data-img="b_producto_en_empaque_" alt="Box">
+      <img class="on" data-img="Creative_reflection_shot__model_with_202605141541" data-alt="Low_angle_shot_looking_up_202605141538" alt="Campaign">
+      <img data-img="foto_de_producto_2K_202609031739" data-alt="Extreme_macro_close-up_of_a_202605131641" alt="Product">
+      <img data-img="Extreme_macro_close-up_of_a_202605131641" data-alt="Macro_close-up_of_a_luxury_202605131627" alt="Dial macro">
+      <img data-img="Professional_luxury_product_photography_of_202605131640" data-alt="Macro_close-up_of_a_luxury_202605131627" alt="Halo">
+      <img data-img="b_producto_en_empaque_" data-alt="foto_de_producto_2K_202609031739" alt="Box">
+      <img data-img="Low_angle_shot_looking_up_202605141538" data-alt="Creative_reflection_shot__model_with_202605141541" alt="Interior">
     </div>
   </div>
 
@@ -202,27 +203,27 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="kicker reveal">THE FILM</div>
   <h2 class="reveal">Tick tock, in rose gold.</h2>
   <div class="films reveal">
-    <figure><img data-img="Creative_reflection_shot__model_with_202605141541 (1)" alt="Night drive film"><video muted loop playsinline preload="metadata" data-src="pomelli_photoshoot_video_9_16_0903"></video></figure>
-    <figure><img data-img="Square_e-commerce_photography_female_model_202605131650" alt="On wrist film"><video muted loop playsinline preload="metadata" data-src="sin-t-tulo-video-profesional-venta"></video></figure>
-    <figure><img data-img="Extreme_macro_close-up_of_a_202605131641" alt="Dial film"><video muted loop playsinline preload="metadata" data-src="sin-t-tulo-video-ultrarealista-muestra"></video></figure>
+    <figure><img data-img="a_producto_modelo_ugc_" data-alt="Gemini_Generated_Image_plveiqplveiqplve" alt="On wrist film"><video muted loop playsinline preload="metadata" data-src="sin-t-tulo-video-profesional-venta"></video></figure>
+    <figure><img data-img="Gemini_Generated_Image_plveiqplveiqplve" data-alt="a_producto_modelo_ugc_" alt="Driving film"><video muted loop playsinline preload="metadata" data-src="sin-t-tulo-video-ultrarealista-muestra"></video></figure>
+    <figure><img data-img="Gemini_Generated_Image_m4uyu3m4uyu3m4uy" data-alt="Low_angle_shot_looking_up_202605141538" alt="Editorial film"></figure>
   </div>
 </section>
 
 <section class="wrap camp" style="padding-top:0">
   <div class="kicker reveal">THE CAMPAIGN</div>
   <h2 class="reveal">Subtle in daylight.<br>Loud at night.</h2>
-  <div class="hero reveal"><img data-img="Creative_reflection_shot__model_with_202605141541 (1)" alt="Neon car campaign"></div>
+  <div class="hero reveal"><img data-img="Low_angle_shot_looking_up_202605141538" data-alt="Creative_reflection_shot__model_with_202605141541" alt="Neon interior campaign"></div>
   <div class="cgrid reveal">
-    <img data-img="Square_1_1_e-commerce_shot_Blend_202605131654" alt="Hand frame">
-    <img data-img="Gemini_Generated_Image_m4uyu3m4uyu3m4uy" alt="Blazer editorial">
-    <img data-img="Low_angle_shot_looking_up_202605141538 (1)" alt="Interior purple light">
+    <img data-img="Gemini_Generated_Image_plveiqplveiqplve" data-alt="a_producto_modelo_ugc_" alt="Driving editorial">
+    <img data-img="Gemini_Generated_Image_m4uyu3m4uyu3m4uy" data-alt="Low_angle_shot_looking_up_202605141538" alt="Blazer editorial">
+    <img data-img="a_producto_modelo_ugc_" data-alt="Gemini_Generated_Image_plveiqplveiqplve" alt="Wrist editorial">
   </div>
   <p class="manifesto reveal">A flooded diamond dial, a diamond-cut bezel and a baguette-linked bracelet in rose gold tone — cut to the frequency of "Burgundy Protocol". Engineered for rooms where the bass lives: subtle enough for daylight, loud enough for the night.</p>
 </section>
 
 <section class="wrap" style="padding-top:0">
   <div class="sound reveal">
-    <img data-img="Macro_close-up_of_a_luxury_202605131627" alt="Rose gold watch with neon rings">
+    <img data-img="Macro_close-up_of_a_luxury_202605131627" data-alt="Professional_luxury_product_photography_of_202605131640" alt="Rose gold watch with neon rings">
     <div>
       <div class="kicker">THE SOUNDTRACK</div>
       <h2 style="margin-bottom:0">Wear the drop.<br>Hear the drop.</h2>
@@ -247,8 +248,8 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
       </ul>
     </div>
     <div>
-      <img data-img="Extreme_macro_close-up_of_a_202605131641 (1)" data-alt="Macro_close-up_of_a_luxury_202605131627" alt="Dial macro" style="margin-bottom:14px">
-      <img data-img="b_producto_en_empaque_" alt="Presentation box">
+      <img data-img="Extreme_macro_close-up_of_a_202605131641" data-alt="Macro_close-up_of_a_luxury_202605131627" alt="Dial macro" style="margin-bottom:14px">
+      <img data-img="b_producto_en_empaque_" data-alt="foto_de_producto_2K_202609031739" alt="Presentation box">
     </div>
   </div>
 </section>
@@ -257,10 +258,10 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="kicker reveal">ON WRIST</div>
   <h2 class="reveal">The night already approved it.</h2>
   <div class="ugc reveal">
-    <figure><img data-img="a_producto_modelo_ugc_" alt="Wrist UGC"></figure>
-    <figure><img data-img="Gemini_Generated_Image_plveiqplveiqplve" alt="Driving UGC"></figure>
-    <figure><img data-img="Square_1_1_e-commerce_shot_Blend_202605131654 (1)" alt="Neon ring UGC"></figure>
-    <figure><img data-img="Gemini_Generated_Image_m4uyu3m4uyu3m4uy" alt="Editorial UGC"></figure>
+    <figure><img data-img="a_producto_modelo_ugc_" data-alt="Gemini_Generated_Image_plveiqplveiqplve" alt="Wrist UGC"></figure>
+    <figure><img data-img="Gemini_Generated_Image_plveiqplveiqplve" data-alt="a_producto_modelo_ugc_" alt="Driving UGC"></figure>
+    <figure><img data-img="Gemini_Generated_Image_m4uyu3m4uyu3m4uy" data-alt="Low_angle_shot_looking_up_202605141538" alt="Editorial UGC"></figure>
+    <figure><img data-img="Low_angle_shot_looking_up_202605141538" data-alt="Creative_reflection_shot__model_with_202605141541" alt="Interior UGC"></figure>
   </div>
 </section>
 
@@ -324,7 +325,7 @@ const PAYHIP="https://payhip.com/b/zMdek";
 document.getElementById("buyBtn").onclick=()=>{window.location.href=PAYHIP;};
 document.getElementById("buyBtn2").onclick=()=>{window.location.href=PAYHIP;};
 
-// LOADER UNIVERSAL ANTI-DUPLICADOS + ANTI-FORMATO
+// LOADER UNIVERSAL v6 — CODIFICA el nombre (arregla espacios / (1) / guiones de raíz)
 const IMG_BASE="/img/";
 const EXT=[".jpg",".jpeg",".png",".webp",".JPG",".JPEG",".PNG",".WEBP",".jfif",".JFIF",".avif",".AVIF",".gif",".GIF"];
 const PH="data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><rect width="600" height="800" fill="#0A0A0F"/><circle cx="300" cy="400" r="180" fill="none" stroke="#7B2CBF" stroke-opacity=".35" stroke-width="2"/><circle cx="300" cy="400" r="120" fill="none" stroke="#E8B4A0" stroke-opacity=".3" stroke-width="1"/><text x="300" y="392" fill="#F5F5F7" font-family="Arial" font-size="26" letter-spacing="8" text-anchor="middle" font-weight="700">BFYT</text><text x="300" y="428" fill="#9A9AA5" font-family="Arial" font-size="14" letter-spacing="4" text-anchor="middle">ICED</text></svg>');
@@ -335,49 +336,53 @@ function variants(b){
   v.push(b+" (1)", b+" (2)");
   return v;
 }
+function buildURL(name,ext){ return IMG_BASE+encodeURIComponent(name)+ext; }
 function loadImg(img){
   const bases=[img.dataset.img];
   if(img.dataset.alt) bases.push(img.dataset.alt);
   const low=img.dataset.img.toLowerCase();
   if(low!==img.dataset.img) bases.push(low);
   const queue=[];
-  bases.forEach(b=>{ variants(b).forEach(v=>{ EXT.forEach(e=>queue.push(v+e)); }); });
+  bases.forEach(b=>{ variants(b).forEach(v=>{ EXT.forEach(e=>queue.push(buildURL(v,e))); }); });
   let i=0;
-  const next=()=>{ if(i<queue.length){ img.src=IMG_BASE+queue[i++]; } else { img.src=PH; console.warn("[BFYT] asset missing:", img.dataset.img); } };
+  const next=()=>{ if(i<queue.length){ img.src=queue[i++]; } else { img.src=PH; console.warn("[BFYT] asset missing:", img.dataset.img); } };
   img.onerror=next; next();
 }
 document.querySelectorAll("img[data-img]").forEach(img=>loadImg(img));
 
-// Galería
+// Galería (tap thumb = cambiar principal)
 const main=document.getElementById("main");
 document.querySelectorAll(".thumbs img").forEach(t=>t.onclick=()=>{
   document.querySelectorAll(".thumbs img").forEach(x=>x.classList.remove("on"));
   t.classList.add("on");
-  main.dataset.img=t.dataset.img;
+  main.dataset.img=t.dataset.img; main.dataset.alt=t.dataset.alt||"";
   loadImg(main);
 });
 
-// Lightbox
+// LIGHTBOX en TODO lo clicable (cursor mano ya puesto en CSS)
 const lb=document.getElementById("lb");
-main.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=main.src;};
-document.querySelectorAll(".cgrid img,.ugc img").forEach(i=>i.onclick=()=>{lb.style.display="flex";lb.firstElementChild.src=i.src;});
+function openLB(src){ lb.style.display="flex"; lb.firstElementChild.src=src; }
+main.onclick=()=>openLB(main.src);
+document.querySelectorAll(".cgrid img,.ugc img,.two img,.sound img,.camp .hero img").forEach(i=>i.onclick=()=>openLB(i.src));
 lb.onclick=()=>lb.style.display="none";
 
-// FILMS: foto siempre visible + probe de extensión de video
+// FILMS: foto siempre visible + probe de extensión de video (codificada)
 const EXTV=[".mp4",".mov",".webm",".MP4",".MOV"];
 document.querySelectorAll(".films figure").forEach(fig=>{
   const video=fig.querySelector("video");
   const img=fig.querySelector("img");
-  if(!video) return;
+  if(!video){ // slot solo-foto: tap amplía
+    fig.onclick=()=>openLB(img.src); return;
+  }
   const base=video.dataset.src;
   let vi=0;
-  const nextSrc=()=>{ if(vi<EXTV.length){ video.src=IMG_BASE+base+EXTV[vi++]; } else { fig.dataset.novideo="1"; fig.classList.remove("hasvid"); } };
+  const nextSrc=()=>{ if(vi<EXTV.length){ video.src=IMG_BASE+encodeURIComponent(base)+EXTV[vi++]; } else { fig.dataset.novideo="1"; fig.classList.remove("hasvid"); } };
   video.addEventListener("error",nextSrc);
   video.addEventListener("canplay",()=>fig.classList.add("hasvid"));
   nextSrc();
   fig.addEventListener("click",(e)=>{
     e.stopPropagation();
-    if(fig.dataset.novideo || !fig.classList.contains("hasvid")){ lb.style.display="flex"; lb.firstElementChild.src=img.src; return; }
+    if(fig.dataset.novideo || !fig.classList.contains("hasvid")){ openLB(img.src); return; }
     if(video.paused){ video.play().then(()=>fig.classList.add("playing")).catch(()=>{}); }
     else { video.pause(); fig.classList.remove("playing"); }
   });
