@@ -205,7 +205,7 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="films reveal">
     <figure><img data-img="a_producto_modelo_ugc_" data-alt="Gemini_Generated_Image_plveiqplveiqplve" alt="On wrist film"><video muted loop playsinline preload="metadata" data-src="sin-t-tulo-video-profesional-venta"></video></figure>
     <figure><img data-img="Gemini_Generated_Image_plveiqplveiqplve" data-alt="a_producto_modelo_ugc_" alt="Driving film"><video muted loop playsinline preload="metadata" data-src="sin-t-tulo-video-ultrarealista-muestra"></video></figure>
-    <figure><img data-img="Gemini_Generated_Image_m4uyu3m4uyu3m4uy" data-alt="Low_angle_shot_looking_up_202605141538" alt="Editorial film"></figure>
+    <figure><img data-img="Professional_luxury_product_photography_of_202605131640" data-alt="foto_de_producto_2K_202609031739" alt="Studio film"><video muted loop playsinline preload="metadata" data-src="pomelli_photoshoot_video_9_16_0903"></video></figure>
   </div>
 </section>
 
@@ -371,9 +371,7 @@ const EXTV=[".mp4",".mov",".webm",".MP4",".MOV"];
 document.querySelectorAll(".films figure").forEach(fig=>{
   const video=fig.querySelector("video");
   const img=fig.querySelector("img");
-  if(!video){ // slot solo-foto: tap amplía
-    fig.onclick=()=>openLB(img.src); return;
-  }
+  if(!video){ fig.onclick=()=>openLB(img.src); return; }
   const base=video.dataset.src;
   let vi=0;
   const nextSrc=()=>{ if(vi<EXTV.length){ video.src=IMG_BASE+encodeURIComponent(base)+EXTV[vi++]; } else { fig.dataset.novideo="1"; fig.classList.remove("hasvid"); } };
