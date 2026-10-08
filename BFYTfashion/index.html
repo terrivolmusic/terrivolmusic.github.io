@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#0A0A0F">
+<title>BFYT WORLD — Where Sound Dresses | Official Drops</title>
+<meta name="description" content="BFYT WORLD: limited fashion & iced jewelry drops, each designed to an official Beats BFYT track. Free worldwide shipping.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0F;--purple:#7B2CBF;--cyan:#00F5FF;--rose:#E8B4A0;--txt:#F5F5F7;--muted:#9A9AA5;--line:rgba(255,255,255,.08)}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom)}
+h1,h2,h3{font-family:'Montserrat',sans-serif;text-transform:uppercase}
+img{display:block;width:100%;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.05;z-index:99;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E")}
+nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;backdrop-filter:blur(14px);background:rgba(10,10,15,.85);border-bottom:1px solid var(--line)}
+.logo{font-family:'Montserrat';font-weight:800;letter-spacing:.25em;font-size:14px}
+.logo span{color:var(--cyan)}
+nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
+nav .tag b{color:var(--rose)}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:90px 24px 70px;position:relative}
+.hero::before{content:"";position:absolute;top:18%;left:50%;transform:translateX(-50%);width:min(680px,90vw);height:min(680px,90vw);background:radial-gradient(circle,rgba(123,44,191,.22),rgba(0,245,255,.06) 45%,transparent 70%);filter:blur(20px);z-index:0;pointer-events:none}
+.hero>*{position:relative;z-index:1}
+.emblem{font-family:'Montserrat';font-weight:800;letter-spacing:.5em;font-size:clamp(34px,8vw,86px);line-height:1}
+.emblem span{color:var(--rose)}
+.hero .sub{margin-top:18px;font-size:clamp(12px,2.4vw,16px);letter-spacing:.45em;color:var(--cyan);text-transform:uppercase}
+.hero p{max-width:560px;margin:26px auto 0;color:#c9c9d2;line-height:1.9;font-size:15px}
+.hero .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:'Montserrat';font-weight:600;font-size:13px;letter-spacing:.25em;text-transform:uppercase;padding:18px 40px;border:1px solid var(--txt);cursor:pointer;transition:.3s;min-height:54px;background:var(--txt);color:#000}
+.btn:hover{box-shadow:0 0 40px rgba(0,245,255,.4);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--txt);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 30px rgba(0,245,255,.25)}
+.scrollcue{margin-top:54px;font-size:10px;letter-spacing:.4em;color:var(--muted);animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(8px);opacity:.5}}
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;white-space:nowrap}
+.marquee div{display:inline-block;animation:mq 26s linear infinite;font-family:'Montserrat';font-size:12px;letter-spacing:.4em;color:var(--muted)}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+section{padding:90px 0}
+.kicker{font-size:11px;letter-spacing:.45em;color:#b06cf0;margin-bottom:14px}
+h2{font-size:clamp(26px,4.6vw,46px);font-weight:800;letter-spacing:.05em;margin-bottom:30px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dcard{border:1px solid var(--line);background:rgba(255,255,255,.02);overflow:hidden;transition:.35s;display:block}
+.dcard:hover{border-color:var(--rose);transform:translateY(-4px);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.dcard .ph{aspect-ratio:4/5;overflow:hidden;position:relative}
+.dcard .ph img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.dcard:hover .ph img{transform:scale(1.05)}
+.badge{position:absolute;top:14px;left:14px;z-index:2;font-family:'Montserrat';font-weight:600;font-size:9px;letter-spacing:.3em;padding:7px 12px;background:rgba(10,10,15,.7);backdrop-filter:blur(8px);border:1px solid var(--line)}
+.badge.fash{color:var(--cyan)}
+.badge.iced{color:var(--rose)}
+.dcard .info{padding:22px 22px 26px}
+.dcard h3{font-size:16px;letter-spacing:.08em;margin-bottom:6px}
+.dcard .meta{font-size:10px;letter-spacing:.25em;color:var(--muted);margin-bottom:14px}
+.dcard .pr{font-family:'Montserrat';font-weight:600;font-size:20px}
+.dcard .pr s{color:var(--muted);font-weight:300;font-size:14px;margin-right:10px}
+.dcard .pr em{font-style:normal;color:var(--rose)}
+.dcard .go{margin-top:16px;font-family:'Montserrat';font-size:11px;letter-spacing:.3em;color:var(--cyan)}
+.icedfeat{border:1px solid var(--line);background:linear-gradient(140deg,rgba(232,180,160,.07),rgba(123,44,191,.12));display:grid;grid-template-columns:.9fr 1.1fr;overflow:hidden;margin-top:18px}
+.icedfeat .ph{aspect-ratio:1/1;overflow:hidden;position:relative}
+.icedfeat .ph img{width:100%;height:100%;object-fit:cover}
+.icedfeat .info{padding:46px 44px;display:flex;flex-direction:column;justify-content:center}
+.icedfeat h3{font-size:clamp(22px,3vw,32px);letter-spacing:.05em;margin:10px 0 8px}
+.icedfeat .meta{font-size:11px;letter-spacing:.25em;color:var(--muted);margin-bottom:18px}
+.icedfeat p{color:#c9c9d2;line-height:1.8;font-size:14px;margin-bottom:22px}
+.icedfeat .pr{font-family:'Montserrat';font-weight:600;font-size:26px;margin-bottom:24px}
+.icedfeat .pr s{color:var(--muted);font-weight:300;font-size:17px;margin-right:12px}
+.icedfeat .pr em{font-style:normal;color:var(--rose)}
+.icedfeat .btn{width:fit-content}
+.sys{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.scard{border:1px solid var(--line);background:rgba(255,255,255,.02);padding:32px 26px}
+.scard .n{font-family:'Montserrat';font-weight:800;font-size:13px;letter-spacing:.3em;color:var(--rose);margin-bottom:14px}
+.scard h3{font-size:15px;letter-spacing:.1em;margin-bottom:12px}
+.scard p{font-size:13px;color:var(--muted);line-height:1.8}
+.sound{border:1px solid var(--line);background:linear-gradient(140deg,rgba(123,44,191,.14),rgba(0,245,255,.05));padding:50px 44px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.sound h2{margin-bottom:14px}
+.sound p{color:#c9c9d2;line-height:1.9;margin-bottom:24px}
+.beats{list-style:none}
+.beats li{padding:14px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:13px;letter-spacing:.08em}
+.beats li:first-child{border-top:1px solid var(--line)}
+.beats .bn{color:var(--txt)}
+.beats .bd{color:var(--muted);font-size:11px;letter-spacing:.2em}
+.beats a{color:var(--cyan);font-family:'Montserrat';font-size:10px;letter-spacing:.25em;white-space:nowrap}
+.beats a:hover{text-shadow:0 0 14px rgba(0,245,255,.6)}
+.listbox{border:1px solid var(--line);background:linear-gradient(140deg,rgba(0,245,255,.06),rgba(123,44,191,.12));padding:48px;text-align:center}
+.listbox p{color:#c9c9d2;font-size:13px;line-height:1.8}
+.listform{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.listform input{background:rgba(0,0,0,.45);border:1px solid var(--line);color:var(--txt);padding:16px 18px;font-family:'Inter';font-size:14px;outline:none;min-width:260px;flex:1;min-height:50px}
+.listform input:focus{border-color:var(--cyan)}
+.listform .btn{width:auto;padding:16px 34px;margin:0;flex:0 0 auto}
+.listok{margin-top:18px;color:var(--cyan);font-family:'Montserrat';letter-spacing:.2em;font-size:12px}
+footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;color:var(--muted);border-top:1px solid var(--line);padding-bottom:calc(60px + env(safe-area-inset-bottom))}
+footer .fl{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+footer .fl a:hover{color:var(--cyan)}
+.reveal{opacity:0;transform:translateY(28px);transition:.9s ease}
+.reveal.on{opacity:1;transform:none}
+@media(max-width:1024px){section{padding:70px 0}.sound{padding:38px;gap:28px}.icedfeat .info{padding:34px 30px}}
+@media(max-width:768px){
+  .wrap{padding:0 16px}
+  nav{padding:14px 16px}
+  .logo{font-size:12px;letter-spacing:.2em}
+  nav .tag{font-size:9px}
+  .hero{min-height:auto;padding:70px 16px 56px}
+  .hero p{font-size:14px}
+  .btn{padding:16px 26px;font-size:12px;letter-spacing:.2em}
+  section{padding:56px 0}
+  h2{font-size:clamp(22px,6vw,30px);margin-bottom:22px}
+  .grid{grid-template-columns:1fr;gap:14px}
+  .icedfeat{grid-template-columns:1fr}
+  .icedfeat .ph{aspect-ratio:4/3}
+  .sys{grid-template-columns:1fr;gap:12px}
+  .sound{grid-template-columns:1fr;padding:28px 20px;text-align:center}
+  .beats li{flex-direction:column;align-items:flex-start;gap:6px}
+  .listbox{padding:32px 20px}
+  .listform{flex-direction:column;gap:10px}
+  .listform input{min-width:100%;width:100%}
+  .listform .btn{width:100%}
+}
+@media(max-width:380px){.emblem{letter-spacing:.3em}.hero .sub{letter-spacing:.3em}}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<nav>
+  <div class="logo">BFYT<span> WORLD</span></div>
+  <div class="tag"><b>3</b> DROPS LIVE</div>
+</nav>
+
+<header class="hero">
+  <div class="emblem">BFYT<span> WORLD</span></div>
+  <div class="sub">Where sound dresses · where sound shines</div>
+  <p>Limited drops of fashion &amp; iced jewelry — every single piece designed to an official Beats BFYT track. One frequency, three states of matter: sound, fabric, gold.</p>
+  <div class="ctas">
+    <a class="btn" href="#drops">Explore the drops</a>
+    <a class="btn ghost" href="https://www.youtube.com/@beatsfreeyoutube_" target="_blank">Hear the beats</a>
+  </div>
+  <div class="scrollcue">▼ SCROLL</div>
+</header>
+
+<div class="marquee"><div>BFYT WORLD — LIMITED DROPS · NO RESTOCK · FREE WORLDWIDE SHIPPING —&nbsp;BFYT WORLD — LIMITED DROPS · NO RESTOCK · FREE WORLDWIDE SHIPPING —&nbsp;</div></div>
+
+<section class="wrap" id="drops">
+  <div class="kicker reveal">THE COLLECTION</div>
+  <h2 class="reveal">Live drops.</h2>
+
+  <div class="grid reveal">
+    <a class="dcard" href="velvet_night.html">
+      <div class="ph"><span class="badge fash">FASHION · DROP 001</span><img data-img="Model_posing_on_spiral_staircase_2K_202609041336" data-alt="Female_model_walking_city_street_2K_202609041327" alt="VELVET NIGHT denim skirt"></div>
+      <div class="info">
+        <h3>Velvet Night</h3>
+        <div class="meta">ASYMMETRIC FRINGED DENIM SKIRT</div>
+        <div class="pr"><s>$110.00</s><em>$74.99</em></div>
+        <div class="go">VIEW DROP →</div>
+      </div>
+    </a>
+    <a class="dcard" href="dark_whispers.html">
+      <div class="ph"><span class="badge fash">FASHION · DROP 002</span><img data-img="Model_in_leopard_print_dress_2K_202609051414" data-alt="Model_walking_on_wet_street_2K_202609051412" alt="DARK WHISPERS leopard dress"></div>
+      <div class="info">
+        <h3>Dark Whispers</h3>
+        <div class="meta">LEOPARD MIDI DRESS · OPEN BACK</div>
+        <div class="pr"><s>$99.00</s><em>$69.99</em></div>
+        <div class="go">VIEW DROP →</div>
+      </div>
+    </a>
+  </div>
+
+  <a class="icedfeat reveal" href="burgundy_protocol_iced_watch.html">
+    <div class="ph"><span class="badge iced">ICED · DROP 001</span><img data-img="Creative_reflection_shot__model_with_202605141541" data-alt="Low_angle_shot_looking_up_202605141538" alt="BURGUNDY PROTOCOL iced watch"></div>
+    <div class="info">
+      <div class="kicker" style="margin-bottom:0">NEW LINE — PREMIUM</div>
+      <h3>Burgundy Protocol</h3>
+      <div class="meta">ICED ROSE GOLD WATCH · ONE SIZE</div>
+      <p>The opening piece of BFYT ICED: a full-iced rose gold timepiece cut to the frequency of its namesake track. Subtle in daylight, loud at night.</p>
+      <div class="pr"><s>$149.00</s><em>$89.00</em></div>
+      <span class="btn">VIEW DROP →</span>
+    </div>
+  </a>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <div class="kicker reveal">THE SYSTEM</div>
+  <h2 class="reveal">Not a store. A universe.</h2>
+  <div class="sys reveal">
+    <div class="scard"><div class="n">01</div><h3>Sound first</h3><p>Every drop begins as a beat. The garment or jewel is designed to its rhythm — you're not buying merch, you're wearing the track.</p></div>
+    <div class="scard"><div class="n">02</div><h3>Limited, never restocked</h3><p>Drop pricing with a countdown. When the window closes, the price rises. Scarcity is the contract, not a trick.</p></div>
+    <div class="scard"><div class="n">03</div><h3>Worldwide, zero friction</h3><p>Free tracked shipping to every country. 7-day unconditional returns. One click to checkout. No guesses.</p></div>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <div class="sound reveal">
+    <div>
+      <div class="kicker">THE SOUNDTRACK</div>
+      <h2>Hear what you wear.</h2>
+      <p>Each BFYT WORLD piece has an official Beats BFYT track. Press play on the drop, then wear it. The full catalog lives on the channel.</p>
+      <a class="btn ghost" href="https://www.youtube.com/@beatsfreeyoutube_" target="_blank">Open the channel</a>
+    </div>
+    <ul class="beats">
+      <li><span><span class="bn">Burgundy Protocol</span><br><span class="bd">ICED 001 · rose gold</span></span><a href="https://youtu.be/6K4L4Wrikjs" target="_blank">PLAY ▶</a></li>
+      <li><span><span class="bn">Dark Whispers</span><br><span class="bd">FASHION 002 · leopard</span></span><a href="https://youtu.be/-qxtNeObOWI" target="_blank">PLAY ▶</a></li>
+      <li><span><span class="bn">Velvet Night</span><br><span class="bd">FASHION 001 · denim</span></span><a href="https://youtu.be/6Y6lplXlfKs" target="_blank">PLAY ▶</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:0">
+  <div class="listbox reveal">
+    <div class="kicker">THE DROP LIST</div>
+    <h2 style="margin-bottom:12px">First access. Always.</h2>
+    <p>Early access to every new drop + members-only pricing.<br>No spam — one email per drop.</p>
+    <form id="list-form" class="listform">
+      <input type="email" name="email" required placeholder="your@email.com">
+      <input type="hidden" name="product" value="DROP LIST — BFYT WORLD">
+      <button class="btn" type="submit">Join</button>
+    </form>
+    <div id="list-ok" class="listok" style="display:none">YOU'RE IN ✓ FIRST ACCESS TO THE NEXT DROP</div>
+  </div>
+</section>
+
+<footer>
+  <div class="fl">
+    <a href="https://www.instagram.com/bfytfashion" target="_blank">INSTAGRAM</a>
+    <a href="https://www.youtube.com/@beatsfreeyoutube_" target="_blank">BEATS BFYT</a>
+    <a href="#drops">DROPS</a>
+  </div>
+  © 2026 BFYT WORLD — TERRIVOL MUSIC ENT · WHERE SOUND DRESSES
+</footer>
+
+<script>
+// LOADER UNIVERSAL v6 — codifica nombres (espacios / (1) / guiones) + data-alt de respaldo
+const IMG_BASE="/img/";
+const EXT=[".jpg",".jpeg",".png",".webp",".JPG",".JPEG",".PNG",".WEBP",".jfif",".JFIF",".avif",".AVIF",".gif",".GIF"];
+const PH="data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><rect width="600" height="800" fill="#0A0A0F"/><circle cx="300" cy="400" r="180" fill="none" stroke="#7B2CBF" stroke-opacity=".35" stroke-width="2"/><circle cx="300" cy="400" r="120" fill="none" stroke="#E8B4A0" stroke-opacity=".3" stroke-width="1"/><text x="300" y="392" fill="#F5F5F7" font-family="Arial" font-size="26" letter-spacing="8" text-anchor="middle" font-weight="700">BFYT</text><text x="300" y="428" fill="#9A9AA5" font-family="Arial" font-size="14" letter-spacing="4" text-anchor="middle">WORLD</text></svg>');
+function variants(b){const v=[b];const m=b.match(/^(.*)\s\(\d+\)$/);if(m)v.push(m[1]);v.push(b+" (1)",b+" (2)");return v;}
+function buildURL(n,e){return IMG_BASE+encodeURIComponent(n)+e;}
+function loadImg(img){
+  const bases=[img.dataset.img];
+  if(img.dataset.alt)bases.push(img.dataset.alt);
+  const low=img.dataset.img.toLowerCase();
+  if(low!==img.dataset.img)bases.push(low);
+  const queue=[];
+  bases.forEach(b=>{variants(b).forEach(v=>{EXT.forEach(e=>queue.push(buildURL(v,e)));});});
+  let i=0;
+  const next=()=>{if(i<queue.length){img.src=queue[i++];}else{img.src=PH;console.warn("[BFYT] asset missing:",img.dataset.img);}};
+  img.onerror=next;next();
+}
+document.querySelectorAll("img[data-img]").forEach(img=>loadImg(img));
+
+// DROP LIST (Formspree global de marca)
+document.getElementById("list-form").onsubmit=async e=>{
+  e.preventDefault();
+  const f=e.target,btn=f.querySelector("button");
+  btn.disabled=true;btn.textContent="JOINING…";
+  try{
+    const res=await fetch("https://formspree.io/f/xnpnvrpe",{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}});
+    if(res.ok){f.style.display="none";document.getElementById("list-ok").style.display="block";}
+    else{btn.disabled=false;btn.textContent="Join";}
+  }catch(err){btn.disabled=false;btn.textContent="Join";}
+};
+
+// Reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("on")),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
