@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Calm | Galactic Space Synth Trap - Beats BFYT</title>
+    <title>Cosmic Calm | Dark Melodic Space Trap - Beats BFYT</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -400,9 +400,9 @@
         <header>
             <div class="logo">BEATS BFYT</div>
             <nav>
-                <a href="#">YouTube</a>
-                <a href="#">Shop</a>
-                <a href="#">Contact</a>
+                <a href="https://youtube.com/@beatsfreeyoutube_" target="_blank">YouTube</a>
+                <a href="https://beats-bfyt-shop.fourthwall.com" target="_blank">Shop</a>
+                <a href="mailto:beatsfree27@gmail.com">Contact</a>
             </nav>
         </header>
 
@@ -411,8 +411,8 @@
                 <!-- Columna Izquierda: Arte -->
                 <div class="art-col">
                     <div class="art-frame">
-                        <!-- IMPORTANTE: Sube esta imagen como "Cosmic Cover.jpg" en la misma carpeta -->
-                        <img src="Cosmic Cover.jpg" alt="Cosmic Calm Artwork">
+                        <!-- RUTA CORREGIDA: Subiendo un nivel ../ hasta img/ -->
+                        <img src="../img/Cosmic Cover.jpg" alt="Cosmic Calm Artwork">
                         <div class="art-glow"></div>
                     </div>
                 </div>
@@ -422,9 +422,9 @@
                     <h1>Cosmic Calm</h1>
                     
                     <div class="tags-row">
-                        <span class="tag-pill">Galactic Space Synth</span>
-                        <span class="tag-pill">122 BPM</span>
                         <span class="tag-pill">Dark Melodic</span>
+                        <span class="tag-pill">122 BPM</span>
+                        <span class="tag-pill">Chill Galactic Synth</span>
                         <span class="tag-pill">Atmospheric</span>
                     </div>
 
@@ -454,8 +454,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- IMPORTANTE: Sube el audio como "preview.mp3" o cambia la ruta aquí -->
-                        <audio id="audio" src="PREVIEW BEAT PRO MP3.mp3"></audio>
+                        <!-- RUTA CORREGIDA: Subiendo un nivel ../ hasta img/ -->
+                        <audio id="audio" src="../img/Cosmic Pre.mp3"></audio>
                     </div>
                 </div>
             </section>
@@ -582,7 +582,7 @@
         // Toggle Play/Pause
         playBtn.addEventListener('click', () => {
             if(audio.paused) {
-                audio.play();
+                audio.play().catch(e => console.error("Error al reproducir:", e));
                 playBtn.innerText = '❚❚';
                 animateViz(true);
             } else {
