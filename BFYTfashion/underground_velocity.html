@@ -343,7 +343,7 @@ footer{padding:60px 24px calc(60px + env(safe-area-inset-bottom));text-align:cen
 <div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><span class="x">CLOSE ✕</span><img src="" alt=""></div>
 
 <!-- manifiesto real generado por ORGANIZAR.ps1 -->
-<script src="../img/underground-velocity/_assets.js"></script>
+<script src="../img/underground-velocity/manifest.js"></script>
 <script>
 /* =====================================================================
    CONFIGURACION — edita solo este bloque
@@ -380,8 +380,72 @@ const COLORES = {
   tan:   { label: 'TAN GLOSS',   hex: '#c9a274' }
 };
 
+/* =====================================================================
+   LISTA DE MEDIOS  (va aqui dentro a proposito)
+   GitHub Pages ignora los archivos que empiezan por "_" (Jekyll), por eso
+   NO dependemos de ningun archivo externo: la lista va dentro del HTML.
+   Si algun dia existe manifest.js en /img/<drop>/, ese manda y esto se ignora.
+   ===================================================================== */
+const ASSETS_FIJO = {
+  colores: ['black', 'tan'],
+  video: [
+    'video/video-01-grok-imagine-video-1-5-preview-7.mp4',
+    'video/video-02-image-to-video-09-15-0307.mp4',
+    'video/video-03-image-to-video-09-15-0454.mp4',
+    'video/video-04-image-to-video-09-15-0508.mp4',
+    'video/video-05-modelo-muestra-chaqueta-continua.mp4',
+    'video/video-06-pomelli-photoshoot-video-9-16-09.mp4',
+    'video/video-07-pomelli-photoshoot-video-9-16-09.mp4',
+    'video/video-08-pomelli-photoshoot-video-9-16-09.mp4',
+    'video/video-09-tiktok-shop-video-viral-20260914.mp4',
+    'video/video-10-veo-3-1-fast-audio-b-crea-un-vid.mp4',
+    'video/video-11-wan2-7-i2v-a-crea-un-video-de-es.mp4',
+    'video/video-12-woman-animating-in-mirror-reflec.mp4',
+    'video/video-13-woman-checking-collar-in-mirror.mp4',
+    'video/video-14-woman-checks-collar-in-mirror-20.mp4',
+    'video/video-15-woman-showing-jacket-on-phone-20.mp4'
+  ],
+  black: [
+    'black/black-producto-01-4d50c2a421261cafcfd990b6b7a98e71.jpg',
+    'black/black-producto-02-1150708feb538d4fb57867435361feda.jpg',
+    'black/black-producto-03-c5ef1972ce76265ba967fdbcc02a3ec8.jpg',
+    'black/black-producto-04-89a3b9798a5850368d6ea403a597644e.jpg',
+    'black/black-producto-05-18e186c95d817d7bc3763274bacf9b7a.jpg',
+    'black/black-producto-06-01bc633fa1e02e9c66b0be97cc7c7c1b.jpg',
+    'black/black-producto-07-78ec2624a2671bc14cbeb0a55dbd22a6.jpg',
+    'black/black-modelo-01-model-adjusting-black-puffer-jac.jpg',
+    'black/black-modelo-02-model-filming-mirror-selfie-2k-2.jpg',
+    'black/black-modelo-03-model-filming-mirror-selfie-2k-2.jpg',
+    'black/black-modelo-04-model-filming-mirror-selfie-2k-2.jpg',
+    'black/black-modelo-05-model-wearing-puffer-jacket-2k-2.jpg',
+    'black/black-modelo-06-model-wearing-puffer-jacket-2k-2.jpg',
+    'black/black-modelo-07-woman-taking-mirror-selfie-2k-20.jpg'
+  ],
+  tan: [
+    'tan/tan-producto-01-b67650e525cc888e52ef75e1ee0a1813.jpg',
+    'tan/tan-producto-02-9c66f5afab4ea3c2e29e31b64df16a03.jpg',
+    'tan/tan-producto-03-3249de8d341e173fe2a2aa2c43120e22.jpg',
+    'tan/tan-producto-04-da50d6eaa3a773da0b8d1e18bdbe3163.jpg',
+    'tan/tan-producto-05-97392b8cb32c364302c99b5e955a5acb.jpg',
+    'tan/tan-producto-06-59deff3f797728e55b637650ebcdc8f4.jpg',
+    'tan/tan-producto-07-4d018e3307d59b1c72086d4953f14551.jpg',
+    'tan/tan-modelo-01-model-arriving-at-night-event-2k.jpg',
+    'tan/tan-modelo-02-model-arriving-at-night-event-2k.jpg',
+    'tan/tan-modelo-03-model-arriving-at-night-event-2k.jpg',
+    'tan/tan-estudio-01-pomelli-photoshoot-image-4k-0914.jpg',
+    'tan/tan-estudio-02-pomelli-photoshoot-image-4k-0914.jpg',
+    'tan/tan-estudio-03-pomelli-photoshoot-image-4k-0914.jpg',
+    'tan/tan-estudio-04-pomelli-photoshoot-image-4k-0914.jpg',
+    'tan/tan-estudio-05-pomelli-photoshoot-image-4k-0914.jpg',
+    'tan/tan-estudio-06-pomelli-photoshoot-image-4k-0914.jpg',
+    'tan/tan-estudio-07-pomelli-photoshoot-image-4k-0914.jpg',
+    'tan/tan-estudio-08-pomelli-photoshoot-image-4k-0914.jpg',
+    'tan/tan-estudio-09-pomelli-photoshoot-image-4k-0914.jpg'
+  ]
+};
+
 (function () {
-  const RAW = window.BFYT_ASSETS || null;
+  const RAW = window.BFYT_ASSETS || ASSETS_FIJO;
   const arr = v => Array.isArray(v) ? v : (v === null || v === undefined || v === '' ? [] : [v]);
   const BASE = '../img/underground-velocity/';
   const url = p => BASE + p;
