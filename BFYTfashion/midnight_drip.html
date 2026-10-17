@@ -111,7 +111,7 @@ footer{padding:60px 24px calc(60px + env(safe-area-inset-bottom));text-align:cen
 #lb img{max-height:92vh;width:auto;max-width:92vw}
 
 /* REVEAL ON SCROLL */
-.reveal{opacity:0;transform:translateY:28px;transition:.85s ease}
+.reveal{opacity:0;transform:translateY(28px);transition:.85s ease}
 .reveal.on{opacity:1;transform:none}
 
 /* RESPONSIVE */
@@ -162,7 +162,7 @@ footer{padding:60px 24px calc(60px + env(safe-area-inset-bottom));text-align:cen
     <div class="crumbs">BFYT FASHION / DROP 004 / <b>MIDNIGHT DRIP</b></div>
     <h1>Midnight Drip<br>Cream Sherpa + Black Leather Patchwork Jacket</h1>
     <div class="sku">SKU BFYT‑FSH‑004 · <em>♫ OFFICIAL SOUNDTRACK: “MIDNIGHT DRIP”</em></div>
-    <div class="price-line"><s>$299.00</s> <em>$199.00</em> <span class="off">‑33%</span></div>
+    <div class="price-line" id="priceLine"><s>$299.00</s> <em>$199.00</em> <span class="off">‑33%</span></div>
     <div class="ship-note"><b>FREE WORLDWIDE SHIPPING</b> · TRACKED · 10–15 DAYS</div>
     <div class="sizenote"><b>SIZES S–XL.</b> Oversized cut – take your usual size for the full look, size down for a tighter silhouette. <a href="#guide" style="color:var(--cyan)">Size guide</a></div>
     <button class="btn" id="buyBtn">Buy Now — $199.00</button>
@@ -203,8 +203,8 @@ footer{padding:60px 24px calc(60px + env(safe-area-inset-bottom));text-align:cen
     <img id="soundImg" alt="Midnight Drip soundtrack cover">
     <div>
       <p>Every BFYT piece is cut to an official Beats BFYT track. “Midnight Drip” rides a low‑end glitch‑hop pulse that feels like a neon‑lit alley at 2 AM.</p>
-      <!-- You can delete the link below if you don’t want a YouTube button -->
-      <a class="btn" href="https://youtu.be/XXXXX" target="_blank" rel="noopener">Listen on YouTube</a>
+      <!-- Si más tarde quieres un enlace a YouTube, reemplaza # por el link -->
+      <a class="btn" href="#" target="_blank" rel="noopener">Listen on YouTube</a>
     </div>
   </div>
 </section>
@@ -293,16 +293,15 @@ footer{padding:60px 24px calc(60px + env(safe-area-inset-bottom));text-align:cen
 
 <script>
 /* -------------------------------------------------
-   CONFIGURATION (edit only if something changes)
+   CONFIG (todas las rutas están en la raíz /img/)
    ------------------------------------------------- */
 const IMG_ROOT = 'https://terrivolmusic.github.io/img/';
 const CONFIG = {
-  // product
   sku:      'BFYT-FSH-004',
   price:    199,
   compare:  299,
   payhip:   'https://payhip.com/b/ky2Oe',
-  // assets (all live in the root /img/ folder)
+  // ---------- IMÁGENES ----------
   gallery: [
     '02-packshot-front.jpg',
     '03-hanging.jpg',
@@ -312,25 +311,29 @@ const CONFIG = {
     '07-on-body-chain.jpg',
     '09-ugc-mirror.jpg'
   ],
+  // ---------- VÍDEOS ----------
   film: [
     'V1-firma.mp4',
     'V2-calle.mp4',
     'V4-carro.mp4',
     'V5-prod.mp4'
   ],
+  // ---------- CAMPAÑA ----------
   campaignHero: '02-packshot-front.jpg',
   campaignGrid: [
     '03-hanging.jpg',
     '04-flat-lay.jpg',
     '05-macro-zip.jpg'
   ],
+  // ---------- UGC ----------
   ugc: [
     '06-walking-neon.jpg',
     '07-on-body-chain.jpg',
     '09-ugc-mirror.jpg',
     '02-packshot-front.jpg'
   ],
-  soundImg: '02-packshot-front.jpg'   // placeholder – replace if you have a dedicated cover
+  // ---------- SOUND ----------
+  soundImg: '02-packshot-front.jpg'   // placeholder
 };
 
 /* -------------------------------------------------
@@ -351,12 +354,12 @@ function buildGallery(){
       main.src = IMG_ROOT + file;
     };
     thumbs.appendChild(thumb);
-    if(i===0) main.src = IMG_ROOT + file;
+    if(i===0) main.src = IMG_ROOT + file;   // primera imagen
   });
 }
 
 /* -------------------------------------------------
-   FILMS (three video cards)
+   FILMS (3 videos)
    ------------------------------------------------- */
 function buildFilms(){
   const container = document.getElementById('films');
@@ -384,8 +387,7 @@ function buildFilms(){
    CAMPAIGN
    ------------------------------------------------- */
 function buildCampaign(){
-  const hero = document.getElementById('campHero');
-  hero.src = IMG_ROOT + CONFIG.campaignHero;
+  document.getElementById('campHero').src = IMG_ROOT + CONFIG.campaignHero;
   const grid = document.getElementById('campGrid');
   grid.innerHTML = CONFIG.campaignGrid.map(f=>`<img src="${IMG_ROOT + f}" alt="Campaign">`).join('');
 }
@@ -406,13 +408,13 @@ if(CONFIG.soundImg){
 }
 
 /* -------------------------------------------------
-   PRICE & BUTTONS
+   PRICE & BUY BUTTONS
    ------------------------------------------------- */
 function renderPrice(){
   const discount = Math.round((1 - CONFIG.price/CONFIG.compare)*100);
-  const line = document.createElement('div');
-  line.innerHTML = `<s>$${CONFIG.compare.toFixed(2)}</s> <em>$${CONFIG.price.toFixed(2)}</em> <span class="off">‑${discount}%</span>`;
-  document.querySelector('.price-line').replaceWith(line);
+  document.getElementById('priceLine').innerHTML = `
+    <s>$${CONFIG.compare.toFixed(2)}</s> <em>$${CONFIG.price.toFixed(2)}</em> <span class="off">‑${discount}%</span>
+  `;
   document.getElementById('buyBtn').onclick = ()=>{window.location.href = CONFIG.payhip;};
   document.getElementById('buyBtn2').onclick = ()=>{window.location.href = CONFIG.payhip;};
 }
@@ -421,7 +423,7 @@ function renderPrice(){
    LIGHTBOX
    ------------------------------------------------- */
 const lb = document.getElementById('lb');
-function openLB(src){ lb.style.display='flex'; lb.querySelector('img').src=src; }
+function openLB(src){ lb.style.display='flex'; lb.querySelector('img').src = src; }
 document.getElementById('main').onclick = ()=>openLB(document.getElementById('main').src);
 document.querySelectorAll('.thumbs img,.cgrid img,.ugc img').forEach(img=>{ img.onclick = ()=>openLB(img.src); });
 lb.onclick = ()=>{ lb.style.display='none'; };
