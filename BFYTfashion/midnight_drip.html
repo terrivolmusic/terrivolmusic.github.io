@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Midnight Drip – BFYT Fashion</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{
+  --purple:#7B2CBF;
+  --cyan:#00F5FF;
+  --amber:#FFB703;
+  --bg:#07070B;
+  --glass:rgba(15,15,25,0.85);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:var(--bg);
+  color:#fff;
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+nav{
+  background:var(--glass);
+  backdrop-filter:blur(10px);
+  padding:1rem 2rem;
+  text-align:center;
+  position:sticky;top:0;z-index:100;
+}
+nav .logo{
+  font-size:1.4rem;
+  font-weight:900;
+  letter-spacing:4px;
+  color:var(--cyan);
+}
+.hero{
+  position:relative;
+  height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.hero video{
+  position:absolute;
+  width:100%;height:100%;
+  object-fit:cover;
+  opacity:0.6;
+}
+.hero .content{
+  position:relative;
+  text-align:center;
+  z-index:10;
+}
+.hero h1{
+  font-size:clamp(3rem,10vw,5rem);
+  text-transform:uppercase;
+  line-height:1;
+}
+.hero .drip{
+  color:transparent;
+  -webkit-text-stroke:1px var(--cyan);
+}
+.price{
+  margin:1rem 0;
+  font-size:1.3rem;
+}
+.price .old{color:#aaa;text-decoration:line-through;margin-right:.5rem;}
+.price .now{color:var(--amber);font-weight:900;}
+.cta{
+  display:inline-block;
+  margin-top:1.5rem;
+  padding:.9rem 2rem;
+  background:#fff;
+  color:#000;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  border-radius:50px;
+  text-decoration:none;
+  box-shadow:0 0 20px rgba(0,245,255,.4);
+  transition:.3s;
+}
+.cta:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 40px var(--cyan);
+}
+.section-title{
+  padding:4rem 1rem 2rem;
+  text-align:center;
+  font-size:1.9rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+.gallery{
+  max-width:1400px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+  padding:0 1rem;
+}
+.gallery img{
+  width:100%;height:100%;
+  object-fit:cover;
+  border-radius:6px;
+  transition:transform .4s;
+}
+.gallery img:hover{transform:scale(1.05);}
+.film{
+  display:flex;
+  overflow-x:auto;
+  gap:20px;
+  padding:1rem;
+}
+.film video{
+  min-width:260px;
+  aspect-ratio:9/16;
+  border-radius:8px;
+}
+footer{
+  padding:3rem 1rem;
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,.1);
+  margin-top:3rem;
+  font-size:.9rem;
+  opacity:.7;
+}
+</style>
+</head>
+
+<body>
+<nav><div class="logo">BFYT FASHION</div></nav>
+
+<!-- HERO – video de campaña -->
+<section class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="https://terrivolmusic.github.io/img/V4-carro.mp4" type="video/mp4">
+  </video>
+  <div class="content">
+    <h1>MIDNIGHT<br><span class="drip">DRIP</span></h1>
+    <div class="price"><span class="old">$299.00</span><span class="now">$199.00 USD</span></div>
+    <p>CREAM SHERPA • BLACK LEATHER • 2 AM VIBE</p>
+    <a href="https://payhip.com/b/ky2Oe" class="cta">GET THE DRIP</a>
+  </div>
+</section>
+
+<!-- THE FILM – clips de 8 s -->
+<div class="section-title">THE FILM</div>
+<section class="film">
+  <video autoplay muted loop playsinline>
+    <source src="https://terrivolmusic.github.io/img/V1-firma.mp4" type="video/mp4">
+  </video>
+  <video autoplay muted loop playsinline>
+    <source src="https://terrivolmusic.github.io/img/V2-calle.mp4" type="video/mp4">
+  </video>
+  <video autoplay muted loop playsinline>
+    <source src="https://terrivolmusic.github.io/img/V5-prod.mp4" type="video/mp4">
+  </video>
+</section>
+
+<!-- PRODUCT – galería de fotos -->
+<div class="section-title">THE PRODUCT</div>
+<section class="gallery">
+  <img src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="Packshot frontal">
+  <img src="https://terrivolmusic.github.io/img/03-hanging.jpg" alt="Chaqueta colgada">
+  <img src="https://terrivolmusic.github.io/img/04-flat-lay.jpg" alt="Flat‑lay con cadena">
+  <img src="https://terrivolmusic.github.io/img/05-macro-zip.jpg" alt="Macro de la cremallera">
+</section>
+
+<!-- ON BODY – fotos con modelo -->
+<div class="section-title">ON BODY</div>
+<section class="gallery">
+  <img src="https://terrivolmusic.github.io/img/07-on-body-chain.jpg" alt="Modelo con cadena">
+  <img src="https://terrivolmusic.github.io/img/06-walking-neon.jpg" alt="Modelo caminando en neon">
+  <img src="https://terrivolmusic.github.io/img/09-ugc-mirror.jpg" alt="Selfie espejo – UGC">
+</section>
+
+<footer>
+  <p>MIDNIGHT DRIP – BFYT WORLD</p>
+  <p>FREE WORLDWIDE SHIPPING • LIMITED RUN</p>
+</footer>
+</body>
+</html>
