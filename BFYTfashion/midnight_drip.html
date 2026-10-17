@@ -2,74 +2,160 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>MIDNIGHT DRIP — Cream Sherpa + Black Leather Patchwork Jacket | BFYT FASHION DROP 004</title>
+<title>MIDNIGHT DRIP — Cream Sherpa + Black Leather Patchwork Jacket | BFYT FASHION DROP 004</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#07070B; --panel:rgba(255,255,255,.025);
-  --purple:#7B2CBF; --cyan:#00F5FF; --amber:#FFB703;
-  --txt:#F5F5F7; --muted:#93939E; --line:rgba(255,255,255,.09);
+  --bg:#07070B;       --panel:rgba(255,255,255,.025);
+  --purple:#7B2CBF;   --cyan:#00F5FF;   --amber:#FFB703;
+  --txt:#F5F5F7;      --muted:#93939E; --line:rgba(255,255,255,.09);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:'Inter',sans-serif;font-weight:300;
+  overflow-x:hidden;
+}
 h1,h2{font-family:'Montserrat',sans-serif;text-transform:uppercase}
-img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1200px;margin:auto;padding:0 24px}
-nav{position:sticky;top:0;background:rgba(7,7,11,.86);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:16px 32px}
+.wrap{max-width:1240px;margin:auto;padding:0 24px}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:0;z-index:60;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 32px;background:rgba(7,7,11,.86);border-bottom:1px solid var(--line);
+}
 nav .logo{font-weight:800;letter-spacing:.25em;font-size:14px}
 nav .logo span{color:var(--cyan)}
 nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
-nav .tag b{color:var(--cyan)}
-/* Layout */
-.pdp{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;padding:44px 0 90px;align-items:start}
-#main{aspect-ratio:1/1;object-fit:cover;cursor:pointer;border:1px solid var(--line);background:var(--panel)}
-.thumbs{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:10px}
-.thumbs img{aspect-ratio:1/1;object-fit:cover;cursor:pointer;opacity:.5;border:1px solid transparent}
-.thumbs img:hover,.thumbs img.active{opacity:1;border-color:var(--cyan)}
+nav .tag b{color:var(--cyan);font-weight:600}
+
+/* ---------- HERO BANNER ---------- */
+.hero-banner img{
+  width:100%;height:auto;object-fit:cover;
+  max-height:70vh;display:block;
+}
+
+/* ---------- PRODUCT GRID ---------- */
+.pdp{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:54px;
+  padding:44px 0 90px;align-items:start;
+}
+
+/* ---------- GALLERY ---------- */
+.gallery{position:relative;width:100%;max-width:720px}
+gallery #main{
+  width:100%;height:auto;max-height:80vh;object-fit:contain;
+  border:1px solid var(--line);background:var(--panel);cursor:pointer;
+}
+.gallery .thumbs{
+  display:flex;gap:8px;overflow-x:auto;margin-top:12px;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.gallery .thumbs::-webkit-scrollbar{display:none}
+.gallery .thumbs img{
+  flex:0 0 auto;width:80px;height:80px;object-fit:cover;
+  cursor:pointer;border:1px solid transparent;opacity:.55;
+}
+.gallery .thumbs img.active,.gallery .thumbs img:hover{
+  opacity:1;border-color:var(--cyan);
+}
+
+/* arrows */
+.gallery .arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:38px;height:38px;background:rgba(0,0,0,.45);
+  color:#fff;font-size:22px;line-height:38px;text-align:center;
+  cursor:pointer;user-select:none;z-index:5;
+}
+.gallery .arrow.prev{left:8px}
+.gallery .arrow.next{right:8px}
+
+/* ---------- BUY SECTION ---------- */
+.buy .crumbs{font-size:10px;letter-spacing:.25em;color:var(--muted);margin-bottom:14px}
+.buy .crumbs b{color:var(--cyan)}
+.buy h1{font-size:clamp(26px,3.4vw,44px);font-weight:800;letter-spacing:.04em;line-height:1.08}
+.buy .sku{font-size:10px;letter-spacing:.24em;color:var(--muted);margin:12px 0 18px}
+.buy .sku em{font-style:normal;color:#b06cf0}
 .price{font-family:'Montserrat';font-size:30px;margin:6px 0}
 .price s{color:var(--muted);font-weight:300;font-size:19px;margin-right:14px}
-.price em{color:var(--cyan);font-style:normal}
-.off{background:var(--txt);color:#000;padding:5px 10px;font-size:10px;margin-left:12px;vertical-align:middle}
-.btn{display:inline-block;background:var(--txt);color:#000;font-family:'Montserrat';font-weight:600;font-size:13px;letter-spacing:.25em;text-transform:uppercase;padding:19px 44px;border:none;cursor:pointer;transition:.3s;width:100%;text-align:center}
+.price em{font-style:normal;color:var(--cyan)}
+.btn{
+  display:inline-block;background:var(--txt);color:#000;
+  font-family:'Montserrat';font-weight:600;font-size:13px;letter-spacing:.25em;
+  text-transform:uppercase;padding:19px 44px;border:none;
+  cursor:pointer;transition:.3s;width:100%;text-align:center;
+}
 .btn:hover{box-shadow:0 0 40px rgba(0,245,255,.35);transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.secure{margin:12px 0 22px;text-align:center;font-size:10px;letter-spacing:.25em;color:var(--muted)}
+.trust{list-style:none;border-top:1px solid var(--line);margin-top:12px;padding-left:0}
+.trust li{padding:11px 0;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.12em;color:#d8d8de}
+.trust li::before{content:"✓ ";color:var(--cyan)}
+
+/* ---------- SECTIONS ---------- */
 section{padding:96px 0}
 .kicker{font-size:11px;letter-spacing:.45em;color:var(--purple);margin-bottom:14px}
 h2{font-size:clamp(28px,4.6vw,48px);font-weight:800;letter-spacing:.04em;margin-bottom:30px}
-/* Film */
+
+/* ---------- FILMS ---------- */
 .films{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .film{position:relative;aspect-ratio:9/16;overflow:hidden;border:1px solid var(--line);cursor:pointer}
 .film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.film::after{content:"▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:12px;background:rgba(0,0,0,.6);color:#fff;padding:6px 10px;border:1px solid var(--cyan)}
-/* Campaign */
-.camp .hero img{aspect-ratio:16/10;object-fit:cover;margin-bottom:14px}
+.film::after{content:"▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:12px;background:rgba(0,0,0,.6);color:#fff;padding:6px 10px;border:1px solid var(--cyan)}
+
+/* ---------- CAMPAIGN ---------- */
+.camp .hero img{width:100%;height:auto;object-fit:cover;margin-bottom:14px}
 .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.cgrid img{aspect-ratio:1/1;object-fit:cover}
-/* Sound */
-.sound{border:1px solid var(--line);background:linear-gradient(140deg,rgba(0,245,255,.08),rgba(123,44,191,.14));display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;padding:56px;align-items:center}
-.sound img{aspect-ratio:1;object-fit:cover;border:1px solid var(--line)}
+.cgrid img{width:100%;height:auto;object-fit:cover}
+
+/* ---------- SOUND ---------- */
+.sound{border:1px solid var(--line);background:linear-gradient(140deg,rgba(0,245,255,.08),rgba(123,44,191,.14));
+  display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;padding:56px;align-items:center}
+.sound img{width:100%;height:auto;object-fit:cover;border:1px solid var(--line)}
 .sound p{color:#c9c9d2;line-height:1.9;margin:14px 0 26px}
 .sound .btn{width:auto;padding:16px 36px}
-/* UGC */
+
+/* ---------- UGC ---------- */
 .ugc{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.ugc figure{position:relative;aspect-ratio:9/16;overflow:hidden;border:1px solid var(--line);cursor:pointer;background:#050508}
+.ugc figure{position:relative;aspect-ratio:9/16;overflow:hidden;background:#050508;cursor:pointer}
 .ugc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-/* Lightbox */
-#lightbox{position:fixed;inset:0;background:rgba(4,4,7,.97);display:none;align-items:center;justify-content:center;cursor:zoom-out;z-index:100}
+
+/* ---------- LIGHTBOX ---------- */
+#lightbox{
+  position:fixed;inset:0;background:rgba(4,4,7,.97);
+  display:none;align-items:center;justify-content:center;cursor:zoom-out;z-index:100;
+}
 #lightbox img{max-height:92vh;max-width:92vw}
-footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;color:var(--muted);border-top:1px solid var(--line)}
+
+/* ---------- FOOTER ---------- */
+footer{
+  padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;color:var(--muted);
+  border-top:1px solid var(--line);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:1024px){
+  .pdp{gap:40px;padding:36px 0 70px}
+  section{padding:80px 0}
+}
 @media(max-width:768px){
   .wrap{padding:0 16px}
   nav{padding:14px 16px}
   .logo{font-size:12px;letter-spacing:.2em}
   .pdp{grid-template-columns:1fr;gap:26px;padding:24px 0 100px}
-  .thumbs{grid-template-columns:repeat(7,62px);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .thumbs::-webkit-scrollbar{display:none}
+  .thumbs{gap:6px}
+  .thumbs img{width:62px;height:62px}
   .films{grid-template-columns:1fr 1fr}
   .cgrid{grid-template-columns:1fr 1fr}
   .sound{grid-template-columns:1fr;padding:28px 20px;gap:24px;text-align:center}
+}
+@media(max-width:480px){
+  .films,.cgrid,.ugc{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -80,18 +166,26 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="tag">DROP 004 — <b>LIVE</b></div>
 </nav>
 
+<!-- ==================== HERO BANNER ==================== -->
+<section class="hero-banner">
+  <img src="https://terrivolmusic.github.io/img/01-hero-beat.jpg" alt="Midnight Drip hero banner">
+</section>
+
 <div class="wrap pdp">
   <!-- ==================== GALLERY ==================== -->
-  <div>
-    <img id="main" src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="Midnight Drip hero">
+  <div class="gallery">
+    <img id="main" src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="Midnight Drip hero">
+    <div class="arrow prev" onclick="prevImg()">&#9664;</div>
+    <div class="arrow next" onclick="nextImg()">&#9654;</div>
+
     <div class="thumbs">
-      <img src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="01" class="active" onclick="document.getElementById('main').src=this.src;setActive(this)">
-      <img src="https://terrivolmusic.github.io/img/03-hanging.jpg" alt="02" onclick="document.getElementById('main').src=this.src;setActive(this)">
-      <img src="https://terrivolmusic.github.io/img/04-flat-lay.jpg" alt="03" onclick="document.getElementById('main').src=this.src;setActive(this)">
-      <img src="https://terrivolmusic.github.io/img/05-macro-zip.jpg" alt="04" onclick="document.getElementById('main').src=this.src;setActive(this)">
-      <img src="https://terrivolmusic.github.io/img/06-walking-neon.jpg" alt="05" onclick="document.getElementById('main').src=this.src;setActive(this)">
-      <img src="https://terrivolmusic.github.io/img/07-on-body-chain.jpg" alt="06" onclick="document.getElementById('main').src=this.src;setActive(this)">
-      <img src="https://terrivolmusic.github.io/img/09-ugc-mirror.jpg" alt="07" onclick="document.getElementById('main').src=this.src;setActive(this)">
+      <img src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="01" class="active" onclick="setMain(0,this)">
+      <img src="https://terrivolmusic.github.io/img/03-hanging.jpg" alt="02" onclick="setMain(1,this)">
+      <img src="https://terrivolmusic.github.io/img/04-flat-lay.jpg" alt="03" onclick="setMain(2,this)">
+      <img src="https://terrivolmusic.github.io/img/05-macro-zip.jpg" alt="04" onclick="setMain(3,this)">
+      <img src="https://terrivolmusic.github.io/img/06-walking-neon.jpg" alt="05" onclick="setMain(4,this)">
+      <img src="https://terrivolmusic.github.io/img/07-on-body-chain.jpg" alt="06" onclick="setMain(5,this)">
+      <img src="https://terrivolmusic.github.io/img/09-ugc-mirror.jpg" alt="07" onclick="setMain(6,this)">
     </div>
   </div>
 
@@ -103,10 +197,8 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
     <div class="price"><s>$299.00</s> <em>$199.00</em> <span class="off">‑33%</span></div>
     <div class="ship-note"><b>FREE WORLDWIDE SHIPPING</b> · TRACKED · 10–15 DAYS</div>
     <button class="btn" onclick="location.href='https://payhip.com/b/ky2Oe'">Buy Now — $199.00</button>
-    <div class="secure" style="margin:12px 0 22px;text-align:center;font-size:10px;letter-spacing:.25em;color:var(--muted)">
-      SECURE CHECKOUT POWERED BY PAYHIP
-    </div>
-    <ul class="trust" style="list-style:none;border-top:1px solid var(--line);margin-top:12px;padding-left:0">
+    <div class="secure">SECURE CHECKOUT POWERED BY PAYHIP</div>
+    <ul class="trust">
       <li>CREAM sherpa shell + BLACK leather patchwork</li>
       <li>FREE TRACKED SHIPPING WORLDWIDE</li>
       <li>2‑3 BUSINESS DAYS PROCESSING</li>
@@ -128,9 +220,9 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="kicker">THE FILM</div>
   <h2>Neon after‑hours, captured in motion.</h2>
   <div class="films">
-    <div class="film" onclick="togglePlay(this)"><video muted loop preload="metadata" src="https://terrivolmusic.github.io/img/V1-firma.mp4"></video></div>
-    <div class="film" onclick="togglePlay(this)"><video muted loop preload="metadata" src="https://terrivolmusic.github.io/img/V2-calle.mp4"></video></div>
-    <div class="film" onclick="togglePlay(this)"><video muted loop preload="metadata" src="https://terrivolmusic.github.io/img/V4-carro.mp4"></video></div>
+    <div class="film" onclick="togglePlay(this)"><video muted loop autoplay playsinline src="https://terrivolmusic.github.io/img/V1-firma.mp4"></video></div>
+    <div class="film" onclick="togglePlay(this)"><video muted loop autoplay playsinline src="https://terrivolmusic.github.io/img/V2-calle.mp4"></video></div>
+    <div class="film" onclick="togglePlay(this)"><video muted loop autoplay playsinline src="https://terrivolmusic.github.io/img/V4-carro.mp4"></video></div>
   </div>
 </section>
 
@@ -155,8 +247,6 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
     <img src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="Soundtrack cover">
     <div>
       <p>Every BFYT piece is cut to an official Beats BFYT track. “Midnight Drip” rides a low‑end glitch‑hop pulse that feels like a neon‑lit alley at 2 AM.</p>
-      <!-- Cambia `#` por el enlace de YouTube cuando lo tengas -->
-      <a class="btn" href="#" target="_blank" rel="noopener">Listen on YouTube</a>
     </div>
   </div>
 </section>
@@ -180,10 +270,10 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="kicker">REAL FITS</div>
   <h2>The night already approved it.</h2>
   <div class="ugc">
-    <figure><img src="https://terrivolmusic.github.io/img/06-walking-neon.jpg" alt="UGC 1"></figure>
-    <figure><img src="https://terrivolmusic.github.io/img/07-on-body-chain.jpg" alt="UGC 2"></figure>
-    <figure><img src="https://terrivolmusic.github.io/img/09-ugc-mirror.jpg" alt="UGC 3"></figure>
-    <figure><img src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="UGC 4"></figure>
+    <figure><img src="https://terrivolmusic.github.io/img/06-walking-neon.jpg" alt="UGC 1"></figure>
+    <figure><img src="https://terrivolmusic.github.io/img/07-on-body-chain.jpg" alt="UGC 2"></figure>
+    <figure><img src="https://terrivolmusic.github.io/img/09-ugc-mirror.jpg" alt="UGC 3"></figure>
+    <figure><img src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="UGC 4"></figure>
   </div>
 </section>
 
@@ -200,7 +290,10 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
     <tr style="border-bottom:1px solid var(--line)"><td>L</td><td>108</td><td>96</td><td>82</td></tr>
     <tr><td>XL</td><td>114</td><td>108</td><td>84</td></tr>
   </table>
-  <p style="margin-top:14px;font-size:12px;color:var(--muted)">OVERSIZED CUT – BETWEEN SIZES? TAKE YOUR USUAL SIZE FOR A FULL LOOK, OR ONE DOWN FOR A TIGHTER SILHOUETTE.<br>CARE: SPOT‑CLEAN ONLY. DO NOT MACHINE‑WASH.</p>
+  <p style="margin-top:14px;font-size:12px;color:var(--muted)">
+    OVERSIZED CUT – BETWEEN SIZES? TAKE YOUR USUAL SIZE FOR A FULL LOOK, OR ONE DOWN FOR A TIGHTER SILHOUETTE.<br>
+    CARE: SPOT‑CLEAN ONLY. DO NOT MACHINE‑WASH.
+  </p>
 </section>
 
 <!-- ==================== SHIPPING & TRUST ==================== -->
@@ -236,7 +329,8 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <h2>First access. Always.</h2>
   <p>Early access to the next BFYT FASHION drop + members‑only pricing.<br>One‑click e‑mail. No spam.</p>
   <form id="list-form" style="margin-top:12px">
-    <input type="email" name="email" required placeholder="your@email.com" style="padding:10px;width:70%;max-width:300px;border:1px solid var(--line);background:var(--panel);color:var(--txt)">
+    <input type="email" name="email" required placeholder="your@email.com"
+           style="padding:10px;width:70%;max-width:300px;border:1px solid var(--line);background:var(--panel);color:var(--txt)">
     <input type="hidden" name="product" value="DROP LIST — MIDNIGHT DRIP">
     <button class="btn" type="submit" style="width:auto;display:inline-block">Join</button>
   </form>
@@ -249,33 +343,67 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 <footer>© 2026 BFYT FASHION — TERRIVOL MUSIC ENT · WHERE SOUND DRESSES</footer>
 
 <script>
-/* ---------- THUMBNAIL ACTIVE STATE ---------- */
-function setActive(img){
-  document.querySelectorAll('.thumbs img').forEach(i=>i.classList.remove('active'));
-  img.classList.add('active');
-}
+/* ---------- GALLERY LOGIC ---------- */
+const galleryImages = [
+  '02-packshot-front.jpg',
+  '03-hanging.jpg',
+  '04-flat-lay.jpg',
+  '05-macro-zip.jpg',
+  '06-walking-neon.jpg',
+  '07-on-body-chain.jpg',
+  '09-ugc-mirror.jpg'
+];
+let curIdx = 0;
 
-/* ---------- VIDEO PLAY/PAUSE ---------- */
-function togglePlay(container){
-  const video = container.querySelector('video');
-  if (video.paused) video.play();
-  else video.pause();
+function setMain(idx, thumb){
+  curIdx = idx;
+  document.getElementById('main').src = `https://terrivolmusic.github.io/img/${galleryImages[idx]}`;
+  document.querySelectorAll('.thumbs img').forEach(i=>i.classList.remove('active'));
+  thumb.classList.add('active');
+}
+function prevImg(){
+  curIdx = (curIdx - 1 + galleryImages.length) % galleryImages.length;
+  document.getElementById('main').src = `https://terrivolmusic.github.io/img/${galleryImages[curIdx]}`;
+  document.querySelectorAll('.thumbs img')[curIdx].classList.add('active');
+  document.querySelectorAll('.thumbs img').forEach((i,ix)=>{if(ix!==curIdx) i.classList.remove('active');});
+}
+function nextImg(){
+  curIdx = (curIdx + 1) % galleryImages.length;
+  document.getElementById('main').src = `https://terrivolmusic.github.io/img/${galleryImages[curIdx]}`;
+  document.querySelectorAll('.thumbs img')[curIdx].classList.add('active');
+  document.querySelectorAll('.thumbs img').forEach((i,ix)=>{if(ix!==curIdx) i.classList.remove('active');});
 }
 
 /* ---------- LIGHTBOX ---------- */
-document.querySelectorAll('#main,.thumbs img').forEach(el=>{
-  el.addEventListener('click',e=>{ 
-    const src = e.target.src; 
-    const lb = document.getElementById('lightbox'); 
-    lb.querySelector('img').src = src; 
-    lb.style.display='flex'; 
+document.querySelectorAll('#main,.thumbs img').forEach(el=>el.addEventListener('click',e=>{
+  const src = e.target.src;
+  const lb = document.getElementById('lightbox');
+  lb.querySelector('img').src = src;
+  lb.style.display = 'flex';
+}));
+
+/* ---------- VIDEO PLAY/PAUSE (pause when out of view) ---------- */
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(ent=>{
+    const vid = ent.target.querySelector('video');
+    if(vid){
+      if(ent.isIntersecting) vid.play();
+      else vid.pause();
+    }
   });
+},{threshold:0.5});
+document.querySelectorAll('.film').forEach(f=>observer.observe(f));
+
+/* ---------- DROP‑LIST FEEDBACK ---------- */
+document.getElementById('list-form').addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('list-ok').style.display='block';
 });
 
-/* ---------- DROP‑LIST FORM (quick client‑side feedback) ---------- */
-document.getElementById('list-form').addEventListener('submit',e=>{
-  e.preventDefault(); 
-  document.getElementById('list-ok').style.display='block';
+/* ---------- ARROW KEY NAVIGATION (optional) ---------- */
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft')  prevImg();
+  if(e.key==='ArrowRight') nextImg();
 });
 </script>
 </body>
