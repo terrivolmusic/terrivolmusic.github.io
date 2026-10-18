@@ -5,12 +5,15 @@
 <title>MIDNIGHT DRIP — Cream Sherpa + Black Leather Patchwork Jacket | BFYT FASHION DROP 004</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --bg:#07070B;      --panel:rgba(255,255,255,.025);
   --purple:#7B2CBF;  --cyan:#00F5FF;   --amber:#FFB703;
   --txt:#F5F5F7;     --muted:#93939E; --line:rgba(255,255,255,.09);
 }
+
+/* ---------- RESET ---------- */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -18,8 +21,12 @@ body{
   font-family:'Inter',sans-serif;font-weight:300;
   overflow-x:hidden;
 }
-h1,h2,h3{font-family:'Montserrat',sans-serif;text-transform:uppercase}
+
+/* ---------- TYPO ---------- */
+h1,h2{font-family:'Montserrat',sans-serif;text-transform:uppercase}
 a{color:inherit;text-decoration:none}
+
+/* ---------- LAYOUT ---------- */
 .wrap{max-width:1240px;margin:auto;padding:0 24px}
 
 /* ---------- NAV ---------- */
@@ -34,15 +41,17 @@ nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
 nav .tag b{color:var(--cyan);font-weight:600}
 
 /* ---------- HERO BANNER ---------- */
-.hero-banner img{
-  width:100%;height:auto;object-fit:cover;
-  max-height:68vh;display:block;
+.hero img{
+  width:100%;height:auto;object-fit:cover;max-height:68vh;display:block;
 }
 
 /* ---------- PRODUCT GRID ---------- */
-.pdp{
-  display:grid;grid-template-columns:1.05fr .95fr;gap:54px;
-  padding:44px 0 90px;align-items:start;
+.product{
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;
+  padding:44px 0 80px;align-items:start;
+}
+@media(max-width:880px){
+  .product{grid-template-columns:1fr;gap:32px;padding:32px 0}
 }
 
 /* ---------- GALLERY ---------- */
@@ -51,14 +60,6 @@ nav .tag b{color:var(--cyan);font-weight:600}
   width:100%;max-height:560px;object-fit:contain;
   border:1px solid var(--line);background:var(--panel);cursor:pointer;
 }
-.gallery .arrow{
-  position:absolute;top:50%;transform:translateY(-50%);
-  width:38px;height:38px;background:rgba(0,0,0,.45);
-  color:#fff;font-size:22px;line-height:38px;text-align:center;
-  cursor:pointer;z-index:5;user-select:none;
-}
-.gallery .arrow.prev{left:8px}
-.gallery .arrow.next{right:8px}
 .gallery .thumbs{
   display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:12px;
 }
@@ -91,7 +92,7 @@ nav .tag b{color:var(--cyan);font-weight:600}
 .trust li{padding:11px 0;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.12em;color:#d8d8de}
 .trust li::before{content:"✓ ";color:var(--cyan)}
 
-/* ---------- SECTIONS ---------- */
+/* ---------- SECTIONS (film, campaign, etc.) ---------- */
 section{padding:96px 0}
 .kicker{font-size:11px;letter-spacing:.45em;color:var(--purple);margin-bottom:14px}
 h2{font-size:clamp(28px,4.6vw,48px);font-weight:800;letter-spacing:.04em;margin-bottom:30px}
@@ -120,7 +121,7 @@ h2{font-size:clamp(28px,4.6vw,48px);font-weight:800;letter-spacing:.04em;margin-
 .ugc figure{position:relative;aspect-ratio:9/16;overflow:hidden;background:#050508;cursor:pointer}
 .ugc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
-/* ---------- LIGHTBOX ---------- */
+/* ---------- LIGHTBOX (global) ---------- */
 #lightbox{
   position:fixed;inset:0;background:rgba(4,4,7,.97);
   display:none;align-items:center;justify-content:center;cursor:zoom-out;z-index:100;
@@ -134,18 +135,12 @@ footer{
 }
 
 /* ---------- RESPONSIVE ---------- */
-@media(max-width:1024px){
-  .pdp{gap:40px;padding:36px 0 70px}
-  section{padding:80px 0}
-}
 @media(max-width:768px){
   .wrap{padding:0 16px}
   nav{padding:14px 16px}
   .logo{font-size:12px;letter-spacing:.2em}
-  .pdp{grid-template-columns:1fr;gap:26px;padding:24px 0 100px}
   .thumbs{grid-template-columns:repeat(7,62px);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .thumbs::-webkit-scrollbar{display:none}
-  .thumbs img{width:100%;height:auto}
   .films{grid-template-columns:1fr 1fr}
   .cgrid{grid-template-columns:1fr 1fr}
   .sound{grid-template-columns:1fr;padding:28px 20px;gap:24px;text-align:center}
@@ -155,6 +150,7 @@ footer{
 }
 </style>
 </head>
+
 <body>
 
 <nav>
@@ -163,17 +159,14 @@ footer{
 </nav>
 
 <!-- ==================== HERO BANNER ==================== -->
-<section class="hero-banner">
-  <img src="https://terrivolmusic.github.io/img/01-hero-beat.jpg" alt="Midnight Drip banner">
+<section class="hero">
+  <img src="https://terrivolmusic.github.io/img/01-hero-beat.jpg" alt="Midnight Drip banner">
 </section>
 
-<div class="wrap pdp">
+<div class="wrap product">
   <!-- ==================== GALLERY ==================== -->
   <div class="gallery">
-    <img id="main" src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="Midnight Drip hero">
-    <div class="arrow prev" onclick="prevImg()">&#9664;</div>
-    <div class="arrow next" onclick="nextImg()">&#9654;</div>
-
+    <img id="main" src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="Midnight Drip hero">
     <div class="thumbs">
       <img src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="01" class="active" onclick="setMain(0,this)">
       <img src="https://terrivolmusic.github.io/img/03-hanging.jpg" alt="02" onclick="setMain(1,this)">
@@ -216,9 +209,9 @@ footer{
   <div class="kicker">THE FILM</div>
   <h2>Neon after‑hours, captured in motion.</h2>
   <div class="films">
-    <div class="film" onclick="togglePlay(this)"><video muted loop autoplay playsinline src="https://terrivolmusic.github.io/img/V1-firma.mp4"></video></div>
-    <div class="film" onclick="togglePlay(this)"><video muted loop autoplay playsinline src="https://terrivolmusic.github.io/img/V2-calle.mp4"></video></div>
-    <div class="film" onclick="togglePlay(this)"><video muted loop autoplay playsinline src="https://terrivolmusic.github.io/img/V4-carro.mp4"></video></div>
+    <div class="film"><video muted loop autoplay playsinline src="https://terrivolmusic.github.io/img/V1-firma.mp4"></video></div>
+    <div class="film"><video muted loop autoplay playsinline src="https://terrivolmusic.github.io/img/V2-calle.mp4"></video></div>
+    <div class="film"><video muted loop autoplay playsinline src="https://terrivolmusic.github.io/img/V4-carro.mp4"></video></div>
   </div>
 </section>
 
@@ -261,7 +254,7 @@ footer{
   </ul>
 </section>
 
-<!-- ==================== REAL FITS (UGC) ==================== -->
+<!-- ==================== UGC ==================== -->
 <section class="wrap">
   <div class="kicker">REAL FITS</div>
   <h2>The night already approved it.</h2>
@@ -333,13 +326,13 @@ footer{
   <div id="list-ok" style="display:none;margin-top:12px;color:var(--cyan)">YOU’RE IN ✓ CHECK YOUR INBOX FOR THE NEXT DROP</div>
 </section>
 
-<!-- ==================== LIGHTBOX ==================== -->
+<!-- ==================== GLOBAL LIGHTBOX ==================== -->
 <div id="lightbox" onclick="this.style.display='none'"><img src="" alt=""></div>
 
 <footer>© 2026 BFYT FASHION — TERRIVOL MUSIC ENT · WHERE SOUND DRESSES</footer>
 
 <script>
-/* ---------- GALLERY ---------- */
+/* ---------- GALLERY LOGIC ---------- */
 const imgList = [
   '02-packshot-front.jpg',
   '03-hanging.jpg',
@@ -349,61 +342,46 @@ const imgList = [
   '07-on-body-chain.jpg',
   '09-ugc-mirror.jpg'
 ];
-let cur = 0;
+let curIdx = 0;
 function setMain(idx, thumb){
-  cur = idx;
+  curIdx = idx;
   document.getElementById('main').src = `https://terrivolmusic.github.io/img/${imgList[idx]}`;
   document.querySelectorAll('.thumbs img').forEach(i=>i.classList.remove('active'));
   thumb.classList.add('active');
 }
-function prevImg(){
-  cur = (cur-1+imgList.length)%imgList.length;
-  document.getElementById('main').src = `https://terrivolmusic.github.io/img/${imgList[cur]}`;
-  document.querySelectorAll('.thumbs img')[cur].classList.add('active');
-  document.querySelectorAll('.thumbs img').forEach((i,ix)=>{if(ix!==cur) i.classList.remove('active');});
-}
-function nextImg(){
-  cur = (cur+1)%imgList.length;
-  document.getElementById('main').src = `https://terrivolmusic.github.io/img/${imgList[cur]}`;
-  document.querySelectorAll('.thumbs img')[cur].classList.add('active');
-  document.querySelectorAll('.thumbs img').forEach((i,ix)=>{if(ix!==cur) i.classList.remove('active');});
-}
 
-/* ---------- LIGHTBOX ---------- */
-document.querySelectorAll('#main,.thumbs img').forEach(el=>el.addEventListener('click',e=>{
-  const src = e.target.src;
-  const lb = document.getElementById('lightbox');
-  lb.querySelector('img').src = src;
-  lb.style.display = 'flex';
-}));
-
-/* ---------- VIDEO PLAY/PAUSE ---------- */
-const vidObserver = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    const vid = entry.target.querySelector('video');
-    if(!vid) return;
-    if(entry.isIntersecting) vid.play();
-    else vid.pause();
+/* ---------- GLOBAL LIGHTBOX ---------- */
+document.querySelectorAll('img').forEach(img=>{
+  // no queremos que se abra la lightbox al hacer click en el logo o en la barra de navegación
+  if(img.closest('nav')) return;
+  img.addEventListener('click',e=>{
+    const src = e.target.src;
+    const lb = document.getElementById('lightbox');
+    lb.querySelector('img').src = src;
+    lb.style.display = 'flex';
   });
-},{threshold:0.5});
-document.querySelectorAll('.film').forEach(f=>vidObserver.observe(f));
-
-function togglePlay(container){
-  const vid = container.querySelector('video');
-  if(vid.paused) vid.play();
-  else vid.pause();
-}
+});
 
 /* ---------- DROP‑LIST FEEDBACK ---------- */
 document.getElementById('list-form').addEventListener('submit',e=>{
   e.preventDefault();
-  document.getElementById('list-ok').style.display='block';
+  document.getElementById('list-ok').style.display = 'block';
 });
 
-/* ---------- ARROW‑KEY NAVIGATION (optional) ---------- */
+/* ---------- KEYBOARD ARROW NAVIGATION (optional) ---------- */
 document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowLeft')  prevImg();
-  if(e.key==='ArrowRight') nextImg();
+  if(e.key==='ArrowLeft'){
+    curIdx = (curIdx-1+imgList.length)%imgList.length;
+    document.getElementById('main').src = `https://terrivolmusic.github.io/img/${imgList[curIdx]}`;
+    document.querySelectorAll('.thumbs img')[curIdx].classList.add('active');
+    document.querySelectorAll('.thumbs img').forEach((i,ix)=>{if(ix!==curIdx)i.classList.remove('active');});
+  }
+  if(e.key==='ArrowRight'){
+    curIdx = (curIdx+1)%imgList.length;
+    document.getElementById('main').src = `https://terrivolmusic.github.io/img/${imgList[curIdx]}`;
+    document.querySelectorAll('.thumbs img')[curIdx].classList.add('active');
+    document.querySelectorAll('.thumbs img').forEach((i,ix)=>{if(ix!==curIdx)i.classList.remove('active');});
+  }
 });
 </script>
 </body>
