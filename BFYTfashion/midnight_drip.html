@@ -7,9 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#07070B;       --panel:rgba(255,255,255,.025);
-  --purple:#7B2CBF;   --cyan:#00F5FF;   --amber:#FFB703;
-  --txt:#F5F5F7;      --muted:#93939E; --line:rgba(255,255,255,.09);
+  --bg:#07070B;      --panel:rgba(255,255,255,.025);
+  --purple:#7B2CBF;  --cyan:#00F5FF;   --amber:#FFB703;
+  --txt:#F5F5F7;     --muted:#93939E; --line:rgba(255,255,255,.09);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -18,7 +18,7 @@ body{
   font-family:'Inter',sans-serif;font-weight:300;
   overflow-x:hidden;
 }
-h1,h2{font-family:'Montserrat',sans-serif;text-transform:uppercase}
+h1,h2,h3{font-family:'Montserrat',sans-serif;text-transform:uppercase}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1240px;margin:auto;padding:0 24px}
 
@@ -36,7 +36,7 @@ nav .tag b{color:var(--cyan);font-weight:600}
 /* ---------- HERO BANNER ---------- */
 .hero-banner img{
   width:100%;height:auto;object-fit:cover;
-  max-height:70vh;display:block;
+  max-height:68vh;display:block;
 }
 
 /* ---------- PRODUCT GRID ---------- */
@@ -46,33 +46,28 @@ nav .tag b{color:var(--cyan);font-weight:600}
 }
 
 /* ---------- GALLERY ---------- */
-.gallery{position:relative;width:100%;max-width:720px}
-gallery #main{
-  width:100%;height:auto;max-height:80vh;object-fit:contain;
+.gallery{position:relative}
+.gallery #main{
+  width:100%;max-height:560px;object-fit:contain;
   border:1px solid var(--line);background:var(--panel);cursor:pointer;
 }
-.gallery .thumbs{
-  display:flex;gap:8px;overflow-x:auto;margin-top:12px;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none;
-}
-.gallery .thumbs::-webkit-scrollbar{display:none}
-.gallery .thumbs img{
-  flex:0 0 auto;width:80px;height:80px;object-fit:cover;
-  cursor:pointer;border:1px solid transparent;opacity:.55;
-}
-.gallery .thumbs img.active,.gallery .thumbs img:hover{
-  opacity:1;border-color:var(--cyan);
-}
-
-/* arrows */
 .gallery .arrow{
   position:absolute;top:50%;transform:translateY(-50%);
   width:38px;height:38px;background:rgba(0,0,0,.45);
   color:#fff;font-size:22px;line-height:38px;text-align:center;
-  cursor:pointer;user-select:none;z-index:5;
+  cursor:pointer;z-index:5;user-select:none;
 }
 .gallery .arrow.prev{left:8px}
 .gallery .arrow.next{right:8px}
+.gallery .thumbs{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:12px;
+}
+.gallery .thumbs img{
+  width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;
+  cursor:pointer;border:1px solid transparent;opacity:.55;
+}
+.gallery .thumbs img.active,
+.gallery .thumbs img:hover{opacity:1;border-color:var(--cyan)}
 
 /* ---------- BUY SECTION ---------- */
 .buy .crumbs{font-size:10px;letter-spacing:.25em;color:var(--muted);margin-bottom:14px}
@@ -86,8 +81,8 @@ gallery #main{
 .btn{
   display:inline-block;background:var(--txt);color:#000;
   font-family:'Montserrat';font-weight:600;font-size:13px;letter-spacing:.25em;
-  text-transform:uppercase;padding:19px 44px;border:none;
-  cursor:pointer;transition:.3s;width:100%;text-align:center;
+  text-transform:uppercase;padding:19px 44px;border:none;cursor:pointer;
+  transition:.3s;width:100%;text-align:center;
 }
 .btn:hover{box-shadow:0 0 40px rgba(0,245,255,.35);transform:translateY(-2px)}
 .btn:active{transform:translateY(0)}
@@ -148,8 +143,9 @@ footer{
   nav{padding:14px 16px}
   .logo{font-size:12px;letter-spacing:.2em}
   .pdp{grid-template-columns:1fr;gap:26px;padding:24px 0 100px}
-  .thumbs{gap:6px}
-  .thumbs img{width:62px;height:62px}
+  .thumbs{grid-template-columns:repeat(7,62px);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .thumbs::-webkit-scrollbar{display:none}
+  .thumbs img{width:100%;height:auto}
   .films{grid-template-columns:1fr 1fr}
   .cgrid{grid-template-columns:1fr 1fr}
   .sound{grid-template-columns:1fr;padding:28px 20px;gap:24px;text-align:center}
@@ -168,13 +164,13 @@ footer{
 
 <!-- ==================== HERO BANNER ==================== -->
 <section class="hero-banner">
-  <img src="https://terrivolmusic.github.io/img/01-hero-beat.jpg" alt="Midnight Drip hero banner">
+  <img src="https://terrivolmusic.github.io/img/01-hero-beat.jpg" alt="Midnight Drip banner">
 </section>
 
 <div class="wrap pdp">
   <!-- ==================== GALLERY ==================== -->
   <div class="gallery">
-    <img id="main" src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="Midnight Drip hero">
+    <img id="main" src="https://terrivolmusic.github.io/img/02-packshot-front.jpg" alt="Midnight Drip hero">
     <div class="arrow prev" onclick="prevImg()">&#9664;</div>
     <div class="arrow next" onclick="nextImg()">&#9654;</div>
 
@@ -343,8 +339,8 @@ footer{
 <footer>© 2026 BFYT FASHION — TERRIVOL MUSIC ENT · WHERE SOUND DRESSES</footer>
 
 <script>
-/* ---------- GALLERY LOGIC ---------- */
-const galleryImages = [
+/* ---------- GALLERY ---------- */
+const imgList = [
   '02-packshot-front.jpg',
   '03-hanging.jpg',
   '04-flat-lay.jpg',
@@ -353,25 +349,24 @@ const galleryImages = [
   '07-on-body-chain.jpg',
   '09-ugc-mirror.jpg'
 ];
-let curIdx = 0;
-
+let cur = 0;
 function setMain(idx, thumb){
-  curIdx = idx;
-  document.getElementById('main').src = `https://terrivolmusic.github.io/img/${galleryImages[idx]}`;
+  cur = idx;
+  document.getElementById('main').src = `https://terrivolmusic.github.io/img/${imgList[idx]}`;
   document.querySelectorAll('.thumbs img').forEach(i=>i.classList.remove('active'));
   thumb.classList.add('active');
 }
 function prevImg(){
-  curIdx = (curIdx - 1 + galleryImages.length) % galleryImages.length;
-  document.getElementById('main').src = `https://terrivolmusic.github.io/img/${galleryImages[curIdx]}`;
-  document.querySelectorAll('.thumbs img')[curIdx].classList.add('active');
-  document.querySelectorAll('.thumbs img').forEach((i,ix)=>{if(ix!==curIdx) i.classList.remove('active');});
+  cur = (cur-1+imgList.length)%imgList.length;
+  document.getElementById('main').src = `https://terrivolmusic.github.io/img/${imgList[cur]}`;
+  document.querySelectorAll('.thumbs img')[cur].classList.add('active');
+  document.querySelectorAll('.thumbs img').forEach((i,ix)=>{if(ix!==cur) i.classList.remove('active');});
 }
 function nextImg(){
-  curIdx = (curIdx + 1) % galleryImages.length;
-  document.getElementById('main').src = `https://terrivolmusic.github.io/img/${galleryImages[curIdx]}`;
-  document.querySelectorAll('.thumbs img')[curIdx].classList.add('active');
-  document.querySelectorAll('.thumbs img').forEach((i,ix)=>{if(ix!==curIdx) i.classList.remove('active');});
+  cur = (cur+1)%imgList.length;
+  document.getElementById('main').src = `https://terrivolmusic.github.io/img/${imgList[cur]}`;
+  document.querySelectorAll('.thumbs img')[cur].classList.add('active');
+  document.querySelectorAll('.thumbs img').forEach((i,ix)=>{if(ix!==cur) i.classList.remove('active');});
 }
 
 /* ---------- LIGHTBOX ---------- */
@@ -382,17 +377,22 @@ document.querySelectorAll('#main,.thumbs img').forEach(el=>el.addEventListener('
   lb.style.display = 'flex';
 }));
 
-/* ---------- VIDEO PLAY/PAUSE (pause when out of view) ---------- */
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(ent=>{
-    const vid = ent.target.querySelector('video');
-    if(vid){
-      if(ent.isIntersecting) vid.play();
-      else vid.pause();
-    }
+/* ---------- VIDEO PLAY/PAUSE ---------- */
+const vidObserver = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    const vid = entry.target.querySelector('video');
+    if(!vid) return;
+    if(entry.isIntersecting) vid.play();
+    else vid.pause();
   });
 },{threshold:0.5});
-document.querySelectorAll('.film').forEach(f=>observer.observe(f));
+document.querySelectorAll('.film').forEach(f=>vidObserver.observe(f));
+
+function togglePlay(container){
+  const vid = container.querySelector('video');
+  if(vid.paused) vid.play();
+  else vid.pause();
+}
 
 /* ---------- DROP‑LIST FEEDBACK ---------- */
 document.getElementById('list-form').addEventListener('submit',e=>{
@@ -400,7 +400,7 @@ document.getElementById('list-form').addEventListener('submit',e=>{
   document.getElementById('list-ok').style.display='block';
 });
 
-/* ---------- ARROW KEY NAVIGATION (optional) ---------- */
+/* ---------- ARROW‑KEY NAVIGATION (optional) ---------- */
 document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft')  prevImg();
   if(e.key==='ArrowRight') nextImg();
