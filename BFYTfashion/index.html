@@ -158,9 +158,15 @@ footer .fl a:hover{color:var(--cyan)}
   </div>
 
   <div class="grid reveal" style="margin-top:18px">
-    <!-- DROP 003: CHAQUETA UNDERGROUND VELOCITY -->
+    <!-- DROP 003: CHAQUETA UNDERGROUND VELOCITY (IMAGEN CORREGIDA) -->
     <a class="dcard" href="underground_velocity.html">
-      <div class="ph"><span class="badge fash">FASHION · DROP 003</span><img data-img="01-hero-beat" data-alt="06-walking-neon" alt="UNDERGROUND VELOCITY cropped puffer jacket"></div>
+      <div class="ph">
+        <span class="badge fash">FASHION · DROP 003</span>
+        <!-- Ruta relativa correcta desde /BFYTfashion/ hacia /img/ -->
+        <img data-img="../img/underground-velocity/black/black-modelo-05-model-wearing-puffer-jacket-2k-2.jpg" 
+             data-alt="../img/underground-velocity/black/black-producto-01-4d50c2a421261cafcfd990b6b7a98e71.jpg" 
+             alt="UNDERGROUND VELOCITY cropped puffer jacket black gloss">
+      </div>
       <div class="info">
         <h3>Underground Velocity</h3>
         <div class="meta">CROPPED PUFFER JACKET · GLOSSY BLACK</div>
@@ -171,7 +177,7 @@ footer .fl a:hover{color:var(--cyan)}
 
     <!-- ICED DROP 001: RELOJ -->
     <a class="dcard" href="burgundy_protocol_iced_watch.html">
-      <div class="ph"><span class="badge iced">ICED · DROP 001</span><img data-img="Professional_luxury_product_photography_of_202605131640" data-alt="foto_de_producto_2K_202609031739" alt="BURGUNDY PROTOCOL iced watch"></div>
+      <div class="ph"><span class="badge iced">ICED · DROP 001</span><img data-img="../img/Professional_luxury_product_photography_of_202605131640.jpeg" data-alt="../img/foto_de_producto_2K_202609031739.jpeg" alt="BURGUNDY PROTOCOL iced watch"></div>
       <div class="info">
         <h3>Burgundy Protocol</h3>
         <div class="meta">ICED ROSE GOLD WATCH · ONE SIZE</div>
@@ -184,7 +190,7 @@ footer .fl a:hover{color:var(--cyan)}
   <div class="grid reveal" style="margin-top:18px">
     <!-- DROP 004: CHAQUETA MIDNIGHT DRIP -->
     <a class="dcard" href="midnight_drip.html">
-      <div class="ph"><span class="badge fash">FASHION · DROP 004</span><img data-img="02-packshot-front" data-alt="06-walking-neon" alt="MIDNIGHT DRIP jacket"></div>
+      <div class="ph"><span class="badge fash">FASHION · DROP 004</span><img data-img="../img/02-packshot-front.jpeg" data-alt="../img/06-walking-neon.jpeg" alt="MIDNIGHT DRIP jacket"></div>
       <div class="info">
         <h3>Midnight Drip</h3>
         <div class="meta">CREAM SHERPA & BLACK LEATHER JACKET</div>
@@ -258,23 +264,57 @@ footer .fl a:hover{color:var(--cyan)}
 </footer>
 
 <script>
-// LOADER UNIVERSAL v6 — codifica nombres (espacios / (1) / guiones) + data-alt de respaldo
-const IMG_BASE="/img/";
+// LOADER UNIVERSAL v6 — AJUSTADO PARA RUTAS RELATIVAS DESDE /BFYTfashion/
+// Como el index está en /BFYTfashion/ y las imgs en /img/, usamos ../img/
+// Pero para los drops antiguos que usan nombres simples en /img/ raíz, el loader intenta ambas.
+const IMG_BASE_ROOT = "/img/";
+const IMG_BASE_REL = "../img/";
 const EXT=[".jpg",".jpeg",".png",".webp",".JPG",".JPEG",".PNG",".WEBP",".jfif",".JFIF",".avif",".AVIF",".gif",".GIF"];
 const PH="data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><rect width="600" height="800" fill="#0A0A0F"/><circle cx="300" cy="400" r="180" fill="none" stroke="#7B2CBF" stroke-opacity=".35" stroke-width="2"/><circle cx="300" cy="400" r="120" fill="none" stroke="#E8B4A0" stroke-opacity=".3" stroke-width="1"/><text x="300" y="392" fill="#F5F5F7" font-family="Arial" font-size="26" letter-spacing="8" text-anchor="middle" font-weight="700">BFYT</text><text x="300" y="428" fill="#9A9AA5" font-family="Arial" font-size="14" letter-spacing="4" text-anchor="middle">WORLD</text></svg>');
+
 function variants(b){const v=[b];const m=b.match(/^(.*)\s\(\d+\)$/);if(m)v.push(m[1]);v.push(b+" (1)",b+" (2)");return v;}
-function buildURL(n,e){return IMG_BASE+encodeURIComponent(n)+e;}
+
 function loadImg(img){
-  const bases=[img.dataset.img];
-  if(img.dataset.alt)bases.push(img.dataset.alt);
-  const low=img.dataset.img.toLowerCase();
-  if(low!==img.dataset.img)bases.push(low);
-  const queue=[];
-  bases.forEach(b=>{variants(b).forEach(v=>{EXT.forEach(e=>queue.push(buildURL(v,e)));});});
+  const rawSrc = img.dataset.img;
+  if(!rawSrc) return;
+  
+  // Si la ruta ya es relativa (empieza con ../), usamos esa base.
+  // Si no, asumimos que es un nombre simple en la raíz /img/
+  const isRelative = rawSrc.startsWith('../');
+  const basePath = isRelative ? "" : IMG_BASE_ROOT; 
+  const cleanName = isRelative ? rawSrc.substring(3) : rawSrc; // Quitamos ../ si existe para construir URL absoluta o relativa limpia
+  
+  // Estrategia: Intentar primero como ruta relativa directa (si el navegador lo resuelve), luego absoluta
+  const basesToTry = [rawSrc, IMG_BASE_ROOT + cleanName];
+  
+  const queue = [];
+  basesToTry.forEach(base => {
+     // Si base ya tiene extensión, intentar solo ese
+     if(/\.(jpg|jpeg|png|webp|jfif|avif|gif)$/i.test(base)){
+         queue.push(base);
+     } else {
+         variants(base).forEach(v => {
+             EXT.forEach(e => queue.push(v + e));
+         });
+     }
+  });
+
+  // Eliminar duplicados
+  const uniqueQueue = [...new Set(queue)];
+  
   let i=0;
-  const next=()=>{if(i<queue.length){img.src=queue[i++];}else{img.src=PH;console.warn("[BFYT] asset missing:",img.dataset.img);}};
-  img.onerror=next;next();
+  const next=()=>{
+      if(i<uniqueQueue.length){
+          img.src=uniqueQueue[i++];
+      } else {
+          img.src=PH;
+          console.warn("[BFYT] asset missing:", rawSrc);
+      }
+  };
+  img.onerror=next;
+  next();
 }
+
 document.querySelectorAll("img[data-img]").forEach(img=>loadImg(img));
 
 // DROP LIST (Formspree global de marca)
