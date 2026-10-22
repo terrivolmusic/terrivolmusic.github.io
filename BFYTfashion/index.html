@@ -43,7 +43,7 @@ section{padding:90px 0}
 .kicker{font-size:11px;letter-spacing:.45em;color:#b06cf0;margin-bottom:14px}
 h2{font-size:clamp(26px,4.6vw,46px);font-weight:800;letter-spacing:.05em;margin-bottom:30px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.dcard{border:1px solid var(--line);background:rgba(255,255,255,.02);overflow:hidden;transition:.35s;display:block}
+.dcard{border:1px solid var(--line);background:rgba(255,255,255,.02);overflow:hidden;transition:.35s;display:block;text-decoration:none}
 .dcard:hover{border-color:var(--rose);transform:translateY(-4px);box-shadow:0 24px 60px rgba(0,0,0,.5)}
 .dcard .ph{aspect-ratio:4/5;overflow:hidden;position:relative}
 .dcard .ph img{width:100%;height:100%;object-fit:cover;transition:.6s}
@@ -52,23 +52,12 @@ h2{font-size:clamp(26px,4.6vw,46px);font-weight:800;letter-spacing:.05em;margin-
 .badge.fash{color:var(--cyan)}
 .badge.iced{color:var(--rose)}
 .dcard .info{padding:22px 22px 26px}
-.dcard h3{font-size:16px;letter-spacing:.08em;margin-bottom:6px}
+.dcard h3{font-size:16px;letter-spacing:.08em;margin-bottom:6px;color:var(--txt)}
 .dcard .meta{font-size:10px;letter-spacing:.25em;color:var(--muted);margin-bottom:14px}
 .dcard .pr{font-family:'Montserrat';font-weight:600;font-size:20px}
 .dcard .pr s{color:var(--muted);font-weight:300;font-size:14px;margin-right:10px}
 .dcard .pr em{font-style:normal;color:var(--rose)}
 .dcard .go{margin-top:16px;font-family:'Montserrat';font-size:11px;letter-spacing:.3em;color:var(--cyan)}
-.icedfeat{border:1px solid var(--line);background:linear-gradient(140deg,rgba(232,180,160,.07),rgba(123,44,191,.12));display:grid;grid-template-columns:.9fr 1.1fr;overflow:hidden;margin-top:18px}
-.icedfeat .ph{aspect-ratio:1/1;overflow:hidden;position:relative}
-.icedfeat .ph img{width:100%;height:100%;object-fit:cover}
-.icedfeat .info{padding:46px 44px;display:flex;flex-direction:column;justify-content:center}
-.icedfeat h3{font-size:clamp(22px,3vw,32px);letter-spacing:.05em;margin:10px 0 8px}
-.icedfeat .meta{font-size:11px;letter-spacing:.25em;color:var(--muted);margin-bottom:18px}
-.icedfeat p{color:#c9c9d2;line-height:1.8;font-size:14px;margin-bottom:22px}
-.icedfeat .pr{font-family:'Montserrat';font-weight:600;font-size:26px;margin-bottom:24px}
-.icedfeat .pr s{color:var(--muted);font-weight:300;font-size:17px;margin-right:12px}
-.icedfeat .pr em{font-style:normal;color:var(--rose)}
-.icedfeat .btn{width:fit-content}
 .sys{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .scard{border:1px solid var(--line);background:rgba(255,255,255,.02);padding:32px 26px}
 .scard .n{font-family:'Montserrat';font-weight:800;font-size:13px;letter-spacing:.3em;color:var(--rose);margin-bottom:14px}
@@ -96,7 +85,7 @@ footer .fl{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bo
 footer .fl a:hover{color:var(--cyan)}
 .reveal{opacity:0;transform:translateY(28px);transition:.9s ease}
 .reveal.on{opacity:1;transform:none}
-@media(max-width:1024px){section{padding:70px 0}.sound{padding:38px;gap:28px}.icedfeat .info{padding:34px 30px}}
+@media(max-width:1024px){section{padding:70px 0}.sound{padding:38px;gap:28px}}
 @media(max-width:768px){
   .wrap{padding:0 16px}
   nav{padding:14px 16px}
@@ -108,8 +97,6 @@ footer .fl a:hover{color:var(--cyan)}
   section{padding:56px 0}
   h2{font-size:clamp(22px,6vw,30px);margin-bottom:22px}
   .grid{grid-template-columns:1fr;gap:14px}
-  .icedfeat{grid-template-columns:1fr}
-  .icedfeat .ph{aspect-ratio:4/3}
   .sys{grid-template-columns:1fr;gap:12px}
   .sound{grid-template-columns:1fr;padding:28px 20px;text-align:center}
   .beats li{flex-direction:column;align-items:flex-start;gap:6px}
@@ -126,7 +113,7 @@ footer .fl a:hover{color:var(--cyan)}
 
 <nav>
   <div class="logo">BFYT<span> WORLD</span></div>
-  <div class="tag"><b>4</b> DROPS LIVE</div>
+  <div class="tag"><b>5</b> DROPS LIVE</div>
 </nav>
 
 <header class="hero">
@@ -170,14 +157,14 @@ footer .fl a:hover{color:var(--cyan)}
     </a>
   </div>
 
-  <!-- DROP 003: CHAQUETA (NUEVO) -->
   <div class="grid reveal" style="margin-top:18px">
-    <a class="dcard" href="midnight_drip.html">
-      <div class="ph"><span class="badge fash">FASHION · DROP 004</span><img data-img="01-hero-beat" data-alt="06-walking-neon" alt="MIDNIGHT DRIP jacket"></div>
+    <!-- DROP 003: CHAQUETA UNDERGROUND VELOCITY (NUEVO) -->
+    <a class="dcard" href="underground_velocity.html">
+      <div class="ph"><span class="badge fash">FASHION · DROP 003</span><img data-img="01-hero-beat" data-alt="06-walking-neon" alt="UNDERGROUND VELOCITY cropped puffer jacket"></div>
       <div class="info">
-        <h3>Midnight Drip</h3>
-        <div class="meta">CREAM SHERPA & BLACK LEATHER JACKET</div>
-        <div class="pr"><s>$299.00</s><em>$199.00</em></div>
+        <h3>Underground Velocity</h3>
+        <div class="meta">CROPPED PUFFER JACKET · GLOSSY BLACK</div>
+        <div class="pr"><s>$199.00</s><em>$129.00</em></div>
         <div class="go">VIEW DROP →</div>
       </div>
     </a>
@@ -190,6 +177,30 @@ footer .fl a:hover{color:var(--cyan)}
         <div class="meta">ICED ROSE GOLD WATCH · ONE SIZE</div>
         <div class="pr"><s>$149.00</s><em>$89.00</em></div>
         <div class="go">VIEW DROP →</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="grid reveal" style="margin-top:18px">
+    <!-- DROP 004: CHAQUETA MIDNIGHT DRIP -->
+    <a class="dcard" href="midnight_drip.html">
+      <div class="ph"><span class="badge fash">FASHION · DROP 004</span><img data-img="02-packshot-front" data-alt="06-walking-neon" alt="MIDNIGHT DRIP jacket"></div>
+      <div class="info">
+        <h3>Midnight Drip</h3>
+        <div class="meta">CREAM SHERPA & BLACK LEATHER JACKET</div>
+        <div class="pr"><s>$299.00</s><em>$199.00</em></div>
+        <div class="go">VIEW DROP →</div>
+      </div>
+    </a>
+
+    <!-- PRÓXIMO DROP (placeholder) -->
+    <a class="dcard" href="#" style="opacity:0.6;cursor:not-allowed">
+      <div class="ph" style="background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:center"><span class="badge fash">COMING SOON</span></div>
+      <div class="info">
+        <h3>Next Drop</h3>
+        <div class="meta">TBA · JOIN THE DROP LIST</div>
+        <div class="pr"><em>SOON</em></div>
+        <div class="go">NOTIFY ME →</div>
       </div>
     </a>
   </div>
@@ -214,6 +225,7 @@ footer .fl a:hover{color:var(--cyan)}
       <a class="btn ghost" href="https://www.youtube.com/@beatsfreeyoutube_" target="_blank">Open the channel</a>
     </div>
     <ul class="beats">
+      <li><span><span class="bn">Underground Velocity</span><br><span class="bd">FASHION 003 · puffer</span></span><a href="#" target="_blank">PLAY ▶</a></li>
       <li><span><span class="bn">Midnight Drip</span><br><span class="bd">FASHION 004 · sherpa</span></span><a href="#" target="_blank">PLAY ▶</a></li>
       <li><span><span class="bn">Burgundy Protocol</span><br><span class="bd">ICED 001 · rose gold</span></span><a href="https://youtu.be/6K4L4Wrikjs" target="_blank">PLAY ▶</a></li>
       <li><span><span class="bn">Dark Whispers</span><br><span class="bd">FASHION 002 · leopard</span></span><a href="https://youtu.be/-qxtNeObOWI" target="_blank">PLAY ▶</a></li>
