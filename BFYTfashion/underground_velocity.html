@@ -23,7 +23,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:'Inter',system-ui,sans-serif;font-weight:300;overflow-x:hidden}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',system-ui,sans-serif;font-weight:300;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom)}
 h1,h2,h3{font-family:'Montserrat',sans-serif;text-transform:uppercase}
 img{display:block;width:100%;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -32,11 +32,15 @@ a{color:inherit;text-decoration:none}
 .bar{position:relative;z-index:70;font-family:'Montserrat';font-size:11px;letter-spacing:.18em;text-align:center;padding:10px 16px;text-transform:uppercase}
 .bar.pending{background:#FFD400;color:#000}
 .bar.missing{background:#B00020;color:#fff}
-nav{position:sticky;top:0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:16px 32px;backdrop-filter:blur(14px);background:rgba(7,7,11,.86);border-bottom:1px solid var(--line)}
-.logo{font-family:'Montserrat';font-weight:800;letter-spacing:.25em;font-size:14px}
+
+/* NAV MEJORADO */
+nav{position:sticky;top:0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;backdrop-filter:blur(14px);background:rgba(7,7,11,.92);border-bottom:1px solid var(--line)}
+.logo{font-family:'Montserrat';font-weight:800;letter-spacing:.25em;font-size:14px;cursor:pointer;transition:opacity .3s}
+.logo:hover{opacity:.8}
 .logo span{color:var(--cyan)}
-nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
+nav .tag{font-size:10px;letter-spacing:.2em;color:var(--muted)}
 nav .tag b{color:var(--cyan);font-weight:600}
+
 .pdp{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;padding:44px 0 90px;align-items:start}
 #main{aspect-ratio:1/1;object-fit:cover;cursor:zoom-in;border:1px solid var(--line);background:var(--panel)}
 .thumbs{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:10px}
@@ -59,12 +63,12 @@ nav .tag b{color:var(--cyan);font-weight:600}
 .stockbar span{display:block;height:100%;background:var(--cyan);transition:width .6s ease}
 .colors-label{font-size:10px;letter-spacing:.3em;color:var(--muted);margin-bottom:10px}
 .colors{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
-.colors button{display:flex;align-items:center;gap:10px;background:transparent;border:1px solid var(--line);color:#d8d8de;padding:10px 16px;cursor:pointer;font-family:'Montserrat';font-size:11px;letter-spacing:.18em;transition:.25s}
+.colors button{display:flex;align-items:center;gap:10px;background:transparent;border:1px solid var(--line);color:#d8d8de;padding:12px 16px;cursor:pointer;font-family:'Montserrat';font-size:11px;letter-spacing:.18em;transition:.25s;min-height:44px}
 .colors button:hover{border-color:rgba(255,255,255,.4)}
 .colors button.on{border-color:var(--cyan);color:var(--txt);box-shadow:0 0 22px rgba(0,245,255,.18)}
 .dot{width:15px;height:15px;border-radius:50%;border:1px solid rgba(255,255,255,.35)}
 .sizes{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
-.sizes span{border:1px solid var(--line);padding:9px 15px;font-family:'Montserrat';font-size:11px;letter-spacing:.15em;color:#d8d8de}
+.sizes span{border:1px solid var(--line);padding:12px 15px;font-family:'Montserrat';font-size:11px;letter-spacing:.15em;color:#d8d8de;min-height:44px;display:flex;align-items:center}
 .sizes small{width:100%;color:var(--muted);font-size:10px;letter-spacing:.14em;margin-top:6px}
 .sizenote{font-size:12px;color:var(--muted);letter-spacing:.06em;line-height:1.7;margin-bottom:22px;border:1px solid var(--line);padding:14px 16px;background:var(--panel)}
 .sizenote b{color:var(--txt)}
@@ -86,7 +90,6 @@ h2{font-size:clamp(28px,4.6vw,48px);font-weight:800;letter-spacing:.04em;margin-
 .films figure{aspect-ratio:9/16;overflow:hidden;background:#050508;position:relative;cursor:pointer;border:1px solid var(--line)}
 .films figure>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .films figure>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-/* recorte suave: esconde marcas de agua pegadas al borde (subir a 1.25 si aun se ve) */
 .films figure>img,.films figure>video{transform:scale(1.15)}
 .films figure::after{content:"▶ TAP TO PLAY";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Montserrat';font-size:10px;letter-spacing:.3em;color:var(--txt);background:rgba(0,0,0,.6);padding:10px 18px;border:1px solid var(--cyan);z-index:3;pointer-events:none;transition:.3s}
 .films figure.playing::after{opacity:0}
@@ -112,9 +115,9 @@ h2{font-size:clamp(28px,4.6vw,48px);font-weight:800;letter-spacing:.04em;margin-
 .card{border:1px solid var(--line);background:var(--panel);padding:32px 26px}
 .card h3{font-size:14px;letter-spacing:.2em;margin-bottom:12px}
 .card p{font-size:13px;color:var(--muted);line-height:1.85}
-.measure{margin-top:34px;border:1px solid var(--line);background:var(--panel);padding:28px 26px}
+.measure{margin-top:34px;border:1px solid var(--line);background:var(--panel);padding:28px 26px;overflow-x:auto}
 .measure h3{font-size:14px;letter-spacing:.2em;margin-bottom:16px}
-.sizetable{width:100%;border-collapse:collapse;font-size:13px}
+.sizetable{width:100%;border-collapse:collapse;font-size:13px;min-width:500px}
 .sizetable th,.sizetable td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:center;color:#d8d8de}
 .sizetable th{font-family:'Montserrat';font-size:10px;letter-spacing:.16em;color:var(--muted)}
 .sizetable td:first-child,.sizetable th:first-child{text-align:left;font-family:'Montserrat'}
@@ -142,34 +145,77 @@ footer{padding:60px 24px calc(60px + env(safe-area-inset-bottom));text-align:cen
 .reveal{opacity:0;transform:translateY(26px);transition:.85s ease}
 .reveal.on{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-@media(max-width:1024px){.pdp{gap:40px;padding:36px 0 70px}section{padding:76px 0}.sound{padding:40px;gap:32px}}
+
+/* RESPONSIVE TABLET */
+@media(max-width:1024px){
+  .pdp{gap:40px;padding:36px 0 70px}
+  section{padding:76px 0}
+  .sound{padding:40px;gap:32px}
+}
+
+/* RESPONSIVE MOBILE PRO */
 @media(max-width:768px){
   .wrap{padding:0 16px}
-  nav{padding:14px 16px}.logo{font-size:12px;letter-spacing:.2em}nav .tag{font-size:9px;letter-spacing:.22em}
+  nav{padding:14px 16px}
+  .logo{font-size:12px;letter-spacing:.2em}
+  nav .tag{font-size:9px;letter-spacing:.15em}
+  
   .pdp{grid-template-columns:1fr;gap:26px;padding:22px 0 110px}
-  .thumbs{gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;grid-template-columns:repeat(7,62px)}
+  
+  /* Thumbs scroll horizontal suave */
+  .thumbs{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding-bottom:8px;
+    -webkit-overflow-scrolling:touch;
+  }
   .thumbs::-webkit-scrollbar{display:none}
+  .thumbs img{flex:0 0 auto;width:60px;height:60px}
+  
   .buy h1{font-size:clamp(24px,7vw,32px)}
-  .price-line{font-size:25px}.price-line s{font-size:16px}
+  .price-line{font-size:25px}
+  .price-line s{font-size:16px}
+  
+  /* Botones táctiles grandes */
   .btn{padding:16px 20px;font-size:12px;letter-spacing:.18em;min-height:54px}
+  .colors button{padding:12px 14px;font-size:10px}
+  .sizes span{padding:12px 14px;font-size:10px}
+  
   section{padding:58px 0}
   h2{font-size:clamp(22px,6.4vw,32px);margin-bottom:20px}
+  
   .films{grid-template-columns:1fr 1fr;gap:10px}
   .cgrid{grid-template-columns:1fr 1fr;gap:10px}
+  
   .sound{grid-template-columns:1fr;padding:26px 20px;gap:22px;text-align:center}
   .sound img{max-width:280px;margin:0 auto}
   .sound .btn{width:100%}
+  
   .two{grid-template-columns:1fr;gap:26px}
   .ugc{grid-template-columns:1fr 1fr;gap:10px}
   .cards{grid-template-columns:1fr;gap:10px}
   .card{padding:22px 18px}
+  
   .listbox{padding:30px 18px}
-  .listform{flex-direction:column;gap:10px}.listform input{min-width:100%}.listform .btn{width:100%}
-  .sticky{display:flex}.sticky .p{font-size:13px}.sticky .btn{padding:12px 20px;font-size:11px;min-height:48px}
+  .listform{flex-direction:column;gap:10px}
+  .listform input{min-width:100%}
+  .listform .btn{width:100%}
+  
+  .sticky{display:flex}
+  .sticky .p{font-size:13px}
+  .sticky .btn{padding:12px 20px;font-size:11px;min-height:48px}
+  
   footer{padding:40px 16px;font-size:10px}
   .camp .hero img{aspect-ratio:4/5}
 }
-@media(max-width:380px){.films,.cgrid,.ugc{grid-template-columns:1fr}.buy h1{font-size:22px}}
+
+@media(max-width:380px){
+  .films,.cgrid,.ugc{grid-template-columns:1fr}
+  .buy h1{font-size:22px}
+  .thumbs img{width:50px;height:50px}
+}
 </style>
 </head>
 <body>
@@ -179,7 +225,8 @@ footer{padding:60px 24px calc(60px + env(safe-area-inset-bottom));text-align:cen
 <div id="missingBar" class="bar missing" style="display:none">FALTAN LOS MEDIOS: EJECUTA 2-COPIAR-AL-PROYECTO.BAT Y SUBE img/ A GITHUB</div>
 
 <nav>
-  <div class="logo">BFYT<span> FASHION</span></div>
+  <!-- LOGO CLICKEABLE AL INICIO -->
+  <a href="index.html" class="logo">BFYT<span> FASHION</span></a>
   <div class="tag">FASHION DROP 003 — <b>LIVE</b></div>
 </nav>
 
@@ -342,12 +389,8 @@ footer{padding:60px 24px calc(60px + env(safe-area-inset-bottom));text-align:cen
 
 <div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><span class="x">CLOSE ✕</span><img src="" alt=""></div>
 
-<!-- manifiesto real generado por ORGANIZAR.ps1 -->
 <script src="../img/underground-velocity/manifest.js"></script>
 <script>
-/* =====================================================================
-   CONFIGURACION — edita solo este bloque
-   ===================================================================== */
 const CONFIG = {
   brand:    'BFYT FASHION',
   drop:     'DROP 003',
@@ -356,22 +399,18 @@ const CONFIG = {
   price:    129,
   compare:  199,
   currency: 'USD',
-  sizes:    ['S', 'M', 'L'],                // confirmado con el proveedor: NO hay XL
-  units:    150,                             // tirada limitada; pon 0 para ocultar el aviso
-  claimed:  0,                               // unidades ya vendidas; con un numero REAL aparece la barra
-  // UN SOLO LINK: la ficha de Payhip ya trae los 2 colores como variantes
+  sizes:    ['S', 'M', 'L'],
+  units:    150,
+  claimed:  0,
   payhipBlack: 'https://payhip.com/b/P8Sfg',
   payhipTan:   'https://payhip.com/b/P8Sfg',
   youtube:     'https://youtu.be/G55FnTKKYW8',
-  // Los 3 videos de THE FILM, en orden (izquierda -> derecha).
-  // Cambia un renglon y el video de ese hueco cambia. El 3o se sustituyo
-  // porque el original (video-02-image-to-video) traia marca de agua.
   filmSlots: [
     'video/video-06-pomelli-photoshoot-video-9-16-09.mp4',
     'video/video-15-woman-showing-jacket-on-phone-20.mp4',
     'video/video-08-pomelli-photoshoot-video-9-16-09.mp4'
   ],
-  dropEnd:     null,                         // SIN fecha a proposito: con trafico organico el reloj juega en contra
+  dropEnd:     null,
   formspree:   'https://formspree.io/f/xnpnvrpe'
 };
 
@@ -380,12 +419,6 @@ const COLORES = {
   tan:   { label: 'TAN GLOSS',   hex: '#c9a274' }
 };
 
-/* =====================================================================
-   LISTA DE MEDIOS  (va aqui dentro a proposito)
-   GitHub Pages ignora los archivos que empiezan por "_" (Jekyll), por eso
-   NO dependemos de ningun archivo externo: la lista va dentro del HTML.
-   Si algun dia existe manifest.js en /img/<drop>/, ese manda y esto se ignora.
-   ===================================================================== */
 const ASSETS_FIJO = {
   colores: ['black', 'tan'],
   video: [
@@ -451,7 +484,6 @@ const ASSETS_FIJO = {
   const url = p => BASE + p;
   const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const money = n => CONFIG.currency === 'USD' ? '$' + Number(n).toFixed(2) : Number(n).toFixed(2) + ' ' + CONFIG.currency;
-  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 
   const A = { video: RAW ? arr(RAW.video) : [] };
   ['black', 'tan'].forEach(c => { A[c] = RAW ? arr(RAW[c]) : []; });
@@ -463,7 +495,6 @@ const ASSETS_FIJO = {
   const sinCheckout = CONFIG.payhipBlack.indexOf('REEMPLAZAR') !== -1 || CONFIG.payhipTan.indexOf('REEMPLAZAR') !== -1;
   if (sinCheckout) document.getElementById('pendingBar').style.display = 'block';
 
-  /* ---------- precio, tallas, marquee ---------- */
   const desc = Math.round((1 - CONFIG.price / CONFIG.compare) * 100);
   document.getElementById('priceLine').innerHTML =
     '<s>' + esc(money(CONFIG.compare)) + '</s> <em>' + esc(money(CONFIG.price)) + '</em>' +
@@ -479,14 +510,12 @@ const ASSETS_FIJO = {
                 ' — 2 COLORWAYS — ' + CONFIG.drop + ' — FREE WORLDWIDE SHIPPING — ';
   document.getElementById('mq').textContent = frase + frase;
 
-  /* ---------- lightbox ---------- */
   const lb = document.getElementById('lb');
   const openLB = src => { if (!src) return; lb.style.display = 'flex'; lb.querySelector('img').src = src; };
   const closeLB = () => { lb.style.display = 'none'; };
   lb.onclick = closeLB;
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
 
-  /* ---------- reparto de imagenes por color ---------- */
   function repartir(id) {
     const todas = A[id].slice();
     const prod = todas.filter(p => p.indexOf('-producto-') !== -1);
@@ -520,7 +549,6 @@ const ASSETS_FIJO = {
     return { galeria: galeria, hero: hero, grid: grid, ugc: ugc, specs: specs, sound: sound };
   }
 
-  /* ---------- pintado ---------- */
   const main = document.getElementById('main');
   const thumbsBox = document.getElementById('thumbs');
   function pintarGaleria(g) {
@@ -551,7 +579,6 @@ const ASSETS_FIJO = {
 
   function pintarColor(id) {
     const r = repartir(id);
-
     pintarGaleria(r.galeria);
     pintarFilms(id);
 
@@ -583,7 +610,6 @@ const ASSETS_FIJO = {
     });
   }
 
-  /* ---------- selector de color ---------- */
   const caja = document.getElementById('colors');
   caja.innerHTML = coloresDisponibles.map(c =>
     '<button type="button" id="cbtn-' + c + '" data-c="' + c + '">' +
@@ -594,16 +620,12 @@ const ASSETS_FIJO = {
     b.onclick = () => pintarColor(b.dataset.c);
   });
 
-  /* ---------- THE FILM ---------- */
   const filmsBox = document.getElementById('films');
   const clips = [];
-  // 1) si hay lista fija en CONFIG.filmSlots, manda esa
   if (CONFIG.filmSlots && CONFIG.filmSlots.length) {
     CONFIG.filmSlots.forEach(function (r) { if (A.video.indexOf(r) !== -1) clips.push(r); });
   }
-  // 2) si no, se eligen solos (una escena distinta por hueco)
   if (!clips.length && A.video.length) {
-    // una escena distinta por hueco (no 3 variantes del mismo clip)
     const familias = ['pomelli-photoshoot-video', 'woman-showing-jacket', 'image-to-video', 'woman-animating',
                       'woman-checks-collar', 'woman-checking-collar', 'modelo-muestra', 'tiktok', 'veo-', 'wan2', 'grok'];
     const usados = new Set();
@@ -642,7 +664,6 @@ const ASSETS_FIJO = {
     filmsBox.outerHTML = '<p style="color:var(--muted);font-size:13px;line-height:1.9">AQUI VAN LOS VIDEOS VERTICALES.<br>Ejecuta <b>2-COPIAR-AL-PROYECTO.bat</b> y recarga.</p>';
   }
 
-  /* ---------- checkout ---------- */
   let colorActual = coloresDisponibles[0] || 'black';
   function shop() {
     const link = colorActual === 'black' ? CONFIG.payhipBlack : CONFIG.payhipTan;
@@ -658,10 +679,8 @@ const ASSETS_FIJO = {
     if (b) colorActual = b.dataset.c;
   });
 
-  /* ---------- soundtrack ---------- */
   document.getElementById('ytBtn').href = CONFIG.youtube;
 
-  /* ---------- countdown ---------- */
   const scarcity = document.getElementById('scarcity');
   if (CONFIG.dropEnd) {
     const fin = Date.parse(CONFIG.dropEnd);
@@ -681,12 +700,9 @@ const ASSETS_FIJO = {
     scarcity.style.display = 'none';
   }
 
-  /* ---------- tirada limitada ---------- */
   if (CONFIG.units) {
     document.getElementById('units').textContent = CONFIG.units;
     document.getElementById('limited').style.display = 'block';
-
-    // barra de stock: solo si hay un numero REAL de vendidas
     if (CONFIG.claimed > 0) {
       const quedan = Math.max(0, CONFIG.units - CONFIG.claimed);
       document.getElementById('stockleft').textContent = quedan;
@@ -696,7 +712,6 @@ const ASSETS_FIJO = {
     }
   }
 
-  /* ---------- drop list ---------- */
   const form = document.getElementById('list-form');
   form.onsubmit = async e => {
     e.preventDefault();
@@ -709,11 +724,9 @@ const ASSETS_FIJO = {
     } catch (err) { btn.disabled = false; btn.textContent = 'Join'; }
   };
 
-  /* ---------- reveal ---------- */
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }), { threshold: .12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  /* ---------- arranque ---------- */
   if (coloresDisponibles.length) pintarColor(coloresDisponibles[0]);
   else pintarFilms('black');
 
