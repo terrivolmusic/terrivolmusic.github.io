@@ -28,7 +28,7 @@ nav .tag b{color:var(--cyan)}
 
 /* PDP LAYOUT */
 .pdp{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;padding:50px 0 90px;align-items:start}
-#main{aspect-ratio:1/1;object-fit:cover;cursor:zoom-in;border:1px solid var(--line);background:#111}
+#main{aspect-ratio:1/1;object-fit:cover;cursor:zoom-in;border:1px solid var(--line);background:#111;transition:opacity .3s ease}
 .thumbs{display:flex;gap:8px;margin-top:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
 .thumbs::-webkit-scrollbar{display:none}
 .thumbs img{flex:0 0 auto;width:70px;height:70px;object-fit:cover;cursor:pointer;opacity:.5;border:1px solid transparent;transition:.3s}
@@ -50,6 +50,13 @@ nav .tag b{color:var(--cyan)}
 .trust{list-style:none;border-top:1px solid var(--line)}
 .trust li{padding:11px 0;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.12em;color:#d8d8de}
 .trust li::before{content:"✓ ";color:var(--cyan)}
+
+/* COLOR SELECTOR */
+.color-selector{margin:20px 0}
+.color-label{font-size:10px;letter-spacing:.3em;color:var(--muted);margin-bottom:10px;display:block}
+.color-btns{display:flex;gap:10px}
+.color-btn{flex:1;padding:12px;background:transparent;border:1px solid var(--line);color:var(--muted);cursor:pointer;font-family:'Montserrat';font-size:11px;letter-spacing:.1em;transition:.3s;text-transform:uppercase}
+.color-btn.active{border-color:var(--cyan);color:var(--txt);box-shadow:0 0 15px rgba(0,245,255,.15)}
 
 /* SECTIONS */
 section{padding:100px 0}
@@ -144,14 +151,19 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 
 <div class="wrap pdp">
   <div>
-    <!-- IMAGEN PRINCIPAL -->
+    <!-- IMAGEN PRINCIPAL (Inicia en Negro por defecto) -->
     <img id="main" src="../img/underground-velocity/black/black-modelo-05-model-wearing-puffer-jacket-2k-2.jpg" alt="Underground Velocity Main">
-    <div class="thumbs">
-      <img class="on" src="../img/underground-velocity/black/black-modelo-05-model-wearing-puffer-jacket-2k-2.jpg" onclick="changeImage(this)">
-      <img src="../img/underground-velocity/black/black-producto-01-4d50c2a421261cafcfd990b6b7a98e71.jpg" onclick="changeImage(this)">
-      <img src="../img/underground-velocity/tan/tan-modelo-01-model-arriving-at-night-event-2k.jpg" onclick="changeImage(this)">
-      <img src="../img/underground-velocity/black/black-modelo-01-model-adjusting-black-puffer-jac.jpg" onclick="changeImage(this)">
-      <img src="../img/underground-velocity/tan/tan-producto-01-b67650e525cc888e52ef75e1ee0a1813.jpg" onclick="changeImage(this)">
+    
+    <!-- THUMBS: Mezcla Mitad y Mitad (Data-color define el filtro) -->
+    <div class="thumbs" id="thumbContainer">
+      <!-- Negras -->
+      <img class="on" data-color="black" src="../img/underground-velocity/black/black-modelo-05-model-wearing-puffer-jacket-2k-2.jpg" onclick="changeImage(this)">
+      <img data-color="black" src="../img/underground-velocity/black/black-producto-01-4d50c2a421261cafcfd990b6b7a98e71.jpg" onclick="changeImage(this)">
+      <img data-color="black" src="../img/underground-velocity/black/black-modelo-01-model-adjusting-black-puffer-jac.jpg" onclick="changeImage(this)">
+      <!-- Cafés -->
+      <img data-color="tan" src="../img/underground-velocity/tan/tan-modelo-01-model-arriving-at-night-event-2k.jpg" onclick="changeImage(this)">
+      <img data-color="tan" src="../img/underground-velocity/tan/tan-producto-01-b67650e525cc888e52ef75e1ee0a1813.jpg" onclick="changeImage(this)">
+      <img data-color="tan" src="../img/underground-velocity/tan/tan-estudio-01-pomelli-photoshoot-image-4k-0914.jpg" onclick="changeImage(this)">
     </div>
   </div>
 
@@ -162,11 +174,12 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
     <div class="price-line"><s>$199.00</s> <em>$129.00</em></div>
     <div class="ship-note"><b>FREE WORLDWIDE SHIPPING</b> · TRACKED · 10–15 DAYS</div>
     
-    <div style="margin: 20px 0;">
-      <div style="font-size:10px;letter-spacing:.3em;color:var(--muted);margin-bottom:10px">SELECT COLOR</div>
-      <div style="display:flex;gap:10px">
-        <button onclick="selectColor('black')" id="btn-black" style="flex:1;padding:12px;background:transparent;border:1px solid var(--cyan);color:var(--txt);cursor:pointer;font-family:'Montserrat';font-size:11px;letter-spacing:.1em">BLACK GLOSS</button>
-        <button onclick="selectColor('tan')" id="btn-tan" style="flex:1;padding:12px;background:transparent;border:1px solid var(--line);color:var(--muted);cursor:pointer;font-family:'Montserrat';font-size:11px;letter-spacing:.1em">TAN GLOSS</button>
+    <!-- SELECTOR DE COLOR INTELIGENTE -->
+    <div class="color-selector">
+      <span class="color-label">SELECT COLORWAY</span>
+      <div class="color-btns">
+        <button class="color-btn active" id="btn-black" onclick="filterGallery('black')">BLACK GLOSS</button>
+        <button class="color-btn" id="btn-tan" onclick="filterGallery('tan')">TAN GLOSS</button>
       </div>
     </div>
 
@@ -185,17 +198,14 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
   <div class="kicker reveal">THE FILM</div>
   <h2 class="reveal">Shot after midnight.</h2>
   <div class="films reveal">
-    <!-- VIDEO 1 con Poster -->
     <figure onclick="toggleVideo(this)">
       <img class="poster" src="../img/underground-velocity/black/black-modelo-05-model-wearing-puffer-jacket-2k-2.jpg" alt="Film 1">
       <video muted loop playsinline preload="metadata" src="../img/underground-velocity/video/video-06-pomelli-photoshoot-video-9-16-09.mp4"></video>
     </figure>
-    <!-- VIDEO 2 con Poster -->
     <figure onclick="toggleVideo(this)">
       <img class="poster" src="../img/underground-velocity/tan/tan-modelo-01-model-arriving-at-night-event-2k.jpg" alt="Film 2">
       <video muted loop playsinline preload="metadata" src="../img/underground-velocity/video/video-15-woman-showing-jacket-on-phone-20.mp4"></video>
     </figure>
-    <!-- VIDEO 3 con Poster -->
     <figure onclick="toggleVideo(this)">
       <img class="poster" src="../img/underground-velocity/black/black-producto-01-4d50c2a421261cafcfd990b6b7a98e71.jpg" alt="Film 3">
       <video muted loop playsinline preload="metadata" src="../img/underground-velocity/video/video-05-modelo-muestra-chaqueta-continua.mp4"></video>
@@ -277,12 +287,50 @@ footer{padding:60px 24px;text-align:center;font-size:11px;letter-spacing:.25em;c
 <div id="lb" onclick="this.style.display='none'"><img src="" alt=""></div>
 
 <script>
-// LÓGICA SIMPLE Y ROBUSTA
+// --- LÓGICA DE GALERÍA Y FILTRO DE COLOR ---
+
+// Función para cambiar imagen principal al hacer click en thumb
 function changeImage(thumb) {
-  document.getElementById('main').src = thumb.src;
+  const mainImg = document.getElementById('main');
+  // Efecto fade suave
+  mainImg.style.opacity = 0;
+  setTimeout(() => {
+    mainImg.src = thumb.src;
+    mainImg.style.opacity = 1;
+  }, 150);
+
+  // Actualizar clase activa en thumbs visibles
   document.querySelectorAll('.thumbs img').forEach(t => t.classList.remove('on'));
   thumb.classList.add('on');
 }
+
+// Función Principal: Filtrar Galería por Color
+function filterGallery(color) {
+  // 1. Actualizar botones visuales
+  document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
+  document.getElementById('btn-' + color).classList.add('active');
+
+  // 2. Filtrar Thumbs
+  const allThumbs = document.querySelectorAll('.thumbs img');
+  let firstVisibleThumb = null;
+
+  allThumbs.forEach(thumb => {
+    if (thumb.getAttribute('data-color') === color) {
+      thumb.style.display = 'block'; // Mostrar
+      if (!firstVisibleThumb) firstVisibleThumb = thumb; // Guardar el primero
+    } else {
+      thumb.style.display = 'none'; // Ocultar
+      thumb.classList.remove('on');
+    }
+  });
+
+  // 3. Cambiar Imagen Principal automáticamente al primer thumb del color seleccionado
+  if (firstVisibleThumb) {
+    changeImage(firstVisibleThumb);
+  }
+}
+
+// --- LÓGICA DE VIDEO Y UI ---
 
 function toggleVideo(fig) {
   const video = fig.querySelector('video');
@@ -290,7 +338,7 @@ function toggleVideo(fig) {
     video.pause();
     fig.classList.remove('playing');
   } else {
-    // Pausar otros videos si se desea (opcional)
+    // Pausar otros videos
     document.querySelectorAll('.films figure').forEach(f => {
       f.classList.remove('playing');
       f.querySelector('video').pause();
@@ -305,34 +353,17 @@ function openLB(src) {
   lb.style.display = 'flex';
 }
 
-function selectColor(color) {
-  const btnBlack = document.getElementById('btn-black');
-  const btnTan = document.getElementById('btn-tan');
-  if (color === 'black') {
-    btnBlack.style.borderColor = 'var(--cyan)';
-    btnBlack.style.color = 'var(--txt)';
-    btnTan.style.borderColor = 'var(--line)';
-    btnTan.style.color = 'var(--muted)';
-  } else {
-    btnTan.style.borderColor = 'var(--cyan)';
-    btnTan.style.color = 'var(--txt)';
-    btnBlack.style.borderColor = 'var(--line)';
-    btnBlack.style.color = 'var(--muted)';
-  }
-}
-
 // REVEAL ON SCROLL
 const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('on')), { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// AUTOPLAY SUAVE AL HACER SCROLL (OPCIONAL - MEJORA UX)
+// AUTOPLAY SUAVE AL HACER SCROLL
 document.addEventListener('DOMContentLoaded', () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const fig = entry.target;
       const video = fig.querySelector('video');
       if (entry.isIntersecting) {
-        // Intentar reproducir suavemente
         video.play().then(() => fig.classList.add('playing')).catch(() => {});
       } else {
         video.pause();
@@ -342,6 +373,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.5 });
 
   document.querySelectorAll('.films figure').forEach(fig => observer.observe(fig));
+  
+  // Inicializar: Asegurar que solo se vean los thumbs negros al inicio si queremos, 
+  // o dejar todos visibles (mitad y mitad) como está en el HTML.
+  // El HTML actual muestra todos (mitad y mitad), lo cual es bueno para descubrimiento.
+  // Si prefieres que inicie filtrado, descomenta la línea de abajo:
+  // filterGallery('black');
 });
 </script>
 </body>
