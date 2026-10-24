@@ -100,9 +100,10 @@
             box-shadow: 0 30px 80px rgba(138, 43, 226, 0.4);
             aspect-ratio: 1; max-width: 600px; margin: 0 auto;
             animation: float 6s ease-in-out infinite;
+            background: #0f0f15;
         }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
-        .cover-art { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .cover-art { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
         .cover-container:hover .cover-art { transform: scale(1.05); }
         .cover-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -113,7 +114,7 @@
         .cover-container::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             border: 2px solid rgba(0, 242, 255, 0.3); border-radius: 50%;
-            animation: rotate 20s linear infinite; pointer-events: none;
+            animation: rotate 20s linear infinite; pointer-events: none; z-index: 2;
         }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
@@ -345,6 +346,23 @@
             font-size: 1.05rem; max-width: 700px; margin-left: auto; margin-right: auto;
             position: relative; z-index: 1;
         }
+        .drop-gallery {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+            margin-bottom: 30px; position: relative; z-index: 1;
+        }
+        .drop-gallery img {
+            width: 100%; aspect-ratio: 3/4; object-fit: cover;
+            border-radius: 12px; border: 1px solid var(--border);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background: #0f0f15; display: block;
+        }
+        .drop-gallery img:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 242, 255, 0.25);
+        }
+        @media (max-width: 768px) {
+            .drop-gallery { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        }
         .drop-features {
             display: flex; justify-content: center; gap: 30px; margin-bottom: 35px;
             flex-wrap: wrap; position: relative; z-index: 1;
@@ -422,7 +440,7 @@
 
         <div class="beat-hero">
             <div class="cover-container">
-                <img src="https://terrivolmusic.github.io/img/Man_sitting_on_car_hood_2K_20261016115947.jpg" alt="Midnight Drip Cover Art" class="cover-art">
+                <img class="cover-art" data-img="Man_sitting_on_car_hood_2K_20261016115947" data-alt="Man_sitting_on_car_hood_2K_20261016115947 (1)" alt="Midnight Drip Cover Art">
                 <div class="cover-overlay"></div>
             </div>
 
@@ -540,6 +558,11 @@
                 designed to the beat, built for the night. Oversized shoulders, silver hardware, premium construction. 
                 Limited units. Free worldwide shipping.
             </p>
+            <div class="drop-gallery">
+                <img data-img="01-hero-beat" data-alt="06-walking-neon" alt="Midnight Drip Jacket — Campaign Hero">
+                <img data-img="02-packshot-front" data-alt="04-flat-lay" alt="Midnight Drip Jacket — Packshot">
+                <img data-img="07-on-body-chain" data-alt="09-ugc-mirror" alt="Midnight Drip Jacket — On Body">
+            </div>
             <div class="drop-features">
                 <div class="drop-feature">Cream Sherpa Shell</div>
                 <div class="drop-feature">Black Leather Patchwork</div>
@@ -628,6 +651,36 @@
         }
         animateStars();
         window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+        /* ===== LOADER UNIVERSAL DE IMÁGENES (prueba extensiones y variantes) ===== */
+        const IMG_BASE = "/img/";
+        const EXT = [".jpg",".jpeg",".png",".webp",".JPG",".JPEG",".PNG",".WEBP",".jfif",".JFIF",".avif",".AVIF",".gif",".GIF"];
+        const PH = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><rect width="600" height="600" fill="#0A0A0F"/><circle cx="300" cy="300" r="180" fill="none" stroke="#7B2CBF" stroke-opacity=".35" stroke-width="2"/><circle cx="300" cy="300" r="120" fill="none" stroke="#00F5FF" stroke-opacity=".3" stroke-width="1"/><text x="300" y="292" fill="#F5F5F7" font-family="Arial" font-size="26" letter-spacing="8" text-anchor="middle" font-weight="700">BFYT</text><text x="300" y="328" fill="#9A9AA5" font-family="Arial" font-size="14" letter-spacing="4" text-anchor="middle">MIDNIGHT DRIP</text></svg>');
+
+        function variants(b) {
+            const v = [b];
+            const m = b.match(/^(.*)\s\(\d+\)$/);
+            if (m) v.push(m[1]);
+            v.push(b + " (1)", b + " (2)");
+            return v;
+        }
+        function buildURL(name, ext) { return IMG_BASE + encodeURIComponent(name) + ext; }
+        function loadImg(img) {
+            const bases = [img.dataset.img];
+            if (img.dataset.alt) bases.push(img.dataset.alt);
+            const low = img.dataset.img.toLowerCase();
+            if (low !== img.dataset.img) bases.push(low);
+            const queue = [];
+            bases.forEach(b => { variants(b).forEach(v => { EXT.forEach(e => queue.push(buildURL(v, e))); }); });
+            let i = 0;
+            const next = () => {
+                if (i < queue.length) { img.src = queue[i++]; }
+                else { img.src = PH; console.warn("[BFYT] asset missing:", img.dataset.img); }
+            };
+            img.onerror = next;
+            next();
+        }
+        document.querySelectorAll("img[data-img]").forEach(img => loadImg(img));
 
         /* ===== REPRODUCTOR CON PROTECCIÓN ANTI-ROBO (MÁX 1:10) ===== */
         const MAX_PREVIEW = 70;
