@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAGTA FLEX — TECHNICAL RIDER 2026 | Terrivol Music</title>
+<style>
+  :root {
+    --bg: #07070c;
+    --panel: #12121d;
+    --line: #23232f;
+    --cyan: #00e5d4;
+    --mag: #ff2ea6;
+    --txt: #f3f3f8;
+    --mut: #9a9aac;
+    --dim: #6a6a7c;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-display: 'Anton', Impact, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    background-color: var(--bg);
+    color: var(--txt);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 40px;
+  }
+
+  /* Contenedor Principal */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    position: relative;
+  }
+
+  /* Header del Documento */
+  header {
+    border-bottom: 2px solid var(--cyan);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .brand h1 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 0.9;
+    color: var(--txt);
+  }
+  .brand h1 span.c { color: var(--cyan); }
+  .brand h1 span.m { color: var(--mag); }
+  
+  .doc-info {
+    text-align: right;
+    font-size: 11px;
+    color: var(--mut);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .doc-info strong { color: var(--txt); display: block; font-size: 14px; margin-bottom: 4px;}
+
+  /* Secciones Técnicas */
+  section {
+    margin-bottom: 35px;
+    page-break-inside: avoid;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 15px;
+    border-left: 4px solid var(--mag);
+    padding-left: 12px;
+    letter-spacing: 1px;
+  }
+
+  p.intro {
+    font-size: 14px;
+    color: var(--mut);
+    margin-bottom: 20px;
+    max-width: 600px;
+  }
+
+  /* Grids de Equipos */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.2s;
+  }
+  .card:hover { border-color: var(--cyan); }
+
+  .card-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--mag);
+    font-weight: 700;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 8px;
+  }
+
+  ul.specs {
+    list-style: none;
+  }
+  ul.specs li {
+    font-size: 13px;
+    padding: 6px 0;
+    border-bottom: 1px dashed rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  ul.specs li:last-child { border-bottom: none; }
+  ul.specs li b { color: var(--txt); font-weight: 600; }
+  ul.specs li span { color: var(--mut); font-size: 12px; text-align: right; }
+  
+  .highlight {
+    color: var(--cyan) !important;
+    font-weight: 700;
+  }
+
+  /* Diagrama Simple (CSS Only) */
+  .stage-diagram {
+    background: #000;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    height: 200px;
+    position: relative;
+    margin-top: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .stage-floor {
+    width: 80%;
+    height: 60%;
+    border: 1px dashed var(--dim);
+    position: relative;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.02) 10px, rgba(255,255,255,.02) 20px);
+  }
+  .pos {
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    background: var(--panel);
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,229,212,0.2);
+  }
+  .mc-pos { top: 20%; left: 30%; border-color: var(--mag); color: var(--mag); box-shadow: 0 0 10px rgba(255,46,166,0.2);}
+  .dj-pos { bottom: 20%; right: 20%; }
+  .mpc-pos { top: 20%; right: 30%; }
+  
+  .label-arrow {
+    position: absolute;
+    font-size: 9px;
+    color: var(--mut);
+    white-space: nowrap;
+  }
+
+  /* Notas Adicionales */
+  .notes {
+    background: rgba(0, 229, 212, 0.05);
+    border: 1px solid rgba(0, 229, 212, 0.2);
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--txt);
+    margin-top: 20px;
+  }
+  .notes strong { color: var(--cyan); }
+
+  /* Footer Contacto */
+  footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--mut);
+  }
+  .contact-block div { margin-bottom: 4px; }
+  .contact-block a { color: var(--cyan); text-decoration: none; font-weight: 600; }
+  .logo-small { font-family: var(--font-display); font-size: 18px; color: var(--txt); opacity: 0.5; }
+
+  /* Modo Impresión / PDF */
+  @media print {
+    body { background: #fff !important; color: #000 !important; padding: 0; }
+    .container { max-width: 100%; padding: 20mm; }
+    header { border-bottom: 2px solid #000; }
+    .brand h1 { color: #000; }
+    .brand h1 span.c { color: #005f58; } /* Cian oscuro para impresión */
+    .brand h1 span.m { color: #8a004a; } /* Magenta oscuro */
+    
+    h2 { color: #000; border-left-color: #000; }
+    .card { background: #f9f9f9 !important; border: 1px solid #ddd !important; break-inside: avoid; }
+    .card-title { color: #b3005e; border-bottom: 1px solid #eee; }
+    ul.specs li { border-bottom: 1px dotted #ccc; color: #333; }
+    ul.specs li b { color: #000; }
+    .highlight { color: #005f58 !important; }
+    
+    .stage-diagram { background: #fff; border: 1px solid #000; }
+    .stage-floor { border-color: #999; }
+    .pos { background: #eee; border: 1px solid #000; color: #000; box-shadow: none; }
+    .mc-pos { border-color: #b3005e; color: #b3005e; }
+    
+    .notes { background: #f0fdfd; border: 1px solid #ccfbf1; color: #000; }
+    .notes strong { color: #005f58; }
+    
+    footer { border-top: 1px solid #000; color: #555; }
+    .contact-block a { color: #005f58; text-decoration: underline; }
+    
+    /* Forzar colores exactos si el navegador lo permite */
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <h1><span class="c">CAGTA</span> <span class="m">FLEX</span></h1>
+      <div style="font-size:10px; letter-spacing:2px; color:var(--mut); margin-top:5px;">LIVE BEATMAKING · RAP · URBAN CULTURE</div>
+    </div>
+    <div class="doc-info">
+      <strong>TECHNICAL RIDER</strong>
+      Version 2026.1<br>
+      Date: Oct 2026<br>
+      Status: Active
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <p class="intro">
+    This document outlines the technical requirements for a Cagta Flex live performance featuring DJ G.Promode and MPC Live II integration. Please ensure all listed equipment is available at soundcheck time. Any substitutions must be approved by the Tour Manager prior to arrival.
+  </p>
+
+  <!-- AUDIO SETUP -->
+  <section>
+    <h2>Audio & Monitoring</h2>
+    <div class="tech-grid">
+      
+      <!-- Input Sources -->
+      <div class="card">
+        <div class="card-title">Input Sources (Artist Provided)</div>
+        <ul class="specs">
+          <li><b>MPC Live II</b> <span>Stereo L/R Output (TRS/XLR)</span></li>
+          <li><b>Pioneer CDJ-3000 x2</b> <span>Digital Link + Analog Aux</span></li>
+          <li><b>Laptop Backup</b> <span>Ableton Live Suite (Stereo Out)</span></li>
+          <li><b>Vocals</b> <span>Shure Beta 58A (Wireless Preferred)</span></li>
+        </ul>
+      </div>
+
+      <!-- Console Requirements -->
+      <div class="card">
+        <div class="card-title">Front of House (FOH)</div>
+        <ul class="specs">
+          <li><b>Channels Needed:</b> <span>Min. 8 Ch.</span></li>
+          <li><b>Mic Inputs:</b> <span>2x XLR Female (Phantom Power OFF)</span></li>
+          <li><b>Line Inputs:</b> <span>4x TRS Balanced (for MPC/DJ/Backup)</span></li>
+          <li><b>FX Sends:</b> <span>2x Independent Reverb/Delay buses</span></li>
+          <li><b>Main Outs:</b> <span>XLR Balanced to PA System</span></li>
+        </ul>
+      </div>
+
+      <!-- Monitors -->
+      <div class="card">
+        <div class="card-title">Stage Monitors</div>
+        <ul class="specs">
+          <li><b>Type:</b> <span>Wedge Monitors (Active)</span></li>
+          <li><b>Quantity:</b> <span>2 Units Min.</span></li>
+          <li><b>Mix Requirement:</b> <span>Vocal Heavy + Instrumental Bed</span></li>
+          <li><b>IEM Option:</b> <span>Shure PSM300 (Freq scan required)</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STAGE PLOT VISUAL -->
+  <section>
+    <h2>Stage Plot Layout</h2>
+    <div class="stage-diagram">
+      <div class="stage-floor">
+        <!-- MC Position -->
+        <div class="pos mc-pos">MC<span style="font-size:8px;display:block;font-weight:normal;color:#aaa">(VOCALS)</span></div>
+        <div class="label-arrow" style="top:15%; left:32%;">↑ Center Stage</div>
+        
+        <!-- MPC Position -->
+        <div class="pos mpc-pos">MPC<span style="font-size:8px;display:block;font-weight:normal;color:#aaa">(BEATS)</span></div>
+        <div class="label-arrow" style="top:15%; right:32%;">↑ Right Flank</div>
+
+        <!-- DJ Position -->
+        <div class="pos dj-pos">DJ<span style="font-size:8px;display:block;font-weight:normal;color:#aaa">(CONSOLA)</span></div>
+        <div class="label-arrow" style="bottom:15%; right:22%;">↓ Downstage Right</div>
+      </div>
+      <div style="position:absolute; bottom:10px; width:100%; text-align:center; font-size:10px; color:var(--dim); letter-spacing:2px;">AUDIENCE / FOH ▲</div>
+    </div>
+    <div class="notes">
+      <strong>Note:</strong> Minimum stage depth of 4 meters required behind front edge to accommodate cable runs and safe movement during interactive beatmaking segments. Screen/VJ feed preferred center-rear or side-flank depending on venue geometry.
+    </div>
+  </section>
+
+  <!-- POWER & LIGHTING -->
+  <section>
+    <h2>Power & Lighting Basics</h2>
+    <div class="tech-grid">
+      <div class="card">
+        <div class="card-title">Electrical</div>
+        <ul class="specs">
+          <li><b>Circuits:</b> <span>3 Dedicated Circuits (Clean Power)</span></li>
+          <li><b>Outlets:</b> <span>IEC C13 / Schuko (depending on region)</span></li>
+          <li><b>Grounding:</b> <span>Strictly isolated ground for audio gear</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Lighting Mood</div>
+        <ul class="specs">
+          <li><b>Key Light:</b> <span>Warm White Spot on MC/MPC area</span></li>
+          <li><b>Accent:</b> <span>Cyan/Magenta Wash (Brand Colors)</span></li>
+          <li><b>Haze:</b> <span>Low density haze recommended for beams</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FOOTER -->
+  <footer>
+    <div class="contact-block">
+      <div><strong style="color:var(--txt)">MANAGEMENT & BOOKING:</strong></div>
+      <div>Selena Ramírez</div>
+      <div><a href="mailto:booking.terrivolmusic@gmail.com">booking.terrivolmusic@gmail.com</a></div>
+      <div><a href="tel:+573142807283">+57 314 280 7283</a></div>
+    </div>
+    <div class="logo-small">TERRIVOL MUSIC SAS</div>
+  </footer>
+
+</div>
+
+<script>
+  // Script simple para asegurar que las fuentes carguen antes de imprimir si se usa localmente
+  window.onload = function() {
+    console.log("Rider loaded successfully.");
+  };
+</script>
+
+</body>
+</html>
