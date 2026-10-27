@@ -7,6 +7,7 @@
 <meta name="description" content="Electronic Press Kit oficial de Cagta Flex (Terrivol Music, Bogotá). Rap, boom bap, trap y beatmaking en vivo. 20+ años, 380 canciones en Sony Music Publishing.">
 <meta property="og:title" content="CAGTA FLEX — EPK 2026 | Terrivol Music">
 <meta property="og:description" content="El único show de hip-hop donde el beat nace en escena. Booking & management exclusivo.">
+<meta property="og:image" content="/img/youtube.jpg">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -615,9 +616,30 @@
         <div class="thumb" data-id="-IsyuV6DoTA"><span class="badge" data-i18n="v2b">Hip-Hop · Club</span><img src="https://img.youtube.com/vi/-IsyuV6DoTA/hqdefault.jpg" alt="Mucho Fendy" loading="lazy"><div class="play"><i>▶</i></div></div>
         <div class="vmeta"><div class="t">Mucho Fendy</div><div class="d" data-i18n="v2d"></div></div>
       </div>
+      
+      <!-- TERCERA TARJETA: MUCHAS GRACIAS (FIXED & PRO) -->
       <div class="vcard reveal">
-        <div class="thumb" data-id="hAcsXgzk4WQ"><span class="badge" data-i18n="v3b">Lo Más Reciente</span><img src="https://img.youtube.com/vi/hAcsXgzk4WQ/hqdefault.jpg" alt="Muchas Gracias" loading="lazy"><div class="play"><i>▶</i></div></div>
-        <div class="vmeta"><div class="t">Muchas Gracias</div><div class="d" data-i18n="v3d"></div></div>
+        <div class="thumb" data-id="hAcsXgzk4WQ">
+          <span class="badge mg" style="border-color:#ff2ea6;color:#fff;background:rgba(255,46,166,.9)">BOOM BAP · NEW</span>
+          
+          <!-- IMAGEN LOCAL PRIORITARIA (Si la tienes, úsala. Si no, cae al fallback CSS abajo) -->
+          <img src="/img/muchas-gracias-poster.jpg" 
+               alt="Cagta Flex - Muchas Gracias Official Video" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+               loading="lazy">
+               
+          <!-- FALLBACK CINEMATOGRÁFICO SI LA IMAGEN NO EXISTE -->
+          <div style="display:none; position:absolute; inset:0; background:linear-gradient(135deg, #1a0e22 0%, #07070c 100%); align-items:center; justify-content:center; flex-direction:column; gap:8px;">
+             <span style="font-family:'Anton',sans-serif; font-size:24px; color:var(--cyan); letter-spacing:2px; text-transform:uppercase;">MUCHAS GRACIAS</span>
+             <span style="font-size:10px; color:var(--mut); letter-spacing:1px;">OFFICIAL MUSIC VIDEO · PROD. FULLNES</span>
+          </div>
+
+          <div class="play"><i>▶</i></div>
+        </div>
+        <div class="vmeta">
+          <div class="t">Muchas Gracias</div>
+          <div class="d">El corte más nuevo · <b>Boom Bap fresco</b> con producción de @fullnes_producer · Listo para radio y playlists.</div>
+        </div>
       </div>
     </div>
 
@@ -1030,7 +1052,6 @@ const T = {
   videos_sub:{es:"Tres cortes que abren puertas: del trap comercial que llena discotecas al sonido fresco que conecta con marcas. Dale play.",en:"Three cuts that open doors: from club-filling commercial trap to fresh sound that connects with brands. Hit play."},
   v1b:{es:"Trap · Comercial",en:"Trap · Commercial"}, v1d:{es:'Trap moderno · <b>abre puertas comerciales</b> y de sync',en:'Modern trap · <b>opens commercial & sync doors</b>'},
   v2b:{es:"Hip-Hop · Club",en:"Hip-Hop · Club"}, v2d:{es:'Hip-hop para la <b>discoteca</b> · energía de pista',en:'Hip-hop for the <b>club floor</b> · dancefloor energy'},
-  v3b:{es:"Lo Más Reciente",en:"Latest Release"}, v3d:{es:'El corte más nuevo · <b>frescos y activos</b> en 2026',en:'The newest cut · <b>fresh & active</b> in 2026'},
   kfce:{es:"CASO DE MARCA",en:"BRAND CASE"}, kfcp:{es:'Producción audiovisual profesional para marca reconocida. Demuestra que Cagta Flex entrega en el terreno corporativo y publicitario, no solo en tarima. <b>Ideal para patrocinadores y activaciones de marca.</b>',en:'Professional audiovisual production for a recognized brand. Proof that Cagta Flex delivers in corporate and advertising territory, not just on stage. <b>Ideal for sponsors and brand activations.</b>'},
   catlbl:{es:"CATÁLOGO COMPLETO →",en:"FULL CATALOG →"},
   k3:{es:"03 — CATÁLOGO",en:"03 — CATALOG"}, h_musica:{es:'<span class="cy">MÚSICA</span> <span class="mg">DESTACADA</span>',en:'<span class="cy">FEATURED</span> <span class="mg">MUSIC</span>'},
@@ -1143,7 +1164,7 @@ const T = {
   document.getElementById('burger').onclick=function(){ mm.classList.toggle('open'); };
   mm.querySelectorAll('a').forEach(function(a){ a.onclick=function(){ mm.classList.remove('open'); }; });
 
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(el); } }); },{threshold:0.1});
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
   var cio=new IntersectionObserver(function(es){ es.forEach(function(e){
