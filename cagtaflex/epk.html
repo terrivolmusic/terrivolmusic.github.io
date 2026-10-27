@@ -174,6 +174,62 @@
   .vmeta .d{font-size:12px;color:var(--mut);line-height:1.4}
   .vmeta .d b{color:var(--mag)}
   
+  /* NUEVO ESTILO PARA HIGHLIGHT LIVE VIDEO */
+  .live-highlight-card {
+      margin-top: 20px;
+      background: linear-gradient(135deg, rgba(0,229,212,.05), rgba(255,46,166,.05));
+      border: 1px solid var(--cyan);
+      border-radius: var(--r);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+  }
+  @media(min-width:768px){
+      .live-highlight-card { flex-direction: row; align-items: center; gap: 24px; }
+  }
+  .lh-video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #000;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+  }
+  @media(min-width:768px){
+      .lh-video { width: 320px; }
+  }
+  .lh-thumb {
+      position: absolute; inset: 0; cursor: pointer; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+  }
+  .lh-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .lh-thumb:hover img { transform: scale(1.05); }
+  .lh-play-btn {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: rgba(0, 229, 212, 0.9);
+      display: flex; align-items: center; justify-content: center;
+      color: #04110f; font-size: 24px; box-shadow: 0 4px 20px rgba(0,229,212,.4);
+      transition: .2s;
+  }
+  .lh-thumb:hover .lh-play-btn { transform: scale(1.1); background: #fff; }
+  .lh-info { flex: 1; }
+  .lh-info h4 {
+      font-family: var(--display); font-size: 22px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--txt); margin-bottom: 8px;
+  }
+  .lh-info p { color: var(--mut); font-size: 13px; line-height: 1.6; }
+  .lh-badge {
+      position: absolute; top: 15px; left: 15px;
+      background: var(--mag); color: white;
+      font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 20px; font-weight: 700; z-index: 3;
+  }
+
   /* KFC CARD - MEJORADA CON MINIATURA REALISTA */
   .kfc-card{margin-top:20px;background:linear-gradient(135deg,rgba(255,46,166,.08),rgba(0,229,212,.05));border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:16px}
   @media(min-width:768px){.kfc-card{flex-direction:row;align-items:center;gap:24px}}
@@ -564,6 +620,22 @@
         <div class="vmeta"><div class="t">Muchas Gracias</div><div class="d" data-i18n="v3d"></div></div>
       </div>
     </div>
+
+    <!-- NUEVO VIDEO HIGHLIGHT LIVE SESSION -->
+    <div class="live-highlight-card reveal">
+      <div class="lh-badge">LIVE SESSION</div>
+      <div class="lh-video">
+        <div class="lh-thumb" data-id="Y7iOsb1Ift0">
+            <img src="https://img.youtube.com/vi/Y7iOsb1Ift0/maxresdefault.jpg" alt="Control Live Session" onerror="this.src='https://img.youtube.com/vi/Y7iOsb1Ift0/hqdefault.jpg'">
+            <div class="lh-play-btn">▶</div>
+        </div>
+      </div>
+      <div class="lh-info">
+        <h4>CONTROL (Live Session)</h4>
+        <p>Sesión grabada en vivo junto a G.Promode. Demuestra la química real en tarima y la capacidad de ejecución técnica sin overdubs ni retoques digitales. Puro talento crudo.</p>
+      </div>
+    </div>
+
     <div class="kfc-card reveal">
       <div class="kfc-video ph">
         <!-- Intentamos cargar poster personalizado primero, si falla mostramos fallback elegante -->
@@ -739,7 +811,7 @@
         <ul class="list">
           <li data-i18n="hi1">🏆 <b>Ganador Suba Al Ruedo 2014</b></li>
           <li data-i18n="hi2">🎤 Hip Hop al Parque 2014</li>
-          <li data-i18n="hi3">🇪🇨 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)</li>
+          <li data-i18n="hi3">🇪 Ibarra Fest + Uniendo Hemisferios 2018 (Ecuador)</li>
           <li data-i18n="hi4">🚌 Tour Tribu Nómada 2018 (Colombia)</li>
           <li data-i18n="hi5">🤝 Colaboración con marca: <b>KFC</b></li>
         </ul>
@@ -1086,9 +1158,15 @@ const T = {
   }); },{threshold:0.5});
   document.querySelectorAll('.num[data-count]').forEach(function(el){ cio.observe(el); });
 
-  document.querySelectorAll('.thumb[data-id]').forEach(function(t){
-    t.addEventListener('click',function(){ var id=t.getAttribute('data-id');
-      t.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>';
+  // Manejo de clicks para videos YouTube (incluye el nuevo highlight)
+  document.querySelectorAll('.thumb[data-id], .lh-thumb[data-id]').forEach(function(t){
+    t.addEventListener('click',function(){ 
+      var id=t.getAttribute('data-id');
+      // Limpiar contenedor padre si es necesario
+      var parent = t.closest('.thumb') || t.closest('.lh-video');
+      if(parent) {
+          parent.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;"></iframe>';
+      }
     });
   });
 
