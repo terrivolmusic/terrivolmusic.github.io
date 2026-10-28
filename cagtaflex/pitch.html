@@ -3,40 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cagta Flex | New Release</title>
+<title>Cagta Flex — Release Access | Terrivol Music</title>
+<meta name="description" content="Acceso privado al nuevo single y press kit de Cagta Flex. Terrivol Music, Bogotá. Sony Music Publishing / BMI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #07070c; --cyan: #00e5d4; --mag: #ff2ea6; --txt: #f3f3f8; }
-  body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; text-align: center; padding: 20px; margin: 0; }
-  .container { max-width: 600px; margin: 0 auto; }
-  img.hero { width: 100%; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-  h1 { font-size: 24px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
-  p { color: #9a9aac; font-size: 14px; line-height: 1.6; }
-  .btn { display: inline-block; background: var(--cyan); color: #04110f; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; margin: 20px 0; transition: .3s; }
-  .btn:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--cyan); }
-  .spotify-embed { margin-top: 30px; border-radius: 12px; overflow: hidden; }
-  .footer { margin-top: 40px; font-size: 11px; color: #6a6a7c; border-top: 1px solid #23232f; padding-top: 20px; }
+  :root{
+    --cyan:#00e5d4; --cyan-deep:#00b3a6; --mag:#ff2ea6; --ink:#06231f;
+    --paper:#e9fbf8; --white:#ffffff; --mut:#3a6b64;
+    --display:'Anton',Impact,sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* TOP BAR tipo catálogo de sello */
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(6,35,31,.12)}
+  .topbar .lbl{font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:800;color:var(--mut)}
+  .topbar .code{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--cyan-deep)}
+
+  /* BADGE DE PERSONALIZACION (?para=) */
+  .dyn{display:none;align-items:center;gap:8px;background:var(--mag);color:#fff;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:800;padding:7px 14px;border-radius:4px;width:fit-content;margin:22px 0 6px}
+  .dyn.show{display:inline-flex}
+  .dyn .d{width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff}
+
+  /* HERO: imagen + headline, cian sobre cian = seamless con el boton del mail */
+  .hero{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:34px 0 10px}
+  @media(min-width:880px){.hero{grid-template-columns:1.05fr .95fr;gap:40px}}
+  .hero-txt h1{font-family:var(--display);font-size:clamp(64px,12vw,128px);line-height:.82;letter-spacing:1px;text-transform:uppercase}
+  .hero-txt h1 .l1{color:var(--ink)}
+  .hero-txt h1 .l2{color:var(--cyan);text-shadow:0 0 26px rgba(0,229,212,.55)}
+  .hero-txt .sub{font-size:clamp(15px,2.4vw,20px);font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-top:14px;color:var(--ink)}
+  .hero-txt .pitch{font-size:15px;line-height:1.6;color:var(--mut);margin-top:14px;max-width:46ch}
+  .hero-img{border-radius:14px;overflow:hidden;border:1px solid rgba(6,35,31,.12);box-shadow:0 18px 50px rgba(0,179,166,.18);aspect-ratio:16/10;background:linear-gradient(135deg,var(--cyan),var(--cyan-deep))}
+  .hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* SECCION SINGLE (la accion #1) */
+  .block{padding:34px 0}
+  .eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:800;color:var(--mag);margin-bottom:14px}
+  .single-card{background:var(--white);border:1px solid rgba(6,35,31,.1);border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,179,166,.1)}
+  .single-card .meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  .single-card .meta .t{font-family:var(--display);font-size:26px;letter-spacing:.5px;text-transform:uppercase}
+  .single-card .meta .y{font-family:var(--mono);font-size:12px;color:var(--cyan-deep)}
+  .player{border-radius:12px;overflow:hidden;background:#000;min-height:152px}
+  .player iframe{width:100%;height:152px;border:0;display:block}
+
+  /* FILA DE ALTERNATIVAS */
+  .alts{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px}
+  @media(min-width:680px){.alts{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:920px){.alts{grid-template-columns:repeat(4,1fr)}}
+  .alt{background:var(--white);border:1px solid rgba(6,35,31,.1);border-radius:12px;padding:14px;transition:.2s}
+  .alt:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 8px 22px rgba(0,229,212,.18)}
+  .alt .an{font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.5px}
+  .alt .ay{font-family:var(--mono);font-size:11px;color:var(--mut);margin-top:3px}
+  .alt .go{display:inline-block;margin-top:10px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--cyan-deep)}
+
+  /* BOTONES DE ACCION (EPK + PRESS KIT) */
+  .cta-row{display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+  @media(min-width:600px){.cta-row{grid-template-columns:1fr 1fr}}
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;padding:18px 22px;border-radius:6px;transition:.2s;text-align:center}
+  .btn-epk{background:var(--ink);color:#fff}
+  .btn-epk:hover{background:#0a3a33;transform:translateY(-2px)}
+  .btn-pk{background:var(--mag);color:#fff;box-shadow:0 0 24px rgba(255,46,166,.35)}
+  .btn-pk:hover{transform:translateY(-2px);box-shadow:0 0 34px rgba(255,46,166,.5)}
+
+  /* PIE CORPORATIVO */
+  footer{background:var(--ink);color:#cfeee9;padding:34px 0;margin-top:20px}
+  footer .fgrid{display:grid;grid-template-columns:1fr;gap:18px}
+  @media(min-width:760px){footer .fgrid{grid-template-columns:1.2fr 1fr 1fr}}
+  footer .fb{font-family:var(--display);font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#fff}
+  footer .fb span{color:var(--cyan)}
+  footer .ft{font-size:12px;line-height:1.7;color:#9fd6cf;margin-top:8px}
+  footer h5{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+  footer .line{font-size:13px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  footer .line:last-child{border:0}
+  footer .line a:hover{color:var(--cyan)}
+  footer .legal{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:#5f948c;margin-top:24px;text-align:center}
 </style>
 </head>
 <body>
-<div class="container">
-  <!-- IMAGEN PRINCIPAL (La que usarás también en el correo) -->
-  <img src="/img/youtube.jpg" alt="Cagta Flex Live" class="hero">
-  
-  <h1>Cagta Flex</h1>
-  <p>Rap Urbano · Live Beatmaking · Bogotá 🇨🇴</p>
-  
-  <!-- BOTÓN DE ACCIÓN -->
-  <a href="https://terrivolmusic.github.io/cagtaflex/epk.html" class="btn">VER EPK COMPLETO</a>
 
-  <!-- PLAYER DE SPOTIFY (El más importante para el curador) -->
-  <div class="spotify-embed">
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7evZAbVsgc6PyYJXI9HT4V?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<div class="wrap">
+
+  <div class="topbar">
+    <span class="lbl">Terrivol Music · Bogotá</span>
+    <span class="code" id="relCode">TM-2026-001</span>
   </div>
 
-  <div class="footer">
-    Management: Selena Ramírez | Terrivol Music SAS<br>
-    Sony Music Publishing / BMI
-  </div>
+  <div class="dyn" id="dynBadge"><span class="d"></span><span id="dynTxt"></span></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-txt">
+      <h1><span class="l1">CAGTA</span><br><span class="l2">FLEX</span></h1>
+      <div class="sub">Nuevo Single · 2026</div>
+      <p class="pitch">Rap urbano latino con raíz boom bap. +20 años de escena, 380 canciones registradas bajo Sony Music Publishing / BMI, distribuidas por DistroKid. Acceso privado al material de release.</p>
+    </div>
+    <div class="hero-img">
+      <!-- Subi tu imagen final a /img/ y cambia la ruta si hace falta -->
+      <img src="/img/cagtaflex-pitch-2026.jpg" alt="Cagta Flex" onerror="this.style.display='none'">
+    </div>
+  </section>
+
+  <!-- SINGLE DESTACADO (accion #1 del curador de playlist) -->
+  <section class="block">
+    <div class="eyebrow">01 — Escuchar ahora</div>
+    <div class="single-card">
+      <div class="meta">
+        <span class="t" id="singleTitle">MODO ACTIVATE</span> <!-- <-- CAMBIA titulo + id del iframe por el single de la tanda -->
+        <span class="y">Single · 2026</span>
+      </div>
+      <div class="player">
+        <iframe src="https://open.spotify.com/embed/album/7evZAbVsgc6PyYJXI9HT4V?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALTERNATIVAS (por si el primero no encaja en su linea) -->
+  <section class="block" style="padding-top:0">
+    <div class="eyebrow">02 — También disponible</div>
+    <div class="alts">
+      <a class="alt" href="https://open.spotify.com/album/7LXZYsLPC0h6DOtfu3nHQE" target="_blank" rel="noopener">
+        <div class="an">El Mejor</div><div class="ay">Single · 2026</div><span class="go">Abrir en Spotify →</span>
+      </a>
+      <a class="alt" href="https://open.spotify.com/album/3oELEN3CLn7y51ovh1QEM9" target="_blank" rel="noopener">
+        <div class="an">Pop Up</div><div class="ay">Single · 2026</div><span class="go">Abrir en Spotify →</span>
+      </a>
+      <a class="alt" href="https://open.spotify.com/album/4tHJOdVxKxhtOPJpYRwxqu" target="_blank" rel="noopener">
+        <div class="an">Buena Murga</div><div class="ay">Single · 2026</div><span class="go">Abrir en Spotify →</span>
+      </a>
+      <a class="alt" href="https://open.spotify.com/album/53dyLkwx68D3BCLKqgeXn2" target="_blank" rel="noopener">
+        <div class="an">Yungg Flex</div><div class="ay">Álbum · 2024</div><span class="go">Abrir en Spotify →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ACCIONES DE PRENSA / BOOKING (curador de webzine o promotor) -->
+  <section class="block" style="padding-top:0">
+    <div class="eyebrow">03 — Material completo</div>
+    <div class="cta-row">
+      <a class="btn btn-epk" href="https://terrivolmusic.github.io/cagtaflex/epk.html" target="_blank" rel="noopener">Ver EPK completo</a>
+      <a class="btn btn-pk" href="/press/cagtaflex-presskit.zip" target="_blank" rel="noopener">Descargar Press Kit</a> <!-- sube el zip con fotos alta + bio + arte -->
+    </div>
+  </section>
+
 </div>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="fb"><span>CAGTA</span> FLEX</div>
+        <div class="ft">Terrivol Music SAS · Jesús King Records<br>Rap · Boom Bap · Trap · Bogotá, Colombia</div>
+      </div>
+      <div>
+        <h5>Management</h5>
+        <div class="line">Selena Ramírez — Booking & Press</div>
+        <div class="line"><a href="mailto:terrivolmusiclove@gmail.com">terrivolmusiclove@gmail.com</a></div>
+        <div class="line"><a href="https://wa.me/573142807283" target="_blank" rel="noopener">WhatsApp booking</a></div>
+      </div>
+      <div>
+        <h5>Registro & Catalogo</h5>
+        <div class="line">Sony Music Publishing / BMI</div>
+        <div class="line">380 obras · 8 producciones</div>
+        <div class="line"><a href="https://open.spotify.com/artist/7HrWMVAud2UeybVThK36KX" target="_blank" rel="noopener">Spotify artist</a></div>
+      </div>
+    </div>
+    <div class="legal">© 2026 TERRIVOL MUSIC SAS · ACCESO PRIVADO DE RELEASE · TM-2026-001</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Personalizacion por URL: ?para=Nombre+Del+Curador  ->  muestra badge "Preparado para X"
+  var p = new URLSearchParams(location.search);
+  var who = (p.get('para')||p.get('curador')||'').replace(/\+/g,' ').trim();
+  if(who){
+    document.getElementById('dynBadge').classList.add('show');
+    document.getElementById('dynTxt').textContent = 'Preparado para ' + who;
+    document.title = who + ' × Cagta Flex — Release Access';
+  }
+})();
+</script>
 </body>
 </html>
