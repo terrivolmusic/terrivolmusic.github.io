@@ -20,7 +20,7 @@ a{color:inherit;text-decoration:none}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;backdrop-filter:blur(14px);background:rgba(10,10,15,.92);border-bottom:1px solid var(--line)}
-.logo{font-family:'Montserrat';font-weight:800;letter-spacing:.25em;font-size:14px;cursor:pointer;transition:opacity .3s}
+.logo{font-family:'Montserrat';font-weight:800;letter-spacing:.25em;font-size:14px;cursor:pointer;color:var(--txt)}
 .logo:hover{opacity:.8}
 .logo span{color:var(--cyan)}
 nav .tag{font-size:11px;letter-spacing:.3em;color:var(--muted)}
@@ -62,6 +62,7 @@ h2{font-size:clamp(26px,4.6vw,46px);font-weight:800;letter-spacing:.05em;margin-
 .badge{position:absolute;top:14px;left:14px;z-index:2;font-family:'Montserrat';font-weight:600;font-size:9px;letter-spacing:.3em;padding:7px 12px;background:rgba(10,10,15,.7);backdrop-filter:blur(8px);border:1px solid var(--line)}
 .badge.fash{color:var(--cyan)}
 .badge.iced{color:var(--rose)}
+.badge.new{color:#000;background:var(--cyan);border-color:var(--cyan)}
 .dcard .info{padding:22px 22px 26px}
 .dcard h3{font-size:16px;letter-spacing:.08em;margin-bottom:6px;color:var(--txt)}
 .dcard .meta{font-size:10px;letter-spacing:.25em;color:var(--muted);margin-bottom:14px}
@@ -136,7 +137,7 @@ footer .fl a:hover{color:var(--cyan)}
 
 <nav>
   <a href="index.html" class="logo">BFYT<span> WORLD</span></a>
-  <div class="tag"><b>5</b> DROPS LIVE</div>
+  <div class="tag"><b>6</b> DROPS LIVE</div>
 </nav>
 
 <header class="hero">
@@ -159,7 +160,7 @@ footer .fl a:hover{color:var(--cyan)}
   <div class="grid reveal">
     <!-- DROP 001 -->
     <a class="dcard" href="velvet_night.html">
-      <div class="ph"><span class="badge fash">FASHION · DROP 001</span><img src="" data-src="Model_posing_on_spiral_staircase_2K_202609041336" alt="VELVET NIGHT"></div>
+      <div class="ph"><span class="badge fash">FASHION · DROP 001</span><img data-img="Model_posing_on_spiral_staircase_2K_202609041336" data-alt="Female_model_walking_city_street_2K_202609041327" alt="VELVET NIGHT denim skirt"></div>
       <div class="info">
         <h3>Velvet Night</h3>
         <div class="meta">ASYMMETRIC FRINGED DENIM SKIRT</div>
@@ -169,7 +170,7 @@ footer .fl a:hover{color:var(--cyan)}
     </a>
     <!-- DROP 002 -->
     <a class="dcard" href="dark_whispers.html">
-      <div class="ph"><span class="badge fash">FASHION · DROP 002</span><img src="" data-src="Model_in_leopard_print_dress_2K_202609051414" alt="DARK WHISPERS"></div>
+      <div class="ph"><span class="badge fash">FASHION · DROP 002</span><img data-img="Model_in_leopard_print_dress_2K_202609051414" data-alt="Model_walking_on_wet_street_2K_202609051412" alt="DARK WHISPERS leopard dress"></div>
       <div class="info">
         <h3>Dark Whispers</h3>
         <div class="meta">LEOPARD MIDI DRESS · OPEN BACK</div>
@@ -180,9 +181,9 @@ footer .fl a:hover{color:var(--cyan)}
   </div>
 
   <div class="grid reveal" style="margin-top:18px">
-    <!-- DROP 003 (UNDERGROUND VELOCITY) -->
+    <!-- DROP 003 -->
     <a class="dcard" href="underground_velocity.html">
-      <div class="ph"><span class="badge fash">FASHION · DROP 003</span><img src="" data-src="../img/underground-velocity/black/black-modelo-05-model-wearing-puffer-jacket-2k-2.jpg" alt="UNDERGROUND VELOCITY"></div>
+      <div class="ph"><span class="badge fash">FASHION · DROP 003</span><img data-img="underground-velocity/black/black-modelo-05-model-wearing-puffer-jacket-2k-2.jpg" data-alt="underground-velocity/black/black-producto-01-4d50c2a421261cafcfd990b6b7a98e71.jpg" alt="UNDERGROUND VELOCITY puffer"></div>
       <div class="info">
         <h3>Underground Velocity</h3>
         <div class="meta">CROPPED PUFFER JACKET · GLOSSY BLACK</div>
@@ -190,9 +191,9 @@ footer .fl a:hover{color:var(--cyan)}
         <div class="go">VIEW DROP →</div>
       </div>
     </a>
-    <!-- ICED DROP 001 -->
+    <!-- ICED 001 -->
     <a class="dcard" href="burgundy_protocol_iced_watch.html">
-      <div class="ph"><span class="badge iced">ICED · DROP 001</span><img src="" data-src="Professional_luxury_product_photography_of_202605131640" alt="BURGUNDY PROTOCOL"></div>
+      <div class="ph"><span class="badge iced">ICED · DROP 001</span><img data-img="Professional_luxury_product_photography_of_202605131640" data-alt="foto_de_producto_2K_202609031739" alt="BURGUNDY PROTOCOL iced watch"></div>
       <div class="info">
         <h3>Burgundy Protocol</h3>
         <div class="meta">ICED ROSE GOLD WATCH · ONE SIZE</div>
@@ -205,22 +206,22 @@ footer .fl a:hover{color:var(--cyan)}
   <div class="grid reveal" style="margin-top:18px">
     <!-- DROP 004 -->
     <a class="dcard" href="midnight_drip.html">
-      <div class="ph"><span class="badge fash">FASHION · DROP 004</span><img src="" data-src="02-packshot-front" alt="MIDNIGHT DRIP"></div>
+      <div class="ph"><span class="badge fash">FASHION · DROP 004</span><img data-img="02-packshot-front" data-alt="06-walking-neon" alt="MIDNIGHT DRIP jacket"></div>
       <div class="info">
         <h3>Midnight Drip</h3>
-        <div class="meta">CREAM SHERPA & BLACK LEATHER JACKET</div>
+        <div class="meta">CREAM SHERPA &amp; BLACK LEATHER JACKET</div>
         <div class="pr"><s>$299.00</s><em>$199.00</em></div>
         <div class="go">VIEW DROP →</div>
       </div>
     </a>
-    <!-- NEXT DROP -->
-    <a class="dcard" href="#" style="opacity:0.6;cursor:not-allowed">
-      <div class="ph" style="background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:center"><span class="badge fash">COMING SOON</span></div>
+    <!-- DROP 005 · SCORPION (NUEVO) -->
+    <a class="dcard" href="scorpion.html">
+      <div class="ph"><span class="badge fash">FASHION · DROP 005</span><span class="badge new" style="left:auto;right:14px">NEW</span><img data-img="scorpion/negro/05-hero.jpg" data-alt="scorpion/negro/01-car-portrait.jpg" alt="SCORPION cropped puffer collar up"></div>
       <div class="info">
-        <h3>Next Drop</h3>
-        <div class="meta">TBA · JOIN THE DROP LIST</div>
-        <div class="pr"><em>SOON</em></div>
-        <div class="go">NOTIFY ME →</div>
+        <h3>Scorpion</h3>
+        <div class="meta">CROPPED PUFFER · SCARF-COLLAR 2-WAY</div>
+        <div class="pr"><s>$139.00</s><em>$89.00</em></div>
+        <div class="go">VIEW DROP →</div>
       </div>
     </a>
   </div>
@@ -245,8 +246,9 @@ footer .fl a:hover{color:var(--cyan)}
       <a class="btn ghost" href="https://www.youtube.com/@beatsfreeyoutube_" target="_blank">Open the channel</a>
     </div>
     <ul class="beats">
+      <li><span><span class="bn">Scorpion</span><br><span class="bd">FASHION 005 · puffer</span></span><a href="https://www.youtube.com/@beatsfreeyoutube_" target="_blank">PLAY ▶</a></li>
       <li><span><span class="bn">Underground Velocity</span><br><span class="bd">FASHION 003 · puffer</span></span><a href="https://youtu.be/G55FnTKKYW8" target="_blank">PLAY ▶</a></li>
-      <li><span><span class="bn">Midnight Drip</span><br><span class="bd">FASHION 004 · sherpa</span></span><a href="#" target="_blank">PLAY ▶</a></li>
+      <li><span><span class="bn">Midnight Drip</span><br><span class="bd">FASHION 004 · sherpa</span></span><a href="https://www.youtube.com/@beatsfreeyoutube_" target="_blank">PLAY ▶</a></li>
       <li><span><span class="bn">Burgundy Protocol</span><br><span class="bd">ICED 001 · rose gold</span></span><a href="https://youtu.be/6K4L4Wrikjs" target="_blank">PLAY ▶</a></li>
       <li><span><span class="bn">Dark Whispers</span><br><span class="bd">FASHION 002 · leopard</span></span><a href="https://youtu.be/-qxtNeObOWI" target="_blank">PLAY ▶</a></li>
       <li><span><span class="bn">Velvet Night</span><br><span class="bd">FASHION 001 · denim</span></span><a href="https://youtu.be/6Y6lplXlfKs" target="_blank">PLAY ▶</a></li>
@@ -278,62 +280,81 @@ footer .fl a:hover{color:var(--cyan)}
 </footer>
 
 <script>
-// LOADER UNIVERSAL v7 - SAFE & ROBUST
+/* ===== LOADER UNIVERSAL v8 — RUTA ABSOLUTA /img/ (BLINDADO) =====
+   Regla única: TODO resuelve contra /img/ en la raíz del repo.
+   - Nombre suelto  -> /img/nombre.ext
+   - subcarpeta     -> /img/carpeta/...ext
+   - ../img/...     -> se normaliza a /img/...
+   - /img/...       -> se respeta
+   - http/data      -> se respeta
+   Si nada carga, placeholder SVG de marca (nunca caja negra). */
 (function(){
-  const IMG_ROOT = "/img/";
-  const EXT = [".jpg", ".jpeg", ".png", ".webp", ".JPG", ".JPEG", ".PNG", ".WEBP"];
-  const PH = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800'%3E%3Crect width='600' height='800' fill='%230A0A0F'/%3E%3Ctext x='300' y='400' fill='%237B2CBF' font-family='Arial' font-size='20' text-anchor='middle'%3EBFYT%3C/text%3E%3C/svg%3E";
+  var ROOT = "/img/";
+  var EXT = [".jpg",".jpeg",".png",".webp",".JPG",".JPEG",".PNG",".WEBP",".jfif",".JFIF",".avif",".AVIF",".gif",".GIF"];
+  var PH = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><rect width="600" height="800" fill="#0A0A0F"/><circle cx="300" cy="400" r="180" fill="none" stroke="#7B2CBF" stroke-opacity=".35" stroke-width="2"/><circle cx="300" cy="400" r="120" fill="none" stroke="#00F5FF" stroke-opacity=".3" stroke-width="1"/><text x="300" y="392" fill="#F5F5F7" font-family="Arial" font-size="26" letter-spacing="8" text-anchor="middle" font-weight="700">BFYT</text><text x="300" y="428" fill="#9A9AA5" font-family="Arial" font-size="14" letter-spacing="4" text-anchor="middle">WORLD</text></svg>');
 
-  function tryLoad(img, originalSrc) {
-    if (!originalSrc) return;
-    
-    // Si ya tiene extensión o es ruta absoluta/relativa completa, intentar directo
-    if (originalSrc.startsWith('http') || originalSrc.startsWith('../') || /\.(jpg|jpeg|png|webp)$/i.test(originalSrc)) {
-        img.src = originalSrc;
-        img.onerror = function() { img.src = PH; };
-        return;
-    }
+  function encodePath(p){ return p.split("/").map(encodeURIComponent).join("/"); }
 
-    // Si es nombre simple, buscar en /img/
-    let found = false;
-    for (let i = 0; i < EXT.length; i++) {
-        const testUrl = IMG_ROOT + originalSrc + EXT[i];
-        const testImg = new Image();
-        testImg.onload = function() {
-            if (!found) {
-                found = true;
-                img.src = testUrl;
-            }
-        };
-        testImg.src = testUrl;
-    }
-    
-    // Fallback si no carga nada en 2s
-    setTimeout(() => {
-        if (!found && !img.src) img.src = PH;
-    }, 2000);
+  function normalize(raw){
+    if(!raw) return null;
+    var p = String(raw).trim();
+    while(p.indexOf("../")===0) p = p.slice(3);
+    while(p.indexOf("./")===0) p = p.slice(2);
+    if(p.indexOf("http")===0 || p.indexOf("data:")===0) return p;
+    p = p.replace(/^\/+/, "");          // quito slashes iniciales
+    if(p.indexOf("img/")===0) p = p.slice(4); // quito "img/" si viene duplicado
+    return ROOT + encodePath(p);        // siempre /img/...
   }
 
-  document.querySelectorAll("img[data-src]").forEach(img => {
-    tryLoad(img, img.getAttribute("data-src"));
-  });
+  function hasExt(u){ return /\.(jpg|jpeg|png|webp|jfif|avif|gif)$/i.test(u); }
+
+  function buildQueue(raw, alt){
+    var q = [], seen = {};
+    function push(u){ if(u && !seen[u]){ seen[u]=1; q.push(u); } }
+    function expand(base){
+      if(!base) return;
+      if(hasExt(base)){ push(base); return; }
+      for(var i=0;i<EXT.length;i++) push(base + EXT[i]);
+    }
+    var n1 = normalize(raw);
+    expand(n1);
+    if(raw){ var low = String(raw).toLowerCase(); if(low!==String(raw)) expand(normalize(low)); }
+    expand(normalize(alt));
+    return q;
+  }
+
+  function loadImg(img){
+    var raw = img.getAttribute("data-img");
+    var alt = img.getAttribute("data-alt");
+    if(!raw){ img.src = PH; return; }
+    var queue = buildQueue(raw, alt);
+    var i = 0;
+    function next(){
+      if(i < queue.length){ img.src = queue[i++]; }
+      else { img.src = PH; if(window.console) console.warn("[BFYT] asset missing:", raw); }
+    }
+    img.onerror = next;
+    next();
+  }
+
+  document.querySelectorAll("img[data-img]").forEach(loadImg);
 })();
 
-// FORM
-document.getElementById("list-form").onsubmit=async e=>{
+/* ===== DROP LIST (Formspree global de marca) ===== */
+document.getElementById("list-form").onsubmit = async function(e){
   e.preventDefault();
-  const f=e.target,btn=f.querySelector("button");
-  btn.disabled=true;btn.textContent="JOINING…";
+  var f = e.target, btn = f.querySelector("button");
+  btn.disabled = true; btn.textContent = "JOINING…";
   try{
-    const res=await fetch("https://formspree.io/f/xnpnvrpe",{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}});
-    if(res.ok){f.style.display="none";document.getElementById("list-ok").style.display="block";}
-    else{btn.disabled=false;btn.textContent="Join";}
-  }catch(err){btn.disabled=false;btn.textContent="Join";}
+    var res = await fetch("https://formspree.io/f/xnpnvrpe", { method:"POST", body:new FormData(f), headers:{Accept:"application/json"} });
+    if(res.ok){ f.style.display="none"; document.getElementById("list-ok").style.display="block"; }
+    else { btn.disabled=false; btn.textContent="Join"; }
+  }catch(err){ btn.disabled=false; btn.textContent="Join"; }
 };
 
-// REVEAL
-const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("on")),{threshold:.12});
-document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+/* ===== REVEAL ON SCROLL ===== */
+var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) e.target.classList.add("on"); }); }, { threshold:.12 });
+document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
 </script>
 </body>
 </html>
