@@ -285,11 +285,11 @@ footer .fl a:hover{color:var(--cyan)}
   </div>
 </section>
 
-<!-- ============ 4 · THE FILM ============ -->
+<!-- ============ 4 · THE FILM (3 VIDEOS) ============ -->
 <section class="wrap" style="padding-top:0">
   <div class="kicker reveal">THE FILM</div>
   <h2 class="reveal">Seven seconds of night.</h2>
-  <div class="films two-up reveal">
+  <div class="films reveal">
     <figure>
       <img data-img="negro/01-car-portrait" data-alt="negro/02-driving" alt="SCORPION car film">
       <video muted loop playsinline preload="metadata" data-src="video/video-01-car-push-in"></video>
@@ -297,6 +297,10 @@ footer .fl a:hover{color:var(--cyan)}
     <figure>
       <img data-img="negro/05-hero" data-alt="negro/06-editorial" alt="SCORPION collar film">
       <video muted loop playsinline preload="metadata" data-src="video/video-02-collar-orbit"></video>
+    </figure>
+    <figure>
+      <img data-img="negro/08-street-front" data-alt="negro/03-street" alt="SCORPION standing film">
+      <video muted loop playsinline preload="metadata" data-src="video/extra-standing"></video>
     </figure>
   </div>
 </section>
@@ -459,9 +463,6 @@ footer .fl a:hover{color:var(--cyan)}
 
 <script>
 // ===== PAGO: PAYHIP SCORPION =====
-// Link real del producto. Los dos botones BUY abren el checkout de Payhip.
-// Si algún día se vacía, los botones llevan a la drop list en vez de a un
-// checkout muerto.
 const PAYHIP = "https://payhip.com/b/cy8CP";
 
 const buyBtns = document.querySelectorAll(".js-buy");
@@ -475,9 +476,7 @@ function goBuy(){
 }
 buyBtns.forEach(b => b.addEventListener("click", goBuy));
 
-// ===== LOADER UNIVERSAL v7 — respaldo real, sin cajas negras =====
-// Ruta absoluta desde la raíz del repo terrivolmusic.github.io:
-// los assets viven en /img/scorpion/, no dentro de /BFYTfashion/.
+// ===== LOADER UNIVERSAL v7 =====
 const IMG_BASE = "/img/scorpion/";
 const EXT = [".jpg",".jpeg",".png",".webp",".JPG",".JPEG",".PNG",".WEBP",".jfif",".JFIF",".avif",".AVIF",".gif",".GIF"];
 const PH = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800"><rect width="600" height="800" fill="#0A0A0F"/><circle cx="300" cy="400" r="180" fill="none" stroke="#7B2CBF" stroke-opacity=".35" stroke-width="2"/><circle cx="300" cy="400" r="120" fill="none" stroke="#00F5FF" stroke-opacity=".3" stroke-width="1"/><text x="300" y="392" fill="#F5F5F7" font-family="Arial" font-size="26" letter-spacing="8" text-anchor="middle" font-weight="700">BFYT</text><text x="300" y="428" fill="#9A9AA5" font-family="Arial" font-size="14" letter-spacing="4" text-anchor="middle">WORLD</text></svg>');
@@ -485,8 +484,6 @@ const PH = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://w
 function buildURL(name, ext, base){
   return (base || IMG_BASE) + name.split("/").map(encodeURIComponent).join("/") + ext;
 }
-// En producción manda la ruta absoluta /img/. Si alguien abre el HTML con
-// doble clic (file://), /img/ no existe: se prueba primero la ruta relativa.
 const ASSET_BASES = location.protocol === "file:"
   ? [IMG_BASE.replace(/^\/+/, ""), IMG_BASE]
   : [IMG_BASE];
