@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAGTA FLEX - S.Y.P.O | Official Master</title>
+    <meta name="description" content="Descarga el Master Oficial de S.Y.P.O de Cagta Flex. Flow sensual, tema romántico nocturno. WAV 24-bit + MP3. Terrivol Music.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyan: #2ee6ff;
+            --cyan-soft: #7df0ff;
+            --blue-deep: #06121f;
+            --bg: #04080f;
+            --white: #ffffff;
+            --muted: #9fb3c8;
+            --glass: rgba(255,255,255,0.08);
+            --border: rgba(46,230,255,0.25);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body {
+            background-color: var(--bg);
+            color: var(--white);
+            font-family:'Poppins',sans-serif;
+            overflow-x:hidden;
+            position:relative;
+            min-height:100vh;
+            background-image:
+                radial-gradient(ellipse at 18% 0%, rgba(46,230,255,0.22) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 100%, rgba(6,18,31,0.9) 0%, transparent 60%);
+        }
+        body::before {
+            content:'';
+            position:fixed; inset:0; z-index:0; pointer-events:none;
+            background:repeating-linear-gradient(
+                to bottom,
+                transparent 0px, transparent 26px,
+                rgba(46,230,255,0.04) 26px, rgba(46,230,255,0.04) 28px
+            );
+            animation: blindGlow 7s ease-in-out infinite alternate;
+        }
+        @keyframes blindGlow { 0%{opacity:.35} 100%{opacity:.7} }
+
+        #fx { position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.7; }
+
+        .wrap {
+            position:relative; z-index:2;
+            width:100%; max-width:880px;
+            margin:0 auto;
+            padding:3rem 1.25rem 2rem;
+            display:flex; flex-direction:column; align-items:center; gap:2.5rem;
+        }
+
+        header { text-align:center; animation:fadeDown .9s ease-out both; }
+        .eyebrow {
+            font-size:.72rem; letter-spacing:4px; text-transform:uppercase;
+            color:var(--cyan); font-weight:600; margin-bottom:.6rem;
+        }
+        h1.brand {
+            font-family:'Anton',sans-serif;
+            font-size:clamp(2.6rem,7vw,4.6rem); line-height:.95;
+            text-transform:uppercase; letter-spacing:-1px;
+            color:var(--white);
+            text-shadow:0 0 24px rgba(46,230,255,0.55), 0 0 60px rgba(46,230,255,0.25);
+        }
+        .track {
+            font-family:'Anton',sans-serif;
+            font-size:clamp(1.4rem,4vw,2.2rem); letter-spacing:6px;
+            color:var(--cyan-soft); margin-top:.2rem;
+            text-shadow:0 0 18px rgba(46,230,255,0.5);
+        }
+        .tagline { color:var(--muted); font-size:.95rem; margin-top:.8rem; font-weight:300; }
+
+        .cover {
+            width:100%; max-width:440px; aspect-ratio:1/1;
+            border-radius:14px; overflow:hidden;
+            border:1px solid rgba(255,255,255,0.18);
+            box-shadow:0 0 0 1px rgba(46,230,255,0.2), 0 20px 60px rgba(46,230,255,0.25), 0 0 90px rgba(46,230,255,0.12);
+            display:grid; place-items:center; background:#02060c;
+            animation:floatY 6s ease-in-out infinite;
+            transition:transform .5s ease, box-shadow .5s ease;
+        }
+        .cover:hover { transform:scale(1.03); box-shadow:0 0 0 1px rgba(46,230,255,0.4), 0 25px 70px rgba(46,230,255,0.4); }
+        .cover img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+
+        .video-box {
+            position:relative; width:100%; max-width:880px; aspect-ratio:16/9;
+            border-radius:14px; overflow:hidden; background:#000;
+            box-shadow:0 18px 50px rgba(0,0,0,0.7), 0 0 0 1px var(--border);
+            animation:zoomIn .9s ease-out .15s both;
+        }
+        .video-box iframe { width:100%; height:100%; border:0; display:block; }
+        .sound-btn {
+            position:absolute; bottom:16px; right:16px; z-index:5;
+            display:inline-flex; align-items:center; gap:8px;
+            background:rgba(2,8,15,0.82); backdrop-filter:blur(8px);
+            color:var(--white); border:1px solid var(--cyan);
+            padding:10px 18px; border-radius:50px; cursor:pointer;
+            font-family:'Poppins',sans-serif; font-weight:600; font-size:.85rem;
+            letter-spacing:.5px; transition:all .3s ease;
+            box-shadow:0 6px 18px rgba(0,0,0,0.5), 0 0 18px rgba(46,230,255,0.3);
+        }
+        .sound-btn:hover { background:var(--cyan); color:#02121a; transform:translateY(-2px); }
+        .sound-btn.hide { display:none; }
+
+        .buy {
+            width:100%; max-width:560px; text-align:center;
+            background:linear-gradient(150deg, rgba(46,230,255,0.08), rgba(6,18,31,0.5));
+            backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+            border:1px solid var(--border); border-top:2px solid var(--cyan);
+            border-radius:22px; padding:2.4rem 2rem;
+            box-shadow:0 20px 50px rgba(0,0,0,0.5), inset 0 0 40px rgba(46,230,255,0.05);
+            animation:floatY 7s ease-in-out infinite;
+            transition:transform .4s cubic-bezier(.2,.8,.2,1.3), box-shadow .4s ease;
+        }
+        .buy:hover { transform:translateY(-6px); box-shadow:0 30px 70px rgba(46,230,255,0.25); border-color:rgba(46,230,255,0.6); }
+        .buy .label {
+            display:inline-block; background:var(--cyan); color:#02121a;
+            font-size:.7rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+            padding:5px 14px; border-radius:50px; margin-bottom:1rem;
+        }
+        .buy .vibe { color:var(--muted); font-size:.92rem; line-height:1.6; margin-bottom:1.2rem; font-weight:300; }
+        .price {
+            font-family:'Anton',sans-serif; font-size:3.4rem; line-height:1;
+            color:var(--white); text-shadow:0 0 22px rgba(46,230,255,0.5);
+        }
+        .price small { font-size:1rem; vertical-align:super; color:var(--cyan-soft); }
+        .feat {
+            display:grid; grid-template-columns:1fr 1fr; gap:.7rem 1.2rem;
+            text-align:left; margin:1.4rem 0 1.6rem; font-size:.88rem; color:#d6e6f2;
+        }
+        .feat span { display:flex; align-items:center; gap:8px; }
+        .feat i { color:var(--cyan); font-style:normal; font-weight:700; }
+        .cta {
+            display:block; width:100%; text-decoration:none;
+            background:linear-gradient(90deg, var(--cyan), var(--cyan-soft));
+            color:#02121a; font-weight:800; font-size:1.15rem;
+            text-transform:uppercase; letter-spacing:1px;
+            padding:1.15rem; border-radius:14px; position:relative; overflow:hidden;
+            box-shadow:0 12px 30px rgba(46,230,255,0.4); transition:transform .3s ease, box-shadow .3s ease;
+        }
+        .cta::after { content:''; position:absolute; top:0; left:-120%; width:120%; height:100%;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent); transition:left .6s ease; }
+        .cta:hover { transform:scale(1.03); box-shadow:0 16px 40px rgba(46,230,255,0.6); }
+        .cta:hover::after { left:120%; }
+        .secure { font-size:.72rem; color:var(--muted); margin-top:.9rem; letter-spacing:.5px; }
+
+        footer {
+            width:100%; max-width:880px; text-align:center;
+            padding:2.5rem 1rem 1rem; margin-top:1rem;
+            border-top:1px solid rgba(255,255,255,0.06);
+            font-size:.78rem; color:#5f7184; line-height:1.7;
+        }
+        footer b { color:var(--cyan); font-family:'Anton',sans-serif; letter-spacing:1px; font-size:1rem; }
+        footer a { color:var(--muted); text-decoration:none; }
+        footer a:hover { color:var(--cyan); }
+
+        @keyframes fadeDown { from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes zoomIn { from{opacity:0;transform:scale(.96)} to{opacity:1;transform:scale(1)} }
+        @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+
+        @media (max-width:600px){
+            .feat{grid-template-columns:1fr;}
+            .price{font-size:2.7rem;}
+            .cover{max-width:340px;}
+            .sound-btn{bottom:10px;right:10px;padding:8px 14px;font-size:.78rem;}
+        }
+    </style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+
+<div class="wrap">
+    <header>
+        <div class="eyebrow">Terrivol Music ENT. • Official Release</div>
+        <h1 class="brand">CAGTA FLEX</h1>
+        <div class="track">S.Y.P.O</div>
+        <p class="tagline">Flow sensual · Noche · Romance sin filtros</p>
+    </header>
+
+    <!-- PORTADA JPG con ruta codificada + onerror de seguridad -->
+    <div class="cover">
+        <img src="/img/Cagta%20Flex%20-%20S.Y.P.O%20%28cover%20Art%29.jpg" alt="Cover Oficial S.Y.P.O - Cagta Flex" onerror="this.style.display='none'">
+    </div>
+
+    <!-- VIDEO AUTOPLAY (mudo) + botón para activar sonido -->
+    <div class="video-box">
+        <iframe id="yt" src="https://www.youtube.com/embed/Kq7Lhc9EZCc?enablejsapi=1&playsinline=1&rel=0&modestbranding=1" title="Cagta Flex - S.Y.P.O (Official Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <button class="sound-btn" id="snd">🔊 Activar Sonido</button>
+    </div>
+
+    <!-- CTA ÚNICO: MASTER OFICIAL $3.99 -->
+    <div class="buy">
+        <span class="label">Master Oficial · Descarga Directa</span>
+        <p class="vibe">El sonido íntimo de <strong>S.Y.P.O</strong> en máxima calidad. Un tema romántico y sensual hecho para la madrugada — consérvalo en tu biblioteca con el master original, sin compresión de plataformas.</p>
+        <div class="price">$3.99<small>USD</small></div>
+        <div class="feat">
+            <span><i>✓</i> WAV Master 24-bit</span>
+            <span><i>✓</i> MP3 320kbps</span>
+            <span><i>✓</i> Cover Art HD</span>
+            <span><i>✓</i> Entrega Instantánea</span>
+        </div>
+        <a class="cta" href="https://cagta-flex-shop.fourthwall.com/products/sypomasteroficial" target="_blank" rel="noopener">Descargar Master Ahora ⚡</a>
+        <div class="secure">🔒 Pago seguro vía Fourthwall · Soporte directo a Terrivol Music</div>
+    </div>
+</div>
+
+<footer>
+    <b>TERRIVOL MUSIC ENT.</b><br>
+    © 2026 · Bogotá, Colombia · +20 años · 380 obras en Sony Music Publishing<br>
+    Booking &amp; Contacto: <a href="mailto:Booking.terrivolmusic@gmail.com">Booking.terrivolmusic@gmail.com</a> · <a href="https://wa.me/573142807283">+57 314 280 7283</a>
+</footer>
+
+<script>
+const cv=document.getElementById('fx'),cx=cv.getContext('2d');let W,H,P=[];
+function rs(){W=innerWidth;H=innerHeight;cv.width=W;cv.height=H;}
+class D{constructor(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*2.4+.6;this.vx=(Math.random()-.5)*.5;this.vy=(Math.random()-.5)*.5;const c=['46,230,255','125,240,255','180,235,255'];this.c=c[Math.random()*c.length|0];this.a=Math.random()*.5+.2;}
+u(){this.x+=this.vx;this.y+=this.vy;if(this.x>W)this.x=0;if(this.x<0)this.x=W;if(this.y>H)this.y=0;if(this.y<0)this.y=H;}
+d(){cx.fillStyle=`rgba(${this.c},${this.a})`;cx.shadowBlur=8;cx.shadowColor=`rgba(${this.c},.8)`;cx.beginPath();cx.arc(this.x,this.y,this.r,0,7);cx.fill();cx.shadowBlur=0;}}
+function init(){P=[];for(let i=0;i<120;i++)P.push(new D());}
+function loop(){cx.clearRect(0,0,W,H);P.forEach(p=>{p.u();p.d();});requestAnimationFrame(loop);}
+addEventListener('resize',()=>{rs();init();});rs();init();loop();
+
+const yt=document.getElementById('yt'),snd=document.getElementById('snd');
+function cmd(f,a){if(yt&&yt.contentWindow)yt.contentWindow.postMessage(JSON.stringify({event:'command',func:f,args:a||[]}),'*');}
+addEventListener('load',()=>setTimeout(()=>{cmd('playVideo');cmd('mute');},900));
+snd.addEventListener('click',()=>{cmd('unMute');cmd('playVideo');snd.classList.add('hide');});
+</script>
+</body>
+</html>
