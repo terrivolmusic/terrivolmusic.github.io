@@ -148,7 +148,7 @@
         .cta:hover::after { left:120%; }
         .secure { font-size:.72rem; color:var(--muted); margin-top:.9rem; letter-spacing:.5px; }
 
-        /* ===== FOOTER REDISEÑADO (LIMPIO, SIN NÚMERO ROTO) ===== */
+        /* ===== FOOTER PRO (booking correcto + EPK discreto) ===== */
         footer {
             position:relative; z-index:2;
             width:100%; max-width:880px;
@@ -170,7 +170,7 @@
         }
         .foot-links {
             display:flex; flex-wrap:wrap; justify-content:center;
-            gap:.7rem; margin-bottom:1.4rem;
+            gap:.7rem; margin-bottom:1.2rem;
         }
         .foot-links a {
             display:inline-flex; align-items:center; gap:8px;
@@ -187,6 +187,16 @@
             transform:translateY(-2px);
             box-shadow:0 6px 18px rgba(46,230,255,0.18);
         }
+        /* Línea discreta del EPK (texto pequeño, no botón) */
+        .foot-epk {
+            font-size:.74rem; color:#7f93a8; margin-bottom:1rem; font-weight:300;
+        }
+        .foot-epk a {
+            color:var(--cyan-soft); text-decoration:none; font-weight:600;
+            border-bottom:1px dotted rgba(125,240,255,0.4);
+            transition:color .3s ease, border-color .3s ease;
+        }
+        .foot-epk a:hover { color:var(--cyan); border-bottom-color:var(--cyan); }
         .foot-copy {
             font-size:.7rem; color:#5f7184; letter-spacing:.5px;
         }
@@ -243,16 +253,18 @@
     </div>
 </div>
 
-<!-- ===== FOOTER PRO: correo de Booking + redes, sin número roto ===== -->
+<!-- ===== FOOTER PRO ===== -->
 <footer>
     <div class="foot-brand">TERRIVOL MUSIC ENT.</div>
     <p class="foot-cred">© 2026 · Bogotá, Colombia · +20 años de carrera · 380 obras registradas en Sony Music Publishing</p>
     <div class="foot-links">
-        <a href="mailto:Booking.terrivolmusic@gmail.com">✉️ Booking &amp; Contacto</a>
+        <a href="mailto:terrivolmusiclove@gmail.com">✉️ Booking &amp; Contacto</a>
         <a href="https://instagram.com/cagtaflex" target="_blank" rel="noopener">📸 Instagram</a>
         <a href="https://youtube.com/@cagtaflex" target="_blank" rel="noopener">▶️ YouTube</a>
         <a href="https://tiktok.com/@cagtaflex" target="_blank" rel="noopener">🎵 TikTok</a>
     </div>
+    <!-- EPK discreto: texto pequeño, no compite con el CTA de venta -->
+    <p class="foot-epk">¿Contrataciones, shows o colaboraciones? <a href="/cagtaflex/epk.html">Explora nuestro EPK oficial →</a></p>
     <p class="foot-copy">S.Y.P.O — Master Oficial disponible para descarga directa.</p>
 </footer>
 
