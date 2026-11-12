@@ -353,47 +353,23 @@
             position: relative; z-index: 1;
         }
         
-        /* LAYOUT DEL DROP CON QR LATERAL LIMPIO */
-        .drop-gallery-wrapper {
-            display: flex; justify-content: center; align-items: center; gap: 30px;
-            margin-bottom: 30px; position: relative; z-index: 1; flex-wrap: wrap;
+        /* GALERÍA LIMPIA SIN QR EN MEDIO */
+        .drop-gallery-clean {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+            margin-bottom: 30px; position: relative; z-index: 1;
         }
-        .drop-images-group {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
-        }
-        .drop-images-group img {
+        .drop-gallery-clean img {
             width: 100%; aspect-ratio: 3/4; object-fit: cover;
             border-radius: 12px; border: 1px solid var(--border);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             background: #0f0f15; display: block;
         }
-        .drop-images-group img:hover {
+        .drop-gallery-clean img:hover {
             transform: translateY(-6px) scale(1.02);
             box-shadow: 0 15px 40px rgba(0, 255, 204, 0.25);
         }
-        .qr-container {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 20px; background: #000; border-radius: 16px;
-            box-shadow: 0 0 30px rgba(157, 0, 255, 0.4); /* Glow morado sutil */
-            border: 1px solid rgba(157, 0, 255, 0.3);
-        }
-        .qr-container img {
-            width: 220px; height: 220px; object-fit: contain; /* Tamaño fijo grande para escaneo */
-            image-rendering: pixelated; /* Nitidez extrema para QR */
-            margin-bottom: 15px;
-        }
-        .qr-text {
-            font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem;
-            color: #fff; text-transform: uppercase; letter-spacing: 1px; text-align: center;
-        }
-        .qr-subtext {
-            font-size: 0.8rem; color: var(--secondary); margin-top: 5px;
-        }
-
         @media (max-width: 768px) {
-            .drop-gallery-wrapper { flex-direction: column; gap: 20px; }
-            .drop-images-group { grid-template-columns: 1fr 1fr; width: 100%; }
-            .qr-container img { width: 180px; height: 180px; }
+            .drop-gallery-clean { grid-template-columns: repeat(2, 1fr); gap: 10px; }
         }
 
         .drop-features {
@@ -473,8 +449,8 @@
 
         <div class="beat-hero">
             <div class="cover-container">
-                <!-- RUTA CORREGIDA: Apunta a /img/scorpion/negro/ -->
-                <img class="cover-art" data-img="negro/05-hero" data-alt="negro/01-car-portrait" alt="Scorpion Cover Art">
+                <!-- IMAGEN PRINCIPAL ACTUALIZADA A LA RAÍZ /img/ -->
+                <img class="cover-art" data-img="05-driving.jpg (2)" data-alt="05-driving (2)" alt="Scorpion Cover Art">
                 <div class="cover-overlay"></div>
             </div>
 
@@ -525,7 +501,6 @@
                     </div>
 
                     <audio id="audioPlayer" preload="metadata">
-                        <!-- AUDIO EN RAÍZ COMO PEDISTE -->
                         <source src="https://terrivolmusic.github.io/img/Scorpion%20Pre.mp3" type="audio/mpeg">
                     </audio>
                 </div>
@@ -594,21 +569,11 @@
                 Built for the hour when the city goes quiet and the bass doesn't. Limited units. Free worldwide shipping.
             </p>
             
-            <!-- SECCIÓN QR LATERAL LIMPIO Y GRANDE -->
-            <div class="drop-gallery-wrapper">
-                <div class="drop-images-group">
-                    <!-- Imágenes del drop desde su carpeta real -->
-                    <img data-img="negro/01-car-portrait" data-alt="negro/02-driving" alt="Scorpion Jacket Campaign">
-                    <img data-img="packshots/negro-packshot" data-alt="packshots/negro-cuello" alt="Scorpion Packshot">
-                </div>
-                
-                <div class="qr-container">
-                    <!-- QR GENERADO POR TI O UNA IMAGEN ESTÁTICA CLARA -->
-                    <!-- Asumo que tienes un qr-code.png en /img/ o similar. Si no, cámbialo por la ruta correcta -->
-                    <img src="https://terrivolmusic.github.io/img/scorpion/qr-code.png" alt="Scan to Wear the Drop">
-                    <div class="qr-text">SCAN TO WEAR THE DROP →</div>
-                    <div class="qr-subtext">Direct link to Checkout</div>
-                </div>
+            <!-- GALERIA DE FOTOS DEL DROP (USANDO CARPETAS REALES) -->
+            <div class="drop-gallery-clean">
+                <img data-img="negro/01-car-portrait" data-alt="negro/02-driving" alt="Scorpion Jacket Campaign">
+                <img data-img="packshots/negro-packshot" data-alt="packshots/negro-cuello" alt="Scorpion Packshot">
+                <img data-img="negro/05-hero" data-alt="negro/06-editorial" alt="Scorpion Hero Shot">
             </div>
 
             <div class="drop-features">
@@ -700,39 +665,60 @@
         animateStars();
         window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 
-        /* ===== LOADER UNIVERSAL DE IMÁGENES (ACTUALIZADO PARA SUBCARPETAS) ===== */
-        // Cambiamos la base raíz a /img/scorpion/ porque ahí viven las fotos del drop
-        const IMG_BASE = "/img/scorpion/"; 
+        /* ===== LOADER UNIVERSAL DE IMÁGENES (CORREGIDO PARA ESPACIOS Y PARÉNTESIS) ===== */
+        // Definimos dos bases posibles: Raíz (/img/) y Subcarpetas (/img/scorpion/)
+        const ROOT_BASE = "/img/";
+        const SCORPION_BASE = "/img/scorpion/";
+        
         const EXT = [".jpg",".jpeg",".png",".webp",".JPG",".JPEG",".PNG",".WEBP",".jfif",".JFIF",".avif",".AVIF",".gif",".GIF"];
         const PH = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><rect width="600" height="600" fill="#0A0A0F"/><circle cx="300" cy="300" r="180" fill="none" stroke="#7B2CBF" stroke-opacity=".35" stroke-width="2"/><circle cx="300" cy="300" r="120" fill="none" stroke="#00F5FF" stroke-opacity=".3" stroke-width="1"/><text x="300" y="292" fill="#F5F5F7" font-family="Arial" font-size="26" letter-spacing="8" text-anchor="middle" font-weight="700">BFYT</text><text x="300" y="328" fill="#9A9AA5" font-family="Arial" font-size="14" letter-spacing="4" text-anchor="middle">SCORPION</text></svg>');
 
         function variants(b) {
             const v = [b];
-            const m = b.match(/^(.*)\s\(\d+\)$/);
-            if (m) v.push(m[1]);
-            v.push(b + " (1)", b + " (2)");
+            // Manejar "(2)" o "(1)" explícitamente si vienen en el string
+            if (b.includes("(2)")) v.push(b.replace(" (2)", ""));
+            if (b.includes("(1)")) v.push(b.replace(" (1)", ""));
             return v;
         }
-        function buildURL(name, ext) { 
-            // Maneja rutas con slash interno ej: negro/05-hero -> negro%2F05-hero.jpg NO, mejor split/join
-            return IMG_BASE + name.split("/").map(encodeURIComponent).join("/") + ext; 
+        
+        function buildURL(name, ext, base) {
+            // Codificamos cada parte separada por slash para manejar espacios correctamente
+            return base + name.split("/").map(part => encodeURIComponent(part)).join("/") + ext;
         }
+
         function loadImg(img) {
-            const bases = [img.dataset.img];
-            if (img.dataset.alt) bases.push(img.dataset.alt);
-            const low = img.dataset.img.toLowerCase();
-            if (low !== img.dataset.img) bases.push(low);
+            const names = [img.dataset.img];
+            if (img.dataset.alt) names.push(img.dataset.alt);
+            
             const queue = [];
-            bases.forEach(b => { variants(b).forEach(v => { EXT.forEach(e => queue.push(buildURL(v, e))); }); });
+            // Intentamos primero en la raíz (/img/) porque ahí pusiste la portada
+            // Luego intentamos en la subcarpeta (/img/scorpion/) para las fotos del drop
+            
+            const bases = [ROOT_BASE, SCORPION_BASE];
+            
+            for (const base of bases) {
+                for (const n of names) {
+                    for (const v of variants(n)) {
+                        for (const e of EXT) {
+                            queue.push(buildURL(v, e, base));
+                        }
+                    }
+                }
+            }
+
             let i = 0;
             const next = () => {
-                if (i < queue.length) { img.src = queue[i++]; }
-                else { img.src = PH; console.warn("[BFYT] asset missing:", img.dataset.img); }
+                if (i < queue.length) { 
+                    img.src = queue[i++]; 
+                } else { 
+                    img.src = PH; 
+                    console.warn("[BFYT] asset missing:", img.dataset.img); 
+                }
             };
             img.onerror = next;
             next();
         }
-        document.querySelectorAll("img[data-img]").forEach(img => loadImg(img));
+        document.querySelectorAll("img[data-img]").forEach(loadImg);
 
         /* ===== REPRODUCTOR CON PROTECCIÓN ANTI-ROBO (MÁX 1:10) ===== */
         const MAX_PREVIEW = 70;
@@ -818,4 +804,4 @@
         audio.volume = 0.7;
     </script>
 </body>
-</html>
+</html>        
