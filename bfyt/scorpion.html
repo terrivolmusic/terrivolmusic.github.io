@@ -352,23 +352,50 @@
             font-size: 1.05rem; max-width: 700px; margin-left: auto; margin-right: auto;
             position: relative; z-index: 1;
         }
-        .drop-gallery {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-            margin-bottom: 30px; position: relative; z-index: 1;
+        
+        /* LAYOUT DEL DROP CON QR LATERAL LIMPIO */
+        .drop-gallery-wrapper {
+            display: flex; justify-content: center; align-items: center; gap: 30px;
+            margin-bottom: 30px; position: relative; z-index: 1; flex-wrap: wrap;
         }
-        .drop-gallery img {
+        .drop-images-group {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+        }
+        .drop-images-group img {
             width: 100%; aspect-ratio: 3/4; object-fit: cover;
             border-radius: 12px; border: 1px solid var(--border);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             background: #0f0f15; display: block;
         }
-        .drop-gallery img:hover {
+        .drop-images-group img:hover {
             transform: translateY(-6px) scale(1.02);
             box-shadow: 0 15px 40px rgba(0, 255, 204, 0.25);
         }
-        @media (max-width: 768px) {
-            .drop-gallery { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .qr-container {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 20px; background: #000; border-radius: 16px;
+            box-shadow: 0 0 30px rgba(157, 0, 255, 0.4); /* Glow morado sutil */
+            border: 1px solid rgba(157, 0, 255, 0.3);
         }
+        .qr-container img {
+            width: 220px; height: 220px; object-fit: contain; /* Tamaño fijo grande para escaneo */
+            image-rendering: pixelated; /* Nitidez extrema para QR */
+            margin-bottom: 15px;
+        }
+        .qr-text {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem;
+            color: #fff; text-transform: uppercase; letter-spacing: 1px; text-align: center;
+        }
+        .qr-subtext {
+            font-size: 0.8rem; color: var(--secondary); margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .drop-gallery-wrapper { flex-direction: column; gap: 20px; }
+            .drop-images-group { grid-template-columns: 1fr 1fr; width: 100%; }
+            .qr-container img { width: 180px; height: 180px; }
+        }
+
         .drop-features {
             display: flex; justify-content: center; gap: 30px; margin-bottom: 35px;
             flex-wrap: wrap; position: relative; z-index: 1;
@@ -446,8 +473,8 @@
 
         <div class="beat-hero">
             <div class="cover-container">
-                <!-- LOADER UNIVERSAL: Intentará cargar 05-driving.jpg, luego (2), luego variantes -->
-                <img class="cover-art" data-img="05-driving" data-alt="05-driving (2)" alt="Scorpion Cover Art">
+                <!-- RUTA CORREGIDA: Apunta a /img/scorpion/negro/ -->
+                <img class="cover-art" data-img="negro/05-hero" data-alt="negro/01-car-portrait" alt="Scorpion Cover Art">
                 <div class="cover-overlay"></div>
             </div>
 
@@ -498,6 +525,7 @@
                     </div>
 
                     <audio id="audioPlayer" preload="metadata">
+                        <!-- AUDIO EN RAÍZ COMO PEDISTE -->
                         <source src="https://terrivolmusic.github.io/img/Scorpion%20Pre.mp3" type="audio/mpeg">
                     </audio>
                 </div>
@@ -565,12 +593,24 @@
                 The official cropped puffer cut to this beat. Glossy quilted nylon, scarf-collar that stands to your chin, sleeves that fall over your knuckles. 
                 Built for the hour when the city goes quiet and the bass doesn't. Limited units. Free worldwide shipping.
             </p>
-            <div class="drop-gallery">
-                <!-- Usando las fotos del drop que mencionaste antes -->
-                <img data-img="01-emerge" data-alt="01-emerge (1)" alt="Scorpion Jacket Emerge">
-                <img data-img="05-frozen-fall" data-alt="05-frozen-fall (1)" alt="Scorpion Jacket Fall">
-                <img data-img="qr-code" data-alt="qr-code (1)" alt="Scan to Wear the Drop">
+            
+            <!-- SECCIÓN QR LATERAL LIMPIO Y GRANDE -->
+            <div class="drop-gallery-wrapper">
+                <div class="drop-images-group">
+                    <!-- Imágenes del drop desde su carpeta real -->
+                    <img data-img="negro/01-car-portrait" data-alt="negro/02-driving" alt="Scorpion Jacket Campaign">
+                    <img data-img="packshots/negro-packshot" data-alt="packshots/negro-cuello" alt="Scorpion Packshot">
+                </div>
+                
+                <div class="qr-container">
+                    <!-- QR GENERADO POR TI O UNA IMAGEN ESTÁTICA CLARA -->
+                    <!-- Asumo que tienes un qr-code.png en /img/ o similar. Si no, cámbialo por la ruta correcta -->
+                    <img src="https://terrivolmusic.github.io/img/scorpion/qr-code.png" alt="Scan to Wear the Drop">
+                    <div class="qr-text">SCAN TO WEAR THE DROP →</div>
+                    <div class="qr-subtext">Direct link to Checkout</div>
+                </div>
             </div>
+
             <div class="drop-features">
                 <div class="drop-feature">Cropped Fit</div>
                 <div class="drop-feature">Snap Collar</div>
@@ -578,7 +618,7 @@
                 <div class="drop-feature">Sizes S–L</div>
             </div>
             <a href="https://terrivolmusic.github.io/BFYTfashion/scorpion.html" class="drop-btn" target="_blank">
-                View the Drop →
+                View the Full Drop Page →
             </a>
         </div>
 
@@ -660,8 +700,9 @@
         animateStars();
         window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 
-        /* ===== LOADER UNIVERSAL DE IMÁGENES ===== */
-        const IMG_BASE = "/img/";
+        /* ===== LOADER UNIVERSAL DE IMÁGENES (ACTUALIZADO PARA SUBCARPETAS) ===== */
+        // Cambiamos la base raíz a /img/scorpion/ porque ahí viven las fotos del drop
+        const IMG_BASE = "/img/scorpion/"; 
         const EXT = [".jpg",".jpeg",".png",".webp",".JPG",".JPEG",".PNG",".WEBP",".jfif",".JFIF",".avif",".AVIF",".gif",".GIF"];
         const PH = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><rect width="600" height="600" fill="#0A0A0F"/><circle cx="300" cy="300" r="180" fill="none" stroke="#7B2CBF" stroke-opacity=".35" stroke-width="2"/><circle cx="300" cy="300" r="120" fill="none" stroke="#00F5FF" stroke-opacity=".3" stroke-width="1"/><text x="300" y="292" fill="#F5F5F7" font-family="Arial" font-size="26" letter-spacing="8" text-anchor="middle" font-weight="700">BFYT</text><text x="300" y="328" fill="#9A9AA5" font-family="Arial" font-size="14" letter-spacing="4" text-anchor="middle">SCORPION</text></svg>');
 
@@ -672,7 +713,10 @@
             v.push(b + " (1)", b + " (2)");
             return v;
         }
-        function buildURL(name, ext) { return IMG_BASE + encodeURIComponent(name) + ext; }
+        function buildURL(name, ext) { 
+            // Maneja rutas con slash interno ej: negro/05-hero -> negro%2F05-hero.jpg NO, mejor split/join
+            return IMG_BASE + name.split("/").map(encodeURIComponent).join("/") + ext; 
+        }
         function loadImg(img) {
             const bases = [img.dataset.img];
             if (img.dataset.alt) bases.push(img.dataset.alt);
