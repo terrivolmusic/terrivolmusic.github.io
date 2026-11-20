@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sebastian Andrade — Producción Audiovisual</title>
+  <meta name="description" content="Producción audiovisual y edición de video. Reels, comerciales, videoclips y branding. Contacto por WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <header class="nav">
+    <a href="#top" class="logo">Sebastian&nbsp;Andrade<span class="logo-sub">producción audiovisual</span></a>
+    <nav class="nav-links">
+      <a href="#trabajos">Trabajos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto" class="nav-cta">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="top">
+    <p class="hero-eyebrow">Producción Audiovisual</p>
+    <h1 class="hero-title">Sebastian<br/>Andrade</h1>
+    <p class="hero-text">
+      Edición con ritmo narrativo, retención y claridad de mensaje.
+      Video que funciona para marcas, artistas y creadores — en cualquier formato.
+    </p>
+    <div class="hero-actions">
+      <a href="#trabajos" class="btn btn-primary">Ver trabajos</a>
+      <a href="https://wa.me/573102123844" target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp <span>→</span></a>
+    </div>
+  </section>
+
+  <!-- ===== TRABAJOS ===== -->
+  <section class="works" id="trabajos">
+    <div class="works-head">
+      <h2>Trabajos</h2>
+      <p>Una selección de piezas editadas para distintos clientes y objetivos.</p>
+    </div>
+
+    <div class="filters">
+      <button class="filter active" data-filter="all">Todos</button>
+      <button class="filter" data-filter="reels">Reels & Social</button>
+      <button class="filter" data-filter="branded">Branded & Corporativo</button>
+      <button class="filter" data-filter="music">Música & Videoclips</button>
+    </div>
+
+    <div class="grid" id="grid"><!-- cards inyectadas por JS --></div>
+  </section>
+
+  <!-- ===== SERVICIOS ===== -->
+  <section class="services" id="servicios">
+    <h2>Servicios</h2>
+    <div class="services-grid">
+      <div class="service">
+        <h3>Reels & Contenido Vertical</h3>
+        <p>Edición optimizada para mobile: cortes precisos, ritmo de retención y mensaje claro. Ideal para Instagram, TikTok y YouTube Shorts.</p>
+      </div>
+      <div class="service">
+        <h3>Branded Content & Corporativo</h3>
+        <p>Reels de marca, promos y piezas comerciales que comunican el valor de tu negocio con un acabado profesional.</p>
+      </div>
+      <div class="service">
+        <h3>Videoclips & Música</h3>
+        <p>Edición musical con atmósfera, color y montaje que elevan tus canciones, shows y proyectos artísticos.</p>
+      </div>
+      <div class="service">
+        <h3>Films & Promocionales</h3>
+        <p>Piezas largas, documentales cortos y contenido de historia con narrativa cuidada y calidad de broadcast.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACTO ===== -->
+  <section class="contact" id="contacto">
+    <p class="contact-eyebrow">¿Hablamos?</p>
+    <h2>Contáctame por WhatsApp</h2>
+    <p class="contact-text">Cuéntame tu proyecto y te respondo lo antes posible.</p>
+    <a href="https://wa.me/573102123844?text=Hola%2C%20Sebastian%2C%20me%20interesa%20un%20proyecto%20audiovisual" target="_blank" rel="noopener" class="btn btn-wa">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.991c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.08.547 4.102 1.588 5.845L.057 24l6.395-1.677a11.882 11.882 0 005.6 1.415h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+      +57 310 2123844
+    </a>
+    <p class="contact-alt">También puedes escribirme: <a href="mailto:contacto@sebastianandrade.co">contacto@sebastianandrade.co</a></p>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>© 2026 Sebastian Andrade — Producción Audiovisual</p>
+  </footer>
+
+  <!-- ===== MODAL ===== -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel">
+      <button class="modal-close" data-close aria-label="Cerrar">&times;</button>
+      <video id="modal-video" controls playsinline></video>
+      <p class="modal-title" id="modal-title"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
